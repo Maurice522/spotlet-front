@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Form from "./components/Form";
+import React, { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [id, setId] = useState("");
+	const handleScroll = () => {
+		console.log(window.scrollY);
+
+		if (window.scrollY <= 565) {
+			setId("");
+		} else {
+			setId("id-2");
+		}
+	};
+
+	document.addEventListener("scroll", handleScroll);
+
+	return (
+		<div className="App">
+			<Header extraNavId={id} />
+			<Form />
+			<Content />
+		</div>
+	);
 }
 
 export default App;
