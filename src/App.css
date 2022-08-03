@@ -69,6 +69,7 @@ body {
 	height: 90%;
 	border-radius: 5px;
 	background: transparent;
+	border: none;
 }
 
 .nav-search-input::placeholder {
