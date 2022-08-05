@@ -14,7 +14,7 @@ function Home() {
   };
   return (
     <div style={{ textAlign: "center", marginTop: "2%" }}>
-      {user ? <h1>Hi {user?.fullName}</h1> : <h1>Loading...</h1>}
+      {user ? <h1>Hi {user.personalInfo.fullName}</h1> : <h1>Loading...</h1>}
       <Button
         size="large"
         variant="contained"

@@ -28,7 +28,8 @@
   color: #374047;
   cursor: pointer;
 }
-.auth-detail > div > h1 {
+.auth-detail > div > h1,
+.otp-form > h1 {
   font-size: 39px;
   color: #374047;
   font-weight: 600;
@@ -72,4 +73,22 @@ form > label {
 .css-1ua80n0-MuiInputBase-input-MuiOutlinedInput-input,
 .css-12yjm75-MuiInputBase-input-MuiOutlinedInput-input {
   height: 2em !important;
+}
+
+/* OTP-verify.js CSS */
+.otp-verify {
+  display: flex;
+  justify-content: space-between;
+}
+.otp-form {
+  padding-left: 15%;
+  margin-top: 10%;
+}
+
+.otp-form > h1 {
+  margin-bottom: 8%;
+}
+
+.otp-form > .auth-btn {
+  margin-top: 40px !important;
 }

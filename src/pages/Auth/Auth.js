@@ -59,11 +59,6 @@ export default function Auth() {
         toast.error(error.response.data.error);
       }
     }
-    setUserData({
-      ...userData,
-      fullName: "",
-      mobile: "",
-    });
   };
   return (
     <div className="auth" style={{ flexDirection: isSignIn && "row-reverse" }}>
@@ -185,7 +180,7 @@ export default function Auth() {
               type="submit"
               fullWidth
               className="auth-btn"
-              variant="contain"
+              variant="contained"
               disableElevation
             >
               {isSignIn ? "Sign In" : "SignUp"}
