@@ -42,6 +42,11 @@ form > label {
   font-weight: 500;
   display: inline-block;
 }
+form > p {
+  font-size: 13px;
+  color: #606e79;
+  margin-top: 4px;
+}
 #swch {
   text-align: center;
   margin-top: 25px;

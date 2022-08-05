@@ -45,10 +45,13 @@ export default function Auth() {
         toast("Successful login");
         window.location = "/";
       } catch (error) {
+        console.log(error.response.data);
         toast.error(error.response.data.error);
       }
     } else {
       try {
+        if (userData.password.length < 8)
+          return toast.error("Passwod must contain atleast 8 characters");
         const response = await otpVerify(userData);
         toast("OTP sent");
         dispatch(saveOTP(response.data.otp));
@@ -176,6 +179,7 @@ export default function Auth() {
               required
             />
             <br />
+            <p>Should contain minimum 8 characters</p>
             <Button
               type="submit"
               fullWidth
