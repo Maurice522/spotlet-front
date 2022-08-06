@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Avatar } from "@mui/material";
+import "../Assets/Styles/navbar.css";
 
 const Navbar = ({ extraNavId }) => {
 	return (

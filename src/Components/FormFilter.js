@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "../Assets/Styles/formFilter.css";
 
-const Form = () => {
+const FormFilter = () => {
 	const [active, setActive] = useState(false);
 	return (
 		<div id="form-wrapper">
@@ -95,4 +96,4 @@ const Form = () => {
 	);
 };
 
-export default Form;
+export default FormFilter;

@@ -1,14 +1,14 @@
 import React from "react";
-import Image from "./Image";
 import Navbar from "./Navbar";
+import "../Assets/Styles/header.css";
 
 const Header = ({ extraNavId }) => {
 	return (
 		<>
 			<Navbar extraNavId={extraNavId} />
 			<div className="text-on-image-container">
-				<Image
-					src={require("../images/header-bg.jpeg")}
+				<img
+					src={require("../Assets/Images/header-bg.jpeg")}
 					alt="background"
 					className="bg-image darken"
 				/>

@@ -1,0 +1,49 @@
+.property-section {
+	width: 80vw;
+	margin: 0 auto;
+}
+
+.property-heading {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 39px;
+	line-height: 56px;
+	margin-bottom: 30px;
+}
+
+.property-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	row-gap: 25px;
+}
+
+.property-image {
+	width: 100%;
+	height: 300px;
+	max-height: 300px;
+	border-radius: 10px;
+}
+
+.property-info-heading {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 25px;
+}
+
+.property-info-location {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	color: #374047;
+}
+
+.property-info-price {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+}

@@ -1,28 +1,16 @@
-import "./App.css";
-import Header from "./components/Header";
-import Content from "./components/Content";
-import Form from "./components/Form";
-import React, { useState } from "react";
+import "./Assets/Styles/App.css";
+import React from "react";
+import Home from "./Pages/Home";
+import Property from "./Pages/Property";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-	const [id, setId] = useState("");
-	const handleScroll = () => {
-		console.log(window.scrollY);
-
-		if (window.scrollY <= 565) {
-			setId("");
-		} else {
-			setId("id-2");
-		}
-	};
-
-	document.addEventListener("scroll", handleScroll);
-
 	return (
-		<div className="App">
-			<Header extraNavId={id} />
-			<Form />
-			<Content />
+		<div>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/property" element={<Property />} />
+			</Routes>
 		</div>
 	);
 }
