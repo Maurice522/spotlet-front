@@ -1,0 +1,79 @@
+.reason-heading {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 39px;
+	line-height: 56px;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.reason-section {
+	width: 90vw;
+	margin: 0 auto 75px;
+	height: 400px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.image-wrapper {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.reason-image {
+	width: 90%;
+	max-width: 600px;
+	max-height: 603px;
+	height: 90%;
+	max-height: 100%;
+	display: block;
+	border-radius: 10px;
+}
+
+.reason-content-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.reason-content-item {
+	margin-left: 10px;
+}
+
+.reason-content-section {
+	color: #ff6767;
+	display: flex;
+	align-items: flex-start;
+}
+
+.reason-content-title {
+	color: black;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 25px;
+	line-height: 36px;
+}
+
+.reason-content-info {
+	color: black;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 32px;
+}
+
+.icon-wrapper {
+	width: 40px;
+	height: 40px; /* In figma width and height: 54px */
+	border-radius: 50%;
+	background: #fdeeed;
+	color: #ff6767;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

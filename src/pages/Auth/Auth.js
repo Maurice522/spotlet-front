@@ -16,7 +16,7 @@ import { otpVerify, signIn } from "../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import "./Auth.css";
+import "../../Assets/Styles/Auth.css";
 import { useDispatch } from "react-redux";
 import { addUser, saveOTP } from "../../redux/slices/userSlice";
 export default function Auth() {

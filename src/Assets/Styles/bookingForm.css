@@ -1,0 +1,107 @@
+.wrapper {
+	margin: 10px auto;
+	width: 90vw;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+	border: 2px solid black;
+}
+
+.rate {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 49px;
+	line-height: 64px;
+}
+
+.form {
+	background: #fff;
+	height: fit-content;
+	width: 80%;
+	padding-left: 30px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr) auto;
+	z-index: 100;
+	gap: 20px;
+	align-items: center;
+}
+
+.label {
+	display: block;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	color: #374047;
+}
+
+.normal {
+	display: block;
+	margin-top: 5px;
+	width: 95%;
+	height: 32px;
+	color: #808b93;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	border: 1.5px solid #dee0e2;
+	border-radius: 4px;
+	background: #ffffff;
+}
+
+.focus {
+	display: block;
+	margin-top: 5px;
+	width: 95%;
+	height: 32px;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	background: #ffffff;
+	border: 1.5px solid #374047;
+	border-radius: 4px;
+	color: black;
+}
+
+.focus::placeholder {
+	color: black;
+}
+
+.focus-label {
+	display: block;
+	color: black;
+	display: block;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.submit {
+	cursor: pointer;
+	border: none;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 24px;
+	color: #000000;
+	background: #ff4d4d;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 12px 24px;
+	gap: 8px;
+	width: 130.96px;
+	height: 61.98px;
+}

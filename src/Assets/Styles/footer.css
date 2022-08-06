@@ -1,0 +1,52 @@
+.footer {
+	width: 100vw;
+	height: 200px;
+	background-color: black;
+	color: white;
+}
+
+.footer-content {
+	width: 90vw;
+	margin: 30px auto;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+}
+
+.footer-spanning-item {
+	grid-column: span 2;
+	padding-right: 50px;
+}
+
+.company-name {
+	margin-bottom: 20px;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 31px;
+	line-height: 44px;
+}
+
+.company-details {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 148%;
+}
+
+.footer-subheading {
+	margin-bottom: 10px;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 32px;
+}
+
+.footer-item {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}

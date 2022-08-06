@@ -1,7 +1,8 @@
-import "./App.css";
+import "./Assets/Styles/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Auth from "./pages/Auth/Auth";
 import Home from "./pages/Home";
+import Property from "./pages/Property";
 import OTPVerify from "./pages/Auth/OTPVerify";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<Auth />} />
           <Route path="/verification" element={<OTPVerify />} />
+          <Route path="/property" element={<Property />} />
         </Routes>
       </div>
     </BrowserRouter>
