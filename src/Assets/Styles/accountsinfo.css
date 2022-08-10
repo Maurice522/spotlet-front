@@ -37,10 +37,8 @@ hr {
   /* border-color: white; */
 }
 .sel {
-  color: #EA4235;
+  color: #ea4235;
 }
-
-
 
 .nav-menu-items {
   top: 30px;
@@ -68,9 +66,9 @@ span {
 .accbut {
   padding: 13px;
   border-radius: 5px;
-  border: 1px solid #EA4235;
+  border: 1px solid #ea4235;
   font-size: 15px;
-  background-color: #EA4235;
+  background-color: #ea4235;
   color: white;
 }
 
@@ -91,13 +89,12 @@ h1 {
   padding: 50px;
   width: 100%;
 }
-.accprofr{
+.accprofr {
   display: flex;
   flex-direction: column;
   position: relative;
   padding: 5px;
   width: 100%;
-
 }
 .input {
   border: 1px solid;
