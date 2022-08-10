@@ -10,7 +10,14 @@ import {
   Visibility,
   VisibilityOff,
 } from "@mui/icons-material";
-import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  InputAdornment,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import React, { useState } from "react";
 import { otpVerify, signIn } from "../../services/api";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,11 +29,18 @@ import { addUser, saveOTP } from "../../redux/slices/userSlice";
 export default function Auth() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignIn, setIsSignIn] = useState(true);
+  const [fullname, setFullName] = useState({
+    fname: "",
+    lname: "",
+  });
   const [userData, setUserData] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     mobile: "",
+    job: "",
     email: "",
     password: "",
+    booking_type: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,6 +52,7 @@ export default function Auth() {
   //SignIn and SignUp function -
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(userData);
     if (isSignIn) {
       try {
         const { data: jwt } = await signIn(userData);
@@ -67,7 +82,7 @@ export default function Auth() {
     <div className="auth" style={{ flexDirection: isSignIn && "row-reverse" }}>
       <div
         className="auth-detail"
-        style={isSignIn ? { paddingRight: "8%" } : { paddingLeft: "15%" }}
+        style={isSignIn ? { paddingRight: "8%" } : { paddingLeft: "10%" }}
       >
         <div>
           {isSignIn ? (
@@ -84,49 +99,40 @@ export default function Auth() {
           <h1>{isSignIn ? "Sign in " : "Sign up "}to Goreco</h1>
           <form onSubmit={handleSubmit}>
             {!isSignIn && (
-              <>
-                <label>Name</label>
-                <br />
-                <TextField
-                  placeholder="Enter your full name"
-                  name="fullName"
-                  onChange={handleInput}
-                  value={userData.fullName}
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PermIdentity />
-                      </InputAdornment>
-                    ),
-                  }}
-                  required
-                />
-                <br />
-
-                <label>Mobile Number</label>
-                <br />
-                <TextField
-                  type="text"
-                  name="mobile"
-                  onChange={handleInput}
-                  value={userData.mobile}
-                  fullWidth
-                  placeholder="Enter your mobile number"
-                  size="small"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Call />
-                      </InputAdornment>
-                    ),
-                  }}
-                  required
-                />
-
-                <br />
-              </>
+              <div className="horizontal-itm">
+                <div>
+                  <label>First Name</label>
+                  <br />
+                  <TextField
+                    placeholder="First Name"
+                    name="firstName"
+                    onChange={handleInput}
+                    value={userData.firstName}
+                    size="small"
+                    fullWidth
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <PermIdentity />
+                        </InputAdornment>
+                      ),
+                    }}
+                    required
+                  />
+                </div>
+                <div>
+                  <label>Last Name</label>
+                  <br />
+                  <TextField
+                    placeholder="Last Name"
+                    name="lastName"
+                    onChange={handleInput}
+                    value={userData.lastName}
+                    size="small"
+                    fullWidth
+                  />
+                </div>
+              </div>
             )}
             <label>Email</label>
             <br />
@@ -147,7 +153,64 @@ export default function Auth() {
               }}
               required
             />
-            <br />
+            {!isSignIn && (
+              <>
+                <label>Phone Number</label>
+                <br />
+                <TextField
+                  type="text"
+                  name="mobile"
+                  onChange={handleInput}
+                  value={userData.mobile}
+                  fullWidth
+                  placeholder="Enter your mobile number"
+                  size="small"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Call />
+                      </InputAdornment>
+                    ),
+                  }}
+                  required
+                />
+                <div className="horizontal-itm">
+                  <div>
+                    <label>Booking as a</label>
+                    <br />
+                    <Select
+                      value={userData.booking_type}
+                      onChange={handleInput}
+                      name="booking_type"
+                      displayEmpty
+                      inputProps={{ "aria-label": "Without label" }}
+                      fullWidth
+                      sx={{ height: "2.8em" }}
+                      required
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value="individual">Indivdual</MenuItem>
+                      <MenuItem value="company">Company</MenuItem>
+                    </Select>
+                  </div>
+                  <div>
+                    <label>Job Title</label>
+                    <TextField
+                      type="text"
+                      name="job"
+                      onChange={handleInput}
+                      value={userData.job}
+                      fullWidth
+                      placeholder="Job"
+                      size="small"
+                      required
+                    />
+                  </div>
+                </div>
+              </>
+            )}
             <label>Password</label>
             <br />
             <TextField

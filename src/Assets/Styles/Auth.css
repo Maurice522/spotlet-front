@@ -13,16 +13,16 @@
 
 /* detail part */
 .auth-detail {
-  margin-top: 40px;
+  margin-top: 20px;
   width: 35%;
 }
 .auth-detail > div {
-  width: 78%;
+  width: 100%;
 }
 .auth-detail > div > p {
   font-size: 16px;
   color: #98a1a8;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 .auth-detail > div > p > b {
   color: #374047;
@@ -34,27 +34,36 @@
   color: #374047;
   font-weight: 600;
 }
-form > label {
-  margin-top: 20px;
+form > .horizontal-itm {
+  display: flex;
+  justify-content: space-between;
+}
+form > .horizontal-itm > div {
+  width: 48%;
+}
+form > label,
+form > .horizontal-itm > div > label {
+  margin-top: 14px;
   margin-bottom: 8px;
   font-size: 14px;
   color: #736767;
   font-weight: 500;
   display: inline-block;
 }
-form > p {
+form > p,
+form > .horizontal-itm > div > p {
   font-size: 13px;
   color: #606e79;
   margin-top: 4px;
 }
 #swch {
   text-align: center;
-  margin-top: 25px;
+  margin-top: 23px;
 }
 .auth-btn {
   background-color: #ff6767 !important;
   color: white !important;
-  margin-top: 25px !important;
+  margin-top: 16px !important;
   height: 45px !important;
   text-transform: capitalize !important;
 }
@@ -76,8 +85,9 @@ form > p {
   margin-right: 20px;
 }
 .css-1ua80n0-MuiInputBase-input-MuiOutlinedInput-input,
-.css-12yjm75-MuiInputBase-input-MuiOutlinedInput-input {
-  height: 2em !important;
+.css-12yjm75-MuiInputBase-input-MuiOutlinedInput-input,
+.css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input {
+  height: 1.7em !important;
 }
 
 /* OTP-verify.js CSS */
