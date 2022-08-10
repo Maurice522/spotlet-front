@@ -15,11 +15,11 @@
 	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25),
 		-4px -4px 10px rgba(0, 0, 0, 0.25);
 	border-radius: 40px;
-	width: 80vw;
+	width: 77vw;
 	padding: 30px;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr) auto;
-	z-index: 100;
+	z-index: 10;
 	gap: 20px;
 	align-items: center;
 }

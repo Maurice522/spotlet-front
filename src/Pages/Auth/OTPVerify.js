@@ -1,5 +1,5 @@
 import { Button, InputAdornment, TextField } from "@mui/material";
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import {
   addUser,
@@ -18,11 +18,6 @@ export default function OTPVerify() {
   const verifyOtp = useSelector(selectOTP);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [timer, setTimer] = useState(60);
-  const timeOutCallback = useCallback(() => setTimer(currTimer => currTimer - 1), []);
-
-
   const handlSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -39,19 +34,6 @@ export default function OTPVerify() {
       toast.error(error.response.data.error);
     }
   };
-
-
-
-  useEffect(() => {
-    timer > 0 && setTimeout(timeOutCallback, 1000);
-  }, [timer, timeOutCallback]);
-
-  const resetTimer = function () {
-    if (!timer) {
-      setTimer(60);
-    }
-  };
-
   return (
     <div className="otp-verify">
       <form onSubmit={handlSubmit} className="otp-form">
@@ -80,18 +62,7 @@ export default function OTPVerify() {
         >
           Verify
         </Button>
-        <Button
-          fullWidth
-          className="auth-btn"
-          disableElevation
-          variant="contained"
-          onClick={resetTimer}
-
-        >
-          Resend OTP ({timer})
-        </Button>
       </form>
-
       <div className="auth-img">
         <img src="./auth-signup.png" alt="image" />
       </div>

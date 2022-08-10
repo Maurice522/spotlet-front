@@ -1,6 +1,6 @@
 import React from "react";
-import BookingForm from "../Components/BookingForm";
-import Carousel from "../Components/Carousel";
+import BookingForm from "../Components/Details/BookingForm";
+import Carousel from "../Components/Details/Carousel";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import {

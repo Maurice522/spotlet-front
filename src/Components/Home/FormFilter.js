@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Assets/Styles/formFilter.css";
+import "../../Assets/Styles/Home/formFilter.css";
 
 const FormFilter = () => {
 	const [active, setActive] = useState(false);

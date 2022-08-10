@@ -190,7 +190,7 @@ export default function Auth() {
               {isSignIn ? "Sign In" : "SignUp"}
             </Button>
           </form>
-          <p id="swch">Or {isSignIn ? "sign in" : "sign up"} with</p>
+          <p id="swch">Or sign up with</p>
           <div className="diff-auth-type">
             <IconButton className="auth-icon">
               <Google />

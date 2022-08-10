@@ -1,0 +1,36 @@
+.host-bg {
+	background: url("../../Images/host-bg.jpeg") no-repeat center center;
+	height: 500px;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 31px;
+	line-height: 44px;
+	text-align: center;
+	color: #ffffff;
+	margin: 100px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.host-header {
+	font-family: "Rubik";
+	font-style: normal;
+	font-size: 48px;
+	margin-bottom: 20px;
+}
+
+.list-btn {
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	background: #ea4235;
+	border-radius: 4px;
+	width: fit-content;
+	margin: 40px auto;
+	padding: 10px;
+	cursor: pointer;
+}

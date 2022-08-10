@@ -1,5 +1,7 @@
 import React from "react";
 import "../Assets/Styles/footer.css";
+import { MdExpandLess } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
 	const objArray = [
@@ -41,20 +43,35 @@ const Footer = () => {
 			))}
 		</div>
 	));
+
+	const scrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+			/* you can also use 'auto' behaviour
+         in place of 'smooth' */
+		});
+	};
+
 	return (
-		<div className="footer">
-			<div className="footer-content">
-				<div className="footer-spanning-item">
-					<div className="company-name">COMPANY</div>
-					<div className="company-details">
-						{" "}
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod
-						aliquam tempus at sapien, quis.
-					</div>
-				</div>
-				{items}
+		<>
+			<div className="to-top" onClick={scrollToTop}>
+				<MdExpandLess color="white" size="40px" />
 			</div>
-		</div>
+			<div className="footer">
+				<div className="footer-content">
+					<div className="footer-spanning-item">
+						<div className="company-name">COMPANY</div>
+						<div className="company-details">
+							{" "}
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod
+							aliquam tempus at sapien, quis.
+						</div>
+					</div>
+					{items}
+				</div>
+			</div>
+		</>
 	);
 };
 

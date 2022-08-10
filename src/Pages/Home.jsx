@@ -1,7 +1,8 @@
-import Header from "../Components/Header";
-import Content from "../Components/Content";
-import FormFilter from "../Components/FormFilter";
+import Header from "../Components/Home/Header";
+import Content from "../Components/Home/Content";
+import FormFilter from "../Components/Home/FormFilter";
 import React, { useState } from "react";
+import Footer from "../Components/Footer";
 
 function Home() {
 	const [id, setId] = useState("");
@@ -20,6 +21,7 @@ function Home() {
 			<Header extraNavId={id} />
 			<FormFilter />
 			<Content />
+			<Footer />
 		</div>
 	);
 }

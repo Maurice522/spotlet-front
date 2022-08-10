@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "../Assets/Styles/sectionMenu.css";
-import img1 from "../Assets/Images/menu-1.jpeg";
-import img2 from "../Assets/Images/menu-2.jpeg";
-import img3 from "../Assets/Images/menu-3.jpeg";
-import img4 from "../Assets/Images/menu-4.jpeg";
-import img5 from "../Assets/Images/menu-5.jpeg";
-import img6 from "../Assets/Images/menu-6.jpeg";
+import "../../Assets/Styles/Home/sectionMenu.css";
+import img1 from "../../Assets/Images/menu-1.jpeg";
+import img2 from "../../Assets/Images/menu-2.jpeg";
+import img3 from "../../Assets/Images/menu-3.jpeg";
+import img4 from "../../Assets/Images/menu-4.jpeg";
+import img5 from "../../Assets/Images/menu-5.jpeg";
+import img6 from "../../Assets/Images/menu-6.jpeg";
 
 const SectionMenu = () => {
 	const filmShooting = [

@@ -1,10 +1,11 @@
 .text-on-image-container {
+	max-width: 100vw;
 	position: relative;
 	z-index: -1;
 }
 
 .bg-image {
-	width: 100vw;
+	width: 100%;
 	height: 90vh;
 	padding: 0;
 }
@@ -26,10 +27,6 @@
 	line-height: 140%;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> testing
 .colored {
 	color: #ff6767;
 }
