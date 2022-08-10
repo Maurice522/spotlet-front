@@ -1,0 +1,107 @@
+#form-wrapper {
+	margin: -30px auto 0;
+	width: 82vw;
+	height: 170px;
+	background: #ffffff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 40px;
+}
+
+#form {
+	background: #ffffff;
+	height: fit-content;
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25),
+		-4px -4px 10px rgba(0, 0, 0, 0.25);
+	border-radius: 40px;
+	width: 80vw;
+	padding: 30px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr) auto;
+	z-index: 100;
+	gap: 20px;
+	align-items: center;
+}
+
+.label {
+	display: block;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	color: #374047;
+}
+
+.select,
+.input {
+	display: block;
+	margin-top: 5px;
+	width: 95%;
+	height: 32px;
+	color: #808b93;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	border: 1.5px solid #dee0e2;
+	border-radius: 4px;
+	background: #ffffff;
+}
+
+.focus-input,
+.focus-select {
+	display: block;
+	margin-top: 5px;
+	width: 95%;
+	height: 32px;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	background: #ffffff;
+	border: 1.5px solid #374047;
+	border-radius: 4px;
+	color: #808b80;
+}
+
+.focus-label {
+	display: block;
+	color: black;
+	display: block;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+#submit {
+	cursor: pointer;
+	border: none;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 24px;
+	color: #ffffff;
+	background: #ff6767;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 12px 24px;
+	gap: 8px;
+	width: 130.96px;
+	height: 61.98px;
+}
+
+#submit:hover {
+	color: #ff5f5f;
+	background-color: white;
+	border: 2px solid #ff5f5f;
+}

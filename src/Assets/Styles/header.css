@@ -1,0 +1,32 @@
+.text-on-image-container {
+	position: relative;
+	z-index: -1;
+}
+
+.bg-image {
+	width: 100vw;
+	height: 90vh;
+	padding: 0;
+}
+
+.darken {
+	filter: brightness(80%);
+}
+
+.message {
+	color: white;
+	position: absolute;
+	bottom: 50px;
+	left: 100px;
+	right: 200px;
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 84px;
+	line-height: 140%;
+}
+
+
+.colored {
+	color: #ff6767;
+}
