@@ -28,7 +28,8 @@ const Navbar = ({ extraNavId }) => {
   };
   const acntset=()=>{
     handleClose();
-    // window.location = "/signin";
+    console.log("clicked");
+    window.location = "/account";
   }
   
   
@@ -68,8 +69,8 @@ const Navbar = ({ extraNavId }) => {
         transformOrigin={{ horizontal: "center" }}
       >
         <MenuItem >Hi,{user.personalInfo.fullName}</MenuItem>
-        <MenuItem onClick={handleClose}>Account Settings</MenuItem>
-        <MenuItem onClick={acntset}>Logout</MenuItem>
+        <MenuItem onClick={acntset}>Account Settings</MenuItem>
+        <MenuItem onClick={logout}>Logout</MenuItem>
       </Menu>
       </>:
       <>

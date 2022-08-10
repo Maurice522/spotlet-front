@@ -17,7 +17,6 @@ const Header = ({ extraNavId }) => {
 
 				<div className="message">
 					Plan your next
-
 					<div className="colored">
 					<Typewriter 
 						options={{
@@ -27,9 +26,6 @@ const Header = ({ extraNavId }) => {
 						  }}
 					/>
 					</div>
-
-					<div className="colored">Activity</div>
-
 					with us
 				</div>
 			</div>

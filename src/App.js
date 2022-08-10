@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Auth from "./Pages/Auth/Auth";
 import Home from "./Pages/Home";
 import Property from "./Pages/Property";
+import AccountInfo from "./Pages/AccountInfo";
 import OTPVerify from "./Pages/Auth/OTPVerify";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -35,6 +36,7 @@ function App() {
           <Route path="/signin" element={<Auth />} />
           <Route path="/verification" element={<OTPVerify />} />
           <Route path="/property" element={<Property />} />
+          <Route path="/account" element={<AccountInfo/>} />
         </Routes>
       </div>
     </BrowserRouter>
