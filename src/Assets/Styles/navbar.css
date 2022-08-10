@@ -28,7 +28,11 @@
 
 .nav-search {
 	overflow-y: hidden;
+<<<<<<< HEAD
 	width: 30%;
+=======
+	width: 40%;
+>>>>>>> testing
 	height: 32px;
 	display: flex;
 	align-items: center;
@@ -67,10 +71,13 @@
 .whiten::placeholder {
 	color: white;
 }
+<<<<<<< HEAD
 .menu{
 	left: 20px;
 	top: 20px;
 }
+=======
+>>>>>>> testing
 
 .nav-heading {
 	font-family: "Inter";
