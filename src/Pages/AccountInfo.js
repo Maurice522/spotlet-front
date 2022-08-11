@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Navbar from '../Components/Navbar'
-import { Link } from "react-router-dom";
-import { IconContext } from "react-icons";
 import '../Assets/Styles/accountsinfo.css'
-
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+
+
+
+
+
 
 const AccountInfo = (extraNavId) => {
   const [section, showSection] = useState("Profile")
@@ -17,7 +22,7 @@ const AccountInfo = (extraNavId) => {
   }
 
   return (<>
-    <div>
+    <div className='accounts'>
       <Navbar extraNavId={"id-2"} />
       <div className='profcomp'>
         <nav className={"nav-menu active"}>
@@ -26,21 +31,21 @@ const AccountInfo = (extraNavId) => {
               <button onClick={() => handlesection("Profile")} className={section === "Profile" ? "nav-text sel" : "nav-text"}>
                 Profile
               </button>
-              
+
               <hr />
             </div>
             <div>
               <button onClick={() => handlesection("Security")} className={section === "Security" ? "nav-text sel" : "nav-text"}>
                 Security
               </button>
-              
+
               <hr />
             </div>
             <div>
               <button onClick={() => handlesection("Payments")} className={section === "Payments" ? "nav-text sel" : "nav-text"}>
                 Payments
               </button>
-              
+
               <hr />
             </div>
           </div>
@@ -137,7 +142,26 @@ const AccountInfo = (extraNavId) => {
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
-                  Saved Cards Todo
+                  <Card sx={{ minWidth: 275 }}>
+                    <CardContent>
+                      <Typography sx={{ fontSize: 24 }} >
+                        ICICI Credit Card
+                      </Typography>
+                      <Typography variant="h5" component="div">
+                        **** **** **** 6666
+                        <br />
+                        Saket Mundra
+                      </Typography>
+                      <Typography>
+                        <h2>CVV</h2>
+                        <input style={{width: "100px",height: "28px"}} type="text" />
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <button size="small" className='accbut'>Pay Now</button>
+                    </CardActions>
+                  </Card>
+
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -202,7 +226,7 @@ const AccountInfo = (extraNavId) => {
                 <Typography>
                   <div className='accprofr'>
                     <form>
-                      <div style={{marginBottom:"12px"}}>
+                      <div style={{ marginBottom: "12px" }}>
                         <label>
                           <h2>UPI ID</h2>
                           <input className='input' type="text" size="50" />

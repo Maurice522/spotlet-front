@@ -16,7 +16,7 @@
   transition: 350ms;
 }
 
-hr {
+.accounts hr {
   color: black;
   width: 100%;
   text-align: left;
@@ -56,7 +56,7 @@ hr {
   padding: 0;
 }
 
-span {
+.accounts span {
   margin-left: 16px;
 }
 
@@ -82,12 +82,12 @@ span {
   color: white;
 }
 
-h2 {
+.accounts h2 {
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
 }
-h1 {
+.accounts h1 {
   font-weight: 500;
   font-size: 25px;
   line-height: 24px;
