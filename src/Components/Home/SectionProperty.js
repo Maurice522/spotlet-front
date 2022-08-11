@@ -6,7 +6,7 @@ import img3 from "../../Assets/Images/property-3.jpeg";
 import img4 from "../../Assets/Images/property-4.jpeg";
 import img5 from "../../Assets/Images/property-5.jpeg";
 import img6 from "../../Assets/Images/property-6.jpeg";
-import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import PropertyInfo from "../PropertyInfo";
 
 const SectionProperty = () => {
 	const [favourites, setFavourites] = useState([0, 1, 2]);
@@ -65,47 +65,14 @@ const SectionProperty = () => {
 			<div className="property-heading">Featured Properties in Hyderabad</div>
 			<div className="property-list">
 				{propertyDetails.map((item, index) => (
-					<div className="item" key={index}>
-						<div
-							className="text-on-image-container"
-							onClick={() => console.log("!")}>
-							<img
-								src={item.image}
-								alt={`property-${index + 1}`}
-								className="property-image"
-							/>
-							<div
-								className="favorite-icon-wrapper"
-								onClick={() => console.log("!")}>
-								{favourites.includes(index) === true ? (
-									<MdFavorite
-										size="32px"
-										color="#ff6767"
-										onClick={handleClick}
-									/>
-								) : (
-									<MdFavoriteBorder size="32px" onClick={handleClick} />
-								)}
-							</div>
-						</div>
-						<div>
-							<div
-								className="property-info-heading"
-								onClick={() => console.log("1")}>
-								{item.name}
-							</div>
-							<div
-								className="property-info-location"
-								onClick={() => console.log("1")}>
-								{item.location}
-							</div>
-							<div
-								className="property-info-price"
-								onClick={() => console.log("1")}>
-								{item.price}
-							</div>
-						</div>
-					</div>
+					<PropertyInfo
+						item={item}
+						index={index}
+						isFav={true}
+						favourites={favourites}
+						handleClick={handleClick}
+						key={index}
+					/>
 				))}
 			</div>
 		</div>

@@ -64,7 +64,7 @@ const Content = () => {
 				</div>
 			</div>
 			<Testimonials />
-			<Host />
+			<Host title="Become a Host" buttonContent="List your space" />
 		</>
 	);
 };
