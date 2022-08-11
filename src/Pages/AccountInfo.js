@@ -1,72 +1,61 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../Components/Navbar'
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import '../Assets/Styles/accountsinfo.css'
 
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const AccountInfo = (extraNavId) => {
   const [section, showSection] = useState("Profile")
-  const SidebarData = [
-    {
-      title: "Profile",
-      icon: "",
-      cName: "nav-text"
-    }, {
-      title: "Security",
-      icon: "",
-      cName: "nav-text"
-    }, {
-      title: "Payment",
-      icon: "",
-      cName: "nav-text"
-    }
-  ];
-  const handlesection=(e)=>{
+  const handlesection = (e) => {
+    showSection(e)
   }
-
-  
 
   return (<>
     <div>
       <Navbar extraNavId={"id-2"} />
       <div className='profcomp'>
         <nav className={"nav-menu active"}>
-          <ul className="nav-menu-items">
-            {SidebarData.map((item, index) => {
-              return (<>
-                <br />
-                <li  >
-                  <button onClick={console.log("clicked")} className={item.cName}>
-                  {/* style={section==="item.title"?{color:"#ff6767"}:""}  */}
-                    {item.icon}
-                    <h2>{item.title}</h2>
-                    <br />
-                  </button>
-                </li>
-                <br />
-                <hr
-                  style={{
-                    color: "black",
-                    width: "100%",
-                    textAlign: "left"
-                  }}
-                />
-              </>
-              );
-            })}
-          </ul>
-        </nav>
-        {section==="Profile"?<div className='profr'>
-          <form >
-          <div className='r1'>
-            <img className='accimg' src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1660161134~exp=1660161734~hmac=805a827742ed799bfe534923869c5a6c5766070dc2a0e06cb14de86ac6c73743" alt="Avatar" height="100px" width="100px" />
-            <button className='accbut'>Edit Photo</button>
+          <div className="nav-menu-items">
+            <div>
+              <button onClick={() => handlesection("Profile")} className={section === "Profile" ? "nav-text sel" : "nav-text"}>
+                Profile
+              </button>
+              
+              <hr />
+            </div>
+            <div>
+              <button onClick={() => handlesection("Security")} className={section === "Security" ? "nav-text sel" : "nav-text"}>
+                Security
+              </button>
+              
+              <hr />
+            </div>
+            <div>
+              <button onClick={() => handlesection("Payments")} className={section === "Payments" ? "nav-text sel" : "nav-text"}>
+                Payments
+              </button>
+              
+              <hr />
+            </div>
           </div>
+        </nav>
+        {/* Profile Section  */}
+        {section === "Profile" ? <div className='profr'>
+          <form >
+            <div className='r1'>
+              <img className='accimg' src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1660161134~exp=1660161734~hmac=805a827742ed799bfe534923869c5a6c5766070dc2a0e06cb14de86ac6c73743" alt="Avatar" height="100px" width="100px" />
+              <button className='accbut'>Edit Photo</button>
+            </div>
             <div className='r2'>
               <label>
                 <h2>First Name</h2>
-                <input className='input' type="text"  size="50"/>
+                <input className='input' type="text" size="50" />
               </label>
               <label>
                 <h2>Last Name</h2>
@@ -76,7 +65,7 @@ const AccountInfo = (extraNavId) => {
             <div className='r2'>
               <label>
                 <h2>Email</h2>
-                <input className='input' type="text"  size="50"/>
+                <input className='input' type="text" size="50" />
               </label>
               <label>
                 <h2>Phone No</h2>
@@ -86,7 +75,7 @@ const AccountInfo = (extraNavId) => {
             <div className='r2'>
               <label>
                 <h2>Who Reserves</h2>
-                <input className='input' type="text"  size="50"/>
+                <input className='input' type="text" size="50" />
               </label>
               <label>
                 <h2>Company Name</h2>
@@ -94,41 +83,138 @@ const AccountInfo = (extraNavId) => {
               </label>
             </div>
             <div className='r2'>
-            <button className='accbut'>Apply Changes</button>
+              <button className='accbut'>Apply Changes</button>
             </div>
           </form>
-        </div>:""}
-        {section==="Security"?<div className='profr'>
+        </div> : ""}
+
+        {/* Security Section  */}
+        {section === "Security" ? <div className='profr'>
           <form >
-          <div className='r1'>
-            <h1>Change Password</h1>
-          </div>
+            <div className='r1'>
+              <h1>Change Password</h1>
+            </div>
             <div className='r2'>
               <label>
                 <h2>Current Password</h2>
-                <input className='input' type="password"  size="50"/>
+                <input className='input' type="password" size="50" />
               </label>
             </div>
             <div className='r2'>
               <label>
                 <h2>New Password</h2>
-                <input className='input' type="password"  size="50"/>
+                <input className='input' type="password" size="50" />
               </label>
             </div>
             <div className='r2'>
               <label>
                 <h2>Confirm Password</h2>
-                <input className='input' type="password"  size="50"/>
+                <input className='input' type="password" size="50" />
               </label>
             </div>
             <div className='r2'>
-            <button className='accbut'>Update Password</button>
+              <button className='accbut'>Update Password</button>
             </div>
           </form>
-          <div className='r1de'>Deactivate Your Account:   
-          <button className='accbut'>Deactivate Account</button></div>
-          
-        </div>:""}
+          <div className='r1de'>Deactivate Your Account:
+            <button className='accbut'>Deactivate Account</button></div>
+
+        </div> : ""}
+
+        {/* Payments Section  */}
+        {section === "Payments" ?
+          <div className='profr'>
+            <h1>Payments</h1>
+            <br />
+            <Accordion >
+              <AccordionSummary
+                sx={{ height: 100 }}
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography><h1>Saved Cards</h1></Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  Saved Cards Todo
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion >
+              <AccordionSummary
+                sx={{ height: 100 }}
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography><h1>Credit/Debit Cards</h1></Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{
+                fontWeight: "400",
+                fontSize: "20px",
+              }}>
+                <Typography>
+                  <div className='accprofr'>
+                    <form>
+                      <div className='r2'>
+                        <label>
+                          <h2>Card Number</h2>
+                          <input className='input' type="text" size="50" />
+                        </label>
+                        <label>
+                          <h2>Name on the Card</h2>
+                          <input className='input' type="text" size="50" />
+                        </label>
+                      </div>
+                      <div className='r2'>
+                        <label>
+                          <h2>Valid Thru (MM/YY)</h2>
+                          <input className='input' type="text" size="50" />
+                        </label>
+                        <label>
+                          <h2>CVV</h2>
+                          <input className='input' type="text" size="50" />
+                        </label>
+                      </div>
+                      <div className='r2'>
+                        <button className='accbut'>Pay Now</button>
+                      </div>
+                    </form>
+                  </div>
+                </Typography>
+
+              </AccordionDetails>
+            </Accordion>
+            <Accordion  >
+              <AccordionSummary
+                sx={{ height: 100 }}
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel3a-content"
+                id="panel3a-header"
+              >
+                <Typography><h1>UPI</h1></Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{
+                fontWeight: "400",
+                fontSize: "20px",
+              }}>
+                <Typography>
+                  <div className='accprofr'>
+                    <form>
+                      <div style={{marginBottom:"12px"}}>
+                        <label>
+                          <h2>UPI ID</h2>
+                          <input className='input' type="text" size="50" />
+                        </label>
+                      </div>
+                      <button className='accbut'>Pay Now</button>
+                    </form>
+                  </div>
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </div> : ""}
       </div>
     </div>
   </>

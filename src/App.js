@@ -20,7 +20,6 @@ function App() {
       const jwt = localStorage.getItem("token");
       if (jwt) {
         const user_jwt = jwtDecode(jwt);
-        console.log(user_jwt);
         const { data } = await getUserData(user_jwt._id);
         dispatch(addUser(data));
       }

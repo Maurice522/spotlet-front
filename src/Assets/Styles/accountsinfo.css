@@ -7,7 +7,7 @@
 .nav-menu.active {
   width: 250px;
   height: 100vh;
-  top: 70px;
+  top: 65px;
   display: flex;
   justify-content: center;
   position: fixed;
@@ -16,26 +16,31 @@
   transition: 350ms;
 }
 
-.nav-text{
-  text-decoration: none;
-  color: #ff6767;
-  font-size: 18px;
+hr {
+  color: black;
+  width: 100%;
+  text-align: left;
+}
+.nav-text {
+  /* text-decoration: none; */
+  font-weight: 900;
+  font-size: 25px;
   width: 95%;
   height: 100%;
   display: flex;
   align-items: center;
-  padding:16px;
+  padding: 40px;
   border-radius: 4px;
   background-color: white;
   border: none;
   margin-left: 5px;
   /* border-color: white; */
 }
-
-.nav-text:hover {
-  background-color: #ff6767;
-  color: white;
+.sel {
+  color: #EA4235;
 }
+
+
 
 .nav-menu-items {
   top: 30px;
@@ -59,33 +64,40 @@ span {
   border-radius: 50%;
   margin-right: 50px;
 }
-.accbut{
-    padding: 13px;
-    border-radius: 5px;
-    border: 1px solid #ff6767;
-    font-size: 15px;
-    background-color: #ff6767;
-    color: white;
+
+.accbut {
+  padding: 13px;
+  border-radius: 5px;
+  border: 1px solid #EA4235;
+  font-size: 15px;
+  background-color: #EA4235;
+  color: white;
 }
 
 h2 {
-  color: #374047;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
 }
 h1 {
-    color: #374047;
-    font-weight: 500;
-    font-size: 25px;
-    line-height: 24px;
-  }
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 24px;
+}
 .profr {
   display: flex;
   flex-direction: column;
   position: relative;
   padding: 50px;
   width: 100%;
+}
+.accprofr{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 5px;
+  width: 100%;
+
 }
 .input {
   border: 1px solid;
@@ -103,13 +115,13 @@ h1 {
   justify-content: flex-start;
 }
 .r1de {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    align-items: center;
-    padding: 10px;
-    justify-content: space-between;
-  }
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+}
 .r2 {
   margin-top: 30px;
   margin-bottom: 30px;
