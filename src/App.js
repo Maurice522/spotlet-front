@@ -1,10 +1,10 @@
 import "./Assets/Styles/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Auth from "./Pages/Auth/Auth";
-import Home from "./Pages/Home";
-import Property from "./Pages/Property";
-import AccountInfo from "./Pages/AccountInfo";
-import OTPVerify from "./Pages/Auth/OTPVerify";
+import Auth from "./pages/Auth/Auth";
+import Home from "./pages/Home";
+import Property from "./pages/Property";
+import AccountInfo from "./pages/AccountInfo";
+import OTPVerify from "./pages/Auth/OTPVerify";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
