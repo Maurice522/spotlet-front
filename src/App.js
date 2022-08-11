@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Auth from "./pages/Auth/Auth";
 import Home from "./pages/Home";
 import Property from "./pages/Property";
-import OTPVerify from "./pages/Auth/OTPVerify";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -19,7 +18,6 @@ function App() {
       const jwt = localStorage.getItem("token");
       if (jwt) {
         const user_jwt = jwtDecode(jwt);
-        console.log(user_jwt);
         const { data } = await getUserData(user_jwt._id);
         dispatch(addUser(data));
       }
@@ -33,7 +31,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<Auth />} />
-          <Route path="/verification" element={<OTPVerify />} />
           <Route path="/property" element={<Property />} />
         </Routes>
       </div>

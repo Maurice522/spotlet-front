@@ -15,6 +15,7 @@ import {
   IconButton,
   InputAdornment,
   MenuItem,
+  Modal,
   Select,
   TextField,
 } from "@mui/material";
@@ -26,9 +27,13 @@ import { useNavigate } from "react-router-dom";
 import "../../Assets/Styles/Auth.css";
 import { useDispatch } from "react-redux";
 import { addUser, saveOTP } from "../../redux/slices/userSlice";
+import OTPVerify from "./OTPVerify";
 export default function Auth() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignIn, setIsSignIn] = useState(true);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [fullname, setFullName] = useState({
     fname: "",
     lname: "",
@@ -49,10 +54,17 @@ export default function Auth() {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
+  const getOTP = async (userData) => {
+    const response = await otpVerify(userData);
+    toast("OTP sent");
+    dispatch(saveOTP(response.data.otp));
+    dispatch(addUser(userData));
+    handleOpen();
+  };
+
   //SignIn and SignUp function -
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userData);
     if (isSignIn) {
       try {
         const { data: jwt } = await signIn(userData);
@@ -67,17 +79,15 @@ export default function Auth() {
       try {
         if (userData.password.length < 8)
           return toast.error("Passwod must contain atleast 8 characters");
-        const response = await otpVerify(userData);
-        toast("OTP sent");
-        dispatch(saveOTP(response.data.otp));
-        dispatch(addUser(userData));
-        navigate("/verification");
-        setIsSignIn(true);
+        getOTP(userData);
+        // navigate("/verification");
+        // setIsSignIn(true);
       } catch (error) {
         toast.error(error.response.data.error);
       }
     }
   };
+
   return (
     <div className="auth" style={{ flexDirection: isSignIn && "row-reverse" }}>
       <div
@@ -273,6 +283,10 @@ export default function Auth() {
           alt="image"
         />
       </div>
+      {/* <Button onClick={handleOpen}>Open modal</Button> */}
+      <Modal open={open} onClose={handleClose}>
+        <OTPVerify sendOTP={getOTP} />
+      </Modal>
     </div>
   );
 }
