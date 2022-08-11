@@ -10,7 +10,15 @@ import {
   Visibility,
   VisibilityOff,
 } from "@mui/icons-material";
-import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  InputAdornment,
+  MenuItem,
+  Modal,
+  Select,
+  TextField,
+} from "@mui/material";
 import React, { useState } from "react";
 import { otpVerify, signIn } from "../../services/api";
 import { ToastContainer, toast } from "react-toastify";
@@ -255,7 +263,7 @@ export default function Auth() {
               {isSignIn ? "Sign In" : "SignUp"}
             </Button>
           </form>
-          <p id="swch">Or {isSignIn ? "sign in" : "sign up"} with</p>
+          <p id="swch">Or sign up with</p>
           <div className="diff-auth-type">
             <IconButton className="auth-icon">
               <Google />
