@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Auth from "./pages/Auth/Auth";
 import Home from "./pages/Home";
 import Property from "./pages/Property";
+import OTPVerify from "./pages/Auth/OTPVerify";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
