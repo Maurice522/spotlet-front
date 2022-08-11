@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "./Navbar";
-import "../Assets/Styles/header.css";
+import Navbar from "../Navbar";
+import "../../Assets/Styles/Home/header.css";
 
 const Header = ({ extraNavId }) => {
 	return (
@@ -8,7 +8,7 @@ const Header = ({ extraNavId }) => {
 			<Navbar extraNavId={extraNavId} />
 			<div className="text-on-image-container">
 				<img
-					src={require("../Assets/Images/header-bg.jpeg")}
+					src={require("../../Assets/Images/header-bg.jpeg")}
 					alt="background"
 					className="bg-image darken"
 				/>

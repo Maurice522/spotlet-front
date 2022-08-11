@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { BiShareAlt } from "react-icons/bi";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import "../Assets/Styles/carousel.css";
-import img1 from "../Assets/Images/property-page-carousel-img-1.jpeg";
-import img2 from "../Assets/Images/property-page-carousel-img-2.jpeg";
-import img3 from "../Assets/Images/property-page-carousel-img-3.jpeg";
-import img4 from "../Assets/Images/property-page-carousel-img-4.jpeg";
-import img5 from "../Assets/Images/property-page-carousel-img-5.jpeg";
+import "../../Assets/Styles/Details/carousel.css";
+import img1 from "../../Assets/Images/property-page-carousel-img-1.jpeg";
+import img2 from "../../Assets/Images/property-page-carousel-img-2.jpeg";
+import img3 from "../../Assets/Images/property-page-carousel-img-3.jpeg";
+import img4 from "../../Assets/Images/property-page-carousel-img-4.jpeg";
+import img5 from "../../Assets/Images/property-page-carousel-img-5.jpeg";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 const Carousel = () => {
@@ -25,6 +25,7 @@ const Carousel = () => {
 	};
 
 	const [val, setVal] = useState(1);
+	const [fav, setFav] = useState(false);
 
 	// console.log(imgMap[val]);
 
@@ -81,7 +82,19 @@ const Carousel = () => {
 				</div>
 				<div className="icons">
 					<BiShareAlt color="#374047" size="24px" />
-					<AiOutlineHeart color="#374047" size="24px" />
+					{fav === true ? (
+						<AiFillHeart
+							color="#ff4d4d"
+							size="28px"
+							onClick={() => setFav(false)}
+						/>
+					) : (
+						<AiOutlineHeart
+							color="#374047"
+							size="28px"
+							onClick={() => setFav(true)}
+						/>
+					)}
 				</div>
 			</div>
 		</div>

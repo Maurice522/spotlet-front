@@ -1,7 +1,7 @@
 import React from "react";
-import "../Assets/Styles/sectionReason.css";
+import "../../Assets/Styles/Home/sectionReason.css";
 import { BsBookmark } from "react-icons/bs";
-import image from "../Assets/Images/reason-image.jpeg";
+import image from "../../Assets/Images/reason-image.jpeg";
 
 const SectionReason = () => {
 	const objArray = [
@@ -32,7 +32,7 @@ const SectionReason = () => {
 	));
 
 	return (
-		<div>
+		<div className="reason-container">
 			<div className="reason-heading">Why Choose Us</div>
 			<div className="reason-section">
 				<div className="image-wrapper">

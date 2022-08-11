@@ -1,3 +1,10 @@
+.reason-container {
+	width: 97vw;
+	margin: 50px auto;
+	padding: 10px;
+	background: #f5f5f5;
+}
+
 .reason-heading {
 	font-family: "Inter";
 	font-style: normal;

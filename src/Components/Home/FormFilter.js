@@ -1,12 +1,27 @@
 import React, { useState } from "react";
-import "../Assets/Styles/formFilter.css";
+import "../../Assets/Styles/Home/formFilter.css";
 
-const FormFilter = () => {
+const FormFilter = ({ fullScreen }) => {
 	const [active, setActive] = useState(false);
 	return (
-		<div id="form-wrapper">
+		<div
+			id="form-wrapper"
+			style={
+				fullScreen === true
+					? {
+							width: "98vw",
+					  }
+					: {}
+			}>
 			<form
 				id="form"
+				style={
+					fullScreen === true
+						? {
+								width: "98vw",
+						  }
+						: {}
+				}
 				onMouseEnter={() => {
 					setActive(true);
 				}}
@@ -90,7 +105,7 @@ const FormFilter = () => {
 						className={active === true ? "focus-input" : "input"}
 					/>
 				</div>
-				<input type="submit" value="Search" id="submit" />
+				<button id="submit">Search</button>
 			</form>
 		</div>
 	);

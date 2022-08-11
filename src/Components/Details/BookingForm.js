@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import "../Assets/Styles/bookingForm.css";
+import "../../Assets/Styles/Details/bookingForm.css";
 
 const BookingForm = () => {
 	const [active, setActive] = useState(false);
 	return (
-		<div className="wrapper">
-			<div className="rate">$ 00/hr</div>
-			<form
-				className="form"
-				onMouseEnter={() => {
-					setActive(true);
-				}}
-				onMouseLeave={() => {
-					setActive(false);
-				}}>
+		<div
+			className="wrapper"
+			onMouseEnter={() => {
+				setActive(true);
+			}}
+			onMouseLeave={() => {
+				setActive(false);
+			}}>
+			<div className={active === true ? "active-rate" : "rate"}>$ 00/hr</div>
+			<form className="form">
 				<div>
 					<label
 						htmlFor="date"
@@ -38,6 +38,7 @@ const BookingForm = () => {
 						id="start-time"
 						name="start-time"
 						defaultValue=""
+						// size="6"
 						className={active === true ? "focus" : "normal"}>
 						<option value="" disabled hidden>
 							Start time
@@ -90,6 +91,7 @@ const BookingForm = () => {
 						id="end-time"
 						name="end-time"
 						defaultValue=""
+						// size="6"
 						className={active === true ? "focus" : "select"}>
 						<option value="" disabled hidden>
 							End time
