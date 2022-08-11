@@ -1,8 +1,10 @@
 * {
-  /* box-sizing: border-box;   do not apply this commented css. change css in other way*/
-  margin: 0;
-  /* overflow-x: hidden; */
-  padding: 0;
+	/* box-sizing: border-box;   do not apply this commented css. change css in other way*/
+	margin: 0;
+	/* box-sizing: border-box; */
+	/* overflow-x: hidden; */
+	padding: 0;
+	user-select: none;
 }
 
 /* body {

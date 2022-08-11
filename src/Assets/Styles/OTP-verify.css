@@ -1,0 +1,53 @@
+/* OTP-verify.js CSS */
+
+.otp-verify {
+  background-color: white;
+  width: 30%;
+  margin: 8% auto;
+  padding: 50px 50px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.otp-form > h1 {
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+.otp-form > p {
+  font-size: 17px;
+
+  margin-bottom: 20px;
+}
+.otp-form > .auth-btn {
+  margin-top: 20px !important;
+  width: 75% !important;
+}
+
+.otp-verify > p {
+  font-size: 16px;
+  color: #98a1a8;
+  margin-top: 40px;
+}
+
+.otp-input {
+  justify-content: center;
+  margin-top: 60px;
+  font-size: 40px;
+}
+.otp-input > input {
+  width: 45px !important;
+  font-size: 26px;
+  height: 45px !important;
+}
+.btn-resend {
+  color: #ea4235 !important;
+  text-transform: capitalize !important;
+  font-size: 15px !important;
+  padding: 0 !important;
+}
+
+.timer {
+  margin-top: 10px;
+  margin-left: 200px;
+  font-size: 15px !important;
+}

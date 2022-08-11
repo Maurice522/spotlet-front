@@ -1,14 +1,10 @@
-import React,{useState} from "react";
+import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Avatar, Button } from "@mui/material";
 import "../Assets/Styles/navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserData } from "../redux/slices/userSlice";
 import { Link } from "react-router-dom";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-
-
 
 const Navbar = ({ extraNavId }) => {
   const user = useSelector(selectUserData);
@@ -28,8 +24,7 @@ const Navbar = ({ extraNavId }) => {
   };
   const acntset=()=>{
     handleClose();
-    console.log("clicked");
-    window.location = "/account";
+    // window.location = "/signin";
   }
   
   
@@ -69,8 +64,8 @@ const Navbar = ({ extraNavId }) => {
         transformOrigin={{ horizontal: "center" }}
       >
         <MenuItem >Hi,{user.personalInfo.fullName}</MenuItem>
-        <MenuItem onClick={acntset}>Account Settings</MenuItem>
-        <MenuItem onClick={logout}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>Account Settings</MenuItem>
+        <MenuItem onClick={acntset}>Logout</MenuItem>
       </Menu>
       </>:
       <>

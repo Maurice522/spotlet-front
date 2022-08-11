@@ -19,20 +19,39 @@ import { useNavigate } from "react-router-dom";
 import "../../Assets/Styles/Auth.css";
 import { useDispatch } from "react-redux";
 import { addUser, saveOTP } from "../../redux/slices/userSlice";
+import OTPVerify from "./OTPVerify";
 export default function Auth() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignIn, setIsSignIn] = useState(true);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [fullname, setFullName] = useState({
+    fname: "",
+    lname: "",
+  });
   const [userData, setUserData] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     mobile: "",
+    job: "",
     email: "",
     password: "",
+    booking_type: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   //Handling All Input data function
   const handleInput = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  const getOTP = async (userData) => {
+    const response = await otpVerify(userData);
+    toast("OTP sent");
+    dispatch(saveOTP(response.data.otp));
+    dispatch(addUser(userData));
+    handleOpen();
   };
 
   //SignIn and SignUp function -
@@ -52,22 +71,20 @@ export default function Auth() {
       try {
         if (userData.password.length < 8)
           return toast.error("Passwod must contain atleast 8 characters");
-        const response = await otpVerify(userData);
-        toast("OTP sent");
-        dispatch(saveOTP(response.data.otp));
-        dispatch(addUser(userData));
-        navigate("/verification");
-        setIsSignIn(true);
+        getOTP(userData);
+        // navigate("/verification");
+        // setIsSignIn(true);
       } catch (error) {
         toast.error(error.response.data.error);
       }
     }
   };
+
   return (
     <div className="auth" style={{ flexDirection: isSignIn && "row-reverse" }}>
       <div
         className="auth-detail"
-        style={isSignIn ? { paddingRight: "8%" } : { paddingLeft: "15%" }}
+        style={isSignIn ? { paddingRight: "8%" } : { paddingLeft: "10%" }}
       >
         <div>
           {isSignIn ? (
@@ -84,49 +101,40 @@ export default function Auth() {
           <h1>{isSignIn ? "Sign in " : "Sign up "}to Goreco</h1>
           <form onSubmit={handleSubmit}>
             {!isSignIn && (
-              <>
-                <label>Name</label>
-                <br />
-                <TextField
-                  placeholder="Enter your full name"
-                  name="fullName"
-                  onChange={handleInput}
-                  value={userData.fullName}
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PermIdentity />
-                      </InputAdornment>
-                    ),
-                  }}
-                  required
-                />
-                <br />
-
-                <label>Mobile Number</label>
-                <br />
-                <TextField
-                  type="text"
-                  name="mobile"
-                  onChange={handleInput}
-                  value={userData.mobile}
-                  fullWidth
-                  placeholder="Enter your mobile number"
-                  size="small"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Call />
-                      </InputAdornment>
-                    ),
-                  }}
-                  required
-                />
-
-                <br />
-              </>
+              <div className="horizontal-itm">
+                <div>
+                  <label>First Name</label>
+                  <br />
+                  <TextField
+                    placeholder="First Name"
+                    name="firstName"
+                    onChange={handleInput}
+                    value={userData.firstName}
+                    size="small"
+                    fullWidth
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <PermIdentity />
+                        </InputAdornment>
+                      ),
+                    }}
+                    required
+                  />
+                </div>
+                <div>
+                  <label>Last Name</label>
+                  <br />
+                  <TextField
+                    placeholder="Last Name"
+                    name="lastName"
+                    onChange={handleInput}
+                    value={userData.lastName}
+                    size="small"
+                    fullWidth
+                  />
+                </div>
+              </div>
             )}
             <label>Email</label>
             <br />
@@ -147,7 +155,64 @@ export default function Auth() {
               }}
               required
             />
-            <br />
+            {!isSignIn && (
+              <>
+                <label>Phone Number</label>
+                <br />
+                <TextField
+                  type="text"
+                  name="mobile"
+                  onChange={handleInput}
+                  value={userData.mobile}
+                  fullWidth
+                  placeholder="Enter your mobile number"
+                  size="small"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Call />
+                      </InputAdornment>
+                    ),
+                  }}
+                  required
+                />
+                <div className="horizontal-itm">
+                  <div>
+                    <label>Booking as a</label>
+                    <br />
+                    <Select
+                      value={userData.booking_type}
+                      onChange={handleInput}
+                      name="booking_type"
+                      displayEmpty
+                      inputProps={{ "aria-label": "Without label" }}
+                      fullWidth
+                      sx={{ height: "2.8em" }}
+                      required
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value="individual">Indivdual</MenuItem>
+                      <MenuItem value="company">Company</MenuItem>
+                    </Select>
+                  </div>
+                  <div>
+                    <label>Job Title</label>
+                    <TextField
+                      type="text"
+                      name="job"
+                      onChange={handleInput}
+                      value={userData.job}
+                      fullWidth
+                      placeholder="Job"
+                      size="small"
+                      required
+                    />
+                  </div>
+                </div>
+              </>
+            )}
             <label>Password</label>
             <br />
             <TextField
@@ -210,6 +275,11 @@ export default function Auth() {
           alt="image"
         />
       </div>
+      {/* <Button onClick={handleOpen}>Open modal</Button> */}
+      <Modal open={open} onClose={handleClose}>
+        <OTPVerify sendOTP={getOTP} />
+      </Modal>
     </div>
   );
 }
+

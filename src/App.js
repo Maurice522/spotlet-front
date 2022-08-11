@@ -33,7 +33,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<Auth />} />
-          <Route path="/verification" element={<OTPVerify />} />
           <Route path="/property" element={<Property />} />
           <Route path="/account" element={<AccountInfo/>} />
         </Routes>
