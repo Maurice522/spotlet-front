@@ -21,7 +21,7 @@ function App() {
       if (jwt) {
         const user_jwt = jwtDecode(jwt);
         const { data } = await getUserData(user_jwt._id);
-        dispatch(addUser(data));
+        dispatch(addUser({ data, user_jwt }));
       }
     };
     Start();
@@ -34,7 +34,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<Auth />} />
           <Route path="/property" element={<Property />} />
-          <Route path="/account" element={<AccountInfo/>} />
+          <Route path="/account" element={<AccountInfo />} />
         </Routes>
       </div>
     </BrowserRouter>

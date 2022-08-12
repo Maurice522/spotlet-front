@@ -37,18 +37,13 @@
   /* border-color: white; */
 }
 
-
 .nav-text:hover {
-  color: #ff6767
+  color: #ff6767;
 }
 
-.sel{
-  color: #ff6767
+.sel {
+  color: #ff6767;
 }
-
-
-
-
 
 .nav-menu-items {
   top: 30px;
@@ -61,7 +56,7 @@
 }
 
 .profcomp {
-  top: 90px;
+  top: 60px;
   left: 250px;
 
   display: flex;
@@ -76,10 +71,11 @@
 .accbut {
   padding: 13px;
   border-radius: 5px;
-  border: 1px solid #EA4235;
+  border: 1px solid #ea4235;
   font-size: 15px;
-  background-color: #EA4235;
+  background-color: #ea4235;
   color: white;
+  cursor: pointer;
 }
 
 .accounts h2 {
@@ -99,17 +95,17 @@
   padding: 50px;
   width: 100%;
 }
-.accprofr{
+.accprofr {
   display: flex;
   flex-direction: column;
   position: relative;
   padding: 5px;
   width: 100%;
-
 }
 .input {
   border: 1px solid;
   width: 392px;
+  padding: 1px 15px;
   height: 48px;
   font-size: 18px;
   color: black;

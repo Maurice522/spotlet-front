@@ -89,21 +89,3 @@ form > .horizontal-itm > div > p {
 .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input {
   height: 1.7em !important;
 }
-
-/* OTP-verify.js CSS */
-.otp-verify {
-  display: flex;
-  justify-content: space-between;
-}
-.otp-form {
-  padding-left: 15%;
-  margin-top: 10%;
-}
-
-.otp-form > h1 {
-  margin-bottom: 8%;
-}
-
-.otp-form > .auth-btn {
-  margin-top: 40px !important;
-}
