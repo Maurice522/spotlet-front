@@ -1,6 +1,8 @@
 import { Button, InputAdornment, TextField } from "@mui/material";
-import React, { useState } from "react";
+import OTPInput, { ResendOTP } from "otp-input-react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import "../../Assets/Styles/OTP-verify.css";
 import {
   addUser,
   saveOTP,
@@ -12,12 +14,18 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { VpnKeyOutlined } from "@mui/icons-material";
-export default function OTPVerify() {
+export default function OTPVerify({ sendOTP }) {
   const [otp, setOTP] = useState("");
+  const [timer, setTimer] = useState(30);
   const userData = useSelector(selectUserData);
   const verifyOtp = useSelector(selectOTP);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    const counter = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
+    return () => clearInterval(counter);
+  }, [timer]);
+
   const handlSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -37,22 +45,19 @@ export default function OTPVerify() {
   return (
     <div className="otp-verify">
       <form onSubmit={handlSubmit} className="otp-form">
-        <h1>Email Verification</h1>
-        <label>OTP</label>
-        <TextField
-          placeholder="Enter six digit otp number"
-          onChange={(e) => setOTP(e.target.value)}
+        <h1>Verify your Email Address</h1>
+        <p>Enter the 4 digit code sent to your email</p>
+        <OTPInput
           value={otp}
-          type="number"
-          fullWidth
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <VpnKeyOutlined />
-              </InputAdornment>
-            ),
-          }}
+          onChange={setOTP}
+          autoFocus
+          OTPLength={4}
+          otpType="number"
+          disabled={false}
+          secure
+          className="otp-input"
         />
+        <p className="timer">{timer} sec</p>
         <Button
           fullWidth
           className="auth-btn"
@@ -63,9 +68,24 @@ export default function OTPVerify() {
           Verify
         </Button>
       </form>
-      <div className="auth-img">
-        <img src="./auth-signup.png" alt="image" />
-      </div>
+
+      <p>
+        Didn't get a message?{" "}
+        <Button
+          disableElevation
+          disableTouchRipple
+          disabled={timer > 0}
+          sx={{ color: `${timer > 0 && "grey !important"}` }}
+          className="btn-resend"
+          onClick={() => {
+            sendOTP(userData);
+            setTimer(30);
+          }}
+        >
+          Resend Code
+        </Button>
+      </p>
     </div>
   );
 }
+

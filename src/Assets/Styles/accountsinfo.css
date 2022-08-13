@@ -1,0 +1,138 @@
+.menu-bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
+
+.nav-menu.active {
+  width: 250px;
+  height: 100vh;
+  top: 65px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  margin-top: 50px;
+  left: 0;
+  transition: 350ms;
+}
+
+.accounts hr {
+  color: black;
+  width: 100%;
+  text-align: left;
+}
+.nav-text {
+  /* text-decoration: none; */
+  font-weight: 900;
+  font-size: 25px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  border-radius: 4px;
+  background-color: white;
+  border: none;
+  margin-left: 5px;
+  /* border-color: white; */
+}
+
+.nav-text:hover {
+  color: #ff6767;
+}
+
+.sel {
+  color: #ff6767;
+}
+
+.nav-menu-items {
+  top: 30px;
+  width: 100%;
+  padding: 0;
+}
+
+.accounts span {
+  margin-left: 16px;
+}
+
+.profcomp {
+  top: 60px;
+  left: 250px;
+
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+}
+.accimg {
+  border-radius: 50%;
+  margin-right: 50px;
+}
+
+.accbut {
+  padding: 13px;
+  border-radius: 5px;
+  border: 1px solid #ea4235;
+  font-size: 15px;
+  background-color: #ea4235;
+  color: white;
+  cursor: pointer;
+}
+
+.accounts h2 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
+.accounts h1 {
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 24px;
+}
+.profr {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 50px;
+  width: 100%;
+}
+.accprofr {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 5px;
+  width: 100%;
+}
+.input {
+  border: 1px solid;
+  width: 392px;
+  padding: 1px 15px;
+  height: 48px;
+  font-size: 18px;
+  color: black;
+}
+.r1 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  padding: 10px;
+  justify-content: flex-start;
+}
+.r1de {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+}
+.r2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: flex-start;
+  padding: 10px;
+  justify-content: space-around;
+}

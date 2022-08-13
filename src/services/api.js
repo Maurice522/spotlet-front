@@ -21,3 +21,8 @@ export const otpVerify = (form) => {
 export const getUserData = (jwt_id) => {
   return API.get("/user/" + jwt_id);
 };
+
+//update data
+export const updateUserInfo = (jwt_id, form) => {
+  return API.put("/user/update/" + jwt_id, form);
+};

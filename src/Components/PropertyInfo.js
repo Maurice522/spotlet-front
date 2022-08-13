@@ -13,14 +13,6 @@ const PropertyInfo = ({
 	handleClick,
 	rating,
 }) => {
-	const StyledRating = styled(Rating)({
-		"& .MuiRating-iconFilled": {
-			color: "#ff6767",
-		},
-		"& .MuiRating-iconHover": {
-			color: "#ff3d47",
-		},
-	});
 	return (
 		<div className="item">
 			<div className="text-on-image-container" onClick={() => console.log("!")}>
@@ -45,17 +37,7 @@ const PropertyInfo = ({
 					{item.price}
 					{rating && (
 						<div className="property-info-rating">
-							<StyledRating
-								name="read-only"
-								value={item.rating}
-								getLabelText={(value) =>
-									`${value} Heart${value !== 1 ? "s" : ""}`
-								}
-								precision={0.5}
-								icon={<FavoriteIcon fontSize="inherit" />}
-								emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-								readOnly
-							/>
+							<Rating name="read-only" value={item.rating} readOnly />
 						</div>
 					)}
 				</div>

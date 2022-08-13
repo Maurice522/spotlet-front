@@ -1,12 +1,11 @@
 import "./Assets/Styles/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import Auth from "./Pages/Auth/Auth";
-import Home from "./Pages/Home";
-import Property from "./Pages/Property";
-import Search from "./Pages/Search";
-import OTPVerify from "./Pages/Auth/OTPVerify";
-
+import Auth from "./pages/Auth/Auth";
+import Home from "./pages/Home";
+import Property from "./pages/Property";
+import AccountInfo from "./pages/AccountInfo";
+import Search from "./pages/Search";
+import OTPVerify from "./pages/Auth/OTPVerify";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -22,9 +21,8 @@ function App() {
 			const jwt = localStorage.getItem("token");
 			if (jwt) {
 				const user_jwt = jwtDecode(jwt);
-				console.log(user_jwt);
 				const { data } = await getUserData(user_jwt._id);
-				dispatch(addUser(data));
+				dispatch(addUser({ data, user_jwt }));
 			}
 		};
 		Start();
@@ -36,8 +34,9 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/signin" element={<Auth />} />
-					<Route path="/verification" element={<OTPVerify />} />
 					<Route path="/property" element={<Property />} />
+					<Route path="/account" element={<AccountInfo />} />
+					{/* {user && <Route path="/search" element={<Search />} />} */}
 					<Route path="/search" element={<Search />} />
 				</Routes>
 			</div>
