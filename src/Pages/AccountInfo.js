@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import "../Assets/Styles/accountsinfo.css";
 import Accordion from "@mui/material/Accordion";
@@ -17,6 +17,7 @@ import {
 } from "../redux/slices/userSlice";
 import { updateUserInfo } from "../services/api";
 import { toast } from "react-toastify";
+import { Button } from "@mui/material";
 
 const AccountInfo = (extraNavId) => {
   const [section, showSection] = useState("Profile");
@@ -26,6 +27,10 @@ const AccountInfo = (extraNavId) => {
   const handlesection = (e) => {
     showSection(e);
   };
+  //for image
+  const [preview, setPreview] = useState();
+  const [selectedFile, setSelectedFile] = useState();
+  //user data update
   const [updateUserData, setUpdateUserData] = useState({
     firstName: personalInfo.fullName.split(" ").slice(0, -1).join(" "),
     lastName: personalInfo.fullName.split(" ").slice(1).join(" "),
@@ -35,23 +40,53 @@ const AccountInfo = (extraNavId) => {
     booking_type: personalInfo.booking_type,
     profile_pic: personalInfo.profile_pic,
   });
+  {
+    console.log(preview);
+  }
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
   const handleChange = (e) => {
     setUpdateUserData({ ...updateUserData, [e.target.name]: e.target.value });
   };
+
+  const onSelectFile = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+    console.log(e.target.files[0]);
+    setSelectedFile(e.target.files[0]);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updateData = {
+    let updateData = {
       fullName: updateUserData.firstName + " " + updateUserData.lastName,
       email: updateUserData.email,
       mobile: updateUserData.mobile,
       job: updateUserData.job,
       booking_type: updateUserData.booking_type,
-      profile_pic: updateUserData.profile_pic,
+      profile_pic: preview ? preview : updateUserData.profile_pic,
     };
     dispatch(updateUser(updateData));
+
+    const serverData = {
+      updateData,
+      selectedFile, //image file
+    };
+    console.log(serverData.selectedFile);
     try {
-      console.log(user_id);
-      const response = await updateUserInfo(user_id, updateData);
+      const response = await updateUserInfo(user_id, serverData);
+
       toast("Information Updated");
     } catch (error) {
       console.log(error);
@@ -111,15 +146,15 @@ const AccountInfo = (extraNavId) => {
                   <img
                     className="accimg"
                     src={
-                      updateUserData.profile_pic
-                        ? updateUserData.profile_pic
+                      selectedFile
+                        ? preview
                         : "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1660161134~exp=1660161734~hmac=805a827742ed799bfe534923869c5a6c5766070dc2a0e06cb14de86ac6c73743"
                     }
                     alt="Avatar"
                     height="100px"
                     width="100px"
                   />
-                  <button className="accbut">Edit Photo</button>
+                  <input accept="image/*" type="file" onChange={onSelectFile} />
                 </div>
                 <div className="r2">
                   <label>

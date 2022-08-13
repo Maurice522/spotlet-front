@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import { getUserData } from "./services/api";
-import { addUser, selectUserData } from "./redux/slices/userSlice";
+import { addUser, addUserId, selectUserData } from "./redux/slices/userSlice";
 import { useSelector } from "react-redux";
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +21,8 @@ function App() {
       if (jwt) {
         const user_jwt = jwtDecode(jwt);
         const { data } = await getUserData(user_jwt._id);
-        dispatch(addUser({ data, user_jwt }));
+        dispatch(addUser(data));
+        dispatch(addUserId(user_jwt._id));
       }
     };
     Start();
@@ -34,7 +35,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<Auth />} />
           <Route path="/property" element={<Property />} />
-          <Route path="/account" element={<AccountInfo />} />
+          <Route path="/account" element={user && <AccountInfo />} />
         </Routes>
       </div>
     </BrowserRouter>
