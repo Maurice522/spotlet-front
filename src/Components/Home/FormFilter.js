@@ -34,14 +34,14 @@ const FormFilter = ({ fullScreen }) => {
 				<div>
 					<label
 						htmlFor="what"
-						className={active === true ? "focus-label" : "label"}>
+						className={active === true ? "focus-label" : "form-filter-label"}>
 						What are you planning?
 					</label>
 					<select
 						id="what"
 						name="what"
 						defaultValue=""
-						className={active === true ? "focus-select" : "select"}>
+						className={active === true ? "focus-select" : "form-filter-select"}>
 						<option value="" disabled hidden>
 							What?
 						</option>
@@ -54,14 +54,14 @@ const FormFilter = ({ fullScreen }) => {
 				<div>
 					<label
 						htmlFor="which"
-						className={active === true ? "focus-label" : "label"}>
+						className={active === true ? "focus-label" : "form-filter-label"}>
 						Activity
 					</label>
 					<select
 						id="which"
 						name="which"
 						defaultValue=""
-						className={active === true ? "focus-select" : "select"}>
+						className={active === true ? "focus-select" : "form-filter-select"}>
 						<option value="" disabled hidden>
 							Which?
 						</option>
@@ -74,14 +74,14 @@ const FormFilter = ({ fullScreen }) => {
 				<div>
 					<label
 						htmlFor="where"
-						className={active === true ? "focus-label" : "label"}>
+						className={active === true ? "focus-label" : "form-filter-label"}>
 						Location
 					</label>
 					<select
 						id="where"
 						name="where"
 						defaultValue=""
-						className={active === true ? "focus-select" : "select"}>
+						className={active === true ? "focus-select" : "form-filter-select"}>
 						<option value="" disabled hidden>
 							Where?
 						</option>
@@ -94,7 +94,7 @@ const FormFilter = ({ fullScreen }) => {
 				<div>
 					<label
 						htmlFor="when"
-						className={active === true ? "focus-label" : "label"}>
+						className={active === true ? "focus-label" : "form-filter-label"}>
 						Date
 					</label>
 					<input
@@ -102,7 +102,7 @@ const FormFilter = ({ fullScreen }) => {
 						id="when"
 						name="when"
 						placeholder="When?"
-						className={active === true ? "focus-input" : "input"}
+						className={active === true ? "focus-input" : "form-filter-input"}
 					/>
 				</div>
 				<button id="submit">Search</button>
