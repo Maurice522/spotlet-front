@@ -10,6 +10,7 @@ import img5 from "../Assets/Images/property-5.jpeg";
 import img6 from "../Assets/Images/property-6.jpeg";
 import "../Assets/Styles/Search/search.css";
 import Host from "../Components/Home/Host";
+import Pagination from "@mui/material/Pagination";
 
 const Search = () => {
 	const propertyDetails = [
@@ -172,6 +173,19 @@ const Search = () => {
 						rating={true}
 					/>
 				))}
+			</div>
+
+			<div
+				style={{
+					margin: "10px auto",
+					width: "fit-content",
+				}}>
+				<Pagination
+					count={10}
+					variant="outlined"
+					shape="rounded"
+					color="primary"
+				/>
 			</div>
 
 			<Host
