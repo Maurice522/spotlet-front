@@ -4,6 +4,7 @@ import Auth from "./pages/Auth/Auth";
 import Home from "./pages/Home";
 import Property from "./pages/Property";
 import AccountInfo from "./pages/AccountInfo";
+import Search from "./pages/Search";
 import OTPVerify from "./pages/Auth/OTPVerify";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -13,32 +14,34 @@ import { getUserData } from "./services/api";
 import { addUser, selectUserData } from "./redux/slices/userSlice";
 import { useSelector } from "react-redux";
 function App() {
-  const dispatch = useDispatch();
-  const user = useSelector(selectUserData);
-  useEffect(() => {
-    const Start = async () => {
-      const jwt = localStorage.getItem("token");
-      if (jwt) {
-        const user_jwt = jwtDecode(jwt);
-        const { data } = await getUserData(user_jwt._id);
-        dispatch(addUser(data));
-      }
-    };
-    Start();
-  }, []);
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <ToastContainer />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<Auth />} />
-          <Route path="/property" element={<Property />} />
-          <Route path="/account" element={<AccountInfo/>} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
+	const dispatch = useDispatch();
+	const user = useSelector(selectUserData);
+	useEffect(() => {
+		const Start = async () => {
+			const jwt = localStorage.getItem("token");
+			if (jwt) {
+				const user_jwt = jwtDecode(jwt);
+				const { data } = await getUserData(user_jwt._id);
+				dispatch(addUser({ data, user_jwt }));
+			}
+		};
+		Start();
+	}, []);
+	return (
+		<BrowserRouter>
+			<div className="App">
+				<ToastContainer />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/signin" element={<Auth />} />
+					<Route path="/property" element={<Property />} />
+					<Route path="/account" element={<AccountInfo />} />
+					{/* {user && <Route path="/search" element={<Search />} />} */}
+					<Route path="/search" element={<Search />} />
+				</Routes>
+			</div>
+		</BrowserRouter>
+	);
 }
 
 export default App;
