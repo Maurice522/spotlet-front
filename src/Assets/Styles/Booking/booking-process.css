@@ -1,0 +1,34 @@
+.booking-content-wrapper {
+	max-width: 90vw;
+	margin: 3px auto;
+	display: flex;
+	justify-content: space-around;
+}
+
+.left-section {
+	max-width: 50vw;
+}
+
+.booking-process {
+	max-width: 60vw;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 20px;
+}
+
+.filler {
+	padding-bottom: 0px;
+}
+
+.booking-item {
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 32px;
+}
+
+.highlight {
+	color: #ea4235;
+}

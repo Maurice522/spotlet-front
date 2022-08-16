@@ -1,0 +1,29 @@
+.rules-wrapper {
+	margin-top: 30px;
+	padding: 0 5px 5px;
+	width: 50vw;
+	max-width: 50vw;
+	max-height: calc(100vh - 200px);
+	overflow-y: scroll;
+}
+
+.rule-title {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 25px;
+	line-height: 36px;
+	margin: 30px auto 10px;
+}
+
+.rule-info {
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 32px;
+}
+
+.terms-conditions {
+	margin-top: 20px;
+}
