@@ -19,12 +19,22 @@
 .auth-detail > div {
   width: 100%;
 }
-.auth-detail > div > p {
+.auth-top {
+  display: flex;
+  justify-content: space-between;
+}
+.auth-top > b {
+  font-weight: 600;
+  font-size: 15px;
+  color: #ff6767;
+  cursor: pointer;
+}
+.auth-detail > div > .auth-top > p {
   font-size: 16px;
   color: #98a1a8;
   margin-bottom: 20px;
 }
-.auth-detail > div > p > b {
+.auth-detail > div > .auth-top > p > b {
   color: #374047;
   cursor: pointer;
 }
@@ -59,6 +69,7 @@ form > .horizontal-itm > div > p {
 #swch {
   text-align: center;
   margin-top: 23px;
+  margin-bottom: 20px;
 }
 .auth-btn {
   background-color: #ff6767 !important;

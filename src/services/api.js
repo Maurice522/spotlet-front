@@ -26,3 +26,13 @@ export const getUserData = (jwt_id) => {
 export const updateUserInfo = (jwt_id, form) => {
   return API.put("/user/update/" + jwt_id, form);
 };
+
+//forgot password
+export const forgotPassword = (email) => {
+  return API.post("/forgot-password", email);
+};
+
+//reset password
+export const updatePassword = (jwt_id, form) => {
+  return API.put("/user/updatepassword/" + jwt_id, form);
+};

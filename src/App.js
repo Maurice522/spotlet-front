@@ -4,7 +4,7 @@ import Auth from "./pages/Auth/Auth";
 import Home from "./pages/Home";
 import Property from "./pages/Property";
 import AccountInfo from "./pages/AccountInfo";
-import OTPVerify from "./pages/Auth/OTPVerify";
+import Search from "./pages/Search";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -12,6 +12,7 @@ import jwtDecode from "jwt-decode";
 import { getUserData } from "./services/api";
 import { addUser, addUserId, selectUserData } from "./redux/slices/userSlice";
 import { useSelector } from "react-redux";
+import ResetPassword from "./pages/Auth/ResetPassword";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUserData);
@@ -36,6 +37,7 @@ function App() {
           <Route path="/signin" element={<Auth />} />
           <Route path="/property" element={<Property />} />
           <Route path="/account" element={user && <AccountInfo />} />
+          <Route path="/reset/:id" element={<ResetPassword />} />
         </Routes>
       </div>
     </BrowserRouter>

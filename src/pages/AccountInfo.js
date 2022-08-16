@@ -15,7 +15,7 @@ import {
   selectUser_id,
   updateUser,
 } from "../redux/slices/userSlice";
-import { updateUserInfo } from "../services/api";
+import { updatePassword, updateUserInfo } from "../services/api";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 
@@ -30,6 +30,7 @@ const AccountInfo = (extraNavId) => {
   //for image
   const [preview, setPreview] = useState();
   const [selectedFile, setSelectedFile] = useState();
+
   //user data update
   const [updateUserData, setUpdateUserData] = useState({
     firstName: personalInfo.fullName.split(" ").slice(0, -1).join(" "),
@@ -40,9 +41,14 @@ const AccountInfo = (extraNavId) => {
     booking_type: personalInfo.booking_type,
     profile_pic: personalInfo.profile_pic,
   });
-  {
-    console.log(preview);
-  }
+
+  //User Password update
+  const [userCredential, setUserCredential] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
+  });
+
   useEffect(() => {
     if (!selectedFile) {
       setPreview(undefined);
@@ -91,6 +97,20 @@ const AccountInfo = (extraNavId) => {
     } catch (error) {
       console.log(error);
       toast.error(error.response.data);
+    }
+  };
+
+  //handle update passowrd
+  const handleUpdatePassword = async (e) => {
+    e.preventDefault();
+    if (userCredential.newPassword !== userCredential.confirmNewPassword)
+      toast.error("new password and confirm password are not same");
+    try {
+      const response = await updatePassword(user_id, userCredential);
+      toast.success("password updated..");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.error);
     }
   };
   return (
@@ -191,7 +211,6 @@ const AccountInfo = (extraNavId) => {
                       size="50"
                       name="email"
                       value={updateUserData.email}
-                      onChange={handleChange}
                       required
                     />
                   </label>
@@ -248,30 +267,65 @@ const AccountInfo = (extraNavId) => {
           {/* Security Section  */}
           {section === "Security" ? (
             <div className="profr">
-              <form>
+              <form onSubmit={handleUpdatePassword}>
                 <div className="r1">
                   <h1>Change Password</h1>
                 </div>
                 <div className="r2">
                   <label>
                     <h2>Current Password</h2>
-                    <input className="input" type="password" size="50" />
+                    <input
+                      className="input"
+                      type="password"
+                      size="50"
+                      onChange={(e) =>
+                        setUserCredential({
+                          ...userCredential,
+                          currentPassword: e.target.value,
+                        })
+                      }
+                      value={userCredential.currentPassword}
+                    />
                   </label>
                 </div>
                 <div className="r2">
                   <label>
                     <h2>New Password</h2>
-                    <input className="input" type="password" size="50" />
+                    <input
+                      className="input"
+                      type="password"
+                      size="50"
+                      onChange={(e) =>
+                        setUserCredential({
+                          ...userCredential,
+                          newPassword: e.target.value,
+                        })
+                      }
+                      value={userCredential.newPassword}
+                    />
                   </label>
                 </div>
                 <div className="r2">
                   <label>
                     <h2>Confirm Password</h2>
-                    <input className="input" type="password" size="50" />
+                    <input
+                      className="input"
+                      type="password"
+                      size="50"
+                      onChange={(e) =>
+                        setUserCredential({
+                          ...userCredential,
+                          confirmNewPassword: e.target.value,
+                        })
+                      }
+                      value={userCredential.confirmNewPassword}
+                    />
                   </label>
                 </div>
                 <div className="r2">
-                  <button className="accbut">Update Password</button>
+                  <button type="submit" className="accbut">
+                    Update Password
+                  </button>
                 </div>
               </form>
               <div className="r1de">

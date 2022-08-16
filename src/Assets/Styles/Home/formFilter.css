@@ -24,7 +24,7 @@
 	align-items: center;
 }
 
-.label {
+.form-filter-label {
 	display: block;
 	font-family: "Inter";
 	font-style: normal;
@@ -34,8 +34,8 @@
 	color: #374047;
 }
 
-.select,
-.input {
+.form-filter-select,
+.form-filter-input {
 	display: block;
 	margin-top: 5px;
 	width: 95%;
