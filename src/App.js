@@ -5,15 +5,16 @@ import Home from "./pages/Home";
 import Property from "./pages/Property";
 import AccountInfo from "./pages/AccountInfo";
 import Search from "./pages/Search";
-import OTPVerify from "./pages/Auth/OTPVerify";
 import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import { getUserData } from "./services/api";
-import { addUser, selectUserData } from "./redux/slices/userSlice";
+import { addUser, addUserId, selectUserData } from "./redux/slices/userSlice";
 import { useSelector } from "react-redux";
+import ResetPassword from "./pages/Auth/ResetPassword";
 import BookingProcess from "./pages/BookingProcess";
+
 function App() {
 	const dispatch = useDispatch();
 	const user = useSelector(selectUserData);
@@ -23,7 +24,8 @@ function App() {
 			if (jwt) {
 				const user_jwt = jwtDecode(jwt);
 				const { data } = await getUserData(user_jwt._id);
-				dispatch(addUser({ data, user_jwt }));
+				dispatch(addUser(data));
+				dispatch(addUserId(user_jwt._id));
 			}
 		};
 		Start();

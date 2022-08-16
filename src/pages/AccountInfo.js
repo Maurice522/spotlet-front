@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import "../Assets/Styles/accountsinfo.css";
 import Accordion from "@mui/material/Accordion";
@@ -15,8 +15,9 @@ import {
   selectUser_id,
   updateUser,
 } from "../redux/slices/userSlice";
-import { updateUserInfo } from "../services/api";
+import { updatePassword, updateUserInfo } from "../services/api";
 import { toast } from "react-toastify";
+import { Button } from "@mui/material";
 
 const AccountInfo = (extraNavId) => {
   const [section, showSection] = useState("Profile");
@@ -26,6 +27,11 @@ const AccountInfo = (extraNavId) => {
   const handlesection = (e) => {
     showSection(e);
   };
+  //for image
+  const [preview, setPreview] = useState();
+  const [selectedFile, setSelectedFile] = useState();
+
+  //user data update
   const [updateUserData, setUpdateUserData] = useState({
     firstName: personalInfo.fullName.split(" ").slice(0, -1).join(" "),
     lastName: personalInfo.fullName.split(" ").slice(1).join(" "),
@@ -35,27 +41,76 @@ const AccountInfo = (extraNavId) => {
     booking_type: personalInfo.booking_type,
     profile_pic: personalInfo.profile_pic,
   });
+
+  //User Password update
+  const [userCredential, setUserCredential] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
+  });
+
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
   const handleChange = (e) => {
     setUpdateUserData({ ...updateUserData, [e.target.name]: e.target.value });
   };
+
+  const onSelectFile = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+    console.log(e.target.files[0]);
+    setSelectedFile(e.target.files[0]);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updateData = {
+    let updateData = {
       fullName: updateUserData.firstName + " " + updateUserData.lastName,
       email: updateUserData.email,
       mobile: updateUserData.mobile,
       job: updateUserData.job,
       booking_type: updateUserData.booking_type,
-      profile_pic: updateUserData.profile_pic,
+      profile_pic: preview ? preview : updateUserData.profile_pic,
     };
     dispatch(updateUser(updateData));
+
+    const serverData = {
+      updateData,
+      selectedFile, //image file
+    };
+    console.log(serverData.selectedFile);
     try {
-      console.log(user_id);
-      const response = await updateUserInfo(user_id, updateData);
+      const response = await updateUserInfo(user_id, serverData);
+
       toast("Information Updated");
     } catch (error) {
       console.log(error);
       toast.error(error.response.data);
+    }
+  };
+
+  //handle update passowrd
+  const handleUpdatePassword = async (e) => {
+    e.preventDefault();
+    if (userCredential.newPassword !== userCredential.confirmNewPassword)
+      toast.error("new password and confirm password are not same");
+    try {
+      const response = await updatePassword(user_id, userCredential);
+      toast.success("password updated..");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.error);
     }
   };
   return (
@@ -111,15 +166,15 @@ const AccountInfo = (extraNavId) => {
                   <img
                     className="accimg"
                     src={
-                      updateUserData.profile_pic
-                        ? updateUserData.profile_pic
+                      selectedFile
+                        ? preview
                         : "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1660161134~exp=1660161734~hmac=805a827742ed799bfe534923869c5a6c5766070dc2a0e06cb14de86ac6c73743"
                     }
                     alt="Avatar"
                     height="100px"
                     width="100px"
                   />
-                  <button className="accbut">Edit Photo</button>
+                  <input accept="image/*" type="file" onChange={onSelectFile} />
                 </div>
                 <div className="r2">
                   <label>
@@ -156,7 +211,6 @@ const AccountInfo = (extraNavId) => {
                       size="50"
                       name="email"
                       value={updateUserData.email}
-                      onChange={handleChange}
                       required
                     />
                   </label>
@@ -213,30 +267,65 @@ const AccountInfo = (extraNavId) => {
           {/* Security Section  */}
           {section === "Security" ? (
             <div className="profr">
-              <form>
+              <form onSubmit={handleUpdatePassword}>
                 <div className="r1">
                   <h1>Change Password</h1>
                 </div>
                 <div className="r2">
                   <label>
                     <h2>Current Password</h2>
-                    <input className="input" type="password" size="50" />
+                    <input
+                      className="input"
+                      type="password"
+                      size="50"
+                      onChange={(e) =>
+                        setUserCredential({
+                          ...userCredential,
+                          currentPassword: e.target.value,
+                        })
+                      }
+                      value={userCredential.currentPassword}
+                    />
                   </label>
                 </div>
                 <div className="r2">
                   <label>
                     <h2>New Password</h2>
-                    <input className="input" type="password" size="50" />
+                    <input
+                      className="input"
+                      type="password"
+                      size="50"
+                      onChange={(e) =>
+                        setUserCredential({
+                          ...userCredential,
+                          newPassword: e.target.value,
+                        })
+                      }
+                      value={userCredential.newPassword}
+                    />
                   </label>
                 </div>
                 <div className="r2">
                   <label>
                     <h2>Confirm Password</h2>
-                    <input className="input" type="password" size="50" />
+                    <input
+                      className="input"
+                      type="password"
+                      size="50"
+                      onChange={(e) =>
+                        setUserCredential({
+                          ...userCredential,
+                          confirmNewPassword: e.target.value,
+                        })
+                      }
+                      value={userCredential.confirmNewPassword}
+                    />
                   </label>
                 </div>
                 <div className="r2">
-                  <button className="accbut">Update Password</button>
+                  <button type="submit" className="accbut">
+                    Update Password
+                  </button>
                 </div>
               </form>
               <div className="r1de">

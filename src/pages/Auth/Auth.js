@@ -28,10 +28,14 @@ import "../../Assets/Styles/Auth.css";
 import { useDispatch } from "react-redux";
 import { addUser, saveOTP } from "../../redux/slices/userSlice";
 import OTPVerify from "./OTPVerify";
+import ForgotPassword from "./ForgotPassword";
 export default function Auth() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignIn, setIsSignIn] = useState(true);
+  const [openOTP, setOpenOTP] = useState(false);
   const [open, setOpen] = useState(false);
+  const handleOpenOTP = () => setOpenOTP(true);
+  const handleCloseOTP = () => setOpenOTP(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [fullname, setFullName] = useState({
@@ -59,7 +63,7 @@ export default function Auth() {
     toast("OTP sent");
     dispatch(saveOTP(response.data.otp));
     dispatch(addUser(userData));
-    handleOpen();
+    handleOpenOTP();
   };
 
   //SignIn and SignUp function -
@@ -96,15 +100,24 @@ export default function Auth() {
       >
         <div>
           {isSignIn ? (
-            <p style={{ marginTop: "30px", marginBottom: "40px" }}>
-              Don’t have an account?{" "}
-              <b onClick={() => setIsSignIn(false)}>Sign Up</b>
-            </p>
+            <div
+              className="auth-top"
+              style={{ marginTop: "30px", marginBottom: "40px" }}
+            >
+              <p>
+                Don’t have an account?{" "}
+                <b onClick={() => setIsSignIn(false)}>Sign Up</b>
+              </p>
+              <b onClick={() => handleOpen()}>forgot password</b>
+            </div>
           ) : (
-            <p>
-              Already have an account?{" "}
-              <b onClick={() => setIsSignIn(true)}>Sign In</b>
-            </p>
+            <div className="auth-top">
+              <p>
+                Already have an account?{" "}
+                <b onClick={() => setIsSignIn(true)}>Sign In</b>
+              </p>
+              <b onClick={() => handleOpen()}>forgot password</b>
+            </div>
           )}
           <h1>{isSignIn ? "Sign in " : "Sign up "}to Goreco</h1>
           <form onSubmit={handleSubmit}>
@@ -283,11 +296,12 @@ export default function Auth() {
           alt="image"
         />
       </div>
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal open={open} onClose={handleClose}>
+        <ForgotPassword handleClose={handleClose} />
+      </Modal>
+      <Modal open={openOTP} onClose={handleCloseOTP}>
         <OTPVerify sendOTP={getOTP} />
       </Modal>
     </div>
   );
 }
-
