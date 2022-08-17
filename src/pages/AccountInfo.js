@@ -87,7 +87,7 @@ const AccountInfo = (extraNavId) => {
 
     const serverData = {
       updateData,
-      preview, //image file
+      selectedFile, //image file
     };
 
     try {
@@ -168,6 +168,8 @@ const AccountInfo = (extraNavId) => {
                     src={
                       selectedFile
                         ? preview
+                        : updateUserData.profile_pic
+                        ? updateUserData.profile_pic
                         : "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1660161134~exp=1660161734~hmac=805a827742ed799bfe534923869c5a6c5766070dc2a0e06cb14de86ac6c73743"
                     }
                     alt="Avatar"
