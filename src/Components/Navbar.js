@@ -51,9 +51,15 @@ const Navbar = ({ extraNavId }) => {
 			</div>
 			{user ? (
 				<>
-					<div>Messages</div>
-					<div>Bookings</div>
-					<div>Favourites</div>
+					<Link to="/messages">
+						<div>Messages</div>
+					</Link>
+					<Link to="/property">
+						<div>Bookings</div>
+					</Link>
+					<Link to="/favourite">
+						<div>Favourites</div>
+					</Link>
 					<Button
 						aria-controls="simple-menu"
 						aria-haspopup="true"
@@ -77,22 +83,7 @@ const Navbar = ({ extraNavId }) => {
 			) : (
 				<>
 					<div>List your places</div>
-					<Link
-						to={"/signin"}
-						style={{
-							color: "black",
-							fontSize: "19px",
-						}}>
-						Sign In
-					</Link>
-					<Link
-						to={"/signin"}
-						style={{
-							color: "black",
-							fontSize: "19px",
-						}}>
-						Sign Up
-					</Link>
+					<Link to={"/signin"}>Sign In</Link>
 				</>
 			)}
 		</div>
