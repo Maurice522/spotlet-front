@@ -14,6 +14,7 @@ import { addUser, addUserId, selectUserData } from "./redux/slices/userSlice";
 import { useSelector } from "react-redux";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import BookingProcess from "./pages/BookingProcess";
+import ForgotPassword from "./pages/Auth/ForgotPassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<Auth />} />
+          <Route path="/reset/:userId" element={<ResetPassword />} />
           <Route
             path="/property"
             element={
