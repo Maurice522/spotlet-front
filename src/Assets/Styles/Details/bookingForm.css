@@ -13,27 +13,27 @@
 	color: black;
 	font-family: "Inter";
 	font-style: normal;
-	font-weight: 500;
-	font-size: 49px;
-	line-height: 64px;
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 40px;
 }
 
 .rate {
 	color: #808b93;
 	font-family: "Inter";
 	font-style: normal;
-	font-weight: 500;
-	font-size: 49px;
-	line-height: 64px;
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 40px;
 }
 
 .form {
 	background: #fff;
 	height: fit-content;
-	width: 80%;
+	width: 85%;
 	padding-left: 30px;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr) auto;
+	grid-template-columns: repeat(5, 1fr) auto;
 	z-index: 100;
 	gap: 20px;
 	align-items: center;
