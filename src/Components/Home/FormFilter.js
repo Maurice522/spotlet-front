@@ -41,7 +41,8 @@ const FormFilter = ({ fullScreen }) => {
 						id="what"
 						name="what"
 						defaultValue=""
-						className={active === true ? "focus-select" : "form-filter-select"}>
+						className={active === true ? "focus-select" : "form-filter-select"}
+						onChange={(e) => console.log(e.target.value)}>
 						<option value="" disabled hidden>
 							What?
 						</option>
@@ -61,7 +62,8 @@ const FormFilter = ({ fullScreen }) => {
 						id="which"
 						name="which"
 						defaultValue=""
-						className={active === true ? "focus-select" : "form-filter-select"}>
+						className={active === true ? "focus-select" : "form-filter-select"}
+						onChange={(e) => console.log(e.target.value)}>
 						<option value="" disabled hidden>
 							Which?
 						</option>
@@ -81,7 +83,8 @@ const FormFilter = ({ fullScreen }) => {
 						id="where"
 						name="where"
 						defaultValue=""
-						className={active === true ? "focus-select" : "form-filter-select"}>
+						className={active === true ? "focus-select" : "form-filter-select"}
+						onChange={(e) => console.log(e.target.value)}>
 						<option value="" disabled hidden>
 							Where?
 						</option>
@@ -103,6 +106,7 @@ const FormFilter = ({ fullScreen }) => {
 						name="when"
 						placeholder="When?"
 						className={active === true ? "focus-input" : "form-filter-input"}
+						onChange={(e) => console.log(e.target.value)}
 					/>
 				</div>
 				<button id="submit">Search</button>

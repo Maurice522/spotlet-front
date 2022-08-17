@@ -1,0 +1,64 @@
+.side-section-image-wrapper {
+	width: 20vw;
+	aspect-ratio: 2 / 1;
+	border-radius: 8px;
+}
+
+.image {
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+}
+
+[data-attribute-1] {
+	margin-top: 3px;
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 32px;
+}
+
+[data-attribute-2] {
+	margin-bottom: 6px;
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.booking-side-section-title {
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.booking-side-section-info {
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 20px;
+	margin-bottom: 10px;
+}
+
+[data-attribute-3] {
+	display: flex;
+	width: 20vw;
+	justify-content: space-between;
+}
+
+[data-attribute-4] {
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+[data-attribute-3]:last-of-type {
+	margin-top: 10px;
+}
