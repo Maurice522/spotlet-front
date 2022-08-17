@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import BookingForm from "../Components/Details/BookingForm";
 import Carousel from "../Components/Details/Carousel";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import img1 from "../Assets/Images/property-1.jpeg";
+import img2 from "../Assets/Images/property-2.jpeg";
+import img3 from "../Assets/Images/property-3.jpeg";
 import {
 	Accordion,
 	AccordionSummary,
@@ -11,6 +14,8 @@ import {
 } from "@mui/material";
 import { MdExpandMore } from "react-icons/md";
 import { GoPrimitiveDot } from "react-icons/go";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import PropertyInfo from "../Components/PropertyInfo";
 
 const Property = ({ v1, v2, v3, v4, setV1, setV2, setV3, setV4 }) => {
 	const locationItem = (
@@ -105,6 +110,122 @@ const Property = ({ v1, v2, v3, v4, setV1, setV2, setV3, setV4 }) => {
 		</div>
 	);
 
+	const propertyItems = [
+		[
+			{
+				image: img1,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "1",
+			},
+			{
+				image: img2,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "2",
+			},
+			{
+				image: img3,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "3",
+			},
+		],
+		[
+			{
+				image: img3,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "3",
+			},
+			{
+				image: img1,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "1",
+			},
+			{
+				image: img2,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "2",
+			},
+		],
+		[
+			{
+				image: img2,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "2",
+			},
+			{
+				image: img3,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "3",
+			},
+			{
+				image: img1,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "1",
+			},
+		],
+	];
+
+	const [index, setIndex] = useState(0);
+
+	const similarProperties = (
+		<div
+			style={{
+				width: "100%",
+				display: "grid",
+				gridTemplateColumns: "auto repeat(3, 1fr) auto",
+				gap: "15px",
+			}}>
+			<div
+				style={{
+					display: "flex",
+					alignItems: "center",
+					cursor: "pointer",
+				}}>
+				<AiOutlineLeft
+					size="32px"
+					onClick={() => setIndex((prev) => (prev === 0 ? 2 : prev - 1))}
+				/>
+			</div>
+			{propertyItems[index].map((item, index) => (
+				<PropertyInfo
+					item={item}
+					index={index}
+					isFav={false}
+					key={index}
+					rating={true}
+				/>
+			))}
+			<div
+				style={{
+					display: "flex",
+					alignItems: "center",
+					cursor: "pointer",
+				}}>
+				<AiOutlineRight
+					size="32px"
+					onClick={() => setIndex((prev) => (prev + 1) % 3)}
+				/>
+			</div>
+		</div>
+	);
+
 	const accordion = [
 		{
 			title: "Description of the property",
@@ -160,6 +281,11 @@ const Property = ({ v1, v2, v3, v4, setV1, setV2, setV3, setV4 }) => {
 			title: "Cancellation Policy",
 			info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat.",
 			type: "text",
+		},
+		{
+			title: "Similar Properties",
+			info: similarProperties,
+			type: "html",
 		},
 	];
 
@@ -231,6 +357,7 @@ const Property = ({ v1, v2, v3, v4, setV1, setV2, setV3, setV4 }) => {
 					</Accordion>
 				))}
 			</div>
+
 			<Footer />
 		</>
 	);

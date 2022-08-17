@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../../Assets/Styles/Home/sectionMenu.css";
 import img1 from "../../Assets/Images/menu-1.jpeg";
 import img2 from "../../Assets/Images/menu-2.jpeg";
@@ -52,8 +53,14 @@ const SectionMenu = () => {
 
 	let gridItems = shootMap[shoot].map((img, index) => (
 		<div className={classes[index]} key={index}>
-			<img src={img.image} alt={`menu-${index + 1}`} className="menu-image" />
-			<div className="menu-item-text">{img.text}</div>
+			<Link
+				to="/search"
+				style={{
+					textDecoration: "none",
+				}}>
+				<img src={img.image} alt={`menu-${index + 1}`} className="menu-image" />
+				<div className="menu-item-text">{img.text}</div>
+			</Link>
 		</div>
 	));
 	return (

@@ -1,9 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
-import { styled } from "@mui/material/styles";
 import Rating from "@mui/material/Rating";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 const PropertyInfo = ({
 	item,
@@ -15,7 +13,9 @@ const PropertyInfo = ({
 }) => {
 	return (
 		<div className="item">
-			<div className="text-on-image-container" onClick={() => console.log("!")}>
+			<div
+				className="text-on-image-container-2"
+				onClick={() => console.log("!")}>
 				<img
 					src={item.image}
 					alt={`property-${index + 1}`}
@@ -31,16 +31,23 @@ const PropertyInfo = ({
 				</div>
 			</div>
 			<div>
-				<div className="property-info-heading">{item.name}</div>
-				<div className="property-info-location">{item.location}</div>
-				<div className="property-info-price">
-					{item.price}
-					{rating && (
-						<div className="property-info-rating">
-							<Rating name="read-only" value={item.rating} readOnly />
-						</div>
-					)}
-				</div>
+				<Link
+					to="/property"
+					style={{
+						textDecoration: "none",
+						color: "black",
+					}}>
+					<div className="property-info-heading">{item.name}</div>
+					<div className="property-info-location">{item.location}</div>
+					<div className="property-info-price">
+						{item.price}
+						{rating && (
+							<div className="property-info-rating">
+								<Rating name="read-only" value={item.rating} readOnly />
+							</div>
+						)}
+					</div>
+				</Link>
 			</div>
 		</div>
 	);
