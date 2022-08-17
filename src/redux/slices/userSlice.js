@@ -11,8 +11,10 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action) => {
-      state.userData = action.payload.data;
-      state.user_id = action.payload.user_jwt._id;
+      state.userData = action.payload;
+    },
+    addUserId: (state, action) => {
+      state.user_id = action.payload;
     },
     updateUser: (state, action) => {
       state.userData = { ...state.userData, personalInfo: action.payload };
@@ -26,7 +28,8 @@ const userSlice = createSlice({
   },
 });
 
-export const { addUser, updateUser, saveOTP, logout } = userSlice.actions;
+export const { addUser, addUserId, updateUser, saveOTP, logout } =
+  userSlice.actions;
 export const selectUserData = (state) => state.user.userData;
 export const selectUser_id = (state) => state.user.user_id;
 export const selectOTP = (state) => state.user.otp;

@@ -1,4 +1,3 @@
-
 import React from "react";
 import BookingForm from "../Components/Details/BookingForm";
 import Carousel from "../Components/Details/Carousel";
@@ -13,7 +12,7 @@ import {
 import { MdExpandMore } from "react-icons/md";
 import { GoPrimitiveDot } from "react-icons/go";
 
-const Property = () => {
+const Property = ({ v1, v2, v3, v4, setV1, setV2, setV3, setV4 }) => {
 	const locationItem = (
 		<div
 			style={{
@@ -168,7 +167,16 @@ const Property = () => {
 		<>
 			<Navbar extraNavId="id-2" />
 			<Carousel />
-			<BookingForm />
+			<BookingForm
+				v1={v1}
+				v2={v2}
+				v3={v3}
+				v4={v4}
+				setV1={setV1}
+				setV2={setV2}
+				setV3={setV3}
+				setV4={setV4}
+			/>
 
 			<div
 				style={{
@@ -182,10 +190,9 @@ const Property = () => {
 								fontFamily: "Inter",
 								fontStyle: "normal",
 								fontWeight: "500",
-								fontSize: "31px",
-								lineHeight: "44px",
-								paddingBottom: "10px",
-								borderBottom: "1px solid #e0e0e0",
+								fontSize: "24px",
+								lineHeight: "36px",
+								// borderBottom: "1px solid #e0e0e0",
 							}}
 							expandIcon={<MdExpandMore size="31px" color="black" />}
 							aria-controls="panel1a-content"
@@ -197,8 +204,8 @@ const Property = () => {
 								fontFamily: "Inter",
 								fontStyle: "normal",
 								fontWeight: "400",
-								fontSize: "20px",
-								lineHeight: "32px",
+								fontSize: "16px",
+								lineHeight: "24px",
 								paddingTop: "20px",
 							}}>
 							{item.type === "list" ? (

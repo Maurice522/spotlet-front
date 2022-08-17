@@ -1,6 +1,6 @@
 .wrapper {
 	margin: 10px auto;
-	width: 90vw;
+	width: 85vw;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -39,7 +39,7 @@
 	align-items: center;
 }
 
-.label {
+.booking-form-label {
 	display: block;
 	font-family: "Inter";
 	font-style: normal;
@@ -113,12 +113,14 @@
 	align-items: center;
 	padding: 12px 24px;
 	gap: 8px;
-	width: 130.96px;
-	height: 61.98px;
 }
 
 .submit:hover {
 	background: #ffffff;
 	color: #ff4d4d;
 	border: 2px solid #ff4d4d;
+}
+
+.form > a {
+	text-decoration: none;
 }

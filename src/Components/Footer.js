@@ -54,7 +54,7 @@ const Footer = () => {
 	};
 
 	return (
-		<>
+		<div className="footer-wrapper">
 			<div className="to-top" onClick={scrollToTop}>
 				<MdExpandLess color="white" size="40px" />
 			</div>
@@ -71,7 +71,7 @@ const Footer = () => {
 					{items}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

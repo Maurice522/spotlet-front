@@ -1,0 +1,28 @@
+#booking-page-form {
+	margin-top: 30px;
+	max-width: 50vw;
+	width: 50vw;
+}
+
+#booking-page-form label {
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 24px;
+	text-align: center;
+	color: #374047;
+}
+
+#booking-page-form input {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #808b93;
+}
+
+#booking-page-form > div {
+	margin: 20px auto;
+}
