@@ -87,9 +87,9 @@ const AccountInfo = (extraNavId) => {
 
     const serverData = {
       updateData,
-      selectedFile, //image file
+      preview, //image file
     };
-    console.log(serverData.selectedFile);
+
     try {
       const response = await updateUserInfo(user_id, serverData);
 
@@ -174,7 +174,19 @@ const AccountInfo = (extraNavId) => {
                     height="100px"
                     width="100px"
                   />
-                  <input accept="image/*" type="file" onChange={onSelectFile} />
+                  <b
+                    className="accbut"
+                    onClick={() => document.getElementById("getFile").click()}
+                  >
+                    Edit Photo
+                  </b>
+                  <input
+                    accept="image/*"
+                    type="file"
+                    id="getFile"
+                    style={{ display: "none" }}
+                    onChange={onSelectFile}
+                  />
                 </div>
                 <div className="r2">
                   <label>
