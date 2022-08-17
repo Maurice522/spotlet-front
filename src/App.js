@@ -16,61 +16,61 @@ import ResetPassword from "./pages/Auth/ResetPassword";
 import BookingProcess from "./pages/BookingProcess";
 
 function App() {
-	const dispatch = useDispatch();
-	const user = useSelector(selectUserData);
-	useEffect(() => {
-		const Start = async () => {
-			const jwt = localStorage.getItem("token");
-			if (jwt) {
-				const user_jwt = jwtDecode(jwt);
-				const { data } = await getUserData(user_jwt._id);
-				dispatch(addUser(data));
-				dispatch(addUserId(user_jwt._id));
-			}
-		};
-		Start();
-	}, []);
+  const dispatch = useDispatch();
+  const user = useSelector(selectUserData);
+  useEffect(() => {
+    const Start = async () => {
+      const jwt = localStorage.getItem("token");
+      if (jwt) {
+        const user_jwt = jwtDecode(jwt);
+        const { data } = await getUserData(user_jwt._id);
+        dispatch(addUser(data));
+        dispatch(addUserId(user_jwt._id));
+      }
+    };
+    Start();
+  }, []);
 
-	const date = new Date().toISOString().split("T")[0];
+  const date = new Date().toISOString().split("T")[0];
 
-	const [v1, setV1] = useState(date);
-	const [v2, setV2] = useState("06:30");
-	const [v3, setV3] = useState("");
-	const [v4, setV4] = useState("");
+  const [v1, setV1] = useState(date);
+  const [v2, setV2] = useState("06:30");
+  const [v3, setV3] = useState("");
+  const [v4, setV4] = useState("");
 
-	return (
-		<BrowserRouter>
-			<div className="App">
-				<ToastContainer />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/signin" element={<Auth />} />
-					<Route
-						path="/property"
-						element={
-							<Property
-								v1={v1}
-								v2={v2}
-								v3={v3}
-								v4={v4}
-								setV1={setV1}
-								setV2={setV2}
-								setV3={setV3}
-								setV4={setV4}
-							/>
-						}
-					/>
-					<Route path="/account" element={<AccountInfo />} />
-					{/* {user && <Route path="/search" element={<Search />} />} */}
-					<Route path="/search" element={<Search />} />
-					<Route
-						path="/booking"
-						element={<BookingProcess v1={v1} v2={v2} v3={v3} v4={v4} />}
-					/>
-				</Routes>
-			</div>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <ToastContainer />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<Auth />} />
+          <Route
+            path="/property"
+            element={
+              <Property
+                v1={v1}
+                v2={v2}
+                v3={v3}
+                v4={v4}
+                setV1={setV1}
+                setV2={setV2}
+                setV3={setV3}
+                setV4={setV4}
+              />
+            }
+          />
+          <Route path="/account" element={user && <AccountInfo />} />
+          {/* {user && <Route path="/search" element={<Search />} />} */}
+          <Route path="/search" element={<Search />} />
+          <Route
+            path="/booking"
+            element={<BookingProcess v1={v1} v2={v2} v3={v3} v4={v4} />}
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;

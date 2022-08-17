@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../../Assets/Styles/Home/formFilter.css";
 
 const FormFilter = ({ fullScreen }) => {
@@ -109,7 +110,13 @@ const FormFilter = ({ fullScreen }) => {
 						onChange={(e) => console.log(e.target.value)}
 					/>
 				</div>
-				<button id="submit">Search</button>
+				<Link
+					to="/search"
+					style={{
+						textDecoration: "none",
+					}}>
+					<div id="submit">Search</div>
+				</Link>
 			</form>
 		</div>
 	);
