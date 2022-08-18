@@ -17,7 +17,7 @@
 	font-weight: 500;
 	font-size: 18px;
 	line-height: 24px;
-	color: #374047;
+	color: black;
 }
 
 #booking-contact-form input {
@@ -26,7 +26,7 @@
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 24px;
-	color: #808b93;
+	color: #374047;
 }
 
 #booking-contact-form > div {
