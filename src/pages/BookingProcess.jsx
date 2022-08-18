@@ -6,7 +6,7 @@ import Booking from "../Components/Booking/Booking";
 import Rules from "../Components/Booking/Rules";
 import Contact from "../Components/Booking/Contact";
 
-const BookingProcess = ({ v1, v2, v3, v4 }) => {
+const BookingProcess = ({ v1, v2, v3, v4, v5 }) => {
 	const [index, setIndex] = useState(0);
 	const [ok, setOk] = useState(false);
 	return (
@@ -30,7 +30,7 @@ const BookingProcess = ({ v1, v2, v3, v4 }) => {
 						</div>
 
 						{index === 0 ? (
-							<Booking v1={v1} v2={v2} v3={v3} v4={v4} />
+							<Booking v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} />
 						) : index === 1 ? (
 							<Rules isOk={setOk} />
 						) : (
@@ -45,6 +45,7 @@ const BookingProcess = ({ v1, v2, v3, v4 }) => {
 						v1={v1}
 						v3={v3}
 						v4={v4}
+						v5={v5}
 					/>
 				</div>
 			</div>

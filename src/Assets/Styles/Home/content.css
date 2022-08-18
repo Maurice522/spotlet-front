@@ -49,7 +49,7 @@
 .service-image-wrapper {
 	margin-top: 70px;
 	width: 100%;
-	height: 400px;
+	height: 80vh;
 	overflow-y: hidden;
 }
 
@@ -58,8 +58,7 @@
 	max-height: 100%;
 }
 
-.text-on-image-container {
+.text-on-image-container-2 {
 	max-width: 100vw;
 	position: relative;
-	z-index: -1;
 }

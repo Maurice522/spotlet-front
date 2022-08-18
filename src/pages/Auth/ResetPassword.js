@@ -13,7 +13,7 @@ export default function ResetPassword() {
     showNewPassword: false,
     showConfirmNewPassword: false,
   });
-  const user_id = useSelector(selectUser_id);
+  const user_id = window.location.pathname.substring(7);
   //User Password update
   const [userCredential, setUserCredential] = useState({
     currentPassword: "",
@@ -33,6 +33,7 @@ export default function ResetPassword() {
     try {
       const response = await updatePassword(user_id, userCredential);
       toast.success("password updated..");
+      window.location = "/signin";
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.error);
