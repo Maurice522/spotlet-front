@@ -17,7 +17,18 @@ import { GoPrimitiveDot } from "react-icons/go";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import PropertyInfo from "../Components/PropertyInfo";
 
-const Property = ({ v1, v2, v3, v4, setV1, setV2, setV3, setV4 }) => {
+const Property = ({
+	v1,
+	v2,
+	v3,
+	v4,
+	v5,
+	setV1,
+	setV2,
+	setV3,
+	setV4,
+	setV5,
+}) => {
 	const locationItem = (
 		<div
 			style={{
@@ -298,10 +309,12 @@ const Property = ({ v1, v2, v3, v4, setV1, setV2, setV3, setV4 }) => {
 				v2={v2}
 				v3={v3}
 				v4={v4}
+				v5={v5}
 				setV1={setV1}
 				setV2={setV2}
 				setV3={setV3}
 				setV4={setV4}
+				setV5={setV5}
 			/>
 
 			<div

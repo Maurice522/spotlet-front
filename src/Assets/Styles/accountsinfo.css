@@ -58,9 +58,8 @@
 .profcomp {
   top: 60px;
   left: 250px;
-
   display: flex;
-  position: fixed;
+  position: absolute;
   flex-direction: column;
 }
 .accimg {
@@ -89,6 +88,7 @@
   line-height: 24px;
 }
 .profr {
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   position: relative;

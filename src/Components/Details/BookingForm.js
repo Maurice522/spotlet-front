@@ -3,14 +3,25 @@ import "../../Assets/Styles/Details/bookingForm.css";
 
 import { useNavigate } from "react-router-dom";
 
-const BookingForm = ({ v1, v2, v3, v4, setV1, setV2, setV3, setV4 }) => {
+const BookingForm = ({
+	v1,
+	v2,
+	v3,
+	v4,
+	v5,
+	setV1,
+	setV2,
+	setV3,
+	setV4,
+	setV5,
+}) => {
 	const [active, setActive] = useState(false);
 
 	const navigate = useNavigate();
 
 	const handleClick = () => {
-		console.log(v1, v2, v3, v4);
-		if (v1 !== "" && v2 !== "" && v3 !== "" && v4 !== "") {
+		console.log(v1, v2, v3, v4, v5);
+		if (v1 !== "" && v2 !== "" && v3 !== "" && v4 !== "" && v5 !== "") {
 			console.log("Navigate", navigate);
 			navigate("/booking");
 		} else {
@@ -90,7 +101,7 @@ const BookingForm = ({ v1, v2, v3, v4, setV1, setV2, setV3, setV4 }) => {
 					<label
 						htmlFor="number-of-people"
 						className={active === true ? "focus-label" : "booking-form-label"}>
-						Total number of people
+						Number of people
 					</label>
 					<input
 						required
@@ -102,6 +113,24 @@ const BookingForm = ({ v1, v2, v3, v4, setV1, setV2, setV3, setV4 }) => {
 						onChange={(e) => {
 							console.log(e.target.value);
 							setV4(e.target.value);
+						}}
+					/>
+				</div>
+				<div>
+					<label
+						htmlFor="activity"
+						className={active === true ? "focus-label" : "booking-form-label"}>
+						Activity
+					</label>
+					<input
+						required
+						type="text"
+						id="activity"
+						name="activity"
+						className={active === true ? "focus" : "normal"}
+						onChange={(e) => {
+							console.log(e.target.value);
+							setV5(e.target.value);
 						}}
 					/>
 				</div>

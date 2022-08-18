@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 
 import "../../Assets/Styles/Booking/booking.css";
 
-const Booking = ({ v1, v2, v3, v4 }) => {
+const Booking = ({ v1, v2, v3, v4, v5 }) => {
 	return (
 		<form id="booking-page-form">
 			<div>
@@ -52,7 +52,14 @@ const Booking = ({ v1, v2, v3, v4 }) => {
 			</div>
 			<div>
 				<label htmlFor="activity">Activity</label>
-				<TextField required id="activity" type="text" fullWidth size="small" />
+				<TextField
+					required
+					id="activity"
+					type="text"
+					fullWidth
+					size="small"
+					defaultValue={v5}
+				/>
 			</div>
 		</form>
 	);
