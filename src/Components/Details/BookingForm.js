@@ -23,13 +23,6 @@ const BookingForm = ({
 		console.log(v1, v2, v3, v4, v5);
 		if (v1 !== "" && v2 !== "" && v3 !== "" && v4 !== "" && v5 !== "") {
 			console.log("Navigate", navigate);
-			setTimeout(() => {
-				setV1(new Date().toISOString().split("T")[0]);
-				setV2("06:30");
-				setV3("");
-				setV4("");
-				setV5("");
-			}, 0);
 			navigate("/booking");
 		} else {
 			alert("Please fill all the fields");
