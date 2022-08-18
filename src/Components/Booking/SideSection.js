@@ -1,8 +1,26 @@
 import React from "react";
 import "../../Assets/Styles/Booking/sideSection.css";
-import { Button } from "@mui/material";
+import { Button, Backdrop, Fade, Box, Typography, Modal } from "@mui/material";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
+import { MdDone } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+
+const style = {
+	position: "absolute",
+	top: "50%",
+	left: "50%",
+	display: "flex",
+	flexDirection: "column",
+	justifyContent: "center",
+	alignItems: "center",
+	transform: "translate(-50%, -50%)",
+	width: 400,
+	bgcolor: "background.paper",
+	border: "2px solid #000",
+	boxShadow: 24,
+	p: 4,
+};
 
 const SideSection = ({
 	setReadyForRequest,
@@ -15,6 +33,11 @@ const SideSection = ({
 	v3,
 	v4,
 }) => {
+	const [open, setOpen] = React.useState(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
+	const navigate = useNavigate();
+
 	const handleClick = () => {
 		console.log("clicked");
 		if (index === 0) {
@@ -28,8 +51,11 @@ const SideSection = ({
 			}
 		} else if (index === 2) {
 			if (readyForRequest) {
-				setIndex(0);
+				handleOpen();
 				setReadyForRequest(false);
+				setTimeout(() => {
+					navigate("/");
+				}, 3000);
 			} else {
 				toast.error("Please fill all the fields");
 			}
@@ -89,6 +115,29 @@ const SideSection = ({
 				}}>
 				{index === 2 ? "Request Availability" : "Continue"}
 			</Button>
+
+			<Modal
+				aria-labelledby="transition-modal-title"
+				aria-describedby="transition-modal-description"
+				open={open}
+				onClose={handleClose}
+				closeAfterTransition
+				BackdropComponent={Backdrop}
+				BackdropProps={{
+					timeout: 500,
+				}}>
+				<Fade in={open}>
+					<Box sx={style}>
+						<MdDone size={50} color="green" />
+						<Typography id="transition-modal-title" variant="h6" component="h2">
+							Request Sent Successfully
+						</Typography>
+						<Typography id="transition-modal-description" sx={{ mt: 2 }}>
+							You will be redirected to home page in 3 seconds
+						</Typography>
+					</Box>
+				</Fade>
+			</Modal>
 		</div>
 	);
 };
