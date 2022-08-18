@@ -2,8 +2,19 @@ import React from "react";
 import "../../Assets/Styles/Booking/sideSection.css";
 import { Button } from "@mui/material";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
 
-const SideSection = ({ index, setIndex, ok, setOk, v1, v3, v4 }) => {
+const SideSection = ({
+	setReadyForRequest,
+	readyForRequest,
+	index,
+	setIndex,
+	ok,
+	setOk,
+	v1,
+	v3,
+	v4,
+}) => {
 	const handleClick = () => {
 		console.log("clicked");
 		if (index === 0) {
@@ -13,10 +24,15 @@ const SideSection = ({ index, setIndex, ok, setOk, v1, v3, v4 }) => {
 				setIndex(2);
 				setOk(false);
 			} else {
-				alert("Please accept the rules");
+				toast.error("Please accept the terms and conditions");
 			}
 		} else if (index === 2) {
-			setIndex(0);
+			if (readyForRequest) {
+				setIndex(0);
+				setReadyForRequest(false);
+			} else {
+				toast.error("Please fill all the fields");
+			}
 		}
 	};
 
