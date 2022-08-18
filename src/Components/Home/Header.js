@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
 import "../../Assets/Styles/Home/header.css";
+import Typewriter from "typewriter-effect";
+
 
 const Header = ({ extraNavId }) => {
 	const images = [
@@ -22,12 +24,11 @@ const Header = ({ extraNavId }) => {
 	const image = images[index];
 	const message = messages[index];
 
-	console.log(index);
 
 	useEffect(() => {
 		setTimeout(() => {
 			setIndex((prev) => (prev < 4 ? prev + 1 : 0));
-		}, 3000);
+		}, 5000);
 	}, [index]);
 
 	return (
@@ -38,7 +39,15 @@ const Header = ({ extraNavId }) => {
 
 				<div className="message">
 					Plan your next
-					<div className="colored">{message}</div>
+					<div className="colored">
+						<Typewriter
+							options={{
+								strings: message,
+								autoStart: true,
+								delay: 75
+							}}
+						/>
+					</div>
 					with us
 				</div>
 			</div>
