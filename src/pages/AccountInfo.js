@@ -15,7 +15,7 @@ import {
   selectUser_id,
   updateUser,
 } from "../redux/slices/userSlice";
-import { updatePassword, updateUserInfo } from "../services/api";
+import { updatePassword, updateUserInfo, uploadPics } from "../services/api";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 
@@ -28,7 +28,6 @@ const AccountInfo = (extraNavId) => {
     showSection(e);
   };
   //for image
-  const [preview, setPreview] = useState();
   const [selectedFile, setSelectedFile] = useState();
 
   //user data update
@@ -49,29 +48,25 @@ const AccountInfo = (extraNavId) => {
     confirmNewPassword: "",
   });
 
-  useEffect(() => {
-    if (!selectedFile) {
-      setPreview(undefined);
-      return;
-    }
-
-    const objectUrl = URL.createObjectURL(selectedFile);
-    setPreview(objectUrl);
-    // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [selectedFile]);
-
   const handleChange = (e) => {
     setUpdateUserData({ ...updateUserData, [e.target.name]: e.target.value });
   };
 
-  const onSelectFile = (e) => {
+  const onSelectFile = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
       setSelectedFile(undefined);
       return;
     }
     console.log(e.target.files[0]);
-    setSelectedFile(e.target.files[0]);
+    const formData = new FormData();
+    formData.append("pic", e.target.files[0]);
+    try {
+      const response = await uploadPics(formData);
+      setUpdateUserData({ ...updateUserData, profile_pic: response.data.url });
+      return toast.success(response.data.message);
+    } catch (error) {
+      return toast.error(error.response.data.error);
+    }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,17 +76,12 @@ const AccountInfo = (extraNavId) => {
       mobile: updateUserData.mobile,
       job: updateUserData.job,
       booking_type: updateUserData.booking_type,
-      profile_pic: preview ? preview : updateUserData.profile_pic,
+      profile_pic: updateUserData.profile_pic,
     };
     dispatch(updateUser(updateData));
 
-    const serverData = {
-      updateData,
-      selectedFile, //image file
-    };
-
     try {
-      const response = await updateUserInfo(user_id, serverData);
+      const response = await updateUserInfo(user_id, updateData);
 
       toast("Information Updated");
     } catch (error) {
@@ -166,9 +156,7 @@ const AccountInfo = (extraNavId) => {
                   <img
                     className="accimg"
                     src={
-                      selectedFile
-                        ? preview
-                        : updateUserData.profile_pic
+                      updateUserData.profile_pic
                         ? updateUserData.profile_pic
                         : "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1660161134~exp=1660161734~hmac=805a827742ed799bfe534923869c5a6c5766070dc2a0e06cb14de86ac6c73743"
                     }

@@ -31,7 +31,7 @@ const Navbar = ({ extraNavId }) => {
     navigate("/account");
   };
   let firstName = user?.personalInfo.fullName.split(" ").slice(0, -1).join(" ");
-
+  let profilePic = user?.personalInfo.profile_pic;
   return (
     <div className="nav" id={extraNavId}>
       <Link to="/">
@@ -65,7 +65,11 @@ const Navbar = ({ extraNavId }) => {
             aria-haspopup="true"
             onClick={Boolean(anchorEl) === false ? handleClick : handleClose}
           >
-            <Avatar />
+            {profilePic ? (
+              <img className="user-dp" src={profilePic} alt="profile" />
+            ) : (
+              <Avatar />
+            )}
           </Button>
           <Menu
             id="simple-menu"

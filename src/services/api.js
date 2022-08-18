@@ -27,12 +27,26 @@ export const updateUserInfo = (jwt_id, form) => {
   return API.put("/user/update/" + jwt_id, form);
 };
 
+//update password
+export const updatePassword = (jwt_id, form) => {
+  return API.put("/user/updatepassword/" + jwt_id, form);
+};
+
 //forgot password
 export const forgotPassword = (email) => {
   return API.post("/forgot-password", email);
 };
 
 //reset password
-export const updatePassword = (jwt_id, form) => {
-  return API.put("/user/updatepassword/" + jwt_id, form);
+export const resetPassword = (jwt_id, form) => {
+  return API.put("/user/reset-password/" + jwt_id, form);
+};
+
+//upload pics
+export const uploadPics = (formData) => {
+  return API.post("/user/upload-pic", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };

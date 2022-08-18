@@ -95,3 +95,9 @@
 #id-2 a {
   color: black;
 }
+
+.user-dp {
+  width: 45px;
+  height: 45px;
+  border-radius: 200%;
+}
