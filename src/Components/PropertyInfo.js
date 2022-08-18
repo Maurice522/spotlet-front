@@ -7,26 +7,38 @@ const PropertyInfo = ({
 	item,
 	index,
 	isFav,
-	favourites,
+	favorites,
 	handleClick,
 	rating,
+	setFavorites,
 }) => {
 	return (
 		<div className="item">
-			<div
-				className="text-on-image-container-2"
-				onClick={() => console.log("!")}>
+			<div className="text-on-image-container-2">
 				<img
 					src={item.image}
 					alt={`property-${index + 1}`}
 					className="property-image"
 				/>
-				<div className="favorite-icon-wrapper" onClick={() => console.log("!")}>
+				<div className="favorite-icon-wrapper">
 					{isFav === true &&
-						(favourites.includes(index) === true ? (
-							<MdFavorite size="32px" color="#ff6767" onClick={handleClick} />
+						(favorites.includes(index) === true ? (
+							<MdFavorite
+								size="32px"
+								color="#ff6767"
+								onClick={() => {
+									setFavorites((prev) =>
+										prev.filter((element) => element !== index)
+									);
+								}}
+							/>
 						) : (
-							<MdFavoriteBorder size="32px" onClick={handleClick} />
+							<MdFavoriteBorder
+								size="32px"
+								onClick={() => {
+									setFavorites((prev) => [...prev, index]);
+								}}
+							/>
 						))}
 				</div>
 			</div>
@@ -54,3 +66,5 @@ const PropertyInfo = ({
 };
 
 export default PropertyInfo;
+
+// setFavorites((prev) => prev.filter((element) => element !== index));
