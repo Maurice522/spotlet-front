@@ -194,6 +194,7 @@ const Property = ({
 	];
 
 	const [index, setIndex] = useState(0);
+	const [fav, setFav] = useState([]);
 
 	const similarProperties = (
 		<div
@@ -218,7 +219,8 @@ const Property = ({
 				<PropertyInfo
 					item={item}
 					index={index}
-					isFav={false}
+					favorites={fav}
+					setFavorites={setFav}
 					key={index}
 					rating={true}
 				/>

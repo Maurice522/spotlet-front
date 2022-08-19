@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FormFilter from "../Components/Home/FormFilter";
 import Navbar from "../Components/Navbar";
 import PropertyInfo from "../Components/PropertyInfo";
@@ -156,6 +156,8 @@ const Search = () => {
 		},
 	];
 
+	const [fav, setFav] = useState([]);
+
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
@@ -166,11 +168,13 @@ const Search = () => {
 			<div className="search-property-list">
 				{propertyDetails.map((item, index) => (
 					<PropertyInfo
+						favorites={fav}
 						item={item}
 						index={index}
 						isFav={false}
 						key={index}
 						rating={true}
+						setFavorites={setFav}
 					/>
 				))}
 			</div>
