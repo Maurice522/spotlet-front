@@ -32,8 +32,12 @@ const Property = ({
 	const locationItem = (
 		<div
 			style={{
-				width: "80vw",
+				width: "100%",
 				height: "fit-content",
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+				justifyContent: "flex-start",
 			}}>
 			<div
 				style={{
@@ -68,7 +72,7 @@ const Property = ({
 	const hostInfo = (
 		<div
 			style={{
-				width: "75vw",
+				width: "100%",
 			}}>
 			<div
 				style={{
@@ -104,6 +108,7 @@ const Property = ({
 						borderRadius: "5px",
 						marginRight: "20px",
 						padding: "0 5px",
+						cursor: "pointer",
 					}}>
 					Message the host
 				</div>
