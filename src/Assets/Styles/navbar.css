@@ -1,99 +1,99 @@
 .nav {
-	position: absolute;
-	padding: 0;
-	top: 0;
-	width: 100%;
-	min-height: 90px;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 20px;
-	line-height: 32px;
-	color: white;
-	background: transparent;
-	z-index: 4;
+  position: absolute;
+  padding: 0;
+  top: 0;
+  width: 100%;
+  min-height: 90px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: white;
+  background: transparent;
+  z-index: 40;
 }
 
 #id-2 {
-	position: fixed;
-	top: 0px;
-	background: #fdeeed;
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-	color: black;
+  position: fixed;
+  top: 0px;
+  background: #fdeeed;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  color: black;
 }
 
 .nav-search {
-	overflow-y: hidden;
-	width: 40%;
-	height: 32px;
-	width: 30%;
-	display: flex;
-	align-items: center;
-	color: white;
-	gap: 9px;
+  overflow-y: hidden;
+  width: 40%;
+  height: 32px;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 9px;
 }
 
 .blacken {
-	color: black;
+  color: black;
 }
 
 .blacken::placeholder {
-	color: black;
+  color: black;
 }
 
 .nav-search-input {
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 32px;
-	width: 90%;
-	height: 90%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  width: 90%;
+  height: 90%;
 
-	border-radius: 5px;
-	background: transparent;
-	border: none;
+  border-radius: 5px;
+  background: transparent;
+  border: none;
 }
 
 .nav-search-input::placeholder {
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 20px;
-	line-height: 32px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
 }
 
 .whiten::placeholder {
-	color: white;
+  color: white;
 }
 
 .nav-logo {
-	width: 17vw;
-	height: 100%;
+  width: 17vw;
+  height: 100%;
 }
 
 .nav-logo img {
-	max-width: 100%;
-	height: 100%;
+  max-width: 100%;
+  height: 100%;
 }
 
 .nav a {
-	color: white;
-	font-size: 20px;
-	text-transform: capitalize;
-	text-decoration: none;
-	transition: text-decoration 0.5s ease;
+  color: white;
+  font-size: 20px;
+  text-transform: capitalize;
+  text-decoration: none;
+  transition: text-decoration 0.5s ease;
 }
 
 .nav a:hover {
-	text-decoration: underline;
-	text-decoration-color: #ff6767;
+  text-decoration: underline;
+  text-decoration-color: #ff6767;
 }
 
 #id-2 a {
-	color: black;
+  color: black;
 }
 
 .user-dp {
