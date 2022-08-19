@@ -68,13 +68,14 @@ const Property = ({
 	const hostInfo = (
 		<div
 			style={{
-				width: "80vw",
+				width: "75vw",
 			}}>
 			<div
 				style={{
 					width: "100%",
 					display: "flex",
 					justifyContent: "space-between",
+					alignItems: "flex-start",
 					padding: "10px",
 				}}>
 				<div
