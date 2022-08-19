@@ -100,17 +100,22 @@ export default function Auth() {
       >
         <div>
           {isSignIn ? (
-            <p style={{ marginTop: "30px", marginBottom: "40px" }}>
-              Don’t have an account?{" "}
-              <b onClick={() => setIsSignIn(false)}>Sign Up</b>
-            </p>
+            <div
+              className="auth-top"
+              style={{ marginTop: "30px", marginBottom: "40px" }}
+            >
+              <p>
+                Don’t have an account?{" "}
+                <b onClick={() => setIsSignIn(false)}>Sign Up</b>
+              </p>
+              <b onClick={() => handleOpen()}>forgot password</b>
+            </div>
           ) : (
             <div className="auth-top">
               <p>
                 Already have an account?{" "}
                 <b onClick={() => setIsSignIn(true)}>Sign In</b>
               </p>
-              <b onClick={() => handleOpen()}>forgot password</b>
             </div>
           )}
           <h1>{isSignIn ? "Sign in " : "Sign up "}to Goreco</h1>
