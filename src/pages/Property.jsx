@@ -32,8 +32,12 @@ const Property = ({
 	const locationItem = (
 		<div
 			style={{
-				width: "80vw",
+				width: "100%",
 				height: "fit-content",
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+				justifyContent: "flex-start",
 			}}>
 			<div
 				style={{
@@ -68,13 +72,14 @@ const Property = ({
 	const hostInfo = (
 		<div
 			style={{
-				width: "80vw",
+				width: "100%",
 			}}>
 			<div
 				style={{
 					width: "100%",
 					display: "flex",
 					justifyContent: "space-between",
+					alignItems: "flex-start",
 					padding: "10px",
 				}}>
 				<div
@@ -103,6 +108,7 @@ const Property = ({
 						borderRadius: "5px",
 						marginRight: "20px",
 						padding: "0 5px",
+						cursor: "pointer",
 					}}>
 					Message the host
 				</div>
@@ -194,6 +200,7 @@ const Property = ({
 	];
 
 	const [index, setIndex] = useState(0);
+	const [fav, setFav] = useState([]);
 
 	const similarProperties = (
 		<div
@@ -211,14 +218,18 @@ const Property = ({
 				}}>
 				<AiOutlineLeft
 					size="32px"
-					onClick={() => setIndex((prev) => (prev === 0 ? 2 : prev - 1))}
+					onClick={() => {
+						setIndex((prev) => (prev === 0 ? 2 : prev - 1));
+						setFav((prev) => prev.map((item) => (item === 0 ? 2 : item - 1)));
+					}}
 				/>
 			</div>
 			{propertyItems[index].map((item, index) => (
 				<PropertyInfo
 					item={item}
 					index={index}
-					isFav={false}
+					favorites={fav}
+					setFavorites={setFav}
 					key={index}
 					rating={true}
 				/>
@@ -231,7 +242,10 @@ const Property = ({
 				}}>
 				<AiOutlineRight
 					size="32px"
-					onClick={() => setIndex((prev) => (prev + 1) % 3)}
+					onClick={() => {
+						setIndex((prev) => (prev + 1) % 3);
+						setFav((prev) => prev.map((item) => (item + 1) % 3));
+					}}
 				/>
 			</div>
 		</div>

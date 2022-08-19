@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../Assets/Styles/Details/bookingForm.css";
-
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const BookingForm = ({
@@ -25,7 +25,7 @@ const BookingForm = ({
 			console.log("Navigate", navigate);
 			navigate("/booking");
 		} else {
-			alert("Please fill all the fields");
+			toast.error("Please fill all the fields");
 		}
 	};
 
