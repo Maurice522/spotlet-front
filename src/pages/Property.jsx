@@ -212,7 +212,10 @@ const Property = ({
 				}}>
 				<AiOutlineLeft
 					size="32px"
-					onClick={() => setIndex((prev) => (prev === 0 ? 2 : prev - 1))}
+					onClick={() => {
+						setIndex((prev) => (prev === 0 ? 2 : prev - 1));
+						setFav((prev) => prev.map((item) => (item === 0 ? 2 : item - 1)));
+					}}
 				/>
 			</div>
 			{propertyItems[index].map((item, index) => (
@@ -233,7 +236,10 @@ const Property = ({
 				}}>
 				<AiOutlineRight
 					size="32px"
-					onClick={() => setIndex((prev) => (prev + 1) % 3)}
+					onClick={() => {
+						setIndex((prev) => (prev + 1) % 3);
+						setFav((prev) => prev.map((item) => (item + 1) % 3));
+					}}
 				/>
 			</div>
 		</div>
