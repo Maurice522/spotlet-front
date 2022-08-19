@@ -100,16 +100,10 @@ export default function Auth() {
       >
         <div>
           {isSignIn ? (
-            <div
-              className="auth-top"
-              style={{ marginTop: "30px", marginBottom: "40px" }}
-            >
-              <p>
-                Don’t have an account?{" "}
-                <b onClick={() => setIsSignIn(false)}>Sign Up</b>
-              </p>
-              <b onClick={() => handleOpen()}>forgot password</b>
-            </div>
+            <p style={{ marginTop: "30px", marginBottom: "40px" }}>
+              Don’t have an account?{" "}
+              <b onClick={() => setIsSignIn(false)}>Sign Up</b>
+            </p>
           ) : (
             <div className="auth-top">
               <p>
