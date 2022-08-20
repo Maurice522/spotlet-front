@@ -19,7 +19,7 @@
 	padding: 30px;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr) auto;
-	z-index: 10;
+	z-index: 3;
 	gap: 20px;
 	align-items: center;
 }

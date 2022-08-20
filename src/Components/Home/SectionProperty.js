@@ -9,7 +9,11 @@ import img6 from "../../Assets/Images/property-6.jpeg";
 import PropertyInfo from "../PropertyInfo";
 
 const SectionProperty = () => {
-	const [favourites, setFavourites] = useState([0, 1, 2]);
+	const [favorites, setFavorites] = useState([0, 1, 2]);
+
+	const handleClick = () => {
+		console.log("clicked");
+	};
 
 	const propertyDetails = [
 		{
@@ -17,48 +21,44 @@ const SectionProperty = () => {
 			name: "Name of Property",
 			location: "Location of Property",
 			price: "Price",
-			isFavourite: favourites.includes(0),
+			isFavourite: favorites.includes(0),
 		},
 		{
 			image: img2,
 			name: "Name of Property",
 			location: "Location of Property",
 			price: "Price",
-			isFavourite: favourites.includes(1),
+			isFavourite: favorites.includes(1),
 		},
 		{
 			image: img3,
 			name: "Name of Property",
 			location: "Location of Property",
 			price: "Price",
-			isFavourite: favourites.includes(2),
+			isFavourite: favorites.includes(2),
 		},
 		{
 			image: img4,
 			name: "Name of Property",
 			location: "Location of Property",
 			price: "Price",
-			isFavourite: favourites.includes(3),
+			isFavourite: favorites.includes(3),
 		},
 		{
 			image: img5,
 			name: "Name of Property",
 			location: "Location of Property",
 			price: "Price",
-			isFavourite: favourites.includes(4),
+			isFavourite: favorites.includes(4),
 		},
 		{
 			image: img6,
 			name: "Name of Property",
 			location: "Location of Property",
 			price: "Price",
-			isFavourite: favourites.includes(5),
+			isFavourite: favorites.includes(5),
 		},
 	];
-
-	const handleClick = () => {
-		console.log("Hello");
-	};
 
 	return (
 		<div className="property-section">
@@ -69,9 +69,10 @@ const SectionProperty = () => {
 						item={item}
 						index={index}
 						isFav={true}
-						favourites={favourites}
-						handleClick={handleClick}
+						favorites={favorites}
+						setFavorites={setFavorites}
 						key={index}
+						handleClick={handleClick}
 					/>
 				))}
 			</div>

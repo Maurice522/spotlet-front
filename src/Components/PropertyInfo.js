@@ -3,31 +3,34 @@ import { Link } from "react-router-dom";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Rating from "@mui/material/Rating";
 
-const PropertyInfo = ({
-	item,
-	index,
-	isFav,
-	favourites,
-	handleClick,
-	rating,
-}) => {
+const PropertyInfo = ({ item, index, favorites, rating, setFavorites }) => {
 	return (
 		<div className="item">
-			<div
-				className="text-on-image-container-2"
-				onClick={() => console.log("!")}>
+			<div className="text-on-image-container-2">
 				<img
 					src={item.image}
 					alt={`property-${index + 1}`}
 					className="property-image"
 				/>
-				<div className="favorite-icon-wrapper" onClick={() => console.log("!")}>
-					{isFav === true &&
-						(favourites.includes(index) === true ? (
-							<MdFavorite size="32px" color="#ff6767" onClick={handleClick} />
-						) : (
-							<MdFavoriteBorder size="32px" onClick={handleClick} />
-						))}
+				<div className="favorite-icon-wrapper">
+					{favorites.includes(index) === true ? (
+						<MdFavorite
+							size="32px"
+							color="#ff6767"
+							onClick={() => {
+								setFavorites((prev) =>
+									prev.filter((element) => element !== index)
+								);
+							}}
+						/>
+					) : (
+						<MdFavoriteBorder
+							size="32px"
+							onClick={() => {
+								setFavorites((prev) => [...prev, index]);
+							}}
+						/>
+					)}
 				</div>
 			</div>
 			<div>
@@ -54,3 +57,5 @@ const PropertyInfo = ({
 };
 
 export default PropertyInfo;
+
+// setFavorites((prev) => prev.filter((element) => element !== index));

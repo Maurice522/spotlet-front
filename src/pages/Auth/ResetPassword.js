@@ -1,22 +1,18 @@
 import { LockOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
 import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "../../Assets/Styles/ResetPassword.css";
-import { selectUser_id } from "../../redux/slices/userSlice";
-import { updatePassword } from "../../services/api";
+import { resetPassword } from "../../services/api";
 
 export default function ResetPassword() {
   const [show, setShow] = useState({
-    showCurrentPassword: false,
     showNewPassword: false,
     showConfirmNewPassword: false,
   });
   const user_id = window.location.pathname.substring(7);
   //User Password update
   const [userCredential, setUserCredential] = useState({
-    currentPassword: "",
     newPassword: "",
     confirmNewPassword: "",
   });
@@ -31,7 +27,7 @@ export default function ResetPassword() {
     if (userCredential.newPassword !== userCredential.confirmNewPassword)
       toast.error("new password and confirm password are not same");
     try {
-      const response = await updatePassword(user_id, userCredential);
+      const response = await resetPassword(user_id, userCredential);
       toast.success("password updated..");
       window.location = "/signin";
     } catch (error) {
@@ -44,45 +40,6 @@ export default function ResetPassword() {
     <div className="reset-password">
       <form onSubmit={handleUpdatePassword}>
         <h1>Reset Password</h1>
-        <label>Current Password</label>
-        <TextField
-          type={!show.showCurrentPassword ? "password" : "text"}
-          name="currentPassword"
-          onChange={handleChange}
-          value={userCredential.currentPassword}
-          fullWidth
-          placeholder="Enter password"
-          size="small"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LockOutlined />
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={() =>
-                    setShow({
-                      ...show,
-                      showCurrentPassword: !show.showCurrentPassword,
-                    })
-                  }
-                  edge="end"
-                >
-                  {!show.showCurrentPassword ? (
-                    <VisibilityOff />
-                  ) : (
-                    <Visibility />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          required
-        />
-        <br />
         <label style={{ marginTop: "30px" }}>New Password</label>
         <TextField
           type={!show.showNewPassword ? "password" : "text"}

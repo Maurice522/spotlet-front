@@ -116,7 +116,6 @@ export default function Auth() {
                 Already have an account?{" "}
                 <b onClick={() => setIsSignIn(true)}>Sign In</b>
               </p>
-              <b onClick={() => handleOpen()}>forgot password</b>
             </div>
           )}
           <h1>{isSignIn ? "Sign in " : "Sign up "}to Goreco</h1>
