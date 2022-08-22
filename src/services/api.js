@@ -51,3 +51,8 @@ export const uploadPics = (formData) => {
     },
   });
 };
+
+//delete request
+export const deleteRequest = (user_id) => {
+  return axios.post(server_domain + "/delreq/" + user_id);
+};
