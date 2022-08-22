@@ -24,14 +24,14 @@ import React, { useState } from "react";
 import { otpVerify, signIn } from "../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../../Assets/Styles/Auth.css";
 import { useDispatch } from "react-redux";
 import { addUser, saveOTP } from "../../redux/slices/userSlice";
 import OTPVerify from "./OTPVerify";
 import ForgotPassword from "./ForgotPassword";
 export default function Auth() {
-  const state=useLocation();
+  const state = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignIn, setIsSignIn] = useState(state.state.isSignIn);
   const [openOTP, setOpenOTP] = useState(false);
@@ -61,11 +61,15 @@ export default function Auth() {
   };
 
   const getOTP = async (userData) => {
-    const response = await otpVerify(userData);
-    toast("OTP sent");
-    dispatch(saveOTP(response.data.otp));
-    dispatch(addUser(userData));
-    handleOpenOTP();
+    try {
+      const response = await otpVerify(userData);
+      toast("OTP sent");
+      dispatch(saveOTP(response.data.otp));
+      dispatch(addUser(userData));
+      handleOpenOTP();
+    } catch (error) {
+      toast.error(error.response.data.error);
+    }
   };
 
   //SignIn and SignUp function -
@@ -78,7 +82,7 @@ export default function Auth() {
         toast("Successful login");
         window.location = "/";
       } catch (error) {
-        console.log(error.response.data);
+        //console.log(error.response.data);
         toast.error(error.response.data.error);
       }
     } else {
@@ -89,7 +93,7 @@ export default function Auth() {
         // navigate("/verification");
         // setIsSignIn(true);
       } catch (error) {
-        toast.error(error.response.data.error);
+        toast.error(error.response.data);
       }
     }
   };
