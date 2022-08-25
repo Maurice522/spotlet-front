@@ -19,6 +19,8 @@ import BookingList from "./pages/BookingList";
 import BookingDetails from "./pages/BookingDetails";
 import ListDetails from "./pages/ListDetails";
 import ListDetailsComponent from "./pages/ListDetailsComponent";
+import ListingPlace from "./pages/ListingPlace";
+import Messages from "./pages/Messages";
 
 function App() {
 	const dispatch = useDispatch();
@@ -70,6 +72,10 @@ function App() {
 						}
 					/>
 					<Route path="/account" element={user && <AccountInfo />} />
+					{/* {user && <Route path="/search" element={<Search />} />} */}
+					<Route path="/search" element={<Search />} />
+					<Route path="/listing" element={<ListingPlace />} />
+					<Route path="/messages" element={<Messages />} />
 					<Route path="/bookinglist" element={<BookingList />} />
 					<Route path="/bookingdetails" element={<BookingDetails />} />
 					<Route path="/listdetails" element={<ListDetails />} />
@@ -80,7 +86,6 @@ function App() {
 					/>
 
 					{/* {user && <Route path="/search" element={<Search />} />} */}
-					<Route path="/search" element={<Search />} />
 					<Route
 						path="/booking"
 						element={<BookingProcess v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} />}

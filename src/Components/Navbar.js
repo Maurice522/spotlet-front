@@ -87,8 +87,8 @@ const Navbar = ({ extraNavId }) => {
 			) : (
 				<>
 					<div>List your places</div>
-					<Link to={"/signin"}>Sign In</Link>
-					<Link to={"/signin"}>Sign Up</Link>
+					<Link to={"/signin"} state={{isSignIn:true}}>Sign In</Link>
+					<Link to={"/signin"} state={{isSignIn:false}}>Sign Up</Link>
 				</>
 			)}
 		</div>
