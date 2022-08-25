@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { GiFilmProjector } from "react-icons/gi";
+import { BsPersonFill } from "react-icons/bs";
+import { MdOutlineCorporateFare } from "react-icons/md";
+import { AiOutlineDown } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "../../Assets/Styles/Home/sectionMenu.css";
 import img1 from "../../Assets/Images/menu-1.jpeg";
@@ -67,19 +71,49 @@ const SectionMenu = () => {
 		<div className="menu-section">
 			<div className="menu-headings">
 				<div
-					className={`menu-heading-item ${shoot === 1 ? "selected" : ""}`}
-					onClick={() => setShoot(1)}>
-					Film Shooting
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
+						alignItems: "center",
+						borderBottom: `2px solid ${shoot === 1 ? "#ff6767" : "gray"}`,
+						color: shoot === 1 ? "#ff6767" : "black",
+					}}>
+					<GiFilmProjector size="40px" />
+					<div className={`menu-heading-item`} onClick={() => setShoot(1)}>
+						Film Shooting
+						<AiOutlineDown size="20px" />
+					</div>
 				</div>
 				<div
-					className={`menu-heading-item ${shoot === 2 ? "selected" : ""}`}
-					onClick={() => setShoot(2)}>
-					Corporate Shooting
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
+						alignItems: "center",
+						borderBottom: `2px solid ${shoot === 2 ? "#ff6767" : "black"}`,
+						color: shoot === 2 ? "#ff6767" : "black",
+					}}>
+					<MdOutlineCorporateFare size="40px" />
+					<div className={`menu-heading-item`} onClick={() => setShoot(2)}>
+						Corporate Shooting
+						<AiOutlineDown size="20px" />
+					</div>
 				</div>
 				<div
-					className={`menu-heading-item ${shoot === 3 ? "selected" : ""}`}
-					onClick={() => setShoot(3)}>
-					Individual Shooting
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
+						alignItems: "center",
+						borderBottom: `2px solid ${shoot === 3 ? "#ff6767" : "black"}`,
+						color: shoot === 3 ? "#ff6767" : "black",
+					}}>
+					<BsPersonFill size="40px" />
+					<div className={`menu-heading-item`} onClick={() => setShoot(3)}>
+						Individual Shooting
+						<AiOutlineDown size="20px" />
+					</div>
 				</div>
 			</div>
 			<div className="grid-menu">{gridItems}</div>

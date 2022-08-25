@@ -1,0 +1,76 @@
+.container {
+	width: 90%;
+	margin: 10px auto 40px;
+	font-family: "Rubik";
+	font-style: normal;
+}
+
+.booking-details-header {
+	font-weight: 600;
+	font-size: 25px;
+	line-height: 36px;
+	margin-bottom: 20px;
+}
+
+.booking-details-body {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.booking-details-body-2 {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.booking-details-body-left > .grid-container {
+	display: grid;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 250px;
+	row-gap: 40px;
+}
+
+.booking-details-body-left > .grid-container-2 {
+	display: grid;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	grid-template-columns: 1fr 1fr 1fr;
+	column-gap: 150px;
+	row-gap: 40px;
+}
+
+.item-heading {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 32px;
+}
+
+.item-info {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.user-info {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	margin: 40px auto;
+}
+
+.booking-details-body > .item-heading {
+	line-height: 28px;
+}
+
+.terms-conditions {
+	margin: 30px auto;
+}
+
+.e-hide {
+	display: none;
+}

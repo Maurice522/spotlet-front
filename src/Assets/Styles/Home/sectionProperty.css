@@ -4,6 +4,9 @@
 }
 
 .property-heading {
+	display: flex;
+	align-items: center;
+	gap: 10px;
 	font-family: "Inter";
 	font-style: normal;
 	font-weight: 600;

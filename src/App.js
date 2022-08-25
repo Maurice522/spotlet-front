@@ -15,6 +15,10 @@ import { useSelector } from "react-redux";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import BookingProcess from "./pages/BookingProcess";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
+import BookingList from "./pages/BookingList";
+import BookingDetails from "./pages/BookingDetails";
+import ListDetails from "./pages/ListDetails";
+import ListDetailsComponent from "./pages/ListDetailsComponent";
 
 function App() {
 	const dispatch = useDispatch();
@@ -66,6 +70,15 @@ function App() {
 						}
 					/>
 					<Route path="/account" element={user && <AccountInfo />} />
+					<Route path="/bookinglist" element={<BookingList />} />
+					<Route path="/bookingdetails" element={<BookingDetails />} />
+					<Route path="/listdetails" element={<ListDetails />} />
+
+					<Route
+						path="/listdetailsapproval"
+						element={<ListDetailsComponent />}
+					/>
+
 					{/* {user && <Route path="/search" element={<Search />} />} */}
 					<Route path="/search" element={<Search />} />
 					<Route
