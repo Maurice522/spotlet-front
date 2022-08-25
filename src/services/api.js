@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const server_domain = "https://gorecce-backend.herokuapp.com";
+// const server_domain = "http://localhost:8000";
 
 // function to send signin request to backend
 export const signIn = (form) => {
@@ -49,4 +50,9 @@ export const uploadPics = (formData) => {
       "Content-Type": "multipart/form-data",
     },
   });
+};
+
+//delete request
+export const deleteRequest = (user_id) => {
+  return axios.post(server_domain + "/delreq/" + user_id);
 };

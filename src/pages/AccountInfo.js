@@ -15,7 +15,12 @@ import {
   selectUser_id,
   updateUser,
 } from "../redux/slices/userSlice";
-import { updatePassword, updateUserInfo, uploadPics } from "../services/api";
+import {
+  deleteRequest,
+  updatePassword,
+  updateUserInfo,
+  uploadPics,
+} from "../services/api";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 
@@ -99,8 +104,19 @@ const AccountInfo = (extraNavId) => {
       const response = await updatePassword(user_id, userCredential);
       toast.success("password updated..");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error.response.data.error);
+    }
+  };
+
+  //Deactivate Account
+  const handleDeactivate = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await deleteRequest(user_id);
+      toast.success(response.data);
+    } catch (error) {
+      toast.error(error.response.data);
     }
   };
   return (
@@ -332,7 +348,9 @@ const AccountInfo = (extraNavId) => {
               </form>
               <div className="r1de">
                 Deactivate Your Account:
-                <button className="accbut">Deactivate Account</button>
+                <button className="accbut" onClick={handleDeactivate}>
+                  Deactivate Account
+                </button>
               </div>
             </div>
           ) : (
