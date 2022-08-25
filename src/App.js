@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import BookingProcess from "./pages/BookingProcess";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
+import ListingPlace from "./pages/ListingPlace";
 
 function App() {
 	const dispatch = useDispatch();
@@ -68,6 +69,7 @@ function App() {
 					<Route path="/account" element={user && <AccountInfo />} />
 					{/* {user && <Route path="/search" element={<Search />} />} */}
 					<Route path="/search" element={<Search />} />
+					<Route path="/listing" element={<ListingPlace/>} />
 					<Route
 						path="/booking"
 						element={<BookingProcess v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} />}
