@@ -15,71 +15,85 @@ import { useSelector } from "react-redux";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import BookingProcess from "./pages/BookingProcess";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
+import BookingList from "./pages/BookingList";
+import BookingDetails from "./pages/BookingDetails";
+import ListDetails from "./pages/ListDetails";
+import ListDetailsComponent from "./pages/ListDetailsComponent";
 import ListingPlace from "./pages/ListingPlace";
 import Messages from "./pages/Messages";
 
 function App() {
-  const dispatch = useDispatch();
-  const user = useSelector(selectUserData);
-  useEffect(() => {
-    const Start = async () => {
-      const jwt = localStorage.getItem("token");
-      if (jwt) {
-        const user_jwt = jwtDecode(jwt);
-        const { data } = await getUserData(user_jwt._id);
-        dispatch(addUser(data));
-        dispatch(addUserId(user_jwt._id));
-      }
-    };
-    Start();
-  }, []);
+	const dispatch = useDispatch();
+	const user = useSelector(selectUserData);
+	useEffect(() => {
+		const Start = async () => {
+			const jwt = localStorage.getItem("token");
+			if (jwt) {
+				const user_jwt = jwtDecode(jwt);
+				const { data } = await getUserData(user_jwt._id);
+				dispatch(addUser(data));
+				dispatch(addUserId(user_jwt._id));
+			}
+		};
+		Start();
+	}, []);
 
-  const date = new Date().toISOString().split("T")[0];
+	const date = new Date().toISOString().split("T")[0];
 
-  const [v1, setV1] = useState(date);
-  const [v2, setV2] = useState("06:30");
-  const [v3, setV3] = useState("");
-  const [v4, setV4] = useState("");
-  const [v5, setV5] = useState("");
+	const [v1, setV1] = useState(date);
+	const [v2, setV2] = useState("06:30");
+	const [v3, setV3] = useState("");
+	const [v4, setV4] = useState("");
+	const [v5, setV5] = useState("");
 
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <ToastContainer />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<Auth />} />
-          <Route path="/reset/:userId" element={<ResetPassword />} />
-          <Route
-            path="/property"
-            element={
-              <Property
-                v1={v1}
-                v2={v2}
-                v3={v3}
-                v4={v4}
-                v5={v5}
-                setV1={setV1}
-                setV2={setV2}
-                setV3={setV3}
-                setV4={setV4}
-                setV5={setV5}
-              />
-            }
-          />
-          <Route path="/account" element={user && <AccountInfo />} />
-          {/* {user && <Route path="/search" element={<Search />} />} */}
-          <Route path="/search" element={<Search />} />
-					<Route path="/listing" element={<ListingPlace/>} />
-          <Route path="/messages" element={<Messages />} />
-          <Route
-            path="/booking"
-            element={<BookingProcess v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} />}
-          />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<div className="App">
+				<ToastContainer />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/signin" element={<Auth />} />
+					<Route path="/reset/:userId" element={<ResetPassword />} />
+					<Route
+						path="/property"
+						element={
+							<Property
+								v1={v1}
+								v2={v2}
+								v3={v3}
+								v4={v4}
+								v5={v5}
+								setV1={setV1}
+								setV2={setV2}
+								setV3={setV3}
+								setV4={setV4}
+								setV5={setV5}
+							/>
+						}
+					/>
+					<Route path="/account" element={user && <AccountInfo />} />
+					{/* {user && <Route path="/search" element={<Search />} />} */}
+					<Route path="/search" element={<Search />} />
+					<Route path="/listing" element={<ListingPlace />} />
+					<Route path="/messages" element={<Messages />} />
+					<Route path="/bookinglist" element={<BookingList />} />
+					<Route path="/bookingdetails" element={<BookingDetails />} />
+					<Route path="/listdetails" element={<ListDetails />} />
+
+					<Route
+						path="/listdetailsapproval"
+						element={<ListDetailsComponent />}
+					/>
+
+					{/* {user && <Route path="/search" element={<Search />} />} */}
+					<Route
+						path="/booking"
+						element={<BookingProcess v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} />}
+					/>
+				</Routes>
+			</div>
+		</BrowserRouter>
+	);
 }
 
 export default App;

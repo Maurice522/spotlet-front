@@ -1,5 +1,5 @@
 .menu-section {
-	width: 75vw;
+	width: 80vw;
 	margin: 75px auto 75px;
 }
 
@@ -13,14 +13,16 @@
 }
 
 .menu-heading-item {
+	margin-top: 10px;
+	display: flex;
+	gap: 10px;
+	align-items: center;
 	font-family: "Inter";
 	font-style: normal;
 	font-weight: 600; /* According to figma: 500 */
 	font-size: 31px;
 	line-height: 44px;
 	padding-bottom: 10px;
-	border-bottom: 2px solid gray;
-
 	text-align: center;
 }
 
@@ -74,5 +76,5 @@
 
 .selected {
 	color: #ff6767;
-	border-bottom: 2px solid #ff6767;
+	/* border-bottom: 2px solid #ff6767; */
 }
