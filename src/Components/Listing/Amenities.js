@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-// import Select from 'react-select'
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Select from 'react-select'
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import Select from '@mui/material/Select';
 
 
 const Amenities = () => {
@@ -13,46 +13,33 @@ const Amenities = () => {
         { value: 'Apartment', label: 'Apartment' }
     ]
 
-    const [selOption, setselOption] = useState(["resting"])
-    const HandleChange = (obj) => {
-        const arr = selOption;
-        arr.push(obj.target.value);
-        setselOption(arr);
-        console.log(selOption);
-    }
+    
 
-    // useEffect(() => {
-    //     setselOption(selOption);
-    // }, [])
+    const [selOption, setselOption] = useState()
+    const [selData, setselData] = useState([])
+
+
+    useEffect(() => {
+        const arr = selData;
+        arr.push(selOption);
+        setselData(arr);
+        console.log(selData);
+        console.log(selOption);   
+    }, [selOption])
 
     return (
         <div className='lbox'>
             <div className='row1'>
                 <div className='coll1'>
                     <h2>Amenties</h2>
-                    <FormControl fullWidth>
-                        {/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={selOption[0]}
-                            label="Age"
-                            onChange={HandleChange}
-                        >
-                            <MenuItem value={"Ten"}>Ten</MenuItem>
-                            <MenuItem value={"Twenty"}>Twenty</MenuItem>
-                            <MenuItem value={"Thirty"}>Thirty</MenuItem>
-                        </Select>
-                    </FormControl>
+                    <Select className='locationtype' options={options} onChange={(e)=>setselOption(e.value)} />
                 </div>
             </div>
-            <div className='row1'>
-                <ol>
-                {console.log(selOption)}
-                {selOption.map((e)=>(
-                    <li>{e}</li>
-                ))}
-                </ol>
+            <div className='coll1'>
+                    {console.log(selData)}
+                    {selData.map((e) => (
+                        e!=undefined ? <div className='options1'>{e}</div> : ""
+                    ))}
             </div>
         </div>
     )
