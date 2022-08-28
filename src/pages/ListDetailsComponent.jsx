@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 import { Button, Avatar } from "@mui/material";
 import { BiArrowBack } from "react-icons/bi";
 
@@ -128,6 +129,8 @@ const ListDetailsComponent = () => {
 					</div>
 				</div>
 			</div>
+
+			<Footer />
 		</div>
 	);
 };

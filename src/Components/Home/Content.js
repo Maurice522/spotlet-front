@@ -44,7 +44,7 @@ const Content = () => {
 					/>
 				</div>
 			</div>
-			<SectionReason />
+			<SectionReason heading="Why Choose Us" />
 			<SectionProperty />
 			<SectionServices />
 			<div className="text-on-image-container service-image-wrapper">

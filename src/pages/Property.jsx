@@ -206,10 +206,11 @@ const Property = ({
 	const similarProperties = (
 		<div
 			style={{
-				width: "100%",
+				width: "80%",
+				margin: "0 auto",
 				display: "grid",
 				gridTemplateColumns: "auto repeat(3, 1fr) auto",
-				gap: "15px",
+				gap: "25px",
 			}}>
 			<div
 				style={{
@@ -433,9 +434,8 @@ const Property = ({
 								fontFamily: "Inter",
 								fontStyle: "normal",
 								fontWeight: "500",
-								fontSize: "24px",
-								lineHeight: "36px",
-								// borderBottom: "1px solid #e0e0e0",
+								fontSize: "20px",
+								padding: "10px",
 							}}
 							expandIcon={<MdExpandMore size="31px" color="black" />}
 							aria-controls="panel1a-content"
@@ -448,7 +448,6 @@ const Property = ({
 								fontStyle: "normal",
 								fontWeight: "400",
 								fontSize: "16px",
-								lineHeight: "24px",
 								paddingTop: "20px",
 							}}>
 							{item.type === "list" ? (
@@ -485,8 +484,7 @@ const Property = ({
 							fontFamily: "Inter",
 							fontStyle: "normal",
 							fontWeight: "500",
-							fontSize: "25px",
-							lineHeight: "36px",
+							fontSize: "20px",
 							marginBottom: "20px",
 						}}>
 						Similar Properties

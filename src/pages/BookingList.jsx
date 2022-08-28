@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 import "../Assets/Styles/bookingList.css";
 import SyncfusionTable from "../Components/BookingListing/SyncFusionTable";
 import { GoPrimitiveDot } from "react-icons/go";
@@ -326,6 +327,8 @@ const BookingList = () => {
 					</div>
 				)}
 			</div>
+
+			<Footer />
 		</div>
 	);
 };

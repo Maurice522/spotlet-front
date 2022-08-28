@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 import "../Assets/Styles/Booking/booking-process.css";
 import SideSection from "../Components/Booking/SideSection";
 import Booking from "../Components/Booking/Booking";
@@ -52,6 +53,7 @@ const BookingProcess = ({ v1, v2, v3, v4, v5 }) => {
 					/>
 				</div>
 			</div>
+			<Footer />
 		</>
 	);
 };

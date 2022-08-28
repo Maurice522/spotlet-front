@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 import { Button, Avatar } from "@mui/material";
 import "../Assets/Styles/bookingDetails.css";
 
@@ -95,7 +96,7 @@ const BookingDetails = () => {
 					<div className="booking-details-header">
 						Terms and Conditions Agreed
 					</div>
-					<div className="terms-conditions item-heading">
+					<div className="terms-conditions item-info">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 						hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
 						rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.
@@ -113,7 +114,7 @@ const BookingDetails = () => {
 						Aliquam erat volutpat.
 					</div>
 
-					<div className="terms-conditions item-heading">
+					<div className="terms-conditions item-info">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 						hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
 						rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.
@@ -130,7 +131,7 @@ const BookingDetails = () => {
 						venenatis. Donec a dui et dui fringilla consectetur id nec massa.
 						Aliquam erat volutpat.
 					</div>
-					<div className="terms-conditions item-heading">
+					<div className="terms-conditions item-info">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 						hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
 						rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.
@@ -149,6 +150,8 @@ const BookingDetails = () => {
 					</div>
 				</div>
 			</div>
+
+			<Footer />
 		</div>
 	);
 };
