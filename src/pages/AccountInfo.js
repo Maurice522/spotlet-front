@@ -70,7 +70,7 @@ const AccountInfo = (extraNavId) => {
       setUpdateUserData({ ...updateUserData, profile_pic: response.data.url });
       return toast.success(response.data.message);
     } catch (error) {
-      return toast.error(error.response.data.error);
+      return toast.error(error.response.data);
     }
   };
   const handleSubmit = async (e) => {
@@ -105,7 +105,7 @@ const AccountInfo = (extraNavId) => {
       toast.success("password updated..");
     } catch (error) {
       // console.log(error);
-      toast.error(error.response.data.error);
+      toast.error(error.response.data);
     }
   };
 

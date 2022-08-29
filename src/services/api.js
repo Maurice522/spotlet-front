@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const server_domain = "https://gorecce-backend.herokuapp.com";
-// const server_domain = "http://localhost:8000";
+//const server_domain = "https://gorecce-backend.herokuapp.com";
+const server_domain = "http://localhost:8000";
 
+////////////////////////Auth////////////////////////
 // function to send signin request to backend
 export const signIn = (form) => {
   return axios.post(server_domain + "/signin", form);
@@ -55,4 +56,20 @@ export const uploadPics = (formData) => {
 //delete request
 export const deleteRequest = (user_id) => {
   return axios.post(server_domain + "/delreq/" + user_id);
+};
+
+//////////Messages ///////////////////////
+//get contact list of a user
+export const contactList = (user_id) => {
+  return axios.get(server_domain + `/conversation/${user_id}`);
+};
+
+//send message
+export const sendMessage = (form) => {
+  return axios.post(server_domain + "/message", form);
+};
+
+//message room
+export const messsageRoom = (conversation_id) => {
+  return axios.get(server_domain + `/messages/${conversation_id}`);
 };
