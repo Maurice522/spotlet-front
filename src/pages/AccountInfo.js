@@ -130,7 +130,7 @@ const AccountInfo = (extraNavId) => {
       <div className="accounts">
         <Navbar extraNavId={"id-2"} />
         <div className="profcomp">
-          <nav className={"nav-menu active"}>
+        <nav className={"nav-menu active"}>
             <div className="nav-menu-items">
               <div>
                 <button

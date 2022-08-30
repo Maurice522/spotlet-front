@@ -3,7 +3,6 @@ import Navbar from "../Navbar";
 import "../../Assets/Styles/Home/header.css";
 import Typewriter from "typewriter-effect";
 
-
 const Header = ({ extraNavId }) => {
 	const images = [
 		require("../../Assets/Images/header-bg.jpeg"),
@@ -24,7 +23,6 @@ const Header = ({ extraNavId }) => {
 	const image = images[index];
 	const message = messages[index];
 
-
 	useEffect(() => {
 		setTimeout(() => {
 			setIndex((prev) => (prev < 4 ? prev + 1 : 0));
@@ -34,7 +32,7 @@ const Header = ({ extraNavId }) => {
 	return (
 		<>
 			<Navbar extraNavId={extraNavId} />
-			<div className="text-on-image-container">
+			<div className="text-on-image-container animated fadeOut">
 				<img src={image} alt="background" className="bg-image darken" />
 
 				<div className="message">
@@ -44,7 +42,7 @@ const Header = ({ extraNavId }) => {
 							options={{
 								strings: message,
 								autoStart: true,
-								delay: 75
+								delay: 75,
 							}}
 						/>
 					</div>

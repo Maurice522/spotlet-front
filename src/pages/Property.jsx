@@ -12,10 +12,11 @@ import {
 	AccordionDetails,
 	Avatar,
 } from "@mui/material";
-import { MdExpandMore } from "react-icons/md";
+import { MdExpandMore, MdDone } from "react-icons/md";
 import { GoPrimitiveDot } from "react-icons/go";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import PropertyInfo from "../Components/PropertyInfo";
+import { ImCross } from "react-icons/im";
 
 const Property = ({
 	v1,
@@ -205,10 +206,11 @@ const Property = ({
 	const similarProperties = (
 		<div
 			style={{
-				width: "100%",
+				width: "80%",
+				margin: "0 auto",
 				display: "grid",
 				gridTemplateColumns: "auto repeat(3, 1fr) auto",
-				gap: "15px",
+				gap: "25px",
 			}}>
 			<div
 				style={{
@@ -251,6 +253,85 @@ const Property = ({
 		</div>
 	);
 
+	const uniqueFeatures = [
+		"Location Manager",
+		"Fireplace",
+		"Terrace Garden",
+		"Stained Glass Window",
+	];
+
+	const dos = [
+		"lorem ipsum",
+		"lorem ipsum",
+		"lorem ipsum",
+		"lorem ipsum",
+		"lorem ipsum",
+		"lorem ipsum",
+	];
+
+	const donts = [
+		"lorem ipsum",
+		"lorem ipsum",
+		"lorem ipsum",
+		"lorem ipsum",
+		"lorem ipsum",
+		"lorem ipsum",
+	];
+
+	const dosDonts = (
+		<div
+			style={{
+				width: "100%",
+				display: "flex",
+				justifyContent: "space-around",
+				alignItems: "center",
+				fontFamily: "Rubik",
+				fontStyle: "normal",
+				fontWeight: "400",
+				fontSize: "20px",
+				lineHeight: "32px",
+			}}>
+			<div>
+				{dos.map((val, i) => (
+					<div
+						key={i}
+						style={{
+							display: "flex",
+							justifyContent: "flex-start",
+							alignItems: "center",
+							gap: "10px",
+						}}>
+						<MdDone color="#ff4d4d" size={32} />
+						<div>{val}</div>
+					</div>
+				))}
+			</div>
+			<div>
+				{donts.map((val, i) => (
+					<div
+						key={i}
+						style={{
+							display: "flex",
+							justifyContent: "flex-start",
+							alignItems: "center",
+							gap: "10px",
+						}}>
+						<ImCross color="#ff4d4d" />
+						<div>{val}</div>
+					</div>
+				))}
+			</div>
+		</div>
+	);
+
+	const mostlyBookedFor = [
+		"Ad Film Shooting",
+		"Birthday Parties",
+		"Friends Outings",
+		"Web Series Shoot",
+		"Music Album Shoot",
+	];
+
 	const accordion = [
 		{
 			title: "Description of the property",
@@ -280,6 +361,11 @@ const Property = ({
 			type: "text",
 		},
 		{
+			title: "Unique Features",
+			info: uniqueFeatures,
+			type: "list",
+		},
+		{
 			title: "Timings",
 			info: [
 				"Monday:           7:00am - 11:00pm",
@@ -298,6 +384,16 @@ const Property = ({
 			type: "html",
 		},
 		{
+			title: "Do's & Don'ts",
+			info: dosDonts,
+			type: "html",
+		},
+		{
+			title: "Mostly Booked For",
+			info: mostlyBookedFor,
+			type: "list",
+		},
+		{
 			title: "About the host",
 			info: hostInfo,
 			type: "html",
@@ -306,11 +402,6 @@ const Property = ({
 			title: "Cancellation Policy",
 			info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat.",
 			type: "text",
-		},
-		{
-			title: "Similar Properties",
-			info: similarProperties,
-			type: "html",
 		},
 	];
 
@@ -343,9 +434,8 @@ const Property = ({
 								fontFamily: "Inter",
 								fontStyle: "normal",
 								fontWeight: "500",
-								fontSize: "24px",
-								lineHeight: "36px",
-								// borderBottom: "1px solid #e0e0e0",
+								fontSize: "20px",
+								padding: "10px",
 							}}
 							expandIcon={<MdExpandMore size="31px" color="black" />}
 							aria-controls="panel1a-content"
@@ -358,7 +448,6 @@ const Property = ({
 								fontStyle: "normal",
 								fontWeight: "400",
 								fontSize: "16px",
-								lineHeight: "24px",
 								paddingTop: "20px",
 							}}>
 							{item.type === "list" ? (
@@ -383,6 +472,25 @@ const Property = ({
 						</AccordionDetails>
 					</Accordion>
 				))}
+
+				<div
+					style={{
+						marginTop: "50px",
+						width: "100%",
+					}}>
+					<div
+						style={{
+							width: "100%",
+							fontFamily: "Inter",
+							fontStyle: "normal",
+							fontWeight: "500",
+							fontSize: "20px",
+							marginBottom: "20px",
+						}}>
+						Similar Properties
+					</div>
+					{similarProperties}
+				</div>
 			</div>
 
 			<Footer />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BsFillBookmarkFill } from "react-icons/bs";
 import "../../Assets/Styles/Home/sectionProperty.css";
 import img1 from "../../Assets/Images/property-1.jpeg";
 import img2 from "../../Assets/Images/property-2.jpeg";
@@ -58,11 +59,28 @@ const SectionProperty = () => {
 			price: "Price",
 			isFavourite: favorites.includes(5),
 		},
+		{
+			image: img6,
+			name: "Name of Property",
+			location: "Location of Property",
+			price: "Price",
+			isFavourite: favorites.includes(6),
+		},
+		{
+			image: img6,
+			name: "Name of Property",
+			location: "Location of Property",
+			price: "Price",
+			isFavourite: favorites.includes(7),
+		},
 	];
 
 	return (
 		<div className="property-section">
-			<div className="property-heading">Featured Properties in Hyderabad</div>
+			<div className="property-heading">
+				<BsFillBookmarkFill size={24} color="#EA4235" />
+				Featured Properties in Hyderabad
+			</div>
 			<div className="property-list">
 				{propertyDetails.map((item, index) => (
 					<PropertyInfo

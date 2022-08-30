@@ -3,9 +3,21 @@ import { Link } from "react-router-dom";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Rating from "@mui/material/Rating";
 
-const PropertyInfo = ({ item, index, favorites, rating, setFavorites }) => {
+const PropertyInfo = ({
+	item,
+	index,
+	favorites,
+	rating,
+	setFavorites,
+	blueBorder,
+	review,
+}) => {
 	return (
-		<div className="item">
+		<div
+			className="item"
+			style={{
+				border: blueBorder && "1px solid #00aaff",
+			}}>
 			<div className="text-on-image-container-2">
 				<img
 					src={item.image}
@@ -26,6 +38,7 @@ const PropertyInfo = ({ item, index, favorites, rating, setFavorites }) => {
 					) : (
 						<MdFavoriteBorder
 							size="32px"
+							color="#fff"
 							onClick={() => {
 								setFavorites((prev) => [...prev, index]);
 							}}
@@ -42,12 +55,23 @@ const PropertyInfo = ({ item, index, favorites, rating, setFavorites }) => {
 					}}>
 					<div className="property-info-heading">{item.name}</div>
 					<div className="property-info-location">{item.location}</div>
-					<div className="property-info-price">
-						{item.price}
+					{/* <div className="property-info-price">{item.price}</div> */}
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "space-between",
+							alignItems: "center",
+						}}>
 						{rating && (
 							<div className="property-info-rating">
 								<Rating name="read-only" value={item.rating} readOnly />
 							</div>
+						)}
+						{review && (
+							<>
+								<div>( {item.reviewCount} reviews )</div>
+								{item.icon}
+							</>
 						)}
 					</div>
 				</Link>

@@ -3,7 +3,7 @@ import "../../Assets/Styles/Home/sectionReason.css";
 import { BsBookmark } from "react-icons/bs";
 import image from "../../Assets/Images/reason-image.jpeg";
 
-const SectionReason = () => {
+const SectionReason = ({ heading }) => {
 	const objArray = [
 		{
 			title: "We are professionals",
@@ -33,11 +33,11 @@ const SectionReason = () => {
 
 	return (
 		<div className="reason-container">
-			<div className="reason-heading">Why Choose Us</div>
+			<div className="reason-heading">{heading}</div>
 			<div className="reason-section">
-				<div className="image-wrapper">
-					<img src={image} alt="reason-1" className="reason-image" />
-				</div>
+				{/* <div className="image-wrapper"> */}
+				<img src={image} alt="reason-1" className="reason-image" />
+				{/* </div> */}
 				<div className="reason-content-wrapper">{items}</div>
 			</div>
 		</div>
