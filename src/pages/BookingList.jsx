@@ -7,127 +7,16 @@ import "../Assets/Styles/bookingList.css";
 import SyncfusionTable from "../Components/BookingListing/SyncFusionTable";
 import { GoPrimitiveDot } from "react-icons/go";
 
-const bookingData = [
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Approved",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Booked",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Cancelled",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-];
-
 const gridActionButton = (props) => (
 	<Link
-		to={props.to}
+		to={props.row.to}
 		style={{
 			textDecoration: "none",
 		}}>
 		<Button
 			variant="outlined"
 			sx={{
-				width: "50%",
+				padding: "5px 10px",
 				border: "1px solid #EA4235",
 				color: "black",
 				fontWeight: "600",
@@ -148,16 +37,17 @@ const gridBookingID = (props) => (
 			gap: "5px",
 		}}>
 		<GoPrimitiveDot color="#EA4235" />
-		{props.BookingId}
+		{props.row.BookingId}
 	</div>
 );
 
 const gridBookingStatus = (props) => {
 	let color;
-	if (props.Status === "Under Review") color = "#E8B500";
-	else if (props.Status === "Approved") color = "#0079D7";
-	else if (props.Status === "Cancelled") color = "#E20000";
-	else if (props.Status === "Booked") color = "#19AF00";
+	console.log(props);
+	if (props.row.Status === "Under Review") color = "#E8B500";
+	else if (props.row.Status === "Approved") color = "#0079D7";
+	else if (props.row.Status === "Cancelled") color = "#E20000";
+	else if (props.row.Status === "Booked") color = "#19AF00";
 
 	return (
 		<div
@@ -165,96 +55,259 @@ const gridBookingStatus = (props) => {
 				textAlign: "center",
 				color: color,
 			}}>
-			{props.Status}
+			{props.row.Status}
 		</div>
 	);
 };
 
+const bookingData = [
+	{
+		id: 1,
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Under Review",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 2,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Approved",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 3,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Booked",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 4,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Cancelled",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 5,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Under Review",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 6,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Under Review",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 7,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Under Review",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 8,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Under Review",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 9,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Under Review",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 10,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Under Review",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 11,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Under Review",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+	{
+		id: 12,
+
+		action: gridActionButton,
+		to: "/bookingdetails",
+		BookingId: "#00000000",
+		Status: "Under Review",
+		Date: "12/12/22",
+		TimeDuration: "12:00 - 23:55, 20hrs",
+		Attendies: 1000,
+		TotalAmount: 50000,
+	},
+];
+
 const bookingGrid = [
 	{
-		headerText: "Booking ID",
-		template: gridBookingID,
+		headerName: "Booking ID",
+		field: "BookingId",
+		renderCell: gridBookingID,
 		width: "150",
 		textAlign: "Center",
 	},
 	{
-		headerText: "Status",
-		template: gridBookingStatus,
+		headerName: "Status",
+		field: "Status",
+		renderCell: gridBookingStatus,
 		width: "150",
 		textAlign: "Center",
 	},
 	{
-		headerText: "Date",
+		headerName: "Date",
 		field: "Date",
-		width: "100",
+		width: "150",
 		textAlign: "Center",
 	},
 	{
-		headerText: "Time, Duration",
+		headerName: "Time, Duration",
 		field: "TimeDuration",
 		width: "200",
 		textAlign: "Center",
 	},
 	{
-		headerText: "Attendies",
+		headerName: "Attendies",
 		field: "Attendies",
-		width: "100",
+		width: "150",
 		textAlign: "Center",
 	},
 	{
-		headerText: "Total Amount",
+		headerName: "Total Amount",
 		field: "TotalAmount",
 		width: "150",
 		textAlign: "Center",
 	},
 	{
-		headerText: "Action",
-		template: gridActionButton,
-		width: "250",
+		headerName: "Action",
+		renderCell: gridActionButton,
+		field: "action",
+		width: "150",
 		textAlign: "Center",
 	},
 ];
 
 const listingData = [
 	{
+		action: gridActionButton,
 		BookingId: "#00000000",
 		Status: "Under Review",
+		id: 1,
 		to: "/listdetails",
 		BookingRequest: "12 Requests",
 	},
 	{
+		action: gridActionButton,
 		BookingId: "#00000000",
 		Status: "Approved",
+		id: 2,
 		to: "/listdetails",
 		BookingRequest: "12 Requests",
 	},
 	{
+		action: gridActionButton,
 		BookingId: "#00000000",
 		Status: "Cancelled",
+		id: 3,
 		to: "/listdetails",
 		BookingRequest: "12 Requests",
 	},
 	{
+		action: gridActionButton,
 		BookingId: "#00000000",
 		Status: "Booked",
+		id: 4,
 		to: "/listdetails",
 		BookingRequest: "12 Requests",
 	},
 	{
+		action: gridActionButton,
 		BookingId: "#00000000",
 		Status: "Under Review",
+		id: 5,
 		to: "/listdetails",
 		BookingRequest: "12 Requests",
 	},
 	{
+		action: gridActionButton,
 		BookingId: "#00000000",
 		Status: "Under Review",
+		id: 6,
 		to: "/listdetails",
 		BookingRequest: "12 Requests",
 	},
 	{
+		action: gridActionButton,
 		BookingId: "#00000000",
 		Status: "Under Review",
+		id: 7,
 		to: "/listdetails",
 		BookingRequest: "12 Requests",
 	},
@@ -262,26 +315,28 @@ const listingData = [
 
 const listingGrid = [
 	{
-		headerText: "Booking ID",
-		template: gridBookingID,
+		headerName: "Booking ID",
+		field: "BookingId",
+		renderCell: gridBookingID,
 		width: "200",
 		textAlign: "Center",
 	},
 	{
-		headerText: "Status",
-		template: gridBookingStatus,
+		headerName: "Status",
+		field: "Status",
+		renderCell: gridBookingStatus,
 		width: "200",
 		textAlign: "Center",
 	},
 	{
-		headerText: "Booking Request",
+		headerName: "Booking Request",
 		field: "BookingRequest",
 		width: "200",
 		textAlign: "Center",
 	},
 	{
-		headerText: "Action",
-		template: gridActionButton,
+		headerName: "Action",
+		field: "action",
 		width: "250",
 		textAlign: "Center",
 	},
@@ -314,6 +369,7 @@ const BookingList = () => {
 						style={{
 							width: "80vw",
 							margin: "40px auto",
+							height: "80vh",
 						}}>
 						<SyncfusionTable UsersData={bookingData} UsersGrid={bookingGrid} />
 					</div>
@@ -322,6 +378,7 @@ const BookingList = () => {
 						style={{
 							width: "55vw",
 							margin: "40px auto",
+							height: "80vh",
 						}}>
 						<SyncfusionTable UsersData={listingData} UsersGrid={listingGrid} />
 					</div>
