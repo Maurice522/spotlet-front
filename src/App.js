@@ -21,6 +21,7 @@ import ListDetails from "./pages/ListDetails";
 import ListDetailsComponent from "./pages/ListDetailsComponent";
 import ListingPlace from "./pages/ListingPlace";
 import Messages from "./pages/Messages";
+import HostPage from "./pages/HostPage";
 
 function App() {
 	const dispatch = useDispatch();
@@ -90,6 +91,7 @@ function App() {
 						path="/booking"
 						element={<BookingProcess v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} />}
 					/>
+					<Route path="/host" element={<HostPage />} />
 				</Routes>
 			</div>
 		</BrowserRouter>

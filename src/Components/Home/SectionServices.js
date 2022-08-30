@@ -27,7 +27,10 @@ const SectionServices = () => {
 			<div className="icon-wrapper">
 				<FiChrome size="32px" />
 			</div>
-			<div>
+			<div
+				style={{
+					padding: "3px",
+				}}>
 				<div className="services-content-title">{item.title}</div>
 				<div className="services-content-text">{item.info}</div>
 			</div>

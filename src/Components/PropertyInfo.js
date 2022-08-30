@@ -47,7 +47,6 @@ const PropertyInfo = ({
 				</div>
 			</div>
 			<div>
-				c
 				<Link
 					to="/property"
 					style={{
@@ -56,7 +55,7 @@ const PropertyInfo = ({
 					}}>
 					<div className="property-info-heading">{item.name}</div>
 					<div className="property-info-location">{item.location}</div>
-					<div className="property-info-price">{item.price}</div>
+					{/* <div className="property-info-price">{item.price}</div> */}
 					<div
 						style={{
 							display: "flex",

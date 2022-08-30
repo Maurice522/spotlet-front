@@ -1,13 +1,31 @@
 * {
-	/* box-sizing: border-box;   do not apply this commented css. change css in other way*/
 	margin: 0;
-	/* box-sizing: border-box; */
-	/* overflow-x: hidden; */
 	padding: 0;
 	user-select: none;
 }
 
-/* body {
-  min-width: 100vw;
-  min-height: 100vh;
-} */
+.primary-heading {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 24px;
+}
+
+.secondary-heading {
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+}
+
+.text {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.inter {
+	font-family: "Inter";
+}
+
+.rubik {
+	font-family: "Rubik";
+}

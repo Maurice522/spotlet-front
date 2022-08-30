@@ -81,17 +81,23 @@ const Carousel = () => {
 					<div className="location">Location</div>
 				</div>
 				<div className="icons">
-					<BiShareAlt color="#374047" size="24px" />
+					<BiShareAlt
+						color="#374047"
+						size="24px"
+						style={{ cursor: "pointer" }}
+					/>
 					{fav === true ? (
 						<AiFillHeart
+							style={{ cursor: "pointer" }}
 							color="#ff4d4d"
-							size="28px"
+							size="30px"
 							onClick={() => setFav(false)}
 						/>
 					) : (
 						<AiOutlineHeart
+							style={{ cursor: "pointer" }}
 							color="#374047"
-							size="28px"
+							size="30px"
 							onClick={() => setFav(true)}
 						/>
 					)}

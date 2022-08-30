@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 import "../Assets/Styles/listDetails.css";
 import { BiArrowBack } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -201,6 +202,7 @@ const ListDetails = ({ setFinal }) => {
 					/>
 				</div>
 			</div>
+			<Footer />
 		</div>
 	);
 };

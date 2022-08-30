@@ -59,12 +59,26 @@ const SectionProperty = () => {
 			price: "Price",
 			isFavourite: favorites.includes(5),
 		},
+		{
+			image: img6,
+			name: "Name of Property",
+			location: "Location of Property",
+			price: "Price",
+			isFavourite: favorites.includes(6),
+		},
+		{
+			image: img6,
+			name: "Name of Property",
+			location: "Location of Property",
+			price: "Price",
+			isFavourite: favorites.includes(7),
+		},
 	];
 
 	return (
 		<div className="property-section">
 			<div className="property-heading">
-				<BsFillBookmarkFill size={32} color="#EA4235" />
+				<BsFillBookmarkFill size={24} color="#EA4235" />
 				Featured Properties in Hyderabad
 			</div>
 			<div className="property-list">

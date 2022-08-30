@@ -76,13 +76,14 @@ const SectionMenu = () => {
 						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center",
-						borderBottom: `2px solid ${shoot === 1 ? "#ff6767" : "gray"}`,
+						borderBottom: `2px solid ${shoot === 1 ? "#ff6767" : "black"}`,
 						color: shoot === 1 ? "#ff6767" : "black",
-					}}>
+					}}
+					onClick={() => setShoot(1)}>
 					<GiFilmProjector size="40px" />
-					<div className={`menu-heading-item`} onClick={() => setShoot(1)}>
+					<div className={`menu-heading-item`}>
 						Film Shooting
-						<AiOutlineDown size="20px" />
+						<AiOutlineDown size="15px" />
 					</div>
 				</div>
 				<div
@@ -93,11 +94,12 @@ const SectionMenu = () => {
 						alignItems: "center",
 						borderBottom: `2px solid ${shoot === 2 ? "#ff6767" : "black"}`,
 						color: shoot === 2 ? "#ff6767" : "black",
-					}}>
+					}}
+					onClick={() => setShoot(2)}>
 					<MdOutlineCorporateFare size="40px" />
-					<div className={`menu-heading-item`} onClick={() => setShoot(2)}>
+					<div className={`menu-heading-item`}>
 						Corporate Shooting
-						<AiOutlineDown size="20px" />
+						<AiOutlineDown size="15px" />
 					</div>
 				</div>
 				<div
@@ -108,11 +110,12 @@ const SectionMenu = () => {
 						alignItems: "center",
 						borderBottom: `2px solid ${shoot === 3 ? "#ff6767" : "black"}`,
 						color: shoot === 3 ? "#ff6767" : "black",
-					}}>
+					}}
+					onClick={() => setShoot(3)}>
 					<BsPersonFill size="40px" />
-					<div className={`menu-heading-item`} onClick={() => setShoot(3)}>
+					<div className={`menu-heading-item`}>
 						Individual Shooting
-						<AiOutlineDown size="20px" />
+						<AiOutlineDown size="15px" />
 					</div>
 				</div>
 			</div>

@@ -17,15 +17,48 @@
 .message {
 	color: white;
 	position: absolute;
-	bottom: 50px;
+	top: 25%;
 	left: 100px;
 	right: 200px;
 	font-family: "Roboto";
 	font-style: normal;
 	font-weight: 600;
-	font-size: 84px;
+	font-size: 64px;
 	line-height: 140%;
 }
+
+.host-message {
+	width: 50%;
+}
+
+.message-btn {
+	color: white;
+	position: absolute;
+	bottom: 20%;
+	left: 100px;
+}
+
 .colored {
 	color: #ff6767;
 }
+
+/* .animated {
+	animation-duration: 5s;
+	animation-fill-mode: both;
+}
+
+.fadeOut {
+	animation-name: fadeOut;
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+} */

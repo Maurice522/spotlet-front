@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { GiFilmProjector } from "react-icons/gi";
 import FormFilter from "../Components/Home/FormFilter";
 import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 import PropertyInfo from "../Components/PropertyInfo";
 import img1 from "../Assets/Images/property-1.jpeg";
 import img2 from "../Assets/Images/property-2.jpeg";
@@ -244,6 +245,8 @@ const Search = () => {
 				title="Get in buisness with GoRecce"
 				buttonContent="Become a Host"
 			/>
+
+			<Footer />
 		</div>
 	);
 };
