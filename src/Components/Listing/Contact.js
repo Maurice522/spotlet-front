@@ -2,12 +2,12 @@ import React from 'react'
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 
-const Location = () => {
-    return (
-        <div className='lbox'>
-            <div className='row1'>
+const Contact = () => {
+  return (
+    <div className='lbox'>
+        <div className='row1'>
                 <div className='coll1'>
-                    <h2>Address</h2>
+                    <h2>Name</h2>
                     <TextareaAutosize
                         minRows={3}
                         style={{ width: 900 }}
@@ -17,31 +17,14 @@ const Location = () => {
 
             <div className='row1'>
                 <div className='coll1'>
-                    <h2>City</h2>
+                    <h2>Mobile Number</h2>
                     <TextareaAutosize
                         minRows={2}
                         style={{ width: 425 }}
                     />
                 </div>
                 <div className='coll1'>
-                    <h2>State</h2>
-                    <TextareaAutosize
-                        minRows={2}
-                        style={{ width: 425 }}
-                    />
-                </div>
-            </div>
-
-            <div className='row1'>
-                <div className='coll1'>
-                    <h2>Country</h2>
-                    <TextareaAutosize
-                        minRows={2}
-                        style={{ width: 425 }}
-                    />
-                </div>
-                <div className='coll1'>
-                    <h2>Pincode</h2>
+                    <h2>Email Id</h2>
                     <TextareaAutosize
                         minRows={2}
                         style={{ width: 425 }}
@@ -51,31 +34,22 @@ const Location = () => {
 
             <div className='row1'>
                 <div className='coll1'>
-                    <h2>Landmark (optional)</h2>
+                    <h2>Alternate person’s name</h2>
                     <TextareaAutosize
-                        minRows={3}
-                        style={{ width: 900 }}
+                        minRows={2}
+                        style={{ width: 425 }}
+                    />
+                </div>
+                <div className='coll1'>
+                    <h2>Alternate person’s Mobile Number</h2>
+                    <TextareaAutosize
+                        minRows={2}
+                        style={{ width: 425 }}
                     />
                 </div>
             </div>
-
-            <div className='row1'>
-                <div className='coll1'>
-                    <h2>Location Details - Map</h2>
-                    <TextareaAutosize
-                        minRows={3}
-                        style={{ width: 900 }}
-                    />
-                </div>
-            </div>
-            <div className='row1'>
-                <div className='coll1'>
-                    <button className='continue'>Continue</button>
-                </div>
-            </div>
-
-        </div>
-    )
+    </div>
+  )
 }
 
-export default Location
+export default Contact
