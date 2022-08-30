@@ -1,19 +1,17 @@
 import React from "react";
-import {
-	GridComponent,
-	ColumnsDirective,
-	ColumnDirective,
-} from "@syncfusion/ej2-react-grids";
+import { DataGrid } from "@mui/x-data-grid";
 
 const SyncfusionTable = ({ UsersData, UsersGrid }) => {
 	return (
-		<GridComponent dataSource={UsersData} width="auto">
-			<ColumnsDirective>
-				{UsersGrid.map((item, index) => (
-					<ColumnDirective key={index} {...item} />
-				))}
-			</ColumnsDirective>
-		</GridComponent>
+		<DataGrid
+			rows={UsersData}
+			columns={UsersGrid}
+			pageSize={5}
+			rowsPerPageOptions={[5]}
+			sx={{
+				headerAlign: "center",
+			}}
+		/>
 	);
 };
 

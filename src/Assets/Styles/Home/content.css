@@ -49,7 +49,7 @@
 .service-image-wrapper {
 	margin-top: 70px;
 	width: 100%;
-	height: 80vh;
+	height: calc(100vh - 70px);
 	overflow-y: hidden;
 }
 
