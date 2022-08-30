@@ -136,3 +136,9 @@
   padding: 10px;
   justify-content: space-around;
 }
+
+.select-updt {
+  width: 400px !important;
+  height: 55px !important;
+  border: 1px solid;
+}

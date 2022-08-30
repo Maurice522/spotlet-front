@@ -116,13 +116,19 @@ export default function Messages() {
       {/* Right property Info */}
       <div className="messages">
         <div className="chat-inbox">
-          {conversations?.map((conversation) => {
-            return (
-              <div onClick={() => setCurrentChat(conversation)}>
-                <UserInbox conversation={conversation} />
-              </div>
-            );
-          })}
+          {conversations.length > 0 ? (
+            conversations.map((conversation) => {
+              return (
+                <div onClick={() => setCurrentChat(conversation)}>
+                  <UserInbox conversation={conversation} />
+                </div>
+              );
+            })
+          ) : (
+            <h2 style={{ textAlign: "center", marginTop: "80%" }}>
+              No users...
+            </h2>
+          )}
         </div>
         <div className="main-chat">
           {currentChat ? (

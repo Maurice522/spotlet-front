@@ -48,10 +48,11 @@ export default function Auth() {
     firstName: "",
     lastName: "",
     mobile: "",
-    job: "",
     email: "",
     password: "",
     booking_type: "",
+    profession: "",
+    company: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -90,8 +91,6 @@ export default function Auth() {
         if (userData.password.length < 8)
           return toast.error("Passwod must contain atleast 8 characters");
         getOTP(userData);
-        // navigate("/verification");
-        // setIsSignIn(true);
       } catch (error) {
         toast.error(error.response.data);
       }
@@ -216,22 +215,36 @@ export default function Auth() {
                       sx={{ height: "2.8em" }}
                       required
                     >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      <MenuItem value="individual">Indivdual</MenuItem>
-                      <MenuItem value="company">Company</MenuItem>
+                      <MenuItem value="">None</MenuItem>
+                      <MenuItem value="individual">Individual</MenuItem>
+                      <MenuItem value="corporate">Corporate</MenuItem>
                     </Select>
                   </div>
                   <div>
-                    <label>Job Title</label>
+                    <label>
+                      {userData.booking_type === "corporate"
+                        ? "Company Name"
+                        : "Profession"}
+                    </label>
                     <TextField
                       type="text"
-                      name="job"
+                      name={
+                        userData.booking_type === "corporate"
+                          ? "company"
+                          : "profession"
+                      }
                       onChange={handleInput}
-                      value={userData.job}
+                      value={
+                        userData.booking_type === "corporate"
+                          ? userData.company
+                          : userData.profession
+                      }
                       fullWidth
-                      placeholder="Job"
+                      placeholder={
+                        userData.booking_type === "corporate"
+                          ? "Company Name"
+                          : "Profession"
+                      }
                       size="small"
                       required
                     />

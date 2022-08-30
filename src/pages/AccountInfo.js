@@ -22,7 +22,7 @@ import {
   uploadPics,
 } from "../services/api";
 import { toast } from "react-toastify";
-import { Button } from "@mui/material";
+import { Button, MenuItem, Select } from "@mui/material";
 
 const AccountInfo = (extraNavId) => {
   const [section, showSection] = useState("Profile");
@@ -41,7 +41,10 @@ const AccountInfo = (extraNavId) => {
     lastName: personalInfo.fullName.split(" ").slice(1).join(" "),
     email: personalInfo.email,
     mobile: personalInfo.mobile,
-    job: personalInfo.job,
+    [personalInfo.booking_type === "corporate" ? "company" : "profession"]:
+      personalInfo.booking_type === "corporate"
+        ? personalInfo.company
+        : personalInfo.profession,
     booking_type: personalInfo.booking_type,
     profile_pic: personalInfo.profile_pic,
   });
@@ -79,8 +82,11 @@ const AccountInfo = (extraNavId) => {
       fullName: updateUserData.firstName + " " + updateUserData.lastName,
       email: updateUserData.email,
       mobile: updateUserData.mobile,
-      job: updateUserData.job,
       booking_type: updateUserData.booking_type,
+      [updateUserData.booking_type === "corporate" ? "company" : "profession"]:
+        updateUserData.booking_type === "corporate"
+          ? updateUserData.company
+          : updateUserData.profession,
       profile_pic: updateUserData.profile_pic,
     };
     dispatch(updateUser(updateData));
@@ -247,25 +253,44 @@ const AccountInfo = (extraNavId) => {
                 </div>
                 <div className="r2">
                   <label>
-                    <h2>Who Reserves</h2>
-                    <input
-                      className="input"
-                      type="text"
-                      size="50"
-                      name="booking_type"
+                    <h2>Booking as a</h2>
+                    <Select
                       value={updateUserData.booking_type}
                       onChange={handleChange}
+                      className="select-updt"
+                      name="booking_type"
+                      displayEmpty
+                      inputProps={{ "aria-label": "Without label" }}
+                      fullWidth
+                      sx={{ height: "2.8em" }}
                       required
-                    />
+                    >
+                      <MenuItem value="">None</MenuItem>
+                      <MenuItem value="individual">Individual</MenuItem>
+                      <MenuItem value="corporate">Corporate</MenuItem>
+                    </Select>
                   </label>
                   <label>
-                    <h2>Company Name</h2>
+                    <h2>
+                      {" "}
+                      {updateUserData.booking_type === "corporate"
+                        ? "Company Name"
+                        : "Profession"}
+                    </h2>
                     <input
                       className="input"
                       type="text"
                       size="50"
-                      name="job"
-                      value={updateUserData.job}
+                      name={
+                        updateUserData.booking_type === "corporate"
+                          ? "company"
+                          : "profession"
+                      }
+                      value={
+                        updateUserData.booking_type === "corporate"
+                          ? updateUserData.company
+                          : updateUserData.profession
+                      }
                       onChange={handleChange}
                       required
                     />
