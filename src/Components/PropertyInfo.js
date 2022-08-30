@@ -46,7 +46,10 @@ const PropertyInfo = ({
 					)}
 				</div>
 			</div>
-			<div>
+			<div
+				style={{
+					paddingLeft: "3px",
+				}}>
 				<Link
 					to="/property"
 					style={{

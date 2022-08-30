@@ -23,15 +23,15 @@ const Content = () => {
 					</div>
 					<div className="left-subsection-right">
 						<div className="content-container">
-							<FaDharmachakra color="#ff6767" size="24px" />
+							<FaDharmachakra color="#ff6767" size="28px" />
 							<div>Choose the activity</div>
 						</div>
 						<div className="content-container">
-							<MdLocationOn color="#ff6767" size="24px" />
+							<MdLocationOn color="#ff6767" size="28px" />
 							<div>Find a perfect place</div>
 						</div>
 						<div className="content-container">
-							<BsCalendarWeek color="#ff6767" size="24px" />
+							<BsCalendarWeek color="#ff6767" size="28px" />
 							<div>Book a date</div>
 						</div>
 					</div>
