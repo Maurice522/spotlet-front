@@ -27,11 +27,18 @@ const Details = () => {
       <div className='row1'>
         <div className='coll1'>
           <h2>Street Parking Facility Available</h2>
-          <Checkbox />
+          <div className='row2'>
+          <Checkbox /> Yes
+          <Checkbox /> No
+          </div>
+          
         </div>
         <div className='coll1'>
           <h2>Security Camera Available</h2>
-          <Checkbox />
+          <div className='row2'>
+          <Checkbox /> Yes
+          <Checkbox /> No
+          </div>
         </div>
       </div>
       <div className='row1'>
@@ -43,7 +50,11 @@ const Details = () => {
             style={{ width: 690 }}
           />
         </div>
-
+      </div>
+      <div className='row1'>
+        <div className='coll1'>
+        <button className='continue'>Continue</button>
+        </div>
       </div>
     </div>
 

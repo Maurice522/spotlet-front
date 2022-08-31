@@ -60,6 +60,9 @@ const Navbar = ({ extraNavId }) => {
 					<Link to="/favourite">
 						<div>Favourites</div>
 					</Link>
+					<Link to="/listing">
+						<div>List Your Site</div>
+					</Link>
 					<Button
 						aria-controls="simple-menu"
 						aria-haspopup="true"
