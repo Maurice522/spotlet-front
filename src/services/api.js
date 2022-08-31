@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const server_domain = "https://gorecce-backend.herokuapp.com";
-// const server_domain = "http://localhost:8000";
+//const server_domain = "https://gorecce-backend.herokuapp.com";
+const server_domain = "http://localhost:8000";
 
 ////////////////////////Auth////////////////////////
 // function to send signin request to backend
