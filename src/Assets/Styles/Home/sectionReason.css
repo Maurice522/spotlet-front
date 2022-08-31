@@ -17,7 +17,7 @@
 .reason-section {
 	width: 90vw;
 	margin: 0 auto 50px;
-	height: 400px;
+	height: 500px;
 	display: flex;
 	justify-content: center;
 	gap: 30px;
@@ -33,7 +33,7 @@
 .reason-image {
 	width: 50%;
 	max-width: 500px;
-	aspect-ratio: 3 / 2;
+	aspect-ratio: 1 / 2;
 	display: block;
 	border-radius: 30px;
 }

@@ -236,7 +236,7 @@ const bookingGrid = [
 	{
 		headerName: "Attendies",
 		field: "Attendies",
-		width: "150",
+		width: "120",
 		textAlign: "Center",
 	},
 	{

@@ -9,14 +9,13 @@ const PropertyInfo = ({
 	favorites,
 	rating,
 	setFavorites,
-	blueBorder,
 	review,
 }) => {
 	return (
 		<div
 			className="item"
 			style={{
-				border: blueBorder && "1px solid #00aaff",
+				border: "1px solid #00aaff",
 			}}>
 			<div className="text-on-image-container-2">
 				<img
@@ -48,7 +47,7 @@ const PropertyInfo = ({
 			</div>
 			<div
 				style={{
-					paddingLeft: "3px",
+					paddingLeft: "4px",
 				}}>
 				<Link
 					to="/property"

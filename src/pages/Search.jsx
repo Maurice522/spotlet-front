@@ -222,7 +222,6 @@ const Search = () => {
 						key={index}
 						rating={true}
 						setFavorites={setFav}
-						blueBorder={true}
 						review={true}
 					/>
 				))}

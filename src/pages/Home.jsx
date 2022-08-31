@@ -18,7 +18,7 @@ function Home() {
 
 	return (
 		<div>
-			<Header extraNavId={id} />
+			<Header extraNavId="id-2" />
 			<FormFilter />
 			<Content />
 			<Footer />
@@ -28,3 +28,9 @@ function Home() {
 
 export default Home;
 
+// 1) Search cards gap inc
+// 2) Height incresase of why choose image
+// 3) Cards border blue
+// 4) Padding left inc slightly
+// 5) Adjust arrows
+// 6) Fix testimonial cards
