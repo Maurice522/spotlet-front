@@ -130,7 +130,7 @@ const AccountInfo = (extraNavId) => {
       <div className="accounts">
         <Navbar extraNavId={"id-2"} />
         <div className="profcomp">
-        <nav className={"nav-menu active"}>
+          <nav className={"nav-menu active"}>
             <div className="nav-menu-items">
               <div>
                 <button
@@ -204,7 +204,7 @@ const AccountInfo = (extraNavId) => {
                   <label>
                     <h2>First Name</h2>
                     <input
-                      className="input"
+                      className="acc-input"
                       type="text"
                       size="50"
                       name="firstName"
@@ -216,7 +216,7 @@ const AccountInfo = (extraNavId) => {
                   <label>
                     <h2>Last Name</h2>
                     <input
-                      className="input"
+                      className="acc-input"
                       type="text"
                       size="50"
                       name="lastName"
@@ -230,7 +230,7 @@ const AccountInfo = (extraNavId) => {
                   <label>
                     <h2>Email</h2>
                     <input
-                      className="input"
+                      className="acc-input"
                       type="text"
                       size="50"
                       name="email"
@@ -241,7 +241,7 @@ const AccountInfo = (extraNavId) => {
                   <label>
                     <h2>Phone No</h2>
                     <input
-                      className="input"
+                      className="acc-input"
                       type="text"
                       size="50"
                       name="mobile"
@@ -278,7 +278,7 @@ const AccountInfo = (extraNavId) => {
                         : "Profession"}
                     </h2>
                     <input
-                      className="input"
+                      className="acc-input"
                       type="text"
                       size="50"
                       name={
@@ -318,7 +318,7 @@ const AccountInfo = (extraNavId) => {
                   <label>
                     <h2>Current Password</h2>
                     <input
-                      className="input"
+                      className="acc-input"
                       type="password"
                       size="50"
                       onChange={(e) =>
@@ -335,7 +335,7 @@ const AccountInfo = (extraNavId) => {
                   <label>
                     <h2>New Password</h2>
                     <input
-                      className="input"
+                      className="acc-input"
                       type="password"
                       size="50"
                       onChange={(e) =>
@@ -352,7 +352,7 @@ const AccountInfo = (extraNavId) => {
                   <label>
                     <h2>Confirm Password</h2>
                     <input
-                      className="input"
+                      className="acc-input"
                       type="password"
                       size="50"
                       onChange={(e) =>
@@ -450,21 +450,37 @@ const AccountInfo = (extraNavId) => {
                         <div className="r2">
                           <label>
                             <h2>Card Number</h2>
-                            <input className="input" type="text" size="50" />
+                            <input
+                              className="acc-input"
+                              type="text"
+                              size="50"
+                            />
                           </label>
                           <label>
                             <h2>Name on the Card</h2>
-                            <input className="input" type="text" size="50" />
+                            <input
+                              className="acc-input"
+                              type="text"
+                              size="50"
+                            />
                           </label>
                         </div>
                         <div className="r2">
                           <label>
                             <h2>Valid Thru (MM/YY)</h2>
-                            <input className="input" type="text" size="50" />
+                            <input
+                              className="acc-input"
+                              type="text"
+                              size="50"
+                            />
                           </label>
                           <label>
                             <h2>CVV</h2>
-                            <input className="input" type="text" size="50" />
+                            <input
+                              className="acc-input"
+                              type="text"
+                              size="50"
+                            />
                           </label>
                         </div>
                         <div className="r2">
@@ -498,7 +514,11 @@ const AccountInfo = (extraNavId) => {
                         <div style={{ marginBottom: "12px" }}>
                           <label>
                             <h2>UPI ID</h2>
-                            <input className="input" type="text" size="50" />
+                            <input
+                              className="acc-input"
+                              type="text"
+                              size="50"
+                            />
                           </label>
                         </div>
                         <button className="accbut">Pay Now</button>
