@@ -1,31 +1,37 @@
 import React, { useState } from "react";
-import Select from 'react-select'
+import ClearIcon from '@mui/icons-material/Clear';
+import AddIcon from '@mui/icons-material/Add';
 
 const Dondont = () => {
-    const dosOptions = [
-        { value: "Airport", label: "Airport" },
-        { value: "Amusement Park", label: "Amusement Park" },
-        { value: "Apartment", label: "Apartment" },
-    ];
-    const dontOptions = [
-        { value: "Airport", label: "Airport" },
-        { value: "Amusement Park", label: "Amusement Park" },
-        { value: "Apartment", label: "Apartment" },
-    ];
-
 
     const [dos, setdos] = useState([]);
-    const HandleChange1 = (e) => {
-        if (!dos.includes(e.value)) {
-            setdos((prev) => [...prev, e.value]);
+    const [do1, setdo1] = useState("")
+
+    const HandleChange1 = () => {
+        if (!dos.includes(do1)) {
+            setdos((prev) => [...prev, do1]);
+            document.getElementById('myInput').value = '';
+
         }
     };
     const [donts, setdonts] = useState([]);
+    const [do2, setdo2] = useState("")
+
     const HandleChange2 = (e) => {
-        if (!donts.includes(e.value)) {
-            setdonts((prev) => [...prev, e.value]);
+        if (!donts.includes(do2)) {
+            setdonts((prev) => [...prev, do2]);
+            document.getElementById('myInput').value = '';
+
         }
     };
+    const deleteoptn1 = (e) => {
+        dos.splice(e, 1);
+        setdos((prev) => [...prev])
+    }
+    const deleteoptn2 = (e) => {
+        donts.splice(e, 1);
+        setdonts((prev) => [...prev])
+    }
 
 
     return (
@@ -33,22 +39,40 @@ const Dondont = () => {
             <div className="row1">
                 <div className="coll1">
                     <h2>Do's</h2>
-                    <Select className="select" options={dosOptions} onChange={HandleChange1} />
+                    <div className="row2">
+                        <input className="input" id="myInput" onChange={(e) => setdo1(e.target.value)} />
+                        <AddIcon className="add" onClick={HandleChange1} />
+                    </div>
                 </div>
+
                 <div className="coll1">
                     <h2>Dont's</h2>
-                    <Select className="select" options={dontOptions} onChange={HandleChange2} />
+                    <div className="row2">
+                        <input className="input" id="myInput" onChange={(e) => setdo2(e.target.value)} />
+                        <AddIcon className="add" onClick={HandleChange2} />
+                    </div>
                 </div>
             </div>
             <div className="row1">
                 <div className="coll1">
-                    {dos.map((item, index) => (
-                        <div className="optn" key={index}>{item}</div>
+                    {dos.map((item, index) => (<>
+                        <div className="optns">
+                            <div className="optn" key={index}>
+                                {item}
+                            </div>
+                            <ClearIcon onClick={() => deleteoptn1(index)} />
+                        </div></>
                     ))}
                 </div>
+                <br /><br /><br /><br />
                 <div className="coll1">
                     {donts.map((item, index) => (
-                        <div className="optn" key={index}>{item}</div>
+                        <><div className="optns">
+                            <div className="optn" key={index}>
+                                {item}
+                            </div>
+                            <ClearIcon onClick={() => deleteoptn2(index)} />
+                        </div></>
                     ))}
                 </div>
             </div>

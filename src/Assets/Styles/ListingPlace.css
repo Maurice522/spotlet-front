@@ -21,10 +21,22 @@ body {
   font-size: 18px;
   border-radius: 5px;
   color: black;
-  text-align: center;
 }
-hr{
-  border: 1px solid #D9D9D9;
+.lginput {
+  border: 1px solid grey;
+  width: 710px;
+  height: 32px;
+  font-size: 18px;
+  border-radius: 5px;
+  color: black;
+}
+
+.add {
+  color: #ea4235;
+  border: 2px solid #ea4235;
+}
+hr {
+  border: 1px solid #d9d9d9;
   border-radius: 4px;
   width: 1000px;
 }
@@ -45,7 +57,21 @@ hr{
   padding: 20px;
   align-items: center;
 }
-.row2{
+.radio{
+  background-color: #ea4235;
+  color: #ea4235;
+  margin: 8px;
+  border: 1px solid #ea4235;
+  height: 1.5em;
+  width: 1.5em;
+}
+.pict {
+  width: 440px;
+  height: 180px;
+  border: 1px solid black;
+  margin: 60px;
+}
+.row2 {
   display: flex;
   flex-direction: row;
   position: relative;
