@@ -223,6 +223,7 @@ const Search = () => {
 						rating={true}
 						setFavorites={setFav}
 						review={true}
+						border={true}
 					/>
 				))}
 			</div>

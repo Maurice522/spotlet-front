@@ -16,7 +16,7 @@ const gridActionButton = (props) => (
 		<Button
 			variant="outlined"
 			sx={{
-				padding: "5px 10px",
+				padding: "6px 10px",
 				border: "1px solid #EA4235",
 				color: "black",
 				fontWeight: "600",
@@ -211,46 +211,46 @@ const bookingGrid = [
 		headerName: "Booking ID",
 		field: "BookingId",
 		renderCell: gridBookingID,
-		width: "150",
-		textAlign: "Center",
+		width: "180",
+		headerAlign: "Center",
 	},
 	{
 		headerName: "Status",
 		field: "Status",
 		renderCell: gridBookingStatus,
-		width: "150",
-		textAlign: "Center",
+		width: "180",
+		headerAlign: "Center",
 	},
 	{
 		headerName: "Date",
 		field: "Date",
-		width: "150",
-		textAlign: "Center",
+		width: "160",
+		headerAlign: "Center",
 	},
 	{
 		headerName: "Time, Duration",
 		field: "TimeDuration",
-		width: "200",
-		textAlign: "Center",
+		width: "225",
+		headerAlign: "Center",
 	},
 	{
 		headerName: "Attendies",
 		field: "Attendies",
-		width: "120",
-		textAlign: "Center",
+		width: "150",
+		headerAlign: "Center",
 	},
 	{
 		headerName: "Total Amount",
 		field: "TotalAmount",
-		width: "150",
-		textAlign: "Center",
+		width: "140",
+		headerAlign: "Center",
 	},
 	{
 		headerName: "Action",
 		renderCell: gridActionButton,
 		field: "action",
-		width: "150",
-		textAlign: "Center",
+		width: "120",
+		headerAlign: "Center",
 	},
 ];
 
@@ -319,26 +319,26 @@ const listingGrid = [
 		field: "BookingId",
 		renderCell: gridBookingID,
 		width: "200",
-		textAlign: "Center",
+		headerAlign: "Center",
 	},
 	{
 		headerName: "Status",
 		field: "Status",
 		renderCell: gridBookingStatus,
 		width: "200",
-		textAlign: "Center",
+		headerAlign: "Center",
 	},
 	{
 		headerName: "Booking Request",
 		field: "BookingRequest",
 		width: "200",
-		textAlign: "Center",
+		headerAlign: "Center",
 	},
 	{
 		headerName: "Action",
 		field: "action",
-		width: "250",
-		textAlign: "Center",
+		width: "150",
+		headerAlign: "Center",
 	},
 ];
 
@@ -367,7 +367,7 @@ const BookingList = () => {
 				{active === 0 ? (
 					<div
 						style={{
-							width: "80vw",
+							width: "85vw",
 							margin: "40px auto",
 							height: "80vh",
 						}}>
@@ -376,7 +376,7 @@ const BookingList = () => {
 				) : (
 					<div
 						style={{
-							width: "55vw",
+							width: "57vw",
 							margin: "40px auto",
 							height: "80vh",
 						}}>

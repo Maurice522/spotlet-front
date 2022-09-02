@@ -91,6 +91,7 @@ const SectionProperty = () => {
 						setFavorites={setFavorites}
 						key={index}
 						handleClick={handleClick}
+						border={false}
 					/>
 				))}
 			</div>

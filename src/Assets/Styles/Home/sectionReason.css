@@ -33,7 +33,7 @@
 .reason-image {
 	width: 50%;
 	max-width: 500px;
-	aspect-ratio: 1 / 2;
+	height: calc(100vh - 70px);
 	display: block;
 	border-radius: 30px;
 }

@@ -10,12 +10,13 @@ const PropertyInfo = ({
 	rating,
 	setFavorites,
 	review,
+	border,
 }) => {
 	return (
 		<div
 			className="item"
 			style={{
-				border: "1px solid #00aaff",
+				border: border && "1px solid #00aaff",
 			}}>
 			<div className="text-on-image-container-2">
 				<img
