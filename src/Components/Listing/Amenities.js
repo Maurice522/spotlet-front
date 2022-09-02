@@ -5,20 +5,22 @@ import ClearIcon from '@mui/icons-material/Clear';
 
 const Amenities = () => {
 	const options = [
-		{ value: "Airport", label: "Airport" },
-		{ value: "Amusement Park", label: "Amusement Park" },
-		{ value: "Apartment", label: "Apartment" },
+		{ value: "Air Conditioning", label: "Air Conditioning" },
+		{ value: "Wi-Fi", label: "Wi-Fi" },
+		{ value: "Fridge", label: "Fridge" },
+		{ value: "Projector", label: "Projector" },
+		{ value: "Paints", label: "Paints" },
 	];
 
-	const [selOption, setselOption] = useState([]);
+	const [amenities, setAmenities] = useState([]);
 	const HandleChange = (e) => {
-		if (!selOption.includes(e.value)) {
-			setselOption((prev) => [...prev, e.value]);
+		if (!amenities.includes(e.value)) {
+			setAmenities((prev) => [...prev, e.value]);
 		}
 	};
 	const deleteoptn = (e) => {
-		selOption.splice(e, 1);
-		setselOption((prev) => [...prev])
+		Amenities.splice(e, 1);
+		setAmenities((prev) => [...prev])
 	}
 
 	return (
@@ -31,7 +33,7 @@ const Amenities = () => {
 			</div>
 			<div className="row1">
 				<div className="coll1">
-					{selOption.map((item, index) => (
+					{amenities.map((item, index) => (
 						<>
 							<div className="optns">
 								<div className="optn" key={index}>
@@ -46,7 +48,7 @@ const Amenities = () => {
 			</div>
 			<div className='row1'>
 				<div className='coll1'>
-					<button className='continue'>Continue</button>
+					<button className='continue' onClick={() => console.log(amenities)}>Continue</button>
 				</div>
 			</div>
 		</div>

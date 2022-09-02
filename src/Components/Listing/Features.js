@@ -7,20 +7,20 @@ import ClearIcon from '@mui/icons-material/Clear';
 
 const Features = () => {
     const options = [
-        { value: "Airport", label: "Airport" },
-        { value: "Amusement Park", label: "Amusement Park" },
-        { value: "Apartment", label: "Apartment" },
+        { value: "Location Manager", label: "Location Manager" },
+        { value: "Fireplace", label: "Fireplace" },
+        { value: "Terrace Garden", label: "Terrace Garden" },
     ];
 
-    const [selOption, setselOption] = useState([]);
+    const [features, setFeatures] = useState([]);
     const HandleChange = (e) => {
-        if (!selOption.includes(e.value)) {
-            setselOption((prev) => [...prev, e.value]);
+        if (!features.includes(e.value)) {
+            setFeatures((prev) => [...prev, e.value]);
         }
     };
     const deleteoptn = (e) => {
-        selOption.splice(e, 1);
-        setselOption((prev) => [...prev])
+        features.splice(e, 1);
+        setFeatures((prev) => [...prev])
     }
 
     return (
@@ -33,7 +33,7 @@ const Features = () => {
             </div>
             <div className="row1">
                 <div className="coll1">
-                    {selOption.map((item, index) => (
+                    {features.map((item, index) => (
                         <>
                             <div className="optns">
                                 <div className="optn" key={index}>
@@ -48,7 +48,7 @@ const Features = () => {
             </div>
             <div className='row1'>
                 <div className='coll1'>
-                    <button className='continue'>Continue</button>
+                    <button className='continue' onClick={() => console.log(features)}>Continue</button>
                 </div>
             </div>
         </div>

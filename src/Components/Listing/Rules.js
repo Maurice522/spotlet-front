@@ -4,18 +4,17 @@ import ClearIcon from '@mui/icons-material/Clear';
 
 
 const Rules = () => {
-	const [selOption, setselOption] = useState([]);
+	const [rules, setRules] = useState([]);
 	const [optn, setoptn] = useState("")
 	const HandleChange = () => {
-		if (!selOption.includes(optn)){
-			setselOption((prev) => [...prev,optn]);
+		if (!rules.includes(optn)){
+			setRules((prev) => [...prev,optn]);
 			document.getElementById('myInput').value='';
-			console.log("dasda");
 		}
 	};
 	const deleteoptn = (e) => {
-		selOption.splice(e, 1);
-		setselOption((prev) => [...prev])
+		rules.splice(e, 1);
+		setRules((prev) => [...prev])
 	}
   return (
     <div className="lbox">
@@ -30,7 +29,7 @@ const Rules = () => {
 			</div>
 			<div className="row1">
 				<div className="coll1">
-					{selOption.map((item, index) => (
+					{rules.map((item, index) => (
 						<>
 							<div className="optns">
 								<div className="optn" key={index}>
@@ -45,7 +44,7 @@ const Rules = () => {
 			</div>
 			<div className='row1'>
 				<div className='coll1'>
-					<button className='continue'>Continue</button>
+					<button className='continue' onClick={() => console.log(rules)}>Continue</button>
 				</div>
 			</div>
 		</div>

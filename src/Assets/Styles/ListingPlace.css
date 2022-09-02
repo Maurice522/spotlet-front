@@ -17,15 +17,17 @@ body {
 .input {
   border: 1px solid grey;
   width: 300px;
-  height: 32px;
+  height: 37px;
   font-size: 18px;
+  padding: 1px 15px;
   border-radius: 5px;
   color: black;
 }
 .lginput {
   border: 1px solid grey;
+  padding: 1px 15px;
   width: 710px;
-  height: 32px;
+  height: 37px;
   font-size: 18px;
   border-radius: 5px;
   color: black;
@@ -57,7 +59,7 @@ hr {
   padding: 20px;
   align-items: center;
 }
-.radio{
+.radio {
   background-color: #ea4235;
   color: #ea4235;
   margin: 8px;
@@ -103,15 +105,16 @@ h2 {
 }
 .lnav-text {
   /* text-decoration: none; */
-  font-weight: 900;
-  font-size: 22px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 18px;
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 17px 20px;
   border-radius: 4px;
   background-color: white;
   border: none;
-  margin-left: 20px;
+  margin-left: 60px;
   /* border-color: white; */
 }
 
