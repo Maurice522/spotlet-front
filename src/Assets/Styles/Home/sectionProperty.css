@@ -18,8 +18,8 @@
 .property-list {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 20px;
-	row-gap: 25px;
+	gap: 25px;
+	row-gap: 30px;
 }
 
 .property-image {
