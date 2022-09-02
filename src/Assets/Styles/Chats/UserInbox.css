@@ -1,0 +1,28 @@
+.user-inbox {
+  display: flex;
+  align-items: center;
+  padding: 9px 15px;
+  border-bottom: 1px solid grey;
+  cursor: pointer;
+  position: relative;
+}
+.user-inbox:hover {
+  background-color: #f8f8f8;
+}
+.user-inbox > img,
+.user-dp {
+  width: 45px;
+  height: 45px;
+  border-radius: 200%;
+  margin-right: 15px;
+}
+.user-inbox > div > h6 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.user-inbox > div > p {
+  margin: 4px 0px 0px 0px;
+  color: grey;
+  font-size: 14px;
+}

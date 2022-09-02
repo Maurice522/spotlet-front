@@ -8,64 +8,50 @@ const Location = () => {
             <div className='row1'>
                 <div className='coll1'>
                     <h2>Address</h2>
-                    <TextareaAutosize
-                        minRows={3}
-                        style={{ width: 900 }}
-                    />
+                    <input className="lginput" />
                 </div>
             </div>
 
             <div className='row1'>
                 <div className='coll1'>
                     <h2>City</h2>
-                    <TextareaAutosize
-                        minRows={2}
-                        style={{ width: 425 }}
-                    />
+                    <input className="input" />
+
                 </div>
                 <div className='coll1'>
                     <h2>State</h2>
-                    <TextareaAutosize
-                        minRows={2}
-                        style={{ width: 425 }}
-                    />
+                    <input className="input" />
+
                 </div>
             </div>
 
             <div className='row1'>
                 <div className='coll1'>
                     <h2>Country</h2>
-                    <TextareaAutosize
-                        minRows={2}
-                        style={{ width: 425 }}
-                    />
+                    <input className="input" />
                 </div>
                 <div className='coll1'>
                     <h2>Pincode</h2>
-                    <TextareaAutosize
-                        minRows={2}
-                        style={{ width: 425 }}
-                    />
+                    <input className="input" />
                 </div>
             </div>
 
             <div className='row1'>
                 <div className='coll1'>
                     <h2>Landmark (optional)</h2>
-                    <TextareaAutosize
-                        minRows={3}
-                        style={{ width: 900 }}
-                    />
+                    <input className="lginput" />
                 </div>
             </div>
 
             <div className='row1'>
                 <div className='coll1'>
                     <h2>Location Details - Map</h2>
-                    <TextareaAutosize
-                        minRows={3}
-                        style={{ width: 900 }}
-                    />
+                    <input className="lginput" />
+                </div>
+            </div>
+            <div className='row1'>
+                <div className='coll1'>
+                    <button className='continue'>Continue</button>
                 </div>
             </div>
 

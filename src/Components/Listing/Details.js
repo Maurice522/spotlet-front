@@ -11,7 +11,7 @@ const options = [
 ]
 
 
-const Details = () => {
+const Details = (props) => {
   return (
     <div className='lbox'>
       <div className='row1'>
@@ -27,11 +27,18 @@ const Details = () => {
       <div className='row1'>
         <div className='coll1'>
           <h2>Street Parking Facility Available</h2>
-          <Checkbox />
+          <div className='row2'>
+          <input type="radio" className='radio' name="yes_no" checked/>YES
+          <input type="radio" className='radio' name="yes_no"/> NO
+          </div>
+          
         </div>
         <div className='coll1'>
           <h2>Security Camera Available</h2>
-          <Checkbox />
+          <div className='row2'>
+          <input type="radio" className='radio' name="yes_no" checked/>YES
+          <input type="radio" className='radio' name="yes_no"/> NO
+          </div>
         </div>
       </div>
       <div className='row1'>
@@ -43,9 +50,13 @@ const Details = () => {
             style={{ width: 690 }}
           />
         </div>
-
       </div>
-    </div>
+      <div className='row1'>
+        <div className='coll1'>
+        <button className='continue' onClick={console.log(props.section)}>Continue</button>
+        </div>
+      </div>
+    </div >
 
   )
 }
