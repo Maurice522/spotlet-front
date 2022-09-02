@@ -76,11 +76,6 @@ const Dondont = () => {
                     ))}
                 </div>
             </div>
-            <div className='row1'>
-                <div className='coll1'>
-                    <button className='continue'>Continue</button>
-                </div>
-            </div>
         </div>
     );
 }

@@ -28,16 +28,16 @@ const Details = (props) => {
         <div className='coll1'>
           <h2>Street Parking Facility Available</h2>
           <div className='row2'>
-          <input type="radio" className='radio' name="yes_no" checked/>YES
-          <input type="radio" className='radio' name="yes_no"/> NO
+          <input type="radio" className='radio' name="stp" checked/>YES
+          <input type="radio" className='radio' name="stp"/> NO
           </div>
           
         </div>
         <div className='coll1'>
           <h2>Security Camera Available</h2>
           <div className='row2'>
-          <input type="radio" className='radio' name="yes_no" checked/>YES
-          <input type="radio" className='radio' name="yes_no"/> NO
+          <input type="radio" className='radio' name="sca" checked/>YES
+          <input type="radio" className='radio' name="sca"/> NO
           </div>
         </div>
       </div>
@@ -51,11 +51,7 @@ const Details = (props) => {
           />
         </div>
       </div>
-      <div className='row1'>
-        <div className='coll1'>
-        <button className='continue' onClick={console.log(props.section)}>Continue</button>
-        </div>
-      </div>
+      
     </div >
 
   )

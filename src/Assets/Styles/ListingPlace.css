@@ -5,7 +5,6 @@ body {
 .lbox {
   margin-top: 100px;
   margin-left: 300px;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -64,6 +63,9 @@ hr {
   border: 1px solid #ea4235;
   height: 1.5em;
   width: 1.5em;
+}
+.continue1{
+  margin-left: 300px;
 }
 .pict {
   width: 440px;

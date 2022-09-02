@@ -25,11 +25,11 @@ const Contact = () => {
 
             <div className='row1'>
                 <div className='coll1'>
-                    <h2>Alternate person’s name</h2>
+                    <h2>Alternate Person’s name</h2>
                     <input className="input" />
                 </div>
                 <div className='coll1'>
-                    <h2>Alternate person’s Mobile Number</h2>
+                    <h2>Alternate Mobile Number</h2>
                     <input className="input" />
                 </div>
             </div>
