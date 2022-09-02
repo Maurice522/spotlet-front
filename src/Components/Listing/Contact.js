@@ -8,44 +8,29 @@ const Contact = () => {
         <div className='row1'>
                 <div className='coll1'>
                     <h2>Name</h2>
-                    <TextareaAutosize
-                        minRows={3}
-                        style={{ width: 900 }}
-                    />
+                    <input className="lginput" />
                 </div>
             </div>
 
             <div className='row1'>
                 <div className='coll1'>
                     <h2>Mobile Number</h2>
-                    <TextareaAutosize
-                        minRows={2}
-                        style={{ width: 425 }}
-                    />
+                    <input className="input" />
                 </div>
                 <div className='coll1'>
                     <h2>Email Id</h2>
-                    <TextareaAutosize
-                        minRows={2}
-                        style={{ width: 425 }}
-                    />
+                    <input className="input" />
                 </div>
             </div>
 
             <div className='row1'>
                 <div className='coll1'>
                     <h2>Alternate person’s name</h2>
-                    <TextareaAutosize
-                        minRows={2}
-                        style={{ width: 425 }}
-                    />
+                    <input className="input" />
                 </div>
                 <div className='coll1'>
                     <h2>Alternate person’s Mobile Number</h2>
-                    <TextareaAutosize
-                        minRows={2}
-                        style={{ width: 425 }}
-                    />
+                    <input className="input" />
                 </div>
             </div>
     </div>

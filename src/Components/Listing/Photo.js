@@ -19,8 +19,16 @@ const Photo = () => {
                     </div>
                 </div>
             </div>
+            <div className='row1'>
+                <div className='pict'></div>
+                <div className='pict'></div>
+            </div>
+            <div className='row1'>
+                <div className='pict'></div>
+                <div className='pict'></div>
+            </div>
         </div>
-        <img src={'blob:http://localhost:3000/70f34505-0b25-403e-9dc8-23fd4b1a190c'}/>
+        
     </div>
   )
 }

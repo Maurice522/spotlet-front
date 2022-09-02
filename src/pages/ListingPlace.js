@@ -136,7 +136,7 @@ const ListingPlace = () => {
                 </div>
             </nav>
             <div>
-            {section==="Details & Description"?<Details/>:""}
+            {section==="Details & Description"?<Details section={"Details & Description"}/>:""}
             {section==="Location"?<Location/>:""}
             {section==="Amenities"?<Amenities/>:""}
             {section==="Photo"?<Photo/>:""}
