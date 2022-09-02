@@ -4,7 +4,7 @@ import Footer from "../Components/Footer";
 import "../Assets/Styles/listDetails.css";
 import { BiArrowBack } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { GoPrimitiveDot } from "react-icons/go";
 import SyncfusionTable from "../Components/BookingListing/SyncFusionTable";
 
@@ -18,17 +18,17 @@ const ListDetails = ({ setFinal }) => {
 				gap: "5px",
 			}}>
 			<GoPrimitiveDot color="#EA4235" />
-			{props.Name}
+			{props.row.Name}
 		</div>
 	);
 
 	const gridActionButton = (props) => (
-		<Link to={props.to} style={{ textDecoration: "none" }}>
+		<Link to={props.row.to} style={{ textDecoration: "none" }}>
 			<Button
 				variant="outlined"
 				onClick={() => setFinal(true)}
 				sx={{
-					width: "50%",
+					padding: "6px 10px",
 					border: "1px solid #EA4235",
 					color: "black",
 					fontWeight: "600",
@@ -42,10 +42,11 @@ const ListDetails = ({ setFinal }) => {
 
 	const gridBookingStatus = (props) => {
 		let color;
-		if (props.Status === "Under Review") color = "#E8B500";
-		else if (props.Status === "Approved") color = "#0079D7";
-		else if (props.Status === "Cancelled") color = "#E20000";
-		else if (props.Status === "Booked") color = "#19AF00";
+		console.log(props);
+		if (props.row.Status === "Under Review") color = "#E8B500";
+		else if (props.row.Status === "Approved") color = "#0079D7";
+		else if (props.row.Status === "Cancelled") color = "#E20000";
+		else if (props.row.Status === "Booked") color = "#19AF00";
 
 		return (
 			<div
@@ -53,13 +54,15 @@ const ListDetails = ({ setFinal }) => {
 					textAlign: "center",
 					color: color,
 				}}>
-				{props.Status}
+				{props.row.Status}
 			</div>
 		);
 	};
 
 	const listDetailsData = [
 		{
+			id: 1,
+			action: gridActionButton,
 			to: "/listdetailsapproval",
 			Name: "John Doe",
 			Status: "Under Review",
@@ -69,6 +72,8 @@ const ListDetails = ({ setFinal }) => {
 			TotalAmount: 50000,
 		},
 		{
+			id: 2,
+			action: gridActionButton,
 			to: "/listdetailsapproval",
 			Name: "John Doe",
 			Status: "Approved",
@@ -78,6 +83,8 @@ const ListDetails = ({ setFinal }) => {
 			TotalAmount: 50000,
 		},
 		{
+			id: 3,
+			action: gridActionButton,
 			to: "/listdetailsapproval",
 			Name: "John Doe",
 			Status: "Approved",
@@ -87,6 +94,8 @@ const ListDetails = ({ setFinal }) => {
 			TotalAmount: 50000,
 		},
 		{
+			id: 4,
+			action: gridActionButton,
 			to: "/listdetailsapproval",
 			Name: "John Doe",
 			Status: "Cancelled",
@@ -96,6 +105,8 @@ const ListDetails = ({ setFinal }) => {
 			TotalAmount: 50000,
 		},
 		{
+			id: 5,
+			action: gridActionButton,
 			to: "/listdetailsapproval",
 			Name: "John Doe",
 			Status: "Under Review",
@@ -105,6 +116,8 @@ const ListDetails = ({ setFinal }) => {
 			TotalAmount: 50000,
 		},
 		{
+			id: 6,
+			action: gridActionButton,
 			to: "/listdetailsapproval",
 			Name: "John Doe",
 			Status: "Under Review",
@@ -114,6 +127,8 @@ const ListDetails = ({ setFinal }) => {
 			TotalAmount: 50000,
 		},
 		{
+			id: 7,
+			action: gridActionButton,
 			to: "/listdetailsapproval",
 			Name: "John Doe",
 			Status: "Under Review",
@@ -126,46 +141,56 @@ const ListDetails = ({ setFinal }) => {
 
 	const listDetailsGrid = [
 		{
-			headerText: "Name",
-			template: gridBookingName,
-			width: "150",
+			headerClassName: "super-app-theme--header",
+			headerName: "Name",
+			field: "Name",
+			renderCell: gridBookingName,
+			width: "170",
 			textAlign: "Center",
 		},
 
 		{
-			headerText: "Date Of Request",
+			headerClassName: "super-app-theme--header",
+			headerName: "Date Of Request",
 			field: "DateOfRequest",
-			width: "200",
+			width: "170",
 			textAlign: "Center",
 		},
 		{
-			headerText: "Date Of Event",
+			headerClassName: "super-app-theme--header",
+			headerName: "Date Of Event",
 			field: "DateOfEvent",
-			width: "200",
+			width: "180",
 			textAlign: "Center",
 		},
 		{
-			headerText: "Time, Duration",
+			headerClassName: "super-app-theme--header",
+			headerName: "Time, Duration",
 			field: "TimeDuration",
-			width: "200",
+			width: "230",
 			textAlign: "Center",
 		},
 		{
-			headerText: "Total Amount",
+			headerClassName: "super-app-theme--header",
+			headerName: "Total Amount",
 			field: "TotalAmount",
 			width: "150",
 			textAlign: "Center",
 		},
 		{
-			headerText: "Status",
-			template: gridBookingStatus,
-			width: "150",
+			headerClassName: "super-app-theme--header",
+			headerName: "Status",
+			field: "Status",
+			renderCell: gridBookingStatus,
+			width: "170",
 			textAlign: "Center",
 		},
 		{
-			headerText: "Action",
-			template: gridActionButton,
-			width: "250",
+			headerClassName: "super-app-theme--header",
+			headerName: "Action",
+			field: "action",
+			renderCell: gridActionButton,
+			width: "150",
 			textAlign: "Center",
 		},
 	];
@@ -191,16 +216,20 @@ const ListDetails = ({ setFinal }) => {
 					</div>
 				</div>
 
-				<div
-					style={{
+				<Box
+					sx={{
 						width: "90vw",
+						height: "80vh",
 						margin: "40px auto",
+						// "& .super-app-theme--header": {
+						// 	backgroundColor: "rgba(255, 7, 0, 0.55)",
+						// },
 					}}>
 					<SyncfusionTable
 						UsersData={listDetailsData}
 						UsersGrid={listDetailsGrid}
 					/>
-				</div>
+				</Box>
 			</div>
 			<Footer />
 		</div>

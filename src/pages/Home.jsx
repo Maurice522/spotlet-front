@@ -18,7 +18,7 @@ function Home() {
 
 	return (
 		<div>
-			<Header extraNavId={id} />
+			<Header extraNavId="id-2" />
 			<FormFilter />
 			<Content />
 			<Footer />
@@ -28,3 +28,6 @@ function Home() {
 
 export default Home;
 
+// 1) Adjust gap in booking list
+// 2) Blue border removal
+// 3) Height setup in sectionReason

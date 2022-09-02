@@ -81,10 +81,8 @@ const SectionMenu = () => {
 					}}
 					onClick={() => setShoot(1)}>
 					<GiFilmProjector size="40px" />
-					<div className={`menu-heading-item`}>
-						Film Shooting
-						<AiOutlineDown size="15px" />
-					</div>
+					<div className={`menu-heading-item`}>Film Shooting</div>
+					<AiOutlineDown size="15px" />
 				</div>
 				<div
 					style={{
@@ -97,10 +95,8 @@ const SectionMenu = () => {
 					}}
 					onClick={() => setShoot(2)}>
 					<MdOutlineCorporateFare size="40px" />
-					<div className={`menu-heading-item`}>
-						Corporate Shooting
-						<AiOutlineDown size="15px" />
-					</div>
+					<div className={`menu-heading-item`}>Corporate Shooting</div>
+					<AiOutlineDown size="15px" />
 				</div>
 				<div
 					style={{
@@ -113,10 +109,8 @@ const SectionMenu = () => {
 					}}
 					onClick={() => setShoot(3)}>
 					<BsPersonFill size="40px" />
-					<div className={`menu-heading-item`}>
-						Individual Shooting
-						<AiOutlineDown size="15px" />
-					</div>
+					<div className={`menu-heading-item`}>Individual Shooting</div>
+					<AiOutlineDown size="15px" />
 				</div>
 			</div>
 			<div className="grid-menu">{gridItems}</div>

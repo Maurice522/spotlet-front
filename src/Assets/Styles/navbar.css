@@ -3,8 +3,8 @@
 	padding: 0;
 	top: 0;
 	width: 100%;
-	min-height: 70px;
-	max-height: 70px;
+	min-height: 65px;
+	max-height: 65px;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
