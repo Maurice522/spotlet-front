@@ -3,7 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
 
 
-const Rules = () => {
+const Rules = ({showSection}) => {
 	const [rules, setRules] = useState([]);
 	const [optn, setoptn] = useState("")
 	const HandleChange = () => {
@@ -44,7 +44,10 @@ const Rules = () => {
 			</div>
 			<div className='row1'>
 				<div className='coll1'>
-					<button className='continue' onClick={() => console.log(rules)}>Continue</button>
+					<button className='continue' onClick={() => {
+						console.log(rules)
+						showSection("Contact Details");
+						}}>Continue</button>
 				</div>
 			</div>
 		</div>

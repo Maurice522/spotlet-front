@@ -11,7 +11,7 @@ const options = [
   { value: "Apartment", label: "Apartment" },
 ];
 
-const Details = (props) => {
+const Details = ({showSection}) => {
   const user_id = useSelector(selectUser_id);
   const [property_desc, setPropertyDescr] = useState({
     user_id: "",
@@ -117,8 +117,8 @@ const Details = (props) => {
           <button
             className="continue"
             onClick={() => {
-              console.log(props.section);
               console.log(property_desc);
+              showSection("Location")
             }}
           >
             Continue

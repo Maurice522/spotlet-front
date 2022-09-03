@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ClearIcon from '@mui/icons-material/Clear';
 import AddIcon from '@mui/icons-material/Add';
 
-const Dondont = () => {
+const Dondont = ({showSection}) => {
 
     const [do_s, setdo_s] = useState([]);
     const [do1, setdo1] = useState("")
@@ -84,6 +84,7 @@ const Dondont = () => {
                             dont_s
                         }
                         console.log(do_and_dont);
+                        showSection("Pricing")
                     }}>Continue</button>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 
-const Contact = () => {
+const Contact = ({showSection}) => {
   const [contact_det, setContactDet] = useState({
     name: "",
     mobile_num: "",
@@ -68,6 +68,19 @@ const Contact = () => {
             onChange={handleChange}
             value={contact_det.alt_mobile}
           />
+        </div>
+      </div>
+      <div className="row1">
+        <div className="coll1">
+          <button
+            className="continue"
+            onClick={() => {
+              console.log(contact_det);
+              showSection("GST Details")
+            }}
+          >
+            Continue
+          </button>
         </div>
       </div>
     </div>

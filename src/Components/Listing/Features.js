@@ -5,7 +5,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 
 
 
-const Features = () => {
+const Features = ({showSection}) => {
     const options = [
         { value: "Location Manager", label: "Location Manager" },
         { value: "Fireplace", label: "Fireplace" },
@@ -48,7 +48,10 @@ const Features = () => {
             </div>
             <div className='row1'>
                 <div className='coll1'>
-                    <button className='continue' onClick={() => console.log(features)}>Continue</button>
+                    <button className='continue' onClick={() => {
+                        console.log(features)
+                        showSection("Do’s & Don’ts");
+                        }}>Continue</button>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@ import Select from 'react-select'
 import ClearIcon from '@mui/icons-material/Clear';
 
 
-const Amenities = () => {
+const Amenities = ({showSection}) => {
 	const options = [
 		{ value: "Air Conditioning", label: "Air Conditioning" },
 		{ value: "Wi-Fi", label: "Wi-Fi" },
@@ -48,7 +48,10 @@ const Amenities = () => {
 			</div>
 			<div className='row1'>
 				<div className='coll1'>
-					<button className='continue' onClick={() => console.log(amenities)}>Continue</button>
+					<button className='continue' onClick={() => {
+						console.log(amenities)
+						showSection("Photo");
+						}}>Continue</button>
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 
-const Location = () => {
+const Location = ({showSection}) => {
   const [property_address, setPropertyAddress] = useState({
     address: "",
     city: "",
@@ -101,7 +101,10 @@ const Location = () => {
         <div className="coll1">
           <button
             className="continue"
-            onClick={() => console.log(property_address)}
+            onClick={() => {
+              console.log(property_address)
+              showSection("Amenities");
+            }}
           >
             Continue
           </button>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Switch from "@mui/material/Switch";
 
-const Pricing = () => {
+const Pricing = ({showSection}) => {
   const [film, setfilm] = useState({
     hourly_rate: 0,
     isPresent: false,
@@ -272,6 +272,7 @@ const Pricing = () => {
                 individual : event
               };
               console.log(pricing);
+              showSection("Timings");
             }}
           >
             Continue
