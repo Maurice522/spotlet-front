@@ -1,7 +1,8 @@
 .side-section-image-wrapper {
-	width: 20vw;
-	aspect-ratio: 2 / 1;
+	width: 21vw;
+	height: 150px;
 	border-radius: 8px;
+	margin-bottom: 10px;
 }
 
 .image {

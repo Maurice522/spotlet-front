@@ -3,8 +3,8 @@
 }
 
 .property-page-main-image {
+	height: calc(100vh - 100px);
 	width: 80vw;
-	aspect-ratio: 11 / 4;
 	border-radius: 10px;
 	margin: 10px auto;
 	overflow-y: hidden;

@@ -18,43 +18,43 @@ const PropertyInfo = ({
 			style={{
 				border: border && "1px solid #00aaff",
 			}}>
-			<div className="text-on-image-container-2">
-				<img
-					src={item.image}
-					alt={`property-${index + 1}`}
-					className="property-image"
-				/>
-				<div className="favorite-icon-wrapper">
-					{favorites.includes(index) === true ? (
-						<MdFavorite
-							size="32px"
-							color="#ff6767"
-							onClick={() => {
-								setFavorites((prev) =>
-									prev.filter((element) => element !== index)
-								);
-							}}
-						/>
-					) : (
-						<MdFavoriteBorder
-							size="32px"
-							color="#fff"
-							onClick={() => {
-								setFavorites((prev) => [...prev, index]);
-							}}
-						/>
-					)}
-				</div>
-			</div>
-			<div
+			<Link
+				to="/property"
 				style={{
-					paddingLeft: "4px",
+					textDecoration: "none",
+					color: "black",
 				}}>
-				<Link
-					to="/property"
+				<div className="text-on-image-container-2">
+					<img
+						src={item.image}
+						alt={`property-${index + 1}`}
+						className="property-image"
+					/>
+					<div className="favorite-icon-wrapper">
+						{favorites.includes(index) === true ? (
+							<MdFavorite
+								size="28px"
+								color="#ff6767"
+								onClick={() => {
+									setFavorites((prev) =>
+										prev.filter((element) => element !== index)
+									);
+								}}
+							/>
+						) : (
+							<MdFavoriteBorder
+								size="28px"
+								color="#fff"
+								onClick={() => {
+									setFavorites((prev) => [...prev, index]);
+								}}
+							/>
+						)}
+					</div>
+				</div>
+				<div
 					style={{
-						textDecoration: "none",
-						color: "black",
+						paddingLeft: "4px",
 					}}>
 					<div className="property-info-heading">{item.name}</div>
 					<div className="property-info-location">{item.location}</div>
@@ -67,18 +67,23 @@ const PropertyInfo = ({
 						}}>
 						{rating && (
 							<div className="property-info-rating">
-								<Rating name="read-only" value={item.rating} readOnly />
+								<Rating
+									name="read-only"
+									value={item.rating}
+									readOnly
+									size="12px"
+								/>
 							</div>
 						)}
 						{review && (
 							<>
-								<div>( {item.reviewCount} reviews )</div>
+								<div>( {item.reviewCount} )</div>
 								{item.icon}
 							</>
 						)}
 					</div>
-				</Link>
-			</div>
+				</div>
+			</Link>
 		</div>
 	);
 };

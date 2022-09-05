@@ -46,6 +46,8 @@ const Property = ({
 					display: "flex",
 					justifyContent: "flex-start",
 					alignItems: "flex-start",
+					marginBottom: "20px",
+					gap: "5px",
 				}}>
 				<div>Address:</div>
 				<div>
@@ -64,7 +66,7 @@ const Property = ({
 				style={{
 					margin: "10px auto",
 					width: "100%",
-					height: "270px",
+					height: "320px",
 				}}
 			/>
 		</div>
@@ -108,7 +110,7 @@ const Property = ({
 						border: "2px solid #ff5f5f",
 						borderRadius: "5px",
 						marginRight: "20px",
-						padding: "0 5px",
+						padding: "4px 8px",
 						cursor: "pointer",
 					}}>
 					Message the host
@@ -151,6 +153,13 @@ const Property = ({
 				price: "Price",
 				rating: "3",
 			},
+			{
+				image: img1,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "1",
+			},
 		],
 		[
 			{
@@ -159,6 +168,13 @@ const Property = ({
 				location: "Location of Property",
 				price: "Price",
 				rating: "3",
+			},
+			{
+				image: img1,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "1",
 			},
 			{
 				image: img1,
@@ -189,6 +205,13 @@ const Property = ({
 				location: "Location of Property",
 				price: "Price",
 				rating: "3",
+			},
+			{
+				image: img1,
+				name: "Name of Property",
+				location: "Location of Property",
+				price: "Price",
+				rating: "1",
 			},
 			{
 				image: img1,
@@ -206,10 +229,10 @@ const Property = ({
 	const similarProperties = (
 		<div
 			style={{
-				width: "80%",
+				width: "100%",
 				margin: "0 auto",
 				display: "grid",
-				gridTemplateColumns: "auto repeat(3, 1fr) auto",
+				gridTemplateColumns: "auto repeat(4, 1fr) auto",
 				gap: "25px",
 			}}>
 			<div
@@ -253,6 +276,15 @@ const Property = ({
 		</div>
 	);
 
+	const hostRules = [
+		"lorem ipsum donor lorem ipsum donor",
+		"lorem ipsum donor lorem ipsum donor",
+		"lorem ipsum donor lorem ipsum donor",
+		"lorem ipsum donor lorem ipsum donor",
+		"lorem ipsum donor lorem ipsum donor",
+		"lorem ipsum donor lorem ipsum donor",
+	];
+
 	const uniqueFeatures = [
 		"Location Manager",
 		"Fireplace",
@@ -283,7 +315,8 @@ const Property = ({
 			style={{
 				width: "100%",
 				display: "flex",
-				justifyContent: "space-around",
+				// justifyContent: "space-around",
+				gap: "50px",
 				alignItems: "center",
 				fontFamily: "Rubik",
 				fontStyle: "normal",
@@ -332,13 +365,39 @@ const Property = ({
 		"Music Album Shoot",
 	];
 
+	const cancellationPolicies = [
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	];
+
+	const [expanded, setExpanded] = useState([
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+	]);
+
 	const accordion = [
 		{
+			expanded: expanded[0],
 			title: "Description of the property",
-			info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat.",
+			info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat.",
 			type: "text",
 		},
 		{
+			expanded: expanded[1],
 			title: "Amenities",
 			info: [
 				"Air Conditioning",
@@ -356,16 +415,19 @@ const Property = ({
 			type: "list",
 		},
 		{
+			expanded: expanded[2],
 			title: "Rules of the host",
-			info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam.Ut aliquet tristique nisl vitae volutpat.Nulla aliquet porttitor venenatis.Donec a dui et dui fringilla consectetur id nec massa.Aliquam erat volutpat.",
-			type: "text",
+			info: hostRules,
+			type: "list",
 		},
 		{
+			expanded: expanded[3],
 			title: "Unique Features",
 			info: uniqueFeatures,
 			type: "list",
 		},
 		{
+			expanded: expanded[4],
 			title: "Timings",
 			info: [
 				"Monday:           7:00am - 11:00pm",
@@ -379,29 +441,34 @@ const Property = ({
 			type: "list",
 		},
 		{
+			expanded: expanded[5],
 			title: "Location",
 			info: locationItem,
 			type: "html",
 		},
 		{
+			expanded: expanded[6],
 			title: "Do's & Don'ts",
 			info: dosDonts,
 			type: "html",
 		},
 		{
+			expanded: expanded[7],
 			title: "Mostly Booked For",
 			info: mostlyBookedFor,
 			type: "list",
 		},
 		{
+			expanded: expanded[8],
 			title: "About the host",
 			info: hostInfo,
 			type: "html",
 		},
 		{
+			expanded: expanded[9],
 			title: "Cancellation Policy",
-			info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat.",
-			type: "text",
+			info: cancellationPolicies,
+			type: "list",
 		},
 	];
 
@@ -428,7 +495,14 @@ const Property = ({
 					margin: "30px auto 50px",
 				}}>
 				{accordion.map((item, index) => (
-					<Accordion key={index}>
+					<Accordion
+						key={index}
+						expanded={item.expanded}
+						onChange={() =>
+							setExpanded((prev) =>
+								prev.map((exp, i) => (i === index ? !exp : exp))
+							)
+						}>
 						<AccordionSummary
 							sx={{
 								fontFamily: "Inter",
@@ -436,6 +510,7 @@ const Property = ({
 								fontWeight: "500",
 								fontSize: "20px",
 								padding: "10px",
+								marginLeft: "8px",
 							}}
 							expandIcon={<MdExpandMore size="31px" color="black" />}
 							aria-controls="panel1a-content"
@@ -448,7 +523,7 @@ const Property = ({
 								fontStyle: "normal",
 								fontWeight: "400",
 								fontSize: "16px",
-								paddingTop: "20px",
+								paddingBottom: "30px",
 							}}>
 							{item.type === "list" ? (
 								<div>
@@ -460,6 +535,7 @@ const Property = ({
 												justifyContent: "flex-start",
 												alignItems: "center",
 												gap: "10px",
+												lineHeight: "32px",
 											}}>
 											<GoPrimitiveDot color="#ff4d4d" />
 											<div>{val}</div>
