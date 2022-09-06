@@ -17,7 +17,7 @@ import Pagination from "@mui/material/Pagination";
 const Search = () => {
 	const propertyDetails = [
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img1,
 			name: "Name of Property",
@@ -26,7 +26,7 @@ const Search = () => {
 			rating: "1",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img2,
 			name: "Name of Property",
@@ -35,7 +35,7 @@ const Search = () => {
 			rating: "2",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img3,
 			name: "Name of Property",
@@ -44,7 +44,7 @@ const Search = () => {
 			rating: "3",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img4,
 			name: "Name of Property",
@@ -53,7 +53,7 @@ const Search = () => {
 			rating: "4",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img5,
 			name: "Name of Property",
@@ -62,7 +62,7 @@ const Search = () => {
 			rating: "5",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img6,
 			name: "Name of Property",
@@ -71,7 +71,7 @@ const Search = () => {
 			rating: "1",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img1,
 			name: "Name of Property",
@@ -80,7 +80,7 @@ const Search = () => {
 			rating: "2",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img2,
 			name: "Name of Property",
@@ -89,7 +89,7 @@ const Search = () => {
 			rating: "3",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img3,
 			name: "Name of Property",
@@ -98,7 +98,7 @@ const Search = () => {
 			rating: "4",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img4,
 			name: "Name of Property",
@@ -107,7 +107,7 @@ const Search = () => {
 			rating: "5",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img5,
 			name: "Name of Property",
@@ -116,7 +116,7 @@ const Search = () => {
 			rating: "1",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img6,
 			name: "Name of Property",
@@ -125,7 +125,7 @@ const Search = () => {
 			rating: "2",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img1,
 			name: "Name of Property",
@@ -134,7 +134,7 @@ const Search = () => {
 			rating: "3",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img2,
 			name: "Name of Property",
@@ -143,7 +143,7 @@ const Search = () => {
 			rating: "4",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img3,
 			name: "Name of Property",
@@ -152,7 +152,7 @@ const Search = () => {
 			rating: "5",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img4,
 			name: "Name of Property",
@@ -161,7 +161,7 @@ const Search = () => {
 			rating: "1",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img5,
 			name: "Name of Property",
@@ -170,7 +170,7 @@ const Search = () => {
 			rating: "2",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img6,
 			name: "Name of Property",
@@ -179,7 +179,7 @@ const Search = () => {
 			rating: "3",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img5,
 			name: "Name of Property",
@@ -188,7 +188,7 @@ const Search = () => {
 			rating: "4",
 		},
 		{
-			icon: <GiFilmProjector size="24px" />,
+			icon: <GiFilmProjector size="24px" color="black" />,
 			reviewCount: 40,
 			image: img6,
 			name: "Name of Property",

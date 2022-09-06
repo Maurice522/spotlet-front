@@ -66,7 +66,7 @@ const Property = ({
 				style={{
 					margin: "10px auto",
 					width: "100%",
-					height: "320px",
+					height: "450px",
 				}}
 			/>
 		</div>

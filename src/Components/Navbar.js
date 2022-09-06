@@ -40,7 +40,7 @@ const Navbar = ({ extraNavId }) => {
 				</div>
 			</Link>
 			<div className={`nav-search ${extraNavId !== "" ? "blacken" : ""}`}>
-				<AiOutlineSearch />
+				<AiOutlineSearch size="20px" />
 				<input
 					type="text"
 					placeholder="Search"
@@ -49,55 +49,63 @@ const Navbar = ({ extraNavId }) => {
 					}`}
 				/>
 			</div>
-			{user ? (
-				<>
-					<Link to="/messages">
-						<div>Messages</div>
-					</Link>
-					<Link to="/bookinglist">
-						<div>Bookings</div>
-					</Link>
-					<Link to="/favourite">
-						<div>Favourites</div>
-					</Link>
-					<Link to="/listing">
-						<div>List Your Site</div>
-					</Link>
-					<Button
-						aria-controls="simple-menu"
-						aria-haspopup="true"
-						onClick={Boolean(anchorEl) === false ? handleClick : handleClose}>
-						{profilePic ? (
-							<img className="user-dp" src={profilePic} alt="profile" />
-						) : (
-							<Avatar />
-						)}
-					</Button>
-					<Menu
-						id="simple-menu"
-						anchorEl={anchorEl}
-						keepMounted
-						open={Boolean(anchorEl)}
-						onClose={handleClose}
-						getContentAnchorEl={null}
-						anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-						transformOrigin={{ horizontal: "center" }}>
-						<MenuItem>Hi, {firstName}</MenuItem>
-						<MenuItem onClick={acntset}>Account Settings</MenuItem>
-						<MenuItem onClick={logout}>Logout</MenuItem>
-					</Menu>
-				</>
-			) : (
-				<>
-					<div>List your places</div>
-					<Link to={"/signin"} state={{ isSignIn: true }}>
-						Sign In
-					</Link>
-					<Link to={"/signin"} state={{ isSignIn: false }}>
-						Sign Up
-					</Link>
-				</>
-			)}
+			<div>
+				{user ? (
+					<>
+						<Link to="/messages">
+							<div>Messages</div>
+						</Link>
+						<Link to="/bookinglist">
+							<div>Bookings</div>
+						</Link>
+						<Link to="/favorite">
+							<div>Favorites</div>
+						</Link>
+						<Link to="/listing">
+							<div>List Your Site</div>
+						</Link>
+						<Button
+							aria-controls="simple-menu"
+							aria-haspopup="true"
+							onClick={Boolean(anchorEl) === false ? handleClick : handleClose}>
+							{profilePic ? (
+								<img className="user-dp" src={profilePic} alt="profile" />
+							) : (
+								<Avatar />
+							)}
+						</Button>
+						<Menu
+							id="simple-menu"
+							anchorEl={anchorEl}
+							keepMounted
+							open={Boolean(anchorEl)}
+							onClose={handleClose}
+							getContentAnchorEl={null}
+							anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+							transformOrigin={{ horizontal: "center" }}>
+							<MenuItem>Hi, {firstName}</MenuItem>
+							<MenuItem onClick={acntset}>Account Settings</MenuItem>
+							<MenuItem onClick={logout}>Logout</MenuItem>
+						</Menu>
+					</>
+				) : (
+					<div
+						style={{
+							display: "flex",
+							jusitfyContent: "space-around",
+							alignItems: "center",
+							gap: "20px",
+						}}>
+						<div>List your places</div>
+						<Link to={"/signin"} state={{ isSignIn: true }}>
+							Sign In
+						</Link>
+						<Link to={"/signin"} state={{ isSignIn: false }}>
+							Sign Up
+						</Link>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };

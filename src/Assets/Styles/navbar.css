@@ -11,7 +11,7 @@
 	font-family: "Inter";
 	font-style: normal;
 	font-weight: 400;
-	font-size: 20px;
+	font-size: 16px;
 	color: white;
 	background: transparent;
 	z-index: 40;
@@ -33,7 +33,7 @@
 	display: flex;
 	align-items: center;
 	color: white;
-	gap: 9px;
+	gap: 15px;
 }
 
 .blacken {
@@ -60,7 +60,7 @@
 	font-family: "Inter";
 	font-style: normal;
 	font-weight: 400;
-	font-size: 20px;
+	font-size: 16px;
 	line-height: 32px;
 }
 
@@ -80,7 +80,7 @@
 
 .nav a {
 	color: white;
-	font-size: 20px;
+	font-size: 16px;
 	text-transform: capitalize;
 	text-decoration: none;
 	transition: text-decoration 0.5s ease;

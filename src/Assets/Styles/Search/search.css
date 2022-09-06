@@ -21,6 +21,13 @@
 .item {
 	padding: 3px;
 	border-radius: 10px;
+	transform: scale(1);
+	transition-duration: 0.5s;
+}
+
+.item:hover {
+	transform: scale(1.1);
+	transition-duration: 0.5s;
 }
 
 .property-info-heading {
@@ -49,4 +56,11 @@
 
 .property-info-rating {
 	font-size: 16px;
+}
+
+.type-of-property-icon {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	z-index: 3;
 }

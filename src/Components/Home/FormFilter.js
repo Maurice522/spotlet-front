@@ -97,21 +97,7 @@ const FormFilter = ({ fullScreen }) => {
 						<option value="4">Select</option>
 					</select>
 				</div>
-				<div>
-					<label
-						htmlFor="when"
-						className={active === true ? "focus-label" : "form-filter-label"}>
-						Date
-					</label>
-					<input
-						type="date"
-						id="when"
-						name="when"
-						placeholder="When?"
-						className={active === true ? "focus-input" : "form-filter-input"}
-						onChange={(e) => console.log(e.target.value)}
-					/>
-				</div>
+
 				<Link
 					to="/search"
 					style={{

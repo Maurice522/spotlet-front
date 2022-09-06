@@ -6,6 +6,7 @@ import Rating from "@mui/material/Rating";
 const PropertyInfo = ({
 	item,
 	index,
+	favPage,
 	favorites,
 	rating,
 	setFavorites,
@@ -31,7 +32,17 @@ const PropertyInfo = ({
 						className="property-image"
 					/>
 					<div className="favorite-icon-wrapper">
-						{favorites.includes(index) === true ? (
+						{favPage == true ? (
+							<MdFavorite
+								size="28px"
+								color="#ff6767"
+								onClick={() => {
+									setFavorites((prev) =>
+										prev.filter((element) => element !== index)
+									);
+								}}
+							/>
+						) : favorites.includes(index) === true ? (
 							<MdFavorite
 								size="28px"
 								color="#ff6767"
@@ -51,6 +62,7 @@ const PropertyInfo = ({
 							/>
 						)}
 					</div>
+					{review && <div className="type-of-property-icon">{item.icon}</div>}
 				</div>
 				<div
 					style={{
@@ -78,7 +90,6 @@ const PropertyInfo = ({
 						{review && (
 							<>
 								<div>( {item.reviewCount} )</div>
-								{item.icon}
 							</>
 						)}
 					</div>

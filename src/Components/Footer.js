@@ -10,21 +10,28 @@ const Footer = () => {
 			items: ["About Us", "Investors", "Careers", "Blogs"],
 		},
 		{
-			title: "Hosting",
+			title: "Host",
 			items: [
-				"List Properties",
-				"Explore Resources",
-				"How to host",
+				"List your space",
 				"Community",
+				"Resource Center",
+				"Guidelines",
+				"Photography",
 			],
+		},
+		{
+			title: "Explore",
+			items: ["Activities", "Location", "Knowledge Base", "Affiliate"],
 		},
 		{
 			title: "Support",
 			items: [
-				"Contact Us",
+				"Help Center",
 				"Cancellation",
+				"Privacy Policy",
 				"Terms and Conditions",
-				"Covid 19 Measures",
+				"Trust and Safety",
+				"Cookie Prefercnce",
 			],
 		},
 		{

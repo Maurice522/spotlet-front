@@ -57,6 +57,10 @@
 	border-radius: 10px;
 }
 
+.menu-image:hover {
+	filter: brightness(50%);
+}
+
 .menu-item-text {
 	position: absolute;
 	color: #ffffff;
