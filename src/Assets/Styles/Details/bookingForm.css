@@ -1,9 +1,10 @@
 .wrapper {
 	margin: 10px auto;
-	width: 85vw;
+	width: 90vw;
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	flex-direction: column;
+	align-items: flex-end;
+	/* justify-content: space-between; */
 	padding: 10px 20px;
 	border: 2px solid black;
 	border-radius: 10px;
@@ -30,10 +31,8 @@
 .form {
 	background: #fff;
 	height: fit-content;
-	width: 85%;
-	padding-left: 30px;
 	display: grid;
-	grid-template-columns: repeat(5, 1fr) auto;
+	grid-template-columns: repeat(6, 1fr) auto;
 	z-index: 3;
 	gap: 20px;
 	align-items: center;
@@ -106,6 +105,7 @@
 	line-height: 24px;
 	color: #ffffff;
 	background: #ff4d4d;
+	border: 2px solid #ff4d4d;
 	border-radius: 8px;
 	display: flex;
 	flex-direction: row;

@@ -1,5 +1,5 @@
 .menu-section {
-	width: 65vw;
+	width: 80vw;
 	margin: 75px auto 75px;
 }
 
@@ -7,8 +7,6 @@
 	width: 100%;
 	height: fit-content;
 	margin: 0px auto 30px;
-	/* display: flex;
-	justify-content: space-around; */
 	display: grid;
 	grid-template-columns: repeat(3, auto);
 	align-items: center;
@@ -20,7 +18,6 @@
 	font-family: "Inter";
 	font-style: normal;
 	font-weight: 500;
-	padding-bottom: 10px;
 	font-size: 22px;
 	text-align: center;
 }
@@ -28,8 +25,8 @@
 .grid-menu {
 	display: grid;
 	grid-template-columns: auto auto auto auto auto auto;
-	width: 100%;
-	height: 70vh;
+	width: 98%;
+	height: 75vh;
 	gap: 10px;
 	margin: 0 auto;
 }
@@ -58,6 +55,10 @@
 	height: 100%;
 	object-fit: cover;
 	border-radius: 10px;
+}
+
+.menu-image:hover {
+	filter: brightness(50%);
 }
 
 .menu-item-text {

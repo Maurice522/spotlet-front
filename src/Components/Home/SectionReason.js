@@ -7,15 +7,15 @@ const SectionReason = ({ heading }) => {
 	const objArray = [
 		{
 			title: "We are professionals",
-			info: "lorem ipsum dolor sit amet consectetur adipisicing elit.",
+			info: "lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit.",
 		},
 		{
 			title: "Best Service Guarantee",
-			info: "lorem ipsum dolor sit amet consectetur adipisicing elit.",
+			info: "lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit.",
 		},
 		{
 			title: "We are professionals",
-			info: "lorem ipsum dolor sit amet consectetur adipisicing elit.",
+			info: "lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit.",
 		},
 	];
 

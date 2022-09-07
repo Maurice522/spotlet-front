@@ -29,6 +29,8 @@ const BookingForm = ({
 		}
 	};
 
+	const calculatePrice = () => {};
+
 	return (
 		<div
 			className="wrapper"
@@ -38,8 +40,22 @@ const BookingForm = ({
 			onMouseLeave={() => {
 				setActive(false);
 			}}>
-			<div className={active === true ? "active-rate" : "rate"}>$ 00/hr</div>
 			<form className="form">
+				<div>
+					<label
+						htmlFor="event"
+						className={active === true ? "focus-label" : "booking-form-label"}>
+						Event
+					</label>
+					<input
+						required
+						type="text"
+						className={active === true ? "focus" : "normal"}
+						id="event"
+						name="event"
+						// defaultValue={new Date().toISOString().split("T")[0]}
+					/>
+				</div>
 				<div>
 					<label
 						htmlFor="date"
@@ -134,10 +150,22 @@ const BookingForm = ({
 						}}
 					/>
 				</div>
+				<div className="submit" type="submit" onClick={calculatePrice}>
+					Apply
+				</div>
+			</form>
+			<div
+				style={{
+					marginTop: "20px",
+					display: "flex",
+					alignItems: "center",
+					gap: "30px",
+				}}>
+				<div className={active === true ? "active-rate" : "rate"}>$ 00/hr</div>
 				<div className="submit" type="submit" onClick={handleClick}>
 					Reserve
 				</div>
-			</form>
+			</div>
 		</div>
 	);
 };

@@ -81,11 +81,16 @@ const Carousel = () => {
 					<div className="location">Location</div>
 				</div>
 				<div className="icons">
-					<BiShareAlt
-						color="#374047"
-						size="24px"
-						style={{ cursor: "pointer" }}
-					/>
+					<div
+						style={{
+							marginTop: "3px",
+						}}>
+						<BiShareAlt
+							color="#374047"
+							size="24px"
+							style={{ cursor: "pointer" }}
+						/>
+					</div>
 					{fav === true ? (
 						<AiFillHeart
 							style={{ cursor: "pointer" }}

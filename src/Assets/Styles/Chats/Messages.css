@@ -1,8 +1,8 @@
 .messages {
-  margin: 8.6% auto 0px;
+  margin: 6.2% auto 0px;
   width: 85%;
   display: flex;
-  height: 79vh;
+  height: 85vh;
 }
 
 .messages > .chat-inbox {

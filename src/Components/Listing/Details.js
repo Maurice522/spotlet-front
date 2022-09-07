@@ -8,9 +8,9 @@ import { createTempLocation } from "../../services/api";
 import { addLocation, addLocationId } from "../../redux/slices/locationSlice";
 
 const options = [
-  { value: "Airport", label: "Airport" },
-  { value: "Amusement Park", label: "Amusement Park" },
-  { value: "Apartment", label: "Apartment" },
+	{ value: "Airport", label: "Airport" },
+	{ value: "Amusement Park", label: "Amusement Park" },
+	{ value: "Apartment", label: "Apartment" },
 ];
 
 const Details = ({showSection}) => {

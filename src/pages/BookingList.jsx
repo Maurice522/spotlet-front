@@ -211,26 +211,26 @@ const bookingGrid = [
 		headerName: "Booking ID",
 		field: "BookingId",
 		renderCell: gridBookingID,
-		width: "180",
+		width: "200",
 		headerAlign: "Center",
 	},
 	{
 		headerName: "Status",
 		field: "Status",
 		renderCell: gridBookingStatus,
-		width: "180",
+		width: "200",
 		headerAlign: "Center",
 	},
 	{
 		headerName: "Date",
 		field: "Date",
-		width: "160",
+		width: "180",
 		headerAlign: "Center",
 	},
 	{
 		headerName: "Time, Duration",
 		field: "TimeDuration",
-		width: "225",
+		width: "250",
 		headerAlign: "Center",
 	},
 	{
@@ -367,7 +367,7 @@ const BookingList = () => {
 				{active === 0 ? (
 					<div
 						style={{
-							width: "85vw",
+							width: "90vw",
 							margin: "40px auto",
 							height: "80vh",
 						}}>

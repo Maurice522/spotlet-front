@@ -22,6 +22,7 @@ import ListDetailsComponent from "./pages/ListDetailsComponent";
 import ListingPlace from "./pages/ListingPlace";
 import Messages from "./pages/Messages";
 import HostPage from "./pages/HostPage";
+import Favorites from "./pages/Favorites";
 
 function App() {
 	const dispatch = useDispatch();
@@ -80,6 +81,7 @@ function App() {
 					<Route path="/bookinglist" element={<BookingList />} />
 					<Route path="/bookingdetails" element={<BookingDetails />} />
 					<Route path="/listdetails" element={<ListDetails />} />
+					<Route path="/favorites" element={<Favorites />} />
 
 					<Route
 						path="/listdetailsapproval"
