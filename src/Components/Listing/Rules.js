@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
+import { useDispatch, useSelector } from "react-redux";
+import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
+import { createTempLocation } from "../../services/api";
 
 
 const Rules = ({showSection}) => {
 	const [rules, setRules] = useState([]);
 	const [optn, setoptn] = useState("")
+	const dispatch = useDispatch();
+	const location_id = useSelector(selectLocationId);
+	const data = useSelector(selectLocationData);
 	const HandleChange = () => {
 		if (!rules.includes(optn)){
 			setRules((prev) => [...prev,optn]);
@@ -44,8 +50,18 @@ const Rules = ({showSection}) => {
 			</div>
 			<div className='row1'>
 				<div className='coll1'>
-					<button className='continue' onClick={() => {
-						console.log(rules)
+					<button className='continue' onClick={async () => {
+						//console.log(rules)
+						const locData = {
+                            ...data,
+                            rules
+                          }
+                          dispatch(addLocation(locData));
+                          const form = {
+                            location_id,
+                            data : locData
+                          }
+                           await createTempLocation(form);
 						showSection("Contact Details");
 						}}>Continue</button>
 				</div>

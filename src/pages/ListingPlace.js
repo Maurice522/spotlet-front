@@ -12,6 +12,7 @@ import Rules from "../Components/Listing/Rules";
 import Timings from "../Components/Listing/Timing";
 import Contact from "../Components/Listing/Contact";
 import Gst from '../Components/Listing/Gst';
+import TermCondition from "../Components/Listing/Term&Condition";
 
 const ListingPlace = () => {
   const [section, showSection] = useState("Details & Description");
@@ -142,6 +143,16 @@ const ListingPlace = () => {
                   GST Details
                 </button>
               </div>
+              <div>
+                <button
+                  onClick={() => handlesection("Term & Condition")}
+                  className={
+                    section === "Term & Condition" ? "lnav-text sel" : "lnav-text"
+                  }
+                >
+                  Term & Condition
+                </button>
+              </div>
             </div>
           </nav>
           <div>
@@ -156,6 +167,7 @@ const ListingPlace = () => {
             {section === "Timings" ? <Timings showSection = {handlesection} /> : ""}
             {section === "Contact Details" ? <Contact showSection = {handlesection} /> : ""}
             {section === "GST Details" ? <Gst showSection = {handlesection} /> : ""}
+            {section === "Term & Condition" ? <TermCondition showSection = {handlesection} /> : ""}
             {/* </> */}
             {/* <Pricing/> */}
           </div>

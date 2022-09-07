@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
+import { createTempLocation } from "../../services/api";
+import { useDispatch, useSelector } from "react-redux";
 
 const Contact = ({showSection}) => {
   const [contact_det, setContactDet] = useState({
@@ -9,6 +12,9 @@ const Contact = ({showSection}) => {
     alt_name: "",
     alt_mobile: "",
   });
+  const dispatch = useDispatch();
+	const location_id = useSelector(selectLocationId);
+	const data = useSelector(selectLocationData);
   const handleChange = (e) => {
     setContactDet({
       ...contact_det,
@@ -74,8 +80,18 @@ const Contact = ({showSection}) => {
         <div className="coll1">
           <button
             className="continue"
-            onClick={() => {
-              console.log(contact_det);
+            onClick={async() => {
+              //console.log(contact_det);
+              const locData = {
+                ...data,
+                contact_det
+              }
+              dispatch(addLocation(locData));
+              const form = {
+                location_id,
+                data : locData
+              }
+               await createTempLocation(form);
               showSection("GST Details")
             }}
           >

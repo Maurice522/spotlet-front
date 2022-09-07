@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import ClearIcon from '@mui/icons-material/Clear';
 import AddIcon from '@mui/icons-material/Add';
+import { useDispatch, useSelector } from "react-redux";
+import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
+import { createTempLocation } from "../../services/api";
 
 const Dondont = ({showSection}) => {
 
@@ -16,7 +19,9 @@ const Dondont = ({showSection}) => {
     };
     const [dont_s, setdont_s] = useState([]);
     const [do2, setdo2] = useState("")
-
+    const dispatch = useDispatch();
+	const location_id = useSelector(selectLocationId);
+	const data = useSelector(selectLocationData);
     const HandleChange2 = (e) => {
         if (!dont_s.includes(do2)) {
             setdont_s((prev) => [...prev, do2]);
@@ -78,12 +83,22 @@ const Dondont = ({showSection}) => {
             </div>
             <div className='row1'>
                 <div className='coll1'>
-                    <button className='continue' onClick={() =>{
+                    <button className='continue' onClick={async() =>{
                         const do_and_dont = {
                             do_s,
                             dont_s
                         }
-                        console.log(do_and_dont);
+                       // console.log(do_and_dont);
+                       const locData = {
+                        ...data,
+                        do_and_dont
+                      }
+                      dispatch(addLocation(locData));
+                      const form = {
+                        location_id,
+                        data : locData
+                      }
+                       await createTempLocation(form);
                         showSection("Pricing")
                     }}>Continue</button>
                 </div>

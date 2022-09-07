@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { createTempLocation } from "../../services/api";
+import { useDispatch, useSelector } from "react-redux";
+import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
 
 const Location = ({showSection}) => {
   const [property_address, setPropertyAddress] = useState({
@@ -11,6 +14,9 @@ const Location = ({showSection}) => {
     landmark: "",
     location_detail: "",
   });
+  const dispatch = useDispatch();
+  const location_id = useSelector(selectLocationId);
+  const data = useSelector(selectLocationData);
   const handleChange = (e) => {
     setPropertyAddress({
       ...property_address,
@@ -101,8 +107,18 @@ const Location = ({showSection}) => {
         <div className="coll1">
           <button
             className="continue"
-            onClick={() => {
-              console.log(property_address)
+            onClick={async() => {
+              //console.log(property_address)
+              const locData = {
+                ...data,
+                property_address
+              }
+              dispatch(addLocation(locData));
+              const form = {
+                location_id,
+                data : locData
+              }
+               await createTempLocation(form);
               showSection("Amenities");
             }}
           >

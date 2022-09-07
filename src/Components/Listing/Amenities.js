@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Select from 'react-select'
 import ClearIcon from '@mui/icons-material/Clear';
+import { useDispatch, useSelector } from "react-redux";
+import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
+import { createTempLocation } from "../../services/api";
 
 
 const Amenities = ({showSection}) => {
@@ -11,8 +14,10 @@ const Amenities = ({showSection}) => {
 		{ value: "Projector", label: "Projector" },
 		{ value: "Paints", label: "Paints" },
 	];
-
 	const [amenities, setAmenities] = useState([]);
+	const dispatch = useDispatch();
+	const location_id = useSelector(selectLocationId);
+	const data = useSelector(selectLocationData);
 	const HandleChange = (e) => {
 		if (!amenities.includes(e.value)) {
 			setAmenities((prev) => [...prev, e.value]);
@@ -48,8 +53,18 @@ const Amenities = ({showSection}) => {
 			</div>
 			<div className='row1'>
 				<div className='coll1'>
-					<button className='continue' onClick={() => {
-						console.log(amenities)
+					<button className='continue' onClick={async() => {
+						//console.log(amenities);
+						const locData = {
+							...data,
+							amenities
+						  }
+						  dispatch(addLocation(locData));
+						  const form = {
+							location_id,
+							data : locData
+						  }
+						   await createTempLocation(form);
 						showSection("Photo");
 						}}>Continue</button>
 				</div>

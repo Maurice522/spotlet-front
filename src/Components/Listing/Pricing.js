@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Switch from "@mui/material/Switch";
+import { useDispatch, useSelector } from "react-redux";
+import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
+import { createTempLocation } from "../../services/api";
 
 const Pricing = ({showSection}) => {
   const [film, setfilm] = useState({
@@ -18,6 +21,9 @@ const Pricing = ({showSection}) => {
     hourly_rate: 0,
     isPresent: false,
   });
+  const dispatch = useDispatch();
+	const location_id = useSelector(selectLocationId);
+	const data = useSelector(selectLocationData);
   return (
     <div className="lbox">
       <div className="coll1">
@@ -264,14 +270,24 @@ const Pricing = ({showSection}) => {
         <div className="coll1">
           <button
             className="continue"
-            onClick={() => {
+            onClick={async() => {
               const pricing = {
                 film_webseries_ad: film,
                 tv_series_other: tv,
                 corporate : corp,
                 individual : event
               };
-              console.log(pricing);
+             // console.log(pricing);
+              const locData = {
+                ...data,
+                pricing
+              }
+              dispatch(addLocation(locData));
+              const form = {
+                location_id,
+                data : locData
+              }
+               await createTempLocation(form);
               showSection("Timings");
             }}
           >

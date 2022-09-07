@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import Checkbox from "@mui/material/Checkbox";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import { useSelector } from "react-redux";
-import { selectUser_id } from "../../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserData, selectUser_id } from "../../redux/slices/userSlice";
+import { createTempLocation } from "../../services/api";
+import { addLocation, addLocationId } from "../../redux/slices/locationSlice";
 
 const options = [
   { value: "Airport", label: "Airport" },
@@ -13,6 +15,8 @@ const options = [
 
 const Details = ({showSection}) => {
   const user_id = useSelector(selectUser_id);
+  const user = useSelector(selectUserData);
+  const dispatch = useDispatch();
   const [property_desc, setPropertyDescr] = useState({
     user_id: "",
     location_type: "",
@@ -116,8 +120,18 @@ const Details = ({showSection}) => {
         <div className="coll1">
           <button
             className="continue"
-            onClick={() => {
-              console.log(property_desc);
+            onClick={async() => {
+             
+              const form = {
+               data : {
+                property_desc
+               },
+               name : user.personalInfo.fullName
+              }
+              console.log(form);
+            const response = await createTempLocation(form);
+            dispatch(addLocationId(response.data));
+            dispatch(addLocation(form.data));
               showSection("Location")
             }}
           >
