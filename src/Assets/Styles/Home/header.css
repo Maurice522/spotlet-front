@@ -40,6 +40,8 @@
 
 .colored {
 	color: #ff6767;
+	font-style: normal;
+	font-weight: 600;
 }
 
 /* .animated {

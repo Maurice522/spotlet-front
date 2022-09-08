@@ -77,6 +77,7 @@ const SectionMenu = () => {
 						justifyContent: "center",
 						alignItems: "center",
 						borderBottom: `2px solid ${shoot === 1 ? "#ff6767" : "black"}`,
+						paddingBottom: "5px",
 						color: shoot === 1 ? "#ff6767" : "black",
 					}}
 					onClick={() => setShoot(1)}>
@@ -91,6 +92,7 @@ const SectionMenu = () => {
 						justifyContent: "center",
 						alignItems: "center",
 						borderBottom: `2px solid ${shoot === 2 ? "#ff6767" : "black"}`,
+						paddingBottom: "5px",
 						color: shoot === 2 ? "#ff6767" : "black",
 					}}
 					onClick={() => setShoot(2)}>
@@ -105,6 +107,7 @@ const SectionMenu = () => {
 						justifyContent: "center",
 						alignItems: "center",
 						borderBottom: `2px solid ${shoot === 3 ? "#ff6767" : "black"}`,
+						paddingBottom: "5px",
 						color: shoot === 3 ? "#ff6767" : "black",
 					}}
 					onClick={() => setShoot(3)}>

@@ -212,7 +212,7 @@ export default function Auth() {
                       displayEmpty
                       inputProps={{ "aria-label": "Without label" }}
                       fullWidth
-                      sx={{ height: "2.8em" }}
+                      sx={{ height: "2.4em" }}
                       required
                     >
                       <MenuItem value="">None</MenuItem>

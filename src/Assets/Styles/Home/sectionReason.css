@@ -17,10 +17,10 @@
 .reason-section {
 	width: 90vw;
 	margin: 0 auto 50px;
-	height: 500px;
+	height: calc(100vh - 100px);
 	display: flex;
 	justify-content: center;
-	gap: 30px;
+	gap: 50px;
 }
 
 /* .image-wrapper {
@@ -31,9 +31,9 @@
 } */
 
 .reason-image {
-	width: 50%;
-	max-width: 500px;
-	height: calc(100vh - 70px);
+	min-width: 500px;
+	max-width: 600px;
+	height: 100%;
 	display: block;
 	border-radius: 30px;
 }

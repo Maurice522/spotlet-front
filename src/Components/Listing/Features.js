@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import Select from 'react-select'
 import ClearIcon from '@mui/icons-material/Clear';
+import { useDispatch, useSelector } from "react-redux";
+import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
+import { createTempLocation } from "../../services/api";
 
 
-
-
-const Features = () => {
+const Features = ({showSection}) => {
     const options = [
-        { value: "Airport", label: "Airport" },
-        { value: "Amusement Park", label: "Amusement Park" },
-        { value: "Apartment", label: "Apartment" },
+        { value: "Location Manager", label: "Location Manager" },
+        { value: "Fireplace", label: "Fireplace" },
+        { value: "Terrace Garden", label: "Terrace Garden" },
     ];
 
-    const [selOption, setselOption] = useState([]);
+    const [features, setFeatures] = useState([]);
+    const dispatch = useDispatch();
+	const location_id = useSelector(selectLocationId);
+	const data = useSelector(selectLocationData);
     const HandleChange = (e) => {
-        if (!selOption.includes(e.value)) {
-            setselOption((prev) => [...prev, e.value]);
+        if (!features.includes(e.value)) {
+            setFeatures((prev) => [...prev, e.value]);
         }
     };
     const deleteoptn = (e) => {
-        selOption.splice(e, 1);
-        setselOption((prev) => [...prev])
+        features.splice(e, 1);
+        setFeatures((prev) => [...prev])
     }
 
     return (
@@ -33,7 +37,7 @@ const Features = () => {
             </div>
             <div className="row1">
                 <div className="coll1">
-                    {selOption.map((item, index) => (
+                    {features.map((item, index) => (
                         <>
                             <div className="optns">
                                 <div className="optn" key={index}>
@@ -44,6 +48,24 @@ const Features = () => {
 
                         </>
                     ))}
+                </div>
+            </div>
+            <div className='row1'>
+                <div className='coll1'>
+                    <button className='continue' onClick={async() => {
+                        //console.log(features)
+                        const locData = {
+							...data,
+							features
+						  }
+						  dispatch(addLocation(locData));
+						  const form = {
+							location_id,
+							data : locData
+						  }
+						   await createTempLocation(form);
+                        showSection("Do’s & Don’ts");
+                        }}>Continue</button>
                 </div>
             </div>
         </div>

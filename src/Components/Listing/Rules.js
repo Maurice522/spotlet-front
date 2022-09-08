@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
+import { useDispatch, useSelector } from "react-redux";
+import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
+import { createTempLocation } from "../../services/api";
 
 
-const Rules = () => {
-	const [selOption, setselOption] = useState([]);
+const Rules = ({showSection}) => {
+	const [rules, setRules] = useState([]);
 	const [optn, setoptn] = useState("")
+	const dispatch = useDispatch();
+	const location_id = useSelector(selectLocationId);
+	const data = useSelector(selectLocationData);
 	const HandleChange = () => {
-		if (!selOption.includes(optn)){
-			setselOption((prev) => [...prev,optn]);
+		if (!rules.includes(optn)){
+			setRules((prev) => [...prev,optn]);
 			document.getElementById('myInput').value='';
-			console.log("dasda");
 		}
 	};
 	const deleteoptn = (e) => {
-		selOption.splice(e, 1);
-		setselOption((prev) => [...prev])
+		rules.splice(e, 1);
+		setRules((prev) => [...prev])
 	}
   return (
     <div className="lbox">
@@ -30,7 +35,7 @@ const Rules = () => {
 			</div>
 			<div className="row1">
 				<div className="coll1">
-					{selOption.map((item, index) => (
+					{rules.map((item, index) => (
 						<>
 							<div className="optns">
 								<div className="optn" key={index}>
@@ -41,6 +46,24 @@ const Rules = () => {
 
 						</>
 					))}
+				</div>
+			</div>
+			<div className='row1'>
+				<div className='coll1'>
+					<button className='continue' onClick={async () => {
+						//console.log(rules)
+						const locData = {
+                            ...data,
+                            rules
+                          }
+                          dispatch(addLocation(locData));
+                          const form = {
+                            location_id,
+                            data : locData
+                          }
+                           await createTempLocation(form);
+						showSection("Contact Details");
+						}}>Continue</button>
 				</div>
 			</div>
 		</div>
