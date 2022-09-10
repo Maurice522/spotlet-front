@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { createTempLocation } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,12 @@ const Location = ({showSection}) => {
   });
   const dispatch = useDispatch();
   const location_id = useSelector(selectLocationId);
-  const data = useSelector(selectLocationData);
+  const location = useSelector(selectLocationData);
+
+  useEffect(() => {
+    location.property_address && setPropertyAddress(location.property_address);
+  }, [])
+
   const handleChange = (e) => {
     setPropertyAddress({
       ...property_address,
@@ -110,7 +115,7 @@ const Location = ({showSection}) => {
             onClick={async() => {
               //console.log(property_address)
               const locData = {
-                ...data,
+                ...location,
                 property_address
               }
               dispatch(addLocation(locData));

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Switch from "@mui/material/Switch";
 import { useDispatch, useSelector } from "react-redux";
 import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
@@ -23,7 +23,15 @@ const Pricing = ({showSection}) => {
   });
   const dispatch = useDispatch();
 	const location_id = useSelector(selectLocationId);
-	const data = useSelector(selectLocationData);
+	const location = useSelector(selectLocationData);
+
+  useEffect(() => {
+		location.pricing && setfilm(location.pricing.film_webseries_ad);
+    location.pricing && settv(location.pricing.tv_series_other);
+    location.pricing && setcorp(location.pricing.corporate);
+    location.pricing && setevent(location.pricing.individual);
+	  }, [])
+
   return (
     <div className="lbox">
       <div className="coll1">
@@ -45,6 +53,7 @@ const Pricing = ({showSection}) => {
                 onChange={(e) =>
                   setfilm({ ...film, hourly_rate: e.target.value })
                 }
+                value={film.hourly_rate}
               />
             </div>
           </div>
@@ -106,6 +115,7 @@ const Pricing = ({showSection}) => {
               <input
                 className="input"
                 onChange={(e) => settv({ ...tv, hourly_rate: e.target.value })}
+                value={tv.hourly_rate}
               />
             </div>
           </div>
@@ -161,6 +171,7 @@ const Pricing = ({showSection}) => {
                 onChange={(e) =>
                   setcorp({ ...corp, hourly_rate: e.target.value })
                 }
+                value={corp.hourly_rate}
               />
             </div>
           </div>
@@ -224,6 +235,7 @@ const Pricing = ({showSection}) => {
                 onChange={(e) =>
                   setevent({ ...event, hourly_rate: e.target.value })
                 }
+                value={event.hourly_rate}
               />
             </div>
           </div>
@@ -279,7 +291,7 @@ const Pricing = ({showSection}) => {
               };
              // console.log(pricing);
               const locData = {
-                ...data,
+                ...location,
                 pricing
               }
               dispatch(addLocation(locData));

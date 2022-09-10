@@ -11,7 +11,12 @@ const Rules = ({showSection}) => {
 	const [optn, setoptn] = useState("")
 	const dispatch = useDispatch();
 	const location_id = useSelector(selectLocationId);
-	const data = useSelector(selectLocationData);
+	const location = useSelector(selectLocationData);
+
+	useEffect(() => {
+		location?.rules && setRules(location.rules);
+	  }, [])
+
 	const HandleChange = () => {
 		if (!rules.includes(optn)){
 			setRules((prev) => [...prev,optn]);
@@ -53,7 +58,7 @@ const Rules = ({showSection}) => {
 					<button className='continue' onClick={async () => {
 						//console.log(rules)
 						const locData = {
-                            ...data,
+                            ...location,
                             rules
                           }
                           dispatch(addLocation(locData));

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
@@ -14,7 +14,12 @@ const Contact = ({showSection}) => {
   });
   const dispatch = useDispatch();
 	const location_id = useSelector(selectLocationId);
-	const data = useSelector(selectLocationData);
+	const location = useSelector(selectLocationData);
+
+  useEffect(() => {
+		location?.contact_det && setContactDet(location.contact_det);
+	  }, [])
+
   const handleChange = (e) => {
     setContactDet({
       ...contact_det,
@@ -83,7 +88,7 @@ const Contact = ({showSection}) => {
             onClick={async() => {
               //console.log(contact_det);
               const locData = {
-                ...data,
+                ...location,
                 contact_det
               }
               dispatch(addLocation(locData));

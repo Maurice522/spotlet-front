@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ClearIcon from '@mui/icons-material/Clear';
 import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +21,13 @@ const Dondont = ({showSection}) => {
     const [do2, setdo2] = useState("")
     const dispatch = useDispatch();
 	const location_id = useSelector(selectLocationId);
-	const data = useSelector(selectLocationData);
+	const location = useSelector(selectLocationData);
+
+    useEffect(() => {
+		location?.do_and_dont && setdo_s(location.do_and_dont.do_s);
+        location?.do_and_dont && setdont_s(location.do_and_dont.dont_s);
+	  }, [])
+
     const HandleChange2 = (e) => {
         if (!dont_s.includes(do2)) {
             setdont_s((prev) => [...prev, do2]);
@@ -90,7 +96,7 @@ const Dondont = ({showSection}) => {
                         }
                        // console.log(do_and_dont);
                        const locData = {
-                        ...data,
+                        ...location,
                         do_and_dont
                       }
                       dispatch(addLocation(locData));
