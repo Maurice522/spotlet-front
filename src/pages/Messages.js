@@ -30,7 +30,7 @@ export default function Messages() {
   const user_id = useSelector(selectUser_id);
   const socket = useRef();
   useEffect(() => {
-    socket.current = io.connect("http://localhost:8000");
+    socket.current = io.connect("https://gorecce-backend.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       //console.log(data);
       setArrivalMessage({
