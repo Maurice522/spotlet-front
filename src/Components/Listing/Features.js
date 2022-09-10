@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from 'react-select'
 import ClearIcon from '@mui/icons-material/Clear';
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,12 @@ const Features = ({showSection}) => {
     const [features, setFeatures] = useState([]);
     const dispatch = useDispatch();
 	const location_id = useSelector(selectLocationId);
-	const data = useSelector(selectLocationData);
+	const location = useSelector(selectLocationData);
+
+    useEffect(() => {
+		location.features && setFeatures(location.features);
+	  }, [])
+
     const HandleChange = (e) => {
         if (!features.includes(e.value)) {
             setFeatures((prev) => [...prev, e.value]);
@@ -55,7 +60,7 @@ const Features = ({showSection}) => {
                     <button className='continue' onClick={async() => {
                         //console.log(features)
                         const locData = {
-							...data,
+							...location,
 							features
 						  }
 						  dispatch(addLocation(locData));

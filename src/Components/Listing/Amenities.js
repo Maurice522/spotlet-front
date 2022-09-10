@@ -17,7 +17,12 @@ const Amenities = ({showSection}) => {
 	const [amenities, setAmenities] = useState([]);
 	const dispatch = useDispatch();
 	const location_id = useSelector(selectLocationId);
-	const data = useSelector(selectLocationData);
+	const location = useSelector(selectLocationData);
+
+	useEffect(() => {
+		location.amenities && setAmenities(location.amenities);
+	  }, [])
+
 	const HandleChange = (e) => {
 		if (!amenities.includes(e.value)) {
 			setAmenities((prev) => [...prev, e.value]);
@@ -56,7 +61,7 @@ const Amenities = ({showSection}) => {
 					<button className='continue' onClick={async() => {
 						//console.log(amenities);
 						const locData = {
-							...data,
+							...location,
 							amenities
 						  }
 						  dispatch(addLocation(locData));

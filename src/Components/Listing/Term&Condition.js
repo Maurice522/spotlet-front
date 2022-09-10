@@ -43,6 +43,8 @@ export default function TermCondition() {
               };
               try {
                 const response = await createLocation(locData);
+                localStorage.removeItem("locationData");
+                localStorage.removeItem("locationId");
                 toast.success(response.data);
                 window.location = "/";
               } catch (error) {
@@ -50,7 +52,7 @@ export default function TermCondition() {
               }
             }}
           >
-            Continue
+            Create Location
           </button>
         </div>
       </div>

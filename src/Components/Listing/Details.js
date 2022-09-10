@@ -5,17 +5,19 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserData, selectUser_id } from "../../redux/slices/userSlice";
 import { createTempLocation } from "../../services/api";
-import { addLocation, addLocationId } from "../../redux/slices/locationSlice";
+import { addLocation, addLocationId, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
 
 const options = [
-	{ value: "Airport", label: "Airport" },
-	{ value: "Amusement Park", label: "Amusement Park" },
-	{ value: "Apartment", label: "Apartment" },
+  { value: "Airport", label: "Airport" },
+  { value: "Amusement Park", label: "Amusement Park" },
+  { value: "Apartment", label: "Apartment" },
 ];
 
-const Details = ({showSection}) => {
+const Details = ({ showSection }) => {
   const user_id = useSelector(selectUser_id);
   const user = useSelector(selectUserData);
+  const location = useSelector(selectLocationData);
+  const location_id = useSelector(selectLocationId);
   const dispatch = useDispatch();
   const [property_desc, setPropertyDescr] = useState({
     user_id: "",
@@ -27,9 +29,13 @@ const Details = ({showSection}) => {
   });
 
   useEffect(() => {
-    user_id && setPropertyDescr({...property_desc, user_id})
-  }, [user_id])
- 
+    user_id && setPropertyDescr({ ...property_desc, user_id });
+  }, [user_id]);
+
+  useEffect(() => {
+    location && setPropertyDescr(location.property_desc);
+  }, [])
+
   const handleChange = (e) => {
     setPropertyDescr({
       ...property_desc,
@@ -47,6 +53,9 @@ const Details = ({showSection}) => {
             onChange={(e) =>
               setPropertyDescr({ ...property_desc, location_type: e.value })
             }
+            value={options.filter(function(option) {
+              return option.value === property_desc.location_type;
+            })}
           />
         </div>
         <div className="coll1">
@@ -69,6 +78,7 @@ const Details = ({showSection}) => {
               name="street_parking"
               onChange={handleChange}
               value="yes"
+              checked={property_desc.street_parking === "yes"}
             />
             YES
             <input
@@ -77,6 +87,7 @@ const Details = ({showSection}) => {
               name="street_parking"
               onChange={handleChange}
               value="no"
+              checked={property_desc.street_parking === "no"}
             />{" "}
             NO
           </div>
@@ -90,6 +101,7 @@ const Details = ({showSection}) => {
               name="security_camera"
               onChange={handleChange}
               value="yes"
+              checked = {property_desc.security_camera === "yes"}
             />
             YES
             <input
@@ -98,6 +110,7 @@ const Details = ({showSection}) => {
               name="security_camera"
               onChange={handleChange}
               value="no"
+              checked = {property_desc.security_camera === "no"}
             />{" "}
             NO
           </div>
@@ -120,19 +133,21 @@ const Details = ({showSection}) => {
         <div className="coll1">
           <button
             className="continue"
-            onClick={async() => {
-             
+            
+            onClick={async () => {
               const form = {
-               data : {
-                property_desc
-               },
-               name : user.personalInfo.fullName
-              }
+                data: {
+                  ...location,
+                  property_desc,
+                },
+                name: user.personalInfo.fullName,
+                location_id,
+              };
               console.log(form);
-            const response = await createTempLocation(form);
-            dispatch(addLocationId(response.data));
-            dispatch(addLocation(form.data));
-              showSection("Location")
+              const response = await createTempLocation(form);
+              !location_id && dispatch(addLocationId(response.data));
+              dispatch(addLocation(form.data));
+              showSection("Location");
             }}
           >
             Continue

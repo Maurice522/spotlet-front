@@ -13,9 +13,12 @@ import Timings from "../Components/Listing/Timing";
 import Contact from "../Components/Listing/Contact";
 import Gst from '../Components/Listing/Gst';
 import TermCondition from "../Components/Listing/Term&Condition";
+import { useSelector } from "react-redux";
+import { selectLocationData } from "../redux/slices/locationSlice";
 
 const ListingPlace = () => {
   const [section, showSection] = useState("Details & Description");
+  const data = useSelector(selectLocationData);
   const handlesection = (e) => {
     showSection(e);
   };
@@ -42,6 +45,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Location")}
+                  disabled={data?.property_desc ? false : true}
                   className={
                     section === "Location" ? "lnav-text sel" : "lnav-text"
                   }
@@ -52,6 +56,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Amenities")}
+                  disabled={data?.property_address ? false : true}
                   className={
                     section === "Amenities" ? "lnav-text sel" : "lnav-text"
                   }
@@ -62,6 +67,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Photo")}
+                  disabled={data?.amenities ? false : true}
                   className={
                     section === "Photo" ? "lnav-text sel" : "lnav-text"
                   }
@@ -72,6 +78,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Features")}
+                  disabled={data?.images ? false : true}
                   className={
                     section === "Features" ? "lnav-text sel" : "lnav-text"
                   }
@@ -82,6 +89,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Do’s & Don’ts")}
+                  disabled={data?.features ? false : true}
                   className={
                     section === "Do’s & Don’ts" ? "lnav-text sel" : "lnav-text"
                   }
@@ -92,6 +100,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Pricing")}
+                  disabled={data?.do_and_dont ? false : true}
                   className={
                     section === "Pricing" ? "lnav-text sel" : "lnav-text"
                   }
@@ -102,6 +111,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Timings")}
+                  disabled={data?.pricing ? false : true}
                   className={
                     section === "Timings" ? "lnav-text sel" : "lnav-text"
                   }
@@ -112,6 +122,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Rules of the Host")}
+                  disabled={data?.timings ? false : true}
                   className={
                     section === "Rules of the Host"
                       ? "lnav-text sel"
@@ -124,6 +135,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Contact Details")}
+                  disabled={data?.rules ? false : true}
                   className={
                     section === "Contact Details"
                       ? "lnav-text sel"
@@ -136,6 +148,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("GST Details")}
+                  disabled={data?.contact_det ? false : true}
                   className={
                     section === "GST Details" ? "lnav-text sel" : "lnav-text"
                   }
@@ -146,6 +159,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Term & Condition")}
+                  disabled={data?.gst ? false : true}
                   className={
                     section === "Term & Condition" ? "lnav-text sel" : "lnav-text"
                   }

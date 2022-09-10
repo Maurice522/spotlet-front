@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  locationData: null,
-  location_id: null,
+  locationData: JSON.parse(localStorage.getItem('locationData')),
+  location_id: JSON.parse(localStorage.getItem('locationId')),
 };
 
 const locationSlice = createSlice({
@@ -11,9 +11,11 @@ const locationSlice = createSlice({
   reducers: {
     addLocation: (state, action) => { 
       state.locationData = action.payload;
+      localStorage.setItem('locationData', JSON.stringify(state.locationData));
     },
     addLocationId: (state, action) => {
       state.location_id = action.payload;
+      localStorage.setItem('locationId', JSON.stringify(state.location_id));
     },
   },
 });
