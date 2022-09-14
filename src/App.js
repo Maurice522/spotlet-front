@@ -84,7 +84,7 @@ function App() {
 					<Route path="/bookinglist" element={<BookingList />} />
 					<Route path="/bookingdetails" element={<BookingDetails />} />
 					<Route path="/listdetails" element={<ListDetails />} />
-					<Route path="/favorites" element={<Favorites />} />
+					<Route path="/favorite" element={<Favorites />} />
 
 					<Route
 						path="/listdetailsapproval"
