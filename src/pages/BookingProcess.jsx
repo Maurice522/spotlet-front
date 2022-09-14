@@ -7,7 +7,7 @@ import Booking from "../Components/Booking/Booking";
 import Rules from "../Components/Booking/Rules";
 import Contact from "../Components/Booking/Contact";
 
-const BookingProcess = ({ v1, v2, v3, v4, v5 }) => {
+const BookingProcess = ({ v1, v2, v3, v4, v5, v6 }) => {
 	const [index, setIndex] = useState(0);
 	const [ok, setOk] = useState(false);
 	const [readyForRequest, setReadyForRequest] = useState(false);
@@ -48,6 +48,7 @@ const BookingProcess = ({ v1, v2, v3, v4, v5 }) => {
 						v3={v3}
 						v4={v4}
 						v5={v5}
+						v6={v6}
 						readyForRequest={readyForRequest}
 						setReadyForRequest={setReadyForRequest}
 					/>

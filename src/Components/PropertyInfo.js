@@ -13,6 +13,7 @@ const PropertyInfo = ({
 	review,
 	border,
 }) => {
+	
 	return (
 		<div
 			className="item"
@@ -20,14 +21,15 @@ const PropertyInfo = ({
 				border: border && "1px solid #00aaff",
 			}}>
 			<Link
-				to="/property"
+				reloadDocument
+				to={`/property/${item.location_id}`}
 				style={{
 					textDecoration: "none",
 					color: "black",
 				}}>
 				<div className="text-on-image-container-2">
 					<img
-						src={item.image}
+						src={item.images[0]}
 						alt={`property-${index + 1}`}
 						className="property-image"
 					/>
@@ -68,8 +70,8 @@ const PropertyInfo = ({
 					style={{
 						paddingLeft: "4px",
 					}}>
-					<div className="property-info-heading">{item.name}</div>
-					<div className="property-info-location">{item.location}</div>
+					<div className="property-info-heading">{item.property_desc.location_type}</div>
+					<div className="property-info-location">{item.property_address.city}</div>
 					{/* <div className="property-info-price">{item.price}</div> */}
 					<div
 						style={{
@@ -87,7 +89,7 @@ const PropertyInfo = ({
 								/>
 							</div>
 						)}
-						{review && (
+						{review && ( 	
 							<>
 								<div>( {item.reviewCount} )</div>
 							</>

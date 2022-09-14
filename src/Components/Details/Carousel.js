@@ -9,12 +9,14 @@ import img4 from "../../Assets/Images/property-page-carousel-img-4.jpeg";
 import img5 from "../../Assets/Images/property-page-carousel-img-5.jpeg";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
-const Carousel = () => {
-	const imgArr1 = [img1, img2, img3, img4, img5];
-	const imgArr2 = [img2, img3, img4, img5, img1];
-	const imgArr3 = [img3, img4, img5, img1, img2];
-	const imgArr4 = [img4, img5, img1, img2, img3];
-	const imgArr5 = [img5, img1, img2, img3, img4];
+const Carousel = ({locationData}) => {
+	const images = locationData?.images; 
+	//console.log(images)
+	const imgArr1 = [images?.at(0), images?.at(1), images?.at(2), images?.at(3), images?.at(4)];
+	const imgArr2 = [images?.at(1), images?.at(2), images?.at(3), images?.at(4), images?.at(0)];
+	const imgArr3 = [images?.at(2), images?.at(3), images?.at(4), images?.at(0), images?.at(1)];
+	const imgArr4 = [images?.at(3), images?.at(4), images?.at(0), images?.at(1), images?.at(2)];
+	const imgArr5 = [images?.at(4), images?.at(0), images?.at(1), images?.at(2), images?.at(3)];
 
 	const imgMap = {
 		1: imgArr1,
@@ -31,7 +33,7 @@ const Carousel = () => {
 
 	const classes = ["side2", "side1", "center", "side1", "side2"];
 
-	const items = imgMap[val].map((img, index) => {
+	const items = imgMap[val]?.map((img, index) => {
 		return (
 			<div className={classes[index]} key={index}>
 				<img src={img} alt="property-page-carousel-img" className="image" />
@@ -77,8 +79,8 @@ const Carousel = () => {
 			</div>
 			<div className="property-info">
 				<div>
-					<div className="name">Name of the property</div>
-					<div className="location">Location</div>
+					<div className="name">{locationData?.property_desc?.location_type}</div>
+					<div className="location">{locationData?.property_address?.address}</div>
 				</div>
 				<div className="icons">
 					<div

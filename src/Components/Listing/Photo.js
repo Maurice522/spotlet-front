@@ -6,6 +6,7 @@ import {
 } from "../../redux/slices/locationSlice";
 import { createTempLocation, uploadLocationPics,  } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 const Photo = ({ showSection }) => {
   //const [files, setFiles] = useState([]);
   const [images, setImages] = useState([]);
@@ -54,7 +55,7 @@ const Photo = ({ showSection }) => {
             </div>
           </div>
         </div>
-        <p style={{ marginLeft: "20px" }}>Add minimum 6 images</p>
+        <p style={{ marginLeft: "20px" }}>Add minimum 5 images</p>
         <div className="row1" id="photo-sec-s">
           {images?.map((image) => {
             return (
@@ -69,6 +70,7 @@ const Photo = ({ showSection }) => {
             <button
               className="continue"
               onClick={async () => {
+                if(images.length < 5) return toast.error("Please add minimum 6 Photos");
                 const locData = {
                   ...location,
                   images,
@@ -81,6 +83,7 @@ const Photo = ({ showSection }) => {
                 await createTempLocation(form);
               //  console.log(locData);
                 showSection("Features");
+
               }}
             >
               Continue

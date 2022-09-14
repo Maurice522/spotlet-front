@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../Assets/Styles/Booking/sideSection.css";
 import { Button, Backdrop, Fade, Box, Typography, Modal } from "@mui/material";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
 import { MdDone } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { getLocation } from "../../services/api";
 
 const style = {
 	position: "absolute",
@@ -32,11 +33,19 @@ const SideSection = ({
 	v1,
 	v3,
 	v4,
+	v6
 }) => {
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+	const [locationData, setLocationData] = useState({});
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		getLocation(window.location.pathname.substring(1, 10))
+		  .then((res) => setLocationData(res.data))
+		  .catch((err) => console.log(err));
+	  }, []);
 
 	const handleClick = () => {
 		console.log("clicked");
@@ -71,13 +80,13 @@ const SideSection = ({
 		<div>
 			<div className="side-section-image-wrapper">
 				<img
-					src={require("../../Assets/Images/side-section-image.jpeg")}
+					src={locationData?.images?.at(0)}
 					alt="booking-process"
 					className="image"
 				/>
 			</div>
 
-			<div data-attribute-1>Property ID</div>
+			<div data-attribute-1>{window.location.pathname.substring(1, 10)}</div>
 			<div data-attribute-2>Location</div>
 
 			<div className="booking-side-section-title">Reserved Date</div>
@@ -90,8 +99,8 @@ const SideSection = ({
 			<div className="booking-side-section-info">{v4} </div>
 
 			<div data-attribute-3>
-				<div data-attribute-4>$ 100 * 6 hrs</div>
-				<div data-attribute-4>$600</div>
+				<div data-attribute-4>$ {v6} * {v3} hrs</div>
+				<div data-attribute-4>${v6 * v3}</div>
 			</div>
 			<div data-attribute-3>
 				<div data-attribute-4>Processing Fee</div>
@@ -100,7 +109,7 @@ const SideSection = ({
 
 			<div data-attribute-3>
 				<div data-attribute-1>Total</div>
-				<div data-attribute-1>$640</div>
+				<div data-attribute-1>$ {v6 * v3 + 40}</div>
 			</div>
 
 			<Button
