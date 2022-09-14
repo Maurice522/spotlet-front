@@ -29,7 +29,7 @@ const Amenities = ({showSection}) => {
 		}
 	};
 	const deleteoptn = (e) => {
-		Amenities.splice(e, 1);
+		amenities.splice(e, 1);
 		setAmenities((prev) => [...prev])
 	}
 
