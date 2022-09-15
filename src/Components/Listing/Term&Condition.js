@@ -11,7 +11,7 @@ export default function TermCondition() {
   const data = useSelector(selectLocationData);
   return (
     <div style={{ marginTop: "10%", marginLeft: "22%", width: "50%" }}>
-      <h1>Term and Condition</h1>
+      <h1>Terms and Conditions</h1>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
@@ -42,6 +42,7 @@ export default function TermCondition() {
                 location_id,
               };
               try {
+
                 const response = await createLocation(locData);
                 localStorage.removeItem("locationData");
                 localStorage.removeItem("locationId");

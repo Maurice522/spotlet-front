@@ -95,6 +95,7 @@ const Timing = ({ showSection }) => {
                 <div className="row1">
                   <input
                     className="input"
+                    type="time"
                     onChange={(e) =>
                       setmonday({
                         ...monday,
@@ -106,6 +107,7 @@ const Timing = ({ showSection }) => {
                   <h2> to </h2>
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       setmonday({
                         ...monday,
@@ -158,6 +160,7 @@ const Timing = ({ showSection }) => {
                 <div className="row1">
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       settuesday({
                         ...tuesday,
@@ -169,6 +172,7 @@ const Timing = ({ showSection }) => {
                   <h2> to </h2>
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       settuesday({
                         ...tuesday,
@@ -226,6 +230,7 @@ const Timing = ({ showSection }) => {
                 <div className="row1">
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       setwednesday({
                         ...wednesday,
@@ -237,6 +242,7 @@ const Timing = ({ showSection }) => {
                   <h2> to </h2>
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       setwednesday({
                         ...wednesday,
@@ -294,7 +300,8 @@ const Timing = ({ showSection }) => {
                 <div
                   className="row1"
                 >
-                  <input className="input"  onChange={(e) =>
+                  <input className="input"
+                    type="time"   onChange={(e) =>
                     setthursday({
                       ...thursday,
                       time: { ...thursday.time, start: e.target.value },
@@ -304,6 +311,7 @@ const Timing = ({ showSection }) => {
                   <h2> to </h2>
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       setthursday({
                         ...thursday,
@@ -357,6 +365,7 @@ const Timing = ({ showSection }) => {
                 <div className="row1">
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       setfriday({
                         ...friday,
@@ -368,6 +377,7 @@ const Timing = ({ showSection }) => {
                   <h2> to </h2>
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       setfriday({
                         ...friday,
@@ -425,6 +435,7 @@ const Timing = ({ showSection }) => {
                 <div className="row1">
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       setsaturday({
                         ...saturday,
@@ -436,6 +447,7 @@ const Timing = ({ showSection }) => {
                   <h2> to </h2>
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       setsaturday({
                         ...saturday,
@@ -489,6 +501,7 @@ const Timing = ({ showSection }) => {
                 <div className="row1">
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       setsunday({
                         ...sunday,
@@ -500,6 +513,7 @@ const Timing = ({ showSection }) => {
                   <h2> to </h2>
                   <input
                     className="input"
+                    type="time" 
                     onChange={(e) =>
                       setsunday({
                         ...sunday,

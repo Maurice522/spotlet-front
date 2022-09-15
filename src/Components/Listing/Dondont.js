@@ -76,7 +76,7 @@ const Dondont = ({showSection}) => {
                     ))}
                 </div>
                 <br /><br /><br /><br />
-                <div className="coll1">
+                <div className={do_s.length===0?"coll2":"coll1"}>
                     {dont_s.map((item, index) => (
                         <><div className="optns">
                             <div className="optn" key={index}>
