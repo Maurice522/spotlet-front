@@ -10,6 +10,8 @@ const BookingForm = ({
 	v4,
 	v5,
 	v6,
+	event,
+	setEvent,
 	setV1,
 	setV2,
 	setV3,
@@ -19,8 +21,7 @@ const BookingForm = ({
 	locationData
 }) => {
 	const [active, setActive] = useState(false);
-	const [event, setEvent] = useState("");
-	// const [price, setV6] = useState(0);
+	const [tot_price, setTotPrice] = useState(0);
 	const navigate = useNavigate();
 	const handleClick = () => {
 		//console.log(v1, v2, v3, v4, v5);
@@ -38,20 +39,44 @@ const BookingForm = ({
 		    {
 				const rate = locationData?.pricing?.film_webseries_ad?.hourly_rate;
 				setV6(rate);
+				if(v3 === "12")
+		   			setTotPrice( rate*12 * 0.9);
+				else if(v3 === "24")
+					setTotPrice( rate * 24 * 0.8);
+				else
+				setTotPrice(rate * v3);
 			}
 		else if(event.startsWith("corporate") || event.startsWith("Corporate"))
 		{
 			const rate = locationData?.pricing?.corporate?.hourly_rate;
 			setV6(rate);
+			if(v3 === "12")
+		   			setTotPrice( rate*12 * 0.9);
+				else if(v3 === "24")
+					setTotPrice( rate * 24 * 0.8);
+				else
+				setTotPrice(rate * v3);
 		}
 		else if(event.startsWith("TV") || event.startsWith("Tv") || event.startsWith("series"))
 		{
 			const rate = locationData?.pricing?.tv_series_other?.hourly_rate;
 			setV6(rate);
+			if(v3 === "12")
+		   		setTotPrice( rate*12 * 0.9);
+			else if(v3 === "24")
+				setTotPrice( rate * 24 * 0.8);
+			else
+				setTotPrice(rate * v3);
 		} 
 		else{
 			const rate = locationData?.pricing?.individual?.hourly_rate;
 			setV6(rate);
+			if(v3 === "12")
+		   			setTotPrice( rate*12 * 0.9);
+				else if(v3 === "24")
+					setTotPrice( rate * 24 * 0.8);
+				else
+				setTotPrice(rate * v3);
 		}
 	};
 
@@ -188,7 +213,7 @@ const BookingForm = ({
 					alignItems: "center",
 					gap: "30px",
 				}}>
-				<div className={active === true ? "active-rate" : "rate"}>$ {v6}/hr</div>
+				<div className={active === true ? "active-rate" : "rate"}>Rs {tot_price}</div>
 				<div className="submit" type="submit" onClick={handleClick}>
 					Reserve
 				</div>

@@ -3,9 +3,7 @@ import BookingForm from "../Components/Details/BookingForm";
 import Carousel from "../Components/Details/Carousel";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import img1 from "../Assets/Images/property-1.jpeg";
-import img2 from "../Assets/Images/property-2.jpeg";
-import img3 from "../Assets/Images/property-3.jpeg";
+
 import {
   Accordion,
   AccordionSummary,
@@ -20,6 +18,7 @@ import PropertyInfo from "../Components/PropertyInfo";
 import { ImCross } from "react-icons/im";
 import { useEffect } from "react";
 import { getAllLocations, getLocation } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const Property = ({
   v1,
@@ -28,6 +27,8 @@ const Property = ({
   v4,
   v5,
   v6,
+  event,
+  setEvent,
   setV1,
   setV2,
   setV3,
@@ -37,6 +38,7 @@ const Property = ({
 }) => {
   const [locationData, setLocationData] = useState({});
   const [propertyItems, setPropertyItems] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     getAllLocations()
       .then((res) => setPropertyItems(res.data.locations))
@@ -140,7 +142,7 @@ const Property = ({
 			color : "black",
 			textTransform : "capitalize"
           }}
-		  disabled
+          onClick = {() => window.location = `messages/${window.location.pathname.substring(10)}`}
         >
           Message the host
         </Button>
@@ -564,7 +566,9 @@ const Property = ({
         v3={v3}
         v4={v4}
         v5={v5}
-		v6={v6}
+		    v6={v6}
+        event = {event}
+        setEvent = {setEvent}
         setV1={setV1}
         setV2={setV2}
         setV3={setV3}

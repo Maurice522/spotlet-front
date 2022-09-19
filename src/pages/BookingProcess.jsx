@@ -7,10 +7,20 @@ import Booking from "../Components/Booking/Booking";
 import Rules from "../Components/Booking/Rules";
 import Contact from "../Components/Booking/Contact";
 
-const BookingProcess = ({ v1, v2, v3, v4, v5, v6 }) => {
+const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event }) => {
 	const [index, setIndex] = useState(0);
 	const [ok, setOk] = useState(false);
 	const [readyForRequest, setReadyForRequest] = useState(false);
+	const [userData, setUserData] = useState({
+		firstName : "",
+		lastName : "",
+		who_reserves : "Individual",
+		profession : "",
+		company : "",
+		designation : "",
+		dob : "",
+		message : "",
+	});
 	return (
 		<>
 			<Navbar extraNavId="id-2" />
@@ -36,7 +46,7 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6 }) => {
 						) : index === 1 ? (
 							<Rules isOk={setOk} />
 						) : (
-							<Contact setReadyForRequest={setReadyForRequest} />
+							<Contact setReadyForRequest={setReadyForRequest} userData = {userData} setUserData = {setUserData} />
 						)}
 					</div>
 					<SideSection
@@ -45,12 +55,15 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6 }) => {
 						ok={ok}
 						setOk={setOk}
 						v1={v1}
+						v2={v2}
 						v3={v3}
 						v4={v4}
 						v5={v5}
 						v6={v6}
 						readyForRequest={readyForRequest}
 						setReadyForRequest={setReadyForRequest}
+						userData = {userData}
+						event = {event}
 					/>
 				</div>
 			</div>

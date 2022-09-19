@@ -70,7 +70,7 @@ const Photo = ({ showSection }) => {
             <button
               className="continue"
               onClick={async () => {
-                if(images.length < 5) return toast.error("Please add minimum 6 Photos");
+                if(images.length < 5) return toast.error("Please add minimum 5 Photos");
                 const locData = {
                   ...location,
                   images,

@@ -111,3 +111,8 @@ export const getAllLocations = () => {
 export const getLocation = (locId) => {
   return axios.get(server_domain + "/getlocation/" + locId);
 }
+
+//bookings
+export const bookingRequest = (form) => {
+  return axios.post(server_domain + "/bookingreq", form);
+}
