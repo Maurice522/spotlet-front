@@ -284,7 +284,6 @@ const Property = ({
         />
       </div>
       {propertyItems.map((item, index) => {
-		if(item.location_id !== window.location.pathname.substring(10)){
 			return <PropertyInfo
 			item={item}
 			index={index}
@@ -294,7 +293,7 @@ const Property = ({
 			rating={true}
 		  />
 		}
-      })}
+      )}
       <div
         style={{
           display: "flex",
