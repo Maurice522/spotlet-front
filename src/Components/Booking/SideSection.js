@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../Assets/Styles/Booking/sideSection.css";
 import { Button, Backdrop, Fade, Box, Typography, Modal } from "@mui/material";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
 import { MdDone } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { bookingRequest, getLocation } from "../../services/api";
+import { selectUser_id } from "../../redux/slices/userSlice";
+import { useSelector } from "react-redux";
 
 const style = {
 	position: "absolute",
@@ -27,19 +30,38 @@ const SideSection = ({
 	readyForRequest,
 	index,
 	setIndex,
+	userData,
 	ok,
 	setOk,
+	event,
 	v1,
+	v2,
 	v3,
 	v4,
+	v5,
+	v6
 }) => {
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+	const [locationData, setLocationData] = useState({});
 	const navigate = useNavigate();
+	const user_id = useSelector(selectUser_id);
+	const location_id = window.location.pathname.substring(1, 10);
+	const total_amt = v3 === "12" ? ((v6 * v3*0.9) + 40) : (v3 === "24" ? ((v6 * v3*0.8) + 40) : (v6*v3)+40) ;
+	useEffect(() => {
+		getLocation(location_id)
+		  .then((res) => setLocationData(res.data))
+		  .catch((err) => console.log(err));
+	  }, []);
+	  console.log(v1, v2, v3, v4, v5, v6, event, userData);
 
-	const handleClick = () => {
-		console.log("clicked");
+	  const year = v1.slice(0, 4);
+	  const month = v1.slice(5, 7);
+	  const day = v1.slice(8, 10);
+
+	const handleClick = async() => {
+		//console.log("clicked");
 		if (index === 0) {
 			setIndex(1);
 		} else if (index === 1) {
@@ -50,34 +72,59 @@ const SideSection = ({
 				toast.error("Please accept the terms and conditions");
 			}
 		} else if (index === 2) {
-			if (readyForRequest) {
-				handleOpen();
-				setReadyForRequest(false);
-				setTimeout(() => {
-					navigate("/");
-				}, 3000);
+			setReadyForRequest(true);
+			if (readyForRequest && userData.firstName !== "" && userData.lastName !== "" &&
+			 	userData.who_reserves !== "" && userData.dob !== "" && userData.message !== "")
+			 {
+				const bookingDet = {
+					activity : v5,
+					attendies : v4,
+					date : day + '-' + month + '-' + year,
+					duration_in_hours : v3,
+					event,
+					owner_id : locationData.property_desc.user_id,
+					property_id : location_id,
+					time :v2,
+					total_amt,
+					user_id,
+					user_data : {
+						fullName : userData.firstName + " " + userData.lastName,
+						who_reserves : userData.who_reserves,
+						[userData.who_reserves === "Individual" ? "profession" : "company"] : userData.who_reserves === "Individual" ? userData.profession : userData.company,
+						dob : userData.dob,
+						message : userData.message
+					}
+				}
+				try {
+					await bookingRequest(bookingDet);
+					handleOpen();
+					setReadyForRequest(false);
+					setTimeout(() => {
+						navigate("/");
+					}, 3000);
+				} catch (error) {
+					console.log(error);
+				}
 			} else {
 				toast.error("Please fill all the fields");
 			}
 		}
 	};
 
-	const year = v1.slice(0, 4);
-	const month = v1.slice(5, 7);
-	const day = v1.slice(8, 10);
 
-	console.log(v1, v3, v4);
+
+	// console.log(v1, v3, v4);
 	return (
 		<div>
 			<div className="side-section-image-wrapper">
 				<img
-					src={require("../../Assets/Images/side-section-image.jpeg")}
+					src={locationData?.images?.at(0)}
 					alt="booking-process"
 					className="image"
 				/>
 			</div>
 
-			<div data-attribute-1>Property ID</div>
+			<div data-attribute-1>{location_id}</div>
 			<div data-attribute-2>Location</div>
 
 			<div className="booking-side-section-title">Reserved Date</div>
@@ -90,8 +137,8 @@ const SideSection = ({
 			<div className="booking-side-section-info">{v4} </div>
 
 			<div data-attribute-3>
-				<div data-attribute-4>$ 100 * 6 hrs</div>
-				<div data-attribute-4>$600</div>
+				<div data-attribute-4>$ {v6} * {v3} hrs</div>
+				<div data-attribute-4>${v6 * v3}</div>
 			</div>
 			<div data-attribute-3>
 				<div data-attribute-4>Processing Fee</div>
@@ -100,7 +147,7 @@ const SideSection = ({
 
 			<div data-attribute-3>
 				<div data-attribute-1>Total</div>
-				<div data-attribute-1>$640</div>
+				<div data-attribute-1>$ {total_amt}</div>
 			</div>
 
 			<Button

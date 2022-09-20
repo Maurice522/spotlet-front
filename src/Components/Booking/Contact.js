@@ -3,34 +3,47 @@ import { MenuItem, TextField } from "@mui/material";
 
 import "../../Assets/Styles/Booking/contact.css";
 
-const Contact = ({ setReadyForRequest }) => {
-	const [value, setValue] = useState("Individual");
-
-	const handleChange = (event) => {
-		setValue(event.target.value);
+const Contact = ({ setReadyForRequest, setUserData, userData }) => {
+	const handleChange = (e) => {
+		setUserData({...userData, [e.target.name] : e.target.value});
 	};
 
-	const [name, setName] = useState("");
-	const [surname, setSurname] = useState("");
-	const [profession, setProfession] = useState("");
-	const [dob, setDob] = useState("");
-	const [designation, setDesignation] = useState("");
-	const [message, setMessage] = useState("");
+	// const [name, setName] = useState("");
+	// const [surname, setSurname] = useState("");
+	// const [profession, setProfession] = useState("");
+	// const [dob, setDob] = useState("");
+	// const [designation, setDesignation] = useState("");
+	// const [message, setMessage] = useState("");
 
-	if (
-		name !== "" &&
-		surname !== "" &&
-		profession !== "" &&
-		dob !== "" &&
-		message !== ""
-	) {
-		if (value === "Individual") {
-			setReadyForRequest(true);
-		}
-		if (value === "Company" && designation !== "") {
-			setReadyForRequest(true);
-		}
-	}
+	// if (
+	// 	name !== "" &&
+	// 	surname !== "" &&
+	// 	profession !== "" &&
+	// 	dob !== "" &&
+	// 	message !== ""
+	// ) {
+	// 	if (value === "Individual") {
+	// 		setReadyForRequest(true);
+	// 		setUserData({
+	// 			fullName : name + " " + surname,
+	// 			who_reserves : value,
+	// 			profession,
+	// 			dob,
+	// 			message
+	// 		})
+	// 	}
+	// 	if (value === "Company" && designation !== "") {
+	// 		setReadyForRequest(true);
+	// 		setUserData({
+	// 			fullName : name + " " + surname,
+	// 			who_reserves : value,
+	// 			designation,
+	// 			company : profession,
+	// 			dob,
+	// 			message
+	// 		})
+	// 	}
+	// }
 
 	return (
 		<form id="booking-contact-form">
@@ -41,12 +54,12 @@ const Contact = ({ setReadyForRequest }) => {
 					<TextField
 						required
 						id="name"
+						name="firstName"
 						type="text"
 						fullWidth
 						size="small"
-						onChange={(e) => {
-							setName(e.target.value);
-						}}
+						onChange={handleChange}
+						value = {userData.firstName}
 					/>
 				</div>
 
@@ -58,9 +71,9 @@ const Contact = ({ setReadyForRequest }) => {
 						type="text"
 						fullWidth
 						size="small"
-						onChange={(e) => {
-							setSurname(e.target.value);
-						}}
+						name = "lastName"
+						onChange={handleChange}
+						value = {userData.lastName}
 					/>
 				</div>
 			</div>
@@ -71,10 +84,12 @@ const Contact = ({ setReadyForRequest }) => {
 					<TextField
 						id="who"
 						select
-						value={value}
+						name = "who_reserves"
+						onChange={handleChange}
+						value = {userData.who_reserves}
 						fullWidth
 						size="small"
-						onChange={handleChange}>
+					>
 						<MenuItem value="Individual">Individual</MenuItem>
 						<MenuItem value="Company">Company</MenuItem>
 					</TextField>
@@ -82,7 +97,7 @@ const Contact = ({ setReadyForRequest }) => {
 
 				<div>
 					<label htmlFor="profession">
-						{value === "Individual" ? "Profession" : "Company Name"}
+						{userData.who_reserves === "Individual" ? "Profession" : "Company Name"}
 					</label>
 					<TextField
 						required
@@ -90,14 +105,14 @@ const Contact = ({ setReadyForRequest }) => {
 						type="text"
 						fullWidth
 						size="small"
-						onChange={(e) => {
-							setProfession(e.target.value);
-						}}
+						name = {userData.who_reserves === "Individual" ? "profession" : "company"}
+						onChange={handleChange}
+						value = {userData.who_reserves === "Individual" ? userData.profession : userData.company}
 					/>
 				</div>
 			</div>
 
-			{value === "Company" ? (
+			{userData.who_reserves === "Company" ? (
 				<div className="name-container">
 					<div>
 						<label htmlFor="designation">Designation</label>
@@ -107,9 +122,9 @@ const Contact = ({ setReadyForRequest }) => {
 							type="text"
 							fullWidth
 							size="small"
-							onChange={(e) => {
-								setDesignation(e.target.value);
-							}}
+							name = "designation"
+							onChange={handleChange}
+							value = {userData.designation}
 						/>
 					</div>
 					<div>
@@ -120,9 +135,9 @@ const Contact = ({ setReadyForRequest }) => {
 							type="date"
 							fullWidth
 							size="small"
-							onChange={(e) => {
-								setDob(e.target.value);
-							}}
+							name = "dob"
+							onChange={handleChange}
+							value = {userData.dob}
 						/>
 					</div>
 				</div>
@@ -135,9 +150,9 @@ const Contact = ({ setReadyForRequest }) => {
 						type="date"
 						fullWidth
 						size="small"
-						onChange={(e) => {
-							setDob(e.target.value);
-						}}
+						name = "dob"
+						onChange={handleChange}
+						value = {userData.dob}
 					/>
 				</div>
 			)}
@@ -152,9 +167,9 @@ const Contact = ({ setReadyForRequest }) => {
 					fullWidth
 					size="small"
 					minRows={5}
-					onChange={(e) => {
-						setMessage(e.target.value);
-					}}
+					name = "message"
+					onChange={handleChange}
+					value = {userData.message}
 				/>
 			</div>
 		</form>

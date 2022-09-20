@@ -47,7 +47,8 @@ function App() {
 	const [v3, setV3] = useState("");
 	const [v4, setV4] = useState("");
 	const [v5, setV5] = useState("");
-
+	const [v6, setV6] = useState(0);
+	const [event, setEvent] = useState("");
 	return (
 		<BrowserRouter>
 			<div className="App">
@@ -57,7 +58,7 @@ function App() {
 					<Route path="/signin" element={<Auth />} />
 					<Route path="/reset/:userId" element={<ResetPassword />} />
 					<Route
-						path="/property"
+						path="/property/:locId"
 						element={
 							<Property
 								v1={v1}
@@ -65,11 +66,15 @@ function App() {
 								v3={v3}
 								v4={v4}
 								v5={v5}
+								v6={v6}
+								event = {event}
+								setEvent = {setEvent}
 								setV1={setV1}
 								setV2={setV2}
 								setV3={setV3}
 								setV4={setV4}
 								setV5={setV5}
+								setV6 = {setV6}
 							/>
 						}
 					/>
@@ -77,7 +82,7 @@ function App() {
 					{/* {user && <Route path="/search" element={<Search />} />} */}
 					<Route path="/search" element={<Search />} />
 					<Route path="/listing" element={<ListingPlace />} />
-					<Route path="/messages" element={<Messages />} />
+					<Route path="/property/messages/:locId" element={<Messages />} />
 					<Route path="/bookinglist" element={<BookingList />} />
 					<Route path="/bookingdetails" element={<BookingDetails />} />
 					<Route path="/listdetails" element={<ListDetails />} />
@@ -90,8 +95,8 @@ function App() {
 
 					{/* {user && <Route path="/search" element={<Search />} />} */}
 					<Route
-						path="/booking"
-						element={<BookingProcess v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} />}
+						path="/:locId/booking"
+						element={<BookingProcess v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} v6={v6} event={event} />}
 					/>
 					<Route path="/host" element={<HostPage />} />
 				</Routes>

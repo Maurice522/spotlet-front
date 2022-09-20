@@ -3,19 +3,22 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
+import { selectUserData } from "../../redux/slices/userSlice";
 
 const Contact = ({showSection}) => {
+ 
+  const dispatch = useDispatch();
+	const location_id = useSelector(selectLocationId);
+	const location = useSelector(selectLocationData);
+  const user = useSelector(selectUserData);
   const [contact_det, setContactDet] = useState({
     name: "",
     mobile_num: "",
     email: "",
     alt_name: "",
     alt_mobile: "",
+    img : user.personalInfo.profile_pic
   });
-  const dispatch = useDispatch();
-	const location_id = useSelector(selectLocationId);
-	const location = useSelector(selectLocationData);
-
   useEffect(() => {
 		location?.contact_det && setContactDet(location.contact_det);
 	  }, [])

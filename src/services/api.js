@@ -101,3 +101,18 @@ export const uploadGstDocs = (formData) => {
     },
   });
 };
+
+//get all locations
+export const getAllLocations = () => {
+  return axios.get(server_domain + "/getlocations");
+};
+
+//get location
+export const getLocation = (locId) => {
+  return axios.get(server_domain + "/getlocation/" + locId);
+}
+
+//bookings
+export const bookingRequest = (form) => {
+  return axios.post(server_domain + "/bookingreq", form);
+}
