@@ -84,12 +84,12 @@ function App() {
 					<Route path="/listing" element={<ListingPlace />} />
 					<Route path="/property/messages/:locId" element={<Messages />} />
 					<Route path="/bookinglist" element={<BookingList />} />
-					<Route path="/bookingdetails" element={<BookingDetails />} />
-					<Route path="/listdetails" element={<ListDetails />} />
+					<Route path="/bookingdetails/:bookingId" element={<BookingDetails />} />
+					<Route path="/listdetails/:locId" element={<ListDetails />} />
 					<Route path="/favorite" element={<Favorites />} />
 
 					<Route
-						path="/listdetailsapproval"
+						path="location/:locationId/bookingdetail/:bookingId"
 						element={<ListDetailsComponent />}
 					/>
 

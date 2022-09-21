@@ -18,7 +18,11 @@
 	justify-content: space-between;
 	gap: 20px;
 }
-
+.user-info>img{
+	width: 45px;
+	height: 45px;
+	border-radius: 200%;
+}
 .booking-details-body-2 {
 	display: flex;
 	align-items: flex-start;

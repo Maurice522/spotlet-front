@@ -72,7 +72,6 @@ const SideSection = ({
 				toast.error("Please accept the terms and conditions");
 			}
 		} else if (index === 2) {
-			setReadyForRequest(true);
 			if (readyForRequest && userData.firstName !== "" && userData.lastName !== "" &&
 			 	userData.who_reserves !== "" && userData.dob !== "" && userData.message !== "")
 			 {
@@ -137,17 +136,17 @@ const SideSection = ({
 			<div className="booking-side-section-info">{v4} </div>
 
 			<div data-attribute-3>
-				<div data-attribute-4>$ {v6} * {v3} hrs</div>
-				<div data-attribute-4>${v6 * v3}</div>
+				<div data-attribute-4>Rs {v6} * {v3} hrs</div>
+				<div data-attribute-4>Rs{v6 * v3}</div>
 			</div>
 			<div data-attribute-3>
 				<div data-attribute-4>Processing Fee</div>
-				<div data-attribute-4>$40</div>
+				<div data-attribute-4>Rs40</div>
 			</div>
 
 			<div data-attribute-3>
 				<div data-attribute-1>Total</div>
-				<div data-attribute-1>$ {total_amt}</div>
+				<div data-attribute-1>Rs {total_amt}</div>
 			</div>
 
 			<Button

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const server_domain = "https://gorecce-backend.herokuapp.com";
-// const server_domain = "http://localhost:8000";
+// const server_domain = "https://gorecce-backend.herokuapp.com";
+const server_domain = "http://localhost:8000";
 
 ////////////////////////Auth////////////////////////
 // function to send signin request to backend
@@ -115,4 +115,14 @@ export const getLocation = (locId) => {
 //bookings
 export const bookingRequest = (form) => {
   return axios.post(server_domain + "/bookingreq", form);
+}
+
+//get requests
+export const locationRequest = (locId) => {
+  return axios.get(server_domain + "/totrequest/"+locId);
+}
+
+//update booking sttaus
+export const updateBookingStatus = (form) => {
+  return axios.put(server_domain + "/updatepaymentstatus", form);
 }
