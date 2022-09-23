@@ -55,7 +55,9 @@ const Details = ({ showSection }) => {
             }
             value={options.filter(function(option) {
               return option.value === property_desc.location_type;
+              
             })}
+            required
           />
         </div>
         <div className="coll1">
@@ -65,6 +67,7 @@ const Details = ({ showSection }) => {
             name="property_size"
             onChange={handleChange}
             value={property_desc.property_size}
+            required
           />
         </div>
       </div>
@@ -79,6 +82,7 @@ const Details = ({ showSection }) => {
               onChange={handleChange}
               value="yes"
               checked={property_desc.street_parking === "yes"}
+              required
             />
             YES
             <input
@@ -125,7 +129,8 @@ const Details = ({ showSection }) => {
             name="property_info"
             onChange={handleChange}
             value={property_desc.property_info}
-            style={{ width: 690 }}
+            style={{ width: 690,fontSize:"20px" }}
+            required
           />
         </div>
       </div>
