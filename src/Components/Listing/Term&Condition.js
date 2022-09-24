@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import {
   selectLocationData,
@@ -6,9 +6,37 @@ import {
 } from "../../redux/slices/locationSlice";
 import { createLocation } from "../../services/api";
 import { toast } from "react-toastify";
+import { Checkbox, FormControlLabel } from "@mui/material";
 export default function TermCondition() {
   const location_id = useSelector(selectLocationId);
   const data = useSelector(selectLocationData);
+  const [policy, setPolicy] = useState({
+    privacy_policy : false,
+    term_cond : false,
+    grant_info : false
+  });
+  const handleChange = (e) => {
+		setPolicy({...policy, [e.target.name] : e.target.checked})
+	};
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    if(!policy.grant_info || !policy.privacy_policy || !policy.term_cond)
+      return toast.error("Please check all fields!!")
+    const locData = {
+      data,
+      location_id,
+    };
+    try {
+      const response = await createLocation(locData);
+      localStorage.removeItem("locationData");
+      localStorage.removeItem("locationId");
+      toast.success(response.data);
+      window.location = "/";
+    } catch (error) {
+      toast.error(error.response.data);
+    }
+  }
   return (
     <div style={{ marginTop: "10%", marginLeft: "22%", width: "50%" }}>
       <h1>Terms and Conditions</h1>
@@ -32,26 +60,63 @@ export default function TermCondition() {
         sometimes by accident, sometimes on purpose injected humour and the
         like.
       </p>
+      <div className="terms-conditions">
+				<FormControlLabel
+					control={
+						<Checkbox
+							onChange={handleChange}
+							sx={{
+								color: "#ea4235",
+								"&.Mui-checked": {
+									color: "#ea4235",
+								},
+							}}
+              name="privacy_policy"
+              checked = {policy.privacy_policy}
+						/>
+					}
+					label="I have read and agree to the privacy policy"
+				/>
+        <br/>
+        <FormControlLabel
+					control={
+						<Checkbox
+							onChange={handleChange}
+							sx={{
+								color: "#ea4235",
+								"&.Mui-checked": {
+									color: "#ea4235",
+								},
+							}}
+              name="term_cond"
+              checked = {policy.term_cond}
+						/>
+					}
+					label="I agree to the Term and Conditions with Hostinger International"
+				/>
+        <br/>
+        <FormControlLabel
+					control={
+						<Checkbox
+							onChange={handleChange}
+							sx={{
+								color: "#ea4235",
+								"&.Mui-checked": {
+									color: "#ea4235",
+								},
+							}}
+              name="grant_info"
+              checked = {policy.grant_info}
+						/>
+					}
+					label="I consent to GoRecce using my information"
+				/>
+			</div>
       <div className="row1">
         <div className="coll1">
           <button
             className="continue"
-            onClick={async () => {
-              const locData = {
-                data,
-                location_id,
-              };
-              try {
-
-                const response = await createLocation(locData);
-                localStorage.removeItem("locationData");
-                localStorage.removeItem("locationId");
-                toast.success(response.data);
-                window.location = "/";
-              } catch (error) {
-                toast.success(error.response.data);
-              }
-            }}
+            onClick={handleSubmit}
           >
             Create Location
           </button>

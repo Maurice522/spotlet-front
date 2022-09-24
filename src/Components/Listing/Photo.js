@@ -4,38 +4,52 @@ import {
   selectLocationData,
   selectLocationId,
 } from "../../redux/slices/locationSlice";
-import { createTempLocation, uploadLocationPics,  } from "../../services/api";
+import { createTempLocation, deleteFiles, uploadLocationPics } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { Clear } from "@mui/icons-material";
 const Photo = ({ showSection }) => {
   //const [files, setFiles] = useState([]);
   const [images, setImages] = useState([]);
+  const [refs, setRef] = useState([]);
   const dispatch = useDispatch();
   const location_id = useSelector(selectLocationId);
   const location = useSelector(selectLocationData);
 
-	useEffect(() => {
-		location.images && setImages(location.images);
-	  }, [])
+  useEffect(() => {
+    location.images && setImages(location.images);
+  }, []);
 
-
-  const handleChange = async(e) => {
+  const handleChange = async (e) => {
     try {
-        for (let i = 0; i <e.target.files.length; i++) {
-            //console.log(e.target.files[i]);
-            const formData = new FormData();
-            formData.append("pic", e.target.files[i]);
-            const response = await uploadLocationPics(formData);
-            setImages(prev => [...prev, response.data.url]);
-        }
+      for (let i = 0; i < e.target.files.length; i++) {
+        //console.log(e.target.files[i]);
+        const formData = new FormData();
+        formData.append("pic", e.target.files[i]);
+        const response = await uploadLocationPics(formData);
+        setImages((prev) => [...prev, response.data.url]);
+        setRef(prev => [...prev, response.data.fileRef]);
+      }
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-    
   };
   const handleClick = () => {
     document.getElementById("inputD").click();
   };
+ // console.log(refs)
+  const deleteImage = async(image, fileRef) => {
+    //console.log(fileRef);
+    try {
+      await deleteFiles({image, fileRef : fileRef});
+      const newImages = images.filter(image => image !== image);
+      const newRefs = refs.filter(ref => ref._location.path_ !== fileRef._location.path_)
+      setRef(newRefs);
+      setImages(newImages);
+    } catch (error) {
+      toast.error(error.response.data);
+    }
+  }
   return (
     <div>
       <div className="lbox">
@@ -57,9 +71,18 @@ const Photo = ({ showSection }) => {
         </div>
         <p style={{ marginLeft: "20px" }}>Add minimum 5 images</p>
         <div className="row1" id="photo-sec-s">
-          {images?.map((image) => {
+          {images?.map((image, index) => {
             return (
               <div className="pict">
+                <Clear
+                  sx={{
+                    cursor: "pointer",
+                    marginLeft: "407px",
+                    marginTop: "5px",
+                    position: "absolute",
+                  }}
+                  onClick={() => deleteImage(image, refs[index])}
+                />
                 <img src={image} />{" "}
               </div>
             );
@@ -70,7 +93,8 @@ const Photo = ({ showSection }) => {
             <button
               className="continue"
               onClick={async () => {
-                if(images.length < 5) return toast.error("Please add minimum 5 Photos");
+                if (images.length < 5)
+                  return toast.error("Please add minimum 5 Photos");
                 const locData = {
                   ...location,
                   images,
@@ -81,9 +105,8 @@ const Photo = ({ showSection }) => {
                   data: locData,
                 };
                 await createTempLocation(form);
-              //  console.log(locData);
+                //  console.log(locData);
                 showSection("Features");
-
               }}
             >
               Continue

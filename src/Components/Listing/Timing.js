@@ -8,6 +8,7 @@ import {
   selectLocationId,
 } from "../../redux/slices/locationSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Timing = ({ showSection }) => {
   const [monday, setmonday] = useState({
@@ -59,6 +60,37 @@ const Timing = ({ showSection }) => {
     location.timings && setsunday(location.timings.sunday);
   }, []);
 
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    if(!monday.open && !tuesday.open && !wednesday.open && !thursday.open && !friday.open && !saturday.open && !sunday.open)
+         return toast.error("Please fill all required fields");
+    const timings = {
+      monday,
+      tuesday,
+      wednesday,
+      thursday,
+      friday,
+      saturday,
+      sunday,
+    };
+    //console.log(timings);
+    const locData = {
+      ...location,
+      timings,
+    };
+    dispatch(addLocation(locData));
+    const form = {
+      location_id,
+      data: locData,
+    };
+    try {
+      await createTempLocation(form);
+    showSection("Rules of the Host");
+    } catch (error) {
+      toast.error(error.response.data);
+    }
+  }
+
   return (
     <div className="lbox">
       <div className="row1">
@@ -66,6 +98,7 @@ const Timing = ({ showSection }) => {
         <Switch
           onClick={() => setmonday({ ...monday, open: !monday.open })}
           color="warning"
+          checked = {monday.open}
         />
         {monday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
         {monday.open === true ? (
@@ -131,6 +164,7 @@ const Timing = ({ showSection }) => {
         <Switch
           onClick={() => settuesday({ ...tuesday, open: !tuesday.open })}
           color="warning"
+          checked = {tuesday.open}
         />
         {tuesday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
         {tuesday.open === true ? (
@@ -197,6 +231,7 @@ const Timing = ({ showSection }) => {
         <Switch
           onClick={() => setwednesday({ ...wednesday, open: !wednesday.open })}
           color="warning"
+          checked = {wednesday.open}
         />
         {wednesday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
         {wednesday.open === true ? (
@@ -267,6 +302,7 @@ const Timing = ({ showSection }) => {
         <Switch
           onClick={() => setthursday({ ...thursday, open: !thursday.open })}
           color="warning"
+          checked = {thursday.open}
         />
         {thursday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
         {thursday.open === true ? (
@@ -336,6 +372,7 @@ const Timing = ({ showSection }) => {
         <Switch
           onClick={() => setfriday({ ...friday, open: !friday.open })}
           color="warning"
+          checked = {friday.open}
         />
         {friday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
         {friday.open === true ? (
@@ -402,6 +439,7 @@ const Timing = ({ showSection }) => {
         <Switch
           onClick={() => setsaturday({ ...saturday, open: !saturday.open })}
           color="warning"
+          checked = {saturday.open}
         />
         {saturday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
         {saturday.open === true ? (
@@ -472,6 +510,7 @@ const Timing = ({ showSection }) => {
         <Switch
           onClick={() => setsunday({ ...sunday, open: !sunday.open })}
           color="warning"
+          checked = {sunday.open}
         />
         {sunday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
         {sunday.open === true ? (
@@ -534,29 +573,7 @@ const Timing = ({ showSection }) => {
       </div>
       <button
         className="continue"
-        onClick={async () => {
-          const timings = {
-            monday,
-            tuesday,
-            wednesday,
-            thursday,
-            friday,
-            saturday,
-            sunday,
-          };
-          //console.log(timings);
-          const locData = {
-            ...location,
-            timings,
-          };
-          dispatch(addLocation(locData));
-          const form = {
-            location_id,
-            data: locData,
-          };
-          await createTempLocation(form);
-          showSection("Rules of the Host");
-        }}
+        onClick={handleSubmit}
       >
         Continue
       </button>

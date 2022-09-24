@@ -4,6 +4,7 @@ import { addLocation, selectLocationData, selectLocationId } from "../../redux/s
 import { createTempLocation } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserData } from "../../redux/slices/userSlice";
+import { toast } from "react-toastify";
 
 const Contact = ({showSection}) => {
  
@@ -23,17 +24,39 @@ const Contact = ({showSection}) => {
 		location?.contact_det && setContactDet(location.contact_det);
 	  }, [])
 
-  const handleChange = (e) => {
+  const handleChange = async(e) => {
+    e.preventDefault();
     setContactDet({
       ...contact_det,
       [e.target.name]: e.target.value,
     });
   };
+  const handleSubmit = async(e) => {
+    //console.log(contact_det);
+    e.preventDefault();
+    if(!contact_det.email.length || !contact_det.mobile_num.length || !contact_det.name.length)
+        return toast.error("Please fill all required fields");
+    const locData = {
+     ...location,
+     contact_det
+   }
+   dispatch(addLocation(locData));
+   const form = {
+     location_id,
+     data : locData
+   }
+   try {
+     await createTempLocation(form);
+     showSection("GST Details")
+   } catch (error) {
+     toast.error(error.response.data);
+   }
+ }
   return (
     <div className="lbox">
       <div className="row1">
         <div className="coll1">
-          <h2>Name</h2>
+          <h2>Name<span style={{color : "red"}}>*</span></h2>
           <input
             className="lginput"
             name="name"
@@ -45,7 +68,7 @@ const Contact = ({showSection}) => {
 
       <div className="row1">
         <div className="coll1">
-          <h2>Mobile Number</h2>
+          <h2>Mobile Number<span style={{color : "red"}}>*</span></h2>
           <input
             className="input"
             name="mobile_num"
@@ -54,7 +77,7 @@ const Contact = ({showSection}) => {
           />
         </div>
         <div className="coll1">
-          <h2>Email Id</h2>
+          <h2>Email Id<span style={{color : "red"}}>*</span></h2>
           <input
             className="input"
             name="email"
@@ -88,20 +111,7 @@ const Contact = ({showSection}) => {
         <div className="coll1">
           <button
             className="continue"
-            onClick={async() => {
-              //console.log(contact_det);
-              const locData = {
-                ...location,
-                contact_det
-              }
-              dispatch(addLocation(locData));
-              const form = {
-                location_id,
-                data : locData
-              }
-               await createTempLocation(form);
-              showSection("GST Details")
-            }}
+            onClick={handleSubmit}
           >
             Continue
           </button>

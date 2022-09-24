@@ -22,14 +22,14 @@ const PropertyInfo = ({
 			}}>
 			<Link
 				reloadDocument
-				to={`/property/${item.location_id}`}
+				to={`/property/${item?.location_id}`}
 				style={{
 					textDecoration: "none",
 					color: "black",
 				}}>
 				<div className="text-on-image-container-2">
 					<img
-						src={item.images[0]}
+						src={item?.images?.at(0)}
 						alt={`property-${index + 1}`}
 						className="property-image"
 					/>
@@ -64,14 +64,14 @@ const PropertyInfo = ({
 							/>
 						)}
 					</div>
-					{review && <div className="type-of-property-icon">{item.icon}</div>}
+					{review && <div className="type-of-property-icon">{item?.icon}</div>}
 				</div>
 				<div
 					style={{
 						paddingLeft: "4px",
 					}}>
-					<div className="property-info-heading">{item.property_desc.location_type}</div>
-					<div className="property-info-location">{item.property_address.city}</div>
+					<div className="property-info-heading">{item?.property_desc.location_type}</div>
+					<div className="property-info-location">{item?.property_address.city}</div>
 					{/* <div className="property-info-price">{item.price}</div> */}
 					<div
 						style={{
@@ -91,7 +91,7 @@ const PropertyInfo = ({
 						)}
 						{review && ( 	
 							<>
-								<div>( {item.reviewCount} )</div>
+								<div>( {item?.reviewCount} )</div>
 							</>
 						)}
 					</div>

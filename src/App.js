@@ -49,7 +49,7 @@ function App() {
 
 	const [v1, setV1] = useState(date);
 	const [v2, setV2] = useState("06:30");
-	const [v3, setV3] = useState("");
+	const [v3, setV3] = useState(0);
 	const [v4, setV4] = useState("");
 	const [v5, setV5] = useState("");
 	const [v6, setV6] = useState(0);
@@ -88,10 +88,11 @@ function App() {
 					<Route path="/search" element={<Search />} />
 					<Route path="/aboutus" element={<AboutUs />} />
 					<Route path="/listing" element={<ListingPlace />} />
-					<Route path="/property/messages/:locId" element={<Messages />} />
+					<Route path="/messages/:bookingId" element={<Messages />} />
+					<Route path="/messages" element={<Messages />} />
 					<Route path="/bookinglist" element={<BookingList />} />
-					<Route path="/bookingdetails" element={<BookingDetails />} />
-					<Route path="/listdetails" element={<ListDetails />} />
+					<Route path="/bookingdetails/:bookingId" element={<BookingDetails />} />
+					<Route path="/listdetails/:locId" element={<ListDetails />} />
 					<Route path="/favorite" element={<Favorites />} />
 					<Route path="/guidelines" element={<Guidelines />} />
 					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
@@ -99,7 +100,7 @@ function App() {
 					<Route path="/community" element={<Community />} />
 
 					<Route
-						path="/listdetailsapproval"
+						path="location/:locationId/bookingdetail/:bookingId"
 						element={<ListDetailsComponent />}
 					/>
 

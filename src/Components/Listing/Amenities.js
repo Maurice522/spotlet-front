@@ -4,6 +4,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { useDispatch, useSelector } from "react-redux";
 import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
+import { toast } from "react-toastify";
 
 
 const Amenities = ({showSection}) => {
@@ -32,12 +33,34 @@ const Amenities = ({showSection}) => {
 		amenities.splice(e, 1);
 		setAmenities((prev) => [...prev])
 	}
+	const handleSubmit = async(e) => {
+		e.preventDefault();
+		//console.log(amenities);
+		if(!amenities.length)
+		  return toast.error("Please fill all required fields!!!")
+		const locData = {
+			...location,
+			amenities
+		  }
+		  dispatch(addLocation(locData));
+		  const form = {
+			location_id,
+			data : locData
+		  }
+		  try {
+			await createTempLocation(form);
+			showSection("Photo");
+		  } catch (error) {
+			toast.error(error.response.data);
+		  }
+		
 
+	}
 	return (
 		<div className="lbox">
 			<div className="row1">
 				<div className="coll1">
-					<h2>Amenties</h2>
+					<h2>Amenties<span style={{color : "red"}}>*</span></h2>
 					<Select className="select" options={options} onChange={HandleChange} />
 				</div>
 			</div>
@@ -58,20 +81,7 @@ const Amenities = ({showSection}) => {
 			</div>
 			<div className='row1'>
 				<div className='coll1'>
-					<button className='continue' onClick={async() => {
-						//console.log(amenities);
-						const locData = {
-							...location,
-							amenities
-						  }
-						  dispatch(addLocation(locData));
-						  const form = {
-							location_id,
-							data : locData
-						  }
-						   await createTempLocation(form);
-						showSection("Photo");
-						}}>Continue</button>
+					<button className='continue' onClick={handleSubmit}>Continue</button>
 				</div>
 			</div>
 		</div>

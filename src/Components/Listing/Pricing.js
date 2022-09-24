@@ -3,6 +3,7 @@ import Switch from "@mui/material/Switch";
 import { useDispatch, useSelector } from "react-redux";
 import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
+import { toast } from "react-toastify";
 
 const Pricing = ({showSection}) => {
   const [film, setfilm] = useState({
@@ -31,7 +32,33 @@ const Pricing = ({showSection}) => {
     location.pricing && setcorp(location.pricing.corporate);
     location.pricing && setevent(location.pricing.individual);
 	  }, [])
-
+    const handleSubmit = async(e) => {
+      e.preventDefault();
+      if(!film.isPresent && !tv.isPresent && !corp.isPresent && !event.isPresent)
+        return toast.error("Please add atleast one event type!");
+      const pricing = {
+        film_webseries_ad: film,
+        tv_series_other: tv,
+        corporate : corp,
+        individual : event
+      };
+     // console.log(pricing);
+      const locData = {
+        ...location,
+        pricing
+      }
+      dispatch(addLocation(locData));
+      const form = {
+        location_id,
+        data : locData
+      }
+      try {
+        await createTempLocation(form);
+         showSection("Timings"); 
+      } catch (error) {
+        toast.error(error.response.data);
+      }
+    }
   return (
     <div className="lbox">
       <div className="coll1">
@@ -40,6 +67,7 @@ const Pricing = ({showSection}) => {
           <Switch
             onClick={() => setfilm({ ...film, isPresent: !film.isPresent })}
             color="warning"
+            checked = {film.isPresent}
           />
         </div>
       </div>
@@ -104,6 +132,7 @@ const Pricing = ({showSection}) => {
           <Switch
             onClick={() => settv({ ...tv, isPresent: !tv.isPresent })}
             color="warning"
+            checked = {tv.isPresent}
           />
         </div>
       </div>
@@ -158,6 +187,7 @@ const Pricing = ({showSection}) => {
           <Switch
             onClick={() => setcorp({ ...corp, isPresent: !corp.isPresent })}
             color="warning"
+            checked = {corp.isPresent}
           />
         </div>
       </div>
@@ -222,6 +252,7 @@ const Pricing = ({showSection}) => {
           <Switch
             onClick={() => setevent({ ...event, isPresent: !event.isPresent })}
             color="warning"
+            checked = {event.isPresent}
           />
         </div>
       </div>
@@ -282,26 +313,7 @@ const Pricing = ({showSection}) => {
         <div className="coll1">
           <button
             className="continue"
-            onClick={async() => {
-              const pricing = {
-                film_webseries_ad: film,
-                tv_series_other: tv,
-                corporate : corp,
-                individual : event
-              };
-             // console.log(pricing);
-              const locData = {
-                ...location,
-                pricing
-              }
-              dispatch(addLocation(locData));
-              const form = {
-                location_id,
-                data : locData
-              }
-               await createTempLocation(form);
-              showSection("Timings");
-            }}
+            onClick={handleSubmit}
           >
             Continue
           </button>

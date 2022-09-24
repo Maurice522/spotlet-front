@@ -54,7 +54,7 @@ const SideSection = ({
 		  .then((res) => setLocationData(res.data))
 		  .catch((err) => console.log(err));
 	  }, []);
-	  console.log(v1, v2, v3, v4, v5, v6, event, userData);
+	  //console.log(v1, v2, v3, v4, v5, v6, event, userData);
 
 	  const year = v1.slice(0, 4);
 	  const month = v1.slice(5, 7);
@@ -72,7 +72,6 @@ const SideSection = ({
 				toast.error("Please accept the terms and conditions");
 			}
 		} else if (index === 2) {
-			setReadyForRequest(true);
 			if (readyForRequest && userData.firstName !== "" && userData.lastName !== "" &&
 			 	userData.who_reserves !== "" && userData.dob !== "" && userData.message !== "")
 			 {
@@ -100,7 +99,7 @@ const SideSection = ({
 					handleOpen();
 					setReadyForRequest(false);
 					setTimeout(() => {
-						navigate("/");
+						window.location = "/";
 					}, 3000);
 				} catch (error) {
 					console.log(error);
@@ -137,17 +136,17 @@ const SideSection = ({
 			<div className="booking-side-section-info">{v4} </div>
 
 			<div data-attribute-3>
-				<div data-attribute-4>$ {v6} * {v3} hrs</div>
-				<div data-attribute-4>${v6 * v3}</div>
+				<div data-attribute-4>Rs {v6} * {v3} hrs</div>
+				<div data-attribute-4>Rs{v6 * v3}</div>
 			</div>
 			<div data-attribute-3>
 				<div data-attribute-4>Processing Fee</div>
-				<div data-attribute-4>$40</div>
+				<div data-attribute-4>Rs40</div>
 			</div>
 
 			<div data-attribute-3>
 				<div data-attribute-1>Total</div>
-				<div data-attribute-1>$ {total_amt}</div>
+				<div data-attribute-1>Rs {total_amt}</div>
 			</div>
 
 			<Button

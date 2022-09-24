@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import "../Assets/Styles/Booking/booking-process.css";
@@ -21,6 +21,11 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event }) => {
 		dob : "",
 		message : "",
 	});
+	useEffect(() => {
+		if(userData.firstName !== "" && userData.lastName !== "" &&
+			userData.who_reserves !== "" && userData.dob !== "" && userData.message !== "")
+			setReadyForRequest(true);
+	}, [userData])
 	return (
 		<>
 			<Navbar extraNavId="id-2" />

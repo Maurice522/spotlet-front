@@ -1,10 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Button, Avatar } from "@mui/material";
 import "../Assets/Styles/bookingDetails.css";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, selectUserData } from "../redux/slices/userSlice";
+import { useEffect } from "react";
+import { createConversation, deleteBookingReq, getUserData } from "../services/api";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const BookingDetails = () => {
+	const userData = useSelector(selectUserData);
+	const dispatch = useDispatch();
+	const [booking, setBooking] = useState({});
+	const [ownerData, setOwnerData] = useState({});
+	const navigate = useNavigate();
+	const bookingId = window.location.pathname.substr(16);
+	const endTime =( Number(booking?.time?.substr(0,2))+Number(booking?.duration_in_hours))%24;
+		const date = new Date(booking?.timestamp?._seconds*1000)
+		const yyyy = date.getFullYear();
+		let mm = date.getMonth() + 1; // Months start at 0!
+		let dd = date.getDate();
+
+		if (dd && dd < 10) dd = '0' + dd;
+		if (mm && mm < 10) mm = '0' + mm;
+		const discount =  booking?.duration_in_hours === "24" ? 0.8 : ( booking?.duration_in_hours === "12" ? 0.9 : 1);
+		const perHourCost = (((booking?.total_amt-40) / booking?.duration_in_hours)/discount)?.toFixed(2)
+	useEffect(() => {
+		userData?.portfolio.map(booking => {
+			if(booking.bookingId === bookingId)
+			   setBooking(booking);
+		})
+	}, [userData])
+	useEffect(() => {
+		getUserData(booking?.owner_id)
+		.then(res => setOwnerData(res.data))
+		.catch(err => console.log(err))
+	},[booking])
+	function toMonthName(monthNumber) {
+		const date = new Date();
+		date.setMonth(monthNumber - 1);
+	  
+		return date.toLocaleString('en-US', {
+		  month: 'long',
+		});
+	  }
+	  const deleteBooking = async() => {
+		try {
+			const newPortfolio = userData.portfolio.filter(p => p.bookingId !== bookingId);
+			const newUserData = {...userData, portfolio : newPortfolio};
+			const data = {
+				bookingId,
+				locationId : booking.property_id,
+				user_id : booking.user_id,
+			}
+			const response = await deleteBookingReq(data);
+			dispatch(addUser(newUserData));
+			toast.success(response.data);
+			window.history.back();
+		} catch (error) {
+			toast.error(error);
+		}
+	  }
+	  //message
+	  const handleChat = async() => {
+		const data = {
+			senderId : booking.owner_id,
+			receiverId : booking.user_id,
+			locationId : booking.property_id,
+		}
+		await createConversation(bookingId, data)
+		window.location = `/messages/${bookingId}`
+	  }
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
@@ -13,39 +81,39 @@ const BookingDetails = () => {
 					<div className="booking-details-header">Booking Details</div>
 					<div className="booking-details-body">
 						<div className="booking-details-body-left">
-							<div className="item-heading">Property ID</div>
+							<div className="item-heading">{booking?.property_id}</div>
 							<div className="grid-container">
 								<div>
 									<div className="item-heading">Reserved Date</div>
-									<div className="item-body">12th January 2022</div>
+									<div className="item-body">{dd}th {toMonthName(mm)} {yyyy}</div>
 								</div>
 								<div>
 									<div className="item-heading">Attendies</div>
-									<div className="item-body">90 People</div>
+									<div className="item-body">{booking?.attendies} People</div>
 								</div>
 								<div>
 									<div className="item-heading">Reserved Time</div>
-									<div className="item-body">8:30 to 16:30</div>
+									<div className="item-body">{booking?.time + " to " + endTime + booking?.time?.substr(2)}</div>
 								</div>
 								<div>
 									<div className="item-heading">Duration</div>
-									<div className="item-body">8 Hrs</div>
+									<div className="item-body">{booking?.duration_in_hours} Hrs</div>
 								</div>
 							</div>
 						</div>
 						<div className="booking-details-body-right">
 							<div data-attribute-3>
-								<div data-attribute-4>$ 100 * 6 hrs</div>
-								<div data-attribute-4>$600</div>
+								<div data-attribute-4>Rs {perHourCost} * {booking?.duration_in_hours}  hrs</div>
+								<div data-attribute-4>Rs {(perHourCost * booking?.duration_in_hours)?.toFixed(2)}</div>
 							</div>
 							<div data-attribute-3>
 								<div data-attribute-4>Processing Fee</div>
-								<div data-attribute-4>$40</div>
+								<div data-attribute-4>Rs 40</div>
 							</div>
 
 							<div data-attribute-3>
 								<div data-attribute-1>Total</div>
-								<div data-attribute-1>$640</div>
+								<div data-attribute-1>Rs {(booking?.total_amt)?.toFixed(2)}</div>
 							</div>
 
 							<Button
@@ -56,25 +124,44 @@ const BookingDetails = () => {
 									color: "white",
 									borderRadius: "4px",
 									marginTop: "10px",
-								}}>
+								}}
+								disabled = {booking?.payment_status !== "Under Review"}
+								onClick={deleteBooking}
+								>
 								Reject
 							</Button>
 						</div>
 					</div>
+					<div style={{marginLeft : "auto", width: "20vw", display : `${booking?.payment_status !== "Approved" ?"none" : "block" }`}}>
+							<Button
+								variant="contained"
+								sx={{
+									width: "20vw",
+									backgroundColor: "#EA4235",
+									color: "white",
+									borderRadius: "4px",
+									marginTop: "10px",
+								}}
+								>
+								Payment
+							</Button>
+					</div>
+					
 				</div>
 				<div className="container">
 					<div className="booking-details-header">Message</div>
 					<div className="user-info">
-						<Avatar />
-						<span className="item-heading">John Doe</span>
+					{ownerData?.personalInfo?.profile_pic ? (
+						<img src={ownerData?.personalInfo?.profile_pic} alt="profile" />
+						) : (
+						<Avatar className="user-dp" />
+						)}
+						<span className="item-heading">{ownerData?.personalInfo?.fullName}</span>
 					</div>
 					<div className="booking-details-body">
-						<div className="item-heading">Last message with host: </div>
+						<div className="item-heading" style={{width:"30%"}}>Message to the host: </div>
 						<div className="item-info">
-							{" "}
-							lorem ipsum donor lorem ipsum donor lorem ipsum donor lorem ipsum
-							donor lorem ipsum donor lorem ipsum donor lorem ipsum donor lorem
-							ipsum donor lorem ipsum donor lorem ipsum donor
+						{booking?.user_data?.message}
 						</div>
 						<div>
 							<Button
@@ -86,7 +173,10 @@ const BookingDetails = () => {
 									borderRadius: "4px",
 									marginTop: "10px",
 									flexGrow: "1",
-								}}>
+								}}
+								disabled = {booking?.payment_status === "Cancelled"}
+								onClick={handleChat}
+								>
 								Message
 							</Button>
 						</div>
