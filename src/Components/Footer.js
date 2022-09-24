@@ -7,36 +7,51 @@ const Footer = () => {
 	const objArray = [
 		{
 			title: "Company",
-			items: ["About Us", "Investors", "Careers", "Blogs"],
+			items: [
+				{ name: "About Us", to: "/aboutus" },
+				{ name: "Investors", to: "/investors" },
+				{ name: "Careers", to: "/careers" },
+				{ name: "Blogs", to: "/blogs" },
+			],
 		},
 		{
 			title: "Host",
 			items: [
-				"List your space",
-				"Community",
-				"Resource Center",
-				"Guidelines",
-				"Photography",
+				{ name: "List your space", to: "/listyourspace" },
+				{ name: "Community", to: "/community" },
+				{ name: "Resource Center", to: "/resourcecenter" },
+				{ name: "Guidelines", to: "/guidelines" },
+				{ name: "Photography", to: "/photography" },
 			],
 		},
 		{
 			title: "Explore",
-			items: ["Activities", "Location", "Knowledge Base", "Affiliate"],
+			items: [
+				{ name: "Activities", to: "/activities" },
+				{ name: "Location", to: "/location" },
+				{ name: "Knowledge Base", to: "/knowledgebase" },
+				{ name: "Affiliate", to: "/affiliate" },
+			],
 		},
 		{
 			title: "Support",
 			items: [
-				"Help Center",
-				"Cancellation",
-				"Privacy Policy",
-				"Terms and Conditions",
-				"Trust and Safety",
-				"Cookie Prefercnce",
+				{ name: "Help Center", to: "/helpcenter" },
+				{ name: "Cancellation", to: "/cancellation" },
+				{ name: "Privacy Policy", to: "/privacypolicy" },
+				{ name: "Terms and Conditions", to: "/termsofservice" },
+				{ name: "Trust and Safety", to: "/trustandsafety" },
+				{ name: "Cookie Prefercnce", to: "/cookiepreference" },
 			],
 		},
 		{
 			title: "Social Media",
-			items: ["Instagram", "Facebook", "Twitter", "LinkedIn"],
+			items: [
+				{ name: "Instagram", to: "/instagram" },
+				{ name: "Facebook", to: "/facebook" },
+				{ name: "Twitter", to: "/twitter" },
+				{ name: "LinkedIn", to: "/linkedin" },
+			],
 		},
 	];
 
@@ -44,9 +59,9 @@ const Footer = () => {
 		<div key={index}>
 			<div className="footer-subheading">{item.title}</div>
 			{item.items.map((val, i) => (
-				<div className="footer-item" key={i}>
-					{val}
-				</div>
+				<Link to={val.to} key={i}>
+					<div className="footer-item">{val.name}</div>
+				</Link>
 			))}
 		</div>
 	));
