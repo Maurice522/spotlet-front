@@ -1,0 +1,31 @@
+.text-only-main-heading {
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 31px;
+	line-height: 64px;
+}
+
+.text-only-heading {
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 25px;
+	line-height: 44px;
+}
+
+.text-only-info {
+	font-family: "Rubik";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 36px;
+}
+
+.text-only-item {
+	margin: 20px 0;
+}
+
+.text-only-container {
+	margin: 80px 60px;
+}
