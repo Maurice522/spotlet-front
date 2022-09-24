@@ -54,7 +54,7 @@ const SideSection = ({
 		  .then((res) => setLocationData(res.data))
 		  .catch((err) => console.log(err));
 	  }, []);
-	  console.log(v1, v2, v3, v4, v5, v6, event, userData);
+	  //console.log(v1, v2, v3, v4, v5, v6, event, userData);
 
 	  const year = v1.slice(0, 4);
 	  const month = v1.slice(5, 7);
@@ -99,7 +99,7 @@ const SideSection = ({
 					handleOpen();
 					setReadyForRequest(false);
 					setTimeout(() => {
-						navigate("/");
+						window.location = "/";
 					}, 3000);
 				} catch (error) {
 					console.log(error);

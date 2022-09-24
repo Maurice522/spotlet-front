@@ -312,39 +312,7 @@ const Property = ({
     </div>
   );
 
-  const hostRules = [
-    "lorem ipsum donor lorem ipsum donor",
-    "lorem ipsum donor lorem ipsum donor",
-    "lorem ipsum donor lorem ipsum donor",
-    "lorem ipsum donor lorem ipsum donor",
-    "lorem ipsum donor lorem ipsum donor",
-    "lorem ipsum donor lorem ipsum donor",
-  ];
 
-  const uniqueFeatures = [
-    "Location Manager",
-    "Fireplace",
-    "Terrace Garden",
-    "Stained Glass Window",
-  ];
-
-  const dos = [
-    "lorem ipsum",
-    "lorem ipsum",
-    "lorem ipsum",
-    "lorem ipsum",
-    "lorem ipsum",
-    "lorem ipsum",
-  ];
-
-  const donts = [
-    "lorem ipsum",
-    "lorem ipsum",
-    "lorem ipsum",
-    "lorem ipsum",
-    "lorem ipsum",
-    "lorem ipsum",
-  ];
 
   const dosDonts = (
     <div

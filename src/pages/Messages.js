@@ -13,7 +13,7 @@ import MessageThread from "../Components/Chats/MessageThread";
 import propertyImg from "../Assets/Images/side-section-image.jpeg";
 import { Avatar, Button } from "@mui/material";
 import { toast } from "react-toastify";
-import { contactList, messsageRoom, sendMessage } from "../services/api";
+import { contactList, getBookingDetail, getLocation, messsageRoom, sendMessage } from "../services/api";
 import { useSelector } from "react-redux";
 import { selectUser_id } from "../redux/slices/userSlice";
 import { io } from "socket.io-client";
@@ -26,12 +26,25 @@ export default function Messages() {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [friend, setFriend] = useState(null);
   const [showPicker, setPicker] = useState(false);
+  const [locationData, setLocationData] = useState({});
   const scrollRef = useRef();
   const user_id = useSelector(selectUser_id);
   const socket = useRef();
+  const [propertyOwner, setPropertyOwner] = useState({});
+  const [bookingDetail, setBookingDetail] = useState({});
+  const bookingId = currentChat?.bookingId;
+  const locationId = currentChat?.locationId;
+  const endTime =( Number(bookingDetail?.time?.substr(0,2))+Number(bookingDetail?.duration_in_hours))%24;
+  const date = new Date(bookingDetail?.timestamp?._seconds*1000)
+	const yyyy = date.getFullYear();
+	let mm = date.getMonth() + 1; // Months start at 0!
+	let dd = date.getDate();
+
+		if (dd && dd < 10) dd = '0' + dd;
+		if (mm && mm < 10) mm = '0' + mm;
   useEffect(() => {
-    socket.current = io.connect("https://gorecce-backend.herokuapp.com");
-    // socket.current = io.connect("http://localhost:8000");
+    // socket.current = io.connect("https://gorecce-backend.herokuapp.com");
+    socket.current = io.connect("http://localhost:8000");
     socket.current.on("getMessage", (data) => {
       //console.log(data);
       setArrivalMessage({
@@ -52,6 +65,17 @@ export default function Messages() {
     user_id && socket.current.emit("addUser", user_id);
   }, [user_id]);
 
+  useEffect(() => {
+    getLocation(locationId).then(res => setLocationData(res.data))
+    .catch(err => console.log(err))
+  }, [locationId])
+
+  //get booking detail
+  useEffect(() => {
+    getBookingDetail(currentChat?.bookingId, {locationId} )
+    .then(res => setBookingDetail(res.data))
+    .catch(err => console.log(err))
+  }, [currentChat])
   //console.log(messages);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -108,7 +132,14 @@ export default function Messages() {
         .then((res) => setMessages(res.data))
         .catch((error) => toast.error(error.response.data));
   }, [currentChat]);
-
+  function toMonthName(monthNumber) {
+		const date = new Date();
+		date.setMonth(monthNumber - 1);
+	  
+		return date.toLocaleString('en-US', {
+		  month: 'long',
+		});
+	  }
   return (
     <div>
       <Navbar extraNavId={"id-2"} />
@@ -121,7 +152,7 @@ export default function Messages() {
             conversations.map((conversation) => {
               return (
                 <div onClick={() => setCurrentChat(conversation)}>
-                  <UserInbox conversation={conversation} />
+                  <UserInbox conversation={conversation}  />
                 </div>
               );
             })
@@ -135,13 +166,9 @@ export default function Messages() {
           {currentChat ? (
             <div className="chat-sec">
               <div className="chat-head">
-                {friend?.personalInfo.profile_pic ? (
-                  <img src={friend?.personalInfo.profile_pic} alt="profile" />
-                ) : (
-                  <Avatar className="user-dp" />
-                )}
+                  <img src={locationData?.images?.at(0)} alt="profile" />
                 <div>
-                  <h5>Property ID</h5>
+                  <h5>{currentChat?.locationId}</h5>
                   <p>{friend?.personalInfo.fullName}</p>
                 </div>
                 {/* <SearchOutlined className="searchIcon" /> */}
@@ -204,22 +231,31 @@ export default function Messages() {
             </div>
           )}
         </div>
+       
         <div className="chat-propery-info">
-          <img src={propertyImg} alt="property-img" />
+        {
+          currentChat ? (
+            <>
+            <img src={locationData?.images?.at(0)} alt="property-img" />
           <div>
-            <h2>Property Id</h2>
-            <h4>Location</h4>
-            <h5>30$/hr</h5>
+            <h2>{locationId}</h2>
+            <h4>{locationData?.property_address?.address}</h4>
+            <h5>Rs {bookingDetail?.total_amt}</h5>
             <h4>Reserved Date</h4>
-            <h5>12th January, 2023</h5>
+            <h5>{dd}th {toMonthName(mm)} {yyyy}</h5>
             <h4>Reserved Time</h4>
-            <h5>8:30 - 16:30</h5>
+            <h5>{bookingDetail?.time + " - " + endTime + bookingDetail?.time?.substr(2)}</h5>
             <h4>Attendies</h4>
-            <h5>90 people</h5>
+            <h5>{bookingDetail?.attendies} people</h5>
           </div>
-          <Button className="auth-btn" fullWidth disableElevation>
-            Book
-          </Button>
+        
+            </>
+          ) : (
+            <div className="no-chat">
+            <h4>Your Location</h4>
+          </div>
+          )
+        }
         </div>
       </div>
     </div>

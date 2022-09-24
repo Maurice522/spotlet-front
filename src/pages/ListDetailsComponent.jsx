@@ -5,7 +5,7 @@ import { Button, Avatar } from "@mui/material";
 import { BiArrowBack } from "react-icons/bi";
 import { useState } from "react";
 import { useEffect } from "react";
-import {  getUserData, locationRequest, updateBookingStatus } from "../services/api";
+import {  createConversation, getUserData, locationRequest, updateBookingStatus } from "../services/api";
 import { toast } from "react-toastify";
 
 const ListDetailsComponent = () => {
@@ -13,7 +13,7 @@ const ListDetailsComponent = () => {
 	const bookingId = window.location.pathname.substr(34);
 	const locationId = window.location.pathname.substr(10,9);
 	const [userData, setUserData] = useState({});
-	const [ownerData, setOwnerData] = useState({});
+	//const [ownerData, setOwnerData] = useState({});
 	const endTime =( Number(bookingDetail?.time?.substr(0,2))+Number(bookingDetail?.duration_in_hours))%24;
 	const date = new Date(bookingDetail?.timestamp?._seconds*1000)
 	const yyyy = date.getFullYear();
@@ -33,11 +33,6 @@ const ListDetailsComponent = () => {
 	useEffect(() => {
 		getUserData(bookingDetail?.user_id)
 		.then(res => setUserData(res.data))
-		.catch(err => console.log(err))
-	},[bookingDetail])
-	useEffect(() => {
-		getUserData(bookingDetail?.owner_id)
-		.then(res => setOwnerData(res.data))
 		.catch(err => console.log(err))
 	},[bookingDetail])
 	//console.log(form);
@@ -61,6 +56,16 @@ const ListDetailsComponent = () => {
 		const response = await updateBookingStatus(data);
 		toast.success(response.data);
 		window.history.back();
+	  }
+	  //message
+	  const handleChat = async() => {
+		const data = {
+			senderId : bookingDetail.owner_id,
+			receiverId : bookingDetail.user_id,
+			locationId,
+		}
+		await createConversation(bookingId, data)
+		window.location = `/messages/${bookingId}`
 	  }
 	return (
 		<div>
@@ -186,7 +191,9 @@ const ListDetailsComponent = () => {
 									borderRadius: "4px",
 									marginTop: "10px",
 									flexGrow: "1",
-								}}>
+								}}
+								onClick={handleChat}
+								>
 								Message
 							</Button>
 						</div>

@@ -3,15 +3,19 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Button, Avatar } from "@mui/material";
 import "../Assets/Styles/bookingDetails.css";
-import { useSelector } from "react-redux";
-import { selectUserData } from "../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, selectUserData } from "../redux/slices/userSlice";
 import { useEffect } from "react";
-import { getUserData } from "../services/api";
+import { createConversation, deleteBookingReq, getUserData } from "../services/api";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const BookingDetails = () => {
 	const userData = useSelector(selectUserData);
+	const dispatch = useDispatch();
 	const [booking, setBooking] = useState({});
 	const [ownerData, setOwnerData] = useState({});
+	const navigate = useNavigate();
 	const bookingId = window.location.pathname.substr(16);
 	const endTime =( Number(booking?.time?.substr(0,2))+Number(booking?.duration_in_hours))%24;
 		const date = new Date(booking?.timestamp?._seconds*1000)
@@ -41,6 +45,33 @@ const BookingDetails = () => {
 		return date.toLocaleString('en-US', {
 		  month: 'long',
 		});
+	  }
+	  const deleteBooking = async() => {
+		try {
+			const newPortfolio = userData.portfolio.filter(p => p.bookingId !== bookingId);
+			const newUserData = {...userData, portfolio : newPortfolio};
+			const data = {
+				bookingId,
+				locationId : booking.property_id,
+				user_id : booking.user_id,
+			}
+			const response = await deleteBookingReq(data);
+			dispatch(addUser(newUserData));
+			toast.success(response.data);
+			window.history.back();
+		} catch (error) {
+			toast.error(error);
+		}
+	  }
+	  //message
+	  const handleChat = async() => {
+		const data = {
+			senderId : booking.owner_id,
+			receiverId : booking.user_id,
+			locationId : booking.property_id,
+		}
+		await createConversation(bookingId, data)
+		window.location = `/messages/${bookingId}`
 	  }
 	return (
 		<div>
@@ -95,12 +126,13 @@ const BookingDetails = () => {
 									marginTop: "10px",
 								}}
 								disabled = {booking?.payment_status !== "Under Review"}
+								onClick={deleteBooking}
 								>
 								Reject
 							</Button>
 						</div>
 					</div>
-					<div style={{marginLeft : "auto", width: "20vw", display : `${booking?.payment_status === "approved" ?"none" : "block" }`}}>
+					<div style={{marginLeft : "auto", width: "20vw", display : `${booking?.payment_status !== "Approved" ?"none" : "block" }`}}>
 							<Button
 								variant="contained"
 								sx={{
@@ -141,7 +173,10 @@ const BookingDetails = () => {
 									borderRadius: "4px",
 									marginTop: "10px",
 									flexGrow: "1",
-								}}>
+								}}
+								disabled = {booking?.payment_status === "Cancelled"}
+								onClick={handleChat}
+								>
 								Message
 							</Button>
 						</div>
