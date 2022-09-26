@@ -1,0 +1,15 @@
+.general-form {
+	width: 70%;
+	margin: 50px auto;
+}
+
+.general-form > div {
+	margin: 20px 0;
+}
+
+.general-form > span {
+	display: block;
+	margin: 40px auto;
+	display: flex;
+	justify-content: center;
+}
