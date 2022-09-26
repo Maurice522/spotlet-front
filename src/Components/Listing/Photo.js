@@ -10,14 +10,13 @@ import { toast } from "react-toastify";
 import { Clear } from "@mui/icons-material";
 const Photo = ({ showSection }) => {
   //const [files, setFiles] = useState([]);
-  const [images, setImages] = useState([]);
-  const [refs, setRef] = useState([]);
+  const [imagesData, setImagesData] = useState([]);
   const dispatch = useDispatch();
   const location_id = useSelector(selectLocationId);
   const location = useSelector(selectLocationData);
 
   useEffect(() => {
-    location.images && setImages(location.images);
+    location.imagesData && setImagesData(location.imagesData);
   }, []);
 
   const handleChange = async (e) => {
@@ -27,8 +26,7 @@ const Photo = ({ showSection }) => {
         const formData = new FormData();
         formData.append("pic", e.target.files[i]);
         const response = await uploadLocationPics(formData);
-        setImages((prev) => [...prev, response.data.url]);
-        setRef(prev => [...prev, response.data.fileRef]);
+        setImagesData((prev) => [...prev, {image : response.data.url, imageRef : response.data.fileRef}]);
       }
     } catch (error) {
       console.log(error);
@@ -38,14 +36,12 @@ const Photo = ({ showSection }) => {
     document.getElementById("inputD").click();
   };
  // console.log(refs)
-  const deleteImage = async(image, fileRef) => {
-    //console.log(fileRef);
+  const deleteImage = async(imageData, index) => {
+    console.log(imageData);
     try {
-      await deleteFiles({image, fileRef : fileRef});
-      const newImages = images.filter(image => image !== image);
-      const newRefs = refs.filter(ref => ref._location.path_ !== fileRef._location.path_)
-      setRef(newRefs);
-      setImages(newImages);
+      await deleteFiles({image : imageData.image, fileRef : imageData.imageRef});
+      const newImageData = imagesData.filter((img, i) => i !== index);
+      setImagesData(newImageData);
     } catch (error) {
       toast.error(error.response.data);
     }
@@ -71,9 +67,9 @@ const Photo = ({ showSection }) => {
         </div>
         <p style={{ marginLeft: "20px" }}>Add minimum 5 images</p>
         <div className="row1" id="photo-sec-s">
-          {images?.map((image, index) => {
+          {imagesData?.map((imageData, index) => {
             return (
-              <div className="pict">
+              <div className="pict" key={index}>
                 <Clear
                   sx={{
                     cursor: "pointer",
@@ -81,9 +77,9 @@ const Photo = ({ showSection }) => {
                     marginTop: "5px",
                     position: "absolute",
                   }}
-                  onClick={() => deleteImage(image, refs[index])}
+                  onClick={() => deleteImage(imageData, index)}
                 />
-                <img src={image} />{" "}
+                <img src={imageData.image} />{" "}
               </div>
             );
           })}
@@ -93,13 +89,15 @@ const Photo = ({ showSection }) => {
             <button
               className="continue"
               onClick={async () => {
-                if (images.length < 5)
+                if (imagesData.length < 5)
                   return toast.error("Please add minimum 5 Photos");
+                  const images = imagesData.map(imageData => imageData.image);
+                  console.log(images)
                 const locData = {
                   ...location,
                   images,
                 };
-                dispatch(addLocation(locData));
+                dispatch(addLocation({...location, imagesData}));
                 const form = {
                   location_id,
                   data: locData,

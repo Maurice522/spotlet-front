@@ -6,18 +6,17 @@ import { addLocation, selectLocationData, selectLocationId } from '../../redux/s
 import { createTempLocation, deleteFiles, uploadGstDocs } from '../../services/api';
 
 const Gst = ({showSection}) => {
-    const [files, setFiles] = useState([]);
+    const [filesData, setFilesData] = useState([]);
     const [doc_no, setDoc_no] = useState("");
-    const [refs, setRef] = useState([]);
     const dispatch = useDispatch();
   const location_id = useSelector(selectLocationId);
   const location = useSelector(selectLocationData);
 
   useEffect(() => {
 		location?.gst && setDoc_no(location.gst.doc_no);
-    location?.gst && setFiles(location.gst.docs);
+    location?.gst && setFilesData(location.gst.docs);
 	  }, [])
-
+console.log(filesData);
   const handleChange = async(e) => {
     try {
         for (let i = 0; i <e.target.files.length; i++) {
@@ -25,8 +24,7 @@ const Gst = ({showSection}) => {
             const formData = new FormData();
             formData.append("pic", e.target.files[i]);
             const response = await uploadGstDocs(formData);
-            setFiles(prev => [...prev, response.data.url]);
-            setRef(prev => [...prev, response.data.fileRef]);
+            setFilesData(prev => [...prev, {file : response.data.url, fileRef : response.data.fileRef}]);
         }
     } catch (error) {
         console.log(error);
@@ -35,22 +33,21 @@ const Gst = ({showSection}) => {
     const handleClick = () => {
         document.getElementById("inputD").click();
     }
-    const deleteImage = async(file, fileRef) => {
+    const deleteImage = async(fileData, index) => {
       //console.log(fileRef);
       try {
-        await deleteFiles({file, fileRef : fileRef});
-        const newFiles = files.filter(file => file !== file);
-        const newRefs = refs.filter(ref => ref._location.path_ !== fileRef._location.path_)
-        setRef(newRefs);
-        setFiles(newFiles);
+        await deleteFiles({file : fileData.file, fileRef : fileData.fileRef});
+        const newFilesData = filesData.filter((file, i) => i !== index);
+        setFilesData(newFilesData);
       } catch (error) {
         toast.error(error.response.data);
       }
     }
     const handleSubmit = async(e) => {
       e.preventDefault();
-      if(!doc_no.length || !files.length)
+      if(!doc_no.length || !filesData.length)
           return toast.error("Please fill all required fields");
+      const files = filesData.map(fileData => fileData.file);
       const locData = {
         ...location,
         gst : {
@@ -58,7 +55,7 @@ const Gst = ({showSection}) => {
           docs : files
         },
       };
-      dispatch(addLocation(locData));
+      dispatch(addLocation({...location, gst : {doc_no, docs : filesData}}));
       const form = {
         location_id,
         data: locData,
@@ -83,7 +80,7 @@ const Gst = ({showSection}) => {
                     </div>
                 </div>
                 <div className="row1" id="photo-sec-s">
-          {files?.map((file, index) => {
+          {filesData?.map((fileData, index) => {
             return (
               <div className="pict">
                 <Clear
@@ -93,9 +90,9 @@ const Gst = ({showSection}) => {
                     marginTop: "5px",
                     position: "absolute",
                   }}
-                  onClick={() => deleteImage(file, refs[index])}
+                  onClick={() => deleteImage(fileData, index)}
                 />
-                <embed src={file} width="440px" height="180px"/>{" "}
+                <embed src={fileData.file} width="440px" height="180px"/>{" "}
               </div>
             );
           })}

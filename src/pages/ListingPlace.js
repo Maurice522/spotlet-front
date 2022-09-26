@@ -78,7 +78,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Features")}
-                  disabled={data?.images ? false : true}
+                  disabled={data?.imagesData ? false : true}
                   className={
                     section === "Features" ? "lnav-text sel" : "lnav-text"
                   }
