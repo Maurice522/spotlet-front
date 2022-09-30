@@ -28,6 +28,8 @@ import Guidelines from "./pages/Guidelines";
 import TermsofService from "./pages/TermsofService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Community from "./pages/Community";
+import Photography from "./pages/Photography";
+import Form from "./Components/Form";
 
 function App() {
 	const dispatch = useDispatch();
@@ -91,13 +93,23 @@ function App() {
 					<Route path="/messages/:bookingId" element={<Messages />} />
 					<Route path="/messages" element={<Messages />} />
 					<Route path="/bookinglist" element={<BookingList />} />
-					<Route path="/bookingdetails/:bookingId" element={<BookingDetails />} />
+					<Route
+						path="/bookingdetails/:bookingId"
+						element={<BookingDetails />}
+					/>
 					<Route path="/listdetails/:locId" element={<ListDetails />} />
 					<Route path="/favorite" element={<Favorites />} />
 					<Route path="/guidelines" element={<Guidelines />} />
 					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
 					<Route path="/termsofservice" element={<TermsofService />} />
 					<Route path="/community" element={<Community />} />
+					<Route path="/photography" element={<Photography />} />
+					<Route
+						path="/helpcenter"
+						element={
+							<Form labels={["Name", "Email", "Phone Number", "Message"]} />
+						}
+					/>
 
 					<Route
 						path="location/:locationId/bookingdetail/:bookingId"
