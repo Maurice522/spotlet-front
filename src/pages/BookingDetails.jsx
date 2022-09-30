@@ -6,16 +6,22 @@ import "../Assets/Styles/bookingDetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, selectUserData } from "../redux/slices/userSlice";
 import { useEffect } from "react";
-import { createConversation, deleteBookingReq, getUserData } from "../services/api";
+import { createConversation, deleteBookingReq, getLocation, getUserData } from "../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import GoogleMap from "../Components/GoogleMap";
+import axios from "axios";
 
 const BookingDetails = () => {
 	const userData = useSelector(selectUserData);
 	const dispatch = useDispatch();
 	const [booking, setBooking] = useState({});
 	const [ownerData, setOwnerData] = useState({});
-	const navigate = useNavigate();
+	const [locationData, setLocationData] = useState({});
+	const [cord, setCord] = useState({
+		lat : 0,
+		lng : 0
+	  })
 	const bookingId = window.location.pathname.substr(16);
 	const endTime =( Number(booking?.time?.substr(0,2))+Number(booking?.duration_in_hours))%24;
 		const date = new Date(booking?.timestamp?._seconds*1000)
@@ -26,7 +32,8 @@ const BookingDetails = () => {
 		if (dd && dd < 10) dd = '0' + dd;
 		if (mm && mm < 10) mm = '0' + mm;
 		const discount =  booking?.duration_in_hours === "24" ? 0.8 : ( booking?.duration_in_hours === "12" ? 0.9 : 1);
-		const perHourCost = (((booking?.total_amt-40) / booking?.duration_in_hours)/discount)?.toFixed(2)
+		const perHourCost = (((booking?.total_amt-40) / booking?.duration_in_hours)/discount)?.toFixed(2);
+		const GEO_API = "b531f1d229f547d09b4c7c3207885471";
 	useEffect(() => {
 		userData?.portfolio.map(booking => {
 			if(booking.bookingId === bookingId)
@@ -34,10 +41,29 @@ const BookingDetails = () => {
 		})
 	}, [userData])
 	useEffect(() => {
+		getLocation(booking?.property_id)
+		  .then((res) => setLocationData(res.data))
+		  .catch((err) => console.log(err));
+	  }, [booking]);
+	useEffect(() => {
 		getUserData(booking?.owner_id)
 		.then(res => setOwnerData(res.data))
 		.catch(err => console.log(err))
 	},[booking])
+	useEffect(() => {
+		// Get latitude & longitude from address.
+		axios.get(`https://api.geoapify.com/v1/geocode/search?housenumber=${locationData?.property_address?.address}&city=${locationData?.property_address?.city}&state=${locationData?.property_address?.state}&country=India&lang=en&limit=1&type=city&format=json&apiKey=${GEO_API}`)
+		.then(
+		  (response) => {
+			//const { lat, lng } = response.results[0].geometry.location;
+		  //  console.log(response.data.results[0]);
+			setCord({
+			  lat : response.data.results[0].lat,
+			  lng : response.data.results[0].lon,
+			})
+		  })
+		 .catch(err => console.log(err))
+	  }, [locationData])
 	function toMonthName(monthNumber) {
 		const date = new Date();
 		date.setMonth(monthNumber - 1);
@@ -73,6 +99,7 @@ const BookingDetails = () => {
 		await createConversation(bookingId, data)
 		window.location = `/messages/${bookingId}`
 	  }
+	  console.log(locationData)
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
@@ -148,6 +175,9 @@ const BookingDetails = () => {
 					</div>
 					
 				</div>
+				<div style={{ width: "80%", height: "300px", margin:"auto", display : `${booking?.payment_status !== "Approved" ?"none" : "block" }` }}>
+        			 {(cord.lat !== 0) &&  <GoogleMap lat={cord.lat} lng={cord.lng} zoom={18} />}
+    			</div>
 				<div className="container">
 					<div className="booking-details-header">Message</div>
 					<div className="user-info">
