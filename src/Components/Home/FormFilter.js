@@ -97,6 +97,27 @@ const FormFilter = ({ fullScreen }) => {
 						<option value="4">Select</option>
 					</select>
 				</div>
+				<div>
+					<label
+						htmlFor="where"
+						className={active === true ? "focus-label" : "form-filter-label"}>
+						City
+					</label>
+					<select
+						id="city"
+						name="city"
+						defaultValue=""
+						className={active === true ? "focus-select" : "form-filter-select"}
+						onChange={(e) => console.log(e.target.value)}>
+						<option value="" disabled hidden>
+							City?
+						</option>
+						<option value="1">Select</option>
+						<option value="2">Select</option>
+						<option value="3">Select</option>
+						<option value="4">Select</option>
+					</select>
+				</div>
 
 				<Link
 					to="/search"

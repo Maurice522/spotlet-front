@@ -29,7 +29,14 @@ import TermsofService from "./pages/TermsofService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Community from "./pages/Community";
 import Photography from "./pages/Photography";
-import Form from "./Components/Form";
+import HelpCenter from "./pages/HelpCenter";
+import Blogs from "./pages/Blogs";
+import Blog from "./pages/Blog";
+import TrustAndSafety from "./pages/TrustAndSafety";
+import Resources from "./pages/Resources";
+import Resource from "./pages/Resource";
+import Cookies from "./pages/Cookies";
+import Careers from "./pages/Careers";
 
 function App() {
 	const dispatch = useDispatch();
@@ -93,23 +100,26 @@ function App() {
 					<Route path="/messages/:bookingId" element={<Messages />} />
 					<Route path="/messages" element={<Messages />} />
 					<Route path="/bookinglist" element={<BookingList />} />
+					<Route path="/blogs" element={<Blogs />} />
+					<Route path="/blog/:blogId" element={<Blog />} />
 					<Route
 						path="/bookingdetails/:bookingId"
 						element={<BookingDetails />}
 					/>
+
 					<Route path="/listdetails/:locId" element={<ListDetails />} />
 					<Route path="/favorite" element={<Favorites />} />
 					<Route path="/guidelines" element={<Guidelines />} />
 					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
 					<Route path="/termsofservice" element={<TermsofService />} />
+					<Route path="/cookiepreference" element={<Cookies />} />
 					<Route path="/community" element={<Community />} />
 					<Route path="/photography" element={<Photography />} />
-					<Route
-						path="/helpcenter"
-						element={
-							<Form labels={["Name", "Email", "Phone Number", "Message"]} />
-						}
-					/>
+					<Route path="/helpcenter" element={<HelpCenter />} />
+					<Route path="/trustandsafety" element={<TrustAndSafety />} />
+					<Route path="/careers" element={<Careers />} />
+					<Route path="/resourcecenter" element={<Resources />} />
+					<Route path="/resource/:resourceId" element={<Resource />} />
 
 					<Route
 						path="location/:locationId/bookingdetail/:bookingId"

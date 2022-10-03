@@ -29,12 +29,16 @@
 	height: 75vh;
 	gap: 10px;
 	margin: 0 auto;
+	overflow: hidden;
 }
 
 .grid-menu-item-1 {
 	position: relative;
 	grid-column: span 3;
 	overflow-y: hidden;
+	border-radius: 10px;
+	/* transform: scale(1);
+	transition-duration: 0.5s; */
 }
 
 .grid-menu-item-2 {
@@ -42,23 +46,39 @@
 	grid-row: span 2;
 	grid-column: span 3;
 	overflow-y: hidden;
+	border-radius: 10px;
+	/* transform: scale(1);
+	transition-duration: 0.5s; */
 }
 
 .grid-menu-item-3 {
 	position: relative;
 	grid-column: span 2;
 	overflow-y: hidden;
+	border-radius: 10px;
+	/* transform: scale(1);
+	transition-duration: 0.5s; */
+}
+
+.grid-menu-item-1:hover,
+.grid-menu-item-2:hover,
+.grid-menu-item-3:hover {
+	transform: scale(1.05);
+	transition-duration: 0.5s;
 }
 
 .menu-image {
-	width: 100%;
+	width: 99%;
 	height: 100%;
-	object-fit: cover;
 	border-radius: 10px;
+	transform: scale(1);
+	transition-duration: 0.5s;
 }
 
 .menu-image:hover {
 	filter: brightness(50%);
+	/* transform: scale(1.04);
+	transition-duration: 0.5s; */
 }
 
 .menu-item-text {
