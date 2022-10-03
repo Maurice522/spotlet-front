@@ -43,8 +43,8 @@ export default function Messages() {
 		if (dd && dd < 10) dd = '0' + dd;
 		if (mm && mm < 10) mm = '0' + mm;
   useEffect(() => {
-    socket.current = io.connect("https://gorecce-backend.herokuapp.com");
-    // socket.current = io.connect("http://localhost:8000");
+    // socket.current = io.connect("https://gorecce-backend.herokuapp.com");
+    socket.current = io.connect("http://localhost:8000");
     socket.current.on("getMessage", (data) => {
       //console.log(data);
       setArrivalMessage({

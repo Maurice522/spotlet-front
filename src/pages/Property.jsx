@@ -3,7 +3,6 @@ import BookingForm from "../Components/Details/BookingForm";
 import Carousel from "../Components/Details/Carousel";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-
 import {
 	Accordion,
 	AccordionSummary,
@@ -19,6 +18,8 @@ import { ImCross } from "react-icons/im";
 import { useEffect } from "react";
 import { getAllLocations, getLocation } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import GoogleMap from "../Components/GoogleMap";
+import axios from "axios";
 
 const Property = ({
 	v1,
@@ -39,6 +40,11 @@ const Property = ({
 	const [locationData, setLocationData] = useState({});
 	const [propertyItems, setPropertyItems] = useState([]);
 	const navigate = useNavigate();
+	const [cord, setCord] = useState({
+		lat: 0,
+		lng: 0,
+	});
+	const GEO_API = "b531f1d229f547d09b4c7c3207885471";
 	useEffect(() => {
 		getAllLocations()
 			.then((res) => setPropertyItems(res.data.locations))
@@ -49,6 +55,22 @@ const Property = ({
 			.then((res) => setLocationData(res.data))
 			.catch((err) => console.log(err));
 	}, []);
+	useEffect(() => {
+		// Get latitude & longitude from address.
+		axios
+			.get(
+				`https://api.geoapify.com/v1/geocode/search?city=${locationData?.property_address?.city}&state=${locationData?.property_address?.state}&country=India&lang=en&limit=1&type=city&format=json&apiKey=${GEO_API}`
+			)
+			.then((response) => {
+				//const { lat, lng } = response.results[0].geometry.location;
+				//  console.log(response.data.results[0]);
+				setCord({
+					lat: response.data.results[0].lat,
+					lng: response.data.results[0].lon,
+				});
+			})
+			.catch((err) => console.log(err));
+	}, [locationData]);
 	const locationItem = (
 		<div
 			style={{
@@ -80,15 +102,11 @@ const Property = ({
 					{locationData?.property_address?.pincode}
 				</div>
 			</div>
-			<img
-				src={require("../Assets/Images/location-image.png")}
-				alt="location"
-				style={{
-					margin: "10px auto",
-					width: "100%",
-					height: "450px",
-				}}
-			/>
+			<div style={{ width: "100%", height: "300px" }}>
+				{cord.lat !== 0 && (
+					<GoogleMap lat={cord.lat} lng={cord.lng} zoom={13} />
+				)}
+			</div>
 		</div>
 	);
 
