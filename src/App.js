@@ -30,6 +30,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Community from "./pages/Community";
 import Photography from "./pages/Photography";
 import Form from "./Components/Form";
+import Blogs from "./pages/Blogs";
+import Blog from "./pages/Blog";
 
 function App() {
 	const dispatch = useDispatch();
@@ -104,6 +106,8 @@ function App() {
 					<Route path="/termsofservice" element={<TermsofService />} />
 					<Route path="/community" element={<Community />} />
 					<Route path="/photography" element={<Photography />} />
+					<Route path="/blogs" element={<Blogs/>} />
+					<Route path="/blog" element={<Blog/>} />
 					<Route
 						path="/helpcenter"
 						element={

@@ -108,3 +108,18 @@ display: inline-block;
     right: 0%;
     top: 3%;
 }
+.singleBlogContent{
+    width: 80%;
+    margin: auto;
+    margin-top: 5%;
+    padding: 2%;
+}
+.singleBlogContent h1{
+    margin-bottom: 3%;
+    font-weight: 600;
+}
+.singleBlogContent p{
+    text-align: justify;
+    line-height: 1.5;
+    margin-top: 2%;
+}
