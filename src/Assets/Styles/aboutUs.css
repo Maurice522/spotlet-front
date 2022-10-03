@@ -1,0 +1,72 @@
+.about-us-message {
+	position: absolute;
+	top: 40%;
+	left: 100px;
+	right: 100px;
+	text-align: center;
+	font-size: 38px;
+	font-family: "Rubik";
+	color: white;
+	line-height: 140%;
+}
+
+.bold {
+	font-size: 49px;
+	font-weight: 700;
+}
+
+.about-us-content {
+	padding: 50px;
+	font-family: "Rubik";
+	font-style: normal;
+}
+
+.about-us-content > div {
+	padding: 60px 0;
+}
+
+.about-us-content-heading {
+	font-weight: 500;
+	font-size: 28px;
+	line-height: 44px;
+	margin-bottom: 5px;
+}
+
+.about-us-content-info {
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.content-with-image {
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+}
+
+.content-with-image-2 {
+	display: grid;
+	grid-template-columns: 1fr 1.5fr;
+}
+
+.about-us-bottom-text {
+	margin: 50px;
+	display: grid;
+	grid-template-columns: 1fr 1.5fr;
+	gap: 20px;
+	align-content: flex-start;
+}
+
+.about-us-content-text {
+	font-size: 17px;
+	line-height: 20px;
+}
+
+.about-us-content-text > div {
+	margin-bottom: 30px;
+}
+
+.about-us-btn-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}

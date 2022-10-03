@@ -4,6 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from "react-redux";
 import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
+import { toast } from "react-toastify";
 
 const Dondont = ({showSection}) => {
 
@@ -44,7 +45,31 @@ const Dondont = ({showSection}) => {
         setdont_s((prev) => [...prev])
     }
 
-
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        if(!do_s.length && !dont_s.length)
+            return toast.error("Please fill all required fields!!!")
+        const do_and_dont = {
+            do_s,
+            dont_s
+        }
+       // console.log(do_and_dont);
+       const locData = {
+        ...location,
+        do_and_dont
+      }
+      dispatch(addLocation(locData));
+      const form = {
+        location_id,
+        data : locData
+      }
+      try {
+        await createTempLocation(form);
+        showSection("Pricing");
+      } catch (error) {
+        toast.error(error.response.data);
+      }
+    }
     return (
         <div className="lbox">
             <div className="row1">
@@ -89,24 +114,7 @@ const Dondont = ({showSection}) => {
             </div>
             <div className='row1'>
                 <div className='coll1'>
-                    <button className='continue' onClick={async() =>{
-                        const do_and_dont = {
-                            do_s,
-                            dont_s
-                        }
-                       // console.log(do_and_dont);
-                       const locData = {
-                        ...location,
-                        do_and_dont
-                      }
-                      dispatch(addLocation(locData));
-                      const form = {
-                        location_id,
-                        data : locData
-                      }
-                       await createTempLocation(form);
-                        showSection("Pricing")
-                    }}>Continue</button>
+                    <button className='continue' onClick={handleSubmit}>Continue</button>
                 </div>
             </div>
         </div>

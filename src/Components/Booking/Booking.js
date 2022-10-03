@@ -10,6 +10,7 @@ const Booking = ({ v1, v2, v3, v4, v5 }) => {
 				<label htmlFor="date">Date</label>
 				<TextField
 					required
+					disabled
 					id="date"
 					type="date"
 					fullWidth
@@ -21,6 +22,7 @@ const Booking = ({ v1, v2, v3, v4, v5 }) => {
 				<label htmlFor="start-time">Start Time</label>
 				<TextField
 					required
+					disabled
 					id="start-time"
 					type="time"
 					defaultValue={v2}
@@ -32,6 +34,7 @@ const Booking = ({ v1, v2, v3, v4, v5 }) => {
 				<label htmlFor="duration">Duration</label>
 				<TextField
 					required
+					disabled
 					id="duration"
 					type="number"
 					fullWidth
@@ -43,6 +46,7 @@ const Booking = ({ v1, v2, v3, v4, v5 }) => {
 				<label htmlFor="attendies">Attendies</label>
 				<TextField
 					required
+					disabled
 					id="attendies"
 					type="number"
 					fullWidth
@@ -54,6 +58,7 @@ const Booking = ({ v1, v2, v3, v4, v5 }) => {
 				<label htmlFor="activity">Activity</label>
 				<TextField
 					required
+					disabled
 					id="activity"
 					type="text"
 					fullWidth

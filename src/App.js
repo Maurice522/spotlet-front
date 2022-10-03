@@ -23,6 +23,13 @@ import ListingPlace from "./pages/ListingPlace";
 import Messages from "./pages/Messages";
 import HostPage from "./pages/HostPage";
 import Favorites from "./pages/Favorites";
+import AboutUs from "./pages/AboutUs";
+import Guidelines from "./pages/Guidelines";
+import TermsofService from "./pages/TermsofService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Community from "./pages/Community";
+import Photography from "./pages/Photography";
+import Form from "./Components/Form";
 
 function App() {
 	const dispatch = useDispatch();
@@ -44,7 +51,7 @@ function App() {
 
 	const [v1, setV1] = useState(date);
 	const [v2, setV2] = useState("06:30");
-	const [v3, setV3] = useState("");
+	const [v3, setV3] = useState(0);
 	const [v4, setV4] = useState("");
 	const [v5, setV5] = useState("");
 	const [v6, setV6] = useState(0);
@@ -67,36 +74,62 @@ function App() {
 								v4={v4}
 								v5={v5}
 								v6={v6}
-								event = {event}
-								setEvent = {setEvent}
+								event={event}
+								setEvent={setEvent}
 								setV1={setV1}
 								setV2={setV2}
 								setV3={setV3}
 								setV4={setV4}
 								setV5={setV5}
-								setV6 = {setV6}
+								setV6={setV6}
 							/>
 						}
 					/>
 					<Route path="/account" element={user && <AccountInfo />} />
 					{/* {user && <Route path="/search" element={<Search />} />} */}
 					<Route path="/search" element={<Search />} />
+					<Route path="/aboutus" element={<AboutUs />} />
 					<Route path="/listing" element={<ListingPlace />} />
-					<Route path="/property/messages/:locId" element={<Messages />} />
+					<Route path="/messages/:bookingId" element={<Messages />} />
+					<Route path="/messages" element={<Messages />} />
 					<Route path="/bookinglist" element={<BookingList />} />
-					<Route path="/bookingdetails" element={<BookingDetails />} />
-					<Route path="/listdetails" element={<ListDetails />} />
+					<Route
+						path="/bookingdetails/:bookingId"
+						element={<BookingDetails />}
+					/>
+					<Route path="/listdetails/:locId" element={<ListDetails />} />
 					<Route path="/favorite" element={<Favorites />} />
+					<Route path="/guidelines" element={<Guidelines />} />
+					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
+					<Route path="/termsofservice" element={<TermsofService />} />
+					<Route path="/community" element={<Community />} />
+					<Route path="/photography" element={<Photography />} />
+					<Route
+						path="/helpcenter"
+						element={
+							<Form labels={["Name", "Email", "Phone Number", "Message"]} />
+						}
+					/>
 
 					<Route
-						path="/listdetailsapproval"
+						path="location/:locationId/bookingdetail/:bookingId"
 						element={<ListDetailsComponent />}
 					/>
 
 					{/* {user && <Route path="/search" element={<Search />} />} */}
 					<Route
 						path="/:locId/booking"
-						element={<BookingProcess v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} v6={v6} event={event} />}
+						element={
+							<BookingProcess
+								v1={v1}
+								v2={v2}
+								v3={v3}
+								v4={v4}
+								v5={v5}
+								v6={v6}
+								event={event}
+							/>
+						}
 					/>
 					<Route path="/host" element={<HostPage />} />
 				</Routes>

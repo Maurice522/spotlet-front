@@ -6,6 +6,10 @@ import Footer from "../Components/Footer";
 import "../Assets/Styles/bookingList.css";
 import SyncfusionTable from "../Components/BookingListing/SyncFusionTable";
 import { GoPrimitiveDot } from "react-icons/go";
+import { useSelector } from "react-redux";
+import { selectUserData } from "../redux/slices/userSlice";
+import { locationRequest } from "../services/api";
+import { useEffect } from "react";
 
 const gridActionButton = (props) => (
 	<Link
@@ -43,7 +47,7 @@ const gridBookingID = (props) => (
 
 const gridBookingStatus = (props) => {
 	let color;
-	console.log(props);
+	//console.log(props);
 	if (props.row.Status === "Under Review") color = "#E8B500";
 	else if (props.row.Status === "Approved") color = "#0079D7";
 	else if (props.row.Status === "Cancelled") color = "#E20000";
@@ -60,158 +64,25 @@ const gridBookingStatus = (props) => {
 	);
 };
 
-const bookingData = [
-	{
-		id: 1,
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 2,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Approved",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 3,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Booked",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 4,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Cancelled",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 5,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 6,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 7,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 8,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 9,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 10,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 11,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-	{
-		id: 12,
-
-		action: gridActionButton,
-		to: "/bookingdetails",
-		BookingId: "#00000000",
-		Status: "Under Review",
-		Date: "12/12/22",
-		TimeDuration: "12:00 - 23:55, 20hrs",
-		Attendies: 1000,
-		TotalAmount: 50000,
-	},
-];
+const gridLocationId = (props) => (
+	<div
+		style={{
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center",
+			gap: "5px",
+		}}>
+		<GoPrimitiveDot color="#EA4235" />
+		{props.row.LocationId}
+	</div>
+);
 
 const bookingGrid = [
 	{
 		headerName: "Booking ID",
 		field: "BookingId",
 		renderCell: gridBookingID,
-		width: "200",
+		width: "300",
 		headerAlign: "Center",
 	},
 	{
@@ -254,70 +125,11 @@ const bookingGrid = [
 	},
 ];
 
-const listingData = [
-	{
-		action: gridActionButton,
-		BookingId: "#00000000",
-		Status: "Under Review",
-		id: 1,
-		to: "/listdetails",
-		BookingRequest: "12 Requests",
-	},
-	{
-		action: gridActionButton,
-		BookingId: "#00000000",
-		Status: "Approved",
-		id: 2,
-		to: "/listdetails",
-		BookingRequest: "12 Requests",
-	},
-	{
-		action: gridActionButton,
-		BookingId: "#00000000",
-		Status: "Cancelled",
-		id: 3,
-		to: "/listdetails",
-		BookingRequest: "12 Requests",
-	},
-	{
-		action: gridActionButton,
-		BookingId: "#00000000",
-		Status: "Booked",
-		id: 4,
-		to: "/listdetails",
-		BookingRequest: "12 Requests",
-	},
-	{
-		action: gridActionButton,
-		BookingId: "#00000000",
-		Status: "Under Review",
-		id: 5,
-		to: "/listdetails",
-		BookingRequest: "12 Requests",
-	},
-	{
-		action: gridActionButton,
-		BookingId: "#00000000",
-		Status: "Under Review",
-		id: 6,
-		to: "/listdetails",
-		BookingRequest: "12 Requests",
-	},
-	{
-		action: gridActionButton,
-		BookingId: "#00000000",
-		Status: "Under Review",
-		id: 7,
-		to: "/listdetails",
-		BookingRequest: "12 Requests",
-	},
-];
-
 const listingGrid = [
 	{
-		headerName: "Booking ID",
-		field: "BookingId",
-		renderCell: gridBookingID,
+		headerName: "LocationId",
+		field: "LocationId",
+		renderCell: gridLocationId,
 		width: "200",
 		headerAlign: "Center",
 	},
@@ -344,6 +156,54 @@ const listingGrid = [
 
 const BookingList = () => {
 	const [active, setActive] = useState(0);
+	const userData = useSelector(selectUserData);
+	const [locrequests, setLocRequests] = useState([]); 
+	useEffect(() => {
+		 userData &&userData?.listedLocations.map(async loc => {
+			try {
+				const response = await locationRequest(loc?.location_id);
+				const {requests} = response.data;
+				setLocRequests([...locrequests, requests.length]);
+			} catch (error) {
+				console.log(error);
+			}
+		})
+	}, [userData])
+	
+	const bookingData = userData?.portfolio.map((booking, index) => {
+		const endTime =( Number(booking?.time.substr(0,2))+Number(booking?.duration_in_hours))%24;
+		const date = new Date(booking?.timestamp?._seconds*1000)
+		const yyyy = date.getFullYear();
+		let mm = date.getMonth() + 1; // Months start at 0!
+		let dd = date.getDate();
+
+		if (dd && dd < 10) dd = '0' + dd;
+		if (mm && mm < 10) mm = '0' + mm;
+
+		const formattedDate = dd + '/' + mm + '/' + yyyy;
+		return {
+			id: index,
+			action: gridActionButton,
+			to: `/bookingdetails/${booking?.bookingId}`,
+			BookingId: booking?.bookingId,
+			Status: booking?.payment_status,
+			Date: formattedDate,
+			TimeDuration: booking?.time + " - " + endTime + booking?.time.substr(2) + ", " + booking?.duration_in_hours,
+			Attendies: booking?.attendies,
+			TotalAmount: booking?.total_amt,
+		}
+	})
+
+	const listingData = userData?.listedLocations.map( (loc, index) => {
+		return {
+				action: gridActionButton,
+		 		LocationId: loc?.location_id,
+				Status: loc.verified,
+		 		id: index,
+		 		to: "/listdetails/" + loc.location_id,
+				BookingRequest: `${locrequests?.at(index)} Requests`,
+		}
+	})
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import "../Assets/Styles/listDetails.css";
@@ -7,8 +7,30 @@ import { Link } from "react-router-dom";
 import { Button, Box } from "@mui/material";
 import { GoPrimitiveDot } from "react-icons/go";
 import SyncfusionTable from "../Components/BookingListing/SyncFusionTable";
+import { useSelector } from "react-redux";
+import { selectUserData } from "../redux/slices/userSlice";
+import { locationRequest } from "../services/api";
 
 const ListDetails = ({ setFinal }) => {
+	const userData = useSelector(selectUserData);
+	const [locationData, setLocationData] = useState({});
+	const locationId = window.location.pathname.substr(13);
+	const [requests, setRequests] = useState([]);
+	useEffect(() => {
+		userData?.listedLocations.map(loc => {
+			if(loc.location_id === locationId)
+			   setLocationData(loc);
+		})
+	}, [userData])
+	console.log(locationData);
+	useEffect(() => {
+		 locationRequest(locationId).then(res => {
+			setRequests(res.data.requests);
+		 }).catch(err => {
+			console.log(err);
+		 })
+	},[])
+	//console.log(locationData);
 	const gridBookingName = (props) => (
 		<div
 			style={{
@@ -42,7 +64,7 @@ const ListDetails = ({ setFinal }) => {
 
 	const gridBookingStatus = (props) => {
 		let color;
-		console.log(props);
+		//console.log(props);
 		if (props.row.Status === "Under Review") color = "#E8B500";
 		else if (props.row.Status === "Approved") color = "#0079D7";
 		else if (props.row.Status === "Cancelled") color = "#E20000";
@@ -58,86 +80,29 @@ const ListDetails = ({ setFinal }) => {
 			</div>
 		);
 	};
+	const listDetailsData = requests?.map( (request, index) => {
+		const endTime =( Number(request?.time.substr(0,2))+Number(request?.duration_in_hours))%24;
+		const date = new Date(request?.timestamp?._seconds*1000)
+		const yyyy = date.getFullYear();
+		let mm = date.getMonth() + 1; // Months start at 0!
+		let dd = date.getDate();
 
-	const listDetailsData = [
-		{
-			id: 1,
+		if (dd && dd < 10) dd = '0' + dd;
+		if (mm && mm < 10) mm = '0' + mm;
+
+		const formattedToday = dd + '/' + mm + '/' + yyyy;
+		return {
+			id: index,
 			action: gridActionButton,
-			to: "/listdetailsapproval",
-			Name: "John Doe",
-			Status: "Under Review",
-			DateOfRequest: "12/12/22",
-			DateOfEvent: "25/12/22",
-			TimeDuration: "12:00 - 23:55, 20hrs",
-			TotalAmount: 50000,
-		},
-		{
-			id: 2,
-			action: gridActionButton,
-			to: "/listdetailsapproval",
-			Name: "John Doe",
-			Status: "Approved",
-			DateOfRequest: "12/12/22",
-			DateOfEvent: "25/12/22",
-			TimeDuration: "12:00 - 23:55, 20hrs",
-			TotalAmount: 50000,
-		},
-		{
-			id: 3,
-			action: gridActionButton,
-			to: "/listdetailsapproval",
-			Name: "John Doe",
-			Status: "Approved",
-			DateOfRequest: "12/12/22",
-			DateOfEvent: "25/12/22",
-			TimeDuration: "12:00 - 23:55, 20hrs",
-			TotalAmount: 50000,
-		},
-		{
-			id: 4,
-			action: gridActionButton,
-			to: "/listdetailsapproval",
-			Name: "John Doe",
-			Status: "Cancelled",
-			DateOfRequest: "12/12/22",
-			DateOfEvent: "25/12/22",
-			TimeDuration: "12:00 - 23:55, 20hrs",
-			TotalAmount: 50000,
-		},
-		{
-			id: 5,
-			action: gridActionButton,
-			to: "/listdetailsapproval",
-			Name: "John Doe",
-			Status: "Under Review",
-			DateOfRequest: "12/12/22",
-			DateOfEvent: "25/12/22",
-			TimeDuration: "12:00 - 23:55, 20hrs",
-			TotalAmount: 50000,
-		},
-		{
-			id: 6,
-			action: gridActionButton,
-			to: "/listdetailsapproval",
-			Name: "John Doe",
-			Status: "Under Review",
-			DateOfRequest: "12/12/22",
-			DateOfEvent: "25/12/22",
-			TimeDuration: "12:00 - 23:55, 20hrs",
-			TotalAmount: 50000,
-		},
-		{
-			id: 7,
-			action: gridActionButton,
-			to: "/listdetailsapproval",
-			Name: "John Doe",
-			Status: "Under Review",
-			DateOfRequest: "12/12/22",
-			DateOfEvent: "25/12/22",
-			TimeDuration: "12:00 - 23:55, 20hrs",
-			TotalAmount: 50000,
-		},
-	];
+			to: `/location/${locationId}/bookingdetail/${request?.req_id}`,
+			Name: request?.user_data?.fullName,
+			Status: request?.payment_status,
+			DateOfRequest: formattedToday,
+			DateOfEvent: request?.date,
+			TimeDuration: request?.time + " - " + endTime + request?.time.substr(2) + ", " + request?.duration_in_hours,
+			TotalAmount: request?.total_amt,
+		}
+	})
 
 	const listDetailsGrid = [
 		{
@@ -202,17 +167,18 @@ const ListDetails = ({ setFinal }) => {
 				<div className="flex-container">
 					<BiArrowBack size="24px" />
 					<img
-						src={require("../Assets/Images/menu-1.jpeg")}
+						src={locationData?.images?.at(0)}
 						alt="property"
 						className="listing-property-image"
+						style={{borderRadius : "8px"}}
 					/>
 					<div className="listing-property-details">
-						<div className="listing-property-id">#00000000</div>
+						<div className="listing-property-id">{locationId}</div>
 						<div className="listing-property-address">
-							Address of the property
+							{locationData?.property_address?.address}
 						</div>
-						<div className="listing-property-address">City, State</div>
-						<div className="listing-property-address">Country, Pincode</div>
+						<div className="listing-property-address">{locationData?.property_address?.city} {locationData?.property_address?.state}</div>
+						<div className="listing-property-address">{locationData?.property_address?.country} , {locationData?.property_address?.pincode}</div>
 					</div>
 				</div>
 

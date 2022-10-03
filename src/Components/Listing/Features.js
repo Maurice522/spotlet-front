@@ -4,6 +4,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { useDispatch, useSelector } from "react-redux";
 import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
+import { toast } from "react-toastify";
 
 
 const Features = ({showSection}) => {
@@ -32,11 +33,33 @@ const Features = ({showSection}) => {
         setFeatures((prev) => [...prev])
     }
 
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        //console.log(features)
+        if(!features.length)
+		  return toast.error("Please fill all required fields!!!")
+        const locData = {
+            ...location,
+            features
+          }
+          dispatch(addLocation(locData));
+          const form = {
+            location_id,
+            data : locData
+          }
+          try {
+            await createTempLocation(form);
+            showSection("Do’s & Don’ts");
+          } catch (error) {
+            toast.error(error.response.data);
+          }
+    }
+
     return (
         <div className="lbox">
             <div className="row1">
                 <div className="coll1">
-                    <h2>Features</h2>
+                    <h2>Features<span style={{color : "red"}}>*</span></h2>
                     <Select className="select" options={options} onChange={HandleChange} />
                 </div>
             </div>
@@ -57,20 +80,7 @@ const Features = ({showSection}) => {
             </div>
             <div className='row1'>
                 <div className='coll1'>
-                    <button className='continue' onClick={async() => {
-                        //console.log(features)
-                        const locData = {
-							...location,
-							features
-						  }
-						  dispatch(addLocation(locData));
-						  const form = {
-							location_id,
-							data : locData
-						  }
-						   await createTempLocation(form);
-                        showSection("Do’s & Don’ts");
-                        }}>Continue</button>
+                    <button className='continue' onClick={handleSubmit}>Continue</button>
                 </div>
             </div>
         </div>

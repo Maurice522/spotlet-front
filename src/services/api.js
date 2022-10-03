@@ -59,6 +59,11 @@ export const deleteRequest = (user_id) => {
 };
 
 //////////Messages ///////////////////////
+//create a converstion
+export const createConversation = (bookingId, form) => {
+  return axios.post(server_domain + `/createconversation/${bookingId}`, form);
+}
+
 //get contact list of a user
 export const contactList = (user_id) => {
   return axios.get(server_domain + `/conversation/${user_id}`);
@@ -102,6 +107,11 @@ export const uploadGstDocs = (formData) => {
   });
 };
 
+//delete files from storage
+export const deleteFiles = (form) => {
+  return axios.delete(server_domain + `/deletefile`, {data : form});
+}
+
 //get all locations
 export const getAllLocations = () => {
   return axios.get(server_domain + "/getlocations");
@@ -115,4 +125,25 @@ export const getLocation = (locId) => {
 //bookings
 export const bookingRequest = (form) => {
   return axios.post(server_domain + "/bookingreq", form);
+}
+
+//get booking detail
+export const getBookingDetail = (bookingId, form) => {
+  
+  return axios.put(server_domain + `/getbookingdetail/${bookingId}`, form)
+}
+
+//get total requests
+export const locationRequest = (locId) => {
+  return axios.get(server_domain + "/totrequest/"+locId);
+}
+
+//update booking sttaus
+export const updateBookingStatus = (form) => {
+  return axios.put(server_domain + "/updatepaymentstatus", form);
+}
+
+//delete booking request
+export const deleteBookingReq = (form) => {
+  return axios.delete(server_domain + "/deletebookingrequest", {data : form});
 }

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserData, selectUser_id } from "../../redux/slices/userSlice";
 import { createTempLocation } from "../../services/api";
 import { addLocation, addLocationId, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
+import { toast } from "react-toastify";
 
 const options = [
   { value: "Airport", label: "Airport" },
@@ -42,11 +43,34 @@ const Details = ({ showSection }) => {
       [e.target.name]: e.target.value,
     });
   };
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    if(!property_desc.location_type.length || !property_desc.property_info.length || !property_desc.property_size.length ||
+       !property_desc.security_camera.length || !property_desc.street_parking.length)
+          return toast.error("Please fill all required fields!!!")
+    const form = {
+      data: {
+        ...location,
+        property_desc,
+      },
+      name: user.personalInfo.fullName,
+      location_id,
+    };
+    console.log(form);
+    try {
+      const response = await createTempLocation(form);
+    !location_id && dispatch(addLocationId(response.data));
+    dispatch(addLocation(form.data));
+    showSection("Location");
+    } catch (error) {
+      toast.error(error.response.data);
+    }
+  }
   return (
     <div className="lbox">
       <div className="row1">
         <div className="coll1">
-          <h2>Type of Location</h2>
+          <h2>Type of Location<span style={{color : "red"}}>*</span></h2>
           <Select
             className="locationtype"
             options={options}
@@ -61,7 +85,7 @@ const Details = ({ showSection }) => {
           />
         </div>
         <div className="coll1">
-          <h2>Property Size in sq ft</h2>
+          <h2>Property Size in sq ft<span style={{color : "red"}}>*</span></h2>
           <input
             className="input"
             name="property_size"
@@ -73,7 +97,7 @@ const Details = ({ showSection }) => {
       </div>
       <div className="row1">
         <div className="coll1">
-          <h2>Street Parking Facility Available</h2>
+          <h2>Street Parking Facility Available<span style={{color : "red"}}>*</span></h2>
           <div className="row2">
             <input
               type="radio"
@@ -97,7 +121,7 @@ const Details = ({ showSection }) => {
           </div>
         </div>
         <div className="coll1">
-          <h2>Security Camera Available</h2>
+          <h2>Security Camera Available<span style={{color : "red"}}>*</span></h2>
           <div className="row2">
             <input
               type="radio"
@@ -122,7 +146,7 @@ const Details = ({ showSection }) => {
       </div>
       <div className="row1">
         <div className="coll1">
-          <h2>Direction Instruction</h2>
+          <h2>Direction Instruction<span style={{color : "red"}}>*</span></h2>
           <TextareaAutosize
             aria-label="minimum height"
             minRows={9}
@@ -138,22 +162,7 @@ const Details = ({ showSection }) => {
         <div className="coll1">
           <button
             className="continue"
-            
-            onClick={async () => {
-              const form = {
-                data: {
-                  ...location,
-                  property_desc,
-                },
-                name: user.personalInfo.fullName,
-                location_id,
-              };
-              console.log(form);
-              const response = await createTempLocation(form);
-              !location_id && dispatch(addLocationId(response.data));
-              dispatch(addLocation(form.data));
-              showSection("Location");
-            }}
+            onClick={handleSubmit}
           >
             Continue
           </button>
