@@ -97,3 +97,14 @@
 .selected {
 	color: #ff6767;
 }
+
+.border-arrow {
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	bottom: -10px;
+}
+
+.hide {
+	display: none;
+}
