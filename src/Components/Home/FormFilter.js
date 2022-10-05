@@ -38,7 +38,7 @@ const FormFilter = ({ fullScreen }) => {
 					<label
 						htmlFor="what"
 						className={active === true ? "focus-label" : "form-filter-label"}>
-						What are you planning?
+						What are you looking for?
 					</label>
 					<select
 						id="what"
@@ -90,6 +90,27 @@ const FormFilter = ({ fullScreen }) => {
 						onChange={(e) => console.log(e.target.value)}>
 						<option value="" disabled hidden>
 							Where?
+						</option>
+						<option value="1">Select</option>
+						<option value="2">Select</option>
+						<option value="3">Select</option>
+						<option value="4">Select</option>
+					</select>
+				</div>
+				<div>
+					<label
+						htmlFor="when"
+						className={active === true ? "focus-label" : "form-filter-label"}>
+						Date
+					</label>
+					<select
+						id="when"
+						name="when"
+						defaultValue=""
+						className={active === true ? "focus-select" : "form-filter-select"}
+						onChange={(e) => console.log(e.target.value)}>
+						<option value="" disabled hidden>
+							When?
 						</option>
 						<option value="1">Select</option>
 						<option value="2">Select</option>

@@ -17,22 +17,23 @@ const Content = () => {
 			<div className="content-wrapper">
 				<div className="left">
 					<div className="left-heading">
-						3<br /> STEPS
+						SIMPLE
+						<br /> 3-STEP
 						<br /> BOOKING
 						<br /> PROCESS
 					</div>
 					<div className="left-subsection-right">
 						<div className="content-container">
 							<FaDharmachakra color="#ff6767" size="28px" />
-							<div>Choose the activity</div>
+							<div>Choose your desired interst</div>
 						</div>
 						<div className="content-container">
 							<MdLocationOn color="#ff6767" size="28px" />
-							<div>Find a perfect place</div>
+							<div>Find the perfect spot</div>
 						</div>
 						<div className="content-container">
 							<BsCalendarWeek color="#ff6767" size="28px" />
-							<div>Book a date</div>
+							<div>Book your date</div>
 						</div>
 					</div>
 				</div>
@@ -64,7 +65,7 @@ const Content = () => {
 				</div>
 			</div>
 			<Testimonials />
-			<Host title="Become a Host" buttonContent="List your space" />
+			<Host title="Host your Spot with Us" buttonContent="List your space" />
 		</>
 	);
 };

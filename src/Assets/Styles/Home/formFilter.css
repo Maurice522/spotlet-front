@@ -18,10 +18,10 @@
 	width: 77vw;
 	padding: 30px;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr) auto;
+	grid-template-columns: repeat(4, 1fr) auto;
 	z-index: 3;
 	gap: 20px;
-	align-items: center;
+	align-items: flex-end;
 }
 
 .form-filter-label {
@@ -96,6 +96,7 @@
 	align-items: center;
 	padding: 12px 24px;
 	gap: 8px;
+	border: 2px solid #fff;
 }
 
 #submit:hover {

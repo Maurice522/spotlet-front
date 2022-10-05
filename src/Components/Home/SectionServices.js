@@ -5,20 +5,20 @@ import { FiChrome } from "react-icons/fi";
 const SectionServices = () => {
 	const items = [
 		{
-			title: "Lorem ipsum dolor sit",
-			info: "Lorem ipsum Sed ut perspiciatis unde omnis iste natus error sit voluptate maccusan doloremque",
+			title: "A Safe Space",
+			info: "We do our background research and ensure that all the properties on our portal are safe for usage amongst crew members, teams, families and friends.",
 		},
 		{
-			title: "Lorem ipsum dolor sit",
-			info: "Lorem ipsum Sed ut perspiciatis unde omnis iste natus error sit voluptate maccusan doloremque",
+			title: "A Chance to Save",
+			info: "You can save up to 20% when you book with SpotLet, compared to when you work with a location agency. In addition, our prices are affordable and budget-friendly.",
 		},
 		{
-			title: "Lorem ipsum dolor sit",
-			info: "Lorem ipsum Sed ut perspiciatis unde omnis iste natus error sit voluptate maccusan doloremque",
+			title: "A Wide Range of Options",
+			info: "We invite you to explore our diverse locations for all kinds of shooting, events and celebrations. You’ll always be spoilt for choice!",
 		},
 		{
-			title: "Lorem ipsum dolor sit",
-			info: "Lorem ipsum Sed ut perspiciatis unde omnis iste natus error sit voluptate maccusan doloremque",
+			title: "A Memorable Experience",
+			info: "We promise our customers a smooth, satisfactory and memorable experience during the booking, and our hosts ensure you love your location every time!",
 		},
 	];
 
