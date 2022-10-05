@@ -71,7 +71,7 @@ const SectionMenu = () => {
 		"grid-menu-item-3",
 	];
 
-	const [arrow, setArrow] = useState({
+	const [arrowState, setArrowState] = useState({
 		film: true,
 		corporate: false,
 		individual: false,
@@ -98,39 +98,26 @@ const SectionMenu = () => {
 						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center",
-						borderBottom: `2px solid ${shoot === 1 ? "#ff6767" : "black"}`,
+						borderBottom: "2px solid #ff6767",
 						paddingBottom: "5px",
 						color: shoot === 1 ? "#ff6767" : "black",
 						position: "relative",
 					}}
-					onClick={() => setShoot(1)}>
+					onClick={() => {
+						setShoot(1);
+						setArrowState({
+							film: true,
+							corporate: false,
+							individual: false,
+						});
+					}}>
 					<GiFilmProjector size="40px" />
 					<div className={`menu-heading-item`}>Film Shooting</div>
 					<img
 						src={arrow}
 						alt="Arrow"
-						className={`border-arrow ${arrow.film === false ? "hide" : ""}`}
-					/>
-				</div>
-				<div
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						justifyContent: "center",
-						alignItems: "center",
-						borderBottom: `2px solid ${shoot === 2 ? "#ff6767" : "black"}`,
-						paddingBottom: "5px",
-						color: shoot === 2 ? "#ff6767" : "black",
-						position: "relative",
-					}}
-					onClick={() => setShoot(2)}>
-					<MdOutlineCorporateFare size="40px" />
-					<div className={`menu-heading-item`}>Corporate Shooting</div>
-					<img
-						src={arrow}
-						alt="Arrow"
 						className={`border-arrow ${
-							arrow.corporate === false ? "hide" : ""
+							arrowState.film === false ? "hide" : ""
 						}`}
 					/>
 				</div>
@@ -140,19 +127,55 @@ const SectionMenu = () => {
 						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center",
-						borderBottom: `2px solid ${shoot === 3 ? "#ff6767" : "black"}`,
+						borderBottom: "2px solid #ff6767",
+						paddingBottom: "5px",
+						color: shoot === 2 ? "#ff6767" : "black",
+						position: "relative",
+					}}
+					onClick={() => {
+						setShoot(2);
+						setArrowState({
+							film: false,
+							corporate: true,
+							individual: false,
+						});
+					}}>
+					<MdOutlineCorporateFare size="40px" />
+					<div className={`menu-heading-item`}>Corporate Shooting</div>
+					<img
+						src={arrow}
+						alt="Arrow"
+						className={`border-arrow ${
+							arrowState.corporate === false ? "hide" : ""
+						}`}
+					/>
+				</div>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
+						alignItems: "center",
+						borderBottom: "2px solid #ff6767",
 						paddingBottom: "5px",
 						color: shoot === 3 ? "#ff6767" : "black",
 						position: "relative",
 					}}
-					onClick={() => setShoot(3)}>
+					onClick={() => {
+						setShoot(3);
+						setArrowState({
+							film: false,
+							corporate: false,
+							individual: true,
+						});
+					}}>
 					<BsPersonFill size="40px" />
 					<div className={`menu-heading-item`}>Individual Shooting</div>
 					<img
 						src={arrow}
 						alt="Arrow"
 						className={`border-arrow ${
-							arrow.individual === false ? "hide" : ""
+							arrowState.individual === false ? "hide" : ""
 						}`}
 					/>
 				</div>
