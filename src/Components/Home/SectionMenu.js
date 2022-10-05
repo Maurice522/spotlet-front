@@ -12,30 +12,44 @@ import img4 from "../../Assets/Images/menu-4.jpeg";
 import img5 from "../../Assets/Images/menu-5.jpeg";
 import img6 from "../../Assets/Images/menu-6.jpeg";
 
+import film_img1 from "../../Assets/Images/film-menu-1.jpeg";
+import film_img2 from "../../Assets/Images/film-menu-2.jpeg";
+import film_img3 from "../../Assets/Images/film-menu-3.jpeg";
+import film_img4 from "../../Assets/Images/film-menu-4.jpeg";
+import film_img5 from "../../Assets/Images/film-menu-5.jpeg";
+import film_img6 from "../../Assets/Images/film-menu-6.jpeg";
+
+import indi_img1 from "../../Assets/Images/indi-menu-1.jpeg";
+import indi_img2 from "../../Assets/Images/indi-menu-2.jpeg";
+import indi_img3 from "../../Assets/Images/indi-menu-3.jpeg";
+import indi_img4 from "../../Assets/Images/indi-menu-4.jpeg";
+import indi_img5 from "../../Assets/Images/indi-menu-5.jpeg";
+import indi_img6 from "../../Assets/Images/indi-menu-6.jpeg";
+
 const SectionMenu = () => {
 	const filmShooting = [
-		{ image: img1, text: "Film Shoot" },
-		{ image: img2, text: "Web Series Shoot" },
-		{ image: img3, text: "Ad Film Shoot" },
-		{ image: img4, text: "Music Album Shoot" },
-		{ image: img5, text: "Green Screen" },
-		{ image: img6, text: "Photoshoot" },
+		{ image: film_img1, text: "Ad Film Shoot" },
+		{ image: film_img2, text: "Web Series Shoot" },
+		{ image: film_img3, text: "Film Shoot" },
+		{ image: film_img4, text: "Music Album Shoot" },
+		{ image: film_img5, text: "TV Serial" },
+		{ image: film_img6, text: "Photoshoot" },
 	];
 	const corporateShooting = [
-		{ image: img2, text: "Web Series Shoot" },
-		{ image: img3, text: "Ad Film Shoot" },
-		{ image: img4, text: "Music Album Shoot" },
-		{ image: img5, text: "Green Screen" },
-		{ image: img6, text: "Photoshoot" },
-		{ image: img1, text: "Film Shoot" },
+		{ image: img1, text: "Company Meetings" },
+		{ image: img2, text: "Company Party" },
+		{ image: img3, text: "Product Launch" },
+		{ image: img4, text: "Comapny Anniversary" },
+		{ image: img5, text: "Conference" },
+		{ image: img6, text: "Award Ceremony" },
 	];
 	const individualShooting = [
-		{ image: img3, text: "Ad Film Shoot" },
-		{ image: img4, text: "Music Album Shoot" },
-		{ image: img5, text: "Green Screen" },
-		{ image: img6, text: "Photoshoot" },
-		{ image: img1, text: "Film Shoot" },
-		{ image: img2, text: "Web Series Shoot" },
+		{ image: indi_img1, text: "Birthday Party" },
+		{ image: indi_img2, text: "Family/Friends Gathering" },
+		{ image: indi_img3, text: "Engagement Party" },
+		{ image: indi_img4, text: "Baby Shower" },
+		{ image: indi_img5, text: "Bachelor Party" },
+		{ image: indi_img6, text: "Festive Event" },
 	];
 
 	const [shoot, setShoot] = useState(1);
