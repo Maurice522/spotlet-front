@@ -60,6 +60,7 @@
 	font-style: normal;
 	font-weight: 600;
 	font-size: 20px;
+	margin-top: 2%;
 }
 
 .reason-content-info {
@@ -68,12 +69,15 @@
 	font-style: normal;
 	font-weight: 400;
 	font-size: 16px;
-	line-height: 20px;
+	line-height: 26px;
+	margin-top: 2%;
 }
 
 .reason-content-section > .icon-wrapper {
 	width: 40px;
 	height: 40px; /* In figma width and height: 54px */
+	width: 59px;
+    height: 34px;
 	border-radius: 50%;
 	background: #fdeeed;
 	color: #ff6767;
