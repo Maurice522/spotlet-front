@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../Assets/Styles/blogs.css";
 import image from "../Assets/Images/blogs.png";
 import FormFilter from "../Components/Home/FormFilter";
