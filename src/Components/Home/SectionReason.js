@@ -6,16 +6,16 @@ import image from "../../Assets/Images/reason-image.jpeg";
 const SectionReason = ({ heading }) => {
 	const objArray = [
 		{
-			title: "We are professionals",
-			info: "lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit.",
+			title: "Exciting Spaces",
+			info: "Whether you’re hosting a family get-together, planning a corporate event or starting an OTT series, we have the perfect spaces for you to uncover!",
 		},
 		{
-			title: "Best Service Guarantee",
-			info: "lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit.",
+			title: "Transparent Prices",
+			info: "We assure you of no hidden fees in all our properties. Pay for what you need and find the most cost-effective spaces for your requirements.",
 		},
 		{
-			title: "We are professionals",
-			info: "lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit. lorem ipsum dolor sit amet consectetur adipisicing elit.",
+			title: "Simplified Bookings",
+			info: "Bid goodbye to long messy contracts and legal hassles. Our smooth and simplified booking can be made on the go, within a few minutes!",
 		},
 	];
 

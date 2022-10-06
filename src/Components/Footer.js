@@ -17,7 +17,7 @@ const Footer = () => {
 		{
 			title: "Host",
 			items: [
-				{ name: "List your space", to: "/listyourspace" },
+				{ name: "List your space", to: "/host" },
 				{ name: "Community", to: "/community" },
 				{ name: "Resource Center", to: "/resourcecenter" },
 				{ name: "Guidelines", to: "/guidelines" },

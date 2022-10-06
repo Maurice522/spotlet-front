@@ -1,39 +1,95 @@
+.myMessage {
+	text-align: center;
+	right: 70px;
+	margin-top: 5.3%;
+	color: white;
+	font-weight: 800;
+	font-size: 3rem;
+}
+.container {
+	width: 88%;
+	margin: auto;
+	/* background-color: beige; */
+	margin-top: 5%;
+	box-sizing: border-box;
+}
+.Div1 {
+	width: 33%;
+	height: 20%;
+	box-sizing: border-box;
+	display: inline-block;
+	/* border: 1px solid black; */
+	padding: 2%;
+}
+.resoourceImg {
+	height: 300px;
+	width: 100%;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.resourceContent h3 {
+	margin-top: 4%;
+}
+.resourceContent p {
+	margin-top: 4%;
+	line-height: 1.2;
+}
+.readmore {
+	color: red;
+}
+.resourceContent > a {
+	text-decoration: none;
+	color: red;
+}
 
-.myMessage{
-    text-align: center;
-    right: 70px;
-    margin-top: 5.3%;
-    color: white;
-    font-weight: 800;
-    font-size: 3rem;
-    }
-.container{
-    width: 88%;
-    margin: auto;
-    /* background-color: beige; */
-    margin-top: 5%;
-    box-sizing: border-box;
+.singleBlogContent {
+	width: 90%;
+	margin: 25px auto;
 }
-.Div1{
-    width: 33%;
-    height: 20%;
-    box-sizing: border-box;
-    display: inline-block;
-    /* border: 1px solid black; */
-    padding: 2%;
+.reactions {
+	display: flex;
+	gap: 20px;
+	width: 90%;
+	margin: 10px auto;
+	justify-content: flex-start;
+	align-items: center;
 }
-.resoourceImg{
-    height: 300px;
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+.singleBlogContent > h1 {
+	margin-bottom: 5px;
 }
-.resourceContent h3{
-    margin-top: 4%;
+
+.comments {
+	width: 90%;
+	margin: 10px auto;
+	border: 2px solid #ea4235;
+	padding: 10px;
+	border-radius: 10px;
 }
-.resourceContent p{
-    margin-top: 4%;
-    line-height: 1.2;
+
+.comment-header {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 10px;
 }
-.readmore{
-    color: red;
+
+.comment-input-field {
+	width: 100%;
+	display: flex;
+	gap: 10px;
+}
+
+.userCommentSection {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 30px;
+}
+
+.comment {
+	margin: 20px 0;
+}
+
+.comment-body {
+	margin-top: 10px;
 }

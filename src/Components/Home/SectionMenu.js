@@ -12,30 +12,46 @@ import img4 from "../../Assets/Images/menu-4.jpeg";
 import img5 from "../../Assets/Images/menu-5.jpeg";
 import img6 from "../../Assets/Images/menu-6.jpeg";
 
+import film_img1 from "../../Assets/Images/film-menu-1.jpeg";
+import film_img2 from "../../Assets/Images/film-menu-2.jpeg";
+import film_img3 from "../../Assets/Images/film-menu-3.jpeg";
+import film_img4 from "../../Assets/Images/film-menu-4.jpeg";
+import film_img5 from "../../Assets/Images/film-menu-5.jpeg";
+import film_img6 from "../../Assets/Images/film-menu-6.jpeg";
+
+import indi_img1 from "../../Assets/Images/indi-menu-1.jpeg";
+import indi_img2 from "../../Assets/Images/indi-menu-2.jpeg";
+import indi_img3 from "../../Assets/Images/indi-menu-3.jpeg";
+import indi_img4 from "../../Assets/Images/indi-menu-4.jpeg";
+import indi_img5 from "../../Assets/Images/indi-menu-5.jpeg";
+import indi_img6 from "../../Assets/Images/indi-menu-6.jpeg";
+
+import arrow from "../../Assets/Images/border-arrow.jpeg";
+
 const SectionMenu = () => {
 	const filmShooting = [
-		{ image: img1, text: "Film Shoot" },
-		{ image: img2, text: "Web Series Shoot" },
-		{ image: img3, text: "Ad Film Shoot" },
-		{ image: img4, text: "Music Album Shoot" },
-		{ image: img5, text: "Green Screen" },
-		{ image: img6, text: "Photoshoot" },
+		{ image: film_img1, text: "Ad Film Shoot" },
+		{ image: film_img2, text: "Web Series Shoot" },
+		{ image: film_img3, text: "Film Shoot" },
+		{ image: film_img4, text: "Music Album Shoot" },
+		{ image: film_img5, text: "TV Serial" },
+		{ image: film_img6, text: "Photoshoot" },
 	];
 	const corporateShooting = [
-		{ image: img2, text: "Web Series Shoot" },
-		{ image: img3, text: "Ad Film Shoot" },
-		{ image: img4, text: "Music Album Shoot" },
-		{ image: img5, text: "Green Screen" },
-		{ image: img6, text: "Photoshoot" },
-		{ image: img1, text: "Film Shoot" },
+		{ image: img1, text: "Company Meetings" },
+		{ image: img2, text: "Company Party" },
+		{ image: img3, text: "Product Launch" },
+		{ image: img4, text: "Comapny Anniversary" },
+		{ image: img5, text: "Conference" },
+		{ image: img6, text: "Award Ceremony" },
 	];
 	const individualShooting = [
-		{ image: img3, text: "Ad Film Shoot" },
-		{ image: img4, text: "Music Album Shoot" },
-		{ image: img5, text: "Green Screen" },
-		{ image: img6, text: "Photoshoot" },
-		{ image: img1, text: "Film Shoot" },
-		{ image: img2, text: "Web Series Shoot" },
+		{ image: indi_img1, text: "Birthday Party" },
+		{ image: indi_img2, text: "Family/Friends Gathering" },
+		{ image: indi_img3, text: "Engagement Party" },
+		{ image: indi_img4, text: "Baby Shower" },
+		{ image: indi_img5, text: "Bachelor Party" },
+		{ image: indi_img6, text: "Festive Event" },
 	];
 
 	const [shoot, setShoot] = useState(1);
@@ -54,6 +70,12 @@ const SectionMenu = () => {
 		"grid-menu-item-3",
 		"grid-menu-item-3",
 	];
+
+	const [arrowState, setArrowState] = useState({
+		film: true,
+		corporate: false,
+		individual: false,
+	});
 
 	let gridItems = shootMap[shoot].map((img, index) => (
 		<div className={classes[index]} key={index}>
@@ -76,14 +98,28 @@ const SectionMenu = () => {
 						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center",
-						borderBottom: `2px solid ${shoot === 1 ? "#ff6767" : "black"}`,
+						borderBottom: "2px solid #ff6767",
 						paddingBottom: "5px",
 						color: shoot === 1 ? "#ff6767" : "black",
+						position: "relative",
 					}}
-					onClick={() => setShoot(1)}>
+					onClick={() => {
+						setShoot(1);
+						setArrowState({
+							film: true,
+							corporate: false,
+							individual: false,
+						});
+					}}>
 					<GiFilmProjector size="40px" />
 					<div className={`menu-heading-item`}>Film Shooting</div>
-					<AiOutlineDown size="15px" />
+					<img
+						src={arrow}
+						alt="Arrow"
+						className={`border-arrow ${
+							arrowState.film === false ? "hide" : ""
+						}`}
+					/>
 				</div>
 				<div
 					style={{
@@ -91,14 +127,28 @@ const SectionMenu = () => {
 						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center",
-						borderBottom: `2px solid ${shoot === 2 ? "#ff6767" : "black"}`,
+						borderBottom: "2px solid #ff6767",
 						paddingBottom: "5px",
 						color: shoot === 2 ? "#ff6767" : "black",
+						position: "relative",
 					}}
-					onClick={() => setShoot(2)}>
+					onClick={() => {
+						setShoot(2);
+						setArrowState({
+							film: false,
+							corporate: true,
+							individual: false,
+						});
+					}}>
 					<MdOutlineCorporateFare size="40px" />
 					<div className={`menu-heading-item`}>Corporate Shooting</div>
-					<AiOutlineDown size="15px" />
+					<img
+						src={arrow}
+						alt="Arrow"
+						className={`border-arrow ${
+							arrowState.corporate === false ? "hide" : ""
+						}`}
+					/>
 				</div>
 				<div
 					style={{
@@ -106,14 +156,28 @@ const SectionMenu = () => {
 						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center",
-						borderBottom: `2px solid ${shoot === 3 ? "#ff6767" : "black"}`,
+						borderBottom: "2px solid #ff6767",
 						paddingBottom: "5px",
 						color: shoot === 3 ? "#ff6767" : "black",
+						position: "relative",
 					}}
-					onClick={() => setShoot(3)}>
+					onClick={() => {
+						setShoot(3);
+						setArrowState({
+							film: false,
+							corporate: false,
+							individual: true,
+						});
+					}}>
 					<BsPersonFill size="40px" />
 					<div className={`menu-heading-item`}>Individual Shooting</div>
-					<AiOutlineDown size="15px" />
+					<img
+						src={arrow}
+						alt="Arrow"
+						className={`border-arrow ${
+							arrowState.individual === false ? "hide" : ""
+						}`}
+					/>
 				</div>
 			</div>
 			<div className="grid-menu">{gridItems}</div>

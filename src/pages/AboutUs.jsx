@@ -13,37 +13,45 @@ const AboutUs = () => {
 			<Navbar extraNavId="id-2" />
 			<div className="text-on-image-container">
 				<img src={image} alt="background" className="bg-image darken" />
-				<div className="about-us-message">
-					<div>OUR MISSION</div>
-					<br />
-					<div className="bold">BRINGING PEOPLE TOGETHER</div>
+				<div className="about-us-message bold">
+					We Celebrate Happiness and Togetherness Every Day.
 				</div>
 			</div>
 			<div className="about-us-content">
 				<div>
 					<div className="about-us-content-heading">
-						We connect people with unique spaces
+						Book your Spot with Confidence
 					</div>
 					<div className="about-us-content-info">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
-						rhoncus pulvinar aliquam. Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc posuere purus rhoncus pulvinar aliquam.{" "}
+						<p>
+							SpotLet connects people through our unique spaces. Our
+							state-of-the-art online platform enables guests to look for
+							specific locations, communicate with their hosts, and make
+							payments quickly, all in a single place.
+						</p>
+						<p>
+							We aspire to create a community wherein you can always meet,
+							create and celebrate with like-minded people through our online
+							marketplace. So book the best spaces for any activity and enjoy a
+							rewarding experience.
+						</p>
+						<p>
+							We aspire to provide guests with a simplified booking platform and
+							give property owners in India a channel to showcase their spaces
+							and earn additional income.
+						</p>
+						<h6>Let's Get Together</h6>
 					</div>
 				</div>
 
 				<div className="content-with-image">
 					<div>
-						<div className="about-us-content-heading">
-							We connect people with unique spaces
-						</div>
+						<div className="about-us-content-heading">SpotLet for Guests</div>
 						<div className="about-us-content-info">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-							hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
-							rhoncus pulvinar aliquam. Lorem ipsum dolor sit amet, consectetur
-							adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-							Nunc posuere purus rhoncus pulvinar aliquam.{" "}
+							Whether you’re looking for the prettiest pre-wedding shoot
+							locations, the fanciest business retreat centres or the latest TV
+							serial shooting locations, SpotLet has you covered. Find the keys
+							to the most unique and exciting spaces on our portal.
 						</div>
 						<Button
 							variant="outlined"
@@ -56,7 +64,7 @@ const AboutUs = () => {
 								fontWeight: "600",
 								padding: "6px 12px",
 							}}>
-							Find a space
+							Let’s Get Started
 						</Button>
 					</div>
 
@@ -106,15 +114,13 @@ const AboutUs = () => {
 						</div>
 					</div>
 					<div>
-						<div className="about-us-content-heading">
-							We connect people with unique spaces
-						</div>
+						<div className="about-us-content-heading">SpotLet for Hosts</div>
 						<div className="about-us-content-info">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-							hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
-							rhoncus pulvinar aliquam. Lorem ipsum dolor sit amet, consectetur
-							adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-							Nunc posuere purus rhoncus pulvinar aliquam.{" "}
+							We invite you to list your property for free, get more visibility
+							and manage bookings for your spaces with various simplified tools.
+							Share your unutilised property with the world and welcome
+							professionals, families and film crew to experience your unique
+							offerings.
 						</div>
 						<Button
 							variant="outlined"
@@ -127,7 +133,7 @@ const AboutUs = () => {
 								fontWeight: "600",
 								padding: "6px 12px",
 							}}>
-							Find a space
+							Let’s Get Hosting
 						</Button>
 					</div>
 				</div>
@@ -152,24 +158,19 @@ const AboutUs = () => {
 				<div>
 					<div className="about-us-content-heading">Join Our Team</div>
 					<div className="about-us-content-info">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
-						rhoncus pulvinar aliquam. Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit.{" "}
+						We’re always looking for passionate and dedicated professionals to
+						share the spotlight.
 					</div>
 				</div>
 				<div className="about-us-content-text">
 					<div>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
-						rhoncus pulvinar aliquam. Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing
-						elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
-						purusm.
+						As an online platform, we celebrate the intersection of technology
+						and people and invite you to bring your creative ideas, intelligence
+						and innovation to our fast-paced tech-enabled world.
 					</div>
 					<div>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-						posuere purus rhoncus pulvinar aliquam.{" "}
+						If you’re ready to make a difference and impact society, we’re ready
+						to welcome you on board.
 					</div>
 					<div className="about-us-btn-container">
 						<Button
@@ -179,7 +180,7 @@ const AboutUs = () => {
 								color: "white",
 								padding: "12px 24px",
 							}}>
-							View open positions
+							Current Openings
 						</Button>
 						<Button
 							variant="outlined"
@@ -188,7 +189,7 @@ const AboutUs = () => {
 								color: "black",
 								padding: "12px 24px",
 							}}>
-							See what it's like to work here
+							Send your Resume
 						</Button>
 					</div>
 				</div>

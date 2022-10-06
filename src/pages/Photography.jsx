@@ -160,7 +160,7 @@ const Photography = () => {
 					</div>
 				</div>
 
-				<Form labels={labels} />
+				<Form labels={labels} heading="Get your Session Booked" />
 
 				<Footer />
 			</div>

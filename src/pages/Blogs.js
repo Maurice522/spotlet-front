@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../Assets/Styles/blogs.css";
 import image from "../Assets/Images/blogs.png";
 import FormFilter from "../Components/Home/FormFilter";
@@ -8,6 +8,8 @@ import Navbar from "../Components/Navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
+import { Pagination } from "@mui/material";
+
 
 const Blogs = () => {
     const readMore = (e) => {
