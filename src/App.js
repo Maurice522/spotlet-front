@@ -107,7 +107,7 @@ function App() {
 					<Route path="/community" element={<Community />} />
 					<Route path="/photography" element={<Photography />} />
 					<Route path="/blogs" element={<Blogs/>} />
-					<Route path="/blog" element={<Blog/>} />
+					<Route path="/blogs/blog" element={<Blog/>} />
 					<Route
 						path="/helpcenter"
 						element={
