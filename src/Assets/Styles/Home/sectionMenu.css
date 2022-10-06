@@ -63,8 +63,8 @@
 .grid-menu-item-1:hover,
 .grid-menu-item-2:hover,
 .grid-menu-item-3:hover {
-	transform: scale(1.05);
-	transition-duration: 0.5s;
+	transform: scale(1.01);
+	transition-duration: 0.3s;
 }
 
 .menu-image {
@@ -85,12 +85,12 @@
 	position: absolute;
 	color: #ffffff;
 	width: 100%;
-	bottom: 5px;
+	bottom: 3px;
 	text-align: center;
 	font-family: "Inter";
 	font-style: normal;
-	font-weight: 500;
-	font-size: 16px;
+	font-weight: 900;
+	font-size: 20px;
 	line-height: 44px;
 }
 

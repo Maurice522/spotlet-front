@@ -5,12 +5,12 @@ import { MdOutlineCorporateFare } from "react-icons/md";
 import { AiOutlineDown } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "../../Assets/Styles/Home/sectionMenu.css";
-import img1 from "../../Assets/Images/menu-1.jpeg";
-import img2 from "../../Assets/Images/menu-2.jpeg";
-import img3 from "../../Assets/Images/menu-3.jpeg";
-import img4 from "../../Assets/Images/menu-4.jpeg";
-import img5 from "../../Assets/Images/menu-5.jpeg";
-import img6 from "../../Assets/Images/menu-6.jpeg";
+import corp_img1 from "../../Assets/Images/corp_img1.jpeg";
+import corp_img2 from "../../Assets/Images/corp_img2.jpeg";
+import corp_img3 from "../../Assets/Images/corp_img1.jpeg";
+import corp_img4 from "../../Assets/Images/corp_img4.jpeg";
+import corp_img5 from "../../Assets/Images/corp_img5.jpeg";
+import corp_img6 from "../../Assets/Images/corp_img6.jpeg";
 
 import film_img1 from "../../Assets/Images/film-menu-1.jpeg";
 import film_img2 from "../../Assets/Images/film-menu-2.jpeg";
@@ -31,24 +31,24 @@ import arrow from "../../Assets/Images/border-arrow.jpeg";
 const SectionMenu = () => {
 	const filmShooting = [
 		{ image: film_img1, text: "Ad Film Shoot" },
-		{ image: film_img2, text: "Web Series Shoot" },
 		{ image: film_img3, text: "Film Shoot" },
+		{ image: film_img2, text: "Web Series Shoot" },
 		{ image: film_img4, text: "Music Album Shoot" },
 		{ image: film_img5, text: "TV Serial" },
 		{ image: film_img6, text: "Photoshoot" },
 	];
 	const corporateShooting = [
-		{ image: img1, text: "Company Meetings" },
-		{ image: img2, text: "Company Party" },
-		{ image: img3, text: "Product Launch" },
-		{ image: img4, text: "Comapny Anniversary" },
-		{ image: img5, text: "Conference" },
-		{ image: img6, text: "Award Ceremony" },
+		{ image: corp_img1, text: "Company Meetings" },
+		{ image: corp_img3, text: "Product Launch" },
+		{ image: corp_img2, text: "Company Party" },
+		{ image: corp_img4, text: "Comapny Anniversary" },
+		{ image: corp_img5, text: "Conference" },
+		{ image: corp_img6, text: "Award Ceremony" },
 	];
 	const individualShooting = [
 		{ image: indi_img1, text: "Birthday Party" },
-		{ image: indi_img2, text: "Family/Friends Gathering" },
 		{ image: indi_img3, text: "Engagement Party" },
+		{ image: indi_img2, text: "Family/Friends Gathering" },
 		{ image: indi_img4, text: "Baby Shower" },
 		{ image: indi_img5, text: "Bachelor Party" },
 		{ image: indi_img6, text: "Festive Event" },

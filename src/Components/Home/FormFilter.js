@@ -38,7 +38,8 @@ const FormFilter = ({ fullScreen }) => {
 					<label
 						htmlFor="what"
 						className={active === true ? "focus-label" : "form-filter-label"}>
-						What are you looking for?
+						{/* What are you looking for? */}
+						Event
 					</label>
 					<select
 						id="what"
@@ -101,7 +102,7 @@ const FormFilter = ({ fullScreen }) => {
 					<label
 						htmlFor="when"
 						className={active === true ? "focus-label" : "form-filter-label"}>
-						Date
+						City
 					</label>
 					<select
 						id="when"
