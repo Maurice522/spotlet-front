@@ -1,7 +1,7 @@
 .reason-container {
 	width: 97vw;
 	margin: 50px auto;
-	padding: 10px;
+	padding: 20px 10px;
 	background: #f5f5f5;
 }
 
@@ -42,10 +42,12 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+	width: 50%;
 }
 
 .reason-content-item {
 	margin-left: 10px;
+	/* width: 70%; */
 }
 
 .reason-content-section {
@@ -77,7 +79,7 @@
 	width: 40px;
 	height: 40px; /* In figma width and height: 54px */
 	width: 59px;
-    height: 34px;
+	height: 34px;
 	border-radius: 50%;
 	background: #fdeeed;
 	color: #ff6767;

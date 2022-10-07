@@ -32,15 +32,17 @@ const SectionReason = ({ heading }) => {
 	));
 
 	return (
-		<div className="reason-container">
+		<>
 			<div className="reason-heading">{heading}</div>
-			<div className="reason-section">
-				{/* <div className="image-wrapper"> */}
-				<img src={image} alt="reason-1" className="reason-image" />
-				{/* </div> */}
-				<div className="reason-content-wrapper">{items}</div>
+			<div className="reason-container">
+				<div className="reason-section">
+					{/* <div className="image-wrapper"> */}
+					<img src={image} alt="reason-1" className="reason-image" />
+					{/* </div> */}
+					<div className="reason-content-wrapper">{items}</div>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
