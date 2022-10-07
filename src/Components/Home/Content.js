@@ -18,8 +18,7 @@ const Content = () => {
 				<div className="left">
 					<div className="left-heading">
 						SIMPLE
-						<br /> 3-STEP
-						<br /> BOOKING
+						<br /> 3-STEP BOOKING
 						<br /> PROCESS
 					</div>
 					<div className="left-subsection-right">
@@ -45,7 +44,7 @@ const Content = () => {
 					/>
 				</div>
 			</div>
-			<SectionReason heading="Why Choose Us" />
+			<SectionReason  heading="Why Choose Us" />
 			<SectionProperty />
 			<SectionServices />
 			<div className="text-on-image-container service-image-wrapper">
@@ -58,7 +57,8 @@ const Content = () => {
 						position: "absolute",
 						top: "40%",
 						left: "47%",
-						color: "rgba(255, 255, 255, 0.7)",
+						// color: "rgba(255, 255, 255, 0.7)",
+						color: "white",
 						cursor: "pointer",
 					}}>
 					<FaPlay size={75} />
