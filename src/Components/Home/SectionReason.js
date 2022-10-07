@@ -1,9 +1,9 @@
 import React from "react";
 import "../../Assets/Styles/Home/sectionReason.css";
 import { BsBookmark } from "react-icons/bs";
-import image from "../../Assets/Images/reason-image.jpeg";
 
-const SectionReason = ({ heading }) => {
+
+const SectionReason = ({ heading ,imageReason}) => {
 	const objArray = [
 		{
 			title: "Exciting Spaces",
@@ -36,7 +36,7 @@ const SectionReason = ({ heading }) => {
 			<div className="reason-heading">{heading}</div>
 			<div className="reason-section">
 				{/* <div className="image-wrapper"> */}
-				<img src={image} alt="reason-1" className="reason-image" />
+				<img src={imageReason} alt="reason-1" className="reason-image" />
 				{/* </div> */}
 				<div className="reason-content-wrapper">{items}</div>
 			</div>

@@ -10,13 +10,17 @@ const TAS_Cards = ({ data }) => {
 				alignItems: "center",
 				padding: "8px 3px",
 				border: "1px solid #FFFFFF",
-				boxShadow: "2px 2px 4px 2px rgba(0, 0, 0, 0.5)",
+				// boxShadow: "1.95px 1.95px 2.6px rgba(0, 0, 0, 0.15)",
+				boxShadow: "0px 3px 8px rgba(0, 0, 0, 0.24)",
 			}}>
-			<div>{data.icon}</div>
-			<h3>{data.title}</h3>
+			<div style={{
+				color:"#ff6767",
+				}}>{data.icon}</div>
+			<h3 style={{color:"#ff6767",}}>{data.title}</h3>
 			<div
 				style={{
 					textAlign: "center",
+					padding:"2%",
 				}}>
 				{data.info}
 			</div>

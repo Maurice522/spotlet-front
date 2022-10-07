@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import image2 from "../Assets/Images/about-us-content-image.jpeg";
+import image2 from "../Assets/Images/aboutUs_img1.jpeg";
 
 const Community = () => {
 	return (

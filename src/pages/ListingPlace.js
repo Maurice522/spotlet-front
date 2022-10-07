@@ -100,7 +100,7 @@ const ListingPlace = () => {
               <div>
                 <button
                   onClick={() => handlesection("Pricing")}
-                  disabled={data?.do_and_dont ? false : true}
+                  // disabled={data?.do_and_dont ? false : true}
                   className={
                     section === "Pricing" ? "lnav-text sel" : "lnav-text"
                   }
