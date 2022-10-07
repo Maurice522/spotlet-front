@@ -1,9 +1,10 @@
 import React from "react";
 import "../../Assets/Styles/Home/sectionReason.css";
+import image from "../../Assets/Images/menu-3.jpeg";
 import { BsBookmark } from "react-icons/bs";
-import image from "../../Assets/Images/reason-image.jpeg";
 
-const SectionReason = ({ heading }) => {
+
+const SectionReason = ({ heading ,imageReason}) => {
 	const objArray = [
 		{
 			title: "Exciting Spaces",
@@ -34,6 +35,7 @@ const SectionReason = ({ heading }) => {
 	return (
 		<>
 			<div className="reason-heading">{heading}</div>
+
 			<div className="reason-container">
 				<div className="reason-section">
 					{/* <div className="image-wrapper"> */}

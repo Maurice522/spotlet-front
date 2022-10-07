@@ -23,6 +23,7 @@ import ListingPlace from "./pages/ListingPlace";
 import Messages from "./pages/Messages";
 import HostPage from "./pages/HostPage";
 import Favorites from "./pages/Favorites";
+import Investors from "./pages/Investors";
 import AboutUs from "./pages/AboutUs";
 import Guidelines from "./pages/Guidelines";
 import TermsofService from "./pages/TermsofService";
@@ -37,6 +38,7 @@ import Resources from "./pages/Resources";
 import Resource from "./pages/Resource";
 import Cookies from "./pages/Cookies";
 import Careers from "./pages/Careers";
+import Affiliate from "./pages/Affiliate";
 
 function App() {
 	const dispatch = useDispatch();
@@ -114,6 +116,7 @@ function App() {
 					<Route path="/termsofservice" element={<TermsofService />} />
 					<Route path="/cookiepreference" element={<Cookies />} />
 					<Route path="/community" element={<Community />} />
+					<Route path="/investors" element={<Investors />} />
 					<Route path="/photography" element={<Photography />} />
 					<Route path="/helpcenter" element={<HelpCenter />} />
 					<Route path="/trustandsafety" element={<TrustAndSafety />} />
@@ -122,6 +125,8 @@ function App() {
 					<Route path="/resource/:resourceId" element={<Resource />} />
 					<Route path="/blogs" element={<Blogs/>} />
 					<Route path="/blogs/blog" element={<Blog/>} />
+					<Route path="/affiliate" element={<Affiliate/>} />
+
 
 					<Route
 						path="location/:locationId/bookingdetail/:bookingId"

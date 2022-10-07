@@ -134,7 +134,7 @@ const Details = ({ showSection }) => {
 							<input
 								type="radio"
 								className="radio"
-								name="street_parking"
+								name="house_parking"
 								onChange={handleChange}
 								value="no"
 								checked={property_desc.house_parking === "no"}

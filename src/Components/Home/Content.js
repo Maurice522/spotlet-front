@@ -5,6 +5,7 @@ import SectionProperty from "./SectionProperty";
 import SectionServices from "./SectionServices";
 import { FaDharmachakra, FaPlay } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
+import imageHome from "../../Assets/Images/reason-image.jpeg";
 import { BsCalendarWeek } from "react-icons/bs";
 import "../../Assets/Styles/Home/content.css";
 import Testimonials from "./Testimonials";
@@ -44,7 +45,7 @@ const Content = () => {
 					/>
 				</div>
 			</div>
-			<SectionReason  heading="Why Choose Us" />
+			<SectionReason  heading="Why Choose Us" imageReason={imageHome}/>
 			<SectionProperty />
 			<SectionServices />
 			<div className="text-on-image-container service-image-wrapper">
@@ -57,8 +58,7 @@ const Content = () => {
 						position: "absolute",
 						top: "40%",
 						left: "47%",
-						// color: "rgba(255, 255, 255, 0.7)",
-						color: "white",
+						color: "rgba(255, 255, 255, 0.7)",
 						cursor: "pointer",
 					}}>
 					<FaPlay size={75} />

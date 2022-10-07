@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import "../Assets/Styles/host.css";
 import "../Assets/Styles/photography.css";
-import image from "../Assets/Images/photographyMainImage.png";
-import image1 from "../Assets/Images/container1ImgPhotography.png";
-import image2 from "../Assets/Images/PhotographyImg2.png";
+import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
+import image from "../Assets/Images/photography_img2.jpeg";
+import image1 from "../Assets/Images/photography_subImg1.jpeg";
+import image2 from "../Assets/Images/photography_subImg2.jpeg";
 import Navbar from "../Components/Navbar";
 import { MdExpandMore, MdDone } from "react-icons/md";
 import Footer from "../Components/Footer";
@@ -11,8 +13,30 @@ const Photography = () => {
     const clicked=()=>{
         setOpen(!open);
     }
-
+    const accordion = [
+		{
+			title: "Who can be a Gorecce Host?",
+			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+		},
+		{
+			title: "How do I get paid?",
+			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+		},
+		{
+			title: "How does Gorecce makes money?",
+			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+		},
+		{
+			title: "How to get more clients?",
+			info: " lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+		},
+		{
+			title: "What is in it for you?",
+			info: " lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+		},
+	];
   return (
+
     <>
       <div>
         <Navbar extraNavId={"id-2"} />
@@ -56,7 +80,63 @@ const Photography = () => {
             </div>
 		</div>
 
+       
         <div className="faqSection">
+        <h1 className="faqHead">Frequently Asked Questions</h1>
+        <div
+					style={{
+						width: "80%",
+						margin: "30px auto",
+					}}>
+					{accordion.map((item, index) => (
+						<Accordion key={index}>
+							<AccordionSummary
+								sx={{
+									fontFamily: "Inter",
+									fontStyle: "normal",
+									fontWeight: "600",
+									fontSize: "20px",
+									padding: "10px",
+								}}
+								expandIcon={<MdExpandMore size="31px" color="black" />}
+								aria-controls="panel1a-content"
+								id="panel1a-header">
+								{item.title}
+							</AccordionSummary>
+							<AccordionDetails
+								sx={{
+									fontFamily: "Inter",
+									fontStyle: "normal",
+									fontWeight: "400",
+									lineHeight:"24px",
+									fontSize: "16px",
+									paddingTop: "20px",
+                                    textAlign:"left",
+								}}>
+								{item.info}
+							</AccordionDetails>
+						</Accordion>
+					))}
+				</div>
+                </div>
+
+
+
+        <Footer />
+      </div>
+    </>
+  );
+};
+
+export default Photography;
+
+
+
+
+
+
+
+ {/* <div className="faqSection">
             <h1 className="faqHead">Frequently Asked Questions</h1>
             <div className="faqContent">
 
@@ -77,14 +157,4 @@ const Photography = () => {
                 <hr></hr>
         
             </div>
-        </div>
-
-
-
-        <Footer />
-      </div>
-    </>
-  );
-};
-
-export default Photography;
+        </div> */}

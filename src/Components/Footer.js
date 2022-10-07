@@ -83,7 +83,7 @@ const Footer = () => {
 			<div className="footer">
 				<div className="footer-content">
 					<div className="footer-spanning-item">
-						<div className="company-name">COMPANY</div>
+						<div className="company-name">SpotLet</div>
 						<div className="company-details">
 							{" "}
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod
