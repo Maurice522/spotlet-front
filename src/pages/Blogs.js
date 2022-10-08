@@ -20,7 +20,7 @@ const Blogs = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:8000/getBlogs")
+            .get("https://gorecceback.herokuapp.com/getBlogs")
             .then((response) => {
                 const data2 = response.data;
                 setData(data2);
