@@ -2,7 +2,7 @@
 	width: 97vw;
 	margin: 50px auto;
 	padding: 20px 10px;
-	background: #f5f5f5;
+	/* background: #f5f5f5; */
 }
 
 .reason-heading {
@@ -15,7 +15,7 @@
 }
 
 .reason-section {
-	width: 90vw;
+	width: 80vw;
 	margin: 0 auto 50px;
 	height: calc(100vh - 100px);
 	display: flex;

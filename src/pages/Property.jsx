@@ -569,7 +569,7 @@ const Property = ({
 						}>
 						<AccordionSummary
 							sx={{
-								fontFamily: "Inter",
+								fontFamily: "Rubik",
 								fontStyle: "normal",
 								fontWeight: "500",
 								fontSize: "20px",
@@ -583,7 +583,7 @@ const Property = ({
 						</AccordionSummary>
 						<AccordionDetails
 							sx={{
-								fontFamily: "Inter",
+								fontFamily: "Rubik",
 								fontStyle: "normal",
 								fontWeight: "400",
 								fontSize: "16px",

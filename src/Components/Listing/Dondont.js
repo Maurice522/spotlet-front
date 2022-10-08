@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
+import { GoPrimitiveDot } from "react-icons/go";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -104,59 +105,38 @@ const Dondont = ({ showSection }) => {
 						(item, index) =>
 							item !== "" && (
 								<div className="optns" key={index}>
-									<div className="optn" key={index}>
-										{item}
-									</div>
-									<ClearIcon onClick={() => deleteoptn1(index)} />
+									<GoPrimitiveDot color="#ea4235" />
+									<div className="optn">{item}</div>
+									<ClearIcon
+										onClick={() => deleteoptn1(index)}
+										sx={{
+											color: "#ea4235",
+										}}
+									/>
 								</div>
 							)
 					)}
 				</div>
 
-				<div className={do_s.length === 0 ? "coll2" : "coll1"}>
+				<ul className={do_s.length === 0 ? "coll2" : "coll1"}>
 					{dont_s.map(
 						(item, index) =>
 							item !== "" && (
-								<div className="optns" key={index}>
-									<div className="optn" key={index}>
-										{item}
-									</div>
-									<ClearIcon onClick={() => deleteoptn2(index)} />
-								</div>
+								<li className="optns" key={index}>
+									<GoPrimitiveDot color="#ea4235" />
+									<div className="optn">{item}</div>
+									<ClearIcon
+										onClick={() => deleteoptn2(index)}
+										sx={{
+											color: "#ea4235",
+										}}
+									/>
+								</li>
 							)
 					)}
-				</div>
+				</ul>
 			</div>
-			{/* <div className="row1">
-				<div className="coll1">
-					{do_s.map((item, index) => (
-						<>
-							<div className="optns">
-								<div className="optn" key={index}>
-									{item}
-								</div>
-								<ClearIcon onClick={() => deleteoptn1(index)} />
-							</div>
-						</>
-					))}
-				</div>
-				<br />
-				<br />
-				<br />
-				<br />
-				<div className={do_s.length === 0 ? "coll2" : "coll1"}>
-					{dont_s.map((item, index) => (
-						<>
-							<div className="optns">
-								<div className="optn" key={index}>
-									{item}
-								</div>
-								<ClearIcon onClick={() => deleteoptn2(index)} />
-							</div>
-						</>
-					))}
-				</div>
-			</div> */}
+
 			<div className="row1">
 				<div className="coll1">
 					<button className="continue" onClick={handleSubmit}>
