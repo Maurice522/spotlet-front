@@ -16,11 +16,11 @@ const TAS_Cards = ({ data }) => {
 			<div style={{
 				color:"#ff6767",
 				}}>{data.icon}</div>
-			<h3 style={{color:"#ff6767",}}>{data.title}</h3>
+			<h3 style={{color:"#808080",}}>{data.title}</h3>
 			<div
 				style={{
 					textAlign: "center",
-					padding:"2%",
+					padding:"4%",
 				}}>
 				{data.info}
 			</div>

@@ -1,20 +1,31 @@
 .auth {
   display: flex;
   justify-content: space-between;
+  background-color: beige;
+  width: 95%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: 90vh;
+
 }
 /* image part */
 .auth-img {
-  width: 45%;
+  width: 50%;
+  /* border-radius: 3% !important; */
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
 .auth-img > img {
   width: 100%;
-  height: 99vh;
+  height: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+/* .auth-img > img:hover{
+ background-color: #f75656;
+} */
 
 /* detail part */
 .auth-detail {
   margin-top: 20px;
-  width: 35%;
+  width: 38%;
 }
 .auth-detail > div {
   width: 100%;
@@ -74,7 +85,7 @@ form > .horizontal-itm > div > p {
 .auth-btn {
   background-color: #ff6767 !important;
   color: white !important;
-  margin-top: 16px !important;
+  margin-top: 14% !important;
   height: 45px !important;
   text-transform: capitalize !important;
 }
@@ -100,3 +111,5 @@ form > .horizontal-itm > div > p {
 .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input {
   height: 1.7em !important;
 } */
+
+

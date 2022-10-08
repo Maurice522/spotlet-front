@@ -91,7 +91,10 @@ const TrustAndSafety = () => {
 				</div>
 			</div>
 
-			<div className="tas-card-container">
+			<div className="tas-card-container" style={{
+				marginTop:"6%",
+	
+			}}>
 				{elements.map((item, ind) => (
 					<TAS_Cards data={item} key={ind} />
 				))}
@@ -207,7 +210,9 @@ const TrustAndSafety = () => {
 							sx={{
 								marginTop: "30px",
 								borderColor: "#ff6767",
-								color: "black",
+								color: "white",
+								background:"#ff6767",
+							
 								fontSize: "14px",
 								fontFamily: "Rubik",
 								fontWeight: "600",
@@ -222,9 +227,9 @@ const TrustAndSafety = () => {
 							style={{
 								position: "relative",
 								top: "0%",
-								left: "40%",
-								width: "200px",
-								height: "200px",
+								left: "26%",
+								width: "340px",
+								height: "340px",
 								backgroundColor: "#ff6767",
 							}}>
 							<div
@@ -232,8 +237,8 @@ const TrustAndSafety = () => {
 									position: "absolute",
 									top: "-40px",
 									left: "-40px",
-									width: "200px",
-									height: "200px",
+									width: "340px",
+									height: "340px",
 									backgroundColor: "#d9d9d9",
 								}}>
 								<img src={image1} alt="background" className="container-img" />
@@ -255,17 +260,17 @@ const TrustAndSafety = () => {
 								position: "relative",
 								top: "0%",
 								left: "10%",
-								width: "200px",
-								height: "200px",
+								width: "340px",
+								height: "340px",
 								backgroundColor: "#ff6767",
 							}}>
 							<div
 								style={{
 									position: "absolute",
-									top: "-40px",
-									left: "-40px",
-									width: "200px",
-									height: "200px",
+									top: "-35px",
+									left: "-32px",
+									width: "340px",
+									height: "340px",
 									backgroundColor: "#d9d9d9",
 								}}>
 								<img src={image2} alt="background" className="container-img" />
@@ -289,6 +294,8 @@ const TrustAndSafety = () => {
 								marginTop: "30px",
 								borderColor: "#ff6767",
 								color: "black",
+								background:"white",
+							
 								fontSize: "14px",
 								fontFamily: "Rubik",
 								fontWeight: "600",
@@ -322,7 +329,9 @@ const TrustAndSafety = () => {
 							sx={{
 								marginTop: "30px",
 								borderColor: "#ff6767",
-								color: "black",
+								color: "white",
+								background:"#ff6767",
+							
 								fontSize: "14px",
 								fontFamily: "Rubik",
 								fontWeight: "600",
@@ -337,9 +346,9 @@ const TrustAndSafety = () => {
 							style={{
 								position: "relative",
 								top: "0%",
-								left: "40%",
-								width: "200px",
-								height: "200px",
+								left: "26%",
+								width: "340px",
+								height: "340px",
 								backgroundColor: "#ff6767",
 							}}>
 							<div
@@ -347,8 +356,8 @@ const TrustAndSafety = () => {
 									position: "absolute",
 									top: "-40px",
 									left: "-40px",
-									width: "200px",
-									height: "200px",
+									width: "340px",
+									height: "340px",
 									backgroundColor: "#d9d9d9",
 								}}>
 								<img src={image1} alt="background" className="container-img" />
