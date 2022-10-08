@@ -39,6 +39,8 @@ import Resource from "./pages/Resource";
 import Cookies from "./pages/Cookies";
 import Careers from "./pages/Careers";
 import Affiliate from "./pages/Affiliate";
+import Activity from "./pages/Activity";
+import Cancellation from "./pages/Cancellation";
 
 function App() {
 	const dispatch = useDispatch();
@@ -98,6 +100,7 @@ function App() {
 					{/* {user && <Route path="/search" element={<Search />} />} */}
 					<Route path="/search" element={<Search />} />
 					<Route path="/aboutus" element={<AboutUs />} />
+					<Route path="/activities" element={<Activity />} />
 					<Route path="/listing" element={<ListingPlace />} />
 					<Route path="/messages/:bookingId" element={<Messages />} />
 					<Route path="/messages" element={<Messages />} />
@@ -123,10 +126,10 @@ function App() {
 					<Route path="/careers" element={<Careers />} />
 					<Route path="/resourcecenter" element={<Resources />} />
 					<Route path="/resource/:resourceId" element={<Resource />} />
-					<Route path="/blogs" element={<Blogs/>} />
-					<Route path="/blogs/blog" element={<Blog/>} />
-					<Route path="/affiliate" element={<Affiliate/>} />
-
+					<Route path="/blogs" element={<Blogs />} />
+					<Route path="/blogs/blog" element={<Blog />} />
+					<Route path="/affiliate" element={<Affiliate />} />
+					<Route path="/cancellation" element={<Cancellation />} />
 
 					<Route
 						path="location/:locationId/bookingdetail/:bookingId"

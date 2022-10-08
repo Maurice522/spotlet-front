@@ -2,6 +2,8 @@ import React from "react";
 import "../Assets/Styles/footer.css";
 import { MdExpandLess } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { BsInstagram, BsFacebook, BsTwitter, BsLinkedin } from "react-icons/bs";
+// import { AiFillInstagram } from "react-icons/ai";
 
 const Footer = () => {
 	const objArray = [
@@ -47,10 +49,26 @@ const Footer = () => {
 		{
 			title: "Social Media",
 			items: [
-				{ name: "Instagram", to: "/instagram" },
-				{ name: "Facebook", to: "/facebook" },
-				{ name: "Twitter", to: "/twitter" },
-				{ name: "LinkedIn", to: "/linkedin" },
+				{
+					name: "Instagram",
+					to: "/instagram",
+					icon: <BsInstagram size="18px" color="white" />,
+				},
+				{
+					name: "Facebook",
+					to: "/facebook",
+					icon: <BsFacebook size="18px" color="white" />,
+				},
+				{
+					name: "Twitter",
+					to: "/twitter",
+					icon: <BsTwitter size="18px" color="white" />,
+				},
+				{
+					name: "LinkedIn",
+					to: "/linkedin",
+					icon: <BsLinkedin size="18px" color="white" />,
+				},
 			],
 		},
 	];
@@ -60,7 +78,10 @@ const Footer = () => {
 			<div className="footer-subheading">{item.title}</div>
 			{item.items.map((val, i) => (
 				<Link to={val.to} key={i}>
-					<div className="footer-item">{val.name}</div>
+					<div className="footer-item">
+						{val.icon && val.icon}
+						{val.name}
+					</div>
 				</Link>
 			))}
 		</div>

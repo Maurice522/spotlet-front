@@ -134,7 +134,7 @@ const Details = ({ showSection }) => {
 							<input
 								type="radio"
 								className="radio"
-								name="house_parking"
+								name="street_parking"
 								onChange={handleChange}
 								value="no"
 								checked={property_desc.house_parking === "no"}
@@ -211,7 +211,7 @@ const Details = ({ showSection }) => {
 					</h2>
 					<TextareaAutosize
 						aria-label="minimum height"
-						minRows={9}
+						minRows={7}
 						maxLength={500}
 						name="property_info"
 						onChange={handleChange}
