@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import "../../Assets/Styles/Home/sectionMenu.css";
 import corp_img1 from "../../Assets/Images/corp_img1.jpeg";
 import corp_img2 from "../../Assets/Images/corp_img2.jpeg";
-import corp_img3 from "../../Assets/Images/corp_img1.jpeg";
+import corp_img3 from "../../Assets/Images/corp_img3.jpeg";
 import corp_img4 from "../../Assets/Images/corp_img4.jpeg";
 import corp_img5 from "../../Assets/Images/corp_img5.jpeg";
 import corp_img6 from "../../Assets/Images/corp_img6.jpeg";

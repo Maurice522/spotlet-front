@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Assets/Styles/resources.css";
-import image from "../Assets/Images/resources.png";
+import image from "../Assets/Images/resourceCenter_img2.jpeg";
 import image1 from "../Assets/Images/container1ImgPhotography.png";
 import Navbar from "../Components/Navbar";
 import { Pagination } from "@mui/material";
@@ -69,7 +69,7 @@ const Resources = () => {
 					<div
 						className="message myMessage"
 						style={{
-							color: "black",
+							color: "white",
 						}}>
 						RESOURCE CENTRE
 					</div>

@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import "../Assets/Styles/blogs.css";
-import image from "../Assets/Images/blogs.png";
+import image from "../Assets/Images/blogs_img2.jpeg";
+// import image from "../Assets/Images/blogs_img1.jpeg";
 import FormFilter from "../Components/Home/FormFilter";
 import image1 from "../Assets/Images/container1ImgPhotography.png";
 import Navbar from "../Components/Navbar";

@@ -191,17 +191,27 @@ h2 {
 	cursor: pointer;
 }
 .optn {
-	border: solid 1px black;
-	padding: 10px;
-	width: 280px;
-	margin-bottom: 10px;
-	border-radius: 5px;
+	padding: 4px 10px;
+	width: 310px;
 	word-wrap: break-word;
+	display: inline;
 }
+
+/* .optn::before {
+	content: "";
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	margin-right: 10px;
+	background-color: #ea4235;
+} */
+
 .optns {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: space-between;
 }
 
 .select {

@@ -19,14 +19,16 @@
 	padding: 50px;
 	font-family: "Rubik";
 	font-style: normal;
+	width: 80%;
+	margin: auto;
 }
 
-.about-us-content > div {
+/* .about-us-content > div {
 	padding: 60px 0;
-}
+} */
 
 .about-us-content-heading {
-	font-weight: 500;
+	font-weight: 700;
 	font-size: 28px;
 	line-height: 44px;
 	margin-bottom: 5px;
@@ -34,34 +36,54 @@
 
 .about-us-content-info {
 	font-size: 16px;
-	line-height: 20px;
+	line-height: 26px;
+	text-align: justify;
+	margin-top: 2%;
 }
-
+.about-us-content-info h6 {
+	font-size: 16px;
+	line-height: 26px;
+	text-align: justify;
+	margin-top: 2%;
+}
 .content-with-image {
 	display: grid;
+	margin-top: 12%;
 	grid-template-columns: 1.5fr 1fr;
 }
+/* for careers */
+.content-with-image1 {
+	display: grid;
+	margin-top: 2%;
+	grid-template-columns: 1.5fr 1fr;
+}
+
 
 .content-with-image-2 {
 	display: grid;
 	grid-template-columns: 1fr 1.5fr;
+	margin-top: 10%;
 }
 
 .about-us-bottom-text {
-	margin: 50px;
+	width: 80%;
 	display: grid;
 	grid-template-columns: 1fr 1.5fr;
-	gap: 20px;
+	gap: 50px;
+	text-align: justify;
 	align-content: flex-start;
+	margin: auto;
+	margin-top: 6%;
 }
 
 .about-us-content-text {
 	font-size: 17px;
-	line-height: 20px;
+	line-height: 24px;
+	margin-top: 1%;
 }
 
 .about-us-content-text > div {
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 .about-us-btn-container {

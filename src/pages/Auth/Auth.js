@@ -98,6 +98,12 @@ export default function Auth() {
   };
 
   return (
+    <div className="singInMainDiv" style={{
+      padding: "15%",
+      paddingTop:"2%",
+      paddingBottom:"1%",
+      background:"transparent",
+    }}>
     <div className="auth" style={{ flexDirection: isSignIn && "row-reverse" }}>
       <div
         className="auth-detail"
@@ -123,7 +129,7 @@ export default function Auth() {
               </p>
             </div>
           )}
-          <h1>{isSignIn ? "Sign in " : "Sign up "}to Goreco</h1>
+          <h1>{isSignIn ? "Sign in " : "Sign up "}to SpotLet</h1>
           <form onSubmit={handleSubmit}>
             {!isSignIn && (
               <div className="horizontal-itm">
@@ -320,6 +326,7 @@ export default function Auth() {
       <Modal open={openOTP} onClose={handleCloseOTP}>
         <OTPVerify sendOTP={getOTP} />
       </Modal>
+    </div>
     </div>
   );
 }

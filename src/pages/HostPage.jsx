@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import SectionReason from "../Components/Home/SectionReason";
 import image from "../Assets/Images/become-a-host-header-image.jpeg";
+import image1 from "../Assets/Images/becomeAHost_img3.jpeg";
 import { Button } from "@mui/material";
 import { IoLocationOutline } from "react-icons/io5";
 import { FiDollarSign } from "react-icons/fi";
@@ -16,19 +17,23 @@ const HostPage = () => {
 	const accordion = [
 		{
 			title: "Who can be a Gorecce Host?",
-			info: "lorem ipsum text",
+			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
 		},
 		{
 			title: "How do I get paid?",
-			info: "lorem ipsum text",
+			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
 		},
 		{
 			title: "How does Gorecce makes money?",
-			info: "lorem ipsum text",
+			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
 		},
 		{
 			title: "How to get more clients?",
-			info: "lorem ipsum text",
+			info: " lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+		},
+		{
+			title: "What is in it for you?",
+			info: " lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
 		},
 	];
 
@@ -37,7 +42,7 @@ const HostPage = () => {
 			<Navbar extraNavId="id-2" />
 			<div className="text-on-image-container">
 				<img src={image} alt="background" className="bg-image darken" />
-				<div className="message host-message">
+				<div className="message host-message ">
 					Earn money by becoming a host
 				</div>
 				<div className="message-btn">
@@ -51,7 +56,7 @@ const HostPage = () => {
 				</div>
 			</div>
 
-			<SectionReason heading="Becoming A Host" />
+			<SectionReason heading="Becoming A Host"  imageReason={image1}/>
 
 			<div>
 				<div className="become-host-heading">Become a host in 3 easy steps</div>
@@ -93,7 +98,7 @@ const HostPage = () => {
 								sx={{
 									fontFamily: "Inter",
 									fontStyle: "normal",
-									fontWeight: "500",
+									fontWeight: "600",
 									fontSize: "20px",
 									padding: "10px",
 								}}
@@ -107,6 +112,7 @@ const HostPage = () => {
 									fontFamily: "Inter",
 									fontStyle: "normal",
 									fontWeight: "400",
+									lineHeight:"24px",
 									fontSize: "16px",
 									paddingTop: "20px",
 								}}>

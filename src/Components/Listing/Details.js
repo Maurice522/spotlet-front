@@ -211,7 +211,7 @@ const Details = ({ showSection }) => {
 					</h2>
 					<TextareaAutosize
 						aria-label="minimum height"
-						minRows={9}
+						minRows={7}
 						maxLength={500}
 						name="property_info"
 						onChange={handleChange}

@@ -8,7 +8,7 @@ const Form = ({ labels, heading }) => {
 	return (
 		<div>
 			<h1 className="form-heading">{heading}</h1>
-			<form className="general-form">
+			<form className="general-form" style={{width:"55%",}}>
 				{labels.map((item, index) => (
 					<div key={index}>
 						<TextField label={item} variant="standard" fullWidth />
@@ -20,7 +20,7 @@ const Form = ({ labels, heading }) => {
 						sx={{
 							backgroundColor: "#ff6767",
 						}}>
-						Continue
+						Send
 					</Button>
 				</span>
 			</form>

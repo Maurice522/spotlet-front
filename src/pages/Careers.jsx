@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import image from "../Assets/Images/about-us-header-image.jpeg";
+import image from "../Assets/Images/HelpCneter_img2.jpeg";
 import image1 from "../Assets/Images/container1ImgPhotography.png";
 import image2 from "../Assets/Images/PhotographyImg2.png";
 
@@ -22,7 +22,7 @@ const Careers = () => {
 				</div>
 			</div>
 			<div className="about-us-content">
-				<div className="content-with-image">
+				<div className="content-with-image1">
 					<div>
 						<div className="about-us-content-heading">Our Culture</div>
 						<div className="about-us-content-info">
@@ -44,7 +44,9 @@ const Careers = () => {
 								<div
 									style={{
 										marginTop: "5px",
-										paddingRight: "15px",
+										paddingRight: "30px",
+										lineHeight:"26px",
+										textAlign:"justify",
 									}}>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 									hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
@@ -56,7 +58,9 @@ const Careers = () => {
 								<div
 									style={{
 										marginTop: "5px",
-										paddingRight: "15px",
+										paddingRight: "30px",
+										lineHeight:"26px",
+										textAlign:"justify",
 									}}>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 									hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
@@ -70,20 +74,23 @@ const Careers = () => {
 						<div
 							style={{
 								position: "relative",
-								top: "0%",
+								top: "15%",
 								left: "20%",
-								width: "300px",
-								height: "300px",
+								width: "320px",
+								height: "320px",
+								height: "320px",
 								backgroundColor: "#ff6767",
+								boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
 							}}>
 							<div
 								style={{
 									position: "absolute",
-									top: "-40px",
-									left: "-40px",
-									width: "300px",
-									height: "300px",
+									top: "-30px",
+									left: "-28px",
+									width: "320px",
+									height: "320px",
 									backgroundColor: "#d9d9d9",
+									boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
 								}}>
 								<img src={image1} alt="background" className="container-img" />
 							</div>
@@ -96,20 +103,24 @@ const Careers = () => {
 						<div
 							style={{
 								position: "relative",
-								top: "0%",
-								left: "20%",
-								width: "300px",
-								height: "300px",
+								top: "15%",
+								left: "10%",
+								width: "330px",
+								height: "320px",
 								backgroundColor: "#ff6767",
+								boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+
 							}}>
 							<div
 								style={{
 									position: "absolute",
-									top: "-40px",
-									left: "-40px",
-									width: "300px",
-									height: "300px",
+									top: "-30px",
+									left: "-28px",
+									width: "330px",
+									height: "320px",
 									backgroundColor: "#d9d9d9",
+									boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+
 								}}>
 								<img src={image2} alt="background" className="container-img" />
 							</div>
@@ -136,7 +147,9 @@ const Careers = () => {
 								<div
 									style={{
 										marginTop: "5px",
-										paddingRight: "15px",
+										paddingRight: "30px",
+										lineHeight:"26px",
+										textAlign:"justify",
 									}}>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 									hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
@@ -148,7 +161,9 @@ const Careers = () => {
 								<div
 									style={{
 										marginTop: "5px",
-										paddingRight: "15px",
+										paddingRight: "30px",
+										lineHeight:"26px",
+										textAlign:"justify",
 									}}>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 									hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
