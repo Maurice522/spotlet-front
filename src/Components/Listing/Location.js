@@ -9,6 +9,9 @@ import axios from "axios";
 import { BiRightArrow } from "react-icons/bi";
 import { GoArrowRight } from "react-icons/go";
 import { MdTravelExplore } from "react-icons/md";
+import "../../Assets/Styles/listYourSpace.css";
+
+
 const Location = ({showSection}) => {
   const [property_address, setPropertyAddress] = useState({
     address: "",
@@ -87,32 +90,21 @@ const Location = ({showSection}) => {
   }
   return (
     <div className="lbox">
+     
       <div className="row1">
         <div className="coll1">
-          <h2>Address<span style={{color : "red"}}>*</span></h2>
+          <h2 className="locationH2">Country<span style={{color : "red"}}>*</span></h2>
           <input
-            className="lginput"
-            name="address"
+            className="listingInput input"
+            name="country"
             onChange={handleChange}
-            value={property_address.address}
-          />
-        </div>
-      </div>
-
-      <div className="row1">
-        <div className="coll1">
-          <h2>City<span style={{color : "red"}}>*</span></h2>
-          <input
-            className="input"
-            name="city"
-            onChange={handleChange}
-            value={property_address.city}
+            value={property_address.country}
           />
         </div>
         <div className="coll1">
-          <h2>State<span style={{color : "red"}}>*</span></h2>
+          <h2 className="locationH2">State<span style={{color : "red"}}>*</span></h2>
           <input
-            className="input"
+            className="listingInput input"
             name="state"
             onChange={handleChange}
             value={property_address.state}
@@ -122,18 +114,18 @@ const Location = ({showSection}) => {
 
       <div className="row1">
         <div className="coll1">
-          <h2>Country<span style={{color : "red"}}>*</span></h2>
+          <h2 className="locationH2">City<span style={{color : "red"}}>*</span></h2>
           <input
-            className="input"
-            name="country"
+            className="listingInput input"
+            name="city"
             onChange={handleChange}
-            value={property_address.country}
+            value={property_address.city}
           />
         </div>
         <div className="coll1">
-          <h2>Pincode<span style={{color : "red"}}>*</span></h2>
+          <h2 className="locationH2">Pincode<span style={{color : "red"}}>*</span></h2>
           <input
-            className="input"
+            className="listingInput input"
             name="pincode"
             type="number"
             onChange={handleChange}
@@ -144,9 +136,21 @@ const Location = ({showSection}) => {
 
       <div className="row1">
         <div className="coll1">
-          <h2>Landmark </h2>
+          <h2 className="locationH2">Address<span style={{color : "red"}}>*</span></h2>
           <input
-            className="lginput"
+            className="listingInput lginput"
+            name="address"
+            onChange={handleChange}
+            value={property_address.address}
+          />
+        </div>
+      </div>
+
+      <div className="row1">
+        <div className="coll1">
+          <h2 className="locationH2">Landmark </h2>
+          <input
+            className="listingInput lginput"
             name="landmark"
             onChange={handleChange}
             value={property_address.landmark}
@@ -156,9 +160,9 @@ const Location = ({showSection}) => {
 
       <div className="row1">
         <div className="coll1">
-          <h2>Location Details - Map<span style={{color : "red"}}>*</span></h2>
+          <h2 className="locationH2">Location Details - Map<span style={{color : "red"}}>*</span></h2>
           <input
-            className="lginput"
+            className="listingInput lginput"
             name="location_detail"
             onChange={handleChange}
             value={property_address.location_detail}
@@ -175,7 +179,7 @@ const Location = ({showSection}) => {
       <div className="row1">
         <div className="coll1">
           <button
-            className="continue"
+            className="locationContinue continue"
             onClick={handleSubmit}
           >
             Continue

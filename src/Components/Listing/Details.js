@@ -12,6 +12,9 @@ import {
 	selectLocationId,
 } from "../../redux/slices/locationSlice";
 import { toast } from "react-toastify";
+import "../../Assets/Styles/listYourSpace.css";
+
+
 
 const options = [
 	{ value: "Airport", label: "Airport" },
@@ -87,7 +90,7 @@ const Details = ({ showSection }) => {
 						Type of Location<span style={{ color: "red" }}>*</span>
 					</h2>
 					<Select
-						className="locationtype"
+						className="listingInput locationtype"
 						options={options}
 						onChange={(e) =>
 							setPropertyDescr({ ...property_desc, location_type: e.value })
@@ -98,12 +101,12 @@ const Details = ({ showSection }) => {
 						required
 					/>
 				</div>
-				<div className="coll1">
+				<div className="coll1" >
 					<h2>
 						Property Size in sq ft<span style={{ color: "red" }}>*</span>
 					</h2>
 					<input
-						className="input"
+						className="listingInput input"
 						name="property_size"
 						onChange={handleChange}
 						value={property_desc.property_size}
@@ -134,7 +137,7 @@ const Details = ({ showSection }) => {
 							<input
 								type="radio"
 								className="radio"
-								name="street_parking"
+								name="house_parking"
 								onChange={handleChange}
 								value="no"
 								checked={property_desc.house_parking === "no"}
@@ -210,13 +213,14 @@ const Details = ({ showSection }) => {
 						Description of the property<span style={{ color: "red" }}>*</span>
 					</h2>
 					<TextareaAutosize
+					className="listingInput"
 						aria-label="minimum height"
-						minRows={7}
+						minRows={6}
 						maxLength={500}
 						name="property_info"
 						onChange={handleChange}
 						value={property_desc.property_info}
-						style={{ width: 690, fontSize: "20px" }}
+						style={{ width: 690, fontSize: "16px",lineHeight:"24px",padding:"1%" }}
 						required
 					/>
 				</div>

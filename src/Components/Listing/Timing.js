@@ -9,6 +9,8 @@ import {
 } from "../../redux/slices/locationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import "../../Assets/Styles/listYourSpace.css";
+
 
 const Timing = ({ showSection }) => {
   const [monday, setmonday] = useState({
@@ -100,7 +102,7 @@ const Timing = ({ showSection }) => {
           color="warning"
           checked = {monday.open}
         />
-        {monday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
+        {monday.open === false ? <h2></h2> : <h2 style={{color:"#ff6767"}}>Open</h2>}
         {monday.open === true ? (
           <>
             <div className="row2">
@@ -113,7 +115,7 @@ const Timing = ({ showSection }) => {
                 name="monday"
                 checked={monday.time === "all day"}
               />
-              <h2>All Day</h2>
+              <h2 className="timingH2AllDay">All Day</h2>
               <input
                 type="radio"
                 className="radio"
@@ -121,13 +123,13 @@ const Timing = ({ showSection }) => {
                 name="monday"
                 checked={monday.isSetHours === true}
               />
-              <h2>Set Hours</h2>
+              <h2 className="timingH2AllDay">Set Hours</h2>
             </div>
             {monday.isSetHours === true ? (
               <>
                 <div className="row1">
                   <input
-                    className="input"
+                    className="timeInput listingInput input"
                     type="time"
                     onChange={(e) =>
                       setmonday({
@@ -137,9 +139,9 @@ const Timing = ({ showSection }) => {
                     }
                     value={monday.time.start}
                   />
-                  <h2> to </h2>
+                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
                   <input
-                    className="input"
+                    className="timeInput timeInput lisitngInput input"
                     type="time" 
                     onChange={(e) =>
                       setmonday({
@@ -166,7 +168,7 @@ const Timing = ({ showSection }) => {
           color="warning"
           checked = {tuesday.open}
         />
-        {tuesday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
+        {tuesday.open === false ? <h2></h2> : <h2>Open</h2>}
         {tuesday.open === true ? (
           <>
             <div className="row2">
@@ -179,7 +181,7 @@ const Timing = ({ showSection }) => {
                 checked={tuesday.time === "all day"}
                 name="tueday"
               />
-              <h2>All Day</h2>
+              <h2 className="timingH2AllDay">All Day</h2>
               <input
                 type="radio"
                 className="radio"
@@ -187,13 +189,13 @@ const Timing = ({ showSection }) => {
                 name="tueday"
                 checked={tuesday.isSetHours === true}
               />
-              <h2>Set Hours</h2>
+              <h2 className="timingH2AllDay">Set Hours</h2>
             </div>
             {tuesday.isSetHours === true ? (
               <>
                 <div className="row1">
                   <input
-                    className="input"
+                    className="timeInput lisitngInput input"
                     type="time" 
                     onChange={(e) =>
                       settuesday({
@@ -203,9 +205,9 @@ const Timing = ({ showSection }) => {
                     }
                     value={tuesday.time.start}
                   />
-                  <h2> to </h2>
+                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
                   <input
-                    className="input"
+                    className="timeInput lisitngInput input"
                     type="time" 
                     onChange={(e) =>
                       settuesday({
@@ -233,7 +235,7 @@ const Timing = ({ showSection }) => {
           color="warning"
           checked = {wednesday.open}
         />
-        {wednesday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
+        {wednesday.open === false ? <h2></h2> : <h2>Open</h2>}
         {wednesday.open === true ? (
           <>
             <div className="row2">
@@ -250,7 +252,7 @@ const Timing = ({ showSection }) => {
                 checked={wednesday.time === "all day"}
                 name="wed"
               />
-              <h2>All Day</h2>
+              <h2 className="timingH2AllDay">All Day</h2>
               <input
                 type="radio"
                 className="radio"
@@ -258,13 +260,13 @@ const Timing = ({ showSection }) => {
                 name="wed"
                 checked={wednesday.isSetHours === true}
               />
-              <h2>Set Hours</h2>
+              <h2 className="timingH2AllDay">Set Hours</h2>
             </div>
             {wednesday.isSetHours === true ? (
               <>
                 <div className="row1">
                   <input
-                    className="input"
+                    className="timeInput lisitngInput input"
                     type="time" 
                     onChange={(e) =>
                       setwednesday({
@@ -274,9 +276,9 @@ const Timing = ({ showSection }) => {
                     }
                     value={wednesday.time.start}
                   />
-                  <h2> to </h2>
+                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
                   <input
-                    className="input"
+                    className="timeInput lisitngInput input"
                     type="time" 
                     onChange={(e) =>
                       setwednesday({
@@ -304,7 +306,7 @@ const Timing = ({ showSection }) => {
           color="warning"
           checked = {thursday.open}
         />
-        {thursday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
+        {thursday.open === false ? <h2></h2> : <h2>Open</h2>}
         {thursday.open === true ? (
           <>
             <div className="row2">
@@ -321,7 +323,7 @@ const Timing = ({ showSection }) => {
                 checked={thursday.time === "all day"}
                 name="thrus"
               />
-              <h2>All Day</h2>
+              <h2 className="timingH2AllDay">All Day</h2>
               <input
                 type="radio"
                 className="radio"
@@ -329,14 +331,14 @@ const Timing = ({ showSection }) => {
                 name="thrus"
                 checked={thursday.isSetHours === true}
               />
-              <h2>Set Hours</h2>
+              <h2 className="timingH2AllDay">Set Hours</h2>
             </div>
             {thursday.isSetHours === true ? (
               <>
                 <div
                   className="row1"
                 >
-                  <input className="input"
+                  <input classNtimeInput ame="lisitngInput input"
                     type="time"   onChange={(e) =>
                     setthursday({
                       ...thursday,
@@ -344,9 +346,9 @@ const Timing = ({ showSection }) => {
                     })
                   }
                   value={thursday.time.start} />
-                  <h2> to </h2>
+                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
                   <input
-                    className="input"
+                    className="timeInput lisitngInput input"
                     type="time" 
                     onChange={(e) =>
                       setthursday({
@@ -374,7 +376,7 @@ const Timing = ({ showSection }) => {
           color="warning"
           checked = {friday.open}
         />
-        {friday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
+        {friday.open === false ? <h2></h2> : <h2>Open</h2>}
         {friday.open === true ? (
           <>
             <div className="row2">
@@ -387,7 +389,7 @@ const Timing = ({ showSection }) => {
                 checked={friday.time === "all day"}
                 name="fri"
               />
-              <h2>All Day</h2>
+              <h2 className="timingH2AllDay">All Day</h2>
               <input
                 type="radio"
                 className="radio"
@@ -395,13 +397,13 @@ const Timing = ({ showSection }) => {
                 name="fri"
                 checked={friday.isSetHours === true}
               />
-              <h2>Set Hours</h2>
+              <h2 className="timingH2AllDay">Set Hours</h2>
             </div>
             {friday.isSetHours === true ? (
               <>
                 <div className="row1">
                   <input
-                    className="input"
+                    className="timeInput input"
                     type="time" 
                     onChange={(e) =>
                       setfriday({
@@ -411,9 +413,9 @@ const Timing = ({ showSection }) => {
                     }
                     value={friday.time.start}
                   />
-                  <h2> to </h2>
+                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
                   <input
-                    className="input"
+                    className="timeInput input"
                     type="time" 
                     onChange={(e) =>
                       setfriday({
@@ -441,7 +443,7 @@ const Timing = ({ showSection }) => {
           color="warning"
           checked = {saturday.open}
         />
-        {saturday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
+        {saturday.open === false ? <h2></h2> : <h2>Open</h2>}
         {saturday.open === true ? (
           <>
             <div className="row2">
@@ -458,7 +460,7 @@ const Timing = ({ showSection }) => {
                 name="sat"
                 checked={saturday.time === "all day"}
               />
-              <h2>All Day</h2>
+              <h2 className="timingH2AllDay">All Day</h2>
               <input
                 type="radio"
                 className="radio"
@@ -466,13 +468,13 @@ const Timing = ({ showSection }) => {
                 name="sat"
                 checked={saturday.isSetHours === true}
               />
-              <h2>Set Hours</h2>
+              <h2 className="timingH2AllDay">Set Hours</h2>
             </div>
             {saturday.isSetHours === true ? (
               <>
                 <div className="row1">
                   <input
-                    className="input"
+                    className="timeInput input"
                     type="time" 
                     onChange={(e) =>
                       setsaturday({
@@ -482,9 +484,9 @@ const Timing = ({ showSection }) => {
                     }
                     value={saturday.time.start}
                   />
-                  <h2> to </h2>
+                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
                   <input
-                    className="input"
+                    className="timeInput input"
                     type="time" 
                     onChange={(e) =>
                       setsaturday({
@@ -512,7 +514,7 @@ const Timing = ({ showSection }) => {
           color="warning"
           checked = {sunday.open}
         />
-        {sunday.open === false ? <h2>Closed</h2> : <h2>Open</h2>}
+        {sunday.open === false ? <h2></h2> : <h2>Open</h2>}
         {sunday.open === true ? (
           <>
             <div className="row2">
@@ -525,7 +527,7 @@ const Timing = ({ showSection }) => {
                 name="sun"
                 checked={sunday.time === "all day"}
               />
-              <h2>All Day</h2>
+              <h2 className="timingH2AllDay">All Day</h2>
               <input
                 type="radio"
                 className="radio"
@@ -533,13 +535,13 @@ const Timing = ({ showSection }) => {
                 name="sun"
                 checked={sunday.isSetHours === true}
               />
-              <h2>Set Hours</h2>
+              <h2 className="timingH2AllDay">Set Hours</h2>
             </div>
             {sunday.isSetHours === true ? (
               <>
                 <div className="row1">
                   <input
-                    className="input"
+                    className="timeInput input"
                     type="time" 
                     onChange={(e) =>
                       setsunday({
@@ -549,9 +551,9 @@ const Timing = ({ showSection }) => {
                     }
                     value={sunday.time.start}
                   />
-                  <h2> to </h2>
+                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
                   <input
-                    className="input"
+                    className="timeInput input"
                     type="time" 
                     onChange={(e) =>
                       setsunday({

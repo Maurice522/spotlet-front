@@ -7,6 +7,7 @@ import { createTempLocation } from "../../services/api";
 import { toast } from "react-toastify";
 
 
+
 const Amenities = ({showSection}) => {
 	const options = [
 		{ value: "Air Conditioning", label: "Air Conditioning" },
@@ -61,7 +62,7 @@ const Amenities = ({showSection}) => {
 			<div className="row1">
 				<div className="coll1">
 					<h2>Amenties<span style={{color : "red"}}>*</span></h2>
-					<Select className="select" options={options} onChange={HandleChange} />
+					<Select className="listingInput select" options={options} onChange={HandleChange} />
 				</div>
 			</div>
 			<div className="row1">
