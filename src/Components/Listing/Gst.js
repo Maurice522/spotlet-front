@@ -74,7 +74,7 @@ console.log(filesData);
             </div>
             <div className='row1'>
                     <div className='uploadImage'>
-                        <div className='button1' onClick={handleClick}> <h2>Upload GST Docs</h2>
+                        <div className='button1' onClick={handleClick}> <h2 style={{fontSize:"15px"}}>Upload GST Docs</h2>
                             <input type="file" multiple id="inputD" className='inputD' onChange={handleChange} accept=".xlsx,.xls,,.doc, .docx,.ppt, .pptx,.txt,.pdf" />
                         </div>
                     </div>

@@ -38,9 +38,12 @@ export default function TermCondition() {
     }
   }
   return (
-    <div style={{ marginTop: "10%", marginLeft: "22%", width: "50%" }}>
-      <h1>Terms and Conditions</h1>
-      <p>
+    <div style={{height:"800px",
+    
+     position: "relative" }}>
+      <h1 style={{ marginTop: "10%",fontWeight:"600" }}>Terms and Conditions</h1>
+      <p style={{
+     position: "absolute",lineHeight:"24px",width:"90%",textAlign:"justify" }}>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
@@ -60,7 +63,7 @@ export default function TermCondition() {
         sometimes by accident, sometimes on purpose injected humour and the
         like.
       </p>
-      <div className="terms-conditions">
+      <div className="terms-conditions" style={{ marginTop: "31%" }}>
 				<FormControlLabel
 					control={
 						<Checkbox
@@ -115,7 +118,7 @@ export default function TermCondition() {
       <div className="row1">
         <div className="coll1">
           <button
-            className="continue"
+            className="termsContinueButton continue"
             onClick={handleSubmit}
           >
             Create Location

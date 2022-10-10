@@ -1,0 +1,133 @@
+/* ************all listings*************** */
+.listingInput:focus{
+    border: 1px solid #ff6767;
+    box-shadow: 0 0 2px #ff6767;
+    outline-offset: 0px;
+    outline: none;
+    }
+.listingInput::after{
+        border: 1px solid #ff6767;
+        box-shadow: 0 0 2px #ff6767;
+        outline-offset: 0px;
+        outline: none;
+        }
+
+/* ************details and description*************** */
+.radio{
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #ff6767;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+/* ************location*************** */
+.locationH2 {
+    margin-top: 0px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+}
+.row1 {
+    display: grid;
+    grid-template-columns: 0.4fr 0.4fr;
+    gap: 0px;
+    margin-bottom: 1.5%;
+}
+.locationContinue {
+    margin-top: -3%;
+}
+/* ************amenities*************** */
+.select {
+    padding-left: 0px;
+}
+/* ************does and donts*************** */
+.add {
+    margin-right: 6%;
+}
+.row2 {
+    margin-bottom: 7%;
+}
+.optns {
+    align-items: left!important;
+    justify-content: normal;
+}
+.optn {
+    padding: 4px 0px;
+    width: 310px;
+    word-wrap: break-word;
+    display: inline;
+}
+/* ************pricing*************** */
+h1 {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+.css-ars20s-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked {
+    color: #ff6767 !important;
+}
+
+
+/* ****************timings*************** */
+.timingH2AllDay{
+	margin-top: 0px !important;
+}
+.timeInput {
+    border: 1px solid grey;
+    width: 187px;
+    height: 37px;
+    font-size: 18px;
+    padding: 1px 15px;
+    border-radius: 5px;
+    color: black;
+    margin: 3%;
+    margin-left: 0%;
+}
+.timeInput:focus{
+    border: 1px solid #ff6767;
+    box-shadow: 0 0 2px #ff6767;
+    outline-offset: 0px;
+    outline: none; 
+}
+.button1 {
+    padding: 3%;
+    padding-top: 0.8%;
+    background-color: #ff6767;
+    color: white;
+    border: solid 1px #ff6767;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.termsContinueButton{
+    margin-top: 0%;
+}
+.addNewInput {
+    border: 1px solid lightgray;
+    width: 250px;
+    height: 33px;
+    font-size: 18px;
+    padding: 1px 15px;
+    border-radius: 5px;
+    color: black;
+}

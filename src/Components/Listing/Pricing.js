@@ -77,7 +77,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>1 hour Rate</h2>
               <input
-                className="input"
+                className="listingInput input"
                 onChange={(e) =>
                   setfilm({ ...film, hourly_rate: e.target.value })
                 }
@@ -89,7 +89,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>4 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={film.hourly_rate * 4}
               />
@@ -97,7 +97,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>8 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={film.hourly_rate * 8}
               />
@@ -105,7 +105,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>12 hour Rate</h2>
               <input
-                className="sminput"
+                className=" listingInput sminput"
                 disabled
                 value={(film.hourly_rate * 12 * 0.9).toFixed(2)}
               />
@@ -113,7 +113,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>24 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={(film.hourly_rate * 24 * 0.8).toFixed(2)}
               />
@@ -142,7 +142,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>1 hour Rate</h2>
               <input
-                className="input"
+                className="listingInput input"
                 onChange={(e) => settv({ ...tv, hourly_rate: e.target.value })}
                 value={tv.hourly_rate}
               />
@@ -153,14 +153,14 @@ const Pricing = ({showSection}) => {
               <h2>4 hour Rate</h2>
               <input className="sminput" disabled value={tv.hourly_rate * 4} />
             </div>
-            <div className="coll1">
+      listingInput       <div className="coll1">
               <h2>8 hour Rate</h2>
               <input className="sminput" disabled value={tv.hourly_rate * 8} />
             </div>
-            <div className="coll1">
+      listingInput       <div className="coll1">
               <h2>12 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={(tv.hourly_rate * 12 * 0.9).toFixed(2)}
               />
@@ -168,7 +168,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>24 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={(tv.hourly_rate * 24 * 0.8).toFixed(2)}
               />
@@ -197,7 +197,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>1 hour Rate</h2>
               <input
-                className="input"
+                className="listingInput input"
                 onChange={(e) =>
                   setcorp({ ...corp, hourly_rate: e.target.value })
                 }
@@ -209,7 +209,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>4 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={corp.hourly_rate * 4}
               />
@@ -217,7 +217,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>8 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={corp.hourly_rate * 8}
               />
@@ -225,7 +225,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>12 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={(corp.hourly_rate * 12 * 0.9).toFixed(2)}
               />
@@ -233,7 +233,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>24 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={(corp.hourly_rate * 24 * 0.8).toFixed(2)}
               />
@@ -262,7 +262,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>1 hour Rate</h2>
               <input
-                className="input"
+                className="listingInput input"
                 onChange={(e) =>
                   setevent({ ...event, hourly_rate: e.target.value })
                 }
@@ -274,7 +274,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>4 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={event.hourly_rate * 4}
               />
@@ -282,7 +282,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>8 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={event.hourly_rate * 8}
               />
@@ -290,7 +290,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>12 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={(event.hourly_rate * 12 * 0.9).toFixed(2)}
               />
@@ -298,7 +298,7 @@ const Pricing = ({showSection}) => {
             <div className="coll1">
               <h2>24 hour Rate</h2>
               <input
-                className="sminput"
+                className="listingInput sminput"
                 disabled
                 value={(event.hourly_rate * 24 * 0.8).toFixed(2)}
               />
