@@ -65,7 +65,7 @@ const Amenities = ({ showSection }) => {
 						Amenties<span style={{ color: "red" }}>*</span>
 					</h2>
 					<Select
-						className="select"
+						className="listingInput select"
 						options={options}
 						onChange={HandleChange}
 					/>

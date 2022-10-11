@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
 import { toast } from "react-toastify";
+import Dondont from "../Listing/AddNew";
+import AddNew from "../Listing/AddNew";
 
 
 const Features = ({showSection}) => {
@@ -62,7 +64,16 @@ const Features = ({showSection}) => {
                     <h2>Features<span style={{color : "red"}}>*</span></h2>
                     <Select className="select" options={options} onChange={HandleChange} />
                 </div>
+                <div className="coll1" style={{marginLeft:"1%"}}>
+                    <h2>Add New</h2>
+                    <AddNew />
+                </div>
+                {/* <div className="coll1">
+                <AddNew />
+                </div> */}
             </div>
+
+
             <div className="row1">
                 <div className="coll1">
                     {features.map((item, index) => (
@@ -77,7 +88,12 @@ const Features = ({showSection}) => {
                         </>
                     ))}
                 </div>
+
+                
+                
             </div>
+
+            
             <div className='row1'>
                 <div className='coll1'>
                     <button className='continue' onClick={handleSubmit}>Continue</button>

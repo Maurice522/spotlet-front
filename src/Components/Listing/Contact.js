@@ -5,6 +5,7 @@ import { createTempLocation } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserData } from "../../redux/slices/userSlice";
 import { toast } from "react-toastify";
+import "../../Assets/Styles/listYourSpace.css";
 
 const Contact = ({showSection}) => {
  
@@ -56,7 +57,7 @@ const Contact = ({showSection}) => {
     <div className="lbox">
       <div className="row1">
         <div className="coll1">
-          <h2>Name<span style={{color : "red"}}>*</span></h2>
+          <h2>Name on the Booking<span style={{color : "red"}}>*</span></h2>
           <input
             className="lginput"
             name="name"

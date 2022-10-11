@@ -12,7 +12,7 @@ import { createTempLocation } from "../../services/api";
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
 
-const Dondont = ({ showSection }) => {
+const AddNew = ({ showSection }) => {
 	const [do_s, setdo_s] = useState([""]);
 	const [do1, setdo1] = useState("");
 
@@ -75,32 +75,21 @@ const Dondont = ({ showSection }) => {
 	};
 
 	return (
-		<div className="lbox">
+		<div style={{marginTop:"2%"}}>
 			<div className="row1">
 				<div className="coll1">
-					<h2>Do's</h2>
 					<div className="row2">
 						<input
-							className="listingInput input"
+							className="addNewInput listingInput input"
 							id="myInput"
 							onChange={(e) => setdo1(e.target.value)}
 						/>
 						<AddIcon className="add" onClick={HandleChange1} />
 					</div>
 				</div>
+                </div>
 
-				<div className="coll1">
-					<h2>Don'ts</h2>
-					<div className="row2">
-						<input
-							className="listingInput input"
-							id="myInput1"
-							onChange={(e) => setdo2(e.target.value)}
-						/>
-						<AddIcon className="add" onClick={HandleChange2} />
-					</div>
-				</div>
-
+<div className="row1">
 				<div className="coll1">
 					{do_s.map(
 						(item, index) =>
@@ -138,15 +127,8 @@ const Dondont = ({ showSection }) => {
 				</ul>
 			</div>
 
-			<div className="row1">
-				<div className="coll1">
-					<button className="continue" onClick={handleSubmit}>
-						Continue
-					</button>
-				</div>
-			</div>
 		</div>
 	);
 };
 
-export default Dondont;
+export default AddNew;
