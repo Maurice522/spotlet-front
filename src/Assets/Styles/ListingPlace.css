@@ -195,6 +195,7 @@ h2 {
 	width: 310px;
 	word-wrap: break-word;
 	display: inline;
+	margin-left: 3px;
 }
 
 /* .optn::before {
@@ -247,4 +248,3 @@ h1 {
 	gap: 30px;
 	margin-bottom: 20px;
 }
-
