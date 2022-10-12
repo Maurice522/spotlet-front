@@ -35,6 +35,7 @@ const ListingPlace = () => {
 		"Timings",
 		"Contact Details",
 		"GST Details",
+		"Bank Details",
 		"Terms & Conditions",
 	];
 	return (
@@ -246,8 +247,6 @@ const ListingPlace = () => {
 						) : (
 							""
 						)}
-						{/* </> */}
-						{/* <Pricing/> */}
 					</div>
 				</div>
 			</div>

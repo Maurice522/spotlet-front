@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
 
 const Dondont = ({ showSection }) => {
-	const [do_s, setdo_s] = useState([""]);
+	const [do_s, setdo_s] = useState(["Do1", "Do2"]);
 	const [do1, setdo1] = useState("");
 
 	const HandleChange1 = () => {
@@ -22,7 +22,7 @@ const Dondont = ({ showSection }) => {
 			document.getElementById("myInput").value = "";
 		}
 	};
-	const [dont_s, setdont_s] = useState([""]);
+	const [dont_s, setdont_s] = useState(["Dont1", "Dont2"]);
 	const [do2, setdo2] = useState("");
 	const dispatch = useDispatch();
 	const location_id = useSelector(selectLocationId);
