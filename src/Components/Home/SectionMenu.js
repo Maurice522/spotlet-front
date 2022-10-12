@@ -141,7 +141,7 @@ const SectionMenu = () => {
 						});
 					}}>
 					<MdOutlineCorporateFare size="40px" />
-					<div className={`menu-heading-item`}>Corporate Shooting</div>
+					<div className={`menu-heading-item`}>Corporate Events</div>
 					<img
 						src={arrow}
 						alt="Arrow"
@@ -170,7 +170,7 @@ const SectionMenu = () => {
 						});
 					}}>
 					<BsPersonFill size="40px" />
-					<div className={`menu-heading-item`}>Individual Shooting</div>
+					<div className={`menu-heading-item`}>Individual Events</div>
 					<img
 						src={arrow}
 						alt="Arrow"
