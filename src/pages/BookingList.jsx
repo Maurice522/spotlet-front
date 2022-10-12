@@ -246,7 +246,7 @@ const BookingList = () => {
 						style={{
 							width: "57vw",
 							margin: "40px auto",
-							height: "80vh",
+							height: "85vh",
 						}}>
 						<SyncfusionTable UsersData={listingData} UsersGrid={listingGrid} />
 					</div>
