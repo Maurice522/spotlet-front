@@ -165,50 +165,72 @@ const BookingList = () => {
 			});
 	}, [userData]);
 
-	const bookingData = userData?.portfolio.map((booking, index) => {
-		const endTime =
-			(Number(booking?.time.substr(0, 2)) +
-				Number(booking?.duration_in_hours)) %
-			24;
-		const date = new Date(booking?.timestamp?._seconds * 1000);
-		const yyyy = date.getFullYear();
-		let mm = date.getMonth() + 1; // Months start at 0!
-		let dd = date.getDate();
+	// const bookingData = userData?.portfolio.map((booking, index) => {
+	// 	const endTime =
+	// 		(Number(booking?.time.substr(0, 2)) +
+	// 			Number(booking?.duration_in_hours)) %
+	// 		24;
+	// 	const date = new Date(booking?.timestamp?._seconds * 1000);
+	// 	const yyyy = date.getFullYear();
+	// 	let mm = date.getMonth() + 1; // Months start at 0!
+	// 	let dd = date.getDate();
 
-		if (dd && dd < 10) dd = "0" + dd;
-		if (mm && mm < 10) mm = "0" + mm;
+	// 	if (dd && dd < 10) dd = "0" + dd;
+	// 	if (mm && mm < 10) mm = "0" + mm;
 
-		const formattedDate = dd + "/" + mm + "/" + yyyy;
-		return {
-			id: index,
+	// 	const formattedDate = dd + "/" + mm + "/" + yyyy;
+	// 	return {
+	// 		id: index,
+	// 		action: gridActionButton,
+	// 		to: `/bookingdetails/${booking?.bookingId}`,
+	// 		BookingId: booking?.bookingId,
+	// 		Status: booking?.payment_status,
+	// 		Date: formattedDate,
+	// 		TimeDuration:
+	// 			booking?.time +
+	// 			" - " +
+	// 			endTime +
+	// 			booking?.time.substr(2) +
+	// 			", " +
+	// 			booking?.duration_in_hours,
+	// 		TotalAmount: booking?.total_amt,
+	// 	};
+	// });
+
+	const bookingData = [
+		{
+			id: 1,
 			action: gridActionButton,
-			to: `/bookingdetails/${booking?.bookingId}`,
-			BookingId: booking?.bookingId,
-			Status: booking?.payment_status,
-			Date: formattedDate,
-			TimeDuration:
-				booking?.time +
-				" - " +
-				endTime +
-				booking?.time.substr(2) +
-				", " +
-				booking?.duration_in_hours,
-			// Attendies: booking?.attendies,
-			TotalAmount: booking?.total_amt,
-		};
-	});
+			to: `/bookingdetails/1}`,
+			BookingId: "booking?.bookingId",
+			Status: "booking?.payment_status",
+			Date: "formattedDate",
+			TimeDuration: "4 hours",
+			TotalAmount: "booking?.total_amt",
+		},
+	];
 
-	const listingData = userData?.listedLocations.map((loc, index) => {
-		return {
-			action: gridActionButton,
-			LocationId: loc?.location_id,
-			Status: loc.verified,
-			id: index,
-			to: "/listdetails/" + loc.location_id,
-			BookingRequest: `${locrequests?.at(index)} Requests`,
-		};
-	});
+	// const listingData = userData?.listedLocations.map((loc, index) => {
+	// 	return {
+	// 		action: gridActionButton,
+	// 		LocationId: loc?.location_id,
+	// 		Status: loc.verified,
+	// 		id: index,
+	// 		to: "/listdetails/" + loc.location_id,
+	// 		BookingRequest: `${locrequests?.at(index)} Requests`,
+	// 	};
+	// });
 
+	const listingData = [
+		{
+			action: "gridActionButton",
+			LocationId: "loc?.location_id",
+			Status: "loc.verified",
+			id: "index",
+			to: "/listdetails/2",
+			BookingRequest: "`${locrequests?.at(index)} Requests`",
+		},
+	];
 	console.log("Booking Data", bookingData);
 	console.log("Listing Data", listingData);
 

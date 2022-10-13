@@ -91,7 +91,7 @@ const Property = ({
 					gap: "5px",
 				}}>
 				<div>Address:</div>
-				<div style={{lineHeight:"24px"}}>
+				<div style={{ lineHeight: "24px" }}>
 					{locationData?.property_address?.address}
 					<br />
 					{locationData?.property_address?.landmark}
@@ -139,7 +139,7 @@ const Property = ({
 					) : (
 						<Avatar />
 					)}
-					<div style={{lineHeight:"24px"}}>
+					<div style={{ lineHeight: "24px" }}>
 						<div>{locationData?.contact_det?.name}</div>
 						<div>{locationData?.contact_det?.mobile_num}</div>
 					</div>
@@ -148,7 +148,7 @@ const Property = ({
 					style={{
 						height: "fit-content",
 						border: "2px solid #ff5f5f",
-						background:"#f26767",
+						background: "#f26767",
 						borderRadius: "5px",
 						marginRight: "5%",
 						padding: "4px 8px",
@@ -166,12 +166,12 @@ const Property = ({
 			</div>
 			<div
 				style={{
-					marginTop:"2%",
+					marginTop: "2%",
 					width: "90%",
-					textAlign:"justify",
+					textAlign: "justify",
 					padding: "10px",
-					paddingLeft:"5.5%",
-					lineHeight:"24px",
+					paddingLeft: "5.5%",
+					lineHeight: "24px",
 				}}>
 				Description of the host ipsum dolor sit amet, consectetur adipiscing
 				elit. Nam hendrerit nisi sed sollicitu din pellentesque. Nunc posuere
@@ -421,6 +421,7 @@ const Property = ({
 			title: "Amenities",
 			info: locationData?.amenities,
 			type: "list",
+			columns: true,
 		},
 		{
 			expanded: expanded[2],
@@ -595,22 +596,46 @@ const Property = ({
 								paddingBottom: "30px",
 							}}>
 							{item?.type === "list" ? (
-								<div>
-									{item?.info?.map((val, i) => (
-										<div
-											key={i}
-											style={{
-												display: "flex",
-												justifyContent: "flex-start",
-												alignItems: "center",
-												gap: "10px",
-												lineHeight: "32px",
-											}}>
-											<GoPrimitiveDot color="#ff4d4d" />
-											<div>{val}</div>
-										</div>
-									))}
-								</div>
+								item?.columns === true ? (
+									<div
+										style={{
+											display: "grid",
+											gridTemplateColumns: "1fr 1fr 1fr",
+											gap: "20px",
+										}}>
+										{item?.info?.map((val, i) => (
+											<div
+												key={i}
+												style={{
+													display: "flex",
+													justifyContent: "flex-start",
+													alignItems: "center",
+													gap: "10px",
+													lineHeight: "32px",
+												}}>
+												<GoPrimitiveDot color="#ff4d4d" />
+												<div>{val}</div>
+											</div>
+										))}
+									</div>
+								) : (
+									<div>
+										{item?.info?.map((val, i) => (
+											<div
+												key={i}
+												style={{
+													display: "flex",
+													justifyContent: "flex-start",
+													alignItems: "center",
+													gap: "10px",
+													lineHeight: "32px",
+												}}>
+												<GoPrimitiveDot color="#ff4d4d" />
+												<div>{val}</div>
+											</div>
+										))}
+									</div>
+								)
 							) : (
 								item.info
 							)}

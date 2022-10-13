@@ -11,13 +11,14 @@ import Pricing from "../Components/Listing/Pricing";
 import Rules from "../Components/Listing/Rules";
 import Timings from "../Components/Listing/Timing";
 import Contact from "../Components/Listing/Contact";
+import BankDetails from "../Components/Listing/BankDetails";
 import Gst from "../Components/Listing/Gst";
 import TermCondition from "../Components/Listing/Term&Condition";
 import { useSelector } from "react-redux";
 import { selectLocationData } from "../redux/slices/locationSlice";
 
 const ListingPlace = () => {
-	const [section, showSection] = useState("Details & Description");
+	const [section, showSection] = useState("Bank Details");
 	const data = useSelector(selectLocationData);
 	const handlesection = (e) => {
 		showSection(e);
@@ -239,6 +240,11 @@ const ListingPlace = () => {
 						)}
 						{section === "GST Details" ? (
 							<Gst showSection={handlesection} />
+						) : (
+							""
+						)}
+						{section === "Bank Details" ? (
+							<BankDetails showSection={handlesection} />
 						) : (
 							""
 						)}
