@@ -1,8 +1,8 @@
 .rules-wrapper {
 	margin-top: 30px;
 	padding: 0 5px 5px;
-	width: 50vw;
-	max-width: 50vw;
+	width: 55vw;
+	max-width:55vw;
 	max-height: calc(100vh - 200px);
 	overflow-y: scroll;
 }

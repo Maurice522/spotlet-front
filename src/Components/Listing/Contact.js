@@ -15,10 +15,14 @@ const Contact = ({showSection}) => {
   const user = useSelector(selectUserData);
   const [contact_det, setContactDet] = useState({
     name: "",
+    contact_name:"",
+    designation:"",
     mobile_num: "",
     email: "",
     alt_name: "",
     alt_mobile: "",
+    pan_no:"",
+    aadhar_no:"",
     img : user.personalInfo.profile_pic
   });
   useEffect(() => {
@@ -57,7 +61,7 @@ const Contact = ({showSection}) => {
     <div className="lbox">
       <div className="row1">
         <div className="coll1">
-          <h2>Name on the Booking<span style={{color : "red"}}>*</span></h2>
+          <h2>Name required on the Booking (Company/Individual)<span style={{color : "red"}}>*</span></h2>
           <input
             className="lginput"
             name="name"
@@ -68,8 +72,26 @@ const Contact = ({showSection}) => {
       </div>
 
       <div className="row1">
+      <div className="coll1">
+          <h2>Contact Person Name<span style={{color : "red"}}>*</span></h2>
+          <input
+            className="input"
+            name="contact_name"
+            onChange={handleChange}
+            value={contact_det.contact_name}
+          />
+        </div>
         <div className="coll1">
-          <h2>Mobile Number<span style={{color : "red"}}>*</span></h2>
+          <h2>Contact Person Desgination<span style={{color : "red"}}>*</span></h2>
+          <input
+            className="input"
+            name="designation"
+            onChange={handleChange}
+            value={contact_det.designation}
+          />
+        </div>
+        <div className="coll1">
+          <h2 style={{marginTop:"3%"}}>Mobile Number<span style={{color : "red"}}>*</span></h2>
           <input
             className="input"
             name="mobile_num"
@@ -78,7 +100,7 @@ const Contact = ({showSection}) => {
           />
         </div>
         <div className="coll1">
-          <h2>Email Id<span style={{color : "red"}}>*</span></h2>
+          <h2 style={{marginTop:"3%"}}>Email Id<span style={{color : "red"}}>*</span></h2>
           <input
             className="input"
             name="email"
@@ -107,6 +129,27 @@ const Contact = ({showSection}) => {
             value={contact_det.alt_mobile}
           />
         </div>
+
+        <div className="coll1">
+          <h2 style={{marginTop:"3%"}}>Pan Number<span style={{color : "red"}}>*</span></h2>
+          <input
+            className="input"
+            name="pan_no"
+            onChange={handleChange}
+            value={contact_det.pan_no}
+          />
+        </div>
+        <div className="coll1">
+          <h2 style={{marginTop:"3%"}}>Aadhar Card Number<span style={{color : "red"}}>*</span></h2>
+          <input
+            className="input"
+            name="aadhar_no"
+            onChange={handleChange}
+            value={contact_det.aadhar_no}
+          />
+        </div>
+
+
       </div>
       <div className="row1">
         <div className="coll1">

@@ -15,6 +15,7 @@ import "../../Assets/Styles/listYourSpace.css";
 const Location = ({showSection}) => {
   const [property_address, setPropertyAddress] = useState({
     address: "",
+    area:"",
     city: "",
     state: "",
     country: "",
@@ -69,7 +70,7 @@ const Location = ({showSection}) => {
   };
   const handleSubmit = async(e) => {
      //console.log(property_address)
-     if(!property_address.address.length || !property_address.city.length || !property_address.state.length ||
+     if(!property_address.address.length || !property_address.city.length || !property_address.state.length ||!property_address.state.area ||
       !property_address.country.length || !property_address.pincode.length || !property_address.location_detail.length)
          return toast.error("Please fill all required fields!!!")
      const locData = {
@@ -132,7 +133,31 @@ const Location = ({showSection}) => {
             value={property_address.pincode}
           />
         </div>
+
+        <div className="coll1">
+          <h2 className="locationH2" style={{marginTop:"3%"}}>Area<span style={{color : "red",}}>*</span></h2>
+          <input
+            className="listingInput input"
+            name="area"
+            onChange={handleChange}
+            value={property_address.area}
+          />
+        </div>
+        <div className="coll1">
+          <h2 className="locationH2" style={{marginTop:"3%"}}>Landmark<span style={{color : "red",}}>*</span></h2>
+          <input
+            className="listingInput input"
+            name="landmark"
+            onChange={handleChange}
+            value={property_address.landmark}
+          />
+        </div>
+       
+
+    
       </div>
+
+    
 
       <div className="row1">
         <div className="coll1">
@@ -146,7 +171,7 @@ const Location = ({showSection}) => {
         </div>
       </div>
 
-      <div className="row1">
+      {/* <div className="row1">
         <div className="coll1">
           <h2 className="locationH2">Landmark </h2>
           <input
@@ -156,7 +181,7 @@ const Location = ({showSection}) => {
             value={property_address.landmark}
           />
         </div>
-      </div>
+      </div> */}
 
       <div className="row1">
         <div className="coll1">

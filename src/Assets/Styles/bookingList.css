@@ -28,3 +28,12 @@
 .e-hide {
 	display: none;
 }
+
+.css-1tafhac-MuiButtonBase-root-MuiButton-root {
+    padding: 3px 10px !important;
+    border: 1px solid #EA4235;
+    color: black;
+    font-weight: 500 !important;
+    border-radius: 4px;
+    margin-bottom: 10% !important;
+}

@@ -131,7 +131,7 @@ const listingGrid = [
 		headerName: "Status",
 		field: "Status",
 		renderCell: gridBookingStatus,
-		width: "20",
+		width: "200",
 		headerAlign: "Center",
 	},
 	{

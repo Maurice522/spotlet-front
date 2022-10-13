@@ -91,7 +91,7 @@ const Property = ({
 					gap: "5px",
 				}}>
 				<div>Address:</div>
-				<div>
+				<div style={{lineHeight:"24px"}}>
 					{locationData?.property_address?.address}
 					<br />
 					{locationData?.property_address?.landmark}
@@ -139,7 +139,7 @@ const Property = ({
 					) : (
 						<Avatar />
 					)}
-					<div>
+					<div style={{lineHeight:"24px"}}>
 						<div>{locationData?.contact_det?.name}</div>
 						<div>{locationData?.contact_det?.mobile_num}</div>
 					</div>
@@ -148,11 +148,12 @@ const Property = ({
 					style={{
 						height: "fit-content",
 						border: "2px solid #ff5f5f",
+						background:"#f26767",
 						borderRadius: "5px",
-						marginRight: "20px",
+						marginRight: "5%",
 						padding: "4px 8px",
 						cursor: "pointer",
-						color: "black",
+						color: "white",
 						textTransform: "capitalize",
 					}}
 					onClick={() =>
@@ -165,8 +166,12 @@ const Property = ({
 			</div>
 			<div
 				style={{
-					width: "100%",
+					marginTop:"2%",
+					width: "90%",
+					textAlign:"justify",
 					padding: "10px",
+					paddingLeft:"5.5%",
+					lineHeight:"24px",
 				}}>
 				Description of the host ipsum dolor sit amet, consectetur adipiscing
 				elit. Nam hendrerit nisi sed sollicitu din pellentesque. Nunc posuere

@@ -3,6 +3,8 @@ import "../../Assets/Styles/Details/bookingForm.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { MenuItem, Select } from "@mui/material";
+import { margin } from "@mui/system";
+import { endOfDay } from "date-fns";
 
 const BookingForm = ({
 	v1,
@@ -87,6 +89,7 @@ const BookingForm = ({
 	};
 
 	return (
+		<div>
 		<div
 			className="wrapper"
 			onMouseEnter={() => {
@@ -233,19 +236,21 @@ const BookingForm = ({
 				</div>
 				
 			</form>
-			<div
+		</div>
+		<div
 				style={{
-					marginTop: "20px",
-					display: "flex",
-					alignItems: "center",
+					width:"80%",
+					margin:"auto",
+					alignItems: "right",
 					gap: "30px",
+					textAlign:"end",
 				}}>
-				<div className={active === true ? "active-rate" : "rate"}>Rs {tot_price}</div>
-				<div className="submit" type="submit" onClick={handleClick}>
+				<div className={active === true ? "active-rate" : "rate"} style={{display:"inline-block",marginTop:"2%", fontSize:"30px"}}>₹ {tot_price}</div>
+				<div className="submit" type="submit" onClick={handleClick} style={{display:"inline-block",width:"11%",textAlign:"center", marginLeft:"4%"}}>
 					Reserve
 				</div>
 			</div>
-		</div>
+			</div>
 	);
 };
 
