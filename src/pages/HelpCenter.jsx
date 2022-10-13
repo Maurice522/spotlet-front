@@ -3,9 +3,12 @@ import image from "../Assets/Images/helpcenter_img3.jpeg";
 import Navbar from "../Components/Navbar";
 import Form from "../Components/Form";
 import Footer from "../Components/Footer";
+import { contactUs } from '../services/api';
+
 
 const HelpCenter = () => {
 	const labels = ["Name", "Email", "Phone Number", "Message"];
+	
 	return (
 		<div>
 			<Navbar extraNavId={"id-2"} />
@@ -38,7 +41,6 @@ const HelpCenter = () => {
 				</p>
 			</div>
 			<Form labels={labels} heading="" />
-
 			<div className="help-info" style={{width:"75%",}}>
 				<h1 style={{
 					fontWeight:"800",
