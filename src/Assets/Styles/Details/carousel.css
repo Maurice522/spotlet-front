@@ -3,11 +3,12 @@
 }
 
 .property-page-main-image {
-	height: calc(100vh - 100px);
-	width: 80vw;
+	height: 73vh;
+    width: 70vw;
 	border-radius: 10px;
 	margin: 10px auto;
 	overflow-y: hidden;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .image {
@@ -49,10 +50,10 @@
 
 .property-info {
 	height: 120px;
-	width: 70vw;
-	max-width: 750px;
-	position: relative;
-	margin: 5px auto 10px;
+    width: 88vw;
+    max-width: 870px;
+    position: relative;
+    margin: 47px auto 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;

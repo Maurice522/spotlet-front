@@ -11,8 +11,13 @@ const Rules = ({ isOk }) => {
 	return (
 		<div className="rules-wrapper">
 			<div>
-				<div className="rule-title">Cancellation Policy</div>
-				<div className="rule-info">
+				<div className="rule-title" style={{fontWeight:"600"}}>Cancellation Policy</div>
+				<div className="rule-info" style={
+					{
+					lineHeight:"24px",
+					textAlign:"justify",
+					width:"95%",
+				}}>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit
 					nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus
 					pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla
@@ -22,20 +27,25 @@ const Rules = ({ isOk }) => {
 			</div>
 
 			<div>
-				<div className="rule-title">Rules of the host</div>
-				<div className="rule-info">
+				<div className="rule-title" style={{fontWeight:"600"}}>Rules of the host</div>
+				<div className="rule-info" style={
+					{
+					lineHeight:"24px",
+					textAlign:"justify",
+					width:"95%",
+				}}>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit
 					nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus
 					pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla
 					aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur
 					id nec massa. Aliquam erat volutpat.
-					<br />
+					<br /><br/>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit
 					nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus
 					pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla
 					aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur
 					id nec massa. Aliquam erat volutpat.
-					<br />
+					<br /><br/>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit
 					nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus
 					pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla

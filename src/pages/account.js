@@ -24,7 +24,7 @@ import {
 import { toast } from "react-toastify";
 import { Button, MenuItem, Select } from "@mui/material";
 
-const AccountInfo = (extraNavId) => {
+const account = (extraNavId) => {
   const [section, showSection] = useState("Profile");
   const { personalInfo } = useSelector(selectUserData);
   const user_id = useSelector(selectUser_id);
@@ -313,7 +313,7 @@ const AccountInfo = (extraNavId) => {
                 <div className="r1 changePassword">
                   <h1>Change Password</h1>
                 </div>
-                <div className="r2 r2Password">
+                <div className="r2">
                   <label>
                     <h2>Current Password</h2>
                     <input
@@ -330,7 +330,7 @@ const AccountInfo = (extraNavId) => {
                     />
                   </label>
                 </div>
-                <div className="r2 r2Password">
+                <div className="r2">
                   <label>
                     <h2>New Password</h2>
                     <input
@@ -347,7 +347,7 @@ const AccountInfo = (extraNavId) => {
                     />
                   </label>
                 </div>
-                <div className="r2 r2Password">
+                <div className="r2">
                   <label>
                     <h2>Confirm Password</h2>
                     <input
@@ -364,15 +364,15 @@ const AccountInfo = (extraNavId) => {
                     />
                   </label>
                 </div>
-                <div className="r2 r2Password">
+                <div className="r2">
                   <button type="submit" className="accbut">
                     Update Password
                   </button>
                 </div>
               </form>
-              <div className="r1de r2Password">
+              <div className="r1de">
                 Deactivate Your Account:
-                <button className="accbut deactivateBtn" onClick={handleDeactivate}>
+                <button className="accbut" onClick={handleDeactivate}>
                   Deactivate Account
                 </button>
               </div>
@@ -384,7 +384,7 @@ const AccountInfo = (extraNavId) => {
           {/* Payments Section  */}
           {section === "Payments" ? (
             <div className="profr">
-              <h1 className="paymentH1">Payments</h1>
+              <h1>Payments</h1>
               <br />
               <Accordion>
                 <AccordionSummary
@@ -394,23 +394,23 @@ const AccountInfo = (extraNavId) => {
                   id="panel1a-header"
                 >
                   <Typography>
-                    <h1 className="cardsH1">Saved Cards</h1>
+                    <h1>Saved Cards</h1>
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
                     <Card sx={{ minWidth: 275 }}>
                       <CardContent>
-                        <Typography sx={{ fontSize: 18}} >
+                        <Typography sx={{ fontSize: 24 }}>
                           ICICI Credit Card
                         </Typography>
-                        <Typography variant="h6" component="div">
+                        <Typography variant="h5" component="div">
                           **** **** **** 6666
                           <br />
                           Saket Mundra
                         </Typography>
                         <Typography>
-                          <h2 style={{marginTop:"2%",color:"#f26767"}}>CVV</h2>
+                          <h2>CVV</h2>
                           <input
                             style={{ width: "100px", height: "28px" }}
                             type="text"
@@ -418,7 +418,7 @@ const AccountInfo = (extraNavId) => {
                         </Typography>
                       </CardContent>
                       <CardActions>
-                        <button size="small" className="accbut paynowBtn">
+                        <button size="small" className="accbut">
                           Pay Now
                         </button>
                       </CardActions>
@@ -434,13 +434,13 @@ const AccountInfo = (extraNavId) => {
                   id="panel2a-header"
                 >
                   <Typography>
-                    <h1 className="cardsH1">Credit/Debit Cards</h1>
+                    <h1>Credit/Debit Cards</h1>
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails
                   sx={{
                     fontWeight: "400",
-                    fontSize: "12px",
+                    fontSize: "20px",
                   }}
                 >
                   <Typography>
@@ -482,8 +482,8 @@ const AccountInfo = (extraNavId) => {
                             />
                           </label>
                         </div>
-                        <div className="r2 r2Password">
-                          <button className="accbut paynowBtnCredit">Pay Now</button>
+                        <div className="r2">
+                          <button className="accbut">Pay Now</button>
                         </div>
                       </form>
                     </div>
@@ -498,7 +498,7 @@ const AccountInfo = (extraNavId) => {
                   id="panel3a-header"
                 >
                   <Typography>
-                    <h1 className="cardsH1">UPI</h1>
+                    <h1>UPI</h1>
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails
@@ -520,7 +520,7 @@ const AccountInfo = (extraNavId) => {
                             />
                           </label>
                         </div>
-                        <button className="accbut" style={{ marginTop: "2%",width:" 200px"}}>Pay Now</button>
+                        <button className="accbut">Pay Now</button>
                       </form>
                     </div>
                   </Typography>
@@ -536,4 +536,4 @@ const AccountInfo = (extraNavId) => {
   );
 };
 
-export default AccountInfo;
+export default account;

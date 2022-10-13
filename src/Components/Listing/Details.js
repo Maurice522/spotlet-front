@@ -14,8 +14,6 @@ import {
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
 
-
-
 const options = [
 	{ value: "Airport", label: "Airport" },
 	{ value: "Amusement Park", label: "Amusement Park" },
@@ -101,7 +99,7 @@ const Details = ({ showSection }) => {
 						required
 					/>
 				</div>
-				<div className="coll1" >
+				<div className="coll1">
 					<h2>
 						Property Size in sq ft<span style={{ color: "red" }}>*</span>
 					</h2>
@@ -111,6 +109,7 @@ const Details = ({ showSection }) => {
 						onChange={handleChange}
 						value={property_desc.property_size}
 						required
+						type="number"
 					/>
 				</div>
 			</div>
@@ -213,14 +212,19 @@ const Details = ({ showSection }) => {
 						Description of the property<span style={{ color: "red" }}>*</span>
 					</h2>
 					<TextareaAutosize
-					className="listingInput"
+						className="listingInput"
 						aria-label="minimum height"
 						minRows={6}
 						maxLength={500}
 						name="property_info"
 						onChange={handleChange}
 						value={property_desc.property_info}
-						style={{ width: 690, fontSize: "16px",lineHeight:"24px",padding:"1%" }}
+						style={{
+							width: 690,
+							fontSize: "16px",
+							lineHeight: "24px",
+							padding: "1%",
+						}}
 						required
 					/>
 				</div>
