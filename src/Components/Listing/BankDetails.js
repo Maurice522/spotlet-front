@@ -13,14 +13,29 @@ const BankDetails = ({ showSection }) => {
 			<div className="row1">
 				<div className="coll1">
 					<h2>
+						Account Holder's Name<span style={{ color: "red" }}>*</span>
+					</h2>
+					<input
+						className="listingInput input"
+						name="user_name"
+						// onChange={handleChange}
+						// value={property_desc.property_size}
+						value="User"
+						required
+					/>
+				</div>
+			</div>
+			<div className="row1">
+				<div className="coll1">
+					<h2>
 						Bank Name<span style={{ color: "red" }}>*</span>
 					</h2>
 					<input
 						className="listingInput input"
-						name="property_size"
+						name="bank_name"
 						// onChange={handleChange}
 						// value={property_desc.property_size}
-						value="SBI "
+						value="SBI"
 						required
 					/>
 				</div>
@@ -32,10 +47,10 @@ const BankDetails = ({ showSection }) => {
 					</h2>
 					<input
 						className="listingInput input"
-						name="property_size"
+						name="ifsc_code"
 						// onChange={handleChange}
 						// value={property_desc.property_size}
-						value="XYZ123 "
+						value="XYZ123"
 						required
 					/>
 				</div>
@@ -47,10 +62,10 @@ const BankDetails = ({ showSection }) => {
 					</h2>
 					<input
 						className="listingInput input"
-						name="property_size"
+						name="a/c_number"
 						// onChange={handleChange}
 						// value={property_desc.property_size}
-						value="1234567890 "
+						value="1234567890"
 						required
 					/>
 				</div>

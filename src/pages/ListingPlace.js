@@ -207,7 +207,7 @@ const ListingPlace = () => {
 						) : (
 							""
 						)}
-						{section === "Photo" ? <Photo showSection={handlesection} /> : ""}
+						{section === "Photos" ? <Photo showSection={handlesection} /> : ""}
 						{section === "Features" ? (
 							<Features showSection={handlesection} />
 						) : (
