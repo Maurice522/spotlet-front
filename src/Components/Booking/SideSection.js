@@ -48,7 +48,7 @@ const SideSection = ({
 	const navigate = useNavigate();
 	const user_id = useSelector(selectUser_id);
 	const location_id = window.location.pathname.substring(1, 10);
-	const total_amt = v3 === "12" ? ((v6 * v3*0.9) + 40) : (v3 === "24" ? ((v6 * v3*0.8) + 40) : (v6*v3)+40) ;
+	const total_amt = v3 === "12" ? ((v6 * v3*0.9 *1.18) + 40) : (v3 === "24" ? ((v6 * v3*0.8*1.18) + 40) : (v6*v3*1.18)+40) ;
 	useEffect(() => {
 		getLocation(location_id)
 		  .then((res) => setLocationData(res.data))
@@ -136,8 +136,8 @@ const SideSection = ({
 			<div className="booking-side-section-info">{v4} </div>
 
 			<div data-attribute-3>
-				<div data-attribute-4>Rs {v6} * {v3} hrs</div>
-				<div data-attribute-4>Rs{v6 * v3}</div>
+				<div data-attribute-4>Rs {v6} * {v3} hrs (including Gst)</div>
+				<div data-attribute-4>Rs {v6 * v3* 1.18}</div>
 			</div>
 			<div data-attribute-3>
 				<div data-attribute-4>Processing Fee</div>

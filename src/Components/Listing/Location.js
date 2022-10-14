@@ -73,17 +73,17 @@ const Location = ({showSection}) => {
      if(!property_address.address.length || !property_address.city.length || !property_address.state.length ||!property_address.state.area ||
       !property_address.country.length || !property_address.pincode.length || !property_address.location_detail.length)
          return toast.error("Please fill all required fields!!!")
-     const locData = {
-      ...location,
-      property_address
-    }
-    dispatch(addLocation(locData));
-    const form = {
-      location_id,
-      data : locData
-    }
+    //  const locData = {
+    //   ...location,
+    //   property_address
+    // }
+    // dispatch(addLocation(locData));
+    // const form = {
+    //   location_id,
+    //   data : locData
+    // }
     try {
-      await createTempLocation(form);
+      // await createTempLocation(form);
       showSection("Amenities");
     } catch (error) {
       toast.error(error.response.data);
