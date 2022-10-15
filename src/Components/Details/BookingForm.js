@@ -109,7 +109,6 @@ const BookingForm = ({
 							displayEmpty
 							// defaultValue={new Date().toISOString().split("T")[0]}
 						>
-							<MenuItem value="">None</MenuItem>
 							{locationData?.pricing?.corporate?.isPresent && (
 								<MenuItem value="Corporate">Corporate</MenuItem>
 							)}
@@ -174,21 +173,30 @@ const BookingForm = ({
 							/>
 						</div>
 					) : (
-						<Select
-							required
-							id="start-time"
-							name="start-time"
-							defaultValue="06:30"
-							type="time"
-							className={active === true ? "focus" : "normal"}
-							onChange={(e) => {
-								setV2(e.target.value);
-							}}
-							value={v2}
-							displayEmpty>
-							<MenuItem value="6am-6pm">6am to 6pm</MenuItem>
-							<MenuItem value="6am-2am">6am to 2am</MenuItem>
-						</Select>
+						<>
+							<label
+								htmlFor="time-shifts"
+								className={
+									active === true ? "focus-label" : "booking-form-label"
+								}>
+								Event
+							</label>
+							<Select
+								required
+								id="time-shifts"
+								name="time-shifts"
+								defaultValue="06:30"
+								type="time"
+								className={active === true ? "focus" : "normal"}
+								onChange={(e) => {
+									setV2(e.target.value);
+								}}
+								value={v2}
+								displayEmpty>
+								<MenuItem value="6am-6pm">6am to 6pm</MenuItem>
+								<MenuItem value="6am-2am">6am to 2am</MenuItem>
+							</Select>
+						</>
 					)}
 					{(event === "Individual" || event === "Corporate") && (
 						<div>
@@ -212,7 +220,6 @@ const BookingForm = ({
 								}}
 								value={v3}
 								displayEmpty>
-								<MenuItem value="0">None</MenuItem>
 								<MenuItem value="4">4 hours</MenuItem>
 								<MenuItem value="8">8 hours</MenuItem>
 								<MenuItem value="12">12 hours</MenuItem>
