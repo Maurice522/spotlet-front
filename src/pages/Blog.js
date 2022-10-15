@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../Assets/Styles/photography.css";
 import image from "../Assets/Images/photographyMainImage.png";
 import Navbar from "../Components/Navbar";
@@ -6,12 +6,24 @@ import { MdExpandMore, MdDone } from "react-icons/md";
 import { AiTwotoneLike } from "react-icons/ai";
 import { BiLike } from "react-icons/bi";
 import { IoMdShareAlt } from "react-icons/io";
-
 import avatar from "../Assets/Images/testimonial-image-1.jpeg";
-
 import Footer from "../Components/Footer";
 import { Avatar, Button, TextField } from "@mui/material";
+import { useParams, useLocation } from "react-router-dom";
+import {getBlog} from '../services/api'
+
+
 const Blog = () => {
+	const { blogid } = useParams();
+	const [blog, setblog] = useState({})
+	useEffect(() => {
+		getBlog(blogid)
+		.then((response)=>{
+			setblog(response.data)
+		})
+	}, [])
+	
+	
 	const [open, setOpen] = useState(false);
 	const [liked, setLiked] = useState(false);
 	let userComment = "";
@@ -36,80 +48,12 @@ const Blog = () => {
 				</div>
 				<div className="singleBlogContent" style={{width:"75%"}}>
 					<h1 style={{fontWeight:600,fontSize:"24px"}}>
-						Blog Heading loremLorem ipsum dolor sit amet, consectetur adipiscing
-						elit. Nam hendrerit nisi sed sollicitudin pellentesque.
+						{blog.title}
 					</h1><br></br>
-					<p style={{lineHeight:"24px", textAlign:"justify"}}>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc loremLorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit.
-					</p><br/><br/>
-
-					<p style={{lineHeight:"24px", textAlign:"justify"}}>
-						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem
-						ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit
-						nisi sed sollicitudin pellentesque. Nunc pLorem ipsum dolor sit
-						amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc loremLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc loremLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque.
-					</p><br/><br/>
-					<p style={{lineHeight:"24px", textAlign:"justify"}}>
-						Nunc loremLorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc loremLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc loremLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit.
-					</p><br/><br/> 
-					<p style={{lineHeight:"24px", textAlign:"justify"}}>
-						{" "}
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc loremLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum
+					<p>
+						{blog.content}
 					</p>
+					
 				</div>
 
 				<div className="reactions">

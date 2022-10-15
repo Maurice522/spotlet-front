@@ -153,3 +153,7 @@ export const deleteBookingReq = (form) => {
 export const contactUs = (form) => {
   return axios.post(server_domain + "/contactus", form);
 };
+
+export const getBlog = (blogid) => {
+  return axios.get(server_domain + "/getblog/"+blogid);
+}

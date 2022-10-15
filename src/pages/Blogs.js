@@ -46,7 +46,11 @@ const Blogs = () => {
                         <>
                             <div class="Div1">
                                 <div class="resourceContent">
-                                <Link to={{pathname:"/blogs/blog",state:{id:e.id}}}>
+                                    
+                                <Link 
+                                to={{
+                                    pathname:"/blog/"+e.id
+                                }}>
                                     <img src={image1} alt="background" className="resoourceImg " onClick={() => readMore(e)}/>
                                     <h3 style={{color:"black"}} onClick={() => readMore(e)}>{e.title}</h3>
                                     <p style={{color:"black"}}>{e.content}</p>

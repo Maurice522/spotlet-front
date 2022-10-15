@@ -80,7 +80,9 @@ const SectionMenu = () => {
 	let gridItems = shootMap[shoot].map((img, index) => (
 		<div className={classes[index]} key={index}>
 			<Link
-				to="/search"
+				to={{
+					pathname:"/search/"+shoot
+				}}
 				style={{
 					textDecoration: "none",
 				}}>

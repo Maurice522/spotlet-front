@@ -15,8 +15,10 @@ import Host from "../Components/Home/Host";
 import Pagination from "@mui/material/Pagination";
 import axios from "axios";
 import { getAllLocations } from "../services/api";
+import { useParams, useLocation } from "react-router-dom";
 
 const Search = () => {
+  const { type } = useParams();
   const [propertyDetails, setPropertiesDetail] = useState([]);
   useEffect(() => {
     getAllLocations()
@@ -24,188 +26,6 @@ const Search = () => {
       .then((res) => setPropertiesDetail(res.data.locations))
       .catch((err) => console.log(err));
   }, []);
-  const propertyDetail3 = [
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img1,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "1",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img2,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "2",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img3,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "3",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img4,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "4",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img5,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "5",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img6,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "1",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img1,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "2",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img2,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "3",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img3,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "4",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img4,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "5",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img5,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "1",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img6,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "2",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img1,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "3",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img2,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "4",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img3,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "5",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img4,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "1",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img5,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "2",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img6,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "3",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img5,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "4",
-    },
-    {
-      icon: <GiFilmProjector size="24px" color="black" />,
-      reviewCount: 40,
-      image: img6,
-      name: "Name of Property",
-      location: "Location of Property",
-      price: "Price",
-      rating: "5",
-    },
-  ];
 
   const [fav, setFav] = useState([]);
 
@@ -216,26 +36,70 @@ const Search = () => {
         <FormFilter fullScreen={true} />
       </div>
 
-      <div className="search-heading">
-        “ Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod
-        tempor occaecat cupidatat”
-      </div>
-
+      <div className="search-heading">All Locations</div>
       <div className="search-property-list">
-        {console.log(propertyDetails)}
-        {propertyDetails.map((item, index) => (
-          <PropertyInfo
-            item={item}
-            index={index}
-            isFav={false}
-            favPage={true}
-            key={index}
-            handleClick={() => {
-              console.log("clicked");
-            }}
-            border={false}
-          />
-        ))}
+        {propertyDetails.map((item, index) => {
+          if (type == 0) {
+            return (
+              <PropertyInfo
+                item={item}
+                index={index}
+                isFav={false}
+                favPage={true}
+                key={index}
+                handleClick={() => {
+                  console.log("clicked");
+                }}
+                border={false}
+              />
+            );
+          } else if (
+            type == 1 &&
+            item.pricing.film_webseries_ad.isPresent == true
+          ) {
+            return (
+              <PropertyInfo
+                item={item}
+                index={index}
+                isFav={false}
+                favPage={true}
+                key={index}
+                handleClick={() => {
+                  console.log("clicked");
+                }}
+                border={false}
+              />
+            );
+          } else if (type == 2 && item.pricing.corporate.isPresent == true) {
+            return (
+              <PropertyInfo
+                item={item}
+                index={index}
+                isFav={false}
+                favPage={true}
+                key={index}
+                handleClick={() => {
+                  console.log("clicked");
+                }}
+                border={false}
+              />
+            );
+          } else if (type == 3 && item.pricing.individual.isPresent == true) {
+            return (
+              <PropertyInfo
+                item={item}
+                index={index}
+                isFav={false}
+                favPage={true}
+                key={index}
+                handleClick={() => {
+                  console.log("clicked");
+                }}
+                border={false}
+              />
+            );
+          }
+        })}
       </div>
 
       <div

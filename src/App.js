@@ -100,7 +100,7 @@ function App() {
 					/>
 					<Route path="/account" element={user && <AccountInfo />} />
 					{/* {user && <Route path="/search" element={<Search />} />} */}
-					<Route path="/search" element={<Search />} />
+					<Route path="/search/:type" element={<Search />} />
 					<Route path="/aboutus" element={<AboutUs />} />
 					<Route path="/activities" element={<Activity />} />
 					<Route path="/listing" element={<ListingPlace />} />
@@ -108,7 +108,7 @@ function App() {
 					<Route path="/messages" element={<Messages />} />
 					<Route path="/bookinglist" element={<BookingList />} />
 					<Route path="/blogs" element={<Blogs />} />
-					<Route path="/blog/:blogId" element={<Blog />} />
+					<Route path="/blog/:blogid" element={<Blog />} />
 					<Route
 						path="/bookingdetails/:bookingId"
 						element={<BookingDetails />}
