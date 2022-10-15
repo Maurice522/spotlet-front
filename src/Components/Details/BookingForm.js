@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../Assets/Styles/Details/bookingForm.css";
 import { useSelector } from "react-redux";
-import { selectUserData } from "../redux/slices/userSlice";
+import { selectUserData } from "../../redux/slices/userSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { MenuItem, Select } from "@mui/material";
