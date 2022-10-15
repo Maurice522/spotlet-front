@@ -26,42 +26,42 @@ const Location = ({showSection}) => {
   const dispatch = useDispatch();
   const location_id = useSelector(selectLocationId);
   const location = useSelector(selectLocationData);
-  const [cord, setCord] = useState({
-    lat : 0,
-    lng : 0
-  })
-  const GEO_API = "b531f1d229f547d09b4c7c3207885471";
-  useEffect(() => {
-    location.property_address && setPropertyAddress(location.property_address);
-    const address = location.property_address && encodeURI(location.property_address.location_detail)
-    location.property_address && axios.get(`https://api.geoapify.com/v1/geocode/search?text=${address}&format=json&apiKey=${GEO_API}`)
-    .then(
-      (response) => {
-        //const { lat, lng } = response.results[0].geometry.location;
-      //  console.log(response.data.results[0]);
-        setCord({
-          lat : response.data.results[0].lat,
-          lng : response.data.results[0].lon,
-        })
-      })
-     .catch(err => console.log(err))
-  }, [])
+  // const [cord, setCord] = useState({
+  //   lat : 0,
+  //   lng : 0
+  // })
+  // const GEO_API = "b531f1d229f547d09b4c7c3207885471";
+  // useEffect(() => {
+  //   location.property_address && setPropertyAddress(location.property_address);
+  //   const address = location.property_address && encodeURI(location.property_address.location_detail)
+  //   location.property_address && axios.get(`https://api.geoapify.com/v1/geocode/search?text=${address}&format=json&apiKey=${GEO_API}`)
+  //   .then(
+  //     (response) => {
+  //       //const { lat, lng } = response.results[0].geometry.location;
+  //     //  console.log(response.data.results[0]);
+  //       setCord({
+  //         lat : response.data.results[0].lat,
+  //         lng : response.data.results[0].lon,
+  //       })
+  //     })
+  //    .catch(err => console.log(err))
+  // }, [])
 
-  const searchMap = () => {
-   // console.log(first)
-    const address = encodeURI(property_address.location_detail)
-    axios.get(`https://api.geoapify.com/v1/geocode/search?text=${address}&format=json&apiKey=${GEO_API}`)
-    .then(
-      (response) => {
-        //const { lat, lng } = response.results[0].geometry.location;
-      //  console.log(response.data.results[0]);
-        setCord({
-          lat : response.data.results[0].lat,
-          lng : response.data.results[0].lon,
-        })
-      })
-     .catch(err => console.log(err))
-  }
+  // const searchMap = () => {
+  //  // console.log(first)
+  //   const address = encodeURI(property_address.location_detail)
+  //   axios.get(`https://api.geoapify.com/v1/geocode/search?text=${address}&format=json&apiKey=${GEO_API}`)
+  //   .then(
+  //     (response) => {
+  //       //const { lat, lng } = response.results[0].geometry.location;
+  //     //  console.log(response.data.results[0]);
+  //       setCord({
+  //         lat : response.data.results[0].lat,
+  //         lng : response.data.results[0].lon,
+  //       })
+  //     })
+  //    .catch(err => console.log(err))
+  // }
   const handleChange = (e) => {
     setPropertyAddress({
       ...property_address,
@@ -192,13 +192,16 @@ const Location = ({showSection}) => {
             onChange={handleChange}
             value={property_address.location_detail}
           />
-          <MdTravelExplore onClick={searchMap} size={27} style={{marginLeft : "auto", position:"relative", top : "-35px", marginRight : "10px", cursor:"pointer"}}/>
+          <MdTravelExplore onClick={console.log("")} size={27} style={{marginLeft : "auto", position:"relative", top : "-35px", marginRight : "10px", cursor:"pointer"}}/>
         </div>
       </div>
-      {console.log(cord)}
-      {(cord.lat !== 0) && 
+      {/* {console.log(cord)} */}
+      {
+      // (cord.lat !== 0) 
+      true
+      && 
       <div style={{ width: "70%", height: "300px", marginLeft : "70px" }}>
-         <GoogleMap lat={cord.lat} lng={cord.lng} zoom={18} />
+         {/* <GoogleMap lat={cord.lat} lng={cord.lng} zoom={18} /> */}
     </div>
   }
       <div className="row1">
