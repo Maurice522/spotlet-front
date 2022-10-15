@@ -131,7 +131,6 @@ export const bookingRequest = (form) => {
 
 //get booking detail
 export const getBookingDetail = (bookingId, form) => {
-  
   return axios.put(server_domain + `/getbookingdetail/${bookingId}`, form)
 }
 
@@ -149,3 +148,8 @@ export const updateBookingStatus = (form) => {
 export const deleteBookingReq = (form) => {
   return axios.delete(server_domain + "/deletebookingrequest", {data : form});
 }
+
+//help center
+export const contactUs = (form) => {
+  return axios.post(server_domain + "/contactus", form);
+};
