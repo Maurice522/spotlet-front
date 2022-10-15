@@ -30,7 +30,7 @@ import { useDispatch } from "react-redux";
 import { addUser, saveOTP } from "../../redux/slices/userSlice";
 import OTPVerify from "./OTPVerify";
 import ForgotPassword from "./ForgotPassword";
-import image1 from "../../Assets/Images/2.jpg";
+import image1 from "../../Assets/Images/signupinBg.jpeg";
 export default function Auth() {
 	const state = useLocation();
 	const [showPassword, setShowPassword] = useState(false);

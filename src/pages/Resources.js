@@ -78,14 +78,15 @@ const Resources = () => {
 					{elements.map((item, ind) => (
 						<div class="Div1" key={ind}>
 							<div class="resourceContent">
+							<Link to={`/resource/${item.id}`}>
+
 								<img
 									src={item.image}
 									alt="background"
 									className="resoourceImg "
 								/>
-								<h3>{item.title}</h3>
-								<p>{item.info}</p>
-								<Link to={`/resource/${item.id}`}>
+								<h3 style={{color:"black"}}>{item.title}</h3>
+								<p style={{color:"black"}}>{item.info}</p>
 									<p className="readmore">{item.linkText}</p>
 								</Link>
 							</div>
