@@ -55,7 +55,7 @@ const Amenities = ({ showSection }) => {
 		};
 		try {
 			await createTempLocation(form);
-			showSection("Photo");
+			showSection("Photos");
 		} catch (error) {
 			toast.error(error.response.data);
 		}

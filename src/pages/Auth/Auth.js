@@ -89,8 +89,11 @@ export default function Auth() {
 		} else {
 			try {
 				var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-				if (re.test(userData.password.length) === false)
+				if (re.test(userData.password) === false) {
+					console.log("Failed");
 					return toast.error("Passwod must contain atleast 8 characters");
+				}
+				console.log("Success");
 				getOTP(userData);
 			} catch (error) {
 				toast.error(error.response.data);
