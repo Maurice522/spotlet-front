@@ -30,6 +30,7 @@ import { useDispatch } from "react-redux";
 import { addUser, saveOTP } from "../../redux/slices/userSlice";
 import OTPVerify from "./OTPVerify";
 import ForgotPassword from "./ForgotPassword";
+import image1 from "../../Assets/Images/2.jpg";
 export default function Auth() {
 	const state = useLocation();
 	const [showPassword, setShowPassword] = useState(false);
@@ -89,8 +90,11 @@ export default function Auth() {
 		} else {
 			try {
 				var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-				if (re.test(userData.password.length) === false)
+				if (re.test(userData.password) === false) {
+					console.log("Failed");
 					return toast.error("Passwod must contain atleast 8 characters");
+				}
+				console.log("Success");
 				getOTP(userData);
 			} catch (error) {
 				toast.error(error.response.data);
@@ -105,11 +109,11 @@ export default function Auth() {
 				padding: "15%",
 				paddingTop: "2%",
 				paddingBottom: "1%",
-				background: "transparent",
+				backgroundImage:{image1},		
 			}}>
 			<div
 				className="auth"
-				style={{ flexDirection: isSignIn && "row-reverse" }}>
+				style={{ flexDirection: isSignIn && "row-reverse" ,backgroundColor:"white"}}>
 				<div
 					className="auth-detail"
 					style={isSignIn ? { paddingRight: "8%" } : { paddingLeft: "6%" }}>
@@ -307,7 +311,7 @@ export default function Auth() {
 								{isSignIn ? "Sign In" : "SignUp"}
 							</Button>
 						</form>
-						{isSignIn && (
+						{/* {isSignIn && (
 							<div>
 								<p id="swch">Or sign up with</p>
 								<div className="diff-auth-type">
@@ -322,7 +326,7 @@ export default function Auth() {
 									</IconButton>
 								</div>
 							</div>
-						)}
+						)} */}
 					</div>
 				</div>
 				<div className="auth-img">
@@ -338,7 +342,7 @@ export default function Auth() {
 					<OTPVerify sendOTP={getOTP} />
 				</Modal>
 			</div>
-			{!isSignIn && (
+			{/* {!isSignIn && (
 				<div
 					style={{
 						textAlign: "center",
@@ -359,7 +363,7 @@ export default function Auth() {
 						</IconButton>
 					</div>
 				</div>
-			)}
+			)} */}
 		</div>
 	);
 }

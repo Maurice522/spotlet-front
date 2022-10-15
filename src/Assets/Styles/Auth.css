@@ -1,7 +1,7 @@
 .auth {
 	display: flex;
 	justify-content: space-between;
-	background-color: beige;
+	/* background-color: beige; */
 	width: 95%;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	height: 90vh;
@@ -111,6 +111,17 @@ form > .horizontal-itm > div > p {
 	margin-top: 10px !important;
 	height: 45px !important;
 	text-transform: capitalize !important;
+}
+.singInMainDiv{
+	background-image: url("../../Assets/Images/5.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-size: contain;
+	background-size: cover; 
+	height: max-content;
+	height: 93.5vh;
+	/* width: 100%; */
 }
 /* .css-1ua80n0-MuiInputBase-input-MuiOutlinedInput-input,
 .css-12yjm75-MuiInputBase-input-MuiOutlinedInput-input,
