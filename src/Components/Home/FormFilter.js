@@ -50,10 +50,10 @@ const FormFilter = ({ fullScreen }) => {
 						<option value="" disabled hidden>
 							What?
 						</option>
-						<option value="1">Select</option>
-						<option value="2">Select</option>
-						<option value="3">Select</option>
-						<option value="4">Select</option>
+						<option value="1">Film Shooting</option>
+						<option value="2">Corporate Meetings</option>
+						<option value="3">TV Series Shoot</option>
+						<option value="4">Individual Event</option>
 					</select>
 				</div>
 				<div>
@@ -71,10 +71,10 @@ const FormFilter = ({ fullScreen }) => {
 						<option value="" disabled hidden>
 							Which?
 						</option>
-						<option value="1">Select</option>
-						<option value="2">Select</option>
-						<option value="3">Select</option>
-						<option value="4">Select</option>
+						<option value="1">Photoshoot</option>
+						<option value="2">Music Video</option>
+						<option value="3">Personal</option>
+						<option value="4">Meeting</option>
 					</select>
 				</div>
 				<div>
@@ -92,10 +92,7 @@ const FormFilter = ({ fullScreen }) => {
 						<option value="" disabled hidden>
 							Where?
 						</option>
-						<option value="1">Select</option>
-						<option value="2">Select</option>
-						<option value="3">Select</option>
-						<option value="4">Select</option>
+						<option value="1">Telangana</option>
 					</select>
 				</div>
 				<div>
@@ -113,10 +110,7 @@ const FormFilter = ({ fullScreen }) => {
 						<option value="" disabled hidden>
 							When?
 						</option>
-						<option value="1">Select</option>
-						<option value="2">Select</option>
-						<option value="3">Select</option>
-						<option value="4">Select</option>
+						<option value="1">Hyderabad</option>
 					</select>
 				</div>
 
