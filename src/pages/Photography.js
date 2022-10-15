@@ -6,6 +6,8 @@ import image from "../Assets/Images/photography_img2.jpeg";
 import image1 from "../Assets/Images/photography_subImg1.jpeg";
 import image2 from "../Assets/Images/photography_subImg2.jpeg";
 import Navbar from "../Components/Navbar";
+import Form from "../Components/Form";
+
 import { MdExpandMore, MdDone } from "react-icons/md";
 import Footer from "../Components/Footer";
 const Photography = () => {
@@ -35,6 +37,8 @@ const Photography = () => {
 			info: " lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
 		},
 	];
+
+	const labels = ["Name", "Email", "Phone Number", "Address"];
   return (
 
     <>
@@ -79,6 +83,10 @@ const Photography = () => {
                 </div>
             </div>
 		</div>
+        <br/><br/><br/>
+        
+			<Form labels={labels} heading="Book your Session With Us" />
+
 
        
         <div className="faqSection">
