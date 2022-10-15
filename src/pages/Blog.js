@@ -34,12 +34,12 @@ const Blog = () => {
 				<div className="text-on-image-container">
 					<img src={image} alt="background" className="bg-image darken" />
 				</div>
-				<div className="singleBlogContent">
-					<h1>
+				<div className="singleBlogContent" style={{width:"75%"}}>
+					<h1 style={{fontWeight:600,fontSize:"24px"}}>
 						Blog Heading loremLorem ipsum dolor sit amet, consectetur adipiscing
 						elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-					</h1>
-					<p>
+					</h1><br></br>
+					<p style={{lineHeight:"24px", textAlign:"justify"}}>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 						hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem ipsum
 						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
@@ -52,9 +52,9 @@ const Blog = () => {
 						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
 						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
 						consectetur adipiscing elit.
-					</p>
+					</p><br/><br/>
 
-					<p>
+					<p style={{lineHeight:"24px", textAlign:"justify"}}>
 						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem
 						ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit
 						nisi sed sollicitudin pellentesque. Nunc pLorem ipsum dolor sit
@@ -72,8 +72,8 @@ const Blog = () => {
 						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
 						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 						hendrerit nisi sed sollicitudin pellentesque.
-					</p>
-					<p>
+					</p><br/><br/>
+					<p style={{lineHeight:"24px", textAlign:"justify"}}>
 						Nunc loremLorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
 						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
@@ -93,42 +93,8 @@ const Blog = () => {
 						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
 						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
 						consectetur adipiscing elit.
-					</p>
-					<p>
-						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc loremLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc loremLorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc loremLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc loremLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit.
-					</p>
-					<p>
+					</p><br/><br/> 
+					<p style={{lineHeight:"24px", textAlign:"justify"}}>
 						{" "}
 						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 						hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum

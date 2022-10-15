@@ -41,6 +41,8 @@ import Careers from "./pages/Careers";
 import Affiliate from "./pages/Affiliate";
 import Activity from "./pages/Activity";
 import Cancellation from "./pages/Cancellation";
+import KnowledgeCenter from "./pages/KnowledgeCenter";
+
 
 function App() {
 	const dispatch = useDispatch();
@@ -130,6 +132,8 @@ function App() {
 					<Route path="/blogs/blog" element={<Blog />} />
 					<Route path="/affiliate" element={<Affiliate />} />
 					<Route path="/cancellation" element={<Cancellation />} />
+					<Route path="/knowledgeCenter" element={<KnowledgeCenter />} />
+
 
 					<Route
 						path="location/:locationId/bookingdetail/:bookingId"

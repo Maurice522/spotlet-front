@@ -11,7 +11,7 @@ const Footer = () => {
 			title: "Company",
 			items: [
 				{ name: "About Us", to: "/aboutus" },
-				{ name: "Investors", to: "/investors" },
+				// { name: "Investors", to: "/investors" },
 				{ name: "Careers", to: "/careers" },
 				{ name: "Blogs", to: "/blogs" },
 			],
@@ -31,7 +31,7 @@ const Footer = () => {
 			items: [
 				{ name: "Activities", to: "/activities" },
 				{ name: "Location", to: "/location" },
-				{ name: "Knowledge Base", to: "/knowledgebase" },
+				{ name: "Knowledge Base", to: "/knowledgecenter" },
 				{ name: "Affiliate", to: "/affiliate" },
 			],
 		},

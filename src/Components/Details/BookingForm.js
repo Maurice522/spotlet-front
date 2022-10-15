@@ -173,13 +173,13 @@ const BookingForm = ({
 							/>
 						</div>
 					) : (
-						<>
+						<div>
 							<label
 								htmlFor="time-shifts"
 								className={
 									active === true ? "focus-label" : "booking-form-label"
 								}>
-								Event
+								Time Slot
 							</label>
 							<Select
 								required
@@ -193,10 +193,10 @@ const BookingForm = ({
 								}}
 								value={v2}
 								displayEmpty>
-								<MenuItem value="6am-6pm">6am to 6pm</MenuItem>
-								<MenuItem value="6am-2am">6am to 2am</MenuItem>
+								<MenuItem value="6am-6pm">Half Day (6am to 6pm)</MenuItem>
+								<MenuItem value="6am-2am">Full Day  (6am to 2am)</MenuItem>
 							</Select>
-						</>
+						</div>
 					)}
 					{(event === "Individual" || event === "Corporate") && (
 						<div>
@@ -220,7 +220,6 @@ const BookingForm = ({
 								}}
 								value={v3}
 								displayEmpty>
-								<MenuItem value="4">4 hours</MenuItem>
 								<MenuItem value="8">8 hours</MenuItem>
 								<MenuItem value="12">12 hours</MenuItem>
 								<MenuItem value="24">24 hours</MenuItem>

@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import "../Assets/Styles/blogs.css";
-import image from "../Assets/Images/blogs_img2.jpeg";
+import image from "../Assets/Images/blogs_img1.jpeg";
 // import image from "../Assets/Images/blogs_img1.jpeg";
 import FormFilter from "../Components/Home/FormFilter";
 import image1 from "../Assets/Images/container1ImgPhotography.png";
@@ -46,10 +46,10 @@ const Blogs = () => {
                         <>
                             <div class="Div1">
                                 <div class="resourceContent">
-                                    <img src={image1} alt="background" className="resoourceImg " />
-                                    <h3>{e.title}</h3>
-                                    <p>{e.content}</p>
-                                    <Link to={{pathname:"/blogs/blog",state:{id:e.id}}}>
+                                <Link to={{pathname:"/blogs/blog",state:{id:e.id}}}>
+                                    <img src={image1} alt="background" className="resoourceImg " onClick={() => readMore(e)}/>
+                                    <h3 style={{color:"black"}} onClick={() => readMore(e)}>{e.title}</h3>
+                                    <p style={{color:"black"}}>{e.content}</p>
                                         <p className="readmore" onClick={() => readMore(e)}>Read More ...</p>
                                     </Link>
                                 </div>

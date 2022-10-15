@@ -46,15 +46,15 @@
 
 .nav-search-input {
 	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 32px;
-	width: 90%;
-	height: 90%;
-	background: transparent;
-	border: none !important;
-	border-bottom: 1px solid gray !important;
-	border-radius: 5px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 32px;
+    width: 61%;
+    height: 90%;
+    background: transparent;
+    border: none !important;
+    border-bottom: 1px solid lightgrey !important;
+    border-radius: 5px;
 }
 
 .nav-search-input:focus {
