@@ -50,10 +50,10 @@ const SideSection = ({
 	const location_id = window.location.pathname.substring(1, 10);
 	const total_amt =
 		v3 === "12"
-			? v6 * v3 * 0.9 + 80
+			? v6 * v3 * 0.9 * 1.18 + 80
 			: v3 === "24"
-			? v6 * v3 * 0.8 + 80
-			: v6 * v3 + 80;
+			? v6 * v3 * 0.8 * 1.18 + 80
+			: v6 * v3 * 1.18 + 80;
 	useEffect(() => {
 		getLocation(location_id)
 			.then((res) => setLocationData(res.data))
@@ -146,18 +146,18 @@ const SideSection = ({
 
 			<div data-attribute-3>
 				<div data-attribute-4>
-					Rs {v6} * {v3} hrs
+					Rs {v6} * {v3} hrs (including Gst)
 				</div>
-				<div data-attribute-4>Rs{v6 * v3}</div>
+				<div data-attribute-4>Rs {v6 * v3 * 1.18}</div>
 			</div>
 
 			<div data-attribute-3>
-				<div data-attribute-4>Cleaning Fee</div>
+				<div data-attribute-4>Cleaning Fee (including Gst)</div>
 				<div data-attribute-4>Rs40</div>
 			</div>
 
 			<div data-attribute-3>
-				<div data-attribute-4>Processing Fee</div>
+				<div data-attribute-4>Processing Fee (including Gst)</div>
 				<div data-attribute-4>Rs40</div>
 			</div>
 

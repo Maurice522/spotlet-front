@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 import { selectLocationData } from "../redux/slices/locationSlice";
 
 const ListingPlace = () => {
-	const [section, showSection] = useState("Bank Details");
+	const [section, showSection] = useState("Details & Description");
 	const data = useSelector(selectLocationData);
 	const handlesection = (e) => {
 		showSection(e);
