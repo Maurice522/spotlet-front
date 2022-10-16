@@ -113,7 +113,7 @@ const Navbar = ({ extraNavId }) => {
 							gap: "20px",
 						}}>
 						<div onClick={() => toast.error("Please sign in first")}>
-							List your places
+							List your Space
 						</div>
 						<Link to={"/signin"} state={{ isSignIn: true }}>
 							Sign In

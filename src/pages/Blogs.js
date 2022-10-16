@@ -39,7 +39,6 @@ const Blogs = () => {
                     </div>
                 </div>
 
-                <FormFilter />
 
                 <div class="container">
                     {data.map((e) => (

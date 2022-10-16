@@ -17,6 +17,8 @@ import { AiOutlineLock } from "react-icons/ai";
 import { AiOutlineStar } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { FiKey } from "react-icons/fi";
+import { Link } from "react-router-dom";
+
 
 const TrustAndSafety = () => {
 	const elements = [
@@ -205,8 +207,10 @@ const TrustAndSafety = () => {
 							adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
 							Nunc posuere purus rhoncus pulvinar aliquam.{" "}
 						</div>
+						<Link to="/" >
 						<Button
 							variant="outlined"
+							className="buttonHover1"
 							sx={{
 								marginTop: "30px",
 								borderColor: "#ff6767",
@@ -220,6 +224,8 @@ const TrustAndSafety = () => {
 							}}>
 							Find a space
 						</Button>
+						</Link>
+						
 					</div>
 
 					<div>
@@ -288,7 +294,10 @@ const TrustAndSafety = () => {
 							adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
 							Nunc posuere purus rhoncus pulvinar aliquam.{" "}
 						</div>
+						<Link to="/host" >
 						<Button
+							className="buttonHover"
+
 							variant="outlined"
 							sx={{
 								marginTop: "30px",
@@ -301,8 +310,9 @@ const TrustAndSafety = () => {
 								fontWeight: "600",
 								padding: "6px 12px",
 							}}>
-							Find a space
+							List a space
 						</Button>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -324,7 +334,10 @@ const TrustAndSafety = () => {
 							adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
 							Nunc posuere purus rhoncus pulvinar aliquam.{" "}
 						</div>
+						<Link to="/helpcenter" >
 						<Button
+							className="buttonHover1"
+
 							variant="outlined"
 							sx={{
 								marginTop: "30px",
@@ -337,8 +350,10 @@ const TrustAndSafety = () => {
 								fontWeight: "600",
 								padding: "6px 12px",
 							}}>
-							Find a space
+							Get in Touch
 						</Button>
+						</Link>
+						
 					</div>
 
 					<div>

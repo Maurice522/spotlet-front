@@ -5,6 +5,8 @@ import image from "../Assets/Images/aboutUs_img2.jpeg";
 import image2 from "../Assets/Images/aboutUs_bottomImg.jpeg";
 import image3 from "../Assets/Images/aboutUs_SubImg3.jpeg";
 import image4 from "../Assets/Images/aboutUs_SubImg4.jpeg";
+import { Link } from "react-router-dom";
+
 
 import { Button } from "@mui/material";
 
@@ -55,13 +57,15 @@ const AboutUs = () => {
 							serial shooting locations, SpotLet has you covered. Find the keys
 							to the most unique and exciting spaces on our portal.
 						</div>
+						<Link to="/" >
 						<Button
 							variant="outlined"
+							className="buttonHover"
 							sx={{
 								marginTop: "30px",
 								borderColor: "#ff6767",
-								background:"#ff6767",
-								color: "white",
+								background:"#white",
+								color: "black",
 								fontSize: "14px",
 								fontFamily: "Rubik",
 								fontWeight: "600",
@@ -69,6 +73,8 @@ const AboutUs = () => {
 							}}>
 							Let’s Get Started
 						</Button>
+				</Link>
+						
 					</div>
 
 					<div>
@@ -135,20 +141,24 @@ const AboutUs = () => {
 							professionals, families and film crew to experience your unique
 							offerings.
 						</div>
+						<Link to="/host" >
 						<Button
 							variant="outlined"
+							className="buttonHover"
 							sx={{
 								marginTop: "30px",
 								borderColor: "#ff6767",
-								background:"#ff6767",
-								color: "white",
+								background:"white",
+								color: "black",
 								fontSize: "14px",
 								fontFamily: "Rubik",
 								fontWeight: "600",
 								padding: "6px 12px",
 							}}>
-							Let’s Get Hosting
+							Let’s Get Started
 						</Button>
+				</Link>
+					
 					</div>
 				</div>
 			</div>
@@ -188,24 +198,35 @@ const AboutUs = () => {
 						to welcome you on board.
 					</div>
 					<div className="about-us-btn-container">
-						<Button
+					<Link to="/host" >
+					<Button
 							variant="contained"
+							className="buttonHover1"
 							sx={{
 								backgroundColor: "#EA4235",
 								color: "white",
 								padding: "12px 24px",
+								width:"100%",
+
 							}}>
-							Current Openings
+							List a Place
 						</Button>
+					</Link>
+						
+						<Link to="/helpcenter" >
 						<Button
 							variant="outlined"
+							className="buttonHover"
 							sx={{
 								borderColor: "#EA4235",
 								color: "black",
 								padding: "12px 24px",
+								width:"100%",
 							}}>
-							Send your Resume
+							Connect with Us
 						</Button>
+						</Link>
+						
 					</div>
 				</div>
 			</div>

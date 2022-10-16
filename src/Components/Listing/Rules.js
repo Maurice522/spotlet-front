@@ -52,28 +52,29 @@ const Rules = ({ showSection }) => {
 	};
 	return (
 		<div className="lbox">
-			<div className="row1">
-				<div className="coll1">
+			<div className="row1" style={{gridTemplateColumns: "29.4fr 3.4fr"}}>
+				<div className="coll1" style={{width:"100%"}}>
 					<h2>
 						Rules of the Host<span style={{ color: "red" }}>*</span>
 					</h2>
-					<div className="row2">
+					<div className="row2" style={{width:"100%"}}>
 						<input
-							className="input"
+							className="input listingInput"
 							id="myInput"
+							style={{width:"100%"}}
 							onChange={(e) => setoptn(e.target.value)}
 						/>
 						<AddIcon className="add" onClick={HandleChange} />
 					</div>
 				</div>
 			</div>
-			<div className="row1">
+			<div className="row1" style={{gridTemplateColumns: "2.4fr 0.4fr"}} >
 				<div className="coll1">
 					{rules.map((item, index) => (
 						<>
 							<div className="optns">
 								<GoPrimitiveDot color="#ea4235" />
-								<div className="optn" key={index}>
+								<div className="optn" key={index} style={{width:"94%"}}>
 									{item}
 								</div>
 								<ClearIcon onClick={() => deleteoptn(index)} />

@@ -66,6 +66,7 @@ const Cancellation = () => {
 							<TAS_Cards data={item} key={ind} />
 						))}
 					</div>
+					<br/><br/>
 
 					<div className="accordion-container">
 						<h1>Frequently Asked Questions</h1>

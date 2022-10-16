@@ -77,10 +77,11 @@ const Blog = () => {
 
 				<h1
 					style={{
-						width: "90%",
-						margin: "10px auto",
+						width: "70%",
+						fontSize:"22px",
+						margin: "10px auto 0px auto",
 					}}>
-					Comments
+					<strong>Comments</strong>
 				</h1>
 
 				<div className="comments">
@@ -91,6 +92,8 @@ const Blog = () => {
 						</div>
 						<div className="comment-input-field">
 							<TextField
+							style={{height:"30px",marginBottom:"5%"}}
+							
 								fullWidth
 								placeholder="Your Comment"
 								onChange={(e) => {
@@ -104,6 +107,8 @@ const Blog = () => {
 									backgroundColor: "#ff6767",
 									color: "white",
 									padding: "10px 30px",
+									height:"100%",
+									marginTop:"1%"
 								}}
 								onClick={() => {
 									let val = {

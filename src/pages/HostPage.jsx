@@ -12,6 +12,8 @@ import { MdExpandMore } from "react-icons/md";
 import "../Assets/Styles/host.css";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import Host from "../Components/Home/Host";
+import { Link } from "react-router-dom";
+
 
 const HostPage = () => {
 	const accordion = [
@@ -46,13 +48,16 @@ const HostPage = () => {
 					Earn money by becoming a host
 				</div>
 				<div className="message-btn">
-					<Button
+				<Link to="/lisitng" >
+				<Button
 						variant="contained"
 						sx={{
 							backgroundColor: "#EA4235",
 						}}>
 						Get Started
 					</Button>
+				</Link>
+					
 				</div>
 			</div>
 
@@ -123,7 +128,7 @@ const HostPage = () => {
 				</div>
 			</div>
 
-			<Host title="Create your listing today" buttonContent="List your space" />
+			<Host title="Create your listing today" buttonContent="List your space" link="/listing" />
 			<Footer />
 		</div>
 	);

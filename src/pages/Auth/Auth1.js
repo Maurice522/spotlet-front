@@ -55,7 +55,6 @@ export default function Auth() {
 		profession: "",
 		company: "",
 	});
-	console.log(userData);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	//Handling All Input data function
@@ -76,32 +75,29 @@ export default function Auth() {
 	};
 
 	//SignIn and SignUp function -
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (isSignIn) {
-			try {
-				const { data: jwt } = await signIn(userData);
-				localStorage.setItem("token", jwt);
-				toast("Successful login");
-				window.location = "/";
-			} catch (error) {
-				//console.log(error.response.data);
-				toast.error(error.response.data.error);
-			}
-		} else {
-			try {
-				var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-				if (re.test(userData.password) === false) {
-					console.log(userData.password);
-					return toast.error("Passwod must contain atleast 8 characters");
-				}
-				console.log("Success");
-				getOTP(userData);
-			} catch (error) {
-				toast.error(error.response.data);
-			}
-		}
-	};
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (isSignIn) {
+          try {
+            const { data } = await signIn(userData);
+            
+            localStorage.setItem("token", data.token);
+            toast("Successful login");
+            window.location = "/";
+          } catch (error) {
+            //console.log(error.response.data);
+            toast.error(error.response.data.error);
+          }
+        } else {
+          try {
+            if (userData.password.length < 8)
+              return toast.error("Passwod must contain atleast 8 characters");
+            getOTP(userData);
+          } catch (error) {
+            toast.error(error.response.data);
+          }
+        }
+      };
 
 	return (
 		<div
@@ -241,7 +237,6 @@ export default function Auth() {
 												inputProps={{ "aria-label": "Without label" }}
 												fullWidth
 												style={{height:"35px"}}
-												// sx={{ height: "2.4em" }}
 												required>
 												<option value="individual">Individual</option>
 												<option value="corporate">Corporate</option>

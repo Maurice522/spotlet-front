@@ -79,7 +79,7 @@ const Pricing = ({ showSection }) => {
 				<>
 					<div className="row1">
 						<div className="coll1">
-							<h2>1 hour Rate</h2>
+							<h2>Enter Houly Price</h2>
 							<input
 								className="input"
 								onChange={(e) =>
@@ -91,7 +91,7 @@ const Pricing = ({ showSection }) => {
 					</div>
 					<div className="row1">
 						<div className="coll1">
-							<h2>12 hour Rate</h2>
+							<h2>Half Day Price &nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -99,7 +99,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>24 hour Rate</h2>
+							<h2>Full Day Price&nbsp;&nbsp; <span style={{color : "grey"}}>*20% discount applied</span> </h2>
 							<input
 								className="sminput"
 								disabled
@@ -128,7 +128,7 @@ const Pricing = ({ showSection }) => {
 				<>
 					<div className="row1">
 						<div className="coll1">
-							<h2>1 hour Rate</h2>
+							<h2>Enter Hourly Price in Rs.</h2>
 							<input
 								className="input"
 								onChange={(e) => settv({ ...tv, hourly_rate: e.target.value })}
@@ -137,12 +137,12 @@ const Pricing = ({ showSection }) => {
 						</div>
 					</div>
 					<div className="row1">
-						<div className="coll1">
-							<h2>8 hour Rate</h2>
+						{/* <div className="coll1">
+							<h2>8 hour Price</h2>
 							<input className="sminput" disabled value={tv.hourly_rate * 8} />
-						</div>
+						</div> */}
 						<div className="coll1">
-							<h2>12 hour Rate</h2>
+						<h2>Half Day Price &nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -150,7 +150,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>24 hour Rate</h2>
+						<h2>Full Day Price &nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -179,7 +179,7 @@ const Pricing = ({ showSection }) => {
 				<>
 					<div className="row1">
 						<div className="coll1">
-							<h2>1 hour Rate</h2>
+							<h2>Enter Hourly Price in Rs.</h2>
 							<input
 								className="input"
 								onChange={(e) =>
@@ -191,7 +191,7 @@ const Pricing = ({ showSection }) => {
 					</div>
 					<div className="row1">
 						<div className="coll1">
-							<h2>8 hour Rate</h2>
+							<h2>8 hour Price</h2>
 							<input
 								className="sminput"
 								disabled
@@ -199,7 +199,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>12 hour Rate</h2>
+							<h2>12 hour Price&nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -207,7 +207,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>24 hour Rate</h2>
+							<h2>24 hour Price&nbsp;&nbsp; <span style={{color : "grey"}}>*20% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -236,7 +236,7 @@ const Pricing = ({ showSection }) => {
 				<>
 					<div className="row1">
 						<div className="coll1">
-							<h2>1 hour Rate</h2>
+							<h2>Enter Hourly Price in Rs.</h2>
 							<input
 								className="input"
 								onChange={(e) =>
@@ -248,7 +248,7 @@ const Pricing = ({ showSection }) => {
 					</div>
 					<div className="row1">
 						<div className="coll1">
-							<h2>8 hour Rate</h2>
+							<h2>8 hour Price</h2>
 							<input
 								className="sminput"
 								disabled
@@ -256,7 +256,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>12 hour Rate</h2>
+							<h2>12 hour Price &nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -264,7 +264,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>24 hour Rate</h2>
+							<h2>24 hour Price &nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled

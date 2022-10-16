@@ -14,39 +14,39 @@ import "../../Assets/Styles/listYourSpace.css";
 
 const Timing = ({ showSection }) => {
   const [monday, setmonday] = useState({
-    open: false,
+    open: true,
     isSetHours: false,
-    time: "",
+    time: "all day",
   });
   const [tuesday, settuesday] = useState({
-    open: false,
+    open: true,
     isSetHours: false,
-    time: "",
+    time: "all day",
   });
   const [wednesday, setwednesday] = useState({
-    open: false,
+    open: true,
     isSetHours: false,
-    time: "",
+    time: "all day",
   });
   const [thursday, setthursday] = useState({
-    open: false,
+    open: true,
     isSetHours: false,
-    time: "",
+    time: "all day",
   });
   const [friday, setfriday] = useState({
-    open: false,
+    open: true,
     isSetHours: false,
-    time: "",
+    time: "all day",
   });
   const [saturday, setsaturday] = useState({
-    open: false,
+    open: true,
     isSetHours: false,
-    time: "",
+    time: "all day",
   });
   const [sunday, setsunday] = useState({
-    open: false,
+    open: true,
     isSetHours: false,
-    time: "",
+    time: "all day",
   });
   const dispatch = useDispatch();
   const location_id = useSelector(selectLocationId);

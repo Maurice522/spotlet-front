@@ -113,7 +113,7 @@ const SideSection = ({
 					handleOpen();
 					setReadyForRequest(false);
 					setTimeout(() => {
-						window.location = "/";
+						window.location = "/bookinglist";
 					}, 3000);
 				} catch (error) {
 					console.log(error);
@@ -126,7 +126,7 @@ const SideSection = ({
 
 	// console.log(v1, v3, v4);
 	return (
-		<div style={{width:"40%"}}>
+		<div style={{width:"30%"}}>
 			<div className="side-section-image-wrapper">
 				<img
 					src={locationData?.images?.at(0)}
@@ -137,19 +137,20 @@ const SideSection = ({
 
 			<div data-attribute-1>{location_id}</div>
 			<div data-attribute-2>Location</div>
+			<br/><br/>
 
-			<div className="booking-side-section-title">Reserved Date</div>
+			{/* <div className="booking-side-section-title">Reserved Date</div>
 			<div className="booking-side-section-info">
 				{format(new Date(Number(year), Number(month), Number(day)), "PPP")}
-			</div>
-			<div className="booking-side-section-title">Reserved Time</div>
-			<div className="booking-side-section-info">{`${v3} Hours`}</div>
+			</div> */}
+			{/* <div className="booking-side-section-title">Reserved Time</div>
+			<div className="booking-side-section-info">{`${v3} Hours`}</div> */}
 
 			<div data-attribute-3>
 				<div data-attribute-4>
-					Rs {v6} * {v3} hrs (including Gst)
+				₹ {v6} * {v3} hrs (including Gst)
 				</div>
-				<div data-attribute-4>Rs {v6 * v3 * 1.18}</div>
+				<div data-attribute-4>₹ {v6 * v3 * 1.18}</div>
 			</div>
 			<div data-attribute-3>
 				<div data-attribute-4>Discounted Price</div>
@@ -158,24 +159,24 @@ const SideSection = ({
 
 			<div data-attribute-3>
 				<div data-attribute-4>Cleaning Fee (including Gst)</div>
-				<div data-attribute-4>Rs40</div>
+				<div data-attribute-4>₹ 40</div>
 			</div>
 
 			<div data-attribute-3>
 				<div data-attribute-4>Processing Fee (including Gst)</div>
-				<div data-attribute-4>Rs40</div>
+				<div data-attribute-4>₹ 40</div>
 			</div>
 
 			<div data-attribute-3>
 				<div data-attribute-1>Total</div>
-				<div data-attribute-1>Rs {tot_price+80}</div>
+				<div data-attribute-1>₹ {tot_price+80}</div>
 			</div>
 
 			<Button
 				variant="contained"
 				onClick={handleClick}
 				sx={{
-					width: "20vw",
+					width: "22vw",
 					backgroundColor: "#EA4235",
 					color: "white",
 					borderRadius: "4px",
@@ -198,10 +199,10 @@ const SideSection = ({
 					<Box sx={style}>
 						<MdDone size={50} color="green" />
 						<Typography id="transition-modal-title" variant="h6" component="h2">
-							Request Sent Successfully
+							Request Sent Successfully!
 						</Typography>
 						<Typography id="transition-modal-description" sx={{ mt: 2 }}>
-							You will be redirected to home page in 3 seconds
+							You will be redirected to the bookings page in 3 seconds
 						</Typography>
 					</Box>
 				</Fade>

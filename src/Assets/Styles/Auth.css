@@ -1,8 +1,8 @@
 .auth {
 	display: flex;
 	justify-content: space-between;
-	/* background-color: beige; */
-	/* width: 95%; */
+	background-color: white;
+	width: 70vw;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	height: 90vh;
 }
@@ -84,7 +84,7 @@ form > .horizontal-itm > div > p {
 .auth-btn {
 	background-color: #ff6767 !important;
 	color: white !important;
-	margin-top: 14% !important;
+	margin-top: 7% !important;
 	height: 45px !important;
 	text-transform: capitalize !important;
 }
@@ -172,8 +172,59 @@ select option {border: 1px solid lightgray;
 	font-size: 14px;
 }
 
+
 /* .css-1ua80n0-MuiInputBase-input-MuiOutlinedInput-input,
 .css-12yjm75-MuiInputBase-input-MuiOutlinedInput-input,
 .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input {
   height: 1.7em !important;
 } */
+.normal {
+	display: block;
+	margin-top: 5px;
+	width: 95%;
+	height: 32px;
+	color: #808b93;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	border: 1.5px solid #dee0e2;
+	border-radius: 4px;
+	background: #ffffff;
+	
+
+	display: block;
+    margin-top: 7px;
+    width: 90%;
+    height: 40px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    background: #ffffff;
+    border: 2px solid lightgray;
+    padding-left: 7%;
+	padding-right: 3%;
+    border-radius: 4px;
+    color: black;
+}
+
+.focus {
+    display: block;
+    margin-top: 7px;
+    width: 90%;
+    height: 40px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    background: #ffffff;
+    border: 2px solid lightgray;
+    padding-left: 7%;
+    border-radius: 4px;
+    color: black;
+
+}

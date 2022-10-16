@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../Assets/Styles/resources.css";
+import "../Assets/Styles/blogs.css";
 import image from "../Assets/Images/knowledgeCenter.jpg";
 import image1 from "../Assets/Images/container1ImgPhotography.png";
 import Navbar from "../Components/Navbar";

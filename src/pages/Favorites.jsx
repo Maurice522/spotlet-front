@@ -9,6 +9,8 @@ import img5 from "../Assets/Images/property-5.jpeg";
 import img6 from "../Assets/Images/property-6.jpeg";
 import PropertyInfo from "../Components/PropertyInfo";
 import { getAllLocations } from "../services/api";
+import image from "../Assets/Images/Favourite1.jpeg";
+
 
 
 const Favorites = () => {
@@ -23,7 +25,37 @@ const Favorites = () => {
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
+			<div className="text-on-image-container">
+				<img src={image} alt="background" className="bg-image darken" style={{height:"63vh"}}/>
+				<div className="about-us-message bold">
+					Your Favourites!
+				</div>
+			</div>
 			<div className="below-nav">
+				<div
+					style={{
+						width: "80%",
+						margin: "10px auto",
+					}}>
+					<div className="property-list">
+						{console.log(propertyDetails)}
+						{propertyDetails.map((item, index) => (
+							<PropertyInfo
+								item={item}
+								index={index}
+								isFav={true}
+								favPage={true}
+								key={index}
+								handleClick={() => {
+									console.log("clicked");
+								}}
+								border={false}
+							/>
+						))}
+					</div>
+				</div>
+
+<br/><br/><br/>
 				<div
 					style={{
 						width: "80%",

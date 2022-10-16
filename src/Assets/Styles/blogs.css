@@ -48,7 +48,7 @@
 .reactions {
 	display: flex;
 	gap: 20px;
-	width: 90%;
+	width: 69%;
 	margin: 10px auto;
 	justify-content: flex-start;
 	align-items: center;
@@ -59,11 +59,11 @@
 }
 
 .comments {
-	width: 90%;
-	margin: 10px auto;
-	border: 2px solid #ea4235;
-	padding: 10px;
-	border-radius: 10px;
+	width: 64%;
+    margin: 1% auto 2% auto ;
+    border: 2px solid #ea4235;
+    padding: 27px 3%;
+    border-radius: 10px;
 }
 
 .comment-header {
@@ -92,4 +92,14 @@
 
 .comment-body {
 	margin-top: 10px;
+}
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    font: inherit;
+    letter-spacing: inherit;
+    color: currentColor;
+    padding: 4px 0 5px;
+    border: 0;
+    box-sizing: content-box;
+    background: none;
+    height: 11px;
 }

@@ -2,11 +2,15 @@
 	width: 80vw;
 	margin: 20px auto;
 }
-
+.tas-card-container{
+	width: 80%;
+}
 .cancellation-container > h1 {
 	font-size: 28px;
 	font-weight: 700;
 	margin-bottom: 20px;
+	color: #f26767;
+	margin-top: 8% !important;
 }
 
 .activity-card-container {

@@ -4,14 +4,14 @@ import Footer from "../Components/Footer";
 import image from "../Assets/Images/investors_img.jpeg";
 
 
-const Investors = () => {
+const Spotletpro = () => {
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
 			<div className="text-on-image-container">
 				<img src={image} alt="background" className="bg-image darken" />
 				<div className="about-us-message bold">
-					Comming Soon !
+					Spotlet Pro Comming Soon !
                     
 				</div>
 			</div>
@@ -21,4 +21,4 @@ const Investors = () => {
 	);
 };
 
-export default Investors;
+export default Spotletpro;

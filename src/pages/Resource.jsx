@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import "../Assets/Styles/photography.css";
+import "../Assets/Styles/resources.css";
 import image from "../Assets/Images/photographyMainImage.png";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
@@ -40,7 +40,7 @@ const Blog = () => {
 						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
 						consectetur adipiscing elit.
 					</p>
-
+					<br/><br/><br/>
 					<p>
 						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem
 						ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit
@@ -60,6 +60,8 @@ const Blog = () => {
 						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 						hendrerit nisi sed sollicitudin pellentesque.
 					</p>
+					<br/><br/><br/>
+
 					<p>
 						Nunc loremLorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
@@ -81,40 +83,7 @@ const Blog = () => {
 						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
 						consectetur adipiscing elit.
 					</p>
-					<p>
-						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc loremLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc loremLorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Nam hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc loremLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc pLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc loremLorem ipsum dolor sit amet,
-						consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin
-						pellentesque. Nunc pLorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
-						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc loremLorem ipsum
-						dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed
-						sollicitudin pellentesque. Nunc pLorem ipsum dolor sit amet,
-						consectetur adipiscing elit.
-					</p>
+					<br/><br/><br/>
 					<p>
 						{" "}
 						Nunc pLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam

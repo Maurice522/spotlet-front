@@ -30,6 +30,11 @@ import {
   import { addUser, saveOTP } from "../../redux/slices/userSlice";
   import OTPVerify from "./OTPVerify";
   import ForgotPassword from "./ForgotPassword";
+	import CloseIcon from '@mui/icons-material/Close';
+	import { Link } from "react-router-dom";
+
+
+import image1 from "../../Assets/Images/signupinBg.jpeg";
   export default function Auth() {
 	const state = useLocation();
 	const [showPassword, setShowPassword] = useState(false);
@@ -99,10 +104,23 @@ import {
 	};
   
 	return (
-	  <div className="auth" style={{ flexDirection: isSignIn && "row-reverse" }}>
+		<div
+			className="singInMainDiv"
+			style={{
+				padding: "15%",
+				paddingTop: "2%",
+				paddingBottom: "1%",
+				backgroundImage:{image1},		
+			}}>
+	  <div className="auth" style={{ flexDirection: isSignIn && "row-reverse" ,position:"relative"}}>
+	  <Link to="/">
+	  {/* <CloseIcon style={{position:"absolute",right:"3%", top:"3%",color:"black"}}/> */}
+	  <CloseIcon style={isSignIn ? {position:"absolute",right:"3%", top:"3%",color:"black" } : { position:"absolute",right:"3%", top:"3%",color:"white"}}/>
+	</Link>
+	  
 		<div
 		  className="auth-detail"
-		  style={isSignIn ? { paddingRight: "8%" } : { paddingLeft: "10%" }}
+		  style={isSignIn ? { paddingRight: "5%" } : { paddingLeft: "0%" }}
 		>
 		  <div>
 			{isSignIn ? (
@@ -131,9 +149,11 @@ import {
 				  <div>
 					<label>First Name</label>
 					<br />
-					<TextField
+					<input
+					className="authInput"
 					  placeholder="First Name"
 					  name="firstName"
+					  style={{width:"95%"}}
 					  onChange={handleInput}
 					  value={userData.firstName}
 					  size="small"
@@ -151,7 +171,9 @@ import {
 				  <div>
 					<label>Last Name</label>
 					<br />
-					<TextField
+					<input
+					className="authInput"
+					style={{width:"95%"}}
 					  placeholder="Last Name"
 					  name="lastName"
 					  onChange={handleInput}
@@ -164,7 +186,8 @@ import {
 			  )}
 			  <label>Email</label>
 			  <br />
-			  <TextField
+			  <input
+			  className="authInput"
 				type="email"
 				name="email"
 				onChange={handleInput}
@@ -185,7 +208,8 @@ import {
 				<>
 				  <label>Phone Number</label>
 				  <br />
-				  <TextField
+				  <input
+				  className="authInput"
 					type="text"
 					name="mobile"
 					onChange={handleInput}
@@ -210,13 +234,17 @@ import {
 						value={userData.booking_type}
 						onChange={handleInput}
 						name="booking_type"
+						className="dropdownSelect"
+
 						displayEmpty
 						inputProps={{ "aria-label": "Without label" }}
 						fullWidth
-						sx={{ height: "2.4em" }}
+						style={{height:"34px"}}
 						required
 					  >
-						<MenuItem value="">None</MenuItem>
+						{/* <MenuItem value="">None</MenuItem>
+						<MenuItem value="individual">Individual</MenuItem>
+						<MenuItem value="corporate">Corporate</MenuItem> */}
 						<MenuItem value="individual">Individual</MenuItem>
 						<MenuItem value="corporate">Corporate</MenuItem>
 					  </Select>
@@ -227,7 +255,8 @@ import {
 						  ? "Company Name"
 						  : "Profession"}
 					  </label>
-					  <TextField
+					  <input
+					  className="authInput"
 						type="text"
 						name={
 						  userData.booking_type === "corporate"
@@ -255,7 +284,8 @@ import {
 			  )}
 			  <label>Password</label>
 			  <br />
-			  <TextField
+			  <input
+			  className="authInput"
 				type={!showPassword ? "password" : "text"}
 				name="password"
 				onChange={handleInput}
@@ -295,7 +325,7 @@ import {
 				{isSignIn ? "Sign In" : "SignUp"}
 			  </Button>
 			</form>
-			<p id="swch">Or sign up with</p>
+			{/* <p id="swch">Or sign up with</p>
 			<div className="diff-auth-type">
 			  <IconButton className="auth-icon">
 				<Google />
@@ -306,7 +336,7 @@ import {
 			  <IconButton className="auth-icon">
 				<Apple />
 			  </IconButton>
-			</div>
+			</div> */}
 		  </div>
 		</div>
 		<div className="auth-img">
@@ -321,6 +351,7 @@ import {
 		<Modal open={openOTP} onClose={handleCloseOTP}>
 		  <OTPVerify sendOTP={getOTP} />
 		</Modal>
+	  </div>
 	  </div>
 	);
   }

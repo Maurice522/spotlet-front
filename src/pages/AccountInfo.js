@@ -370,7 +370,7 @@ const AccountInfo = (extraNavId) => {
                   </button>
                 </div>
               </form>
-              <div className="r1de r2Password">
+              <div className="r1de r2Password deactivateAccount">
                 Deactivate Your Account:
                 <button className="accbut deactivateBtn" onClick={handleDeactivate}>
                   Deactivate Account

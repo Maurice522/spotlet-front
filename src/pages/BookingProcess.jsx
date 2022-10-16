@@ -36,11 +36,11 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 							<div className={`booking-item ${index === 0 ? "highlight" : ""}`}>
 								BOOKING
 							</div>
-							<div className="filler">----------------</div>
+							<div className="filler">--------------</div>
 							<div className={`booking-item ${index === 1 ? "highlight" : ""}`}>
 								RULES
 							</div>
-							<div className="filler">----------------</div>
+							<div className="filler">--------------</div>
 							<div className={`booking-item ${index === 2 ? "highlight" : ""}`}>
 								CONTACT
 							</div>

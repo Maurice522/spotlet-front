@@ -14,6 +14,8 @@ const Footer = () => {
 				// { name: "Investors", to: "/investors" },
 				{ name: "Careers", to: "/careers" },
 				{ name: "Blogs", to: "/blogs" },
+				{ name: "Spotlet Pro", to: "/spotletpro" },
+
 			],
 		},
 		{
@@ -43,7 +45,6 @@ const Footer = () => {
 				{ name: "Privacy Policy", to: "/privacypolicy" },
 				{ name: "Terms and Conditions", to: "/termsofservice" },
 				{ name: "Trust and Safety", to: "/trustandsafety" },
-				{ name: "Cookie Prefercnce", to: "/cookiepreference" },
 			],
 		},
 		{

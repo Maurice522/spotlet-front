@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { selectUserData } from "../redux/slices/userSlice";
 import { locationRequest } from "../services/api";
 import { useEffect } from "react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const gridActionButton = (props) => (
 	<Link
@@ -238,7 +239,10 @@ const BookingList = () => {
 		<div>
 			<Navbar extraNavId="id-2" />
 			<div className="below-nav">
-				<div className="booking-list-header">
+				<div className="booking-list-header" style={{position:"relative"}}>
+				<Link to="/" >
+				<ArrowBackIcon style={{position:"absolute",left:"0%",bottom:"20%",fontSize:"32px",color:"f26767"}}/>
+				</Link>
 					<div
 						className={active === 0 ? "chosen option" : "option"}
 						onClick={() => {

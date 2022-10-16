@@ -89,6 +89,16 @@
 .about-us-btn-container {
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	align-items: center;
+}
+.buttonHover:hover{
+	background-color: #EA4235 !important;
+	color: white !important;
+	border: 2px solid #f36767 !important;
+}
+.buttonHover1:hover{
+	background-color: white !important;
+	color: black !important;
+	border: 2px solid #EA4235 !important;
 }

@@ -114,6 +114,13 @@
   margin-top: 3%;
   color: black;
 }
+.acc-input:focus{
+  border: 1px solid #ff6767;
+  box-shadow: 0 0 2px #ff6767;
+  outline-offset: 0px;
+  outline: none;
+}
+
 .r1 {
   display: flex;
   flex-direction: row;
@@ -195,8 +202,14 @@
   margin-bottom: 2%;
 }
 .deactivateBtn{
-  margin-left: 4%;
-  margin-bottom: 1%;
+  margin-left: 3%;
+  margin-bottom: 0%;
+  height: 41px;
+    font-size: 12px;
+
+}
+.deactivateAccount{
+  justify-content: right;
 }
 .paymentH1{
   margin-bottom: 2%;
