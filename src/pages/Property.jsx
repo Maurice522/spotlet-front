@@ -36,6 +36,8 @@ const Property = ({
 	setV4,
 	setV5,
 	setV6,
+	setTotPrice,
+	tot_price
 }) => {
 	const [locationData, setLocationData] = useState({});
 	const [propertyItems, setPropertyItems] = useState([]);
@@ -557,6 +559,8 @@ const Property = ({
 				setV5={setV5}
 				setV6={setV6}
 				locationData={locationData}
+				setTotPrice={setTotPrice}
+				tot_price={tot_price}
 			/>
 
 			<div

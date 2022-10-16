@@ -38,6 +38,16 @@
 	align-items: center;
 }
 
+.form-2 {
+	background: #fff;
+	height: fit-content;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr) auto;
+	z-index: 3;
+	gap: 20px;
+	align-items: center;
+}
+
 .booking-form-label {
 	display: block;
 	font-family: "Inter";

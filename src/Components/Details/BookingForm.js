@@ -24,15 +24,19 @@ const BookingForm = ({
 	setV5,
 	setV6,
 	locationData,
+	tot_price,
+	setTotPrice
 }) => {
+	// console.log(locationData)
 	const user = useSelector(selectUserData);
 	const [active, setActive] = useState(false);
-	const [tot_price, setTotPrice] = useState(0);
+	const [val, setVal] = useState(0)
 	const navigate = useNavigate();
 	useEffect(() => {
 		calculatePrice(event, v3);
 	}, [locationData]);
 	const handleClick = () => {
+
 		//console.log(v1, v2, v3, v4, v5);
 		if (user) {
 			if (v1 !== "" && v2 !== "" && v3 !== "" && v4 !== "" && v5 !== "") {
@@ -47,31 +51,31 @@ const BookingForm = ({
 	};
 
 	const calculatePrice = (eventType, hour_rate = 0) => {
-		//console.log(event);
+		console.log(eventType, hour_rate);
 		if (eventType === "Film, Webseries or Ad") {
 			const rate = locationData?.pricing?.film_webseries_ad?.hourly_rate;
 			setV6(rate);
-			if (hour_rate === "12") setTotPrice(rate * 12 * 0.9);
-			else if (hour_rate === "24") setTotPrice(rate * 24 * 0.8);
-			else setTotPrice(rate * hour_rate);
+			if (hour_rate === "12") setTotPrice(rate * 12 * 0.9*1.18);
+			else if (hour_rate === "24") setTotPrice(rate * 24 * 0.8*1.18);
+			else setTotPrice(rate * hour_rate* 1.18);
 		} else if (eventType === "Corporate") {
 			const rate = locationData?.pricing?.corporate?.hourly_rate;
 			setV6(rate);
-			if (hour_rate === "12") setTotPrice(rate * 12 * 0.9);
-			else if (hour_rate === "24") setTotPrice(rate * 24 * 0.8);
-			else setTotPrice(rate * hour_rate);
+			if (hour_rate === "12") setTotPrice(rate * 12 * 0.9*1.18);
+			else if (hour_rate === "24") setTotPrice(rate * 24 * 0.8*1.18);
+			else setTotPrice(rate * hour_rate* 1.18);
 		} else if (eventType === "TV Series and Others") {
 			const rate = locationData?.pricing?.tv_series_other?.hourly_rate;
 			setV6(rate);
-			if (hour_rate === "12") setTotPrice(rate * 12 * 0.9);
-			else if (hour_rate === "24") setTotPrice(rate * 24 * 0.8);
-			else setTotPrice(rate * hour_rate);
+			if (hour_rate === "12") setTotPrice(rate * 12 * 0.9*1.18);
+			else if (hour_rate === "24") setTotPrice(rate * 24 * 0.8*1.18);
+			else setTotPrice(rate * hour_rate* 1.18);
 		} else {
 			const rate = locationData?.pricing?.individual?.hourly_rate;
 			setV6(rate);
-			if (hour_rate === "12") setTotPrice(rate * 12 * 0.9);
-			else if (hour_rate === "24") setTotPrice(rate * 24 * 0.8);
-			else setTotPrice(rate * hour_rate);
+			if (hour_rate === "12") setTotPrice(rate * 12 * 0.9*1.18);
+			else if (hour_rate === "24") setTotPrice(rate * 24 * 0.8*1.18);
+			else setTotPrice(rate * hour_rate*1.18);
 		}
 	};
 
@@ -85,7 +89,7 @@ const BookingForm = ({
 				onMouseLeave={() => {
 					setActive(false);
 				}}>
-				<form className="form">
+				<form className={(event === "Individual" || event === "Corporate") ? "form" : "form-2"}>
 					<div>
 						<label
 							htmlFor="event"
@@ -101,9 +105,11 @@ const BookingForm = ({
 							id="event"
 							name="event"
 							onChange={(e) => {
-								console.log(e.target.value);
+								// console.log(e.target.value);
 								setEvent(e.target.value);
-								calculatePrice(e.target.value, v3);
+								// console.log(val);
+								let a = (e.target.value === "Individual" || e.target.value ==="Corporate") ? v3 : val;
+								calculatePrice(e.target.value, a);
 							}}
 							value={event}
 							displayEmpty
@@ -185,15 +191,20 @@ const BookingForm = ({
 								required
 								id="time-shifts"
 								name="time-shifts"
-								defaultValue="06:30"
+								// defaultValue="Half Day (6am to 6pm)"
+								defaultValue=""
 								type="time"
 								className={active === true ? "focus" : "normal"}
 								onChange={(e) => {
-									setV2(e.target.value);
+									// console.log(e.target.value)
+									setVal(e.target.value === "6am-6pm" ? "12" : "24");
+									let a= e.target.value === "6am-6pm" ? "12" : "24";
+									calculatePrice(event, a);
 								}}
-								value={v2}
+								// value={"6am-6pm"}
 								displayEmpty>
 								<MenuItem value="6am-6pm">Half Day (6am to 6pm)</MenuItem>
+								<MenuItem value=""></MenuItem>
 								<MenuItem value="6am-2am">Full Day  (6am to 2am)</MenuItem>
 							</Select>
 						</div>
@@ -286,7 +297,7 @@ const BookingForm = ({
 						marginTop: "2%",
 						fontSize: "30px",
 					}}>
-					₹ {tot_price}
+					₹ {Number(tot_price.toFixed(2))}
 				</div>
 				<div
 					className="submit"

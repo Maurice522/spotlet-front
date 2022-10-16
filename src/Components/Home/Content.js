@@ -11,6 +11,7 @@ import "../../Assets/Styles/Home/content.css";
 import Testimonials from "./Testimonials";
 import Host from "./Host";
 
+
 const Content = () => {
 	return (
 		<>

@@ -40,6 +40,7 @@ const SideSection = ({
 	v4,
 	v5,
 	v6,
+	tot_price,
 }) => {
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
@@ -125,7 +126,7 @@ const SideSection = ({
 
 	// console.log(v1, v3, v4);
 	return (
-		<div>
+		<div style={{width:"40%"}}>
 			<div className="side-section-image-wrapper">
 				<img
 					src={locationData?.images?.at(0)}
@@ -150,6 +151,10 @@ const SideSection = ({
 				</div>
 				<div data-attribute-4>Rs {v6 * v3 * 1.18}</div>
 			</div>
+			<div data-attribute-3>
+				<div data-attribute-4>Discounted Price</div>
+				<div data-attribute-4>{tot_price}</div>
+			</div>
 
 			<div data-attribute-3>
 				<div data-attribute-4>Cleaning Fee (including Gst)</div>
@@ -163,7 +168,7 @@ const SideSection = ({
 
 			<div data-attribute-3>
 				<div data-attribute-1>Total</div>
-				<div data-attribute-1>Rs {total_amt}</div>
+				<div data-attribute-1>Rs {tot_price+80}</div>
 			</div>
 
 			<Button

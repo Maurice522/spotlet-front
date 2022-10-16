@@ -22,6 +22,8 @@
 	z-index: 3;
 	gap: 20px;
 	align-items: flex-end;
+	border: 2px solid #fff;
+
 }
 
 .form-filter-label {
@@ -32,6 +34,8 @@
 	font-size: 16px;
 	line-height: 24px;
 	color: #374047;
+	border: 2px solid #fff;
+
 }
 
 .form-filter-select,
@@ -49,6 +53,8 @@
 	border: 1.5px solid #dee0e2;
 	border-radius: 4px;
 	background: #ffffff;
+	border: 2px solid #fff;
+
 }
 
 .focus-input,
@@ -66,6 +72,8 @@
 	border: 1.5px solid #374047;
 	border-radius: 4px;
 	color: #808b80;
+	border: 2px solid #fff;
+
 }
 
 .focus-label {
@@ -77,6 +85,8 @@
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 24px;
+	border: 2px solid #fff;
+
 }
 
 #submit {
@@ -100,8 +110,31 @@
 	border: 2px solid #fff;
 }
 
+
 #submit:hover {
 	color: #ff5f5f;
 	background-color: white;
 	border: 2px solid #ff5f5f;
+}
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+    color: rgba(0, 0, 0, 0.87);
+    box-sizing: border-box;
+    height: 40px !important;
+    position: relative;
+    cursor: text;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    border-radius: 4px;
 }
