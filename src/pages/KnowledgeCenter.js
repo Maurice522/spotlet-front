@@ -75,6 +75,7 @@ const KnowledgeCenter = () => {
 					</div>
 				</div>
 				<div class="container">
+				<p>Welcome to SpotLet’s Knowledge Base. We’re always working diligently to provide the best booking experience for our hosts and customers. If you need any particular information that you can’t find on our website, please feel free to email us at &lt;<strong>email</strong> &gt;</p>
 					{elements.map((item, ind) => (
 						<div class="Div1" key={ind}>
 							<div class="resourceContent">

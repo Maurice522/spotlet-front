@@ -17,20 +17,20 @@ const Photography = () => {
     }
     const accordion = [
 		{
-			title: "Who can be a Gorecce Host?",
-			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+			title: "Is my property eligible for a photo shoot with SpotLet?",
+			info: "Currently, we are offering photography services to all our clients who list with us. So no matter where you’re located, we can arrange a photographer and ensure that your property listing has the best photos for maximum booking opportunities.",
 		},
 		{
-			title: "How do I get paid?",
-			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+			title: "Can I save the photos from the photoshoot?",
+			info: "Of course, it is your property, and we would love for you to use these pictures to promote as much as possible. We will give you high-quality photos that will be watermarked with the SpotLet logo. If you want, you can purchase the non-watermarked images as well. You can talk to our photography team for further details.",
 		},
 		{
-			title: "How does Gorecce makes money?",
-			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+			title: "What all will be photographed?",
+			info: "The more pictures are available on your listing, the higher your chances of getting more bookings. We photograph all the spaces around your property – rooms, kitchen, living,resort outdoors, pool, dining areas and more. Our photographers will take pictures of every space we feel our customers would like to see before confirming the booking. We will inform you in advance of the images we will be taking so that you can prepare your property accordingly.",
 		},
 		{
-			title: "How to get more clients?",
-			info: " lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+			title: "What are the Charges for the Photoshoot?",
+			info: " We can give you the most affordable photography rates depending on your property and the package you choose. We aim to help you get more bookings and make your listing as attractive as possible. Contact us for a customised quote today.",
 		},
 		{
 			title: "What is in it for you?",
@@ -48,16 +48,15 @@ const Photography = () => {
 				<img src={image} alt="background" className="bg-image darken" />
 				<div className="message myMessage ">          
 					Professional Photography
-                    <p className="subtextBanner">Providing high-quality photography makes that simple!llicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam.</p> 
+                    <p className="subtextBanner">Showcase your Property in the best light and earn the spotlight with our exclusive and cost-effective photography services.</p> 
 				</div>
 			</div>
 
         <div className="container1">
             <div className="leftContainer1">
                 <div className="contentLeftContainer">
-                    <h1>Maximize your Earnings</h1>
-                    <p className="contentLeftContainerSubtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc p </p>
+                    <h1>Capturing the Essence of your Spaces</h1>
+                    <p className="contentLeftContainerSubtext">Just like e-commerce is driven by exceptional photographs, getting more enquiries and bookings for your space is primarily driven by high-quality photos of your location. So if you want to boost sales for your area, we can offer photoshoots with professional photographers across the country. </p>
                 </div>
             </div>
 
@@ -77,15 +76,15 @@ const Photography = () => {
 
             <div className="rightContainer2">
                 <div className="contentRightContainer">
-                    <h1>Preparing Your Space</h1>
-                    <p className="contentRightContainerSubtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc p </p>
+                    <h1>Preparing for Noteworthy Shoots</h1>
+                    <p className="contentRightContainerSubtext">Our photographers are highly skilled in clicking all kinds of properties and bringing out the best features of your space that will appeal to potential clients and maximise your earning potential. Here are a few valuable tips to make the most of your photography sessions: 
+                </p>
                 </div>
             </div>
 		</div>
         <br/><br/><br/>
         
-			<Form labels={labels} heading="Book your Session With Us" />
+			<Form labels={labels} heading="Leverage the Power of Professional Photos for your Listing." />
 
 
        

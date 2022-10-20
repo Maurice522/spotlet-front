@@ -94,6 +94,7 @@ import image1 from "../../Assets/Images/signupinBg.jpeg";
 		}
 	  } else {
 		try {
+			console.log("signing up");
 		  if (userData.password.length < 8)
 			return toast.error("Passwod must contain atleast 8 characters");
 		  getOTP(userData);
@@ -142,7 +143,7 @@ import image1 from "../../Assets/Images/signupinBg.jpeg";
 				</p>
 			  </div>
 			)}
-			<h1>{isSignIn ? "Sign in " : "Sign up "}to Goreco</h1>
+			<h1>{isSignIn ? "Sign in " : "Sign up "}to Spotlet</h1>
 			<form onSubmit={handleSubmit}>
 			  {!isSignIn && (
 				<div className="horizontal-itm">
@@ -322,7 +323,7 @@ import image1 from "../../Assets/Images/signupinBg.jpeg";
 				variant="contained"
 				disableElevation
 			  >
-				{isSignIn ? "Sign In" : "SignUp"}
+				{isSignIn ? "Sign In" : "Sign Up"}
 			  </Button>
 			</form>
 			{/* <p id="swch">Or sign up with</p>

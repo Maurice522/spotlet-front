@@ -18,24 +18,20 @@ import { Link } from "react-router-dom";
 const HostPage = () => {
 	const accordion = [
 		{
-			title: "Who can be a Gorecce Host?",
-			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+			title: "Who can be a SpotLet Host?",
+			info:"Anyone who owns a property in India can be a SpotLet host. Whether it’s a hotel, a resort, a production space, a banquet hall, a bungalow or anything else, if you own it and want to rent it, you can list it. All you need is pictures and details to start the process. People come to SpotLet to book film shooting locations, team meeting locations, outdoor wedding venues, and much more!",
 		},
 		{
 			title: "How do I get paid?",
-			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+			info: "The final payout is deposited in your preferred bank account and processed once the booking is completed and closed. SpotLet ensures that all our property listers get their payments on time.",
 		},
 		{
-			title: "How does Gorecce makes money?",
-			info: "lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+			title: "How Does SpotLet Make Money?",
+			info: "We charge a certain percentage of the service fee in the listing. We charge guests upfront on the website during the booking through our secure payment gateway. Remember, we only make money when you do! So, your success is integral to us!",
 		},
 		{
-			title: "How to get more clients?",
-			info: " lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
-		},
-		{
-			title: "What is in it for you?",
-			info: " lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
+			title: "How Can I get more Customers?",
+			info: " We encourage our hosts to share as much information about the property as possible since it helps close bookings faster. Also, you can try our premium packages to ensure that your space gets the spotlight on our platform. We also support you with marketing and advertising and are constantly increasing our website traffic to boost sales.",
 		},
 	];
 
@@ -45,7 +41,7 @@ const HostPage = () => {
 			<div className="text-on-image-container">
 				<img src={image} alt="background" className="bg-image darken" />
 				<div className="message host-message ">
-					Earn money by becoming a host
+				Enjoy a Second Source of Income. Host with SpotLet
 				</div>
 				<div className="message-btn">
 				<Link to="/lisitng" >
@@ -54,7 +50,7 @@ const HostPage = () => {
 						sx={{
 							backgroundColor: "#EA4235",
 						}}>
-						Get Started
+						List your Property
 					</Button>
 				</Link>
 					
@@ -70,13 +66,13 @@ const HostPage = () => {
 						<div>
 							<IoLocationOutline color="#EA4235" size="60px" />
 						</div>
-						<div>Location Details</div>
+						<div>Add Location Details</div>
 					</div>
 					<div>
 						<div>
 							<AiFillContainer color="#EA4235" size="60px" />
 						</div>
-						<div>Add the features</div>
+						<div>Complete your features</div>
 					</div>
 					<div>
 						<div>
@@ -128,7 +124,7 @@ const HostPage = () => {
 				</div>
 			</div>
 
-			<Host title="Create your listing today" buttonContent="List your space" link="/listing" />
+			<Host title="Create your listing today" buttonContent="Let's Begin" link="/listing" />
 			<Footer />
 		</div>
 	);
