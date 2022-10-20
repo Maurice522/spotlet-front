@@ -52,7 +52,7 @@ const Footer = () => {
 			items: [
 				{
 					name: "Instagram",
-					to: "/instagram",
+					to: "https://www.instagram.com/spotletin/",
 					icon: <BsInstagram size="18px" color="white" />,
 				},
 				{
@@ -84,7 +84,9 @@ const Footer = () => {
 						{val.name}
 					</div>
 				</Link>
+				/* <a href="https://www.instagram.com/spotletin/"></a> */
 			))}
+			
 		</div>
 	));
 
