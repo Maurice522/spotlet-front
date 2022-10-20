@@ -15,6 +15,29 @@ import Host from "../Components/Home/Host";
 import { Link } from "react-router-dom";
 
 
+//for section reason
+import PaidIcon from '@mui/icons-material/Paid';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+const objArray = [
+	{
+		icon:<AttachMoneyIcon/>,
+		title: "Free Listing",
+		info: "We don’t charge our customers to list their spaces on SpotLet. The only premium charge is if you want to showcase your spaces in the spotlight.",
+	},
+	{
+		icon:<CurrencyExchangeIcon/>,
+		title: "High Earning Potential",
+		info: "We’re reaching out to many new customers every day. As a result, you can earn lots of extra income as you rent spaces for weddings, film shoots or corporate events.",
+	},
+	{
+		icon:<CheckCircleIcon/>,
+		title: "Complete Control",
+		info: "You can choose to host corporate lunches, film shoots over the weekends or weddings during the season. You can select what’s best for you and decide all the details with the renters beforehand.",
+	},
+];
+
 const HostPage = () => {
 	const accordion = [
 		{
@@ -57,8 +80,8 @@ const HostPage = () => {
 				</div>
 			</div>
 
-			<SectionReason heading="Becoming A Host"  imageReason={image1}/>
-
+			
+			<SectionReason  heading="Why Choose Us" imageReason={image1} objArray={objArray}/>
 			<div>
 				<div className="become-host-heading">Become a host in 3 easy steps</div>
 				<div className="become-host-steps">

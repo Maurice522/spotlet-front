@@ -229,7 +229,7 @@ const BookingForm = ({
 								onChange={(e) => {
 									// console.log(e.target.value)
 									setVal(e.target.value === "6am-6pm" ? "12" : "24");
-									setV3(e.target.value === "6am-6pm" ? "12" : "24");
+									// (e.target.value === "6am-6pm" ? "12" : "24");
 									let a= e.target.value === "6am-6pm" ? "12" : "24";
 									calculatePrice(event, a);
 								}}
