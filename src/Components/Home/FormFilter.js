@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../Assets/Styles/Home/formFilter.css";
-
+import {
+	Select,
+	MenuItem,
+		
+} from "@mui/material";
 const FormFilter = ({ fullScreen }) => {
 	const [active, setActive] = useState(false);
 	return (
@@ -38,22 +42,23 @@ const FormFilter = ({ fullScreen }) => {
 					<label
 						htmlFor="what"
 						className={active === true ? "focus-label" : "form-filter-label"}>
-						What are you looking for?
+						{/* What are you looking for? */}
+						Event
 					</label>
-					<select
+					<Select
 						id="what"
 						name="what"
 						defaultValue=""
+					
 						className={active === true ? "focus-select" : "form-filter-select"}
 						onChange={(e) => console.log(e.target.value)}>
-						<option value="" disabled hidden>
+						{/* <MenuItem value="" disabled hidden>
 							What?
-						</option>
-						<option value="1">Select</option>
-						<option value="2">Select</option>
-						<option value="3">Select</option>
-						<option value="4">Select</option>
-					</select>
+						</MenuItem> */}
+						<MenuItem value="1">Film Shooting</MenuItem>
+						<MenuItem value="2">Corporate Booking</MenuItem>
+						<MenuItem value="3">Individual Booking</MenuItem>
+					</Select>
 				</div>
 				<div>
 					<label
@@ -61,20 +66,23 @@ const FormFilter = ({ fullScreen }) => {
 						className={active === true ? "focus-label" : "form-filter-label"}>
 						Activity
 					</label>
-					<select
+					<Select
 						id="which"
 						name="which"
 						defaultValue=""
 						className={active === true ? "focus-select" : "form-filter-select"}
 						onChange={(e) => console.log(e.target.value)}>
-						<option value="" disabled hidden>
+						{/* <MenuItem value="" disabled hidden>
 							Which?
-						</option>
-						<option value="1">Select</option>
-						<option value="2">Select</option>
-						<option value="3">Select</option>
-						<option value="4">Select</option>
-					</select>
+						</option> */}
+					
+						<MenuItem value="1">Film Shoot</MenuItem>
+						<MenuItem value="2">Web Series Shoot</MenuItem>
+						<MenuItem value="3">Ad Film Shoot</MenuItem>
+						<MenuItem value="4">Music Album Shoot</MenuItem>
+						<MenuItem value="5">Green Screen</MenuItem>
+						<MenuItem value="6">Photo Shoot</MenuItem>
+					</Select>
 				</div>
 				<div>
 					<label
@@ -82,41 +90,36 @@ const FormFilter = ({ fullScreen }) => {
 						className={active === true ? "focus-label" : "form-filter-label"}>
 						Location
 					</label>
-					<select
+					<Select
 						id="where"
 						name="where"
 						defaultValue=""
 						className={active === true ? "focus-select" : "form-filter-select"}
 						onChange={(e) => console.log(e.target.value)}>
-						<option value="" disabled hidden>
+						{/* <MenuItem value="" disabled hidden>
 							Where?
-						</option>
-						<option value="1">Select</option>
-						<option value="2">Select</option>
-						<option value="3">Select</option>
-						<option value="4">Select</option>
-					</select>
+						</MenuItem> */}
+						<MenuItem value="1">Telangana</MenuItem>
+					</Select>
 				</div>
 				<div>
 					<label
-						htmlFor="when"
+						htmlFor="where"
 						className={active === true ? "focus-label" : "form-filter-label"}>
-						Date
+						City
 					</label>
-					<select
+					<Select
 						id="when"
 						name="when"
 						defaultValue=""
+						// value="Hyderabad"
 						className={active === true ? "focus-select" : "form-filter-select"}
 						onChange={(e) => console.log(e.target.value)}>
-						<option value="" disabled hidden>
-							When?
-						</option>
-						<option value="1">Select</option>
-						<option value="2">Select</option>
-						<option value="3">Select</option>
-						<option value="4">Select</option>
-					</select>
+						{/* <MenuItem value="" disabled hidden>
+							Where?
+						</MenuItem> */}
+						<MenuItem value="1">Hyderabad</MenuItem>
+					</Select>
 				</div>
 
 				<Link

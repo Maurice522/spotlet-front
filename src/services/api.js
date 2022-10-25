@@ -1,7 +1,9 @@
 import axios from "axios";
 
-// const server_domain = "https://gorecce-backend.herokuapp.com";
-const server_domain = "http://localhost:8000";
+// const server_domain = "https://gorecceback.herokuapp.com";
+const server_domain = "https://nipunbacky.herokuapp.com"; //TEMP HOSTED SERVER
+// const server_domain = "http://localhost:8000";
+
 
 ////////////////////////Auth////////////////////////
 // function to send signin request to backend
@@ -129,7 +131,6 @@ export const bookingRequest = (form) => {
 
 //get booking detail
 export const getBookingDetail = (bookingId, form) => {
-  
   return axios.put(server_domain + `/getbookingdetail/${bookingId}`, form)
 }
 
@@ -146,4 +147,13 @@ export const updateBookingStatus = (form) => {
 //delete booking request
 export const deleteBookingReq = (form) => {
   return axios.delete(server_domain + "/deletebookingrequest", {data : form});
+}
+
+//help center
+export const contactUs = (form) => {
+  return axios.post(server_domain + "/contactus", form);
+};
+
+export const getBlog = (blogid) => {
+  return axios.get(server_domain + "/getblog/"+blogid);
 }

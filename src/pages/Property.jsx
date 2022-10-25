@@ -36,14 +36,16 @@ const Property = ({
 	setV4,
 	setV5,
 	setV6,
+	setTotPrice,
+	tot_price
 }) => {
 	const [locationData, setLocationData] = useState({});
 	const [propertyItems, setPropertyItems] = useState([]);
 	const navigate = useNavigate();
-	const [cord, setCord] = useState({
-		lat: 0,
-		lng: 0,
-	});
+	// const [cord, setCord] = useState({
+	// 	lat: 0,
+	// 	lng: 0,
+	// });
 	const GEO_API = "b531f1d229f547d09b4c7c3207885471";
 	useEffect(() => {
 		getAllLocations()
@@ -55,22 +57,22 @@ const Property = ({
 			.then((res) => setLocationData(res.data))
 			.catch((err) => console.log(err));
 	}, []);
-	useEffect(() => {
-		// Get latitude & longitude from address.
-		axios
-			.get(
-				`https://api.geoapify.com/v1/geocode/search?city=${locationData?.property_address?.city}&state=${locationData?.property_address?.state}&country=India&lang=en&limit=1&type=city&format=json&apiKey=${GEO_API}`
-			)
-			.then((response) => {
-				//const { lat, lng } = response.results[0].geometry.location;
-				//  console.log(response.data.results[0]);
-				setCord({
-					lat: response.data.results[0].lat,
-					lng: response.data.results[0].lon,
-				});
-			})
-			.catch((err) => console.log(err));
-	}, [locationData]);
+	// useEffect(() => {
+	// 	// Get latitude & longitude from address.
+	// 	axios
+	// 		.get(
+	// 			`https://api.geoapify.com/v1/geocode/search?city=${locationData?.property_address?.city}&state=${locationData?.property_address?.state}&country=India&lang=en&limit=1&type=city&format=json&apiKey=${GEO_API}`
+	// 		)
+	// 		.then((response) => {
+	// 			//const { lat, lng } = response.results[0].geometry.location;
+	// 			//  console.log(response.data.results[0]);
+	// 			setCord({
+	// 				lat: response.data.results[0].lat,
+	// 				lng: response.data.results[0].lon,
+	// 			});
+	// 		})
+	// 		.catch((err) => console.log(err));
+	// }, [locationData]);
 	const locationItem = (
 		<div
 			style={{
@@ -91,7 +93,7 @@ const Property = ({
 					gap: "5px",
 				}}>
 				<div>Address:</div>
-				<div>
+				<div style={{ lineHeight: "24px" }}>
 					{locationData?.property_address?.address}
 					<br />
 					{locationData?.property_address?.landmark}
@@ -102,11 +104,11 @@ const Property = ({
 					{locationData?.property_address?.pincode}
 				</div>
 			</div>
-			<div style={{ width: "100%", height: "300px" }}>
+			{/* <div style={{ width: "100%", height: "300px" }}>
 				{cord.lat !== 0 && (
 					<GoogleMap lat={cord.lat} lng={cord.lng} zoom={13} />
 				)}
-			</div>
+			</div> */}
 		</div>
 	);
 
@@ -139,7 +141,7 @@ const Property = ({
 					) : (
 						<Avatar />
 					)}
-					<div>
+					<div style={{ lineHeight: "24px" }}>
 						<div>{locationData?.contact_det?.name}</div>
 						<div>{locationData?.contact_det?.mobile_num}</div>
 					</div>
@@ -148,11 +150,12 @@ const Property = ({
 					style={{
 						height: "fit-content",
 						border: "2px solid #ff5f5f",
+						background: "#f26767",
 						borderRadius: "5px",
-						marginRight: "20px",
+						marginRight: "5%",
 						padding: "4px 8px",
 						cursor: "pointer",
-						color: "black",
+						color: "white",
 						textTransform: "capitalize",
 					}}
 					onClick={() =>
@@ -165,8 +168,12 @@ const Property = ({
 			</div>
 			<div
 				style={{
-					width: "100%",
+					marginTop: "2%",
+					width: "90%",
+					textAlign: "justify",
 					padding: "10px",
+					paddingLeft: "5.5%",
+					lineHeight: "24px",
 				}}>
 				Description of the host ipsum dolor sit amet, consectetur adipiscing
 				elit. Nam hendrerit nisi sed sollicitu din pellentesque. Nunc posuere
@@ -416,6 +423,7 @@ const Property = ({
 			title: "Amenities",
 			info: locationData?.amenities,
 			type: "list",
+			columns: true,
 		},
 		{
 			expanded: expanded[2],
@@ -551,6 +559,8 @@ const Property = ({
 				setV5={setV5}
 				setV6={setV6}
 				locationData={locationData}
+				setTotPrice={setTotPrice}
+				tot_price={tot_price}
 			/>
 
 			<div
@@ -569,7 +579,7 @@ const Property = ({
 						}>
 						<AccordionSummary
 							sx={{
-								fontFamily: "Inter",
+								fontFamily: "Rubik",
 								fontStyle: "normal",
 								fontWeight: "500",
 								fontSize: "20px",
@@ -583,29 +593,53 @@ const Property = ({
 						</AccordionSummary>
 						<AccordionDetails
 							sx={{
-								fontFamily: "Inter",
+								fontFamily: "Rubik",
 								fontStyle: "normal",
 								fontWeight: "400",
 								fontSize: "16px",
 								paddingBottom: "30px",
 							}}>
 							{item?.type === "list" ? (
-								<div>
-									{item?.info?.map((val, i) => (
-										<div
-											key={i}
-											style={{
-												display: "flex",
-												justifyContent: "flex-start",
-												alignItems: "center",
-												gap: "10px",
-												lineHeight: "32px",
-											}}>
-											<GoPrimitiveDot color="#ff4d4d" />
-											<div>{val}</div>
-										</div>
-									))}
-								</div>
+								item?.columns === true ? (
+									<div
+										style={{
+											display: "grid",
+											gridTemplateColumns: "1fr 1fr 1fr",
+											gap: "20px",
+										}}>
+										{item?.info?.map((val, i) => (
+											<div
+												key={i}
+												style={{
+													display: "flex",
+													justifyContent: "flex-start",
+													alignItems: "center",
+													gap: "10px",
+													lineHeight: "32px",
+												}}>
+												<GoPrimitiveDot color="#ff4d4d" />
+												<div>{val}</div>
+											</div>
+										))}
+									</div>
+								) : (
+									<div>
+										{item?.info?.map((val, i) => (
+											<div
+												key={i}
+												style={{
+													display: "flex",
+													justifyContent: "flex-start",
+													alignItems: "center",
+													gap: "10px",
+													lineHeight: "32px",
+												}}>
+												<GoPrimitiveDot color="#ff4d4d" />
+												<div>{val}</div>
+											</div>
+										))}
+									</div>
+								)
 							) : (
 								item.info
 							)}

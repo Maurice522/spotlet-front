@@ -23,6 +23,7 @@ import ListingPlace from "./pages/ListingPlace";
 import Messages from "./pages/Messages";
 import HostPage from "./pages/HostPage";
 import Favorites from "./pages/Favorites";
+import Spotletpro from "./pages/Spotletpro";
 import AboutUs from "./pages/AboutUs";
 import Guidelines from "./pages/Guidelines";
 import TermsofService from "./pages/TermsofService";
@@ -37,6 +38,11 @@ import Resources from "./pages/Resources";
 import Resource from "./pages/Resource";
 import Cookies from "./pages/Cookies";
 import Careers from "./pages/Careers";
+import Affiliate from "./pages/Affiliate";
+import Activity from "./pages/Activity";
+import Cancellation from "./pages/Cancellation";
+import KnowledgeCenter from "./pages/KnowledgeCenter";
+
 
 function App() {
 	const dispatch = useDispatch();
@@ -56,13 +62,14 @@ function App() {
 
 	const date = new Date().toISOString().split("T")[0];
 
-	const [v1, setV1] = useState(date);
-	const [v2, setV2] = useState("06:30");
-	const [v3, setV3] = useState(0);
+	const [v1, setV1] = useState(date); // date
+	const [v2, setV2] = useState("06:30"); // time
+	const [v3, setV3] = useState(0); // price
 	const [v4, setV4] = useState("");
 	const [v5, setV5] = useState("");
 	const [v6, setV6] = useState(0);
-	const [event, setEvent] = useState("");
+	const [event, setEvent] = useState("Individual");
+	const [tot_price, setTotPrice] = useState(0);
 	return (
 		<BrowserRouter>
 			<div className="App">
@@ -89,19 +96,22 @@ function App() {
 								setV4={setV4}
 								setV5={setV5}
 								setV6={setV6}
+								setTotPrice={setTotPrice}
+								tot_price={tot_price}
 							/>
 						}
 					/>
 					<Route path="/account" element={user && <AccountInfo />} />
 					{/* {user && <Route path="/search" element={<Search />} />} */}
-					<Route path="/search" element={<Search />} />
+					<Route path="/search/:type" element={<Search />} />
 					<Route path="/aboutus" element={<AboutUs />} />
+					<Route path="/activities" element={<Activity />} />
 					<Route path="/listing" element={<ListingPlace />} />
 					<Route path="/messages/:bookingId" element={<Messages />} />
 					<Route path="/messages" element={<Messages />} />
 					<Route path="/bookinglist" element={<BookingList />} />
 					<Route path="/blogs" element={<Blogs />} />
-					<Route path="/blog/:blogId" element={<Blog />} />
+					<Route path="/blog/:blogid" element={<Blog />} />
 					<Route
 						path="/bookingdetails/:bookingId"
 						element={<BookingDetails />}
@@ -114,12 +124,19 @@ function App() {
 					<Route path="/termsofservice" element={<TermsofService />} />
 					<Route path="/cookiepreference" element={<Cookies />} />
 					<Route path="/community" element={<Community />} />
+					<Route path="/spotletpro" element={<Spotletpro />} />
 					<Route path="/photography" element={<Photography />} />
 					<Route path="/helpcenter" element={<HelpCenter />} />
 					<Route path="/trustandsafety" element={<TrustAndSafety />} />
 					<Route path="/careers" element={<Careers />} />
 					<Route path="/resourcecenter" element={<Resources />} />
 					<Route path="/resource/:resourceId" element={<Resource />} />
+					<Route path="/blogs" element={<Blogs />} />
+					<Route path="/blogs/blog" element={<Blog />} />
+					<Route path="/affiliate" element={<Affiliate />} />
+					<Route path="/cancellation" element={<Cancellation />} />
+					<Route path="/knowledgeCenter" element={<KnowledgeCenter />} />
+
 
 					<Route
 						path="location/:locationId/bookingdetail/:bookingId"
@@ -138,6 +155,7 @@ function App() {
 								v5={v5}
 								v6={v6}
 								event={event}
+								tot_price={tot_price}
 							/>
 						}
 					/>

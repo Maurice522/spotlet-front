@@ -1,13 +1,19 @@
 .wrapper {
 	margin: 10px auto;
-	width: 90vw;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-	/* justify-content: space-between; */
-	padding: 10px 20px;
-	border: 2px solid black;
+    width: 77vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* justify-content: space-between; */
+    padding: 30px 18px 24px 34px;
+    border: 1px solid lightgray;
 	border-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	/* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset; */
 }
 
 .active-rate {
@@ -30,9 +36,20 @@
 
 .form {
 	background: #fff;
+    height: fit-content;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(6, 1fr) auto;
+    z-index: 3;
+    gap: 0px;
+    align-items: center;
+}
+
+.form-2 {
+	background: #fff;
 	height: fit-content;
 	display: grid;
-	grid-template-columns: repeat(6, 1fr) auto;
+	grid-template-columns: repeat(5, 1fr) auto;
 	z-index: 3;
 	gap: 20px;
 	align-items: center;
@@ -50,41 +67,47 @@
 
 .normal {
 	display: block;
-	margin-top: 5px;
-	width: 95%;
-	height: 32px;
-	color: #808b93;
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 24px;
-	border: 1.5px solid #dee0e2;
-	border-radius: 4px;
-	background: #ffffff;
+    margin-top: 7px;
+    width: 90%;
+    height: 40px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    background: #ffffff;
+    border: 2px solid white;
+    padding-left: 7%;
+	padding-right: 3%;
+    border-radius: 4px;
+    color: black;
 }
 
 .focus {
 	display: block;
-	margin-top: 5px;
-	width: 95%;
-	height: 32px;
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 24px;
-	background: #ffffff;
-	border: 1.5px solid #374047;
-	border-radius: 4px;
-	color: black;
+    margin-top: 7px;
+    width: 90%;
+    height: 40px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    background: #ffffff;
+    border: 2px solid white;
+    padding-left: 7%;
+	padding-right: 3%;
+    border-radius: 4px;
+    color: black;
+
 }
+
 
 .focus::placeholder {
 	color: black;
 }
 
-.focus-label {
+/* .focus-label {
 	display: block;
 	color: black;
 	display: block;
@@ -93,7 +116,7 @@
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 24px;
-}
+} */
 
 .submit {
 	cursor: pointer;

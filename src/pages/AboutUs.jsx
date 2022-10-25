@@ -1,8 +1,13 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import image from "../Assets/Images/about-us-header-image.jpeg";
-import image2 from "../Assets/Images/about-us-content-image.jpeg";
+import image from "../Assets/Images/aboutUs_img2.jpeg";
+import image2 from "../Assets/Images/aboutUs_bottomImg.jpeg";
+import image3 from "../Assets/Images/aboutUs_SubImg3.jpeg";
+import image4 from "../Assets/Images/aboutUs_SubImg4.jpeg";
+import { Link } from "react-router-dom";
+
+
 import { Button } from "@mui/material";
 
 import "../Assets/Styles/aboutUs.css";
@@ -28,19 +33,18 @@ const AboutUs = () => {
 							state-of-the-art online platform enables guests to look for
 							specific locations, communicate with their hosts, and make
 							payments quickly, all in a single place.
-						</p>
-						<p>
+						
+
 							We aspire to create a community wherein you can always meet,
 							create and celebrate with like-minded people through our online
 							marketplace. So book the best spaces for any activity and enjoy a
 							rewarding experience.
-						</p>
-						<p>
+						
 							We aspire to provide guests with a simplified booking platform and
 							give property owners in India a channel to showcase their spaces
 							and earn additional income.
 						</p>
-						<h6>Let's Get Together</h6>
+						{/* <h6>Let's Get Together</h6> */}
 					</div>
 				</div>
 
@@ -53,11 +57,14 @@ const AboutUs = () => {
 							serial shooting locations, SpotLet has you covered. Find the keys
 							to the most unique and exciting spaces on our portal.
 						</div>
+						<Link to="/" >
 						<Button
 							variant="outlined"
+							className="buttonHover"
 							sx={{
 								marginTop: "30px",
 								borderColor: "#ff6767",
+								background:"#white",
 								color: "black",
 								fontSize: "14px",
 								fontFamily: "Rubik",
@@ -66,6 +73,8 @@ const AboutUs = () => {
 							}}>
 							Let’s Get Started
 						</Button>
+				</Link>
+						
 					</div>
 
 					<div>
@@ -77,16 +86,21 @@ const AboutUs = () => {
 								width: "300px",
 								height: "300px",
 								backgroundColor: "#ff6767",
+								boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+
 							}}>
 							<div
 								style={{
 									position: "absolute",
-									top: "-40px",
-									left: "-40px",
+									top: "-28px",
+									left: "-28px",
 									width: "300px",
 									height: "300px",
 									backgroundColor: "#d9d9d9",
-								}}></div>
+									boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+								}}>
+									<img src={image3} alt="background" className="container-img" />
+								</div>
 						</div>
 					</div>
 				</div>
@@ -101,16 +115,21 @@ const AboutUs = () => {
 								width: "300px",
 								height: "300px",
 								backgroundColor: "#ff6767",
+								boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
 							}}>
 							<div
 								style={{
 									position: "absolute",
-									top: "-40px",
-									left: "-40px",
+									top: "-28px",
+									left: "-28px",
 									width: "300px",
 									height: "300px",
 									backgroundColor: "#d9d9d9",
-								}}></div>
+									boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+								}}>
+									<img src={image4} alt="background" className="container-img" />
+
+								</div>
 						</div>
 					</div>
 					<div>
@@ -122,19 +141,24 @@ const AboutUs = () => {
 							professionals, families and film crew to experience your unique
 							offerings.
 						</div>
+						<Link to="/host" >
 						<Button
 							variant="outlined"
+							className="buttonHover"
 							sx={{
 								marginTop: "30px",
 								borderColor: "#ff6767",
+								background:"white",
 								color: "black",
 								fontSize: "14px",
 								fontFamily: "Rubik",
 								fontWeight: "600",
 								padding: "6px 12px",
 							}}>
-							Let’s Get Hosting
+							Let’s Get Started
 						</Button>
+				</Link>
+					
 					</div>
 				</div>
 			</div>
@@ -143,6 +167,7 @@ const AboutUs = () => {
 				style={{
 					width: "98.8vw",
 					height: "500px",
+					marginTop:"4%",
 				}}>
 				<img
 					src={image2}
@@ -173,24 +198,35 @@ const AboutUs = () => {
 						to welcome you on board.
 					</div>
 					<div className="about-us-btn-container">
-						<Button
+					<Link to="/host" >
+					<Button
 							variant="contained"
+							className="buttonHover1"
 							sx={{
 								backgroundColor: "#EA4235",
 								color: "white",
 								padding: "12px 24px",
+								width:"100%",
+
 							}}>
-							Current Openings
+							List a Place
 						</Button>
+					</Link>
+						
+						<Link to="/helpcenter" >
 						<Button
 							variant="outlined"
+							className="buttonHover"
 							sx={{
 								borderColor: "#EA4235",
 								color: "black",
 								padding: "12px 24px",
+								width:"100%",
 							}}>
-							Send your Resume
+							Connect with Us
 						</Button>
+						</Link>
+						
 					</div>
 				</div>
 			</div>

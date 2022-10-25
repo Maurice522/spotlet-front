@@ -155,7 +155,7 @@ const BookingDetails = () => {
 								disabled = {booking?.payment_status !== "Under Review"}
 								onClick={deleteBooking}
 								>
-								Reject
+								Cancel Booking
 							</Button>
 						</div>
 					</div>

@@ -1,12 +1,13 @@
 import React from "react";
-import image from "../Assets/Images/photographyMainImage.png";
+import image from "../Assets/Images/trustandSafety_img2.jpeg";
 import Navbar from "../Components/Navbar";
 import image1 from "../Assets/Images/container1ImgPhotography.png";
 import image2 from "../Assets/Images/PhotographyImg2.png";
 import TAS_Cards from "../Components/TAS_Cards";
 import Footer from "../Components/Footer";
-import "../Assets/Styles/trustAndSafety.css";
 import "../Assets/Styles/photography.css";
+import "../Assets/Styles/trustAndSafety.css";
+
 import { Button } from "@mui/material";
 import { ImWarning } from "react-icons/im";
 import { BsShield } from "react-icons/bs";
@@ -16,6 +17,8 @@ import { AiOutlineLock } from "react-icons/ai";
 import { AiOutlineStar } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { FiKey } from "react-icons/fi";
+import { Link } from "react-router-dom";
+
 
 const TrustAndSafety = () => {
 	const elements = [
@@ -80,14 +83,20 @@ const TrustAndSafety = () => {
 				<h3>Trust and Safety with you in mind</h3>
 				<div>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit
+					nisi sed sollicitudin hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
+					purus rhoncus pulvinar aliquam.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit
 					nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus
+					pulvinar aliquam.  Nunc posuere purus rhoncus
 					pulvinar aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing
 					elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
 					purus rhoncus pulvinar aliquam.{" "}
 				</div>
 			</div>
 
-			<div className="tas-card-container">
+			<div className="tas-card-container" style={{
+				marginTop:"6%",
+	
+			}}>
 				{elements.map((item, ind) => (
 					<TAS_Cards data={item} key={ind} />
 				))}
@@ -198,12 +207,16 @@ const TrustAndSafety = () => {
 							adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
 							Nunc posuere purus rhoncus pulvinar aliquam.{" "}
 						</div>
+						<Link to="/" >
 						<Button
 							variant="outlined"
+							className="buttonHover1"
 							sx={{
 								marginTop: "30px",
 								borderColor: "#ff6767",
-								color: "black",
+								color: "white",
+								background:"#ff6767",
+							
 								fontSize: "14px",
 								fontFamily: "Rubik",
 								fontWeight: "600",
@@ -211,6 +224,8 @@ const TrustAndSafety = () => {
 							}}>
 							Find a space
 						</Button>
+						</Link>
+						
 					</div>
 
 					<div>
@@ -218,9 +233,9 @@ const TrustAndSafety = () => {
 							style={{
 								position: "relative",
 								top: "0%",
-								left: "40%",
-								width: "200px",
-								height: "200px",
+								left: "26%",
+								width: "340px",
+								height: "340px",
 								backgroundColor: "#ff6767",
 							}}>
 							<div
@@ -228,8 +243,8 @@ const TrustAndSafety = () => {
 									position: "absolute",
 									top: "-40px",
 									left: "-40px",
-									width: "200px",
-									height: "200px",
+									width: "340px",
+									height: "340px",
 									backgroundColor: "#d9d9d9",
 								}}>
 								<img src={image1} alt="background" className="container-img" />
@@ -251,17 +266,17 @@ const TrustAndSafety = () => {
 								position: "relative",
 								top: "0%",
 								left: "10%",
-								width: "200px",
-								height: "200px",
+								width: "340px",
+								height: "340px",
 								backgroundColor: "#ff6767",
 							}}>
 							<div
 								style={{
 									position: "absolute",
-									top: "-40px",
-									left: "-40px",
-									width: "200px",
-									height: "200px",
+									top: "-35px",
+									left: "-32px",
+									width: "340px",
+									height: "340px",
 									backgroundColor: "#d9d9d9",
 								}}>
 								<img src={image2} alt="background" className="container-img" />
@@ -279,19 +294,25 @@ const TrustAndSafety = () => {
 							adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
 							Nunc posuere purus rhoncus pulvinar aliquam.{" "}
 						</div>
+						<Link to="/host" >
 						<Button
+							className="buttonHover"
+
 							variant="outlined"
 							sx={{
 								marginTop: "30px",
 								borderColor: "#ff6767",
 								color: "black",
+								background:"white",
+							
 								fontSize: "14px",
 								fontFamily: "Rubik",
 								fontWeight: "600",
 								padding: "6px 12px",
 							}}>
-							Find a space
+							List a space
 						</Button>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -313,19 +334,26 @@ const TrustAndSafety = () => {
 							adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque.
 							Nunc posuere purus rhoncus pulvinar aliquam.{" "}
 						</div>
+						<Link to="/helpcenter" >
 						<Button
+							className="buttonHover1"
+
 							variant="outlined"
 							sx={{
 								marginTop: "30px",
 								borderColor: "#ff6767",
-								color: "black",
+								color: "white",
+								background:"#ff6767",
+							
 								fontSize: "14px",
 								fontFamily: "Rubik",
 								fontWeight: "600",
 								padding: "6px 12px",
 							}}>
-							Find a space
+							Get in Touch
 						</Button>
+						</Link>
+						
 					</div>
 
 					<div>
@@ -333,9 +361,9 @@ const TrustAndSafety = () => {
 							style={{
 								position: "relative",
 								top: "0%",
-								left: "40%",
-								width: "200px",
-								height: "200px",
+								left: "26%",
+								width: "340px",
+								height: "340px",
 								backgroundColor: "#ff6767",
 							}}>
 							<div
@@ -343,8 +371,8 @@ const TrustAndSafety = () => {
 									position: "absolute",
 									top: "-40px",
 									left: "-40px",
-									width: "200px",
-									height: "200px",
+									width: "340px",
+									height: "340px",
 									backgroundColor: "#d9d9d9",
 								}}>
 								<img src={image1} alt="background" className="container-img" />

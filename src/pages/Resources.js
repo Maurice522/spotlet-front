@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Assets/Styles/resources.css";
-import image from "../Assets/Images/resources.png";
+import image from "../Assets/Images/resourceCenter_img2.jpeg";
 import image1 from "../Assets/Images/container1ImgPhotography.png";
 import Navbar from "../Components/Navbar";
 import { Pagination } from "@mui/material";
@@ -69,7 +69,7 @@ const Resources = () => {
 					<div
 						className="message myMessage"
 						style={{
-							color: "black",
+							color: "white",
 						}}>
 						RESOURCE CENTRE
 					</div>
@@ -78,14 +78,15 @@ const Resources = () => {
 					{elements.map((item, ind) => (
 						<div class="Div1" key={ind}>
 							<div class="resourceContent">
+							<Link to={`/resource/${item.id}`}>
+
 								<img
 									src={item.image}
 									alt="background"
 									className="resoourceImg "
 								/>
-								<h3>{item.title}</h3>
-								<p>{item.info}</p>
-								<Link to={`/resource/${item.id}`}>
+								<h3 style={{color:"black"}}>{item.title}</h3>
+								<p style={{color:"black"}}>{item.info}</p>
 									<p className="readmore">{item.linkText}</p>
 								</Link>
 							</div>

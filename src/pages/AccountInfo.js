@@ -261,11 +261,10 @@ const AccountInfo = (extraNavId) => {
                       name="booking_type"
                       displayEmpty
                       inputProps={{ "aria-label": "Without label" }}
-                      fullWidth
                       sx={{ height: "2.8em" }}
                       required
                     >
-                      <MenuItem value="">None</MenuItem>
+                      
                       <MenuItem value="individual">Individual</MenuItem>
                       <MenuItem value="corporate">Corporate</MenuItem>
                     </Select>
@@ -297,7 +296,7 @@ const AccountInfo = (extraNavId) => {
                   </label>
                 </div>
                 <div className="r2">
-                  <button type="submit" className="accbut">
+                  <button type="submit" className="applyChangeAcc accbut">
                     Apply Changes
                   </button>
                 </div>
@@ -311,10 +310,10 @@ const AccountInfo = (extraNavId) => {
           {section === "Security" ? (
             <div className="profr">
               <form onSubmit={handleUpdatePassword}>
-                <div className="r1">
+                <div className="r1 changePassword">
                   <h1>Change Password</h1>
                 </div>
-                <div className="r2">
+                <div className="r2 r2Password">
                   <label>
                     <h2>Current Password</h2>
                     <input
@@ -331,7 +330,7 @@ const AccountInfo = (extraNavId) => {
                     />
                   </label>
                 </div>
-                <div className="r2">
+                <div className="r2 r2Password">
                   <label>
                     <h2>New Password</h2>
                     <input
@@ -348,7 +347,7 @@ const AccountInfo = (extraNavId) => {
                     />
                   </label>
                 </div>
-                <div className="r2">
+                <div className="r2 r2Password">
                   <label>
                     <h2>Confirm Password</h2>
                     <input
@@ -365,15 +364,15 @@ const AccountInfo = (extraNavId) => {
                     />
                   </label>
                 </div>
-                <div className="r2">
+                <div className="r2 r2Password">
                   <button type="submit" className="accbut">
                     Update Password
                   </button>
                 </div>
               </form>
-              <div className="r1de">
+              <div className="r1de r2Password deactivateAccount">
                 Deactivate Your Account:
-                <button className="accbut" onClick={handleDeactivate}>
+                <button className="accbut deactivateBtn" onClick={handleDeactivate}>
                   Deactivate Account
                 </button>
               </div>
@@ -385,7 +384,7 @@ const AccountInfo = (extraNavId) => {
           {/* Payments Section  */}
           {section === "Payments" ? (
             <div className="profr">
-              <h1>Payments</h1>
+              <h1 className="paymentH1">Payments</h1>
               <br />
               <Accordion>
                 <AccordionSummary
@@ -395,23 +394,23 @@ const AccountInfo = (extraNavId) => {
                   id="panel1a-header"
                 >
                   <Typography>
-                    <h1>Saved Cards</h1>
+                    <h1 className="cardsH1">Saved Cards</h1>
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
                     <Card sx={{ minWidth: 275 }}>
                       <CardContent>
-                        <Typography sx={{ fontSize: 24 }}>
+                        <Typography sx={{ fontSize: 18}} >
                           ICICI Credit Card
                         </Typography>
-                        <Typography variant="h5" component="div">
+                        <Typography variant="h6" component="div">
                           **** **** **** 6666
                           <br />
                           Saket Mundra
                         </Typography>
                         <Typography>
-                          <h2>CVV</h2>
+                          <h2 style={{marginTop:"2%",color:"#f26767"}}>CVV</h2>
                           <input
                             style={{ width: "100px", height: "28px" }}
                             type="text"
@@ -419,7 +418,7 @@ const AccountInfo = (extraNavId) => {
                         </Typography>
                       </CardContent>
                       <CardActions>
-                        <button size="small" className="accbut">
+                        <button size="small" className="accbut paynowBtn">
                           Pay Now
                         </button>
                       </CardActions>
@@ -435,13 +434,13 @@ const AccountInfo = (extraNavId) => {
                   id="panel2a-header"
                 >
                   <Typography>
-                    <h1>Credit/Debit Cards</h1>
+                    <h1 className="cardsH1">Credit/Debit Cards</h1>
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails
                   sx={{
                     fontWeight: "400",
-                    fontSize: "20px",
+                    fontSize: "12px",
                   }}
                 >
                   <Typography>
@@ -483,8 +482,8 @@ const AccountInfo = (extraNavId) => {
                             />
                           </label>
                         </div>
-                        <div className="r2">
-                          <button className="accbut">Pay Now</button>
+                        <div className="r2 r2Password">
+                          <button className="accbut paynowBtnCredit">Pay Now</button>
                         </div>
                       </form>
                     </div>
@@ -499,7 +498,7 @@ const AccountInfo = (extraNavId) => {
                   id="panel3a-header"
                 >
                   <Typography>
-                    <h1>UPI</h1>
+                    <h1 className="cardsH1">UPI</h1>
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails
@@ -521,7 +520,7 @@ const AccountInfo = (extraNavId) => {
                             />
                           </label>
                         </div>
-                        <button className="accbut">Pay Now</button>
+                        <button className="accbut" style={{ marginTop: "2%",width:" 200px"}}>Pay Now</button>
                       </form>
                     </div>
                   </Typography>

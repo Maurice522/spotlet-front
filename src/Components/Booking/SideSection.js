@@ -39,7 +39,8 @@ const SideSection = ({
 	v3,
 	v4,
 	v5,
-	v6
+	v6,
+	tot_price,
 }) => {
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
@@ -48,19 +49,24 @@ const SideSection = ({
 	const navigate = useNavigate();
 	const user_id = useSelector(selectUser_id);
 	const location_id = window.location.pathname.substring(1, 10);
-	const total_amt = v3 === "12" ? ((v6 * v3*0.9) + 40) : (v3 === "24" ? ((v6 * v3*0.8) + 40) : (v6*v3)+40) ;
+	const total_amt =
+		v3 === "12"
+			? v6 * v3 * 0.9 * 1.18 + 80
+			: v3 === "24"
+			? v6 * v3 * 0.8 * 1.18 + 80
+			: v6 * v3 * 1.18 + 80;
 	useEffect(() => {
 		getLocation(location_id)
-		  .then((res) => setLocationData(res.data))
-		  .catch((err) => console.log(err));
-	  }, []);
-	  //console.log(v1, v2, v3, v4, v5, v6, event, userData);
+			.then((res) => setLocationData(res.data))
+			.catch((err) => console.log(err));
+	}, []);
+	//console.log(v1, v2, v3, v4, v5, v6, event, userData);
 
-	  const year = v1.slice(0, 4);
-	  const month = v1.slice(5, 7);
-	  const day = v1.slice(8, 10);
+	const year = v1.slice(0, 4);
+	const month = v1.slice(5, 7);
+	const day = v1.slice(8, 10);
 
-	const handleClick = async() => {
+	const handleClick = async () => {
 		//console.log("clicked");
 		if (index === 0) {
 			setIndex(1);
@@ -72,34 +78,42 @@ const SideSection = ({
 				toast.error("Please accept the terms and conditions");
 			}
 		} else if (index === 2) {
-			if (readyForRequest && userData.firstName !== "" && userData.lastName !== "" &&
-			 	userData.who_reserves !== "" && userData.dob !== "" && userData.message !== "")
-			 {
+			if (
+				readyForRequest &&
+				userData.firstName !== "" &&
+				userData.lastName !== "" &&
+				userData.who_reserves !== "" &&
+				userData.dob !== "" &&
+				userData.message !== ""
+			) {
 				const bookingDet = {
-					activity : v5,
-					attendies : v4,
-					date : day + '-' + month + '-' + year,
-					duration_in_hours : v3,
+					activity: v5,
+					attendies: v4,
+					date: day + "-" + month + "-" + year,
+					duration_in_hours: v3,
 					event,
-					owner_id : locationData.property_desc.user_id,
-					property_id : location_id,
-					time :v2,
+					owner_id: locationData.property_desc.user_id,
+					property_id: location_id,
+					time: v2,
 					total_amt,
 					user_id,
-					user_data : {
-						fullName : userData.firstName + " " + userData.lastName,
-						who_reserves : userData.who_reserves,
-						[userData.who_reserves === "Individual" ? "profession" : "company"] : userData.who_reserves === "Individual" ? userData.profession : userData.company,
-						dob : userData.dob,
-						message : userData.message
-					}
-				}
+					user_data: {
+						fullName: userData.firstName + " " + userData.lastName,
+						who_reserves: userData.who_reserves,
+						[userData.who_reserves === "Individual" ? "profession" : "company"]:
+							userData.who_reserves === "Individual"
+								? userData.profession
+								: userData.company,
+						dob: userData.dob,
+						message: userData.message,
+					},
+				};
 				try {
 					await bookingRequest(bookingDet);
 					handleOpen();
 					setReadyForRequest(false);
 					setTimeout(() => {
-						window.location = "/";
+						window.location = "/bookinglist";
 					}, 3000);
 				} catch (error) {
 					console.log(error);
@@ -110,11 +124,9 @@ const SideSection = ({
 		}
 	};
 
-
-
 	// console.log(v1, v3, v4);
 	return (
-		<div>
+		<div style={{width:"30%"}}>
 			<div className="side-section-image-wrapper">
 				<img
 					src={locationData?.images?.at(0)}
@@ -125,35 +137,46 @@ const SideSection = ({
 
 			<div data-attribute-1>{location_id}</div>
 			<div data-attribute-2>Location</div>
+			<br/><br/>
 
-			<div className="booking-side-section-title">Reserved Date</div>
+			{/* <div className="booking-side-section-title">Reserved Date</div>
 			<div className="booking-side-section-info">
 				{format(new Date(Number(year), Number(month), Number(day)), "PPP")}
-			</div>
-			<div className="booking-side-section-title">Reserved Time</div>
-			<div className="booking-side-section-info">{`${v3} Hours`}</div>
-			<div className="booking-side-section-title">Attendies</div>
-			<div className="booking-side-section-info">{v4} </div>
+			</div> */}
+			{/* <div className="booking-side-section-title">Reserved Time</div>
+			<div className="booking-side-section-info">{`${v3} Hours`}</div> */}
 
 			<div data-attribute-3>
-				<div data-attribute-4>Rs {v6} * {v3} hrs</div>
-				<div data-attribute-4>Rs{v6 * v3}</div>
+				<div data-attribute-4>
+				₹ {v6} * {v3} hrs (including Gst)
+				</div>
+				<div data-attribute-4>₹ {v6 * v3 * 1.18}</div>
 			</div>
 			<div data-attribute-3>
-				<div data-attribute-4>Processing Fee</div>
-				<div data-attribute-4>Rs40</div>
+				<div data-attribute-4>Discounted Price</div>
+				<div data-attribute-4>{tot_price}</div>
+			</div>
+
+			<div data-attribute-3>
+				<div data-attribute-4>Cleaning Fee (including Gst)</div>
+				<div data-attribute-4>₹ 40</div>
+			</div>
+
+			<div data-attribute-3>
+				<div data-attribute-4>Processing Fee (including Gst)</div>
+				<div data-attribute-4>₹ 40</div>
 			</div>
 
 			<div data-attribute-3>
 				<div data-attribute-1>Total</div>
-				<div data-attribute-1>Rs {total_amt}</div>
+				<div data-attribute-1>₹ {tot_price+80}</div>
 			</div>
 
 			<Button
 				variant="contained"
 				onClick={handleClick}
 				sx={{
-					width: "20vw",
+					width: "22vw",
 					backgroundColor: "#EA4235",
 					color: "white",
 					borderRadius: "4px",
@@ -176,10 +199,10 @@ const SideSection = ({
 					<Box sx={style}>
 						<MdDone size={50} color="green" />
 						<Typography id="transition-modal-title" variant="h6" component="h2">
-							Request Sent Successfully
+							Request Sent Successfully!
 						</Typography>
 						<Typography id="transition-modal-description" sx={{ mt: 2 }}>
-							You will be redirected to home page in 3 seconds
+							You will be redirected to the bookings page in 3 seconds
 						</Typography>
 					</Box>
 				</Fade>

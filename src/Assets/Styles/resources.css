@@ -34,3 +34,19 @@
 .readmore {
 	color: red;
 }
+
+/* *************************individual Resource********************** */
+.singleBlogContent{
+	width: 80%;
+	margin: auto;
+	line-height: 24px;
+	text-align: justify;
+	margin-top:2%;
+	margin-bottom: 16%;
+}
+.singleBlogContent h1{
+	font-weight: 600;
+	font-size: 30px;
+	margin-bottom:5%;
+}
+

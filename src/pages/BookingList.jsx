@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { selectUserData } from "../redux/slices/userSlice";
 import { locationRequest } from "../services/api";
 import { useEffect } from "react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const gridActionButton = (props) => (
 	<Link
@@ -105,12 +106,6 @@ const bookingGrid = [
 		headerAlign: "Center",
 	},
 	{
-		headerName: "Attendies",
-		field: "Attendies",
-		width: "150",
-		headerAlign: "Center",
-	},
-	{
 		headerName: "Total Amount",
 		field: "TotalAmount",
 		width: "140",
@@ -143,7 +138,7 @@ const listingGrid = [
 	{
 		headerName: "Booking Request",
 		field: "BookingRequest",
-		width: "200",
+		width: "190",
 		headerAlign: "Center",
 	},
 	{
@@ -157,30 +152,34 @@ const listingGrid = [
 const BookingList = () => {
 	const [active, setActive] = useState(0);
 	const userData = useSelector(selectUserData);
-	const [locrequests, setLocRequests] = useState([]); 
+	const [locrequests, setLocRequests] = useState([]);
 	useEffect(() => {
-		 userData &&userData?.listedLocations.map(async loc => {
-			try {
-				const response = await locationRequest(loc?.location_id);
-				const {requests} = response.data;
-				setLocRequests([...locrequests, requests.length]);
-			} catch (error) {
-				console.log(error);
-			}
-		})
-	}, [userData])
-	
+		userData &&
+			userData?.listedLocations.map(async (loc) => {
+				try {
+					const response = await locationRequest(loc?.location_id);
+					const { requests } = response.data;
+					setLocRequests([...locrequests, requests.length]);
+				} catch (error) {
+					console.log(error);
+				}
+			});
+	}, [userData]);
+
 	const bookingData = userData?.portfolio.map((booking, index) => {
-		const endTime =( Number(booking?.time.substr(0,2))+Number(booking?.duration_in_hours))%24;
-		const date = new Date(booking?.timestamp?._seconds*1000)
+		const endTime =
+			(Number(booking?.time.substr(0, 2)) +
+				Number(booking?.duration_in_hours)) %
+			24;
+		const date = new Date(booking?.timestamp?._seconds * 1000);
 		const yyyy = date.getFullYear();
 		let mm = date.getMonth() + 1; // Months start at 0!
 		let dd = date.getDate();
 
-		if (dd && dd < 10) dd = '0' + dd;
-		if (mm && mm < 10) mm = '0' + mm;
+		if (dd && dd < 10) dd = "0" + dd;
+		if (mm && mm < 10) mm = "0" + mm;
 
-		const formattedDate = dd + '/' + mm + '/' + yyyy;
+		const formattedDate = dd + "/" + mm + "/" + yyyy;
 		return {
 			id: index,
 			action: gridActionButton,
@@ -188,27 +187,62 @@ const BookingList = () => {
 			BookingId: booking?.bookingId,
 			Status: booking?.payment_status,
 			Date: formattedDate,
-			TimeDuration: booking?.time + " - " + endTime + booking?.time.substr(2) + ", " + booking?.duration_in_hours,
-			Attendies: booking?.attendies,
+			TimeDuration:
+				booking?.time +
+				" - " +
+				endTime +
+				booking?.time.substr(2) +
+				", " +
+				booking?.duration_in_hours,
 			TotalAmount: booking?.total_amt,
-		}
-	})
+		};
+	});
 
-	const listingData = userData?.listedLocations.map( (loc, index) => {
+	// const bookingData = [
+	// 	{
+	// 		id: 1,
+	// 		action: gridActionButton,
+	// 		to: `/bookingdetails/1}`,
+	// 		BookingId: "booking?.bookingId",
+	// 		Status: "booking?.payment_status",
+	// 		Date: "formattedDate",
+	// 		TimeDuration: "4 hours",
+	// 		TotalAmount: "booking?.total_amt",
+	// 	},
+	// ];
+
+	const listingData = userData?.listedLocations.map((loc, index) => {
 		return {
-				action: gridActionButton,
-		 		LocationId: loc?.location_id,
-				Status: loc.verified,
-		 		id: index,
-		 		to: "/listdetails/" + loc.location_id,
-				BookingRequest: `${locrequests?.at(index)} Requests`,
-		}
-	})
+			action: gridActionButton,
+			LocationId: loc?.location_id,
+			Status: loc.verified,
+			id: index,
+			to: "/listdetails/" + loc.location_id,
+			BookingRequest: `${locrequests?.at(index)} Requests`,
+		};
+	});
+
+	// const listingData = [
+	// 	{
+	// 		action: "gridActionButton",
+	// 		LocationId: "loc?.location_id",
+	// 		Status: "loc.verified",
+	// 		id: "index",
+	// 		to: "/listdetails/2",
+	// 		BookingRequest: "`${locrequests?.at(index)} Requests`",
+	// 	},
+	// ];
+	console.log("Booking Data", bookingData);
+	console.log("Listing Data", listingData);
+
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
 			<div className="below-nav">
-				<div className="booking-list-header">
+				<div className="booking-list-header" style={{position:"relative"}}>
+				<Link to="/" >
+				<ArrowBackIcon style={{position:"absolute",left:"0%",bottom:"20%",fontSize:"32px",color:"f26767"}}/>
+				</Link>
 					<div
 						className={active === 0 ? "chosen option" : "option"}
 						onClick={() => {
@@ -238,7 +272,7 @@ const BookingList = () => {
 						style={{
 							width: "57vw",
 							margin: "40px auto",
-							height: "80vh",
+							height: "85vh",
 						}}>
 						<SyncfusionTable UsersData={listingData} UsersGrid={listingGrid} />
 					</div>

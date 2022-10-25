@@ -5,12 +5,12 @@ import { MdOutlineCorporateFare } from "react-icons/md";
 import { AiOutlineDown } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "../../Assets/Styles/Home/sectionMenu.css";
-import img1 from "../../Assets/Images/menu-1.jpeg";
-import img2 from "../../Assets/Images/menu-2.jpeg";
-import img3 from "../../Assets/Images/menu-3.jpeg";
-import img4 from "../../Assets/Images/menu-4.jpeg";
-import img5 from "../../Assets/Images/menu-5.jpeg";
-import img6 from "../../Assets/Images/menu-6.jpeg";
+import corp_img1 from "../../Assets/Images/corp_img1.jpeg";
+import corp_img2 from "../../Assets/Images/corp_img2.jpeg";
+import corp_img3 from "../../Assets/Images/corp_img3.jpeg";
+import corp_img4 from "../../Assets/Images/corp_img4.jpeg";
+import corp_img5 from "../../Assets/Images/corp_img5.jpeg";
+import corp_img6 from "../../Assets/Images/corp_img6.jpeg";
 
 import film_img1 from "../../Assets/Images/film-menu-1.jpeg";
 import film_img2 from "../../Assets/Images/film-menu-2.jpeg";
@@ -31,24 +31,24 @@ import arrow from "../../Assets/Images/border-arrow.jpeg";
 const SectionMenu = () => {
 	const filmShooting = [
 		{ image: film_img1, text: "Ad Film Shoot" },
-		{ image: film_img2, text: "Web Series Shoot" },
 		{ image: film_img3, text: "Film Shoot" },
+		{ image: film_img2, text: "Web Series Shoot" },
 		{ image: film_img4, text: "Music Album Shoot" },
 		{ image: film_img5, text: "TV Serial" },
 		{ image: film_img6, text: "Photoshoot" },
 	];
 	const corporateShooting = [
-		{ image: img1, text: "Company Meetings" },
-		{ image: img2, text: "Company Party" },
-		{ image: img3, text: "Product Launch" },
-		{ image: img4, text: "Comapny Anniversary" },
-		{ image: img5, text: "Conference" },
-		{ image: img6, text: "Award Ceremony" },
+		{ image: corp_img1, text: "Company Meetings" },
+		{ image: corp_img3, text: "Product Launch" },
+		{ image: corp_img2, text: "Company Party" },
+		{ image: corp_img4, text: "Comapny Anniversary" },
+		{ image: corp_img5, text: "Conference" },
+		{ image: corp_img6, text: "Award Ceremony" },
 	];
 	const individualShooting = [
 		{ image: indi_img1, text: "Birthday Party" },
-		{ image: indi_img2, text: "Family/Friends Gathering" },
 		{ image: indi_img3, text: "Engagement Party" },
+		{ image: indi_img2, text: "Family/Friends Gathering" },
 		{ image: indi_img4, text: "Baby Shower" },
 		{ image: indi_img5, text: "Bachelor Party" },
 		{ image: indi_img6, text: "Festive Event" },
@@ -71,7 +71,7 @@ const SectionMenu = () => {
 		"grid-menu-item-3",
 	];
 
-	const [arrow, setArrow] = useState({
+	const [arrowState, setArrowState] = useState({
 		film: true,
 		corporate: false,
 		individual: false,
@@ -80,7 +80,9 @@ const SectionMenu = () => {
 	let gridItems = shootMap[shoot].map((img, index) => (
 		<div className={classes[index]} key={index}>
 			<Link
-				to="/search"
+				to={{
+					pathname:"/search/"+shoot
+				}}
 				style={{
 					textDecoration: "none",
 				}}>
@@ -98,39 +100,26 @@ const SectionMenu = () => {
 						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center",
-						borderBottom: `2px solid ${shoot === 1 ? "#ff6767" : "black"}`,
+						borderBottom: "2px solid #ff6767",
 						paddingBottom: "5px",
 						color: shoot === 1 ? "#ff6767" : "black",
 						position: "relative",
 					}}
-					onClick={() => setShoot(1)}>
+					onClick={() => {
+						setShoot(1);
+						setArrowState({
+							film: true,
+							corporate: false,
+							individual: false,
+						});
+					}}>
 					<GiFilmProjector size="40px" />
 					<div className={`menu-heading-item`}>Film Shooting</div>
 					<img
 						src={arrow}
 						alt="Arrow"
-						className={`border-arrow ${arrow.film === false ? "hide" : ""}`}
-					/>
-				</div>
-				<div
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						justifyContent: "center",
-						alignItems: "center",
-						borderBottom: `2px solid ${shoot === 2 ? "#ff6767" : "black"}`,
-						paddingBottom: "5px",
-						color: shoot === 2 ? "#ff6767" : "black",
-						position: "relative",
-					}}
-					onClick={() => setShoot(2)}>
-					<MdOutlineCorporateFare size="40px" />
-					<div className={`menu-heading-item`}>Corporate Shooting</div>
-					<img
-						src={arrow}
-						alt="Arrow"
 						className={`border-arrow ${
-							arrow.corporate === false ? "hide" : ""
+							arrowState.film === false ? "hide" : ""
 						}`}
 					/>
 				</div>
@@ -140,19 +129,55 @@ const SectionMenu = () => {
 						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center",
-						borderBottom: `2px solid ${shoot === 3 ? "#ff6767" : "black"}`,
+						borderBottom: "2px solid #ff6767",
 						paddingBottom: "5px",
-						color: shoot === 3 ? "#ff6767" : "black",
+						color: shoot === 2 ? "#ff6767" : "black",
 						position: "relative",
 					}}
-					onClick={() => setShoot(3)}>
-					<BsPersonFill size="40px" />
-					<div className={`menu-heading-item`}>Individual Shooting</div>
+					onClick={() => {
+						setShoot(2);
+						setArrowState({
+							film: false,
+							corporate: true,
+							individual: false,
+						});
+					}}>
+					<MdOutlineCorporateFare size="40px" />
+					<div className={`menu-heading-item`}>Corporate Events</div>
 					<img
 						src={arrow}
 						alt="Arrow"
 						className={`border-arrow ${
-							arrow.individual === false ? "hide" : ""
+							arrowState.corporate === false ? "hide" : ""
+						}`}
+					/>
+				</div>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
+						alignItems: "center",
+						borderBottom: "2px solid #ff6767",
+						paddingBottom: "5px",
+						color: shoot === 3 ? "#ff6767" : "black",
+						position: "relative",
+					}}
+					onClick={() => {
+						setShoot(3);
+						setArrowState({
+							film: false,
+							corporate: false,
+							individual: true,
+						});
+					}}>
+					<BsPersonFill size="40px" />
+					<div className={`menu-heading-item`}>Individual Events</div>
+					<img
+						src={arrow}
+						alt="Arrow"
+						className={`border-arrow ${
+							arrowState.individual === false ? "hide" : ""
 						}`}
 					/>
 				</div>

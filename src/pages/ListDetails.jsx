@@ -22,7 +22,8 @@ const ListDetails = ({ setFinal }) => {
 			   setLocationData(loc);
 		})
 	}, [userData])
-	console.log(locationData);
+	console.log(locationData, "locationData");
+	
 	useEffect(() => {
 		 locationRequest(locationId).then(res => {
 			setRequests(res.data.requests);

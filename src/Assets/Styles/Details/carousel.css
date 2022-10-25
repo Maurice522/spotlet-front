@@ -3,11 +3,12 @@
 }
 
 .property-page-main-image {
-	height: calc(100vh - 100px);
-	width: 80vw;
+	height: 73vh;
+    width: 70vw;
 	border-radius: 10px;
 	margin: 10px auto;
 	overflow-y: hidden;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .image {
@@ -49,10 +50,10 @@
 
 .property-info {
 	height: 120px;
-	width: 70vw;
-	max-width: 750px;
-	position: relative;
-	margin: 5px auto 10px;
+    width: 88vw;
+    max-width: 870px;
+    position: relative;
+    margin: 47px auto 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -81,3 +82,12 @@
 	justify-content: space-around;
 	width: 15%;
 }
+.image {
+    width: 100% !important;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px, rgb(51 51 51) 0px 0px 0px 3px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+}
+

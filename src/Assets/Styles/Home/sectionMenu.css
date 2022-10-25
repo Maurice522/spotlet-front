@@ -63,8 +63,8 @@
 .grid-menu-item-1:hover,
 .grid-menu-item-2:hover,
 .grid-menu-item-3:hover {
-	transform: scale(1.05);
-	transition-duration: 0.5s;
+	transform: scale(1.01);
+	transition-duration: 0.3s;
 }
 
 .menu-image {
@@ -84,14 +84,16 @@
 .menu-item-text {
 	position: absolute;
 	color: #ffffff;
-	width: 100%;
-	bottom: 5px;
+	width: 99%;
+	bottom: 0px;
 	text-align: center;
 	font-family: "Inter";
 	font-style: normal;
-	font-weight: 500;
+	font-weight: 900;
 	font-size: 16px;
-	line-height: 44px;
+	background-color: black;
+	opacity: 0.8;
+	line-height: 30px;
 }
 
 .selected {
@@ -99,10 +101,10 @@
 }
 
 .border-arrow {
-	width: 16px;
-	height: 16px;
+	width: 24px;
+	height: 24px;
 	position: absolute;
-	bottom: -10px;
+	bottom: -15px;
 }
 
 .hide {

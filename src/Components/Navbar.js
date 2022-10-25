@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Avatar, Button } from "@mui/material";
+import { Avatar, Button, TextField } from "@mui/material";
 import "../Assets/Styles/navbar.css";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 import { selectUserData } from "../redux/slices/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Menu from "@mui/material/Menu";
@@ -41,6 +42,12 @@ const Navbar = ({ extraNavId }) => {
 			</Link>
 			<div className={`nav-search ${extraNavId !== "" ? "blacken" : ""}`}>
 				<AiOutlineSearch size="20px" />
+				{/* <TextField
+					label="Search"
+					variant="standard"
+					size="small"
+					// className="nav-search-input"
+				/> */}
 				<input
 					type="text"
 					placeholder="Search"
@@ -52,23 +59,26 @@ const Navbar = ({ extraNavId }) => {
 			<div>
 				{user ? (
 					<div
-					style={{
-						display: "flex",
-						jusitfyContent: "space-around",
-						alignItems: "center",
-						gap: "20px",
-					}}>
+						style={{
+							display: "flex",
+							jusitfyContent: "space-around",
+							alignItems: "center",
+							gap: "20px",
+						}}>
 						<Link to="/messages">
 							<div>Messages</div>
 						</Link>
 						<Link to="/bookinglist">
 							<div>Bookings</div>
 						</Link>
+						<Link to="/bookinglist">
+							<div>Listings</div>
+						</Link>
 						<Link to="/favorite">
 							<div>Favorites</div>
 						</Link>
 						<Link to="/listing">
-							<div>List Your Site</div>
+							<div>List Your Space</div>
 						</Link>
 						<Button
 							aria-controls="simple-menu"
@@ -102,7 +112,9 @@ const Navbar = ({ extraNavId }) => {
 							alignItems: "center",
 							gap: "20px",
 						}}>
-						<div>List your places</div>
+						<div onClick={() => toast.error("Please sign in first")}>
+							List your Space
+						</div>
 						<Link to={"/signin"} state={{ isSignIn: true }}>
 							Sign In
 						</Link>
