@@ -56,9 +56,8 @@ const FormFilter = ({ fullScreen }) => {
 							What?
 						</MenuItem> */}
 						<MenuItem value="1">Film Shooting</MenuItem>
-						<MenuItem value="2">Corporate Meetings</MenuItem>
-						<MenuItem value="3">TV Series Shoot</MenuItem>
-						<MenuItem value="4">Individual Event</MenuItem>
+						<MenuItem value="2">Corporate Booking</MenuItem>
+						<MenuItem value="3">Individual Booking</MenuItem>
 					</Select>
 				</div>
 				<div>
@@ -76,10 +75,13 @@ const FormFilter = ({ fullScreen }) => {
 						{/* <MenuItem value="" disabled hidden>
 							Which?
 						</option> */}
-						<MenuItem value="1">Photoshoot</MenuItem>
-						<MenuItem value="2">Music Video</MenuItem>
-						<MenuItem value="3">Personal</MenuItem>
-						<MenuItem value="4">Meeting</MenuItem>
+					
+						<MenuItem value="1">Film Shoot</MenuItem>
+						<MenuItem value="2">Web Series Shoot</MenuItem>
+						<MenuItem value="3">Ad Film Shoot</MenuItem>
+						<MenuItem value="4">Music Album Shoot</MenuItem>
+						<MenuItem value="5">Green Screen</MenuItem>
+						<MenuItem value="6">Photo Shoot</MenuItem>
 					</Select>
 				</div>
 				<div>
