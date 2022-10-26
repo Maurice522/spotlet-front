@@ -1,8 +1,7 @@
 import React from "react";
 import "../Assets/Styles/footer.css";
 import { MdExpandLess } from "react-icons/md";
-import { Link } from "react-router-dom";
-import { BsInstagram, BsFacebook, BsTwitter, BsLinkedin } from "react-icons/bs";
+import { BsInstagram, BsFacebook, BsTwitter, BsLinkedin, BsPinterest } from "react-icons/bs";
 // import { AiFillInstagram } from "react-icons/ai";
 
 const Footer = () => {
@@ -57,18 +56,23 @@ const Footer = () => {
 				},
 				{
 					name: "Facebook",
-					to: "/facebook",
+					to: "https://www.facebook.com/SpotLetIN",
 					icon: <BsFacebook size="18px" color="white" />,
 				},
 				{
 					name: "Twitter",
-					to: "/twitter",
+					to: "https://twitter.com/SpotLetIN",
 					icon: <BsTwitter size="18px" color="white" />,
 				},
 				{
 					name: "LinkedIn",
-					to: "/linkedin",
+					to: "https://www.linkedin.com/company/spotletin/",
 					icon: <BsLinkedin size="18px" color="white" />,
+				},
+				{
+					name: "Pinterest",
+					to: "https://in.pinterest.com/SpotLetIN/ ",
+					icon: <BsPinterest size="18px" color="white" />,
 				},
 			],
 		},
@@ -78,13 +82,14 @@ const Footer = () => {
 		<div key={index}>
 			<div className="footer-subheading">{item.title}</div>
 			{item.items.map((val, i) => (
-				<Link to={val.to} key={i}>
+				<a href={val.to} key={i}>
 					<div className="footer-item">
 						{val.icon && val.icon}
 						{val.name}
 					</div>
-				</Link>
+				</a>
 				/* <a href="https://www.instagram.com/spotletin/"></a> */
+				// Can't use <Link> here as it is used to navigate within the app
 			))}
 			
 		</div>

@@ -13,13 +13,44 @@ const PropertyInfo = ({
 	review,
 	border,
 }) => {
-	
+
 	return (
 		<div
 			className="item"
 			style={{
 				border: border && "1px solid #00aaff",
 			}}>
+			<div className="favorite-icon-wrapper">
+				{favPage == true ? (
+					<MdFavorite
+						size="28px"
+						color="#ff6767"
+						onClick={() => {
+							setFavorites((prev) =>
+								prev.filter((element) => element !== index)
+							);
+						}}
+					/>
+				) : favorites.includes(index) === true ? (
+					<MdFavorite
+						size="28px"
+						color="#ff6767"
+						onClick={() => {
+							setFavorites((prev) =>
+								prev.filter((element) => element !== index)
+							);
+						}}
+					/>
+				) : (
+					<MdFavoriteBorder
+						size="28px"
+						color="#fff"
+						onClick={() => {
+							setFavorites((prev) => [...prev, index]);
+						}}
+					/>
+				)}
+			</div>
 			<Link
 				reloadDocument
 				to={`/property/${item?.location_id}`}
@@ -33,37 +64,6 @@ const PropertyInfo = ({
 						alt={`property-${index + 1}`}
 						className="property-image"
 					/>
-					<div className="favorite-icon-wrapper">
-						{favPage == true ? (
-							<MdFavorite
-								size="28px"
-								color="#ff6767"
-								onClick={() => {
-									setFavorites((prev) =>
-										prev.filter((element) => element !== index)
-									);
-								}}
-							/>
-						) : favorites.includes(index) === true ? (
-							<MdFavorite
-								size="28px"
-								color="#ff6767"
-								onClick={() => {
-									setFavorites((prev) =>
-										prev.filter((element) => element !== index)
-									);
-								}}
-							/>
-						) : (
-							<MdFavoriteBorder
-								size="28px"
-								color="#fff"
-								onClick={() => {
-									setFavorites((prev) => [...prev, index]);
-								}}
-							/>
-						)}
-					</div>
 					{review && <div className="type-of-property-icon">{item?.icon}</div>}
 				</div>
 				<div
@@ -89,7 +89,7 @@ const PropertyInfo = ({
 								/>
 							</div>
 						)}
-						{review && ( 	
+						{review && (
 							<>
 								<div>( {item?.reviewCount} )</div>
 							</>
