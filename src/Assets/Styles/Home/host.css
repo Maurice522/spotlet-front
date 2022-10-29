@@ -34,3 +34,35 @@
 	padding: 10px;
 	cursor: pointer;
 }
+
+
+
+@media screen and (max-width: 992px){
+	.host-bg {
+		font-size: 28px;
+	}
+	.host-header {
+		font-family: "Rubik";
+		font-style: normal;
+		font-size: 36px;
+	}
+	.list-btn {
+		font-size: 14px;
+		line-height: 20px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.host-bg {
+		font-size: 24px;
+	}
+	.host-header {
+		font-family: "Rubik";
+		font-style: normal;
+		font-size: 32px;
+	}
+	.list-btn {
+		font-size: 12px;
+		line-height: 20px;
+	}
+}

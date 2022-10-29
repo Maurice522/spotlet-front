@@ -64,3 +64,16 @@
 	right: 10px;
 	z-index: 3;
 }
+
+
+
+@media screen and (max-width: 992px){
+	.property-info-heading {
+		font-size: 16px;
+		line-height: 24px;
+	}
+	
+	.property-info-location {
+		font-size: 14px;
+	}
+}

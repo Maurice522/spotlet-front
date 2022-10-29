@@ -56,7 +56,7 @@ const Navbar = ({ extraNavId }) => {
 					}`}
 				/>
 			</div>
-			<div>
+			<div className="nav-items">
 				{user ? (
 					<div
 						style={{
@@ -68,10 +68,10 @@ const Navbar = ({ extraNavId }) => {
 						<Link to="/messages">
 							<div>Messages</div>
 						</Link>
-						<Link to="/bookinglist">
+						<Link to="/bookinglist/:booking">
 							<div>Bookings</div>
 						</Link>
-						<Link to="/bookinglist">
+						<Link to="/bookinglist/:listing">
 							<div>Listings</div>
 						</Link>
 						<Link to="/favorite">

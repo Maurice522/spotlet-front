@@ -4,6 +4,7 @@ import { TextField } from "@mui/material";
 import "../../Assets/Styles/Booking/booking.css";
 
 const Booking = ({ v1, v2, v3, v4, v5 }) => {
+	console.log(v2);
 	return (
 		<form id="booking-page-form">
 			<div>
@@ -24,7 +25,7 @@ const Booking = ({ v1, v2, v3, v4, v5 }) => {
 					required
 					disabled
 					id="start-time"
-					type="time"
+					type="text"
 					defaultValue={v2}
 					fullWidth
 					size="small"
@@ -48,7 +49,7 @@ const Booking = ({ v1, v2, v3, v4, v5 }) => {
 					required
 					disabled
 					id="attendies"
-					type="number"
+					type="text"
 					fullWidth
 					size="small"
 					defaultValue={v4}

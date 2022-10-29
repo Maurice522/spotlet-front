@@ -17,7 +17,7 @@
 
 .property-list {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(5, 1fr);
 	gap: 25px;
 	row-gap: 30px;
 }
@@ -57,4 +57,31 @@
 	right: 10px;
 	cursor: pointer;
 	z-index: 3;
+}
+
+
+@media screen and (max-width: 992px){
+	.property-section {
+		width: 86vw;
+	}
+}
+@media screen and (max-width: 768px){
+	.property-list {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.property-info-heading {
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 576px){
+	.property-list {
+		display: flex;
+		flex-direction: column;
+	}
+	.property-heading {
+		margin-top: 5rem;
+		width: 80vw;
+		text-align: center;
+	}
 }

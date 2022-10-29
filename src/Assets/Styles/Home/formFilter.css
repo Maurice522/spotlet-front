@@ -21,9 +21,8 @@
 	grid-template-columns: repeat(4, 1fr) auto;
 	z-index: 3;
 	gap: 20px;
-	align-items: flex-end;
+	align-items: center;
 	border: 2px solid #fff;
-
 }
 
 .form-filter-label {
@@ -137,4 +136,81 @@
     align-items: center;
     position: relative;
     border-radius: 4px;
+}
+
+
+@media screen and (max-width: 992px){
+	#form-wrapper {
+		width: 95vw;
+	}
+	#form {
+		width: 90vw;
+		padding: 20px;
+	}
+	.focus-input,
+	.focus-select,
+	.focus-label,
+	.form-filter-label,
+	.form-filter-select,
+	.form-filter-input {
+		font-size: 14px;
+	}
+	#submit {
+		font-size: 16px;
+		line-height: 20px;
+		padding: 8px 20px;
+	}
+	.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.focus-input,
+	.focus-select,
+	.focus-label,
+	.form-filter-label,
+	.form-filter-select,
+	.form-filter-input {
+		font-size: 12px;
+	}
+	#submit {
+		font-size: 14px;
+		line-height: 20px;
+		padding: 8px 20px;
+	}
+	.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+		font-size: 12px;
+	}
+
+}
+@media screen and (max-width: 576px){
+	#form-wrapper{
+		height: 230px;
+		flex-direction: column;
+		width: 95vw;
+	}
+	#form {
+		grid-template-columns: repeat(4, 1fr) auto;
+		padding: 20px 10px;
+	}
+	.focus-input,
+	.focus-select,
+	.focus-label,
+	.form-filter-label,
+	.form-filter-select,
+	.form-filter-input {
+		font-size: 12px;
+	}
+	#form a{
+		grid-column: span 4;
+	}
+	#submit {
+		font-size: 14px;
+		line-height: 20px;
+		padding: 8px 20px;
+	}
+	.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+		font-size: 12px;
+	}
 }

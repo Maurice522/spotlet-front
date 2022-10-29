@@ -16,15 +16,22 @@ import { useDispatch } from "react-redux";
 import { VpnKeyOutlined } from "@mui/icons-material";
 export default function OTPVerify({ sendOTP }) {
   const [otp, setOTP] = useState("");
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(120000);
   const userData = useSelector(selectUserData);
   const verifyOtp = useSelector(selectOTP);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const counter = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
+    // const counter = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
+    // Never use state variables in useState
+    const counter = timer > 0 && setInterval(() => setTimer((prevState) => {return prevState - 1}), 1000);
     return () => clearInterval(counter);
   }, [timer]);
+
+  useEffect(() => {
+    if(otp.length() === 4)
+      handlSubmit();
+  }, [otp]);
 
   const handlSubmit = async (e) => {
     e.preventDefault();
@@ -79,7 +86,7 @@ export default function OTPVerify({ sendOTP }) {
           className="btn-resend"
           onClick={() => {
             sendOTP(userData);
-            setTimer(30);
+            setTimer(120000);
           }}
         >
           Resend Code

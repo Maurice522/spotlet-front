@@ -1,6 +1,6 @@
 .footer-wrapper {
 	margin-top: 100px;
-	max-height: 300px;
+	
 	background-color: black;
 	position: relative;
 }
@@ -84,4 +84,47 @@
 a {
 	text-decoration: none;
 	color: white;
+}
+
+
+
+@media screen and (max-width: 992px){
+	.company-name {
+		font-size: 20px;
+	}
+	.company-details {
+		font-size: 10px;
+	}
+	.footer-subheading {
+		font-size: 14px;
+	}
+	.footer-item {
+		font-size: 10px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.company-name {
+		font-size: 16px;
+	}
+	.company-details {
+		font-size: 8px;
+	}
+	.footer-subheading {
+		font-size: 12px;
+	}
+	.footer-item {
+		font-size: 8px;
+	}
+}
+
+@media screen and (max-width: 576px){
+	.footer-content {
+		grid-template-columns: repeat(5, 1fr);
+		align-items: center;
+		justify-items: center;
+	}
+	.footer-spanning-item {
+		grid-column: span 5;
+	}
 }

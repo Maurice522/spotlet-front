@@ -124,6 +124,9 @@ const SideSection = ({
 		}
 	};
 
+	tot_price = Math.round(tot_price, 2);
+	let gst = v6 * v3 * 1.18;
+	gst = Math.round(gst, 2);
 	// console.log(v1, v3, v4);
 	return (
 		<div style={{width:"30%"}}>
@@ -150,7 +153,7 @@ const SideSection = ({
 				<div data-attribute-4>
 				₹ {v6} * {v3} hrs (including Gst)
 				</div>
-				<div data-attribute-4>₹ {v6 * v3 * 1.18}</div>
+				<div data-attribute-4>₹ {gst}</div>
 			</div>
 			<div data-attribute-3>
 				<div data-attribute-4>Discounted Price</div>

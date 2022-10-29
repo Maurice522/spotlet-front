@@ -110,3 +110,28 @@
 .hide {
 	display: none;
 }
+
+
+@media screen and (max-width: 992px){
+	.menu-section {
+		width: 85vw;
+	}	
+	.menu-heading-item {
+		font-size: 18px;
+	}
+	.grid-menu {
+		gap: 16px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.menu-heading-item {
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 576px){
+	.menu-heading-item {
+		font-size: 12px;
+	}
+}

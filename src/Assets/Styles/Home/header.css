@@ -47,3 +47,34 @@
 	font-style: normal;
 	font-weight: 600;
 }
+
+
+@media screen and (max-width: 992px){
+	.bg-image {
+		height: 70vh;
+	}
+	.message {
+		top: 30%;
+		font-size: 48px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.bg-image {
+		height: 80vh;
+	}
+	.message {
+		top: 35%;
+		font-size: 36px;
+	}
+}
+
+@media screen and (max-width: 576px){
+	.bg-image {
+		height: 100vh;
+	}
+	.message {
+		top: 35%;
+		font-size: 36px;
+	}
+}

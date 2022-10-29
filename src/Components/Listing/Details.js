@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import Checkbox from "@mui/material/Checkbox";
+import { TextField, Button } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserData, selectUser_id } from "../../redux/slices/userSlice";
@@ -14,10 +15,14 @@ import {
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
 
-const options = [
+
+
+let options = [
+	{ value: "Add New", label: "ADD NEW" },
 	{ value: "Airport", label: "Airport" },
 	{ value: "Amusement Park", label: "Amusement Park" },
 	{ value: "Apartment", label: "Apartment" },
+	
 ];
 
 const Details = ({ showSection }) => {
@@ -80,6 +85,10 @@ const Details = ({ showSection }) => {
 		}
 	};
 
+	const [opt, setOpt] = useState(options);
+	const [loc, setLoc] = useState(false);
+	const [newLoc, setNewLoc] = useState('');
+
 	return (
 		<div className="lbox">
 			<div className="row1">
@@ -89,16 +98,54 @@ const Details = ({ showSection }) => {
 					</h2>
 					<Select
 						className="listingInput locationtype"
-						options={options}
-						onChange={(e) =>
-							setPropertyDescr({ ...property_desc, location_type: e.value })
+						options={opt}
+						onChange={(e) =>{
+							if(e.value != 'Add New')
+								setPropertyDescr({ ...property_desc, location_type: e.value })
+							else
+								setLoc(true);
 						}
-						value={options.filter(function (option) {
-							return option.value === property_desc.location_type;
-						})}
+						}
 						required
 					/>
 				</div>
+				{loc && <div className="coll1">
+					<h2
+						style={{
+							marginLeft: "30px",
+							marginBottom: "8px",
+						}}>
+						Add New Loaction
+					</h2>
+					<div
+						style={{
+							marginLeft: "30px",
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "center",
+							gap: "30px",
+						}}>
+						<TextField
+							label="Add New Location"
+							variant="outlined"
+							size="small"
+							onChange={(e) => {setPropertyDescr({ ...property_desc, location_type: e.value }); setNewLoc(e.target.value)}}
+						/>
+						<Button
+							onClick={() => {newLoc === '' ? toast.error("Location can't be empty") : 
+							(options.filter(item => item.label === newLoc).length === 0
+									? setOpt(prev => [...prev, {value: `${newLoc}`, label: `${newLoc}`}])
+									: toast.error("Location already exists"))
+									newLoc === '' ? setLoc(true) : setLoc(false)
+							}}
+							variant="contained"
+							sx={{
+								backgroundColor: "#ea4235",
+							}}>
+							Add
+						</Button>
+					</div>
+				</div>}
 				<div className="coll1">
 					<h2>
 						Property Size in sq ft<span style={{ color: "red" }}>*</span>

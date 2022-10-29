@@ -10,6 +10,7 @@ import { BiRightArrow } from "react-icons/bi";
 import { GoArrowRight } from "react-icons/go";
 import { MdTravelExplore } from "react-icons/md";
 import "../../Assets/Styles/listYourSpace.css";
+import { Country, State, City } from 'country-state-city';
 import {
   Select,
   MenuItem,
@@ -32,32 +33,28 @@ const Location = ({ showSection }) => {
   const location_id = useSelector(selectLocationId);
   const location = useSelector(selectLocationData);
 
-  const [country, setCountry] = useState(0);
-  const [state, setState] = useState(0);
+  const [country, setCountry] = useState('');
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
 
-	const changeCountry = (e) => {
-		setCountry(e.target.value);
-	}
-	const changeState = (e) => {
-		setState(e.target.value);
-	}
+  const changeCountry = (e) => {
+    setCountry(e.target.value);
+  }
+  const changeState = (e) => {
+    setState(e.target.value);
+  }
+  const changeCity = (e) => {
+    setState(e.target.value);
+  }
 
-	const filterOptions = {
-		State: [
-			'Hyderabad'
-		],
+  // console.log(Country.getAllCountries())
+  // console.log(State.getAllStates())
 
-		City: [
-			[''],
-			['Ameerpet', 'Sanathnagar', 'Khairatabad', 'Musheerabad', 'Amberpet', 'Nampally', 'Secunderabad', 'Secunderabad Cantonment', 'HITEC City', 'Jubilee Hills', 'Gachibowli', 'Serilingampally', 'Kukatpally', 'Patancheru', 'Balanagar', 'Qutbullapur', 'Medchal', 'Alwal', 'Malkajgiri', 'Kapra', 'Keesara', 'Uppal Kalan', 'Ghatkesar', 'Dilsukhnagar', 'LB Nagar', 'Saroornagar', 'Hayathnagar', 'Mehdipatnam', 'Rajendranagar', 'Shamshabad']
-        
-	],
+  console.log(country);
+  console.log(state);
 
-		Pincode: [
-			[''],
-			['500001', '500002', '500003', '500004', '500005', '500006', '500007', '500008', '500011', '500012', '500013', '500016', '500018', '500019', '500020', '500022', '500023', '500024', '500025', '500027', '500028', '500029', '500030', '500031', '500032', '500033', '500034', '500035', '500036', '500037', '500038', '500039', '500041', '500042', '500043', '500044', '500045', '500046', '500048', '500049', '500050', '500052', '500053', '500054', '500055', '500057', '500058', '500059', '500060', '500061', '500063', '500064', '500065', '500066', '500067', '500068', '500069', '500070', '500072', '500073', '500074', '500075', '500076', '500077', '500079', '500080', '500081', '500082', '500084', '500085', '500086', '500088', '500089', '500090', '500091', '500092', '500093', '500095', '500096', '500097', '500098', '500100', '500102', '500104', '500107', '500111', '500112', '500114', '500133', '500138', '500264', '500457', '500482', '500873', '501203', '501218', '501301', '501323', '501401', '501503', '501504', '501505', '501510', '501511', '502032', '502300', '502305', '502307', '502319', '502324', '502325', '502329']
-	]
-	}
+  let stateArray = State.getAllStates().filter(item => item.countryCode === country);
+  let cityArray = City.getCitiesOfState(country, state);
 
   // const [cord, setCord] = useState({
   //   lat : 0,
@@ -142,14 +139,14 @@ const Location = ({ showSection }) => {
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            <MenuItem value="1">India</MenuItem>
+            {Country.getAllCountries().map(item => <MenuItem value={item.isoCode} key={item.name}>{item.name}</MenuItem>)}
           </Select>
         </div>
 
 
 
         <div className="coll1">
-        <label
+          <label
             htmlFor="wstate">
             <h2 className="locationH2">State<span style={{ color: "red" }}>*</span></h2>
           </label>
@@ -163,14 +160,14 @@ const Location = ({ showSection }) => {
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {country ? filterOptions.State.map(item => <MenuItem value={filterOptions.State.indexOf(item)} key={item}>{item}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
+            {country ? stateArray.map(item => <MenuItem value={item.isoCode} key={item.name}>{item.name}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
           </Select>
         </div>
       </div>
 
       <div className="row1">
         <div className="coll1">
-        <label
+          <label
             htmlFor="wcity">
             <h2 className="locationH2">City<span style={{ color: "red" }}>*</span></h2>
           </label>
@@ -183,7 +180,7 @@ const Location = ({ showSection }) => {
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {filterOptions.City[state+1].map(item => <MenuItem value={filterOptions.City[state+1].indexOf(item)} key={item}>{item}</MenuItem>)}
+            {cityArray.map(item => <MenuItem value={`${item.latitude}${item.longitude}`} key={item.name}>{item.name}</MenuItem>)}
           </Select>
         </div>
 
@@ -193,18 +190,14 @@ const Location = ({ showSection }) => {
             htmlFor="pin">
             <h2 className="locationH2">Pincode<span style={{ color: "red" }}>*</span></h2>
           </label>
-          <Select
+          <input
+            className="listingInput input"
             id="pin"
             name="pin"
-            defaultValue=""
-            // value="Hyderabad"
-            className={'listingInput input input__location'}
-            onChange={(e) => console.log(e.target.value)}>
-            {/* <MenuItem value="" disabled hidden>
-							Where?
-						</MenuItem> */}
-            {filterOptions.Pincode[state+1].map(item => <MenuItem value={filterOptions.Pincode[state+1].indexOf(item)} key={item}>{item}</MenuItem>)}
-          </Select>
+            type="number"
+            min={100000}
+            max={999999}
+          />
         </div>
 
 

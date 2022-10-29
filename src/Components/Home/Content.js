@@ -79,7 +79,7 @@ const Content = () => {
 				<div
 					style={{
 						position: "absolute",
-						top: "40%",
+						top: "45%",
 						left: "47%",
 						color: "rgba(255, 255, 255, 0.7)",
 						cursor: "pointer",

@@ -32,6 +32,7 @@
 .auth-top {
 	display: flex;
 	justify-content: space-between;
+	gap: 1rem;
 }
 .auth-top > b {
 	font-weight: 600;
@@ -164,7 +165,8 @@ form > .horizontal-itm > div > p {
 	outline-offset: 0px;
 	outline: none;	
 }
-select option {border: 1px solid lightgray;
+select option {
+	border: 1px solid lightgray;
 	width: 100%;
 	height: 30px;
 	padding: 1%;
@@ -226,5 +228,34 @@ select option {border: 1px solid lightgray;
     padding-left: 7%;
     border-radius: 4px;
     color: black;
+}
 
+
+
+@media screen and (max-width: 992px){
+	.auth{
+		justify-content: center;
+	}
+	.auth-img {
+		width: 0;
+	}
+	.auth-detail{
+		width: 80%;
+	}
+	.auth-img > img {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 576px){
+	.auth-top > b, form > label, form > .horizontal-itm > div > label, form > p, form > .horizontal-itm > div > p {
+		font-size: 11px;
+	}
+	.auth-detail > div > .auth-top > p, .authInput, .dropdownSelect, select option, .normal, .focus {
+		font-size: 12px;
+	}
+	.auth-detail > div > h1,
+	.otp-form > h1 {
+		font-size: 30px;
+	}
 }

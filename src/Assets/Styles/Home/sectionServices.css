@@ -72,3 +72,47 @@
 	margin-left: 5px;
 	margin-top: 5px;
 }
+
+
+
+@media screen and (max-width: 992px){
+	.services-section {
+		width: 98vw;
+		padding: 20px 0;
+	}
+	.services-list {
+		width: 85%;
+	}
+	.services-content-title {
+		font-size: 16px;
+	}
+	.services-content-text {
+		font-size: 14px;
+		line-height: 20px;
+	}
+	.icon-wrapper {
+		width: 30px;
+		height: 30px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.services-list {
+		width: 90%;
+		gap: 30px;
+	}
+	.services-content-title {
+		font-size: 14px;
+	}
+	.services-content-text {
+		font-size: 12px;
+		line-height: 20px;
+	}
+}
+
+@media screen and (max-width: 576px){
+	.services-list {
+		display: flex;
+		flex-direction: column;
+	}
+}

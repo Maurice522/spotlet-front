@@ -149,3 +149,58 @@
 .left-right-arrows:active {
 	color: #ea4235;
 }
+
+
+
+@media screen and (max-width: 992px){
+	.card{
+		padding-bottom: 10px;
+	}
+	.primary {
+		width: 30%;
+	}
+	.secondary {
+		width: 25%;
+	}
+	.testimonial-testimony-main {
+		padding: 25px 25px;
+		height: 45vh;
+		overflow-y: auto;
+		font-size: 12px;
+	}
+	.testimonial-testimony {
+		padding: 25px 25px;
+		height: 40vh;
+		overflow-y: auto;
+		font-size: 8px;
+	}
+}
+
+@media screen and (max-width: 576px){
+	.testimonial-container {
+		height: 200vh;
+	}
+	.left-right-arrows {
+		display: none;
+	}
+	.testimonial-carousel {
+		height: 180vh;
+		flex-direction: column;
+		justify-content: center;
+		gap: 2rem;
+	}
+	.card {
+		width: 100%;
+	}
+	.primary {
+		width: 90%;
+		height: fit-content;
+	}
+	.secondary {
+		width: 90%;
+	}
+	.testimonial-testimony-main, .testimonial-testimony {
+		height: fit-content;
+		font-size: 12px;
+	}
+}

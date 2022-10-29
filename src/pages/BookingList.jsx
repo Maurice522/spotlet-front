@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
@@ -235,28 +235,42 @@ const BookingList = () => {
 	console.log("Booking Data", bookingData);
 	console.log("Listing Data", listingData);
 
+	const {bookingItem} = useParams();
+
+	useEffect(() => {
+		if(bookingItem === ':booking')
+			setActive(0);
+		else
+			setActive(1);
+	}, [bookingItem]);
+
+
+	const navigate = useNavigate();
+
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
 			<div className="below-nav">
-				<div className="booking-list-header" style={{position:"relative"}}>
-				<Link to="/" >
-				<ArrowBackIcon style={{position:"absolute",left:"0%",bottom:"20%",fontSize:"32px",color:"f26767"}}/>
-				</Link>
-					<div
-						className={active === 0 ? "chosen option" : "option"}
-						onClick={() => {
-							setActive(0);
-						}}>
-						Booking
-					</div>
-					<div
-						className={active === 1 ? "chosen option" : "option"}
-						onClick={() => {
-							setActive(1);
-						}}>
-						Listing
-					</div>
+				<div className="booking-list-header" style={{ position: "relative" }}>
+					<Link to="/" >
+						<ArrowBackIcon style={{ position: "absolute", left: "0%", bottom: "20%", fontSize: "32px", color: "f26767" }} />
+					</Link>
+						<div
+							className={active === 0 ? "chosen option" : "option"}
+							onClick={() => {
+								setActive(0);
+								navigate('/bookinglist/:booking');
+							}}>
+							Booking
+						</div>
+						<div
+							className={active === 1 ? "chosen option" : "option"}
+							onClick={() => {
+								setActive(1);
+								navigate('/bookinglist/:listing');
+							}}>
+							Listing
+						</div>
 				</div>
 				{active === 0 ? (
 					<div

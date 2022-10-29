@@ -80,6 +80,8 @@ const BookingForm = ({
 	};
 
 
+	const activities = ['Film Shoot', 'Web Series Shoot', 'Ad Film Shoot', 'Music Album Shoot', 'Green Screen', 'Photoshoot', 'Party', 'Product Release / Demo', 'Awards Ceremony', 'Conference', 'Birthday Party', 'Family / Friends OutlinedFlag', 'Conference / Counselling']
+	
 	return (
 		<div>
 			<div
@@ -178,33 +180,34 @@ const BookingForm = ({
 								onChange={(e) => {
 									console.log(e.target.value,"v2");
 									setV2(e.target.value);
+									console.log(v2)
 								}}
-								value={v2}
+								value={`${v2}`}
 							>
-							<option value="10">10:00 am</option>
-								<option value="11">11:00 am</option>
-							    <option value="12">12:00 pm</option>
-								<option value="13">01:00 pm</option>
-								<option value="14">02:00 pm</option>
-								<option value="15">03:00 pm</option>
-								<option value="16">04:00 pm</option>
-								<option value="17">05:00 pm</option>
-								<option value="18">06:00 pm</option>
-								<option value="19">07:00 pm</option>
-								<option value="20">08:00 pm</option>
-								<option value="21">09:00 pm</option>
-								<option value="22">10:00 pm</option>
-								<option value="24">11:00 pm</option>
-								<option value="24">12:00 pm</option>
-								<option value="1">01:00 am</option>
-								<option value="2">02:00 am</option>
-								<option value="3">03:00 am</option>
-								<option value="4">04:00 am</option>
-								<option value="5">05:00 am</option>
-								<option value="6">06:00 am</option>
-								<option value="7">07:00 am</option>
-								<option value="8">08:00 am</option>
-								<option value="9">09:00 am</option>
+							<option value="10:00 am">10:00 am</option>
+								<option value="11:00 am">11:00 am</option>
+							    <option value="12:00 pm">12:00 pm</option>
+								<option value="01:00 pm">01:00 pm</option>
+								<option value="02:00 pm">02:00 pm</option>
+								<option value="03:00 pm">03:00 pm</option>
+								<option value="04:00 pm">04:00 pm</option>
+								<option value="05:00 pm">05:00 pm</option>
+								<option value="06:00 pm">06:00 pm</option>
+								<option value="07:00 pm">07:00 pm</option>
+								<option value="08:00 pm">08:00 pm</option>
+								<option value="09:00 pm">09:00 pm</option>
+								<option value="10:00 pm">10:00 pm</option>
+								<option value="11:00 pm">11:00 pm</option>
+								<option value="12:00 pm">12:00 pm</option>
+								<option value="01:00 am">01:00 am</option>
+								<option value="02:00 am">02:00 am</option>
+								<option value="03:00 am">03:00 am</option>
+								<option value="04:00 am">04:00 am</option>
+								<option value="05:00 am">05:00 am</option>
+								<option value="06:00 am">06:00 am</option>
+								<option value="07:00 am">07:00 am</option>
+								<option value="08:00 am">08:00 am</option>
+								<option value="09:00 am">09:00 am</option>
 								
 								
 							</select>
@@ -232,6 +235,7 @@ const BookingForm = ({
 									// (e.target.value === "6am-6pm" ? "12" : "24");
 									let a= e.target.value === "6am-6pm" ? "12" : "24";
 									calculatePrice(event, a);
+									setV2("06:00 am")
 								}}
 								// value={"6am-6pm"}
 								displayEmpty>
@@ -318,11 +322,8 @@ const BookingForm = ({
 							}}
 							value={v5}
 						>
-						<MenuItem value="Activity 1">Activity 1</MenuItem>
-								<MenuItem value="Activity 2">Activity 2</MenuItem>
-								<MenuItem value="Activity 3">Activity 3</MenuItem>
-								<MenuItem value="Activity 4">Activity 4</MenuItem>
-								<MenuItem value="Activity 5">Activity 5</MenuItem>
+						{activities.map(item => <MenuItem value={item} key={item}>{item}</MenuItem>)}
+						
 						</Select>
 					</div>
 				</form>

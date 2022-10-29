@@ -109,7 +109,7 @@ function App() {
 					<Route path="/listing" element={<ListingPlace />} />
 					<Route path="/messages/:bookingId" element={<Messages />} />
 					<Route path="/messages" element={<Messages />} />
-					<Route path="/bookinglist" element={<BookingList />} />
+					<Route path="/bookinglist/:bookingItem" element={<BookingList />} />
 					<Route path="/blogs" element={<Blogs />} />
 					<Route path="/blog/:blogid" element={<Blog />} />
 					<Route
