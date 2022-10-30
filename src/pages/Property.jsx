@@ -281,14 +281,7 @@ const Property = ({
 	const [fav, setFav] = useState([]);
 
 	const similarProperties = (
-		<div
-			style={{
-				width: "100%",
-				margin: "0 auto",
-				display: "grid",
-				gridTemplateColumns: "auto repeat(4, 1fr) auto",
-				gap: "25px",
-			}}>
+		<div className="properties">
 			<div
 				style={{
 					display: "flex",
@@ -303,6 +296,7 @@ const Property = ({
 					}}
 				/>
 			</div>
+			<div className="similar-properties">
 			{propertyItems.map((item, index) => {
 				return (
 					<PropertyInfo
@@ -315,6 +309,7 @@ const Property = ({
 					/>
 				);
 			})}
+			</div>
 			<div
 				style={{
 					display: "flex",
@@ -333,19 +328,7 @@ const Property = ({
 	);
 
 	const dosDonts = (
-		<div
-			style={{
-				width: "100%",
-				display: "flex",
-				// justifyContent: "space-around",
-				gap: "50px",
-				alignItems: "center",
-				fontFamily: "Rubik",
-				fontStyle: "normal",
-				fontWeight: "400",
-				fontSize: "16px",
-				lineHeight: "32px",
-			}}>
+		<div className="dos">
 			<div>
 				{locationData?.do_and_dont?.do_s?.map((val, i) => (
 					<div

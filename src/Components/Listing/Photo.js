@@ -12,50 +12,48 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Clear } from "@mui/icons-material";
+
+import {
+	ref,
+	uploadBytes,
+	getDownloadURL,
+	listAll,
+	list,
+} from "firebase/storage";
+import { storage } from "./firebase";
+import { v4 } from "uuid";
+import { Button } from "@mui/material";
+
 const Photo = ({ showSection }) => {
-	//const [files, setFiles] = useState([]);
-	const [imagesData, setImagesData] = useState([]);
-	const dispatch = useDispatch();
-	const location_id = useSelector(selectLocationId);
-	const location = useSelector(selectLocationData);
-
-	useEffect(() => {
-		location.imagesData && setImagesData(location.imagesData);
-	}, []);
-
-	const handleChange = async (e) => {
-		try {
-			for (let i = 0; i < e.target.files.length; i++) {
-				//console.log(e.target.files[i]);
-				const formData = new FormData();
-				formData.append("pic", e.target.files[i]);
-				const response = await uploadLocationPics(formData);
-				setImagesData((prev) => [
-					...prev,
-					{ image: response.data.url, imageRef: response.data.fileRef },
-				]);
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
 	const handleClick = () => {
 		document.getElementById("inputD").click();
 	};
-	// console.log(refs)
-	const deleteImage = async (imageData, index) => {
-		console.log(imageData);
-		try {
-			await deleteFiles({
-				image: imageData.image,
-				fileRef: imageData.imageRef,
+
+	const [imageUpload, setImageUpload] = useState(null);
+	const [imageUrls, setImageUrls] = useState([]);
+
+	const imagesListRef = ref(null);
+	const uploadFile = () => {
+		if (imageUpload == null) return;
+		if (imageUrls.length < 5)
+			toast.error("Please add minimum 5 Photos");
+		const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+		uploadBytes(imageRef, imageUpload).then((snapshot) => {
+			getDownloadURL(snapshot.ref).then((url) => {
+				setImageUrls((prev) => [...prev, url]);
 			});
-			const newImageData = imagesData.filter((img, i) => i !== index);
-			setImagesData(newImageData);
-		} catch (error) {
-			toast.error(error.response.data);
-		}
+		});
 	};
+
+	useEffect(() => {
+		listAll(imagesListRef).then((response) => {
+			response.items.forEach((item) => {
+				getDownloadURL(item).then((url) => {
+					setImageUrls((prev) => [...prev, url]);
+				});
+			});
+		});
+	}, []);
 	return (
 		<div>
 			<div className="lbox">
@@ -70,58 +68,33 @@ const Photo = ({ showSection }) => {
 								multiple
 								id="inputD"
 								className="inputD"
-								onChange={handleChange}
+								onChange={(event) => {
+									setImageUpload(event.target.files[0]);
+								}}
 							/>
 						</div>
 					</div>
 				</div>
 				<p style={{ marginLeft: "20px" }}>Add minimum 5 images</p>
-				<div className="row1" id="photo-sec-s">
-					{imagesData?.map((imageData, index) => {
-						return (
-							<div className="pict" key={index}>
-								<Clear
-									sx={{
-										cursor: "pointer",
-										marginLeft: "407px",
-										marginTop: "5px",
-										position: "absolute",
-									}}
-									onClick={() => deleteImage(imageData, index)}
-								/>
-								<img src={imageData.image} />{" "}
-							</div>
-						);
-					})}
-				</div>
 				<div className="row1">
 					<div className="coll1">
-						<button
-							className="continue"
-							onClick={async () => {
-								if (imagesData.length < 5)
-									return toast.error("Please add minimum 5 Photos");
-								const images = imagesData.map((imageData) => imageData.image);
-								console.log(images);
-								const locData = {
-									...location,
-									images,
-								};
-								dispatch(addLocation({ ...location, imagesData }));
-								const form = {
-									location_id,
-									data: locData,
-								};
-								await createTempLocation(form);
-								//  console.log(locData);
-								showSection("Features");
-							}}>
-							Continue
-						</button>
+						<button onClick={uploadFile} className="continue">Continue</button>
+						<div className="photoContainer">
+							{imageUrls.map((url) => {
+								return (
+									<div>
+										<img className="photos" src={url} key={url} />
+										<Button onClick={() => {
+											setImageUrls(imageUrls.filter(item => item !== url))
+										}}>Delete</Button>
+									</div>
+								);
+							})}
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div >
 	);
 };
 

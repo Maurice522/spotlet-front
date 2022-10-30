@@ -82,6 +82,6 @@
 	.property-heading {
 		margin-top: 5rem;
 		width: 80vw;
-		text-align: center;
+		line-height: 40px;
 	}
 }

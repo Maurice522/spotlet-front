@@ -26,3 +26,12 @@
 .terms-conditions {
 	margin-top: 20px;
 }
+
+
+
+@media screen and (max-width: 992px){
+	.rules-wrapper{
+		width: 85vw;
+		max-width: 90vw;
+	}
+}

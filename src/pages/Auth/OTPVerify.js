@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { VpnKeyOutlined } from "@mui/icons-material";
 export default function OTPVerify({ sendOTP }) {
   const [otp, setOTP] = useState("");
+  const [auto, setAuto] = useState(true);
   const [timer, setTimer] = useState(120000);
   const userData = useSelector(selectUserData);
   const verifyOtp = useSelector(selectOTP);
@@ -29,12 +30,17 @@ export default function OTPVerify({ sendOTP }) {
   }, [timer]);
 
   useEffect(() => {
-    if(otp.length() === 4)
+    if(otp.length === 4){
+      setAuto(true);
       handlSubmit();
+    }
   }, [otp]);
 
+  console.log(auto);
+  console.log(otp.length === 4);
+
   const handlSubmit = async (e) => {
-    e.preventDefault();
+    !auto && e.preventDefault()
     try {
       if (verifyOtp != otp) {
         toast("Invalid OTP please try again!!!");
@@ -48,6 +54,7 @@ export default function OTPVerify({ sendOTP }) {
     } catch (error) {
       toast.error(error.response.data.error);
     }
+    setAuto(false);
   };
   return (
     <div className="otp-verify">

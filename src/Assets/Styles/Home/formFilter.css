@@ -186,13 +186,29 @@
 }
 @media screen and (max-width: 576px){
 	#form-wrapper{
-		height: 230px;
-		flex-direction: column;
-		width: 95vw;
+		background-color: transparent;
+		margin: -450px auto 0;
 	}
 	#form {
-		grid-template-columns: repeat(4, 1fr) auto;
-		padding: 20px 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: start;
+		padding: 20px 0;
+		border-radius: 8px;
+		margin-top: 10rem;
+		background-color: rgba(255, 235, 235, 0.7);
+	}
+	#form div{
+		width: 90%;
+	}
+	#form div label{
+		border: none;
+	}
+	.form-filter-select,
+	.form-filter-input {
+		border-color: #000;
+		width: 100%;
 	}
 	.focus-input,
 	.focus-select,
@@ -204,11 +220,14 @@
 	}
 	#form a{
 		grid-column: span 4;
+		width: 70vw;
+		margin-left: -10vw;
 	}
 	#submit {
 		font-size: 14px;
 		line-height: 20px;
 		padding: 8px 20px;
+		border-color: #000;
 	}
 	.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
 		font-size: 12px;

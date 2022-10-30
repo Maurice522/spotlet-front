@@ -100,12 +100,7 @@
 }
 
 @media screen and (max-width: 576px){
-	.left-heading {
-		width: 50%;
-		font-size: 20px;
-		line-height: 60px;
-	}
-	.left-subsection-right {
-		font-size: 14px;
+	.content-wrapper{
+		display: none;
 	}
 }

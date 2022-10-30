@@ -257,3 +257,14 @@ h1 {
 	gap: 30px;
 	margin-bottom: 20px;
 }
+
+.photoContainer{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 2rem;
+	padding: 25px;
+	width: 65vw;
+}
+.photos{
+	width: 100%;
+}

@@ -26,3 +26,13 @@
 #booking-page-form > div {
 	margin: 20px auto;
 }
+
+
+
+@media screen and (max-width: 992px){
+	#booking-page-form {
+		margin-top: 30px;
+		max-width: 80vw;
+		width: 75vw;
+	}
+}

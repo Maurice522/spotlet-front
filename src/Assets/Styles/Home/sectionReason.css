@@ -44,6 +44,7 @@
 	flex-direction: column;
 	justify-content: space-around;
 	width: 50%;
+	height: 100vh;
 }
 
 .reason-content-item {
@@ -133,8 +134,14 @@
 }
 
 @media screen and (max-width: 576px){
+	.reason-heading {
+		margin-bottom: 0;
+	}
+	.reason-image {
+		display: none;
+	}
 	.reason-container {
-		height: 100vh;
+		height: 85vh;
 		width: 90vw;
 	}
 	.reason-section{
@@ -143,12 +150,7 @@
 		justify-content: center;
 		width: 90vw;
 		margin: auto;
-		height: 90vh;
-	}
-	.reason-image {
-		min-width: 250px;
-		max-height: 250px;
-		height: 80%;
+		height: 80vh;
 	}
 	.reason-content-wrapper {
 		flex-direction: column;

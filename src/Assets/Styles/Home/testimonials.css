@@ -178,26 +178,18 @@
 
 @media screen and (max-width: 576px){
 	.testimonial-container {
-		height: 200vh;
-	}
-	.left-right-arrows {
-		display: none;
-	}
-	.testimonial-carousel {
-		height: 180vh;
-		flex-direction: column;
-		justify-content: center;
-		gap: 2rem;
+		height: 100vh;
 	}
 	.card {
 		width: 100%;
 	}
 	.primary {
-		width: 90%;
+		width: 70%;
 		height: fit-content;
 	}
 	.secondary {
 		width: 90%;
+		display: none;
 	}
 	.testimonial-testimony-main, .testimonial-testimony {
 		height: fit-content;

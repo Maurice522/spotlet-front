@@ -32,3 +32,22 @@
 .highlight {
 	color: #ea4235;
 }
+
+
+@media screen and (max-width: 992px){
+	.booking-content-wrapper {
+		flex-direction: column;
+		place-items: center;
+		min-width: 95vw;
+	}
+	.booking-process{
+		margin: auto;
+	}
+	.left-section{
+		width: 80vw;
+		min-width: 80vw;
+	}
+	.booking-process{
+		width: 100vw;
+	}
+}

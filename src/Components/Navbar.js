@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineHome } from "react-icons/ai";
+import { BiBookmark } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
+import {  GrFavorite } from "react-icons/gr";
 import { Avatar, Button, TextField } from "@mui/material";
 import "../Assets/Styles/navbar.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -121,6 +124,36 @@ const Navbar = ({ extraNavId }) => {
 						<Link to={"/signin"} state={{ isSignIn: false }}>
 							Sign Up
 						</Link>
+					</div>
+				)}
+			</div>
+			<div className="nav-items-resp">
+				{user ? (
+					<div>
+						<Link to="/">
+							<AiOutlineSearch size="15px" />
+							<div>Search</div>
+						</Link>
+						<Link to="/bookinglist/:booking">
+							<BiBookmark size="15px" />
+							<div>Bookings</div>
+						</Link>
+						<Link to="/bookinglist/:listing">
+							<AiOutlineHome size="15px" />
+							<div>Home</div>
+						</Link>
+						<Link to="/favorite">
+							<GrFavorite size="15px" />
+							<div>Favorites</div>
+						</Link>
+						<Link to="/">
+							<CgProfile size="15px" />
+							<div>People</div>
+						</Link>
+					</div>
+				) : (
+					<div>
+				
 					</div>
 				)}
 			</div>
