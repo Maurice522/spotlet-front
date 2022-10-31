@@ -13,7 +13,8 @@ import "../Assets/Styles/host.css";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import Host from "../Components/Home/Host";
 import { Link } from "react-router-dom";
-
+import Testimonials from "../Components/Home/Testimonials";
+import Video1 from "../Assets/Images/Video1.mp4";
 
 //for section reason
 import PaidIcon from '@mui/icons-material/Paid';
@@ -105,7 +106,15 @@ const HostPage = () => {
 					</div>
 				</div>
 			</div>
-
+			<div style={{
+				alignItems:"center",
+				textAlign:"center",
+				// height:"90vh",
+				marginTop:"5%"
+			}}>
+			<video src={Video1} controls="controls" autoPlay muted style={{height:"80%",width:"70%"}}  />
+			</div>
+			<Testimonials />
 			<div
 				style={{
 					marginTop: "50px",
