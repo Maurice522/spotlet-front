@@ -12,7 +12,7 @@ import { createTempLocation } from "../../services/api";
 import { toast } from "react-toastify";
 
 const Rules = ({ showSection }) => {
-	const [rules, setRules] = useState(["Rule1", "Rule2"]);
+	const [rules, setRules] = useState(["Do not add or in any way change locks or keying. ", "No furnishings may be taken from the premises and put in halls, basement, or onporches or balconies without prior consent of Landlord, even for limited times."]);
 	const [optn, setoptn] = useState("");
 	const dispatch = useDispatch();
 	const location_id = useSelector(selectLocationId);

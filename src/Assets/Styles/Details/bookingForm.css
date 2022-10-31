@@ -147,3 +147,45 @@
 .form > a {
 	text-decoration: none;
 }
+
+
+@media screen and (max-width: 992px) {
+	.wrapper {
+		margin: 10px auto;
+		width: 89vw;}
+}
+@media screen and (max-width: 576px){
+	.wrapper{
+		background-color: transparent;
+	}
+	.form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: start;
+		padding: 20px 0;
+		border-radius: 8px;
+		background-color: rgba(255, 235, 235, 0.7);
+	}
+	.form div{
+		width: 90%;
+	}
+	.form div label{
+		border: none;
+	}
+	.form a{
+		grid-column: span 4;
+		width: 70vw;
+		margin-left: -10vw;
+	}
+	.submit {
+		font-size: 14px;
+		line-height: 20px;
+		padding: 8px 20px;
+		margin-left: 10px !important;
+		width: fit-content !important;
+	}
+	.MuiButtonBase-root button{
+		margin-left: 10px;
+	}
+}

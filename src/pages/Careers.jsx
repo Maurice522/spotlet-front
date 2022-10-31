@@ -4,6 +4,9 @@ import Footer from "../Components/Footer";
 import image from "../Assets/Images/HelpCneter_img2.jpeg";
 import image1 from "../Assets/Images/container1ImgPhotography.png";
 import image2 from "../Assets/Images/PhotographyImg2.png";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+
 
 const Careers = () => {
 	return (
@@ -171,6 +174,37 @@ const Careers = () => {
 								</div>
 							</div>
 						</div>
+						<div className="about-us-btn-container" style={{marginTop:"5%"}}>
+					<Link to="/host" >
+					<Button
+							variant="contained"
+							className="buttonHover1"
+							sx={{
+								backgroundColor: "#EA4235",
+								color: "white",
+								padding: "12px 24px",
+								width:"100%",
+
+							}}>
+							List a Place
+						</Button>
+					</Link>
+						
+						<Link to="/helpcenter" >
+						<Button
+							variant="outlined"
+							className="buttonHover"
+							sx={{
+								borderColor: "#EA4235",
+								color: "black",
+								padding: "12px 24px",
+								width:"100%",
+							}}>
+							Connect with Us
+						</Button>
+						</Link>
+						
+					</div>
 					</div>
 				</div>
 			</div>

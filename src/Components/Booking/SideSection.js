@@ -129,7 +129,7 @@ const SideSection = ({
 	gst = Math.round(gst, 2);
 	// console.log(v1, v3, v4);
 	return (
-		<div style={{width:"30%"}}>
+		<div className="side-section">
 			<div className="side-section-image-wrapper">
 				<img
 					src={locationData?.images?.at(0)}

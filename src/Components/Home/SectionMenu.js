@@ -70,6 +70,14 @@ const SectionMenu = () => {
 		"grid-menu-item-3",
 		"grid-menu-item-3",
 	];
+	const classesResp = [
+		"resp-grid-menu-item-1",
+		"resp-grid-menu-item-2",
+		"resp-grid-menu-item-2",
+		"resp-grid-menu-item-1",
+		"resp-grid-menu-item-2",
+		"resp-grid-menu-item-2",
+	];
 
 	const [arrowState, setArrowState] = useState({
 		film: true,
@@ -78,7 +86,7 @@ const SectionMenu = () => {
 	});
 
 	let gridItems = shootMap[shoot].map((img, index) => (
-		<div className={classes[index]} key={index}>
+		<div className={`${classes[index]} ${classesResp[index]}`} key={index}>
 			<Link
 				to={{
 					pathname:"/search/"+shoot

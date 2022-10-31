@@ -1,3 +1,7 @@
+.side-section{
+	width: 30%;
+}
+
 .side-section-image-wrapper {
 	width: 22vw;
 	height: 160px;
@@ -64,4 +68,27 @@
     display: flex;
     width: 22vw;
     justify-content: space-between;
+}
+
+
+
+@media screen and (max-width: 992px){
+	.side-section{
+		width: 85vw;
+		max-width: 90vw;
+	}
+	.side-section-image-wrapper {
+		width: 80vw;
+		height: 40vh;
+		margin: auto;
+	}
+	[data-attribute-1], [data-attribute-2] {
+		text-align: center;
+	}
+	[data-attribute-3] {
+		width: 80vw;
+	}
+	.css-7szws5-MuiButtonBase-root-MuiButton-root{
+		margin-bottom: 4rem !important;
+	}
 }

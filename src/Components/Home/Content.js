@@ -10,6 +10,8 @@ import { BsCalendarWeek } from "react-icons/bs";
 import "../../Assets/Styles/Home/content.css";
 import Testimonials from "./Testimonials";
 import Host from "./Host";
+import Video1 from "../../Assets/Images/Video1.mp4"
+
 
 
 //for section reason
@@ -71,8 +73,14 @@ const Content = () => {
 			<SectionReason  heading="Why Choose Us" imageReason={imageHome} objArray={objArray}/>
 			<SectionProperty />
 			<SectionServices />
-			<div className="text-on-image-container service-image-wrapper">
-				<img
+			<div style={{
+				alignItems:"center",
+				textAlign:"center",
+				// height:"90vh",
+				marginTop:"5%"
+			}}>
+			<video src={Video1} controls="controls" autoPlay muted style={{height:"100%",width:"100%"}}  />
+				{/* <img
 					src={require("../../Assets/Images/video-image.jpeg")}
 					alt="video"
 					className="service-image"></img>
@@ -85,7 +93,7 @@ const Content = () => {
 						cursor: "pointer",
 					}}>
 					<FaPlay size={75} />
-				</div>
+				</div> */}
 			</div>
 			<Testimonials />
 			

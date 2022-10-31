@@ -119,12 +119,10 @@ a {
 }
 
 @media screen and (max-width: 576px){
-	.footer-content {
-		grid-template-columns: repeat(5, 1fr);
-		align-items: center;
-		justify-items: center;
+	.footer{
+		display: none;
 	}
-	.footer-spanning-item {
-		grid-column: span 5;
+	.footer-wrapper{
+		display: none;
 	}
 }

@@ -6,6 +6,7 @@ import image2 from "../Assets/Images/aboutUs_bottomImg.jpeg";
 import image3 from "../Assets/Images/aboutUs_SubImg3.jpeg";
 import image4 from "../Assets/Images/aboutUs_SubImg4.jpeg";
 import { Link } from "react-router-dom";
+import Host from "../Components/Home/Host";
 
 
 import { Button } from "@mui/material";
@@ -179,6 +180,8 @@ const AboutUs = () => {
 				/>
 			</div>
 
+
+
 			<div className="about-us-bottom-text">
 				<div>
 					<div className="about-us-content-heading">Join Our Team</div>
@@ -230,6 +233,7 @@ const AboutUs = () => {
 					</div>
 				</div>
 			</div>
+			<Host title="Start Listing for your production" buttonContent="Let's Begin" link="/list" />
 
 			<Footer />
 		</div>
