@@ -119,10 +119,37 @@ a {
 }
 
 @media screen and (max-width: 576px){
-	.footer{
-		display: none;
+	.company-name {
+		font-size: 20px;
 	}
-	.footer-wrapper{
-		display: none;
+	.company-details {
+		font-size: 12px;
+	}
+	.footer-item{
+		font-size: 10px;
+	}
+	.footer-content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.footer-points{
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+	}
+	.footer-subheading{
+		grid-column: span 5;
+		font-size: 15px;
+		margin-top: 2rem;
+	}
+	.company-name{
+		margin-bottom: 10px;
+	}
+	.footer-item{
+		flex-direction: column;
+	}
+	.footer-points a{
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
 	}
 }

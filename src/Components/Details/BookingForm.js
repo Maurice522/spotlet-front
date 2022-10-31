@@ -80,7 +80,24 @@ const BookingForm = ({
 	};
 
 
-	const activities = ['Film Shoot', 'Web Series Shoot', 'Ad Film Shoot', 'Music Album Shoot', 'Green Screen', 'Photoshoot', 'Party', 'Product Release / Demo', 'Awards Ceremony', 'Conference', 'Birthday Party', 'Family / Friends OutlinedFlag', 'Conference / Counselling']
+
+
+	const activity = [
+		[''],
+		['Film Shoot', 'Web Series Shoot', 'Ad Film Shoot', 'Music Album Shoot', 'Green Screen', 'Photoshoot'],
+		['Party', 'Product Release / Demo', 'Awards Ceremony', 'Conference'],
+		['Birthday Party', 'Family / Friends OutlinedFlag', 'Conference / Counselling']
+	];
+
+	
+
+	const activityIndex = {
+		"": 0,
+		"Corporate": 2,
+		"Film, Webseries or Ad": 1,
+		"Individual": 3,
+		"TV Series and Others": 1
+	}
 	
 	return (
 		<div>
@@ -322,7 +339,7 @@ const BookingForm = ({
 							}}
 							value={v5}
 						>
-						{activities.map(item => <MenuItem value={item} key={item}>{item}</MenuItem>)}
+						{activity[activityIndex[event]].map(item => <MenuItem value={item} key={item}>{item}</MenuItem>)}
 						
 						</Select>
 					</div>

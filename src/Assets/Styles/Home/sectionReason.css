@@ -139,13 +139,13 @@
 
 @media screen and (max-width: 576px){
 	.reason-heading {
-		margin-bottom: 0;
+		margin-bottom: 80px;
 	}
 	.reason-image {
 		display: none;
 	}
 	.reason-container {
-		height: 47vh;
+		height: 28rem;
 		width: 90vw;
 	}
 	.reason-section{
@@ -154,7 +154,7 @@
 		justify-content: center;
 		width: 90vw;
 		margin: auto;
-		height: 44vh;
+		height: 20rem;
 	}
 	.reason-content-wrapper {
 		flex-direction: column;

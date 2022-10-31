@@ -17,7 +17,7 @@ import { VpnKeyOutlined } from "@mui/icons-material";
 export default function OTPVerify({ sendOTP }) {
   const [otp, setOTP] = useState("");
   const [auto, setAuto] = useState(true);
-  const [timer, setTimer] = useState(120000);
+  const [timer, setTimer] = useState(120);
   const userData = useSelector(selectUserData);
   const verifyOtp = useSelector(selectOTP);
   const dispatch = useDispatch();
@@ -93,7 +93,7 @@ export default function OTPVerify({ sendOTP }) {
           className="btn-resend"
           onClick={() => {
             sendOTP(userData);
-            setTimer(120000);
+            setTimer(120);
           }}
         >
           Resend Code

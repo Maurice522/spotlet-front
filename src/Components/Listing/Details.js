@@ -192,7 +192,7 @@ const Details = ({ showSection }) => {
 						className="listingInput input"
 						name="property_size"
 						onChange={handleChange}
-						value={!loc ? property_desc.property_size : ""}
+						value={property_desc ? property_desc.property_size : ""}
 						required
 						type="number"
 					/>
@@ -212,7 +212,7 @@ const Details = ({ showSection }) => {
 								name="house_parking"
 								onChange={handleChange}
 								value="yes"
-								checked={!loc ? property_desc.house_parking === "yes": ""}
+								checked={property_desc ? property_desc.house_parking === "yes": ""}
 								required
 							/>
 							<span>YES</span>
@@ -224,7 +224,7 @@ const Details = ({ showSection }) => {
 								name="house_parking"
 								onChange={handleChange}
 								value="no"
-								checked={!loc ? property_desc.house_parking === "no": ""}
+								checked={property_desc ? property_desc.house_parking === "no": ""}
 							/>{" "}
 							<span>NO</span>
 						</div>
@@ -243,7 +243,7 @@ const Details = ({ showSection }) => {
 								name="street_parking"
 								onChange={handleChange}
 								value="yes"
-								checked={!loc ? property_desc.street_parking === "yes" : ""}
+								checked={property_desc ? property_desc.street_parking === "yes" : ""}
 								required
 							/>
 							<span>YES</span>
@@ -255,7 +255,7 @@ const Details = ({ showSection }) => {
 								name="street_parking"
 								onChange={handleChange}
 								value="no"
-								checked={!loc ? property_desc.street_parking === "no" : ""}
+								checked={property_desc ? property_desc.street_parking === "no" : ""}
 							/>{" "}
 							<span>NO</span>
 						</div>
@@ -273,7 +273,7 @@ const Details = ({ showSection }) => {
 								name="security_camera"
 								onChange={handleChange}
 								value="yes"
-								checked={!loc ? property_desc.security_camera === "yes" : ""}
+								checked={property_desc ? property_desc.security_camera === "yes" : ""}
 							/>
 							<span>YES</span>
 						</div>
@@ -284,7 +284,7 @@ const Details = ({ showSection }) => {
 								name="security_camera"
 								onChange={handleChange}
 								value="no"
-								checked={!loc ? property_desc.security_camera === "no" : ""}
+								checked={property_desc ? property_desc.security_camera === "no" : ""}
 							/>{" "}
 							<span>NO</span>
 						</div>
@@ -297,13 +297,13 @@ const Details = ({ showSection }) => {
 						Description of the property<span style={{ color: "red" }}>*</span>
 					</h2>
 					<TextareaAutosize
-						className="listingInput"
+						className="listingInput text-input"
 						aria-label="minimum height"
 						minRows={6}
 						maxLength={500}
 						name="property_info"
 						onChange={handleChange}
-						value={!loc ? property_desc.property_info : ""}
+						value={property_desc ? property_desc.property_info : ""}
 						style={{
 							width: 690,
 							fontSize: "16px",

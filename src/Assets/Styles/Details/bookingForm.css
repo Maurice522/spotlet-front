@@ -158,7 +158,7 @@
 	.wrapper{
 		background-color: transparent;
 	}
-	.form {
+	.form, .form-2 {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -167,16 +167,19 @@
 		border-radius: 8px;
 		background-color: rgba(255, 235, 235, 0.7);
 	}
-	.form div{
+	.form div, .form-2 div{
 		width: 90%;
 	}
-	.form div label{
+	.form div label, .form-2 div label{
 		border: none;
 	}
-	.form a{
+	.form a, .form-2 a{
 		grid-column: span 4;
 		width: 70vw;
 		margin-left: -10vw;
+	}
+	.form-2{
+		width: 100%;
 	}
 	.submit {
 		font-size: 14px;

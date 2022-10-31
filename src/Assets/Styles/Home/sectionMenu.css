@@ -121,8 +121,7 @@
 	}
 	.grid-menu {
 		gap: 16px;
-	height: 47vh;
-
+		height: 20rem;
 	}
 }
 
@@ -149,5 +148,9 @@
 	}
 	.menu-item-text{
 		font-size: 12px;
+	}
+	.grid-menu {
+		gap: 6px;
+		height: 28rem;
 	}
 }

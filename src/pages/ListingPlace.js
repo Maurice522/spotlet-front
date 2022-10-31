@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Assets/Styles/ListingPlace.css";
 import Details from "../Components/Listing/Details";
 import Location from "../Components/Listing/Location";
@@ -16,6 +16,7 @@ import Gst from "../Components/Listing/Gst";
 import TermCondition from "../Components/Listing/Term&Condition";
 import { useSelector } from "react-redux";
 import { selectLocationData } from "../redux/slices/locationSlice";
+import { AiOutlineDown } from 'react-icons/ai'
 
 const ListingPlace = () => {
 	const [section, showSection] = useState("Details & Description");
@@ -39,144 +40,29 @@ const ListingPlace = () => {
 		"Bank Details",
 		"Terms & Conditions",
 	];
+
+	const [disp, setDisp] = useState('grid');
+	let x = window.matchMedia("(max-width: 576px)")
+	useEffect(() => {
+		if (x.matches) {
+			setDisp('none')
+		  } else {
+			setDisp('grid')
+		  }
+	}, [])
+	console.log(disp);
 	return (
 		<>
 			<div>
+				
 				<Navbar extraNavId={"id-2"} />
 				<div className="host">
-					{/* <nav className={"lnav-menu"}>
-						<div className="lnav-menu-items">
-							<div>
-								<button
-									onClick={() => handlesection("Details & Description")}
-									className={
-										section === "Details & Description"
-											? "lnav-text sel"
-											: "lnav-text"
-									}>
-									Details & Description
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("Location")}
-									// disabled={data?.property_desc ? false : true}
-									className={
-										section === "Location" ? "lnav-text sel" : "lnav-text"
-									}>
-									Location
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("Amenities")}
-									// disabled={data?.property_address ? false : true}
-									className={
-										section === "Amenities" ? "lnav-text sel" : "lnav-text"
-									}>
-									Amenities
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("Photo")}
-									// disabled={data?.amenities ? false : true}
-									className={
-										section === "Photo" ? "lnav-text sel" : "lnav-text"
-									}>
-									Photo
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("Features")}
-									// disabled={data?.imagesData ? false : true}
-									className={
-										section === "Features" ? "lnav-text sel" : "lnav-text"
-									}>
-									Features
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("Do’s & Don’ts")}
-									// disabled={data?.features ? false : true}
-									className={
-										section === "Do’s & Don’ts" ? "lnav-text sel" : "lnav-text"
-									}>
-									Do’s & Don’ts
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("Pricing")}
-									// disabled={data?.do_and_dont ? false : true}
-									className={
-										section === "Pricing" ? "lnav-text sel" : "lnav-text"
-									}>
-									Pricing
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("Timings")}
-									// disabled={data?.pricing ? false : true}
-									className={
-										section === "Timings" ? "lnav-text sel" : "lnav-text"
-									}>
-									Timings
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("Rules of the Host")}
-									// disabled={data?.timings ? false : true}
-									className={
-										section === "Rules of the Host"
-											? "lnav-text sel"
-											: "lnav-text"
-									}>
-									Rules of the Host
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("Contact Details")}
-									// disabled={data?.rules ? false : true}
-									className={
-										section === "Contact Details"
-											? "lnav-text sel"
-											: "lnav-text"
-									}>
-									Contact Details
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("GST Details")}
-									// disabled={data?.contact_det ? false : true}
-									className={
-										section === "GST Details" ? "lnav-text sel" : "lnav-text"
-									}>
-									GST Details
-								</button>
-							</div>
-							<div>
-								<button
-									onClick={() => handlesection("Term & Condition")}
-									// disabled={data?.gst ? false : true}
-									className={
-										section === "Term & Condition"
-											? "lnav-text sel"
-											: "lnav-text"
-									}>
-									Term & Condition
-								</button>
-							</div>
-						</div>
-					</nav> */}
+				<div className="menu" onClick={() => setDisp(prev => {return prev === 'none' ? 'grid' : 'none'})} >
+					<h2>Menu</h2>
+					<AiOutlineDown size="30px"/>
+				</div>
 
-					<nav className="lnav-menu">
+					<nav className="lnav-menu" style={{display: disp}}>
 						{items.map((item, ind) => (
 							<div key={ind}>
 								<button

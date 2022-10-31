@@ -130,9 +130,9 @@ const Navbar = ({ extraNavId }) => {
 			<div className="nav-items-resp">
 				{user ? (
 					<div>
-						<Link to="/">
+						<Link to="/listing">
 							<AiOutlineSearch size="15px" />
-							<div>Search</div>
+							<div>List Space</div>
 						</Link>
 						<Link to="/bookinglist/:booking">
 							<BiBookmark size="15px" />
@@ -146,14 +146,35 @@ const Navbar = ({ extraNavId }) => {
 							<GrFavorite size="15px" />
 							<div>Favorites</div>
 						</Link>
-						<Link to="/">
+						<button onClick={Boolean(anchorEl) === false ? handleClick : handleClose}>
 							<CgProfile size="15px" />
-							<div>People</div>
-						</Link>
+							<div>Account</div>
+						</button>
+						<Menu
+							id="simple-menu"
+							anchorEl={anchorEl}
+							keepMounted
+							open={Boolean(anchorEl)}
+							onClose={handleClose}
+							getContentAnchorEl={null}
+							anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+							transformOrigin={{ horizontal: "center" }}>
+							<MenuItem>Hi, {firstName}</MenuItem>
+							<MenuItem onClick={acntset}>Account Settings</MenuItem>
+							<MenuItem onClick={logout}>Logout</MenuItem>
+						</Menu>
 					</div>
 				) : (
 					<div>
-				
+						<div onClick={() => toast.error("Please sign in first")}>
+							List Space
+						</div>
+						<Link to={"/signin"} state={{ isSignIn: true }}>
+							Sign In
+						</Link>
+						<Link to={"/signin"} state={{ isSignIn: false }}>
+							Sign Up
+						</Link>
 					</div>
 				)}
 			</div>

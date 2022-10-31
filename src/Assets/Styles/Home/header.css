@@ -71,7 +71,7 @@
 
 @media screen and (max-width: 576px){
 	.bg-image {
-		height: 140vh;
+		height: 60rem;
 	}
 	.message {
 		width: 70%;

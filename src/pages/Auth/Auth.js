@@ -93,11 +93,11 @@ export default function Auth() {
 	//SignIn and SignUp function -
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// checkPassword();
-		// if(!(validLength && upperCase && lowerCase && specialChar)){
-		// 	toast.error("The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character");
-		// 	return;
-		// }
+		checkPassword();
+		if(!(validLength && upperCase && lowerCase && specialChar)){
+			toast.error("The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character");
+			return;
+		}
 		if (isSignIn) {
 			try {
 				const { data } = await signIn(userData);

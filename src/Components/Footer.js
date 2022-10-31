@@ -79,7 +79,7 @@ const Footer = () => {
 	];
 
 	const items = objArray.map((item, index) => (
-		<div key={index}>
+		<div key={index} className="footer-points">
 			<div className="footer-subheading">{item.title}</div>
 			{item.items.map((val, i) => (
 				<a href={val.to} key={i}>

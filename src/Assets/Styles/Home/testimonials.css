@@ -178,7 +178,7 @@
 
 @media screen and (max-width: 576px){
 	.testimonial-container {
-		height: 70vh;
+		height: 40rem;
 	}
 	.card {
 		width: 100%;
