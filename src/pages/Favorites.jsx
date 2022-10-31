@@ -15,6 +15,7 @@ import image from "../Assets/Images/Favourite1.jpeg";
 
 const Favorites = () => {
 	const [propertyDetails, setPropertiesDetail] = useState([]);
+
 	useEffect(() => {
 		getAllLocations()
 		.then()
@@ -55,29 +56,7 @@ const Favorites = () => {
 					</div>
 				</div>
 
-<br/><br/><br/>
-				<div
-					style={{
-						width: "80%",
-						margin: "10px auto",
-					}}>
-					<div className="property-list">
-						{console.log(propertyDetails)}
-						{propertyDetails.map((item, index) => (
-							<PropertyInfo
-								item={item}
-								index={index}
-								isFav={true}
-								favPage={true}
-								key={index}
-								handleClick={() => {
-									console.log("clicked");
-								}}
-								border={false}
-							/>
-						))}
-					</div>
-				</div>
+
 			</div>
 			<Footer />
 		</div>

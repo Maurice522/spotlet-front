@@ -13,9 +13,7 @@ import { getAllLocations } from "../../services/api";
 const SectionProperty = () => {
 	const [favorites, setFavorites] = useState([0, 1, 2]);
 	const [propertyDetails, setPropertiesDetail] = useState([]);
-	const handleClick = () => {
-		console.log("clicked");
-	};
+	
 
 	// const propertyyDetails = [
 	// 	{
@@ -75,6 +73,9 @@ const SectionProperty = () => {
 	// 		isFavourite: favorites.includes(7),
 	// 	},
 	// ];
+	const handleClick = () => {
+		
+	};
 
 	useEffect(() => {
 		getAllLocations()

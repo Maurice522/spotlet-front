@@ -21,7 +21,7 @@ const PropertyInfo = ({
 				border: border && "1px solid #00aaff",
 			}}>
 			<div className="favorite-icon-wrapper">
-				{favPage == true ? (
+				{favPage === true ? (
 					<MdFavorite
 						size="28px"
 						color="#ff6767"

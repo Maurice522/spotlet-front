@@ -175,7 +175,7 @@ const Careers = () => {
 							</div>
 						</div>
 						<div className="about-us-btn-container" style={{marginTop:"5%"}}>
-					<Link to="/host" >
+					<Link to="#" >
 					<Button
 							variant="contained"
 							className="buttonHover1"
@@ -186,11 +186,12 @@ const Careers = () => {
 								width:"100%",
 
 							}}>
-							List a Place
+							View Open Positions
 						</Button>
 					</Link>
 						
-						<Link to="/helpcenter" >
+					<Link
+							to='#'>						
 						<Button
 							variant="outlined"
 							className="buttonHover"
@@ -199,8 +200,10 @@ const Careers = () => {
 								color: "black",
 								padding: "12px 24px",
 								width:"100%",
-							}}>
-							Connect with Us
+							}}
+							onClick={() => window.location = 'mailto:noreply@spotlet.in'}
+							>
+							Send Your Resume
 						</Button>
 						</Link>
 						
