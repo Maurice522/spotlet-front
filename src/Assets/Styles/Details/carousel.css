@@ -127,6 +127,9 @@
 		align-items: center;
 		justify-items: center;
 	}
+	.property-page-main-image {
+		height: 48vh;
+		width: 87vw;}
 }
 
 @media screen and (max-width: 576px) {

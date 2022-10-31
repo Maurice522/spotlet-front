@@ -121,6 +121,8 @@
 	}
 	.grid-menu {
 		gap: 16px;
+	height: 47vh;
+
 	}
 }
 

@@ -17,13 +17,51 @@ import "../../Assets/Styles/listYourSpace.css";
 
 
 
-let options = [
-	{ value: "Add New", label: "ADD NEW" },
-	{ value: "Airport", label: "Airport" },
-	{ value: "Amusement Park", label: "Amusement Park" },
-	{ value: "Apartment", label: "Apartment" },
-	
-];
+	let options = [
+		{ value: "Add New", label: "Add Custom to List" },
+		{value : "Apartment parking",label:" Apartment parking" },
+		{value : "Banquet Halls",label:" Banquet Halls" },
+		{value : "Beach House",label:" Beach House" },
+		{value : "BT roads (open roads)",label:" BT roads (open roads)" },
+		{value : "Bus Stand",label:" Bus Stand" },
+		{value : "Civil Court",label:" Civil Court" },
+		{value : "College",label:" College" },
+		{value : "Convention Centres",label:" Convention Centres" },
+		{value : "Corporate Office",label:" Corporate Office" },
+		{value : "Dhaba",label:" Dhaba" },
+		{value : "Event auditoriums",label:" Event auditoriums" },
+		{value : "Factory",label:" Factory" },
+		{value : "Farmhouse",label:" Farmhouse" },
+		{value : "Farmland",label:" Farmland" },
+		{value : "Forest",label:" Forest" },
+		{value : "Forest Stay",label:" Forest Stay" },
+		{value : "Gated Community",label:" Gated Community" },
+		{value : "Hospital",label:" Hospital" },
+		{value : "Hotel",label:" Hotel" },
+		{value : "Hotel Stay",label:" Hotel Stay" },
+		{value : "Industry",label:" Industry" },
+		{value : "Jail",label:" Jail" },
+		{value : "Lake House",label:" Lake House" },
+		{value : "Lake Stay",label:" Lake Stay" },
+		{value : "Lakes",label:" Lakes" },
+		{value : "Manduva House",label:" Manduva House" },
+		{value : "Movie Theatres",label:" Movie Theatres" },
+		{value : "Police station",label:" Police station" },
+		{value : "Pubs",label:" Pubs" },
+		{value : "Railway station",label:" Railway station" },
+		{value : "Resorts",label:" Resorts" },
+		{value : "Restaurants",label:" Restaurants" },
+		{value : "Rich house",label:" Rich house" },
+		{value : "School",label:" School" },
+		{value : "Shooting floors",label:" Shooting floors" },
+		{value : "Shopping Malls",label:" Shopping Malls" },
+		{value : "Sports auditoriums",label:" Sports auditoriums" },
+		{value : "Studio Floors",label:" Studio Floors" },
+		{value : "TV Stations",label:" TV Stations" },
+		{value : "Village atmosphere",label:" Village atmosphere" },
+		{value : "Weekend Farming",label:" Weekend Farming" },
+		{value : "Wooden house",label:" Wooden house" },	
+	];
 
 const Details = ({ showSection }) => {
 	const user_id = useSelector(selectUser_id);

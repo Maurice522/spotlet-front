@@ -150,7 +150,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-						<h2>Full Day Price &nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
+						<h2>Full Day Price &nbsp;&nbsp; <span style={{color : "grey"}}>*20% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -264,7 +264,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>24 hour Price &nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
+							<h2>24 hour Price &nbsp;&nbsp; <span style={{color : "grey"}}>*20% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled

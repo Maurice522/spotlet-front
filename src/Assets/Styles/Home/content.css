@@ -69,7 +69,7 @@
 @media screen and (max-width: 992px){
 	.content-wrapper {
 		width: 100vw;
-		height: 50vh;
+		height: 32vh;
 		margin: 100px auto 120px;
 	}
 	.left {
