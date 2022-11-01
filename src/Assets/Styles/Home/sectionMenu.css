@@ -101,12 +101,11 @@
 }
 
 .border-arrow {
-	width: 24px;
-	height: 24px;
-	position: absolute;
-	bottom: -15px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    bottom: -21px;
 }
-
 .hide {
 	display: none;
 }

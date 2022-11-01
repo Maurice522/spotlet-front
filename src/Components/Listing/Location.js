@@ -155,7 +155,9 @@ const Location = ({ showSection }) => {
             defaultValue=""
             // value="Hyderabad"
             className={'listingInput input input__location'}
-            onChange={changeCountry}>
+            onChange={changeCountry}
+            value={property_address.country}>
+            
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
@@ -176,7 +178,8 @@ const Location = ({ showSection }) => {
             defaultValue=""
             // value="Hyderabad"
             className={'listingInput input input__location'}
-            onChange={changeState}>
+            onChange={changeState}
+            value={property_address.state}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
@@ -196,7 +199,10 @@ const Location = ({ showSection }) => {
             name="city"
             defaultValue=""
             // value="Hyderabad"
-            className={'listingInput input input__location'}>
+            className={'listingInput input input__location'}
+            onChange={changeCity}
+            value={property_address.city}>
+
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
