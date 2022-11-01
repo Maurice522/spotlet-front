@@ -53,13 +53,15 @@ const Timing = ({ showSection }) => {
   const location = useSelector(selectLocationData);
 
   useEffect(() => {
-    location.timings && setmonday(location.timings.monday);
-    location.timings && settuesday(location.timings.tuesday);
-    location.timings && setwednesday(location.timings.wednesday);
-    location.timings && setthursday(location.timings.thursday);
-    location.timings && setfriday(location.timings.friday);
-    location.timings && setsaturday(location.timings.saturday);
-    location.timings && setsunday(location.timings.sunday);
+    if(location){
+      location.timings && setmonday(location.timings.monday);
+      location.timings && settuesday(location.timings.tuesday);
+      location.timings && setwednesday(location.timings.wednesday);
+      location.timings && setthursday(location.timings.thursday);
+      location.timings && setfriday(location.timings.friday);
+      location.timings && setsaturday(location.timings.saturday);
+      location.timings && setsunday(location.timings.sunday);
+    }
   }, []);
 
   const handleSubmit = async(e) => {
@@ -92,10 +94,9 @@ const Timing = ({ showSection }) => {
       toast.error(error.response.data);
     }
   }
-
   return (
     <div className="lbox">
-      <div className="row1">
+      <div className="row1 timing-row">
         <h2>Monday</h2>
         <Switch
           onClick={() => setmonday({ ...monday, open: !monday.open })}
@@ -127,7 +128,7 @@ const Timing = ({ showSection }) => {
             </div>
             {monday.isSetHours === true ? (
               <>
-                <div className="row1">
+                <div className="row1 timing-row">
                   <input
                     className="timeInput listingInput input"
                     type="time"
@@ -161,7 +162,7 @@ const Timing = ({ showSection }) => {
           ""
         )}
       </div>
-      <div className="row1">
+      <div className="row1 timing-row">
         <h2>Tuesday</h2>
         <Switch
           onClick={() => settuesday({ ...tuesday, open: !tuesday.open })}
@@ -228,7 +229,7 @@ const Timing = ({ showSection }) => {
         )}
       </div>
 
-      <div className="row1">
+      <div className="row1 timing-row">
         <h2>Wednesday</h2>
         <Switch
           onClick={() => setwednesday({ ...wednesday, open: !wednesday.open })}
@@ -299,7 +300,7 @@ const Timing = ({ showSection }) => {
         )}
       </div>
 
-      <div className="row1">
+      <div className="row1 timing-row">
         <h2>Thursday</h2>
         <Switch
           onClick={() => setthursday({ ...thursday, open: !thursday.open })}
@@ -369,7 +370,7 @@ const Timing = ({ showSection }) => {
         )}
       </div>
 
-      <div className="row1">
+      <div className="row1 timing-row">
         <h2>Friday</h2>
         <Switch
           onClick={() => setfriday({ ...friday, open: !friday.open })}
@@ -436,7 +437,7 @@ const Timing = ({ showSection }) => {
         )}
       </div>
 
-      <div className="row1">
+      <div className="row1 timing-row">
         <h2>Saturday</h2>
         <Switch
           onClick={() => setsaturday({ ...saturday, open: !saturday.open })}
@@ -507,7 +508,7 @@ const Timing = ({ showSection }) => {
         )}
       </div>
 
-      <div className="row1">
+      <div className="row1 timing-row">
         <h2>Sunday</h2>
         <Switch
           onClick={() => setsunday({ ...sunday, open: !sunday.open })}

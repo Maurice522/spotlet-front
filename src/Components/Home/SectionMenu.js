@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GiFilmProjector } from "react-icons/gi";
 import { BsPersonFill } from "react-icons/bs";
 import { MdOutlineCorporateFare } from "react-icons/md";
@@ -29,6 +29,18 @@ import indi_img6 from "../../Assets/Images/indi-menu-6.jpeg";
 import arrow from "../../Assets/Images/border-arrow.jpeg";
 
 const SectionMenu = () => {
+
+	const [imgSize, setImgSize] = useState("40px");
+
+	let x = window.matchMedia("(max-width: 576px)")
+	useEffect(() => {
+		if (x.matches)
+			setImgSize("25px");
+		  else
+			setImgSize("40px");
+	}, [])
+
+
 	const filmShooting = [
 		{ image: film_img1, text: "Ad Film Shoot" },
 		{ image: film_img3, text: "Film Shoot" },
@@ -121,7 +133,7 @@ const SectionMenu = () => {
 							individual: false,
 						});
 					}}>
-					<GiFilmProjector size="40px" />
+					<GiFilmProjector size={imgSize} />
 					<div className={`menu-heading-item`}>Film Shooting</div>
 					<img
 						src={arrow}
@@ -150,7 +162,7 @@ const SectionMenu = () => {
 							individual: false,
 						});
 					}}>
-					<MdOutlineCorporateFare size="40px" />
+					<MdOutlineCorporateFare size={imgSize} />
 					<div className={`menu-heading-item`}>Corporate Events</div>
 					<img
 						src={arrow}
@@ -179,7 +191,7 @@ const SectionMenu = () => {
 							individual: true,
 						});
 					}}>
-					<BsPersonFill size="40px" />
+					<BsPersonFill size={imgSize} />
 					<div className={`menu-heading-item`}>Individual Events</div>
 					<img
 						src={arrow}

@@ -31,10 +31,12 @@ const Pricing = ({ showSection }) => {
 	const location = useSelector(selectLocationData);
 
 	useEffect(() => {
-		location.pricing && setfilm(location.pricing.film_webseries_ad);
-		location.pricing && settv(location.pricing.tv_series_other);
-		location.pricing && setcorp(location.pricing.corporate);
-		location.pricing && setevent(location.pricing.individual);
+		if(location){
+			location.pricing && setfilm(location.pricing.film_webseries_ad);
+			location.pricing && settv(location.pricing.tv_series_other);
+			location.pricing && setcorp(location.pricing.corporate);
+			location.pricing && setevent(location.pricing.individual);
+		}
 	}, []);
 	const handleSubmit = async (e) => {
 		e.preventDefault();

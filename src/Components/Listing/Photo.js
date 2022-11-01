@@ -21,7 +21,8 @@ const Photo = ({ showSection }) => {
 	const location = useSelector(selectLocationData);
 
 	useEffect(() => {
-		location.imagesData && setImagesData(location.imagesData);
+		if(location)
+			location.imagesData && setImagesData(location.imagesData);
 	}, []);
 
 	const handleChange = async (e) => {

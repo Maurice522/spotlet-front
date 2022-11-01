@@ -16,10 +16,21 @@ import Gst from "../Components/Listing/Gst";
 import TermCondition from "../Components/Listing/Term&Condition";
 import { useSelector } from "react-redux";
 import { selectLocationData } from "../redux/slices/locationSlice";
-import { AiOutlineDown } from 'react-icons/ai'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 const ListingPlace = () => {
-	const [section, showSection] = useState("Details & Description");
+
+	const [sec, setSec] = useState("Details & Description");
+
+	let x = window.matchMedia("(max-width: 576px)")
+	useEffect(() => {
+		if (x.matches)
+			setSec("");
+		  else
+			setSec("Details & Description");
+	}, [])
+
+	const [section, showSection] = useState(sec);
 	const data = useSelector(selectLocationData);
 	const handlesection = (e) => {
 		showSection(e);
@@ -41,28 +52,14 @@ const ListingPlace = () => {
 		"Terms & Conditions",
 	];
 
-	const [disp, setDisp] = useState('grid');
-	let x = window.matchMedia("(max-width: 576px)")
-	useEffect(() => {
-		if (x.matches) {
-			setDisp('none')
-		  } else {
-			setDisp('grid')
-		  }
-	}, [])
-	console.log(disp);
 	return (
 		<>
 			<div>
 				
 				<Navbar extraNavId={"id-2"} />
 				<div className="host">
-				<div className="menu" onClick={() => setDisp(prev => {return prev === 'none' ? 'grid' : 'none'})} >
-					<h2>Menu</h2>
-					<AiOutlineDown size="30px"/>
-				</div>
 
-					<nav className="lnav-menu" style={{display: disp}}>
+					{!x.matches || !section.length ? <nav className="lnav-menu">
 						{items.map((item, ind) => (
 							<div key={ind}>
 								<button
@@ -71,8 +68,15 @@ const ListingPlace = () => {
 									{item}
 								</button>
 							</div>
+							
 						))}
-					</nav>
+						</nav> : 
+						<div className="menu">
+							<AiOutlineArrowLeft size="30px" onClick={() => showSection("")} />
+							<h3>{section}</h3>
+						</div>
+						}
+					
 
 					<div
 						style={{

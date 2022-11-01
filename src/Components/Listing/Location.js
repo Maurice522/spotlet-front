@@ -297,7 +297,7 @@ const Location = ({ showSection }) => {
       
        {/* handleMap(property_address.location_detail) */}
         
-        <div style={{ width: "60%", height: "600px", marginLeft: "70px"  }}>
+        <div className="map">
          <GoogleMap/>
         </div>
         

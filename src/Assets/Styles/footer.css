@@ -141,22 +141,26 @@ a {
 	}
 	.footer-points{
 		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+		place-items: flex-start;
+	}
+	.footer-points:last-child{
 		grid-template-columns: repeat(5, 1fr);
 	}
 	.footer-subheading{
-		grid-column: span 5;
+		grid-column: span 3;
 		font-size: 15px;
 		margin-top: 2rem;
+	}
+	.footer-points:last-child .footer-subheading{
+		grid-column: span 5;
 	}
 	.company-name{
 		margin-bottom: 10px;
 	}
 	.footer-item{
 		flex-direction: column;
-	}
-	.footer-points a{
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
 	}
 	.to-top {
 		right: 44%;
