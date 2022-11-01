@@ -59,6 +59,21 @@ export default function Auth() {
 		profession: "",
 		company: "",
 	});
+
+	const [validLength, setValidLength] = useState(null);
+	const [upperCase, setUpperCase] = useState(null);
+	const [lowerCase, setLowerCase] = useState(null);
+	const [specialChar, setSpecialChar] = useState(null);
+	const [valid, setValid] = useState(true);
+
+	const checkPassword = () => {
+		setValidLength(userData.password.length >= 8 ? true : false);
+		setUpperCase(userData.password.toLowerCase() !== userData.password);
+		setLowerCase(userData.password.toUpperCase() !== userData.password);
+		setSpecialChar(/[ `!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/.test(userData.password));
+	};
+
+	
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	//Handling All Input data function
@@ -78,26 +93,16 @@ export default function Auth() {
 		}
 	};
 
-	const [validLength, setValidLength] = useState(null);
-	const [upperCase, setUpperCase] = useState(null);
-	const [lowerCase, setLowerCase] = useState(null);
-	const [specialChar, setSpecialChar] = useState(null);
-
-	const checkPassword = () => {
-		setValidLength(userData.password.length >= 8 ? true : false);
-		setUpperCase(userData.password.toLowerCase() !== userData.password);
-		setLowerCase(userData.password.toUpperCase() !== userData.password);
-		setSpecialChar(/[ `!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/.test(userData.password));
-	};
-
 	//SignIn and SignUp function -
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		checkPassword();
-		if(!(validLength && upperCase && lowerCase && specialChar)){
-			toast.error("The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character");
+		console.log(!isSignIn && !(validLength && upperCase && lowerCase && specialChar))
+		if(!isSignIn && !(validLength && upperCase && lowerCase && specialChar)){
+			setValid(false);
 			return;
 		}
+		setValid(true);
 		if (isSignIn) {
 			try {
 				const { data } = await signIn(userData);
@@ -332,7 +337,7 @@ export default function Auth() {
 								required
 							/>
 							<br />
-							<p>Should contain minimum 8 characters</p>
+							{valid ? <p>Should contain minimum 8 characters</p> : <p style={{color: "red"}}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
 							<Button
 								type="submit"
 								fullWidth
