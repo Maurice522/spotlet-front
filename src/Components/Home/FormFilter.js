@@ -141,7 +141,7 @@ const FormFilter = ({ fullScreen }) => {
 				</div>
 
 				<Link
-					to="/search"
+					to={`/search/`+event}
 					style={{
 						textDecoration: "none",
 					}}>

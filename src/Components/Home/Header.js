@@ -4,13 +4,34 @@ import "../../Assets/Styles/Home/header.css";
 import Typewriter from "typewriter-effect";
 
 const Header = ({ extraNavId }) => {
-	const images = [
-		// require("../../Assets/Images/header-bg.jpeg"),
+
+	const images1 = [
+		require("../../Assets/Images/header-bg.jpeg"),
+		require("../../Assets/Images/menu-2.jpeg"),
+		require("../../Assets/Images/menu-3.jpeg"),
+		require("../../Assets/Images/menu-2.jpeg"),
+		require("../../Assets/Images/menu-5.jpeg"),
+	];
+
+	const images2 = [
 		require("../../Assets/Images/bg-img1.png"),
 		require("../../Assets/Images/bg-img2.png"),
 		require("../../Assets/Images/bg-img3.png"),
-		// require("../../Assets/Images/menu-6.jpeg"),
+		require("../../Assets/Images/bg-img2.png"),
+		require("../../Assets/Images/bg-img3.png"),
 	];
+
+	const [images, setImages] = useState(images1);
+
+	let x = window.matchMedia("(max-width: 576px)")
+	useEffect(() => {
+		if (x.matches)
+			setImages(images2);
+		  else
+			setImages(images1);
+	}, [])
+
+
 	const messages = [
 		"Corporate Retreat",
 		"Film & TV Shoot",

@@ -10,7 +10,7 @@ import { BiRightArrow } from "react-icons/bi";
 import { GoArrowRight } from "react-icons/go";
 import { MdTravelExplore } from "react-icons/md";
 import "../../Assets/Styles/listYourSpace.css";
-import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
+// import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import { Country, State, City } from 'country-state-city';
 import {
   Select,
