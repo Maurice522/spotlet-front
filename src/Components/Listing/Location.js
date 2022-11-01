@@ -52,6 +52,9 @@ const Location = ({ showSection }) => {
   const changeStateHandler = (e) => {
     console.log(e.target.value)
   }
+  const changeCityHandler = (e) => {
+    console.log(e.target.value)
+  }
 
   // console.log(Country.getAllCountries())
   // console.log(State.getAllStates())
@@ -59,8 +62,7 @@ const Location = ({ showSection }) => {
   // console.log(country);
   // console.log(state);
 
-  let stateArray = State.getAllStates().filter(item => item.countryCode === country);
-  console.log(stateArray)
+  let stateArray = State.getAllStates().filter(item => item.countryCode === country);;
   let cityArray = City.getCitiesOfState(country, state);
 
   // const [cord, setCord] = useState({
@@ -203,10 +205,8 @@ const Location = ({ showSection }) => {
             name="city"
             defaultValue=""
             // value="Hyderabad"
-            className={'listingInput input input__location'}
-            onChange={changeCity}
-            value={property_address.city}>
-
+            onChange={changeCityHandler}
+            className={'listingInput input input__location'}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
