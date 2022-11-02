@@ -4,7 +4,7 @@
 	background-color: white;
 	width: 70vw;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-	height: 90vh;
+	height: 90%;
 }
 /* image part */
 .auth-img {
@@ -121,7 +121,8 @@ form > .horizontal-itm > div > p {
 	background-size: contain;
 	background-size: cover; 
 	height: max-content;
-	height: 93.5vh;
+	height: 43.7rem;
+	overflow: hidden;
 	/* width: 100%; */
 }
 
@@ -228,6 +229,17 @@ select option {
     padding-left: 7%;
     border-radius: 4px;
     color: black;
+}
+
+.pass{
+	border: 0 !important;
+	margin-bottom: 10px;
+	width: 104%;
+	margin-left: -2.5%;
+}
+
+form p{
+	margin-top: 15px;
 }
 
 

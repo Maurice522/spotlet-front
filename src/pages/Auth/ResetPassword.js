@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { LockOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
 import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import React, { useState } from "react";
@@ -17,19 +18,44 @@ export default function ResetPassword() {
     confirmNewPassword: "",
   });
 
+  
+  const [validLength, setValidLength] = useState(null);
+  const [upperCase, setUpperCase] = useState(null);
+  const [lowerCase, setLowerCase] = useState(null);
+  const [specialChar, setSpecialChar] = useState(null);
+  const [valid, setValid] = useState(true);
+
+  const checkPassword = () => {
+    setValidLength(userCredential.newPassword.length >= 8 ? true : false);
+    setUpperCase(userCredential.newPassword.toLowerCase() !== userCredential.newPassword);
+    setLowerCase(userCredential.newPassword.toUpperCase() !== userCredential.newPassword);
+    setSpecialChar(/[ `!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/.test(userCredential.newPassword));
+  };
+
+
   const handleChange = (e) => {
     setUserCredential({ ...userCredential, [e.target.name]: e.target.value });
   };
 
+
+  const navigate = useNavigate();
+
   //handle update passowrd
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
+    checkPassword();
+    console.log(!(validLength && upperCase && lowerCase && specialChar))
+    if (!(validLength && upperCase && lowerCase && specialChar)) {
+      setValid(false);
+      return;
+    }
+    setValid(true);
     if (userCredential.newPassword !== userCredential.confirmNewPassword)
       toast.error("new password and confirm password are not same");
     try {
       const response = await resetPassword(user_id, userCredential);
       toast.success("password updated..");
-      window.location = "/signin";
+      navigate("/signin");
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.error);
@@ -75,9 +101,7 @@ export default function ResetPassword() {
           required
         />
         <br />
-        <p style={{ marginBottom: "20px" }}>
-          Should contain minimum 8 characters
-        </p>
+        {valid ? <p style={{ marginBottom: "20px" }}>Should contain minimum 8 characters</p> : <p style={{ color: "red", marginBottom: "20px" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
         <label>Confirm New Password</label>
         <TextField
           type={!show.showConfirmNewPassword ? "password" : "text"}

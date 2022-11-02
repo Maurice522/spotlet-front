@@ -14,6 +14,7 @@ const PropertyInfo = ({
 	border,
 }) => {
 
+	console.log(item);
 	return (
 		<div
 			className="item"
@@ -60,11 +61,11 @@ const PropertyInfo = ({
 				}}>
 				<div className="text-on-image-container-2">
 					<img
-						src={item.images[0]}
+						src={item.imagesData[0].image}
 						alt={`property-${index + 1}`}
 						className="property-image"
 					/>
-					{review && <div className="type-of-property-icon">{item.icon}</div>}
+					{/* {review && <div className="type-of-property-icon">{item.icon}</div>} */}
 				</div>
 				<div
 					style={{
@@ -79,7 +80,7 @@ const PropertyInfo = ({
 							justifyContent: "space-between",
 							alignItems: "center",
 						}}>
-						{rating && (
+						{/* {rating && (
 							<div className="property-info-rating">
 								<Rating
 									name="read-only"
@@ -88,12 +89,12 @@ const PropertyInfo = ({
 									size="12px"
 								/>
 							</div>
-						)}
-						{review && (
+						)} */}
+						{/* {review && (
 							<>
 								<div>( {item?.reviewCount} )</div>
 							</>
-						)}
+						)} */}
 					</div>
 				</div>
 			</Link>

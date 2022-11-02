@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineSearch, AiOutlineHome } from "react-icons/ai";
 import { BiBookmark } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
-import {  GrFavorite } from "react-icons/gr";
+import { GrFavorite } from "react-icons/gr";
 import { Avatar, Button, TextField } from "@mui/material";
 import "../Assets/Styles/navbar.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 const Navbar = ({ extraNavId }) => {
+
 	const user = useSelector(selectUserData);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -38,7 +39,7 @@ const Navbar = ({ extraNavId }) => {
 	let profilePic = user?.personalInfo.profile_pic;
 	return (
 		<div className="nav" id={extraNavId}>
-			<Link to="/">
+			<Link to="/" onClick={() => window.scrollTo(0, 0)}>
 				<div className="nav-logo">
 					<img src={require(`../Assets/Images/logo.png`)} alt="logo" />
 				</div>
@@ -54,9 +55,8 @@ const Navbar = ({ extraNavId }) => {
 				<input
 					type="text"
 					placeholder="Search"
-					className={`nav-search-input ${
-						extraNavId !== "" ? "blacken" : "whiten"
-					}`}
+					className={`nav-search-input ${extraNavId !== "" ? "blacken" : "whiten"
+						}`}
 				/>
 			</div>
 			<div className="nav-items">
@@ -115,7 +115,11 @@ const Navbar = ({ extraNavId }) => {
 							alignItems: "center",
 							gap: "20px",
 						}}>
-						<div onClick={() => toast.error("Please sign in first")}>
+						<div onClick={() => {
+							toast.error("Please sign in first")
+							navigate("/signin");
+						}
+						}>
 							List your Space
 						</div>
 						<Link to={"/signin"} state={{ isSignIn: true }}>

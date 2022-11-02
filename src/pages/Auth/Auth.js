@@ -38,7 +38,7 @@ import image1 from "../../Assets/Images/signupinBg.jpeg";
 export default function Auth() {
 	const state = useLocation();
 	const [showPassword, setShowPassword] = useState(false);
-	const [isSignIn, setIsSignIn] = useState(state.state.isSignIn);
+	const [isSignIn, setIsSignIn] = useState(state.state ? state.state.isSignIn : true);
 	const [openOTP, setOpenOTP] = useState(false);
 	const [open, setOpen] = useState(false);
 	const handleOpenOTP = () => setOpenOTP(true);
@@ -307,8 +307,8 @@ export default function Auth() {
 							)}
 							<label>Password</label>
 							<br />
-							<input
-								className="authInput"
+							<TextField
+								className="authInput pass"
 								type={!showPassword ? "password" : "text"}
 								name="password"
 								onChange={handleInput}

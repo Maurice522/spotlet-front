@@ -1,12 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import {
+	addLocation,
+	selectLocationData,
+	selectLocationId,
+} from "../../redux/slices/locationSlice";
+import { createTempLocation } from "../../services/api";
+import { useDispatch, useSelector } from "react-redux";
 
 const BankDetails = ({ showSection }) => {
-	// const handleChange = (e) => {
-	// 		setPropertyDescr({
-	// 			...property_desc,
-	// 			[e.target.name]: e.target.value,
-	// 		});
-	// 	};
+
+	const [bankDetails, setbankDetails] = useState({
+		account_holder_name: "",
+		bank_name: "",
+		ifsc_code: "",
+		account_number: "",
+	});
+
+	const dispatch = useDispatch();
+	const location_id = useSelector(selectLocationId);
+	const location = useSelector(selectLocationData);
+
+	const handleChange = (e) => {
+		setbankDetails({
+			...bankDetails,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	const handleSubmit = async (e) => {
+		console.log(bankDetails)
+		if (!bankDetails.account_holder_name.length || !bankDetails.account_number.length || !bankDetails.bank_name.length || !bankDetails.ifsc_code.length)
+			return toast.error("Please fill all required fields!!!")
+		 const locData = {
+		  ...location,
+		  bankDetails
+		}
+		dispatch(addLocation(locData));
+		const form = {
+		  location_id,
+		  data : locData
+		}
+		try {
+			await createTempLocation(form);
+			showSection("Terms & Conditions");
+		} catch (error) {
+			toast.error(error.response.data);
+		}
+	}
+
 
 	return (
 		<div class="lbox">
@@ -17,10 +59,10 @@ const BankDetails = ({ showSection }) => {
 					</h2>
 					<input
 						className="listingInput input"
-						name="user_name"
-						// onChange={handleChange}
-						// value={property_desc.property_size}
-						value="User"
+						name="account_holder_name"
+						type="text"
+						onChange={handleChange}
+						value={bankDetails.account_holder_name}
 						required
 					/>
 				</div>
@@ -33,9 +75,9 @@ const BankDetails = ({ showSection }) => {
 					<input
 						className="listingInput input"
 						name="bank_name"
-						// onChange={handleChange}
-						// value={property_desc.property_size}
-						value="SBI"
+						type="text"
+						onChange={handleChange}
+						value={bankDetails.bank_name}
 						required
 					/>
 				</div>
@@ -48,9 +90,9 @@ const BankDetails = ({ showSection }) => {
 					<input
 						className="listingInput input"
 						name="ifsc_code"
-						// onChange={handleChange}
-						// value={property_desc.property_size}
-						value="XYZ123"
+						type="text"
+						onChange={handleChange}
+						value={bankDetails.ifsc_code}
 						required
 					/>
 				</div>
@@ -62,14 +104,26 @@ const BankDetails = ({ showSection }) => {
 					</h2>
 					<input
 						className="listingInput input"
-						name="a/c_number"
-						// onChange={handleChange}
-						// value={property_desc.property_size}
-						value="1234567890"
+						name="account_number"
+						type="number"
+						onChange={handleChange}
+						value={bankDetails.account_number}
 						required
 					/>
 				</div>
 			</div>
+
+			<div className="row1">
+				<div className="coll1">
+					<button
+						className="bankContinue continue"
+						onClick={handleSubmit}
+					>
+						Continue
+					</button>
+				</div>
+			</div>
+
 		</div>
 	);
 };

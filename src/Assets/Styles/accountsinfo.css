@@ -120,6 +120,9 @@
   outline-offset: 0px;
   outline: none;
 }
+.current-pass{
+  width: 270px !important;
+}
 
 .r1 {
   display: flex;

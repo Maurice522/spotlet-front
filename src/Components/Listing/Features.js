@@ -90,7 +90,7 @@ const Features = ({ showSection }) => {
 		};
 		try {
 			await createTempLocation(form);
-			showSection("Do’s & Don’ts");
+			showSection("Do's & Don'ts");
 		} catch (error) {
 			toast.error(error.response.data);
 		}

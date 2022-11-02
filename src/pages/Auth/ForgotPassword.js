@@ -6,20 +6,21 @@ import { forgotPassword } from "../../services/api";
 
 export default function ForgotPassword({ handleClose }) {
   const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
   const handlSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await forgotPassword({ email });
-      toast.success(response.data.message);
+      setSent(true);
     } catch (error) {
       toast.error(error.response.data.error);
     }
     setEmail("");
-    handleClose();
+    !sent && handleClose();
   };
   return (
     <div className="reset-password modal-reset">
-      <form onSubmit={handlSubmit}>
+      { !sent ? <form onSubmit={handlSubmit}>
         <h1 style={{ fontSize: "26px" }}>Forgot Password</h1>
         <label>Email</label>
         <br />
@@ -50,7 +51,14 @@ export default function ForgotPassword({ handleClose }) {
         >
           Reset
         </Button>
-      </form>
+      </form> : 
+      <div>
+        <h3>An email has been sent to you. Please check your Inbox to reset password.</h3>
+        <Button className="auth-btn" onClick={() => {
+          handleClose();
+          setSent(false);
+        }}>OK</Button>
+      </div>}
     </div>
   );
 }

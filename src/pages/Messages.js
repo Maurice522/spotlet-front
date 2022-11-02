@@ -166,7 +166,7 @@ export default function Messages() {
           {currentChat ? (
             <div className="chat-sec">
               <div className="chat-head">
-                  <img src={locationData?.images?.at(0)} alt="profile" />
+                  <img src={locationData?.imagesData?.at(0).image} alt="profile" />
                 <div>
                   <h5>{currentChat?.locationId}</h5>
                   <p>{friend?.personalInfo.fullName}</p>
@@ -236,7 +236,7 @@ export default function Messages() {
         {
           currentChat ? (
             <>
-            <img src={locationData?.images?.at(0)} alt="property-img" />
+            <img src={locationData?.imagesData?.at(0).image} alt="property-img" />
           <div>
             <h2>{locationId}</h2>
             <h4>{locationData?.property_address?.address}</h4>

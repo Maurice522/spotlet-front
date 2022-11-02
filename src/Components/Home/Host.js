@@ -9,7 +9,7 @@ const Host = ({ title, buttonContent,link}) => {
 				<div className="host-header">{title}</div>
 				<div>Have a unique property which you want to list</div>
 				<div>Then why wait</div>
-				<Link to={link} >
+				<Link to={"/host"} onClick={() => window.scrollTo(0, 0)}>
 				<div className="list-btn">{buttonContent}</div>
 				</Link>
 			</div>

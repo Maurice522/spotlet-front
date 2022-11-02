@@ -81,6 +81,8 @@ const SectionProperty = () => {
 		getAllLocations()
 		.then(res => setPropertiesDetail(res.data.locations))
 		.catch(err => console.log(err))
+
+		// console.log(propertyDetails);
 	}, [])
 
 	return (
@@ -91,6 +93,7 @@ const SectionProperty = () => {
 			</div>
 			<div className="property-list">
 				{propertyDetails.map((item, index) => (
+					// <div>hi</div>
 					<PropertyInfo
 						item={item}
 						index={index}

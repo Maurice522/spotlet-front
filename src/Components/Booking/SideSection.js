@@ -113,7 +113,7 @@ const SideSection = ({
 					handleOpen();
 					setReadyForRequest(false);
 					setTimeout(() => {
-						window.location = "/bookinglist";
+						window.location = "/bookinglist/:booking";
 					}, 3000);
 				} catch (error) {
 					console.log(error);
@@ -132,7 +132,7 @@ const SideSection = ({
 		<div className="side-section">
 			<div className="side-section-image-wrapper">
 				<img
-					src={locationData?.images?.at(0)}
+					src={locationData?.imagesData?.at(0).image}
 					alt="booking-process"
 					className="image"
 				/>

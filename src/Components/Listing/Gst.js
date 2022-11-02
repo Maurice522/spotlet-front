@@ -62,7 +62,7 @@ console.log(filesData);
       };
       await createTempLocation(form);
       //console.log(locData);
-      showSection("Term & Condition");
+      showSection("Bank Details");
     }
     return (
         <div className='lbox'>

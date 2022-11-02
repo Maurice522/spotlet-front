@@ -39,6 +39,12 @@ input[type='radio']:checked:after {
     visibility: visible;
     border: 2px solid white;
 }
+
+/* ************bank deatils************* */
+.bankContinue {
+    margin-top: 3%;
+}
+
 /* ************location*************** */
 .locationH2 {
     margin-top: 0px;
@@ -146,4 +152,9 @@ h1 {
     .text-input{
         width: 70vw !important;
     }
+}
+
+.mapIntegration_flex{
+    display: flex;
+    /* flex-direction: column; */
 }

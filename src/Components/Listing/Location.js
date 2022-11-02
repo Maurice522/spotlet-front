@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { createTempLocation } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
-import { addLocation, selectLocationData, selectLocationId } from "../../redux/slices/locationSlice";
+import { addLocation, selectLocationData, selectLocationId, updatelocation } from "../../redux/slices/locationSlice";
 import { toast } from "react-toastify";
-import  GoogleMap from "../GoogleMap";
+import GoogleMap from "../GoogleMap";
 import axios from "axios";
 import { BiRightArrow } from "react-icons/bi";
 import { GoArrowRight } from "react-icons/go";
 import { MdTravelExplore } from "react-icons/md";
 import "../../Assets/Styles/listYourSpace.css";
-// import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import { Country, State, City } from 'country-state-city';
 import {
   Select,
@@ -18,6 +17,12 @@ import {
 
 } from "@mui/material";
 
+// import {
+
+//   Autocomplete,
+
+// } from '@react-google-maps/api'
+import { Direction } from "react-toastify";
 
 
 const Location = ({ showSection }) => {
@@ -29,31 +34,45 @@ const Location = ({ showSection }) => {
     country: "",
     pincode: "",
     landmark: "",
-    location_detail: "",
+    location_details: null
   });
-  const dispatch = useDispatch();
-  const location_id = useSelector(selectLocationId);
-  const location = useSelector(selectLocationData);
+
 
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
-  
- 
-  const changeCountry = (count) => {
-    setCountry(count);
+  // const [address, setAddress] = useState({})
+  // const [mapCenter, setMapCenter] = useState({
+  //   lat:17.3850,
+  //   lng:78.4867
+  // } )
+
+  const [showmap, setShowmap] = useState(false)
+
+  const showLocation = () => {
+    setShowmap(!showmap);
   }
-  const changeState = (stat) => {
-    setState(stat);
+
+  const updateCountry = (e) => {
+    changeCountry(e);
+    handleChange(e);
   }
-  const changeCountryHandler = (e) => {
-    console.log(e.target.value)
+  const updateState = (e) => {
+    changeState(e);
+    handleChange(e);
   }
-  const changeStateHandler = (e) => {
-    console.log(e.target.value)
+  const updateCity = (e) => {
+    changeCity(e);
+    handleChange(e);
   }
-  const changeCityHandler = (e) => {
-    console.log(e.target.value)
+  const changeCountry = (e) => {
+    setCountry(e.target.value);
+  }
+  const changeState = (e) => {
+    setState(e.target.value);
+  }
+  const changeCity = (e) => {
+    setCity(e.target.value);
   }
 
   // console.log(Country.getAllCountries())
@@ -62,7 +81,7 @@ const Location = ({ showSection }) => {
   // console.log(country);
   // console.log(state);
 
-  let stateArray = State.getAllStates().filter(item => item.countryCode === country);;
+  let stateArray = State.getAllStates().filter(item => item.countryCode === country);
   let cityArray = City.getCitiesOfState(country, state);
 
   // const [cord, setCord] = useState({
@@ -106,6 +125,7 @@ const Location = ({ showSection }) => {
 
 
   const handleChange = (e) => {
+
     setPropertyAddress({
       ...property_address,
       [e.target.name]: e.target.value,
@@ -114,10 +134,12 @@ const Location = ({ showSection }) => {
   };
 
 
+
+
   const handleSubmit = async (e) => {
     //console.log(property_address)
-    if (!property_address.address.length || !property_address.city.length || !property_address.state.length || !property_address.state.area ||
-      !property_address.country.length || !property_address.pincode.length || !property_address.location_detail.length)
+    if (!property_address.city.length || !property_address.state.length || !property_address.area.length ||
+      !property_address.country.length || !property_address.pincode.length || !property_address.address.length)
       return toast.error("Please fill all required fields!!!")
     //  const locData = {
     //   ...location,
@@ -130,7 +152,6 @@ const Location = ({ showSection }) => {
     // }
     try {
       // await createTempLocation(form);
-  
       showSection("Amenities");
     } catch (error) {
       toast.error(error.response.data);
@@ -145,7 +166,7 @@ const Location = ({ showSection }) => {
   //   setLng(lng)
   // );
   // }
- 
+
 
   return (
     <div className="lbox">
@@ -162,15 +183,14 @@ const Location = ({ showSection }) => {
             defaultValue=""
             // value="Hyderabad"
             className={'listingInput input input__location'}
-            onChange={changeCountryHandler}
-            value={property_address.country}>
-            
+            onChange={updateCountry}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {Country.getAllCountries().map(item => <MenuItem value={item.name} onClick={changeCountry.bind(this, item.isoCode)} key={item.name}>{item.name}</MenuItem>)}
+            {Country.getAllCountries().map(item => <MenuItem value={item.isoCode} key={item.name}>{item.name}</MenuItem>)}
           </Select>
         </div>
+
 
 
         <div className="coll1">
@@ -184,12 +204,11 @@ const Location = ({ showSection }) => {
             defaultValue=""
             // value="Hyderabad"
             className={'listingInput input input__location'}
-            onChange={changeStateHandler}
-            value={property_address.state}>
+            onChange={updateState}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {country.length ? stateArray.map(item => <MenuItem value={item.name} key={item.name} onClick={changeState.bind(this, item.isoCode)}>{item.name}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
+            {country ? stateArray.map(item => <MenuItem value={item.isoCode} key={item.name}>{item.name}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
           </Select>
         </div>
       </div>
@@ -205,12 +224,12 @@ const Location = ({ showSection }) => {
             name="city"
             defaultValue=""
             // value="Hyderabad"
-            onChange={changeCityHandler}
-            className={'listingInput input input__location'}>
+            className={'listingInput input input__location'}
+            onChange={updateCity}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {cityArray.map(item => <MenuItem value={item.name} key={item.name}>{item.name}</MenuItem>)}
+            {cityArray.map(item => <MenuItem value={`${item.latitude}${item.longitude}`} key={item.name}>{item.name}</MenuItem>)}
           </Select>
         </div>
 
@@ -223,10 +242,12 @@ const Location = ({ showSection }) => {
           <input
             className="listingInput input"
             id="pin"
-            name="pin"
+            name="pincode"
             type="number"
             min={100000}
             max={999999}
+            onChange={handleChange}
+          // value={property_address.pincode}
           />
         </div>
 
@@ -264,6 +285,7 @@ const Location = ({ showSection }) => {
             onChange={handleChange}
             value={property_address.address}
           />
+          <MdTravelExplore onClick={() => showLocation()} size={27} style={{ marginLeft: "auto", position: "relative", top: "-35px", marginRight: "10px", cursor: "pointer" }} />
         </div>
       </div>
 
@@ -279,41 +301,39 @@ const Location = ({ showSection }) => {
         </div>
       </div> */}
 
-      <div className="row1">
+      {/* <div className="row1">
         <div className="coll1">
-          <h2 className="locationH2">Location Details - Map<span style={{ color: "red" }}>*</span></h2>
-        
-          <input
-            className="listingInput lginput input--border"
-            name="location_detail"
-            onChange={handleChange}
-            value={property_address.location_detail}
-          />
           
-          <MdTravelExplore onClick={console.log("")} size={27} style={{ marginLeft: "auto", position: "relative", top: "-35px", marginRight: "10px", cursor: "pointer" }} />
         </div>
-      </div>
-     
-      
-       {/* handleMap(property_address.location_detail) */}
-        
-        <div className="map">
-         <GoogleMap/>
+      </div> */}
+
+      <div className="mapIntegration_flex">
+        <div className="row1">
+          <div className="coll1">
+            {(showmap === true) ? (
+              <div style={{
+                width: "50%",
+                height: "50%"
+              }}>
+                <GoogleMap />
+              </div>) : null
+            }
+          </div>
         </div>
-        
-        
-      
-      <div className="row1">
-        <div className="coll1">
-          <button
-            className="locationContinue continue"
-            onClick={handleSubmit}
-          >
-            Continue
-          </button>
+
+        <div className="row1">
+          <div className="coll1">
+            <button
+              className="locationContinue continue"
+              onClick={handleSubmit}
+            >
+              Continue
+            </button>
+          </div>
         </div>
       </div>
     </div>
+
   );
 };
 

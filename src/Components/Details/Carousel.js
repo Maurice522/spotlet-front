@@ -10,13 +10,13 @@ import img5 from "../../Assets/Images/property-page-carousel-img-5.jpeg";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 const Carousel = ({locationData}) => {
-	const images = locationData?.images; 
+	const images = locationData?.imagesData; 
 	//console.log(images)
-	const imgArr1 = [images?.at(0), images?.at(1), images?.at(2), images?.at(3), images?.at(4)];
-	const imgArr2 = [images?.at(1), images?.at(2), images?.at(3), images?.at(4), images?.at(0)];
-	const imgArr3 = [images?.at(2), images?.at(3), images?.at(4), images?.at(0), images?.at(1)];
-	const imgArr4 = [images?.at(3), images?.at(4), images?.at(0), images?.at(1), images?.at(2)];
-	const imgArr5 = [images?.at(4), images?.at(0), images?.at(1), images?.at(2), images?.at(3)];
+	const imgArr1 = [images?.at(0).image, images?.at(1).image, images?.at(2).image, images?.at(3).image, images?.at(4).image];
+	const imgArr2 = [images?.at(1).image, images?.at(2).image, images?.at(3).image, images?.at(4).image, images?.at(0).image];
+	const imgArr3 = [images?.at(2).image, images?.at(3).image, images?.at(4).image, images?.at(0).image, images?.at(1).image];
+	const imgArr4 = [images?.at(3).image, images?.at(4).image, images?.at(0).image, images?.at(1).image, images?.at(2).image];
+	const imgArr5 = [images?.at(4).image, images?.at(0).image, images?.at(1).image, images?.at(2).image, images?.at(3).image];
 
 	const imgMap = {
 		1: imgArr1,
