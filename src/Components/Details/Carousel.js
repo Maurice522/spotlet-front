@@ -8,9 +8,13 @@ import img3 from "../../Assets/Images/property-page-carousel-img-3.jpeg";
 import img4 from "../../Assets/Images/property-page-carousel-img-4.jpeg";
 import img5 from "../../Assets/Images/property-page-carousel-img-5.jpeg";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { toast } from "react-toastify";
+import { GiFilmProjector } from "react-icons/gi";
+import { BsPersonFill } from "react-icons/bs";
+import { MdOutlineCorporateFare } from "react-icons/md";
 
-const Carousel = ({locationData}) => {
-	const images = locationData?.imagesData; 
+const Carousel = ({ locationData }) => {
+	const images = locationData?.imagesData;
 	//console.log(images)
 	const imgArr1 = [images?.at(0).image, images?.at(1).image, images?.at(2).image, images?.at(3).image, images?.at(4).image];
 	const imgArr2 = [images?.at(1).image, images?.at(2).image, images?.at(3).image, images?.at(4).image, images?.at(0).image];
@@ -28,6 +32,19 @@ const Carousel = ({locationData}) => {
 
 	const [val, setVal] = useState(1);
 	const [fav, setFav] = useState(false);
+
+	const [copied, setCopied] = useState(false);
+
+	const copy = () => {
+		const el = document.createElement("input");
+		el.value = window.location.href;
+		document.body.appendChild(el);
+		el.select();
+		document.execCommand("copy");
+		document.body.removeChild(el);
+		setCopied(true);
+		toast.success("The link is copied to your clipboard!");
+	}
 
 	// console.log(imgMap[val]);
 
@@ -83,6 +100,18 @@ const Carousel = ({locationData}) => {
 					<div className="location">{locationData?.property_address?.address}</div>
 				</div>
 				<div className="icons">
+					{locationData?.pricing?.corporate?.isPresent && (
+						<MdOutlineCorporateFare size="30px" />
+					)}
+					{locationData?.pricing?.film_webseries_ad?.isPresent && (
+						<GiFilmProjector size="30px" />
+					)}
+					{locationData?.pricing?.individual?.isPresent && (
+						<BsPersonFill size="30px" />
+					)}
+					{locationData?.pricing?.tv_series_other?.isPresent && (
+						<GiFilmProjector size="30px" />
+					)}
 					<div
 						style={{
 							marginTop: "3px",
@@ -91,6 +120,7 @@ const Carousel = ({locationData}) => {
 							color="#374047"
 							size="24px"
 							style={{ cursor: "pointer" }}
+							onClick={copy}
 						/>
 					</div>
 					{fav === true ? (

@@ -53,27 +53,20 @@ const Location = ({ showSection }) => {
     setShowmap(!showmap);
   }
 
-  const updateCountry = (e) => {
-    changeCountry(e);
-    handleChange(e);
+  const changeCountry = (id) => {
+    setCountry(id);
   }
-  const updateState = (e) => {
-    changeState(e);
-    handleChange(e);
+  const changeState = (id) => {
+    setState(id);
   }
-  const updateCity = (e) => {
-    changeCity(e);
-    handleChange(e);
+  const changeCity = (id) => {
+    setCity(id);
   }
-  const changeCountry = (e) => {
-    setCountry(e.target.value);
-  }
-  const changeState = (e) => {
-    setState(e.target.value);
-  }
-  const changeCity = (e) => {
-    setCity(e.target.value);
-  }
+
+  console.log(country);
+  console.log(state);
+  console.log(city);
+
 
   // console.log(Country.getAllCountries())
   // console.log(State.getAllStates())
@@ -183,11 +176,11 @@ const Location = ({ showSection }) => {
             defaultValue=""
             // value="Hyderabad"
             className={'listingInput input input__location'}
-            onChange={updateCountry}>
+            onChange={handleChange}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {Country.getAllCountries().map(item => <MenuItem value={item.isoCode} key={item.name}>{item.name}</MenuItem>)}
+            {Country.getAllCountries().map(item => <MenuItem value={item.name} onClick={changeCountry.bind(this, item.isoCode)} key={item.name}>{item.name}</MenuItem>)}
           </Select>
         </div>
 
@@ -204,11 +197,11 @@ const Location = ({ showSection }) => {
             defaultValue=""
             // value="Hyderabad"
             className={'listingInput input input__location'}
-            onChange={updateState}>
+            onChange={handleChange}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {country ? stateArray.map(item => <MenuItem value={item.isoCode} key={item.name}>{item.name}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
+            {country.length ? stateArray.map(item => <MenuItem value={item.name} onClick={changeState.bind(this, item.isoCode)} key={item.name}>{item.name}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
           </Select>
         </div>
       </div>
@@ -225,11 +218,11 @@ const Location = ({ showSection }) => {
             defaultValue=""
             // value="Hyderabad"
             className={'listingInput input input__location'}
-            onChange={updateCity}>
+            onChange={handleChange}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {cityArray.map(item => <MenuItem value={`${item.latitude}${item.longitude}`} key={item.name}>{item.name}</MenuItem>)}
+            {cityArray.map(item => <MenuItem value={item.name} key={item.name}>{item.name}</MenuItem>)}
           </Select>
         </div>
 

@@ -279,7 +279,7 @@ const BookingList = () => {
 							margin: "40px auto",
 							height: "80vh",
 						}}>
-						<SyncfusionTable UsersData={bookingData} UsersGrid={bookingGrid} />
+						<SyncfusionTable UsersData={bookingData ? bookingData.reverse() : []} UsersGrid={bookingGrid} />
 					</div>
 				) : (
 					<div
@@ -288,7 +288,7 @@ const BookingList = () => {
 							margin: "40px auto",
 							height: "85vh",
 						}}>
-						<SyncfusionTable UsersData={listingData} UsersGrid={listingGrid} />
+						<SyncfusionTable UsersData={listingData ? listingData.reverse() : []} UsersGrid={listingGrid} />
 					</div>
 				)}
 			</div>

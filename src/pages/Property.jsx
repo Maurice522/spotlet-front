@@ -334,7 +334,8 @@ const Property = ({
 					<div
 						key={i}
 						style={{
-							display: "flex",
+							display: "grid",
+							gridTemplateColumns: "1fr 20fr",
 							justifyContent: "flex-start",
 							alignItems: "center",
 							gap: "10px",
@@ -349,7 +350,8 @@ const Property = ({
 					<div
 						key={i}
 						style={{
-							display: "flex",
+							display: "grid",
+							gridTemplateColumns: "1fr 20fr",
 							justifyContent: "flex-start",
 							alignItems: "center",
 							gap: "10px",

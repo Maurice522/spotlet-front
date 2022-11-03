@@ -5,8 +5,21 @@ import "../../Assets/Styles/Booking/contact.css";
 
 const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 	const handleChange = (e) => {
-		setUserData({...userData, [e.target.name] : e.target.value});
+		setUserData({ ...userData, [e.target.name]: e.target.value });
 	};
+
+	let dtToday = new Date();
+
+	let month = dtToday.getMonth() + 1;
+	let day = dtToday.getDate();
+	let year = dtToday.getFullYear();
+
+	if (month < 10)
+		month = '0' + month.toString();
+	if (day < 10)
+		day = '0' + day.toString();
+
+	let maxDate = year + '-' + month + '-' + day;
 
 	// const [name, setName] = useState("");
 	// const [surname, setSurname] = useState("");
@@ -59,7 +72,7 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 						fullWidth
 						size="small"
 						onChange={handleChange}
-						value = {userData.firstName}
+						value={userData.firstName}
 					/>
 				</div>
 
@@ -71,9 +84,9 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 						type="text"
 						fullWidth
 						size="small"
-						name = "lastName"
+						name="lastName"
 						onChange={handleChange}
-						value = {userData.lastName}
+						value={userData.lastName}
 					/>
 				</div>
 			</div>
@@ -84,9 +97,9 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 					<TextField
 						id="who"
 						select
-						name = "who_reserves"
+						name="who_reserves"
 						onChange={handleChange}
-						value = {userData.who_reserves}
+						value={userData.who_reserves}
 						fullWidth
 						size="small"
 					>
@@ -105,9 +118,9 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 						type="text"
 						fullWidth
 						size="small"
-						name = {userData.who_reserves === "Individual" ? "profession" : "company"}
+						name={userData.who_reserves === "Individual" ? "profession" : "company"}
 						onChange={handleChange}
-						value = {userData.who_reserves === "Individual" ? userData.profession : userData.company}
+						value={userData.who_reserves === "Individual" ? userData.profession : userData.company}
 					/>
 				</div>
 			</div>
@@ -122,9 +135,9 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 							type="text"
 							fullWidth
 							size="small"
-							name = "designation"
+							name="designation"
 							onChange={handleChange}
-							value = {userData.designation}
+							value={userData.designation}
 						/>
 					</div>
 					<div>
@@ -135,9 +148,10 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 							type="date"
 							fullWidth
 							size="small"
-							name = "dob"
+							name="dob"
 							onChange={handleChange}
-							value = {userData.dob}
+							value={userData.dob}
+							inputProps={{ max: maxDate }}
 						/>
 					</div>
 				</div>
@@ -150,9 +164,10 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 						type="date"
 						fullWidth
 						size="small"
-						name = "dob"
+						name="dob"
 						onChange={handleChange}
-						value = {userData.dob}
+						value={userData.dob}
+						inputProps={{ max: maxDate }}
 					/>
 				</div>
 			)}
@@ -167,9 +182,9 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 					fullWidth
 					size="small"
 					minRows={5}
-					name = "message"
+					name="message"
 					onChange={handleChange}
-					value = {userData.message}
+					value={userData.message}
 				/>
 			</div>
 		</form>

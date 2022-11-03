@@ -68,19 +68,19 @@ const Navbar = ({ extraNavId }) => {
 							alignItems: "center",
 							gap: "20px",
 						}}>
-						<Link to="/messages">
+						<Link to="/messages" onClick={() => window.scrollTo(0, 0)}>
 							<div>Messages</div>
 						</Link>
-						<Link to="/bookinglist/:booking">
+						<Link to="/bookinglist/:booking" onClick={() => window.scrollTo(0, 0)}>
 							<div>Bookings</div>
 						</Link>
-						<Link to="/bookinglist/:listing">
+						<Link to="/bookinglist/:listing" onClick={() => window.scrollTo(0, 0)}>
 							<div>Listings</div>
 						</Link>
-						<Link to="/favorite">
+						<Link to="/favorite" onClick={() => window.scrollTo(0, 0)}>
 							<div>Favorites</div>
 						</Link>
-						<Link to="/listing">
+						<Link to="/listing" onClick={() => window.scrollTo(0, 0)}>
 							<div>List Your Space</div>
 						</Link>
 						<Button

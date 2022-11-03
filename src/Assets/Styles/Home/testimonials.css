@@ -152,6 +152,19 @@
 
 
 
+@media screen and (max-width: 1300px){
+	.testimonial-testimony-main {
+		padding: 25px 25px;
+		height: 45vh;
+		overflow-y: auto;
+	}
+	.testimonial-testimony {
+		padding: 25px 25px;
+		height: 40vh;
+		overflow-y: auto;
+	}
+}
+
 @media screen and (max-width: 992px){
 	.card{
 		padding-bottom: 10px;

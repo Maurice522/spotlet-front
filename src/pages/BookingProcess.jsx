@@ -6,6 +6,7 @@ import SideSection from "../Components/Booking/SideSection";
 import Booking from "../Components/Booking/Booking";
 import Rules from "../Components/Booking/Rules";
 import Contact from "../Components/Booking/Contact";
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 	const [index, setIndex] = useState(0);
@@ -32,7 +33,9 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 			<div className="below-nav">
 				<div className="booking-content-wrapper">
 					<div className="left-section">
-						<div className="booking-process">
+						<div className="booking-process-main">
+							<AiOutlineArrowLeft size="20px" onClick={() => setIndex(prev => prev > 0 ? prev-1 : prev)} />
+							<div className="booking-process">
 							<div className={`booking-item ${index === 0 ? "highlight" : ""}`}>
 								BOOKING
 							</div>
@@ -43,6 +46,7 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 							<div className="filler">--------------</div>
 							<div className={`booking-item ${index === 2 ? "highlight" : ""}`}>
 								CONTACT
+							</div>
 							</div>
 						</div>
 
