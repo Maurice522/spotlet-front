@@ -37,3 +37,9 @@
     border-radius: 4px;
     margin-bottom: 10% !important;
 }
+
+.no-data{
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+}

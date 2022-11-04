@@ -279,7 +279,7 @@ const BookingList = () => {
 							margin: "40px auto",
 							height: "80vh",
 						}}>
-						<SyncfusionTable UsersData={bookingData ? bookingData.reverse() : []} UsersGrid={bookingGrid} />
+						{bookingData.length > 0 ? <SyncfusionTable UsersData={bookingData ? bookingData.reverse() : []} UsersGrid={bookingGrid} /> : <div className="no-data"><h2>You do not have any booking!</h2><Link to="/listing" onClick={() => window.scrollTo(0, 0)}><Button>Book a Space Now</Button></Link></div>}
 					</div>
 				) : (
 					<div
@@ -288,7 +288,7 @@ const BookingList = () => {
 							margin: "40px auto",
 							height: "85vh",
 						}}>
-						<SyncfusionTable UsersData={listingData ? listingData.reverse() : []} UsersGrid={listingGrid} />
+						{listingData.length > 0 ? <SyncfusionTable UsersData={listingData ? listingData.reverse() : []} UsersGrid={listingGrid} /> : <div className="no-data"><h2>You do not have any listing!</h2><Link to="/listing" onClick={() => window.scrollTo(0, 0)}><Button>List a Space Now</Button></Link></div>}
 					</div>
 				)}
 			</div>

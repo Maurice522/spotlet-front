@@ -53,9 +53,9 @@ input[type='radio']:checked:after {
     line-height: 24px;
 }
 .row1 {
-    display: grid;
-    grid-template-columns: 0.4fr 0.4fr;
-    gap: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 1.5%;
 }
 .locationContinue {
@@ -70,7 +70,7 @@ input[type='radio']:checked:after {
     margin-right: 6%;
 }
 .row2 {
-    margin-bottom: 7%;
+    margin-bottom: 3%;
 }
 .optns {
     align-items: left!important;

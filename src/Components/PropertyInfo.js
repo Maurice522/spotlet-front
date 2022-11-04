@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Rating from "@mui/material/Rating";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 
 const PropertyInfo = ({
 	item,
@@ -73,6 +74,18 @@ const PropertyInfo = ({
 					}}>
 					<div className="property-info-heading">{item.property_desc.location_type}</div>
 					<div className="property-info-location">{item.property_address.city}</div>
+					<div className="property-info-location">&#8377; 000/hr</div>
+					<div className="property-info-location property-rating">
+						<div>
+							<AiFillStar style={{ color: '#FFC736'}} size="25px" />
+							<AiFillStar style={{ color: '#FFC736'}} size="25px" />
+							<AiFillStar style={{ color: '#FFC736'}} size="25px" />
+							<AiOutlineStar style={{ color: '#FFC736'}} size="25px" />
+							<AiOutlineStar style={{ color: '#FFC736'}} size="25px" />
+						</div>
+						<div>(40)</div>
+					</div>
+
 					{/* <div className="property-info-price">{item.price}</div> */}
 					<div
 						style={{
@@ -97,8 +110,8 @@ const PropertyInfo = ({
 						)} */}
 					</div>
 				</div>
-			</Link>
-		</div>
+			</Link >
+		</div >
 	);
 };
 

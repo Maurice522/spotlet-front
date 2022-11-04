@@ -125,6 +125,7 @@ const FormFilter = ({ fullScreen }) => {
 					? {
 						width: "98.7vw",
 						borderRadius: "0",
+						marginTop: "10px"
 					}
 					: {}
 			}>
@@ -178,7 +179,7 @@ const FormFilter = ({ fullScreen }) => {
 						isDisabled={event === 0 ? true : false}
 						className={active === true ? "focus-select" : "form-filter-select"}>
 					</Select>
-					{event === 0 && <p style={{fontSize: "15px", color: "grey"}}>Please select location first</p>}
+					{event === 0 && <p style={{fontSize: "15px", color: "grey"}}>Please select event first</p>}
 				</div>
 				<div>
 					<label
@@ -194,7 +195,7 @@ const FormFilter = ({ fullScreen }) => {
 						isDisabled={event === 0 ? true : false}
 						className={active === true ? "focus-select" : "form-filter-select"}>
 					</Select>
-					{event === 0 && <p style={{fontSize: "15px", color: "grey"}}>Please select location first</p>}
+					{event === 0 && <p style={{fontSize: "15px", color: "grey"}}>Please select event first</p>}
 				</div>
 				<div>
 					<label

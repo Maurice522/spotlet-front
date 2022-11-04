@@ -63,8 +63,8 @@ const Location = ({ showSection }) => {
     setCity(id);
   }
 
-  console.log(country);
-  console.log(state);
+  console.log(country.length);
+  console.log(state.length);
   console.log(city);
 
 
@@ -197,12 +197,14 @@ const Location = ({ showSection }) => {
             defaultValue=""
             // value="Hyderabad"
             className={'listingInput input input__location'}
+            isDisabled={country.length === 0 ? true : false}
             onChange={handleChange}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
             {country.length ? stateArray.map(item => <MenuItem value={item.name} onClick={changeState.bind(this, item.isoCode)} key={item.name}>{item.name}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
           </Select>
+          {country.length === 0 && <p style={{fontSize: "15px", color: "grey"}}>Please select country first</p>}
         </div>
       </div>
 
@@ -218,12 +220,14 @@ const Location = ({ showSection }) => {
             defaultValue=""
             // value="Hyderabad"
             className={'listingInput input input__location'}
+            isDisabled={state.length === 0 ? true : false}
             onChange={handleChange}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
             {cityArray.map(item => <MenuItem value={item.name} key={item.name}>{item.name}</MenuItem>)}
           </Select>
+          {state.length === 0 && <p style={{fontSize: "15px", color: "grey"}}>Please select country and state first</p>}
         </div>
 
 
@@ -236,9 +240,7 @@ const Location = ({ showSection }) => {
             className="listingInput input"
             id="pin"
             name="pincode"
-            type="number"
-            min={100000}
-            max={999999}
+            type="text"
             onChange={handleChange}
           // value={property_address.pincode}
           />
@@ -305,8 +307,8 @@ const Location = ({ showSection }) => {
           <div className="coll1">
             {(showmap === true) ? (
               <div style={{
-                width: "50%",
-                height: "50%"
+                width: "10%",
+                height: "10%"
               }}>
                 <GoogleMap />
               </div>) : null

@@ -14,6 +14,7 @@ import Contact from "../Components/Listing/Contact";
 import BankDetails from "../Components/Listing/BankDetails";
 import Gst from "../Components/Listing/Gst";
 import TermCondition from "../Components/Listing/Term&Condition";
+import ReviewApplication from "../Components/Listing/ReviewApplication";
 import { useSelector } from "react-redux";
 import { selectLocationData } from "../redux/slices/locationSlice";
 import { AiOutlineArrowLeft } from 'react-icons/ai'
@@ -49,8 +50,26 @@ const ListingPlace = () => {
 		"Contact Details",
 		"GST Details",
 		"Bank Details",
+		"Review Application",
 		"Terms & Conditions",
 	];
+
+	const itemsObj = {
+		"Details & Description": 0,
+		"Location": 1,
+		"Amenities": 2,
+		"Photos": 3,
+		"Features": 4,
+		"Do's & Don'ts": 5,
+		"Pricing": 6,
+		"Rules of the Host": 7,
+		"Timings": 8,
+		"Contact Details": 9,
+		"GST Details": 10,
+		"Bank Details": 11,
+		"Review Application": 12,
+		"Terms & Conditions": 13,
+	};
 
 	return (
 		<>
@@ -63,8 +82,10 @@ const ListingPlace = () => {
 						{items.map((item, ind) => (
 							<div key={ind}>
 								<button
+									// onClick={() => itemsObj[item] <= itemsObj[section] ? handlesection(item) : ''}
 									onClick={() => handlesection(item)}
-									className={section === item ? "lnav-text sel" : "lnav-text"}>
+									className={section === item ? "lnav-text sel" : "lnav-text"}
+									style={{color: itemsObj[item] > itemsObj[section] ? "grey" : ""}}>
 									{item}
 								</button>
 							</div>
@@ -135,6 +156,11 @@ const ListingPlace = () => {
 						)}
 						{section === "Bank Details" ? (
 							<BankDetails showSection={handlesection} />
+						) : (
+							""
+						)}
+						{section === "Review Application" ? (
+							<ReviewApplication showSection={handlesection} />
 						) : (
 							""
 						)}

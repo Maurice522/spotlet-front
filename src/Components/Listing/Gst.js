@@ -97,6 +97,7 @@ console.log(filesData);
             );
           })}
         </div>
+        <p style={{ color: "red" }}>Add minimum 5 images</p>
                 <div className="row1">
           <div className="coll1">
             <button

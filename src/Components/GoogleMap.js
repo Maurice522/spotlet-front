@@ -1,96 +1,96 @@
-// import React from 'react'
-// import GoogleMapReact from 'google-map-react';
-// const AnyReactComponent = () => <div style={{width : "50px", height : "50px", backgroundColor : "rgb(255, 77, 77)", borderRadius : "200%", opacity : "0.7"}}></div>;
-// export default function GoogleMap({lat, lng, zoom}){
-//     console.log(lat, lng)
-//     const defaultProps = {
-//       center: {
-//         lat,
-//         lng
-//       },
-//       zoom
-//     };
-  
-//     return (
-//       // Important! Always set the container height explicitly
-//       <div style={{ height: '100%', width: '100%' }}>
-//         <GoogleMapReact
-//           bootstrapURLKeys={{ key: "" }}
-//           defaultCenter={defaultProps.center}
-//           defaultZoom={defaultProps.zoom}
-//         >
-//           <AnyReactComponent
-//           lat = {lat}
-//           lng = {lng}
-//           />
-//         </GoogleMapReact>
-//       </div>
-//     );
-//   }
-
 import React, { Component } from 'react';
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
-// import PlacesAutocomplete, {
-//   geocodeByAddress,
-//   getLatLng,
-// } from 'react-places-autocomplete';
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
+
 
 export class MapContainer extends Component {
-    state = {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // for google map places autocomplete
+      address: '',
+
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-    };
-   
-    onMarkerClick = (props, marker, e) =>
-      this.setState({
-        selectedPlace: props,
-        activeMarker: marker,
-        showingInfoWindow: true
-      });
-   
-    onMapClicked = (props) => {
-      if (this.state.showingInfoWindow) {
-        this.setState({
-          showingInfoWindow: false,
-          activeMarker: null
-        })
+  
+      mapCenter: {
+        lat: 17.3850,
+        lng: 78.4867
       }
     };
-   
-    render() {
-      return (
-        <Map google={this.props.google}
-            onClick={this.onMapClicked}>
-          <Marker onClick={this.onMarkerClick}
-                  name={'Current location'} />
-        </Map>
-        
-      )
-    }
   }
+
+  handleChange = address => {
+    this.setState({ address });
+  };
+ 
+  handleSelect = address => {
+    this.setState({ address });
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => {
+        console.log('Success', latLng);
+
+        // update center state
+        this.setState({ mapCenter: latLng });
+      })
+      .catch(error => console.error('Error', error));
+  };
+ 
+  render() {
+    return (
+      <div id='googleMaps' style={{width:"40%", height:"40%", marginTop: "50px"}}>
+        <div id='googleMap_input' style={{margin:"10px"}}>
+        <PlacesAutocomplete
+          value={this.state.address}
+          onChange={this.handleChange}
+          onSelect={this.handleSelect}
+        >
+          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+            <div>
+               <h2 className="locationH2">Location Details - Map<span style={{ color: "red" }}>*</span></h2>
+              <input
+                {...getInputProps({
+                  placeholder: 'Search Places ...',
+                  className: 'location-search-input',
+                })}
+                style={{width:"15rem", padding:"10px"}}
+              />{loading && <div>Loading...</div>}
+              
+            </div>
+          )}
+        </PlacesAutocomplete>
+        </div>
+        
+        <div id='map_render' style={{width:"40%", height:"40%"}}>
+        <Map 
+          google={this.props.google}
+          initialCenter={{
+            lat: this.state.mapCenter.lat,
+            lng: this.state.mapCenter.lng
+          }}
+          style={{width:"70%", height:"85%"}}
+          center={{
+            lat: this.state.mapCenter.lat,
+            lng: this.state.mapCenter.lng
+          }}
+        >
+          <Marker 
+            position={{
+              lat: this.state.mapCenter.lat,
+              lng: this.state.mapCenter.lng
+            }} />
+        </Map>
+        </div>
+      </div>
+    )
+  }
+}
 
 export default GoogleApiWrapper({
   apiKey: ('AIzaSyAEh9eMLYsV66D6yRHTowuZ7Rgh6aQ9Alo')
 })(MapContainer)
-
-// import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
-
-// const handleAddress = (e)=>{
-//     setSelectedAddress(e);
-//     geocodeByAddress('Montevideo, Uruguay')
-//    .then(results => getLatLng(results[0]))
-//   .then(({ lat, lng }) =>
-//     console.log('Successfully got latitude and longitude', { lat, lng })
-//   );
-
-// <GooglePlacesAutocomplete
-//    apiKey={config.url.Google_key}
-//    selectProps={{
-//    placeholder: 'Address *',
-//    name:"address",
-//    inputValue:inputField['address'],
-//    onInputChange : (e)=>{setInputField({...inputField, ['address']: e})},
-//    onChange:(place) => {handleAddress(place.label); setErrorAddress(false);console.log(place)}
-//    }}
-// />

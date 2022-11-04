@@ -18,111 +18,111 @@ import { getAllLocations } from "../services/api";
 import { useParams, useLocation } from "react-router-dom";
 
 const Search = () => {
-const { type } = useParams();
-const [propertyDetails, setPropertiesDetail] = useState([]);
-useEffect(() => {
-const getAllLocations = async () => {
-const response = await axios.get(
-"https://nipunbacky.herokuapp.com/getlocations"
-);
+    const { type } = useParams();
+    const [propertyDetails, setPropertiesDetail] = useState([]);
+    useEffect(() => {
+        const getAllLocations = async () => {
+            const response = await axios.get(
+                "https://nipunbacky.herokuapp.com/getlocations"
+            );
 
-const res = response.data;
-const result = res.locations;
-console.log(result[0].pricing.corporate.isPresent);
-console.log(result[0].pricing.film_webseries_ad.isPresent);
-console.log(result[0].pricing.individual.isPresent);
-console.log(result[0].pricing.tv_series_other.isPresent);
-setPropertiesDetail(result);
-};
-getAllLocations();
+            const res = response.data;
+            const result = res.locations;
+            console.log(result[0].pricing.corporate.isPresent);
+            console.log(result[0].pricing.film_webseries_ad.isPresent);
+            console.log(result[0].pricing.individual.isPresent);
+            console.log(result[0].pricing.tv_series_other.isPresent);
+            setPropertiesDetail(result);
+        };
+        getAllLocations();
 
-}, []);
+    }, []);
 
-const [fav, setFav] = useState([]);
+    const [fav, setFav] = useState([]);
 
 
 
-return (
+    return (
 
-<>
-<Navbar extraNavId="id-2" />
-<div className="below-nav">
-<FormFilter fullScreen={true} />
-</div>
-<div className="search-heading">All Locations</div>
+        <>
+            <Navbar extraNavId="id-2" />
+            <div className="below-nav">
+                <FormFilter fullScreen={true} />
+            </div>
+            <div className="search-heading">All Locations</div>
 
-<div className="search-property-list">
-{propertyDetails.map((item, index) => {
-{
-/* console.log(item.pricing.film_webseries_ad) */
-}
-if (type == 0){
-return (
-<PropertyInfo
-item={item}
-index={index}
-isFav={false}
-favPage={true}
-key={index}
-handleClick={() => {
-console.log("clicked");
-}}
-border={false}
-/>
-);
-}
-else if (type == 1 && item.pricing.film_webseries_ad.isPresent == true) {
-return (
-<PropertyInfo
-item={item}
-index={index}
-isFav={false}
-favPage={true}
-key={index}
-handleClick={() => {
-console.log("clicked");
-}}
-border={false}
-/>
-);
-}else if (type == 2 && item.pricing.corporate.isPresent == true){
-return (
-<PropertyInfo
-item={item}
-index={index}
-isFav={false}
-favPage={true}
-key={index}
-handleClick={() => {
-console.log("clicked");
-}}
-border={false}
-/>
-);
-}else if (type == 3 && item.pricing.individual.isPresent == true){
-return (
-<PropertyInfo
-item={item}
-index={index}
-isFav={false}
-favPage={true}
-key={index}
-handleClick={() => {
-console.log("clicked");
-}}
-border={false}
-/>
-);
-}
-})}
-</div>
-{/* <Host
+            <div className="search-property-list">
+                {propertyDetails.map((item, index) => {
+                    {
+                        /* console.log(item.pricing.film_webseries_ad) */
+                    }
+                    if (type == 0) {
+                        return (
+                            <PropertyInfo
+                                item={item}
+                                index={index}
+                                isFav={false}
+                                favPage={true}
+                                key={index}
+                                handleClick={() => {
+                                    console.log("clicked");
+                                }}
+                                border={false}
+                            />
+                        );
+                    }
+                    else if (type == 1 && item.pricing.film_webseries_ad.isPresent == true) {
+                        return (
+                            <PropertyInfo
+                                item={item}
+                                index={index}
+                                isFav={false}
+                                favPage={true}
+                                key={index}
+                                handleClick={() => {
+                                    console.log("clicked");
+                                }}
+                                border={false}
+                            />
+                        );
+                    } else if (type == 2 && item.pricing.corporate.isPresent == true) {
+                        return (
+                            <PropertyInfo
+                                item={item}
+                                index={index}
+                                isFav={false}
+                                favPage={true}
+                                key={index}
+                                handleClick={() => {
+                                    console.log("clicked");
+                                }}
+                                border={false}
+                            />
+                        );
+                    } else if (type == 3 && item.pricing.individual.isPresent == true) {
+                        return (
+                            <PropertyInfo
+                                item={item}
+                                index={index}
+                                isFav={false}
+                                favPage={true}
+                                key={index}
+                                handleClick={() => {
+                                    console.log("clicked");
+                                }}
+                                border={false}
+                            />
+                        );
+                    }
+                })}
+            </div>
+            {/* <Host
 title="Get in buisness with GoRecce"
 buttonContent="Become a Host"
 /> */}
-<Footer />
-</>
-);
+            <Footer />
+        </>
+    );
 };
 
 export default Search;
