@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Rating from "@mui/material/Rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
+import { GiFilmProjector } from "react-icons/gi";
+import { BsPersonFill } from "react-icons/bs";
+import { MdOutlineCorporateFare } from "react-icons/md";
 
 const PropertyInfo = ({
 	item,
@@ -77,13 +80,21 @@ const PropertyInfo = ({
 					<div className="property-info-location">&#8377; 000/hr</div>
 					<div className="property-info-location property-rating">
 						<div>
+							<div>
 							<AiFillStar style={{ color: '#FFC736'}} size="25px" />
 							<AiFillStar style={{ color: '#FFC736'}} size="25px" />
 							<AiFillStar style={{ color: '#FFC736'}} size="25px" />
 							<AiOutlineStar style={{ color: '#FFC736'}} size="25px" />
 							<AiOutlineStar style={{ color: '#FFC736'}} size="25px" />
+							</div>
 						</div>
 						<div>(40)</div>
+						<div>
+						{item.pricing.corporate.isPresent && <MdOutlineCorporateFare size="20px" />}
+						{item.pricing.film_webseries_ad.isPresent && <GiFilmProjector size="20px" />}
+						{item.pricing.individual.isPresent && <BsPersonFill size="20px" />}
+						{item.pricing.tv_series_other.isPresent && <GiFilmProjector size="20px" />}
+						</div>
 					</div>
 
 					{/* <div className="property-info-price">{item.price}</div> */}

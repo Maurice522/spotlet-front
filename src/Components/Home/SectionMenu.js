@@ -103,6 +103,7 @@ const SectionMenu = () => {
 				to={{
 					pathname:"/search/"+shoot
 				}}
+				onClick={() => window.scrollTo(0, 0)}
 				style={{
 					textDecoration: "none",
 				}}>
