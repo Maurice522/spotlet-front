@@ -71,6 +71,11 @@ const ListingPlace = () => {
 		"Terms & Conditions": 13,
 	};
 
+	const changeSection = (sec) => {
+		console.log(sec)
+		setSec(sec);
+	}
+
 	return (
 		<>
 			<div>
@@ -160,7 +165,7 @@ const ListingPlace = () => {
 							""
 						)}
 						{section === "Review Application" ? (
-							<ReviewApplication showSection={handlesection} />
+							<ReviewApplication showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}

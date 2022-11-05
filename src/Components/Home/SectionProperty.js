@@ -8,11 +8,33 @@ import img4 from "../../Assets/Images/property-4.jpeg";
 import img5 from "../../Assets/Images/property-5.jpeg";
 import img6 from "../../Assets/Images/property-6.jpeg";
 import PropertyInfo from "../PropertyInfo";
-import { getAllLocations } from "../../services/api";
+import { getAllLocations, getUserData } from "../../services/api";
+import jwtDecode from "jwt-decode";
+
 
 const SectionProperty = () => {
 	const [favorites, setFavorites] = useState([0, 1, 2]);
 	const [propertyDetails, setPropertiesDetail] = useState([]);
+
+	useEffect(() => {
+		getAllLocations()
+			.then(res => setPropertiesDetail(res.data.locations))
+			.catch(err => console.log(err))
+	}, [])
+
+	useEffect(() => {
+		const fetchFav = async () => {
+			const jwt = localStorage.getItem("token");
+			if (jwt) {
+				const user_jwt = jwtDecode(jwt);
+				const { data } = await getUserData(user_jwt._id);
+				setFavorites(data.favourites)
+				// console.log(favorites);
+			}
+		};
+		fetchFav();
+	}, [])
+
 	
 
 	// const propertyyDetails = [
@@ -73,17 +95,6 @@ const SectionProperty = () => {
 	// 		isFavourite: favorites.includes(7),
 	// 	},
 	// ];
-	const handleClick = () => {
-		
-	};
-
-	useEffect(() => {
-		getAllLocations()
-		.then(res => setPropertiesDetail(res.data.locations))
-		.catch(err => console.log(err))
-
-		// console.log(propertyDetails);
-	}, [])
 
 	return (
 		<div className="property-section">
@@ -92,16 +103,17 @@ const SectionProperty = () => {
 				Featured Properties in Hyderabad
 			</div>
 			<div className="property-list">
-				{propertyDetails.map((item, index) => (
+				{propertyDetails.map((item) => (
 					// <div>hi</div>
 					<PropertyInfo
 						item={item}
-						index={index}
-						isFav={true}
+						// index={index}
+						// isFav={true}
+						favPage={false}
+						propertyDetails={propertyDetails}
 						favorites={favorites}
 						setFavorites={setFavorites}
-						key={index}
-						handleClick={handleClick}
+						key={item.location_id}
 						border={false}
 					/>
 				))}

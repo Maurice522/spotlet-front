@@ -16,10 +16,15 @@ import {
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
 
-const ReviewApplication = () => {
+
+const ReviewApplication = (props) => {
 
     return (
         <div className="lbox">
+            <div className="review--edit">
+                <h1>Details And Description</h1>
+                <Button>Edit</Button>
+            </div>
             <div className="row1">
                 <div className="coll1">
                     <h2>

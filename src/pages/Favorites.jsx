@@ -8,26 +8,44 @@ import img4 from "../Assets/Images/property-4.jpeg";
 import img5 from "../Assets/Images/property-5.jpeg";
 import img6 from "../Assets/Images/property-6.jpeg";
 import PropertyInfo from "../Components/PropertyInfo";
-import { getAllLocations } from "../services/api";
+import { getAllLocations, getUserData } from "../services/api";
 import image from "../Assets/Images/Favourite1.jpeg";
+import jwtDecode from "jwt-decode";
+
 
 
 
 const Favorites = () => {
 	const [propertyDetails, setPropertiesDetail] = useState([]);
+	const [favorites, setFavorites] = useState([]);
 
 	useEffect(() => {
 		getAllLocations()
-		.then()
-		.then(res =>setPropertiesDetail(res.data.locations))
-		.catch(err => console.log(err))
-	}, [])
-	
+			.then((res) => setPropertiesDetail(res.data.locations))
+			.catch((err) => console.log(err));
+	}, []);
+
+	useEffect(() => {
+		const fetchFav = async () => {
+			const jwt = localStorage.getItem("token");
+			if (jwt) {
+				const user_jwt = jwtDecode(jwt);
+				const { data } = await getUserData(user_jwt._id);
+				setFavorites(data.favourites);
+				// console.log(favorites);
+			}
+		};
+		fetchFav();
+	}, []);
+
+	console.log(propertyDetails);
+
+
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
 			<div className="text-on-image-container">
-				<img src={image} alt="background" className="bg-image darken" style={{height:"63vh"}}/>
+				<img src={image} alt="background" className="bg-image darken" style={{ height: "63vh" }} />
 				<div className="about-us-message bold">
 					Your Favourites!
 				</div>
@@ -40,19 +58,21 @@ const Favorites = () => {
 					}}>
 					<div className="property-list">
 						{console.log(propertyDetails)}
-						{propertyDetails.map((item, index) => (
-							<PropertyInfo
-								item={item}
-								index={index}
-								isFav={true}
-								favPage={true}
-								key={index}
-								handleClick={() => {
-									console.log("clicked");
-								}}
-								border={false}
-							/>
-						))}
+						{propertyDetails.map(
+							(item) =>
+								favorites.includes(item.location_id) && (
+									<PropertyInfo
+										item={item}
+										// index={index}
+										// isFav={true}
+										favPage={true}
+										favorites={favorites}
+										setFavorites={setFavorites}
+										key={item.location_id}
+										border={false}
+									/>
+								)
+						)}
 					</div>
 				</div>
 

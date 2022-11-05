@@ -18,10 +18,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
-	width: 750px;
-}
-.coll1 button{
-	margin-left: -750px;
 }
 
 .input {
@@ -37,7 +33,7 @@ body {
 .lginput {
 	border: 1px solid grey;
 	padding: 1px 15px;
-	width: 710px;
+	width: 55vw;
 	height: 37px;
 	font-size: 18px;
 	border-radius: 5px;
@@ -61,7 +57,7 @@ body {
 hr {
 	border: 1px solid #d9d9d9;
 	border-radius: 4px;
-	width: 80vw;
+	width: 70vw;
 }
 
 .sminput {
@@ -173,7 +169,7 @@ h2 {
 
 .uploadImage {
 	display: flex;
-	width: 40%;
+	width: 70%;
 	height: 160px;
 	border: dotted 2px grey;
 	justify-content: center;
@@ -274,9 +270,13 @@ h1 {
 }
 
 .map{
-	width: 60%;
+	width: 40%;
 	height: 600px;
 	margin-left: 70px;
+}
+
+#map_render div{
+	width: 50vw !important;
 }
 
 

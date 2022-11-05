@@ -16,6 +16,7 @@ import {
   MenuItem
 
 } from "@mui/material";
+import { selectUserData } from "../../redux/slices/userSlice";
 
 // import {
 
@@ -41,11 +42,22 @@ const Location = ({ showSection }) => {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
+
   // const [address, setAddress] = useState({})
   // const [mapCenter, setMapCenter] = useState({
   //   lat:17.3850,
   //   lng:78.4867
   // } )
+
+  const location_id = useSelector(selectLocationId);
+  const location = useSelector(selectLocationData);
+  const user = useSelector(selectUserData);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    location && setPropertyAddress(location.property_address);
+    console.log(property_address);
+  }, []);
 
   const [showmap, setShowmap] = useState(false)
 
@@ -134,22 +146,23 @@ const Location = ({ showSection }) => {
     if (!property_address.city.length || !property_address.state.length || !property_address.area.length ||
       !property_address.country.length || !property_address.pincode.length || !property_address.address.length)
       return toast.error("Please fill all required fields!!!")
-    //  const locData = {
-    //   ...location,
-    //   property_address
-    // }
-    // dispatch(addLocation(locData));
-    // const form = {
-    //   location_id,
-    //   data : locData
-    // }
+    const locData = {
+      ...location,
+      property_address
+    }
+    dispatch(addLocation(locData));
+    const form = {
+      location_id,
+      data: locData
+    }
     try {
-      // await createTempLocation(form);
+      await createTempLocation(form);
       showSection("Amenities");
     } catch (error) {
       toast.error(error.response.data);
     }
   }
+
 
   // const handleMap = (loc) =>{
   //   geocodeByAddress(loc)
@@ -204,7 +217,7 @@ const Location = ({ showSection }) => {
 						</MenuItem> */}
             {country.length ? stateArray.map(item => <MenuItem value={item.name} onClick={changeState.bind(this, item.isoCode)} key={item.name}>{item.name}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
           </Select>
-          {country.length === 0 && <p style={{fontSize: "15px", color: "grey"}}>Please select country first</p>}
+          {country.length === 0 && <p style={{ fontSize: "15px", color: "grey" }}>Please select country first</p>}
         </div>
       </div>
 
@@ -227,7 +240,7 @@ const Location = ({ showSection }) => {
 						</MenuItem> */}
             {cityArray.map(item => <MenuItem value={item.name} key={item.name}>{item.name}</MenuItem>)}
           </Select>
-          {state.length === 0 && <p style={{fontSize: "15px", color: "grey"}}>Please select country and state first</p>}
+          {state.length === 0 && <p style={{ fontSize: "15px", color: "grey" }}>Please select country and state first</p>}
         </div>
 
 
@@ -242,7 +255,7 @@ const Location = ({ showSection }) => {
             name="pincode"
             type="text"
             onChange={handleChange}
-          // value={property_address.pincode}
+            value={property_address ? property_address.pincode : ""}
           />
         </div>
 
@@ -254,7 +267,7 @@ const Location = ({ showSection }) => {
             className="listingInput input input--border"
             name="area"
             onChange={handleChange}
-            value={property_address.area}
+            value={property_address ? property_address.area : ""}
           />
         </div>
 
@@ -264,7 +277,7 @@ const Location = ({ showSection }) => {
             className="listingInput input input--border"
             name="landmark"
             onChange={handleChange}
-            value={property_address.landmark}
+            value={property_address ? property_address.landmark : ""}
           />
         </div>
       </div>
@@ -278,55 +291,45 @@ const Location = ({ showSection }) => {
             className="listingInput lginput input--border"
             name="address"
             onChange={handleChange}
-            value={property_address.address}
+            value={property_address ? property_address.address : ""}
+          />
+        </div>
+      </div>
+
+      <div className="row1">
+        <div className="coll1">
+          <h2 className="locationH2">Location Details</h2>
+          <input
+            className="listingInput lginput"
+            name="location_detail"
+            onChange={handleChange}
+            value={property_address.location_details}
           />
           <MdTravelExplore onClick={() => showLocation()} size={27} style={{ marginLeft: "auto", position: "relative", top: "-35px", marginRight: "10px", cursor: "pointer" }} />
         </div>
       </div>
 
-      {/* <div className="row1">
+
+      {(showmap === true) ? (
+        <div style={{
+          width: "10%",
+          height: "10%"
+        }}>
+          <GoogleMap address={property_address.location_detail} loc={true} />
+        </div>) : null
+      }
+
+      <div className="row1">
         <div className="coll1">
-          <h2 className="locationH2">Landmark </h2>
-          <input
-            className="listingInput lginput"
-            name="landmark"
-            onChange={handleChange}
-            value={property_address.landmark}
-          />
-        </div>
-      </div> */}
-
-      {/* <div className="row1">
-        <div className="coll1">
-          
-        </div>
-      </div> */}
-
-      <div className="mapIntegration_flex">
-        <div className="row1">
-          <div className="coll1">
-            {(showmap === true) ? (
-              <div style={{
-                width: "10%",
-                height: "10%"
-              }}>
-                <GoogleMap />
-              </div>) : null
-            }
-          </div>
-        </div>
-
-        <div className="row1">
-          <div className="coll1">
-            <button
-              className="locationContinue continue"
-              onClick={handleSubmit}
-            >
-              Continue
-            </button>
-          </div>
+          <button
+            className="locationContinue continue"
+            onClick={handleSubmit}
+          >
+            Continue
+          </button>
         </div>
       </div>
+
     </div>
 
   );

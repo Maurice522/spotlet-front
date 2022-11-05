@@ -31,6 +31,7 @@ const Photo = ({ showSection }) => {
 				//console.log(e.target.files[i]);
 				const formData = new FormData();
 				formData.append("pic", e.target.files[i]);
+				console.log(imagesData)
 				const response = await uploadLocationPics(formData);
 				setImagesData((prev) => [
 					...prev,
@@ -115,7 +116,7 @@ const Photo = ({ showSection }) => {
 									data: locData,
 								};
 								await createTempLocation(form);
-								//  console.log(locData);
+								 console.log(locData);
 								showSection("Features");
 							}}>
 							Continue

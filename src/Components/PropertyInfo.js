@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Rating from "@mui/material/Rating";
@@ -6,18 +6,39 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 import { GiFilmProjector } from "react-icons/gi";
 import { BsPersonFill } from "react-icons/bs";
 import { MdOutlineCorporateFare } from "react-icons/md";
+import { userUpdate } from "../services/api";
+import { selectUserData, selectUser_id } from "../redux/slices/userSlice";
+import { useSelector } from "react-redux";
+
 
 const PropertyInfo = ({
 	item,
-	index,
+	// index,
 	favPage,
 	favorites,
-	rating,
 	setFavorites,
 	review,
+	rating,
 	border,
 }) => {
+	const userData = useSelector(selectUserData);
+	const user_id = useSelector(selectUser_id);
 
+	useEffect(() => {
+		const updateFav = async () => {
+			const updatedUserData = {
+				...userData,
+				favourites: favorites,
+			}
+			const data = {
+				updatedUserData,
+				user_id
+			}
+			await userUpdate(data);
+			console.log("fav updated");
+		};
+		updateFav()
+	}, [favorites])
 	console.log(item);
 	return (
 		<div
@@ -32,17 +53,17 @@ const PropertyInfo = ({
 						color="#ff6767"
 						onClick={() => {
 							setFavorites((prev) =>
-								prev.filter((element) => element !== index)
+								prev.filter((element) => element !== item.location_id)
 							);
 						}}
 					/>
-				) : favorites.includes(index) === true ? (
+				) : favorites.includes(item.location_id) === true ? (
 					<MdFavorite
 						size="28px"
 						color="#ff6767"
 						onClick={() => {
 							setFavorites((prev) =>
-								prev.filter((element) => element !== index)
+								prev.filter((element) => element !== item.location_id)
 							);
 						}}
 					/>
@@ -51,7 +72,7 @@ const PropertyInfo = ({
 						size="28px"
 						color="#fff"
 						onClick={() => {
-							setFavorites((prev) => [...prev, index]);
+							setFavorites((prev) => [...prev, item.location_id]);
 						}}
 					/>
 				)}
@@ -66,7 +87,7 @@ const PropertyInfo = ({
 				<div className="text-on-image-container-2">
 					<img
 						src={item.imagesData[0].image}
-						alt={`property-${index + 1}`}
+						alt={`property-${item.location_id}`}
 						className="property-image"
 					/>
 					{/* {review && <div className="type-of-property-icon">{item.icon}</div>} */}
@@ -81,19 +102,19 @@ const PropertyInfo = ({
 					<div className="property-info-location property-rating">
 						<div>
 							<div>
-							<AiFillStar style={{ color: '#FFC736'}} size="25px" />
-							<AiFillStar style={{ color: '#FFC736'}} size="25px" />
-							<AiFillStar style={{ color: '#FFC736'}} size="25px" />
-							<AiOutlineStar style={{ color: '#FFC736'}} size="25px" />
-							<AiOutlineStar style={{ color: '#FFC736'}} size="25px" />
+								<AiFillStar style={{ color: '#FFC736' }} size="25px" />
+								<AiFillStar style={{ color: '#FFC736' }} size="25px" />
+								<AiFillStar style={{ color: '#FFC736' }} size="25px" />
+								<AiOutlineStar style={{ color: '#FFC736' }} size="25px" />
+								<AiOutlineStar style={{ color: '#FFC736' }} size="25px" />
 							</div>
 						</div>
 						<div>(40)</div>
 						<div>
-						{item.pricing.corporate.isPresent && <MdOutlineCorporateFare size="20px" />}
-						{item.pricing.film_webseries_ad.isPresent && <GiFilmProjector size="20px" />}
-						{item.pricing.individual.isPresent && <BsPersonFill size="20px" />}
-						{item.pricing.tv_series_other.isPresent && <GiFilmProjector size="20px" />}
+							{item.pricing.corporate.isPresent && <MdOutlineCorporateFare size="20px" />}
+							{item.pricing.film_webseries_ad.isPresent && <GiFilmProjector size="20px" />}
+							{item.pricing.individual.isPresent && <BsPersonFill size="20px" />}
+							{item.pricing.tv_series_other.isPresent && <GiFilmProjector size="20px" />}
 						</div>
 					</div>
 

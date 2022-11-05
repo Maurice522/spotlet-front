@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // const server_domain = "https://gorecceback.herokuapp.com";
-const server_domain = "https://nipunbacky.herokuapp.com"; //TEMP HOSTED SERVER
-// const server_domain = "http://localhost:8000";
+// const server_domain = "https://nipunbacky.herokuapp.com"; //TEMP HOSTED SERVER
+const server_domain = "http://localhost:8000";
 
 
 ////////////////////////Auth////////////////////////
@@ -26,7 +26,7 @@ export const getUserData = (jwt_id) => {
   return axios.get(server_domain + "/user/" + jwt_id);
 };
 
-//update data
+//update personal_info data
 export const updateUserInfo = (jwt_id, form) => {
   return axios.put(server_domain + "/user/update/" + jwt_id, form);
 };
@@ -156,4 +156,14 @@ export const contactUs = (form) => {
 
 export const getBlog = (blogid) => {
   return axios.get(server_domain + "/getblog/"+blogid);
+}
+
+//update location info
+export const locationUpdate = (data) => {
+  return axios.post(server_domain + "/updatelocation/", data);
+}
+
+//update user data
+export const userUpdate = (data) => {
+  return axios.post(server_domain + "/updateuser/", data);
 }

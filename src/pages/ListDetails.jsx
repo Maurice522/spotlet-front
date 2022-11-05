@@ -10,6 +10,7 @@ import SyncfusionTable from "../Components/BookingListing/SyncFusionTable";
 import { useSelector } from "react-redux";
 import { selectUserData } from "../redux/slices/userSlice";
 import { locationRequest } from "../services/api";
+import EditPricing from "../Components/EditPricing";
 
 const ListDetails = ({ setFinal }) => {
 	const userData = useSelector(selectUserData);
@@ -18,19 +19,19 @@ const ListDetails = ({ setFinal }) => {
 	const [requests, setRequests] = useState([]);
 	useEffect(() => {
 		userData?.listedLocations.map(loc => {
-			if(loc.location_id === locationId)
-			   setLocationData(loc);
+			if (loc.location_id === locationId)
+				setLocationData(loc);
 		})
 	}, [userData])
 	console.log(locationData, "locationData");
-	
+
 	useEffect(() => {
-		 locationRequest(locationId).then(res => {
+		locationRequest(locationId).then(res => {
 			setRequests(res.data.requests);
-		 }).catch(err => {
+		}).catch(err => {
 			console.log(err);
-		 })
-	},[])
+		})
+	}, [])
 	//console.log(locationData);
 	const gridBookingName = (props) => (
 		<div
@@ -81,9 +82,9 @@ const ListDetails = ({ setFinal }) => {
 			</div>
 		);
 	};
-	const listDetailsData = requests?.map( (request, index) => {
-		const endTime =( Number(request?.time.substr(0,2))+Number(request?.duration_in_hours))%24;
-		const date = new Date(request?.timestamp?._seconds*1000)
+	const listDetailsData = requests?.map((request, index) => {
+		const endTime = (Number(request?.time.substr(0, 2)) + Number(request?.duration_in_hours)) % 24;
+		const date = new Date(request?.timestamp?._seconds * 1000)
 		const yyyy = date.getFullYear();
 		let mm = date.getMonth() + 1; // Months start at 0!
 		let dd = date.getDate();
@@ -168,10 +169,10 @@ const ListDetails = ({ setFinal }) => {
 				<div className="flex-container">
 					<BiArrowBack size="24px" />
 					<img
-						src={locationData?.images?.at(0)}
+						src={locationData?.imagesData?.at(0).image}
 						alt="property"
 						className="listing-property-image"
-						style={{borderRadius : "8px"}}
+						style={{ borderRadius: "8px" }}
 					/>
 					<div className="listing-property-details">
 						<div className="listing-property-id">{locationId}</div>
@@ -180,6 +181,9 @@ const ListDetails = ({ setFinal }) => {
 						</div>
 						<div className="listing-property-address">{locationData?.property_address?.city} {locationData?.property_address?.state}</div>
 						<div className="listing-property-address">{locationData?.property_address?.country} , {locationData?.property_address?.pincode}</div>
+					</div>
+					<div>
+						<EditPricing location={locationData} />
 					</div>
 				</div>
 

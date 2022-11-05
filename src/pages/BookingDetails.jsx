@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import { Button, Avatar } from "@mui/material";
+import { Button, Avatar, Rating } from "@mui/material";
 import "../Assets/Styles/bookingDetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, selectUserData } from "../redux/slices/userSlice";
 import { useEffect } from "react";
-import { createConversation, deleteBookingReq, getLocation, getUserData } from "../services/api";
+import { createConversation, deleteBookingReq, getLocation, getUserData, locationUpdate } from "../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import GoogleMap from "../Components/GoogleMap";
 import axios from "axios";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 
 const BookingDetails = () => {
+	let data;
 	const userData = useSelector(selectUserData);
 	const dispatch = useDispatch();
 	const [booking, setBooking] = useState({});
@@ -22,6 +24,9 @@ const BookingDetails = () => {
 		lat: 0,
 		lng: 0
 	})
+	const [rating, setRating] = useState(0);
+	const [review, setReview] = useState("");
+
 	const bookingId = window.location.pathname.substr(16);
 	const endTime = (Number(booking?.time?.substr(0, 2)) + Number(booking?.duration_in_hours)) % 24;
 	const date = new Date(booking?.timestamp?._seconds * 1000)
@@ -78,8 +83,8 @@ const BookingDetails = () => {
 		return window.confirm(text);
 	}
 	const deleteBooking = async () => {
-			try {
-				if (confirmDeletion()) {
+		try {
+			if (confirmDeletion()) {
 				const newPortfolio = userData.portfolio.filter(p => p.bookingId !== bookingId);
 				const newUserData = { ...userData, portfolio: newPortfolio };
 				const data = {
@@ -92,20 +97,45 @@ const BookingDetails = () => {
 				toast.success(response.data);
 				window.history.back();
 			}
-			} catch (error) {
-				toast.error(error);
-			}
+		} catch (error) {
+			toast.error(error);
 		}
+	}
+	//message
 	//message
 	const handleChat = async () => {
 		const data = {
 			senderId: booking.owner_id,
 			receiverId: booking.user_id,
 			locationId: booking.property_id,
+		};
+		await createConversation(bookingId, data);
+		window.location = `/messages/${bookingId}`;
+	};
+
+	//review
+	const handleReview = async () => {
+		data = {
+			review,
+			rating,
+		};
+		// console.log(booking.property_id);
+		setLocationData({
+			...locationData,
+			review_and_rating: data,
+		});
+		const data = {
+			locationData,
+			location_id: booking.property_id,
+		};
+		try {
+			console.log("Review Start");
+			await locationUpdate(data);
+			console.log("Review Sent");
+		} catch (error) {
+			console.log(error);
 		}
-		await createConversation(bookingId, data)
-		window.location = `/messages/${bookingId}`
-	}
+	};
 	console.log(locationData)
 	return (
 		<div>
@@ -217,6 +247,65 @@ const BookingDetails = () => {
 								Message
 							</Button>
 						</div>
+					</div>
+				</div>
+				<div div className="container">
+					<div className="booking-details-header">Reviews and Rating</div>
+					<div className="row1">
+						<div className="coll1">
+							<h2>
+								Write A review
+								<span style={{ color: "red" }}>*</span>
+							</h2>
+							<TextareaAutosize
+								className="listingInput text-input"
+								aria-label="minimum height"
+								minRows={6}
+								maxLength={500}
+								name="property_info"
+								onChange={(e) => setReview(e.target.value)}
+								// value={property_desc ? property_desc.property_info : ""}
+								style={{
+									width: 690,
+									fontSize: "16px",
+									lineHeight: "24px",
+									padding: "1%",
+								}}
+								required
+							/>
+						</div>
+					</div>
+					<div className="row1">
+						<div className="coll1">
+							<h2>
+								Ratings
+								<span style={{ color: "red" }}>*</span>
+							</h2>
+							<Rating
+								name="simple-controlled"
+								value={rating}
+								onChange={(event, newValue) => {
+									setRating(newValue);
+								}}
+							/>
+						</div>
+					</div>
+					<div className="row1">
+						<Button
+							variant="contained"
+							sx={{
+								width: "20vw",
+								backgroundColor: "#EA4235",
+								color: "white",
+								borderRadius: "4px",
+								marginTop: "10px",
+								flexGrow: "1",
+							}}
+							disabled={booking?.payment_status === "Cancelled"}
+							onClick={handleReview}
+						>
+							Send Review
+						</Button>
 					</div>
 				</div>
 				<div className="container">
