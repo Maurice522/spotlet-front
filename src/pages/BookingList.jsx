@@ -198,6 +198,8 @@ const BookingList = () => {
 		};
 	});
 
+	console.log(bookingData)
+
 	// const bookingData = [
 	// 	{
 	// 		id: 1,
@@ -279,7 +281,7 @@ const BookingList = () => {
 							margin: "40px auto",
 							height: "80vh",
 						}}>
-						<SyncfusionTable UsersData={bookingData} UsersGrid={bookingGrid} />
+						<SyncfusionTable UsersData={bookingData} UsersGrid={bookingGrid} content={"Booked"} />
 					</div>
 				) : (
 					<div
@@ -288,7 +290,7 @@ const BookingList = () => {
 							margin: "40px auto",
 							height: "85vh",
 						}}>
-						<SyncfusionTable UsersData={listingData} UsersGrid={listingGrid} />
+						<SyncfusionTable UsersData={listingData} UsersGrid={listingGrid} content={"Listed"} />
 					</div>
 				)}
 			</div>

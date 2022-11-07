@@ -15,9 +15,12 @@ import Host from "../Components/Home/Host";
 import Pagination from "@mui/material/Pagination";
 import axios from "axios";
 import { getAllLocations } from "../services/api";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineArrowLeft } from "react-icons/ai"
 
 const Search = () => {
+    const navigate = useNavigate();
     const { type } = useParams();
     const [propertyDetails, setPropertiesDetail] = useState([]);
     useEffect(() => {
@@ -47,6 +50,7 @@ const Search = () => {
         <>
             <Navbar extraNavId="id-2" />
             <div className="below-nav">
+                <AiOutlineArrowLeft size="20px" style={{cursor: "pointer"}} onClick={() => navigate("/")} />
                 <FormFilter fullScreen={true} />
             </div>
             <div className="search-heading">All Locations</div>

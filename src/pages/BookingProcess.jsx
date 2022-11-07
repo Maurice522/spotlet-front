@@ -27,6 +27,16 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 			userData.who_reserves !== "" && userData.dob !== "" && userData.message !== "")
 			setReadyForRequest(true);
 	}, [userData])
+
+	const [lines, setLines] = useState(true);
+
+	let x = window.matchMedia("(max-width: 576px)")
+	useEffect(() => {
+		if (x.matches)
+			setLines(false);
+		  else
+			setLines(true);
+	}, [])
 	return (
 		<>
 			<Navbar extraNavId="id-2" />
@@ -34,7 +44,7 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 				<div className="booking-content-wrapper">
 					<div className="left-section">
 						<div className="booking-process-main">
-							<AiOutlineArrowLeft size="20px" onClick={() => setIndex(prev => prev > 0 ? prev-1 : prev)} />
+							<AiOutlineArrowLeft size="20px" tyle={{cursor: "pointer"}}  onClick={() => setIndex(prev => prev > 0 ? prev-1 : prev)} />
 							<div className="booking-process">
 							<div className={`booking-item ${index === 0 ? "highlight" : ""}`}>
 								BOOKING

@@ -37,9 +37,9 @@ const BookingForm = ({
 	}, [locationData]);
 	const handleClick = () => {
 
-		//console.log(v1, v2, v3, v4, v5);
+		console.log(v1, v2, v3, v4, v5, v6);
 		if (user) {
-			if (v1 !== "" && v2 !== "" && v3 !== "" && v4 !== "" && v5 !== "") {
+			if (v1 !== "" && v2 !== "" && v3 !== "" && v4 !== "" && v5 !== "" && v6 !== "") {
 				//console.log("Navigate", navigate);
 				navigate(`/${window.location.pathname.substring(10)}/booking`);
 			} else {
@@ -249,11 +249,12 @@ const BookingForm = ({
 								className={active === true ? "focus" : "normal"}
 								onChange={(e) => {
 									// console.log(e.target.value)
-									setVal(e.target.value === "6am-6pm" ? "12" : "24");
+									setVal(e.target.value === "6am-6pm" ? "12" : "22");
 									// (e.target.value === "6am-6pm" ? "12" : "24");
-									let a = e.target.value === "6am-6pm" ? "12" : "24";
+									let a = e.target.value === "6am-6pm" ? "12" : "22";
 									calculatePrice(event, a);
 									setV2("06:00 am")
+									setV3(e.target.value === "6am-6pm" ? 12 : 22)
 								}}
 								// value={"6am-6pm"}
 								displayEmpty>
@@ -280,7 +281,7 @@ const BookingForm = ({
 								className={active === true ? "focus" : "normal"}
 								onChange={(e) => {
 									console.log(e.target.value);
-									setV3(e.target.value);
+									// setV3(e.target.value);
 									calculatePrice(event, e.target.value);
 								}}
 								value={v3}

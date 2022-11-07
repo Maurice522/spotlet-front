@@ -3,8 +3,8 @@ import { TextField } from "@mui/material";
 
 import "../../Assets/Styles/Booking/booking.css";
 
-const Booking = ({ v1, v2, v3, v4, v5 }) => {
-	console.log(v2);
+const Booking = ({ v1, v2, v3, v4, v5, v6 }) => {
+	console.log(v1, v2, v3, v4, v5, v6);
 	return (
 		<form id="booking-page-form">
 			<div>

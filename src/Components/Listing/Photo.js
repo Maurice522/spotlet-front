@@ -13,7 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Clear } from "@mui/icons-material";
-const Photo = ({ showSection }) => {
+const Photo = ({ showSection, changeSection }) => {
 	//const [files, setFiles] = useState([]);
 	const [imagesData, setImagesData] = useState([]);
 	const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Photo = ({ showSection }) => {
 	const location = useSelector(selectLocationData);
 
 	useEffect(() => {
-		if(location)
+		if (location)
 			location.imagesData && setImagesData(location.imagesData);
 	}, []);
 
@@ -116,8 +116,13 @@ const Photo = ({ showSection }) => {
 									data: locData,
 								};
 								await createTempLocation(form);
-								 console.log(locData);
+								console.log(locData);
 								showSection("Features");
+
+								if (imagesData.length === 5) {
+									changeSection("Features");
+									window.scrollTo(0, 0);
+								}
 							}}>
 							Continue
 						</button>

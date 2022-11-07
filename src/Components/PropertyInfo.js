@@ -96,8 +96,8 @@ const PropertyInfo = ({
 					style={{
 						paddingLeft: "4px",
 					}}>
-					<div className="property-info-heading">{item.property_desc.location_type}</div>
-					<div className="property-info-location">{item.property_address.city}</div>
+					<div className="property-info-heading">{item?.property_desc?.location_type}</div>
+					<div className="property-info-location">{item?.property_address?.city}</div>
 					<div className="property-info-location">&#8377; 000/hr</div>
 					<div className="property-info-location property-rating">
 						<div>

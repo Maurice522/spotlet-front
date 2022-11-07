@@ -9,7 +9,7 @@ import {
 import { createTempLocation } from "../../services/api";
 import { toast } from "react-toastify";
 
-const Pricing = ({ showSection }) => {
+const Pricing = ({ showSection, changeSection }) => {
 	const [film, setfilm] = useState({
 		hourly_rate: 0,
 		isPresent: false,
@@ -31,7 +31,7 @@ const Pricing = ({ showSection }) => {
 	const location = useSelector(selectLocationData);
 
 	useEffect(() => {
-		if(location){
+		if (location) {
 			location.pricing && setfilm(location.pricing.film_webseries_ad);
 			location.pricing && settv(location.pricing.tv_series_other);
 			location.pricing && setcorp(location.pricing.corporate);
@@ -64,6 +64,9 @@ const Pricing = ({ showSection }) => {
 		} catch (error) {
 			toast.error(error.response.data);
 		}
+
+		changeSection("Rules of the Host");
+		window.scrollTo(0, 0);
 	};
 	return (
 		<div className="lbox">
@@ -93,7 +96,7 @@ const Pricing = ({ showSection }) => {
 					</div>
 					<div className="row1">
 						<div className="coll1">
-							<h2>Half Day Price &nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
+							<h2>Half Day Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -101,7 +104,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>Full Day Price&nbsp;&nbsp; <span style={{color : "grey"}}>*20% discount applied</span> </h2>
+							<h2>Full Day Price&nbsp;&nbsp; <span style={{ color: "grey" }}>*20% discount applied</span> </h2>
 							<input
 								className="sminput"
 								disabled
@@ -144,7 +147,7 @@ const Pricing = ({ showSection }) => {
 							<input className="sminput" disabled value={tv.hourly_rate * 8} />
 						</div> */}
 						<div className="coll1">
-						<h2>Half Day Price &nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
+							<h2>Half Day Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -152,7 +155,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-						<h2>Full Day Price &nbsp;&nbsp; <span style={{color : "grey"}}>*20% discount applied</span></h2>
+							<h2>Full Day Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*20% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -201,7 +204,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>12 hour Price&nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
+							<h2>12 hour Price&nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -209,7 +212,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>24 hour Price&nbsp;&nbsp; <span style={{color : "grey"}}>*20% discount applied</span></h2>
+							<h2>24 hour Price&nbsp;&nbsp; <span style={{ color: "grey" }}>*20% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -258,7 +261,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>12 hour Price &nbsp;&nbsp; <span style={{color : "grey"}}>*10% discount applied</span></h2>
+							<h2>12 hour Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled
@@ -266,7 +269,7 @@ const Pricing = ({ showSection }) => {
 							/>
 						</div>
 						<div className="coll1">
-							<h2>24 hour Price &nbsp;&nbsp; <span style={{color : "grey"}}>*20% discount applied</span></h2>
+							<h2>24 hour Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*20% discount applied</span></h2>
 							<input
 								className="sminput"
 								disabled

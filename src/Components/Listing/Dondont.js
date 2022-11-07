@@ -12,7 +12,7 @@ import { createTempLocation } from "../../services/api";
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
 
-const Dondont = ({ showSection }) => {
+const Dondont = ({ showSection, changeSection }) => {
 	const [do_s, setdo_s] = useState(["Do advise us of any change in your personal circumstances. We can try and help", "Ask if you are not sure of anything."]);
 	const [do1, setdo1] = useState("");
 
@@ -72,6 +72,9 @@ const Dondont = ({ showSection }) => {
 		} catch (error) {
 			toast.error(error.response.data);
 		}
+
+		changeSection("Pricing");
+		window.scrollTo(0, 0);
 	};
 
 	return (

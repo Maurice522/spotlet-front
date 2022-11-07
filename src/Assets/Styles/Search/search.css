@@ -16,6 +16,7 @@
 	grid-template-columns: repeat(4, 1fr);
 	gap: 20px;
 	row-gap: 40px;
+	min-height: 20rem;
 }
 
 .item {
@@ -61,10 +62,9 @@
 
 .property-rating {
 	display: grid;
-	grid-template-columns: 3fr 1fr 1fr;
+	grid-template-columns: 2fr 1fr 1fr;
 	align-items: center;
 	justify-items: flex-start;
-	gap: 1rem;
 }
 .property-rating div:last-child {
 	display: flex;

@@ -26,7 +26,7 @@ import { selectUserData } from "../../redux/slices/userSlice";
 import { Direction } from "react-toastify";
 
 
-const Location = ({ showSection }) => {
+const Location = ({ showSection, changeSection }) => {
   const [property_address, setPropertyAddress] = useState({
     address: "",
     area: "",
@@ -161,6 +161,9 @@ const Location = ({ showSection }) => {
     } catch (error) {
       toast.error(error.response.data);
     }
+
+    changeSection("Amenities");
+		window.scrollTo(0, 0);
   }
 
 

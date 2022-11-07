@@ -11,7 +11,7 @@ import { selectUserData } from "../../redux/slices/userSlice";
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
 
-const Contact = ({ showSection }) => {
+const Contact = ({ showSection, changeSection }) => {
 	const dispatch = useDispatch();
 	const location_id = useSelector(selectLocationId);
 	const location = useSelector(selectLocationData);
@@ -63,6 +63,9 @@ const Contact = ({ showSection }) => {
 		} catch (error) {
 			toast.error(error.response.data);
 		}
+
+		changeSection("GST Details");
+		window.scrollTo(0, 0);
 	};
 	return (
 		<div className="lbox">

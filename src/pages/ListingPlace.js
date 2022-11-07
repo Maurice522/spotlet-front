@@ -71,10 +71,12 @@ const ListingPlace = () => {
 		"Terms & Conditions": 13,
 	};
 
-	const changeSection = (sec) => {
-		console.log(sec)
-		setSec(sec);
+	const changeSection = (sect) => {
+		setSec(sect);
+		showSection(sect);
 	}
+	console.log(sec)
+	console.log(section)
 
 	return (
 		<>
@@ -87,8 +89,8 @@ const ListingPlace = () => {
 						{items.map((item, ind) => (
 							<div key={ind}>
 								<button
-									// onClick={() => itemsObj[item] <= itemsObj[section] ? handlesection(item) : ''}
-									onClick={() => handlesection(item)}
+									onClick={() => itemsObj[item] <= itemsObj[section] ? handlesection(item) : ''}
+									// onClick={() => handlesection(item)}
 									className={section === item ? "lnav-text sel" : "lnav-text"}
 									style={{color: itemsObj[item] > itemsObj[section] ? "grey" : ""}}>
 									{item}
@@ -109,58 +111,58 @@ const ListingPlace = () => {
 							flexGrow: "1",
 						}}>
 						{section === "Details & Description" ? (
-							<Details showSection={handlesection} />
+							<Details showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
 						{section === "Location" ? (
-							<Location showSection={handlesection} />
+							<Location showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
 						{section === "Amenities" ? (
-							<Amenities showSection={handlesection} />
+							<Amenities showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
 						{section === "Photos" ? <Photo showSection={handlesection} /> : ""}
 						{section === "Features" ? (
-							<Features showSection={handlesection} />
+							<Features showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
 						{section === "Do's & Don'ts" ? (
-							<Dondont showSection={handlesection} />
+							<Dondont showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
 						{section === "Pricing" ? (
-							<Pricing showSection={handlesection} />
+							<Pricing showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
 						{section === "Rules of the Host" ? (
-							<Rules showSection={handlesection} />
+							<Rules showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
 						{section === "Timings" ? (
-							<Timings showSection={handlesection} />
+							<Timings showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
 						{section === "Contact Details" ? (
-							<Contact showSection={handlesection} />
+							<Contact showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
 						{section === "GST Details" ? (
-							<Gst showSection={handlesection} />
+							<Gst showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
 						{section === "Bank Details" ? (
-							<BankDetails showSection={handlesection} />
+							<BankDetails showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}
@@ -170,7 +172,7 @@ const ListingPlace = () => {
 							""
 						)}
 						{section === "Terms & Conditions" ? (
-							<TermCondition showSection={handlesection} />
+							<TermCondition showSection={handlesection} changeSection={changeSection} />
 						) : (
 							""
 						)}

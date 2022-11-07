@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import Dondont from "../Listing/AddNew";
 import AddNew from "../Listing/AddNew";
 
-const Features = ({ showSection }) => {
+const Features = ({ showSection, changeSection }) => {
 	const options = [
 		{value : "Alarm system",label:" Alarm system" },
 		{value : "Architectural details, such as crown moldings, chair rails, etc.",label:" Architectural details, such as crown moldings, chair rails, etc." },
@@ -94,6 +94,9 @@ const Features = ({ showSection }) => {
 		} catch (error) {
 			toast.error(error.response.data);
 		}
+
+		changeSection("Do's & Don'ts");
+		window.scrollTo(0, 0);
 	};
 
 	const [newFeature, setNewFeature] = useState("");

@@ -63,7 +63,7 @@ import "../../Assets/Styles/listYourSpace.css";
 		{value : "Wooden house",label:" Wooden house" },	
 	];
 
-const Details = ({ showSection }) => {
+const Details = ({ showSection, changeSection }) => {
 	const user_id = useSelector(selectUser_id);
 	const user = useSelector(selectUserData);
 	const location = useSelector(selectLocationData);
@@ -96,12 +96,12 @@ const Details = ({ showSection }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (
-			!property_desc.location_type.length ||
-			!property_desc.property_info.length ||
-			!property_desc.property_size.length ||
-			!property_desc.security_camera.length ||
-			!property_desc.street_parking.length ||
-			!property_desc.house_parking.length
+			!property_desc?.location_type?.length ||
+			!property_desc?.property_info?.length ||
+			!property_desc?.property_size?.length ||
+			!property_desc?.security_camera?.length ||
+			!property_desc?.street_parking?.length ||
+			!property_desc?.house_parking?.length
 		)
 			return toast.error("Please fill all required fields!!!");
 		const form = {
@@ -121,6 +121,10 @@ const Details = ({ showSection }) => {
 		} catch (error) {
 			toast.error(error.response.data);
 		}
+
+		changeSection("Location");
+		window.scrollTo(0, 0);
+
 	};
 
 	const [opt, setOpt] = useState(options);

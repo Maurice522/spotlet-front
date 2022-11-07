@@ -8,7 +8,7 @@ import {
 import { createTempLocation } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 
-const BankDetails = ({ showSection }) => {
+const BankDetails = ({ showSection, changeSection }) => {
 
 	const [bankDetails, setbankDetails] = useState({
 		account_holder_name: "",
@@ -32,14 +32,14 @@ const BankDetails = ({ showSection }) => {
 		console.log(bankDetails)
 		if (!bankDetails.account_holder_name.length || !bankDetails.account_number.length || !bankDetails.bank_name.length || !bankDetails.ifsc_code.length)
 			return toast.error("Please fill all required fields!!!")
-		 const locData = {
-		  ...location,
-		  bankDetails
+		const locData = {
+			...location,
+			bankDetails
 		}
 		dispatch(addLocation(locData));
 		const form = {
-		  location_id,
-		  data : locData
+			location_id,
+			data: locData
 		}
 		try {
 			await createTempLocation(form);
@@ -47,6 +47,9 @@ const BankDetails = ({ showSection }) => {
 		} catch (error) {
 			toast.error(error.response.data);
 		}
+
+		changeSection("Review Application");
+		window.scrollTo(0, 0);
 	}
 
 

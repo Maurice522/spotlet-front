@@ -104,7 +104,7 @@ const Property = ({
 					{locationData?.property_address?.pincode}
 				</div>
 			</div>
-			<div style={{ width: "100%", height: "300px" }}>
+			<div style={{ width: "60%", height: "500px", margin: "auto" }}>
 				{cord.lat !== 0 && (
 					<GoogleMap lat={cord.lat} lng={cord.lng} zoom={13} loc={false} />
 				)}

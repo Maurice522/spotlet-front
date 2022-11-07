@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
 
 
-const Timing = ({ showSection }) => {
+const Timing = ({ showSection, changeSection }) => {
   const [monday, setmonday] = useState({
     open: true,
     isSetHours: false,
@@ -93,6 +93,9 @@ const Timing = ({ showSection }) => {
     } catch (error) {
       toast.error(error.response.data);
     }
+
+    changeSection("Contact Details");
+		window.scrollTo(0, 0);
   }
   return (
     <div className="lbox">
