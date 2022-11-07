@@ -242,6 +242,16 @@ form p{
 	margin-top: 15px;
 }
 
+.conf-modal{
+	background-color: #ffffff;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	border-radius: 8px;
+	width: 100%;
+	text-align: center;
+}
 
 
 @media screen and (max-width: 992px){

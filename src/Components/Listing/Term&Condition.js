@@ -7,21 +7,31 @@ import {
 import { createLocation } from "../../services/api";
 import { toast } from "react-toastify";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import { Modal } from "@mui/material";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 export default function TermCondition() {
   const location_id = useSelector(selectLocationId);
   const data = useSelector(selectLocationData);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [policy, setPolicy] = useState({
-    privacy_policy : false,
-    term_cond : false,
-    grant_info : false
+    privacy_policy: false,
+    term_cond: false,
+    grant_info: false
   });
   const handleChange = (e) => {
-		setPolicy({...policy, [e.target.name] : e.target.checked})
-	};
+    setPolicy({ ...policy, [e.target.name]: e.target.checked })
+  };
 
-  const handleSubmit = async(e) => {
+  const navigate = useNavigate();
+
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!policy.grant_info || !policy.privacy_policy || !policy.term_cond)
+    if (!policy.grant_info || !policy.privacy_policy || !policy.term_cond)
       return toast.error("Please check all fields!!")
     const locData = {
       data,
@@ -36,13 +46,16 @@ export default function TermCondition() {
     } catch (error) {
       toast.error(error.response.data);
     }
+    setOpen(true);
   }
   return (
-    <div style={{height:"800px",
-    
-     position: "relative" }}>
-      <h1 style={{ marginTop: "10%",fontWeight:"600", paddingLeft: "30px", paddingRight: "30px" }}>Terms and Conditions</h1>
-      <p style={{lineHeight:"24px",width:"60vw",textAlign:"justify", paddingLeft: "30px", paddingRight: "30px" }}>
+    <div style={{
+      height: "800px",
+
+      position: "relative"
+    }}>
+      <h1 style={{ marginTop: "10%", fontWeight: "600", paddingLeft: "30px", paddingRight: "30px" }}>Terms and Conditions</h1>
+      <p style={{ lineHeight: "24px", width: "60vw", textAlign: "justify", paddingLeft: "30px", paddingRight: "30px" }}>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
@@ -62,69 +75,80 @@ export default function TermCondition() {
         sometimes by accident, sometimes on purpose injected humour and the
         like.
       </p>
-      <div className="terms-conditions"  style={{paddingLeft: "30px", paddingRight: "30px" }}>
-				<FormControlLabel
-					control={
-						<Checkbox
-							onChange={handleChange}
-							sx={{
-								color: "#ea4235",
-								"&.Mui-checked": {
-									color: "#ea4235",
-								},
-							}}
+      <div className="terms-conditions" style={{ paddingLeft: "30px", paddingRight: "30px" }}>
+        <FormControlLabel
+          control={
+            <Checkbox
+              onChange={handleChange}
+              sx={{
+                color: "#ea4235",
+                "&.Mui-checked": {
+                  color: "#ea4235",
+                },
+              }}
               name="privacy_policy"
-              checked = {policy.privacy_policy}
-						/>
-					}
-					label="I have read and agree to the privacy policy"
-				/>
-        <br/>
+              checked={policy.privacy_policy}
+            />
+          }
+          label="I have read and agree to the privacy policy"
+        />
+        <br />
         <FormControlLabel
-					control={
-						<Checkbox
-							onChange={handleChange}
-							sx={{
-								color: "#ea4235",
-								"&.Mui-checked": {
-									color: "#ea4235",
-								},
-							}}
+          control={
+            <Checkbox
+              onChange={handleChange}
+              sx={{
+                color: "#ea4235",
+                "&.Mui-checked": {
+                  color: "#ea4235",
+                },
+              }}
               name="term_cond"
-              checked = {policy.term_cond}
-						/>
-					}
-					label="I agree to the Term and Conditions with Hostinger International"
-				/>
-        <br/>
+              checked={policy.term_cond}
+            />
+          }
+          label="I agree to the Term and Conditions with Hostinger International"
+        />
+        <br />
         <FormControlLabel
-					control={
-						<Checkbox
-							onChange={handleChange}
-							sx={{
-								color: "#ea4235",
-								"&.Mui-checked": {
-									color: "#ea4235",
-								},
-							}}
+          control={
+            <Checkbox
+              onChange={handleChange}
+              sx={{
+                color: "#ea4235",
+                "&.Mui-checked": {
+                  color: "#ea4235",
+                },
+              }}
               name="grant_info"
-              checked = {policy.grant_info}
-						/>
-					}
-					label="I consent to GoRecce using my information"
-				/>
-			</div>
+              checked={policy.grant_info}
+            />
+          }
+          label="I consent to GoRecce using my information"
+        />
+      </div>
       <div className="row1">
         <div className="coll1">
           <button
             className="termsContinueButton continue"
-            style={{marginLeft: "30px"}}
+            style={{ marginLeft: "30px" }}
             onClick={handleSubmit}
           >
             Create Location
           </button>
         </div>
       </div>
+      <Modal open={open} onClose={handleClose}>
+        <div>
+          <div className="listing-modal">
+            <h3>Congratulations! You have completed a Booking/listing</h3>
+            <Button className="auth-btn" onClick={() => {
+              handleClose();
+              navigate("/");
+            }}>OK</Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

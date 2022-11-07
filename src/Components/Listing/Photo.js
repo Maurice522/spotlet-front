@@ -31,7 +31,6 @@ const Photo = ({ showSection, changeSection }) => {
 				//console.log(e.target.files[i]);
 				const formData = new FormData();
 				formData.append("pic", e.target.files[i]);
-				console.log(imagesData)
 				const response = await uploadLocationPics(formData);
 				setImagesData((prev) => [
 					...prev,
@@ -116,9 +115,8 @@ const Photo = ({ showSection, changeSection }) => {
 									data: locData,
 								};
 								await createTempLocation(form);
-								console.log(locData);
+								//  console.log(locData);
 								showSection("Features");
-
 								if (imagesData.length === 5) {
 									changeSection("Features");
 									window.scrollTo(0, 0);

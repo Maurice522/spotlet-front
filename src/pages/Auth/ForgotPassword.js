@@ -16,7 +16,6 @@ export default function ForgotPassword({ handleClose }) {
       toast.error(error.response.data.error);
     }
     setEmail("");
-    !sent && handleClose();
   };
   return (
     <div className="reset-password modal-reset">
@@ -52,8 +51,8 @@ export default function ForgotPassword({ handleClose }) {
           Reset
         </Button>
       </form> : 
-      <div>
-        <h3>An email has been sent to you. Please check your Inbox to reset password.</h3>
+      <div className="conf-modal">
+        <h3>An email has been sent to you. Please check your Inbox!</h3>
         <Button className="auth-btn" onClick={() => {
           handleClose();
           setSent(false);

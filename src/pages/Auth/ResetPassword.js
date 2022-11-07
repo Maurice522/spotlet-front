@@ -18,6 +18,10 @@ export default function ResetPassword() {
     confirmNewPassword: "",
   });
 
+
+  const handleChange = (e) => {
+    setUserCredential({ ...userCredential, [e.target.name]: e.target.value });
+  };
   
   const [validLength, setValidLength] = useState(null);
   const [upperCase, setUpperCase] = useState(null);
@@ -30,11 +34,6 @@ export default function ResetPassword() {
     setUpperCase(userCredential.newPassword.toLowerCase() !== userCredential.newPassword);
     setLowerCase(userCredential.newPassword.toUpperCase() !== userCredential.newPassword);
     setSpecialChar(/[ `!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/.test(userCredential.newPassword));
-  };
-
-
-  const handleChange = (e) => {
-    setUserCredential({ ...userCredential, [e.target.name]: e.target.value });
   };
 
 
@@ -55,11 +54,11 @@ export default function ResetPassword() {
     try {
       const response = await resetPassword(user_id, userCredential);
       toast.success("password updated..");
-      navigate("/signin");
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.error);
     }
+    navigate("/signin");
   };
 
   return (

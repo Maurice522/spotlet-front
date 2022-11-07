@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 
 const SyncfusionTable = ({ UsersData, UsersGrid, content }) => {
+	document.getElementsByClassName("MuiDataGrid-cellContent").innerHTML = "Detils"
 	console.log(UsersData)
-	return UsersData.length > 0 ? (
+	return UsersData?.length > 0 ? (
 		<DataGrid rows={UsersData} columns={UsersGrid} pageSize={7} />
 	) : (
 		<div

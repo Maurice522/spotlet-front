@@ -25,9 +25,22 @@ import { toast } from "react-toastify";
 import { MenuItem, Select } from "@mui/material";
 import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import { LockOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Modal } from "@mui/material";
+import { set } from "date-fns";
 
 const AccountInfo = (extraNavId) => {
   const [section, showSection] = useState("Profile");
+  const [pass, setPass] = useState(false);
+  const [deact, setDeact] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const handleOpenSuccess = () => setOpenSuccess(true);
+  const handleCloseSuccess = () => setOpenSuccess(false);
+  const [openDeact, setOpenDeact] = useState(false);
+  const handleOpenDeact = () => setOpenDeact(true);
+  const handleCloseDeact = () => setOpenDeact(false);
   const { personalInfo } = useSelector(selectUserData);
   const user_id = useSelector(selectUser_id);
   const dispatch = useDispatch();
@@ -125,32 +138,41 @@ const AccountInfo = (extraNavId) => {
   //handle update passowrd
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
-    checkPassword();
-    console.log(!(validLength && upperCase && lowerCase && specialChar))
-    if (!(validLength && upperCase && lowerCase && specialChar)) {
-      setValid(false);
-      return;
-    }
-    setValid(true);
-    if (userCredential.newPassword !== userCredential.confirmNewPassword)
-      toast.error("new password and confirm password are not same");
-    try {
-      const response = await updatePassword(user_id, userCredential);
-      toast.success("password updated..");
-    } catch (error) {
-      // console.log(error);
-      toast.error(error.response.data);
+    console.log(pass)
+    setOpen(true);
+    if (pass) {
+      checkPassword();
+      console.log(!(validLength && upperCase && lowerCase && specialChar))
+      if (!(validLength && upperCase && lowerCase && specialChar)) {
+        setValid(false);
+        return;
+      }
+      setValid(true);
+      if (userCredential.newPassword !== userCredential.confirmNewPassword)
+        toast.error("new password and confirm password are not same");
+      try {
+        const response = await updatePassword(user_id, userCredential);
+        toast.success("password updated..");
+      } catch (error) {
+        // console.log(error);
+        toast.error(error.response.data);
+      }
+      setOpenSuccess(true);
     }
   };
 
   //Deactivate Account
   const handleDeactivate = async (e) => {
     e.preventDefault();
-    try {
-      const response = await deleteRequest(user_id);
-      toast.success(response.data);
-    } catch (error) {
-      toast.error(error.response.data);
+    console.log(deact)
+    setOpenDeact(true);
+    if (deact) {
+      try {
+        const response = await deleteRequest(user_id);
+        toast.success(response.data);
+      } catch (error) {
+        toast.error(error.response.data);
+      }
     }
   };
   return (
@@ -292,7 +314,7 @@ const AccountInfo = (extraNavId) => {
                       sx={{ height: "2.8em" }}
                       required
                     >
-                      
+
                       <MenuItem value="individual">Individual</MenuItem>
                       <MenuItem value="corporate">Corporate</MenuItem>
                     </Select>
@@ -344,10 +366,9 @@ const AccountInfo = (extraNavId) => {
                 <div className="r2 r2Password">
                   <label>
                     <h2>Current Password</h2>
-                    <input
-                      className="acc-input current-pass"
-                      type="password"
-                      size="50"
+                    <TextField
+                      type={!show.showNewPassword ? "password" : "text"}
+                      name="currentPassword"
                       onChange={(e) =>
                         setUserCredential({
                           ...userCredential,
@@ -355,6 +376,33 @@ const AccountInfo = (extraNavId) => {
                         })
                       }
                       value={userCredential.currentPassword}
+                      fullWidth
+                      placeholder="Enter password"
+                      size="small"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <LockOutlined />
+                          </InputAdornment>
+                        ),
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={() =>
+                                setShow({
+                                  ...show,
+                                  showNewPassword: !show.showNewPassword,
+                                })
+                              }
+                              edge="end"
+                            >
+                              {!show.showNewPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      required
                     />
                   </label>
                 </div>
@@ -362,86 +410,86 @@ const AccountInfo = (extraNavId) => {
                   <label>
                     <h2>New Password</h2>
                     <TextField
-                    type={!show.showNewPassword ? "password" : "text"}
-                    name="confirmPassword"
-                    onChange={(e) =>
-                      setUserCredential({
-                        ...userCredential,
-                        newPassword: e.target.value,
-                      })
-                    }
-                    value={userCredential.newPassword}
-                    fullWidth
-                    placeholder="Enter password"
-                    size="small"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <LockOutlined />
-                        </InputAdornment>
-                      ),
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={() =>
-                              setShow({
-                                ...show,
-                                showNewPassword: !show.showNewPassword,
-                              })
-                            }
-                            edge="end"
-                          >
-                            {!show.showNewPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    required
-                  />
+                      type={!show.showNewPassword ? "password" : "text"}
+                      name="confirmPassword"
+                      onChange={(e) =>
+                        setUserCredential({
+                          ...userCredential,
+                          newPassword: e.target.value,
+                        })
+                      }
+                      value={userCredential.newPassword}
+                      fullWidth
+                      placeholder="Enter password"
+                      size="small"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <LockOutlined />
+                          </InputAdornment>
+                        ),
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={() =>
+                                setShow({
+                                  ...show,
+                                  showNewPassword: !show.showNewPassword,
+                                })
+                              }
+                              edge="end"
+                            >
+                              {!show.showNewPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      required
+                    />
                   </label>
                 </div>
                 <div className="r2 r2Password">
                   <label>
                     <h2>Confirm Password</h2>
                     <TextField
-                    type={!show.showNewPassword ? "password" : "text"}
-                    name="confirmPassword"
-                    onChange={(e) =>
-                      setUserCredential({
-                        ...userCredential,
-                        confirmNewPassword: e.target.value,
-                      })
-                    }
-                    value={userCredential.confirmNewPassword}
-                    fullWidth
-                    placeholder="Enter password"
-                    size="small"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <LockOutlined />
-                        </InputAdornment>
-                      ),
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={() =>
-                              setShow({
-                                ...show,
-                                showNewPassword: !show.showNewPassword,
-                              })
-                            }
-                            edge="end"
-                          >
-                            {!show.showNewPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    required
-                  />
+                      type={!show.showNewPassword ? "password" : "text"}
+                      name="confirmPassword"
+                      onChange={(e) =>
+                        setUserCredential({
+                          ...userCredential,
+                          confirmNewPassword: e.target.value,
+                        })
+                      }
+                      value={userCredential.confirmNewPassword}
+                      fullWidth
+                      placeholder="Enter password"
+                      size="small"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <LockOutlined />
+                          </InputAdornment>
+                        ),
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={() =>
+                                setShow({
+                                  ...show,
+                                  showNewPassword: !show.showNewPassword,
+                                })
+                              }
+                              edge="end"
+                            >
+                              {!show.showNewPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      required
+                    />
                   </label>
                 </div>
                 <div className="r2 r2Password">
@@ -449,6 +497,29 @@ const AccountInfo = (extraNavId) => {
                     Update Password
                   </button>
                 </div>
+                <Modal open={open} onClose={handleClose}>
+                  <div className="listing-modal">
+                    <h3>Do you really want to change your password?</h3>
+                    <div style={{ display: "flex", gap: "1rem" }}>
+                      <Button className="auth-btn" onClick={() => {
+                        handleClose();
+                        setPass(true);
+                      }}>Yes</Button>
+                      <Button className="auth-btn" onClick={() => {
+                        handleClose();
+                        setPass(false);
+                      }}>No</Button>
+                    </div>
+                  </div>
+                </Modal>
+                <Modal open={openSuccess} onClose={handleCloseSuccess}>
+                  <div className="listing-modal">
+                    <h3>Your Password has been updated!</h3>
+                    <Button className="auth-btn" onClick={() => {
+                      handleCloseSuccess();
+                    }}>Ok</Button>
+                  </div>
+                </Modal>
               </form>
               <div className="r1de r2Password deactivateAccount">
                 Deactivate Your Account:
@@ -460,6 +531,21 @@ const AccountInfo = (extraNavId) => {
           ) : (
             ""
           )}
+          <Modal open={openDeact} onClose={handleCloseDeact}>
+            <div className="listing-modal">
+              <h3>Do you really want to Deactivate your account?</h3>
+              <div style={{ display: "flex", gap: "1rem" }}>
+                <Button className="auth-btn" onClick={() => {
+                  handleCloseDeact();
+                  setDeact(true);
+                }}>Yes</Button>
+                <Button className="auth-btn" onClick={() => {
+                  handleCloseDeact();
+                  setDeact(false);
+                }}>No</Button>
+              </div>
+            </div>
+          </Modal>
 
           {/* Payments Section  */}
           {section === "Payments" ? (
@@ -481,7 +567,7 @@ const AccountInfo = (extraNavId) => {
                   <Typography>
                     <Card sx={{ minWidth: 275 }}>
                       <CardContent>
-                        <Typography sx={{ fontSize: 18}} >
+                        <Typography sx={{ fontSize: 18 }} >
                           ICICI Credit Card
                         </Typography>
                         <Typography variant="h6" component="div">
@@ -490,7 +576,7 @@ const AccountInfo = (extraNavId) => {
                           Saket Mundra
                         </Typography>
                         <Typography>
-                          <h2 style={{marginTop:"2%",color:"#f26767"}}>CVV</h2>
+                          <h2 style={{ marginTop: "2%", color: "#f26767" }}>CVV</h2>
                           <input
                             style={{ width: "100px", height: "28px" }}
                             type="text"
@@ -600,7 +686,7 @@ const AccountInfo = (extraNavId) => {
                             />
                           </label>
                         </div>
-                        <button className="accbut" style={{ marginTop: "2%",width:" 200px"}}>Pay Now</button>
+                        <button className="accbut" style={{ marginTop: "2%", width: " 200px" }}>Pay Now</button>
                       </form>
                     </div>
                   </Typography>
