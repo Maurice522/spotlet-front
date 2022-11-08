@@ -32,6 +32,10 @@
 	transition-duration: 0.5s;
 }
 
+.property-info-cards{
+	padding: 0 4px;
+}
+
 .property-info-heading {
 	font-family: "Inter";
 	font-style: normal;
@@ -96,5 +100,19 @@
 	
 	.property-info-location {
 		font-size: 14px;
+	}
+}
+@media screen and (max-width: 576px){
+	.property-info-heading {
+		font-size: 14px;
+		line-height: 24px;
+	}
+	
+	.property-info-location {
+		font-size: 12px;
+	}
+
+	.property-rating div:first-child {
+		grid-column: span 1;
 	}
 }

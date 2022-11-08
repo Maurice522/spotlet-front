@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Rating from "@mui/material/Rating";
@@ -23,6 +23,15 @@ const PropertyInfo = ({
 }) => {
 	const userData = useSelector(selectUserData);
 	const user_id = useSelector(selectUser_id);
+	const [starSize, setStarSize] = useState("22px");
+
+	let x = window.matchMedia("(max-width: 576px)")
+	useEffect(() => {
+		if (x.matches)
+			setStarSize("15px");
+		  else
+			setStarSize("22px");
+	}, [])
 
 	useEffect(() => {
 		const updateFav = async () => {
@@ -92,21 +101,18 @@ const PropertyInfo = ({
 					/>
 					{/* {review && <div className="type-of-property-icon">{item.icon}</div>} */}
 				</div>
-				<div
-					style={{
-						paddingLeft: "4px",
-					}}>
+				<div className="property-info--cards">
 					<div className="property-info-heading">{item?.property_desc?.location_type}</div>
 					<div className="property-info-location">{item?.property_address?.city}</div>
 					<div className="property-info-location">&#8377; 000/hr</div>
 					<div className="property-info-location property-rating">
 						<div>
 							<div>
-								<AiFillStar style={{ color: '#FFC736' }} size="25px" />
-								<AiFillStar style={{ color: '#FFC736' }} size="25px" />
-								<AiFillStar style={{ color: '#FFC736' }} size="25px" />
-								<AiOutlineStar style={{ color: '#FFC736' }} size="25px" />
-								<AiOutlineStar style={{ color: '#FFC736' }} size="25px" />
+								<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
+								<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
+								<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
+								<AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
+								<AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
 							</div>
 						</div>
 						<div>(40)</div>

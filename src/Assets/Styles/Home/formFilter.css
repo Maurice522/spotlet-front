@@ -147,6 +147,9 @@
 		width: 90vw;
 		padding: 20px;
 	}
+	#form p{
+		font-size: 0.8rem !important;
+	}
 	.focus-input,
 	.focus-select,
 	.focus-label,
@@ -187,7 +190,7 @@
 @media screen and (max-width: 576px){
 	#form-wrapper{
 		background-color: transparent;
-		margin: -450px auto 0;
+		margin: 120px auto 0;
 	}
 	#form {
 		display: flex;
@@ -197,7 +200,7 @@
 		padding: 20px 0;
 		border-radius: 8px;
 		margin-top: 10rem;
-		background-color: rgba(255, 235, 235, 0.7);
+		background-color: rgba(255, 239, 239, 0.7);
 	}
 	#form div{
 		width: 90%;
@@ -206,6 +209,9 @@
 	#form div label{
 		border: none;
 		font-weight: 800;
+	}
+	#form p{
+		font-size: 0.5rem;
 	}
 	.form-filter-select,
 	.form-filter-input {

@@ -6,6 +6,7 @@ const Rules = ({ isOk }) => {
 	const handleChange = (e) => {
 		console.log(e.target.checked);
 		isOk(e.target.checked);
+		window.scrollTo(0, 0)
 	};
 
 	return (

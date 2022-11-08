@@ -336,4 +336,8 @@ h1 {
 		align-items: center !important;
 		margin-bottom: 4rem !important;
 	}
+	#map_render div{
+		width: 60vw !important;
+		margin-left: -3vw;
+	}
 }

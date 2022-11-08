@@ -157,12 +157,14 @@
 @media screen and (max-width: 576px){
 	.wrapper{
 		background-color: transparent;
+		padding: 0;
 	}
 	.form, .form-2 {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: start;
+		gap: 1rem;
 		padding: 20px 0;
 		border-radius: 8px;
 		background-color: rgba(255, 235, 235, 0.7);
@@ -190,5 +192,17 @@
 	}
 	.MuiButtonBase-root button{
 		margin-left: 10px;
+	}
+	.booking-form-label{
+		font-size: 14px;
+	}
+	.normal{
+		font-size: 12px;
+	}
+	.css-o4b71y-MuiAccordionSummary-content{
+		font-size: 16px;
+	}
+	.css-1uir9b3-MuiAccordionDetails-root{
+		font-size: 13px !important;
 	}
 }

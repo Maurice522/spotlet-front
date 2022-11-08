@@ -71,12 +71,12 @@
 
 @media screen and (max-width: 576px){
 	.bg-image {
-		height: 60rem;
+		height: 15rem;
 	}
 	.message {
 		width: 70%;
-		top: 13%;
-		font-size: 36px;
+		top: 40%;
+		font-size: 21px;
 		left: 25px;
 	}
 }

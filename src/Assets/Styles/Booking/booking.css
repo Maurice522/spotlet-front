@@ -35,4 +35,11 @@
 		max-width: 80vw;
 		width: 75vw;
 	}
+	#booking-page-form label {
+		font-size: 14px;
+	}
+	
+	#booking-page-form input {
+		font-size: 12px;
+	}
 }

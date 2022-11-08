@@ -48,6 +48,14 @@
 	}
 	.booking-process{
 		margin: auto;
+		flex-direction: column;
+	}
+	.booking-process .filler{
+		display: none;
+	}
+	.booking-process .booking-item{
+		font-size: 16px;
+		line-height: 16px;
 	}
 	.left-section{
 		width: 80vw;

@@ -6,6 +6,7 @@ import "../../Assets/Styles/Booking/contact.css";
 const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 	const handleChange = (e) => {
 		setUserData({ ...userData, [e.target.name]: e.target.value });
+		window.scrollTo(0, 0)
 	};
 
 	let dtToday = new Date();
@@ -61,7 +62,7 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 	return (
 		<form id="booking-contact-form">
 			{/* <label htmlFor="name">Name</label> */}
-			<div className="name-container">
+			<div>
 				<div>
 					<label htmlFor="name">Name</label>
 					<TextField
@@ -91,7 +92,7 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 				</div>
 			</div>
 
-			<div className="name-container">
+			<div>
 				<div>
 					<label htmlFor="who">Who reserves</label>
 					<TextField

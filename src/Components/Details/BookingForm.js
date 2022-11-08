@@ -169,7 +169,7 @@ const BookingForm = ({
 							className={active === true ? "focus" : "normal"}
 							id="date"
 							name="date"
-							style={{ border: "2px solid lightgray", width: "75%", height: "34px" }}
+							style={{ border: "2px solid lightgray", width: "78%", height: "34px" }}
 							defaultValue={new Date().toISOString().split("T")[0]}
 							onChange={(e) => {
 								//console.log(e.target.value);
@@ -281,7 +281,7 @@ const BookingForm = ({
 								className={active === true ? "focus" : "normal"}
 								onChange={(e) => {
 									console.log(e.target.value);
-									// setV3(e.target.value);
+									setV3(e.target.value);
 									calculatePrice(event, e.target.value);
 								}}
 								value={v3}

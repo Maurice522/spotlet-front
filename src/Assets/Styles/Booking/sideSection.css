@@ -91,4 +91,13 @@
 	.css-7szws5-MuiButtonBase-root-MuiButton-root{
 		margin-bottom: 4rem !important;
 	}
+	[data-attribute-1] {
+		font-size: 16px;
+	}
+	[data-attribute-2] {
+		font-size: 14px;
+	}
+	[data-attribute-4] {
+		font-size: 14px;
+	}
 }

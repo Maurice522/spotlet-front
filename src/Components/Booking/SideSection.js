@@ -23,6 +23,7 @@ const style = {
 	border: "2px solid #000",
 	boxShadow: 24,
 	p: 4,
+	width: "70%"
 };
 
 const SideSection = ({
@@ -122,6 +123,7 @@ const SideSection = ({
 				toast.error("Please fill all the fields");
 			}
 		}
+		window.scrollTo(0, 0)
 	};
 
 	tot_price = Math.round(tot_price, 2);

@@ -248,6 +248,7 @@ const BookingList = () => {
 
 
 	const navigate = useNavigate();
+	console.log(bookingData)
 
 	return (
 		<div>

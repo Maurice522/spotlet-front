@@ -34,4 +34,14 @@
 		width: 85vw;
 		max-width: 90vw;
 	}
+	.rule-title{
+		font-size: 16px;
+	}
+	.rule-info {
+		font-size: 12px;
+		line-height: 12px;
+	}
+	.css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label{
+		font-size: 14px;
+	}
 }

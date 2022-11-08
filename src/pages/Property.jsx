@@ -104,7 +104,7 @@ const Property = ({
 					{locationData?.property_address?.pincode}
 				</div>
 			</div>
-			<div style={{ width: "60%", height: "500px", margin: "auto" }}>
+			<div className="property--map">
 				{cord.lat !== 0 && (
 					<GoogleMap lat={cord.lat} lng={cord.lng} zoom={13} loc={false} />
 				)}
@@ -117,14 +117,7 @@ const Property = ({
 			style={{
 				width: "100%",
 			}}>
-			<div
-				style={{
-					width: "100%",
-					display: "flex",
-					justifyContent: "space-between",
-					alignItems: "flex-start",
-					padding: "10px",
-				}}>
+			<div className="host-info">
 				<div
 					style={{
 						display: "flex",
@@ -340,7 +333,7 @@ const Property = ({
 							alignItems: "center",
 							gap: "10px",
 						}}>
-						<MdDone color="#ff4d4d" size={32} />
+						<MdDone color="#ff4d4d" size={24} />
 						<div>{val}</div>
 					</div>
 				))}
@@ -356,7 +349,7 @@ const Property = ({
 							alignItems: "center",
 							gap: "10px",
 						}}>
-						<ImCross color="#ff4d4d" />
+						<ImCross color="#ff4d4d" size={12} />
 						<div>{val}</div>
 					</div>
 				))}
@@ -408,7 +401,6 @@ const Property = ({
 			title: "Amenities",
 			info: locationData?.amenities,
 			type: "list",
-			columns: true,
 		},
 		{
 			expanded: expanded[2],
@@ -541,7 +533,7 @@ const Property = ({
 				setV2={setV2}
 				setV3={setV3}
 				setV4={setV4}
-				setV5={setV5}
+				setV5={setV5}AccordionSummary
 				setV6={setV6}
 				locationData={locationData}
 				setTotPrice={setTotPrice}
@@ -602,7 +594,7 @@ const Property = ({
 													gap: "10px",
 													lineHeight: "32px",
 												}}>
-												<GoPrimitiveDot color="#ff4d4d" />
+												<GoPrimitiveDot color="#ff4d4d" size={16} />
 												<div>{val}</div>
 											</div>
 										))}
@@ -637,15 +629,7 @@ const Property = ({
 						marginTop: "50px",
 						width: "100%",
 					}}>
-					<div
-						style={{
-							width: "100%",
-							fontFamily: "Inter",
-							fontStyle: "normal",
-							fontWeight: "500",
-							fontSize: "20px",
-							marginBottom: "20px",
-						}}>
+					<div className="properties--main">
 						Similar Properties
 					</div>
 					{similarProperties}

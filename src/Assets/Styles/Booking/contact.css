@@ -57,14 +57,17 @@
 	}
 	.name-container input{
 		width: 100%;
+		font-size: 12px;
 	}
 	#booking-contact-form div{
-		width: 90%;
+		width: 73vw;
+		margin: auto;
 	}
 	#booking-contact-form div label{
 		border: none;
+		font-size: 14px;
 	}
 	.css-7szws5-MuiButtonBase-root-MuiButton-root{
-		width: 50% !important;
+		width: 100% !important;
 	}
 }
