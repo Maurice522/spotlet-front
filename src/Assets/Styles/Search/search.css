@@ -115,4 +115,7 @@
 	.property-rating div:first-child {
 		grid-column: span 1;
 	}
+	.property-rating div:nth-child(2){
+		grid-column: span 1;
+	}
 }

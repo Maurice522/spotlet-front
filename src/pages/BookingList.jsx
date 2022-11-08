@@ -152,6 +152,7 @@ const listingGrid = [
 const BookingList = () => {
 	const [active, setActive] = useState(0);
 	const userData = useSelector(selectUserData);
+	console.log(userData)
 	const [locrequests, setLocRequests] = useState([]);
 	useEffect(() => {
 		userData &&

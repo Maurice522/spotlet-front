@@ -91,6 +91,7 @@
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
+	gap: 1rem;
 }
 .buttonHover:hover{
 	background-color: #EA4235 !important;
@@ -101,4 +102,50 @@
 	background-color: white !important;
 	color: black !important;
 	border: 2px solid #EA4235 !important;
+}
+
+
+@media screen and (max-width: 1200px) {
+	.content-with-image {
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 5rem;
+		gap: 4rem;
+	}
+	.content-with-image div:last-child {
+		margin-left: -30px;
+	}
+	.content-with-image-2 {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 4rem;
+	}
+	.content-with-image-2 div:first-child {
+		margin-left: -30px;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.about-us-btn-container {
+		flex-direction: column;
+	}
+	.css-68j4z7-MuiButtonBase-root-MuiButton-root, .css-37g7mt-MuiButtonBase-root-MuiButton-root{
+		width: 30vw !important;
+	}
+	.about-us-message {
+		font-size: 32px;
+	}
+	.about-us-content-heading{
+		font-size: 24px;
+	}
+	.about-us-content-info, .about-us-content-text{
+		font-size: 14px;
+	}
+	.css-y8eu5t-MuiButtonBase-root-MuiButton-root, .css-1wdiwyf-MuiButtonBase-root-MuiButton-root, .css-68j4z7-MuiButtonBase-root-MuiButton-root, .css-37g7mt-MuiButtonBase-root-MuiButton-root{
+		font-size: 12px !important;
+	}
 }

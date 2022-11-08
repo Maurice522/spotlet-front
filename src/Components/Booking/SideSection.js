@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { bookingRequest, getLocation } from "../../services/api";
 import { selectUser_id } from "../../redux/slices/userSlice";
 import { useSelector } from "react-redux";
+import { selectUserData } from "../../redux/slices/userSlice";
 
 const style = {
 	position: "absolute",
@@ -130,6 +131,10 @@ const SideSection = ({
 	let gst = v6 * v3 * 1.18;
 	gst = Math.round(gst, 2);
 	// console.log(v1, v3, v4);
+	const userBooking = useSelector(selectUserData);
+
+	// console.log(userBooking.portfolio[userBooking.portfolio.length - 1].bookingId)
+
 	return (
 		<div className="side-section">
 			<div className="side-section-image-wrapper">
@@ -205,6 +210,9 @@ const SideSection = ({
 						<MdDone size={50} color="green" />
 						<Typography id="transition-modal-title" variant="h6" component="h2">
 							Request Sent Successfully!
+						</Typography>
+						<Typography>
+							Booking Id: {userBooking?.portfolio.length !== 0 ? userBooking.portfolio[userBooking.portfolio.length - 1].bookingId : ""}
 						</Typography>
 						<Typography id="transition-modal-description" sx={{ mt: 2 }}>
 							You will be redirected to the bookings page in 3 seconds

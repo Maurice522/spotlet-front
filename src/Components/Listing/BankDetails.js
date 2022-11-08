@@ -20,6 +20,7 @@ const BankDetails = ({ showSection, changeSection }) => {
 	const dispatch = useDispatch();
 	const location_id = useSelector(selectLocationId);
 	const location = useSelector(selectLocationData);
+	console.log(location)
 
 	const handleChange = (e) => {
 		setbankDetails({

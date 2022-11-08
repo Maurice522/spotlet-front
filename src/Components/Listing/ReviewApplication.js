@@ -6,7 +6,7 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Switch from "@mui/material/Switch";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserData, selectUser_id } from "../../redux/slices/userSlice";
-import { createTempLocation } from "../../services/api";
+import { createTempLocation, getTempLocation } from "../../services/api";
 import {
     addLocation,
     addLocationId,
@@ -19,10 +19,29 @@ import "../../Assets/Styles/listYourSpace.css";
 
 const ReviewApplication = ({ changeSection }) => {
 
+    const location_id = useSelector(selectLocationId);
+    const [finalData, setFinalData] = useState({});
+
     const handleSubmit = () => {
         changeSection("Terms & Conditions");
-		window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     }
+
+    useEffect(() => { 
+        const fetchData = async () => {
+            try {
+                const res = await getTempLocation(location_id);
+                setFinalData(res.data);
+                console.log(finalData)
+            } catch (error) {
+                console.log(error) 
+            }
+        }
+        fetchData();
+    }, [location_id]
+    )
+
+    console.log(finalData.property_desc)
 
     return (
         <div className="lbox">
@@ -42,6 +61,8 @@ const ReviewApplication = ({ changeSection }) => {
                         className="listingInput input"
                         name="type_of_location"
                         type="text"
+                        disabled
+                        value={finalData.property_desc ? finalData.property_desc.location_type: ""}
                     />
                 </div>
                 <div className="coll1">
@@ -52,6 +73,8 @@ const ReviewApplication = ({ changeSection }) => {
                         className="listingInput input"
                         name="property_size"
                         type="number"
+                        disabled
+                        value={finalData.property_desc ? finalData.property_desc.property_size: ""}
                     />
                 </div>
             </div>
@@ -416,18 +439,18 @@ const ReviewApplication = ({ changeSection }) => {
                         />
                     </div>
                 </div>
-                    <div className="coll1">
-                        <h2>Enter Hourly Price in Rs.</h2>
-                        <input
-                            className="input"
-                        />
-                    </div>
-                    <div className="coll1">
-                        <h2>8 hour Price</h2>
-                        <input
-                            className="sminput"
-                            disabled
-                        />
+                <div className="coll1">
+                    <h2>Enter Hourly Price in Rs.</h2>
+                    <input
+                        className="input"
+                    />
+                </div>
+                <div className="coll1">
+                    <h2>8 hour Price</h2>
+                    <input
+                        className="sminput"
+                        disabled
+                    />
                     <div className="coll1">
                         <h2>12 hour Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
                         <input
@@ -453,240 +476,240 @@ const ReviewApplication = ({ changeSection }) => {
                     window.scrollTo(0, 0);
                 }}>Edit</Button>
             </div>
-                <div className="coll1">
-                    <h2>Rules of the Host</h2>
-                    <div className="row2">
-                        <input
-                            className="listingInput input"
-                            id="myInput"
-                        />
-                    </div>
+            <div className="coll1">
+                <h2>Rules of the Host</h2>
+                <div className="row2">
+                    <input
+                        className="listingInput input"
+                        id="myInput"
+                    />
                 </div>
+            </div>
 
-                <div className="review--edit" style={{ marginTop: "3rem" }}>
-                    <h1 style={{ fontSize: "1.5rem" }}>Timings</h1>
-                    <Button onClick={() => {
-                        changeSection("Timings");
-                        window.scrollTo(0, 0);
-                    }}>Edit</Button>
+            <div className="review--edit" style={{ marginTop: "3rem" }}>
+                <h1 style={{ fontSize: "1.5rem" }}>Timings</h1>
+                <Button onClick={() => {
+                    changeSection("Timings");
+                    window.scrollTo(0, 0);
+                }}>Edit</Button>
+            </div>
+            <div className="row1 timing-row">
+                <h2>Monday</h2>
+                <Switch
+                    color="warning"
+                />
+                <div className="row2">
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">All Day</h2>
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
                 <div className="row1 timing-row">
-                    <h2>Monday</h2>
-                    <Switch
-                        color="warning"
+                    <input
+                        className="timeInput listingInput input"
+                        type="time"
                     />
-                    <div className="row2">
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">All Day</h2>
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    <div className="row1 timing-row">
-                        <input
-                            className="timeInput listingInput input"
-                            type="time"
-                        />
-                        <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                        <input
-                            className="timeInput timeInput lisitngInput input"
-                            type="time"
-                        />
-                    </div>
+                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                    <input
+                        className="timeInput timeInput lisitngInput input"
+                        type="time"
+                    />
+                </div>
+            </div>
+            <div className="row1 timing-row">
+                <h2>Tuesday</h2>
+                <Switch
+                    color="warning"
+                />
+                <div className="row2">
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">All Day</h2>
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
                 <div className="row1 timing-row">
-                    <h2>Tuesday</h2>
-                    <Switch
-                        color="warning"
+                    <input
+                        className="timeInput listingInput input"
+                        type="time"
                     />
-                    <div className="row2">
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">All Day</h2>
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    <div className="row1 timing-row">
-                        <input
-                            className="timeInput listingInput input"
-                            type="time"
-                        />
-                        <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                        <input
-                            className="timeInput timeInput lisitngInput input"
-                            type="time"
-                        />
-                    </div>
+                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                    <input
+                        className="timeInput timeInput lisitngInput input"
+                        type="time"
+                    />
+                </div>
+            </div>
+            <div className="row1 timing-row">
+                <h2>Wednesday</h2>
+                <Switch
+                    color="warning"
+                />
+                <div className="row2">
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">All Day</h2>
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
                 <div className="row1 timing-row">
-                    <h2>Wednesday</h2>
-                    <Switch
-                        color="warning"
+                    <input
+                        className="timeInput listingInput input"
+                        type="time"
                     />
-                    <div className="row2">
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">All Day</h2>
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    <div className="row1 timing-row">
-                        <input
-                            className="timeInput listingInput input"
-                            type="time"
-                        />
-                        <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                        <input
-                            className="timeInput timeInput lisitngInput input"
-                            type="time"
-                        />
-                    </div>
+                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                    <input
+                        className="timeInput timeInput lisitngInput input"
+                        type="time"
+                    />
+                </div>
+            </div>
+            <div className="row1 timing-row">
+                <h2>Thursday</h2>
+                <Switch
+                    color="warning"
+                />
+                <div className="row2">
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">All Day</h2>
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
                 <div className="row1 timing-row">
-                    <h2>Thursday</h2>
-                    <Switch
-                        color="warning"
+                    <input
+                        className="timeInput listingInput input"
+                        type="time"
                     />
-                    <div className="row2">
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">All Day</h2>
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    <div className="row1 timing-row">
-                        <input
-                            className="timeInput listingInput input"
-                            type="time"
-                        />
-                        <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                        <input
-                            className="timeInput timeInput lisitngInput input"
-                            type="time"
-                        />
-                    </div>
+                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                    <input
+                        className="timeInput timeInput lisitngInput input"
+                        type="time"
+                    />
+                </div>
+            </div>
+            <div className="row1 timing-row">
+                <h2>Friday</h2>
+                <Switch
+                    color="warning"
+                />
+                <div className="row2">
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">All Day</h2>
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
                 <div className="row1 timing-row">
-                    <h2>Friday</h2>
-                    <Switch
-                        color="warning"
+                    <input
+                        className="timeInput listingInput input"
+                        type="time"
                     />
-                    <div className="row2">
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">All Day</h2>
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    <div className="row1 timing-row">
-                        <input
-                            className="timeInput listingInput input"
-                            type="time"
-                        />
-                        <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                        <input
-                            className="timeInput timeInput lisitngInput input"
-                            type="time"
-                        />
-                    </div>
+                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                    <input
+                        className="timeInput timeInput lisitngInput input"
+                        type="time"
+                    />
+                </div>
+            </div>
+            <div className="row1 timing-row">
+                <h2>Saturday</h2>
+                <Switch
+                    color="warning"
+                />
+                <div className="row2">
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">All Day</h2>
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
                 <div className="row1 timing-row">
-                    <h2>Saturday</h2>
-                    <Switch
-                        color="warning"
+                    <input
+                        className="timeInput listingInput input"
+                        type="time"
                     />
-                    <div className="row2">
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">All Day</h2>
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    <div className="row1 timing-row">
-                        <input
-                            className="timeInput listingInput input"
-                            type="time"
-                        />
-                        <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                        <input
-                            className="timeInput timeInput lisitngInput input"
-                            type="time"
-                        />
-                    </div>
+                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                    <input
+                        className="timeInput timeInput lisitngInput input"
+                        type="time"
+                    />
+                </div>
+            </div>
+            <div className="row1 timing-row">
+                <h2>Sunday</h2>
+                <Switch
+                    color="warning"
+                />
+                <div className="row2">
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">All Day</h2>
+                    <input
+                        type="radio"
+                        className="radio"
+                        name="monday"
+                    />
+                    <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
                 <div className="row1 timing-row">
-                    <h2>Sunday</h2>
-                    <Switch
-                        color="warning"
+                    <input
+                        className="timeInput listingInput input"
+                        type="time"
                     />
-                    <div className="row2">
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">All Day</h2>
-                        <input
-                            type="radio"
-                            className="radio"
-                            name="monday"
-                        />
-                        <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    <div className="row1 timing-row">
-                        <input
-                            className="timeInput listingInput input"
-                            type="time"
-                        />
-                        <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                        <input
-                            className="timeInput timeInput lisitngInput input"
-                            type="time"
-                        />
-                    </div>
+                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                    <input
+                        className="timeInput timeInput lisitngInput input"
+                        type="time"
+                    />
                 </div>
+            </div>
 
 
             <div className="lbox">
@@ -812,24 +835,24 @@ const ReviewApplication = ({ changeSection }) => {
             </div>
 
 
-                <div className="review--edit" style={{ marginTop: "3rem" }}>
-                    <h1 style={{ fontSize: "1.5rem" }}>Bank Details</h1>
-                    <Button onClick={() => {
-                        changeSection("Bank Details");
-                        window.scrollTo(0, 0);
-                    }}>Edit</Button>
-                </div>
-                <div className="coll1">
-                    <h2>
-                        Account Holder's Name<span style={{ color: "red" }}>*</span>
-                    </h2>
-                    <input
-                        className="listingInput input"
-                        name="account_holder_name"
-                        type="text"
-                        required
-                    />
-                </div>
+            <div className="review--edit" style={{ marginTop: "3rem" }}>
+                <h1 style={{ fontSize: "1.5rem" }}>Bank Details</h1>
+                <Button onClick={() => {
+                    changeSection("Bank Details");
+                    window.scrollTo(0, 0);
+                }}>Edit</Button>
+            </div>
+            <div className="coll1">
+                <h2>
+                    Account Holder's Name<span style={{ color: "red" }}>*</span>
+                </h2>
+                <input
+                    className="listingInput input"
+                    name="account_holder_name"
+                    type="text"
+                    required
+                />
+            </div>
             <div className="row1">
                 <div className="coll1">
                     <h2>
@@ -872,13 +895,13 @@ const ReviewApplication = ({ changeSection }) => {
 
 
             <hr />
-			<div className="row1">
-				<div className="coll1">
-					<button className="continue" onClick={handleSubmit}>
-						Continue
-					</button>
-				</div>
-			</div>
+            <div className="row1">
+                <div className="coll1">
+                    <button className="continue" onClick={handleSubmit}>
+                        Continue
+                    </button>
+                </div>
+            </div>
 
         </div>
     );

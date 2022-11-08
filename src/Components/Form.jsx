@@ -29,7 +29,7 @@ const Form = ({ labels, heading }) => {
 			<TextField label="Name" onChange={(e)=>setcont({...cont,fullname:e.target.value})} variant="standard" fullWidth />
 			<TextField label="Email" onChange={(e)=>setcont({...cont,email:e.target.value})}  variant="standard" fullWidth />
 			<TextField label="Phone Number" onChange={(e)=>setcont({...cont,mobile:e.target.value})} variant="standard" fullWidth />
-			<TextField label="Message" onChange={(e)=>setcont({...cont,message:e.target.value})} variant="standard" fullWidth />
+			<TextField label="Address" onChange={(e)=>setcont({...cont,message:e.target.value})} variant="standard" fullWidth />
 				
 				<span>
 					<Button

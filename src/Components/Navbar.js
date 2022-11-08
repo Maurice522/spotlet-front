@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { AiOutlineSearch, AiOutlineHome } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineHome, AiOutlineHeart } from "react-icons/ai";
 import { BiBookmark } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
-import { GrFavorite } from "react-icons/gr";
 import { Avatar, Button, TextField } from "@mui/material";
 import "../Assets/Styles/navbar.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -135,23 +134,23 @@ const Navbar = ({ extraNavId }) => {
 				{user ? (
 					<div>
 						<Link to="/listing">
-							<AiOutlineSearch size="15px" />
+							<AiOutlineSearch size="15px" color="#ff6767" />
 							<div>List Space</div>
 						</Link>
 						<Link to="/bookinglist/:booking">
-							<BiBookmark size="15px" />
+							<BiBookmark size="15px" color="#ff6767" />
 							<div>Bookings</div>
 						</Link>
-						<Link to="/bookinglist/:listing">
-							<AiOutlineHome size="15px" />
+						<Link to="/">
+							<AiOutlineHome size="15px" color="#ff6767" />
 							<div>Home</div>
 						</Link>
 						<Link to="/favorite">
-							<GrFavorite size="15px" />
+							<AiOutlineHeart size="15px" color="#ff6767" />
 							<div>Favorites</div>
 						</Link>
 						<button onClick={Boolean(anchorEl) === false ? handleClick : handleClose}>
-							<CgProfile size="15px" />
+							<CgProfile size="15px" color="#ff6767" />
 							<div>Account</div>
 						</button>
 						<Menu

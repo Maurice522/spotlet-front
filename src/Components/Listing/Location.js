@@ -53,6 +53,9 @@ const Location = ({ showSection, changeSection }) => {
   const location = useSelector(selectLocationData);
   const user = useSelector(selectUserData);
   const dispatch = useDispatch();
+  console.log(user)
+  // console.log(selectLocationId)
+  console.log(location)
 
   useEffect(() => {
     location && setPropertyAddress(location.property_address);
@@ -306,7 +309,7 @@ const Location = ({ showSection, changeSection }) => {
             className="listingInput lginput"
             name="location_detail"
             onChange={handleChange}
-            value={property_address.location_details}
+            value={property_address ? property_address.location_details : ""}
           />
           <MdTravelExplore onClick={() => showLocation()} size={27} style={{ marginLeft: "auto", position: "relative", top: "-35px", marginRight: "10px", cursor: "pointer" }} />
         </div>
@@ -318,7 +321,7 @@ const Location = ({ showSection, changeSection }) => {
           width: "10%",
           height: "10%"
         }}>
-          <GoogleMap address={property_address.location_detail} loc={true} />
+          <GoogleMap address={property_address ? property_address.location_details : ""} loc={true} />
         </div>) : null
       }
 

@@ -167,3 +167,8 @@ export const locationUpdate = (data) => {
 export const userUpdate = (data) => {
   return axios.post(server_domain + "/updateuser/", data);
 }
+
+//get temp location
+export const getTempLocation = (location_id) => {
+  return axios.get(server_domain + "/templocation/" + location_id);
+}

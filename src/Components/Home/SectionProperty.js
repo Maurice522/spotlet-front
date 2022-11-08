@@ -96,6 +96,8 @@ const SectionProperty = () => {
 	// 	},
 	// ];
 
+	console.log(propertyDetails)
+
 	return (
 		<div className="property-section">
 			<div className="property-heading">
