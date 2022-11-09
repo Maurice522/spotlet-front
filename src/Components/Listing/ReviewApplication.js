@@ -87,6 +87,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <div className="row2">
                         <div>
                             <input
+                                disabled
                                 type="radio"
                                 className="radio"
                                 name="house_parking"
@@ -96,6 +97,7 @@ const ReviewApplication = ({ changeSection }) => {
                         </div>
                         <div>
                             <input
+                                disabled
                                 type="radio"
                                 className="radio"
                                 name="house_parking"
@@ -113,6 +115,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <div className="row2">
                         <div>
                             <input
+                                disabled
                                 type="radio"
                                 className="radio"
                                 name="street_parking"
@@ -122,6 +125,7 @@ const ReviewApplication = ({ changeSection }) => {
                         </div>
                         <div>
                             <input
+                                disabled
                                 type="radio"
                                 className="radio"
                                 name="street_parking"
@@ -138,6 +142,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <div className="row2">
                         <div>
                             <input
+                                disabled
                                 type="radio"
                                 className="radio"
                                 name="security_camera"
@@ -147,6 +152,7 @@ const ReviewApplication = ({ changeSection }) => {
                         </div>
                         <div>
                             <input
+                                disabled
                                 type="radio"
                                 className="radio"
                                 name="security_camera"
@@ -193,6 +199,7 @@ const ReviewApplication = ({ changeSection }) => {
                         <h2 className="locationH2">Country<span style={{ color: "red" }}>*</span></h2>
                     </label>
                     <input
+                        disabled
                         className="listingInput input"
                         name="country"
                         type="text"
@@ -210,6 +217,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="listingInput input"
                         name="state"
+                        disabled
                         type="text"
                         value={finalData.property_address ? finalData.property_address.state : ""}
                     />
@@ -223,6 +231,7 @@ const ReviewApplication = ({ changeSection }) => {
                         <h2 className="locationH2">City<span style={{ color: "red" }}>*</span></h2>
                     </label>
                     <input
+                        disabled
                         className="listingInput input"
                         name="city"
                         type="text"
@@ -237,6 +246,7 @@ const ReviewApplication = ({ changeSection }) => {
                         <h2 className="locationH2">Pincode<span style={{ color: "red" }}>*</span></h2>
                     </label>
                     <input
+                        disabled
                         className="listingInput input"
                         id="pin"
                         name="pincode"
@@ -250,6 +260,7 @@ const ReviewApplication = ({ changeSection }) => {
                 <div className="coll1">
                     <h2 className="locationH2" style={{ marginTop: "3%" }}>Area<span style={{ color: "red", }}>*</span></h2>
                     <input
+                        disabled
                         className="listingInput input input--border"
                         name="area"
                         value={finalData.property_address ? finalData.property_address.area : ""}
@@ -259,6 +270,7 @@ const ReviewApplication = ({ changeSection }) => {
                 <div className="coll1">
                     <h2 className="locationH2" style={{ marginTop: "3%" }}>Landmark<span style={{ color: "red", }}>*</span></h2>
                     <input
+                        disabled
                         className="listingInput input input--border"
                         name="landmark"
                         value={finalData.property_address ? finalData.property_address.landmark : ""}
@@ -273,6 +285,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <h2 className="locationH2">Address<span style={{ color: "red" }}>*</span></h2>
                     <input
                         className="listingInput lginput input--border"
+                        disabled
                         name="address"
                         value={finalData.property_address ? finalData.property_address.address : ""}
                     />
@@ -294,6 +307,24 @@ const ReviewApplication = ({ changeSection }) => {
                 <ul>
                     {finalData.amenities ? finalData.amenities?.map(item => <li key={item}>{item}</li>) : ""}
                 </ul>
+            </div>
+
+
+            <div className="review--edit" style={{ marginTop: "3rem" }}>
+                <h1 style={{ fontSize: "1.5rem" }}>Photos</h1>
+                <Button onClick={() => {
+                    changeSection("Photos");
+                    window.scrollTo(0, 0);
+                }}>Edit</Button>
+            </div>
+            <div className="row1" id="photo-sec-s">
+                {finalData.imagesData?.map((imageData, index) => {
+                    return (
+                        <div className="pict" key={index}>                           
+                            <img src={imageData.image} />{" "}
+                        </div>
+                    );
+                })}
             </div>
 
             <div className="review--edit" style={{ marginTop: "3rem" }}>
@@ -359,6 +390,7 @@ const ReviewApplication = ({ changeSection }) => {
             <div className="coll1">
                 <h2>Enter Houly Price</h2>
                 <input
+                    disabled
                     className="input"
                     value={finalData.pricing ? finalData.pricing.film_webseries_ad?.hourly_rate : ""}
                 />
@@ -376,6 +408,7 @@ const ReviewApplication = ({ changeSection }) => {
             <div className="coll1">
                 <h2>Enter Hourly Price in Rs.</h2>
                 <input
+                    disabled
                     className="input"
                     value={finalData.pricing ? finalData.pricing.tv_series_other?.hourly_rate : ""}
                 />
@@ -392,6 +425,7 @@ const ReviewApplication = ({ changeSection }) => {
             <div className="coll1">
                 <h2>Enter Hourly Price in Rs.</h2>
                 <input
+                    disabled
                     className="input"
                     value={finalData.pricing ? finalData.pricing.corporate?.hourly_rate : ""}
                 />
@@ -409,6 +443,7 @@ const ReviewApplication = ({ changeSection }) => {
             <div className="coll1">
                 <h2>Enter Hourly Price in Rs.</h2>
                 <input
+                    disabled
                     className="input"
                     value={finalData.pricing ? finalData.pricing.individual?.hourly_rate : ""}
                 />
@@ -446,6 +481,7 @@ const ReviewApplication = ({ changeSection }) => {
                 />
                 <div className="row2">
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="monday"
@@ -453,6 +489,7 @@ const ReviewApplication = ({ changeSection }) => {
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="monday"
@@ -475,6 +512,7 @@ const ReviewApplication = ({ changeSection }) => {
                 />
                 <div className="row2">
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="tuesday"
@@ -482,6 +520,7 @@ const ReviewApplication = ({ changeSection }) => {
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="tuesday"
@@ -504,6 +543,7 @@ const ReviewApplication = ({ changeSection }) => {
                 />
                 <div className="row2">
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="wednesday"
@@ -511,6 +551,7 @@ const ReviewApplication = ({ changeSection }) => {
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="wednesday"
@@ -533,6 +574,7 @@ const ReviewApplication = ({ changeSection }) => {
                 />
                 <div className="row2">
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="thursday"
@@ -540,6 +582,7 @@ const ReviewApplication = ({ changeSection }) => {
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="thursday"
@@ -562,6 +605,7 @@ const ReviewApplication = ({ changeSection }) => {
                 />
                 <div className="row2">
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="friday"
@@ -569,6 +613,7 @@ const ReviewApplication = ({ changeSection }) => {
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="friday"
@@ -591,6 +636,7 @@ const ReviewApplication = ({ changeSection }) => {
                 />
                 <div className="row2">
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="saturday"
@@ -598,6 +644,7 @@ const ReviewApplication = ({ changeSection }) => {
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="saturday"
@@ -623,10 +670,12 @@ const ReviewApplication = ({ changeSection }) => {
                         type="radio"
                         className="radio"
                         name="sunday"
+                        disabled
                         checked={finalData?.timings?.sunday?.time === 'all day'}
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
+                        disabled
                         type="radio"
                         className="radio"
                         name="sunday"
@@ -658,6 +707,7 @@ const ReviewApplication = ({ changeSection }) => {
                             <span style={{ color: "red" }}>*</span>
                         </h2>
                         <input
+                            disabled
                             className="lginput"
                             name="name"
                             value={finalData.contact_det ? finalData.contact_det.name : ""}
@@ -671,6 +721,7 @@ const ReviewApplication = ({ changeSection }) => {
                     </h2>
                     <input
                         className="input"
+                        disabled
                         name="contact_name"
                         value={finalData.contact_det ? finalData.contact_det.contact_name : ""}
                     />
@@ -692,6 +743,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="input"
                         name="mobile_num"
+                        disabled
                         type="tel"
                         value={finalData.contact_det ? finalData.contact_det.mobile_num : ""}
                     />
@@ -703,6 +755,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="input"
                         name="email"
+                        disabled
                         type="email"
                         value={finalData.contact_det ? finalData.contact_det.email : ""}
                     />
@@ -715,6 +768,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="input"
                         name="alt_name"
+                        disabled
                         value={finalData.contact_det ? finalData.contact_det.alt_name : ""}
                     />
                 </div>
@@ -735,6 +789,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="input"
                         name="pan_no"
+                        disabled
                         value={finalData.contact_det ? finalData.contact_det.pan_no : ""}
                     />
                 </div>
@@ -746,6 +801,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="input"
                         name="aadhar_no"
                         type="number"
+                        disabled
                         value={finalData.contact_det ? finalData.contact_det.aadhar_no : ""}
                     />
                 </div>
@@ -767,9 +823,15 @@ const ReviewApplication = ({ changeSection }) => {
                             <span style={{ color: "red" }}>*</span>
                         </h2>
                         <input
-                            className="gstinput"
+                            disabled
+                            className="input"
                             name="gst"
+                            value={finalData?.gst?.doc_no}
                         />
+                        {console.log(finalData?.gst?.docs[0])}
+                        <div className="pict">
+                            <embed src={finalData?.gst?.docs[0]} width="440px" height="180px" />{" "}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -790,6 +852,7 @@ const ReviewApplication = ({ changeSection }) => {
                     className="listingInput input"
                     name="account_holder_name"
                     type="text"
+                    disabled
                     value={finalData.bankDetails ? finalData.bankDetails.account_holder_name : ""}
                 />
             </div>
@@ -815,6 +878,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="listingInput input"
                         name="ifsc_code"
                         type="text"
+                        disabled
                         value={finalData.bankDetails ? finalData.bankDetails.ifsc_code : ""}
                     />
                 </div>
@@ -828,6 +892,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="listingInput input"
                         name="account_number"
                         type="number"
+                        disabled
                         value={finalData.bankDetails ? finalData.bankDetails.account_number : ""}
                     />
                 </div>
