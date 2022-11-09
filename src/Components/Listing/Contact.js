@@ -26,7 +26,7 @@ const Contact = ({ showSection, changeSection }) => {
 		alt_mobile: "",
 		pan_no: "",
 		aadhar_no: "",
-		img: user.personalInfo.profile_pic,
+		img: user?.personalInfo?.profile_pic,
 	});
 	useEffect(() => {
 		location?.contact_det && setContactDet(location.contact_det);

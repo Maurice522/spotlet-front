@@ -13,7 +13,7 @@ import jwtDecode from "jwt-decode";
 
 
 const SectionProperty = () => {
-	const [favorites, setFavorites] = useState([0, 1, 2]);
+	const [favorites, setFavorites] = useState([]);
 	const [propertyDetails, setPropertiesDetail] = useState([]);
 
 	useEffect(() => {

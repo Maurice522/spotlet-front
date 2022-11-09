@@ -27,21 +27,21 @@ const ReviewApplication = ({ changeSection }) => {
         window.scrollTo(0, 0);
     }
 
-    useEffect(() => { 
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const res = await getTempLocation(location_id);
                 setFinalData(res.data);
                 console.log(finalData)
             } catch (error) {
-                console.log(error) 
+                console.log(error)
             }
         }
         fetchData();
     }, [location_id]
     )
 
-    console.log(finalData.property_desc)
+    console.log(finalData)
 
     return (
         <div className="lbox">
@@ -62,7 +62,7 @@ const ReviewApplication = ({ changeSection }) => {
                         name="type_of_location"
                         type="text"
                         disabled
-                        value={finalData.property_desc ? finalData.property_desc.location_type: ""}
+                        value={finalData.property_desc ? finalData.property_desc.location_type : ""}
                     />
                 </div>
                 <div className="coll1">
@@ -74,7 +74,7 @@ const ReviewApplication = ({ changeSection }) => {
                         name="property_size"
                         type="number"
                         disabled
-                        value={finalData.property_desc ? finalData.property_desc.property_size: ""}
+                        value={finalData.property_desc ? finalData.property_desc.property_size : ""}
                     />
                 </div>
             </div>
@@ -90,6 +90,7 @@ const ReviewApplication = ({ changeSection }) => {
                                 type="radio"
                                 className="radio"
                                 name="house_parking"
+                                checked={finalData.property_desc ? finalData.property_desc.house_parking === "yes" : ""}
                             />
                             <span>YES</span>
                         </div>
@@ -98,6 +99,7 @@ const ReviewApplication = ({ changeSection }) => {
                                 type="radio"
                                 className="radio"
                                 name="house_parking"
+                                checked={finalData.property_desc ? finalData.property_desc.house_parking === "no" : ""}
                             />{" "}
                             <span>NO</span>
                         </div>
@@ -114,6 +116,7 @@ const ReviewApplication = ({ changeSection }) => {
                                 type="radio"
                                 className="radio"
                                 name="street_parking"
+                                checked={finalData.property_desc ? finalData.property_desc.street_parking === "yes" : ""}
                             />
                             <span>YES</span>
                         </div>
@@ -122,6 +125,7 @@ const ReviewApplication = ({ changeSection }) => {
                                 type="radio"
                                 className="radio"
                                 name="street_parking"
+                                checked={finalData.property_desc ? finalData.property_desc.street_parking === "no" : ""}
                             />{" "}
                             <span>NO</span>
                         </div>
@@ -137,6 +141,7 @@ const ReviewApplication = ({ changeSection }) => {
                                 type="radio"
                                 className="radio"
                                 name="security_camera"
+                                checked={finalData.property_desc ? finalData.property_desc.security_camera === "yes" : ""}
                             />
                             <span>YES</span>
                         </div>
@@ -145,6 +150,7 @@ const ReviewApplication = ({ changeSection }) => {
                                 type="radio"
                                 className="radio"
                                 name="security_camera"
+                                checked={finalData.property_desc ? finalData.property_desc.security_camera === "no" : ""}
                             />{" "}
                             <span>NO</span>
                         </div>
@@ -168,6 +174,7 @@ const ReviewApplication = ({ changeSection }) => {
                             lineHeight: "24px",
                             padding: "1%",
                         }}
+                        value={finalData.property_desc ? finalData.property_desc.property_info : ""}
                     />
                 </div>
             </div>
@@ -189,6 +196,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="listingInput input"
                         name="country"
                         type="text"
+                        value={finalData.property_address ? finalData.property_address.country : ""}
                     />
                 </div>
 
@@ -203,6 +211,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="listingInput input"
                         name="state"
                         type="text"
+                        value={finalData.property_address ? finalData.property_address.state : ""}
                     />
                 </div>
             </div>
@@ -217,6 +226,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="listingInput input"
                         name="city"
                         type="text"
+                        value={finalData.property_address ? finalData.property_address.city : ""}
                     />
                 </div>
 
@@ -231,6 +241,7 @@ const ReviewApplication = ({ changeSection }) => {
                         id="pin"
                         name="pincode"
                         type="text"
+                        value={finalData.property_address ? finalData.property_address.pincode : ""}
                     />
                 </div>
 
@@ -241,6 +252,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="listingInput input input--border"
                         name="area"
+                        value={finalData.property_address ? finalData.property_address.area : ""}
                     />
                 </div>
 
@@ -249,6 +261,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="listingInput input input--border"
                         name="landmark"
+                        value={finalData.property_address ? finalData.property_address.landmark : ""}
                     />
                 </div>
             </div>
@@ -261,6 +274,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="listingInput lginput input--border"
                         name="address"
+                        value={finalData.property_address ? finalData.property_address.address : ""}
                     />
                 </div>
             </div>
@@ -277,11 +291,9 @@ const ReviewApplication = ({ changeSection }) => {
                 <h2>
                     Amenties<span style={{ color: "red" }}>*</span>
                 </h2>
-                <input
-                    className="listingInput input"
-                    name="amenities"
-                    type="text"
-                />
+                <ul>
+                    {finalData.amenities ? finalData.amenities?.map(item => <li key={item}>{item}</li>) : ""}
+                </ul>
             </div>
 
             <div className="review--edit" style={{ marginTop: "3rem" }}>
@@ -295,11 +307,9 @@ const ReviewApplication = ({ changeSection }) => {
                 <h2>
                     Features<span style={{ color: "red" }}>*</span>
                 </h2>
-                <input
-                    className="listingInput input"
-                    name="features"
-                    type="text"
-                />
+                <ul>
+                    {finalData.features ? finalData.features?.map(item => <li key={item}>{item}</li>) : ""}
+                </ul>
             </div>
 
 
@@ -314,20 +324,18 @@ const ReviewApplication = ({ changeSection }) => {
             <div className="coll1">
                 <h2>Do's</h2>
                 <div className="row2">
-                    <input
-                        className="listingInput input"
-                        id="myInput"
-                    />
+                    <ul>
+                        {finalData.do_and_dont ? finalData.do_and_dont.do_s?.map(item => <li key={item}>{item}</li>) : ""}
+                    </ul>
                 </div>
             </div>
 
             <div className="coll1">
                 <h2>Don't</h2>
                 <div className="row2">
-                    <input
-                        className="listingInput input"
-                        id="myInput"
-                    />
+                    <ul>
+                        {finalData.do_and_dont ? finalData.do_and_dont.dont_s?.map(item => <li key={item}>{item}</li>) : ""}
+                    </ul>
                 </div>
             </div>
 
@@ -344,6 +352,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <h1>Film/ Ad Film/ Web Series Shoot</h1>
                     <Switch
                         color="warning"
+                        checked={finalData?.pricing?.film_webseries_ad?.isPresent}
                     />
                 </div>
             </div>
@@ -351,121 +360,58 @@ const ReviewApplication = ({ changeSection }) => {
                 <h2>Enter Houly Price</h2>
                 <input
                     className="input"
+                    value={finalData.pricing ? finalData.pricing.film_webseries_ad?.hourly_rate : ""}
+                />
+            </div>
+
+            <div className="coll1">
+                <div className="row1">
+                    <h1>TV Series & Other Video Shoot</h1>
+                    <Switch
+                        color="warning"
+                        checked={finalData?.pricing?.tv_series_other?.isPresent}
+                    />
+                </div>
+            </div>
+            <div className="coll1">
+                <h2>Enter Hourly Price in Rs.</h2>
+                <input
+                    className="input"
+                    value={finalData.pricing ? finalData.pricing.tv_series_other?.hourly_rate : ""}
                 />
             </div>
             <div className="coll1">
-                <h2>Half Day Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
+                <div className="row1">
+                    <h1>Corporate Event</h1>
+                    <Switch
+                        color="warning"
+                        checked={finalData?.pricing?.corporate?.isPresent}
+                    />
+                </div>
+            </div>
+            <div className="coll1">
+                <h2>Enter Hourly Price in Rs.</h2>
                 <input
-                    className="sminput"
-                    disabled
+                    className="input"
+                    value={finalData.pricing ? finalData.pricing.corporate?.hourly_rate : ""}
                 />
-                <div className="coll1">
-                    <h2>Full Day Price&nbsp;&nbsp; <span style={{ color: "grey" }}>*20% discount applied</span> </h2>
-                    <input
-                        className="sminput"
-                        disabled
-                    />
-                </div>
+            </div>
 
-                <div className="coll1">
-                    <div className="row1">
-                        <h1>TV Series & Other Video Shoot</h1>
-                        <Switch
-                            color="warning"
-                        />
-                    </div>
-                </div>
-                <div className="coll1">
-                    <h2>Enter Hourly Price in Rs.</h2>
-                    <input
-                        className="input"
+            <div className="coll1">
+                <div className="row1">
+                    <h1>Individual Event</h1>
+                    <Switch
+                        color="warning"
+                        checked={finalData?.pricing?.individual?.isPresent}
                     />
                 </div>
-                <div className="coll1">
-                    <h2>Half Day Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
-                    <input
-                        className="sminput"
-                        disabled
-                    />
-                    <div className="coll1">
-                        <h2>Full Day Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*20% discount applied</span></h2>
-                        <input
-                            className="sminput"
-                            disabled
-                        />
-                    </div>
-                </div>
-                <div className="coll1">
-                    <div className="row1">
-                        <h1>Corporate Event</h1>
-                        <Switch
-                            color="warning"
-                        />
-                    </div>
-                </div>
-                <div className="coll1">
-                    <h2>Enter Hourly Price in Rs.</h2>
-                    <input
-                        className="input"
-                    />
-                </div>
-                <div className="coll1">
-                    <h2>8 hour Price</h2>
-                    <input
-                        className="sminput"
-                        disabled
-                    />
-                    <div className="coll1">
-                        <h2>12 hour Price&nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
-                        <input
-                            className="sminput"
-                            disabled
-                        />
-                    </div>
-                    <div className="coll1">
-                        <h2>24 hour Price&nbsp;&nbsp; <span style={{ color: "grey" }}>*20% discount applied</span></h2>
-                        <input
-                            className="sminput"
-                            disabled
-                        />
-                    </div>
-                </div>
-
-                <div className="coll1">
-                    <div className="row1">
-                        <h1>Individual Event</h1>
-                        <Switch
-                            color="warning"
-                        />
-                    </div>
-                </div>
-                <div className="coll1">
-                    <h2>Enter Hourly Price in Rs.</h2>
-                    <input
-                        className="input"
-                    />
-                </div>
-                <div className="coll1">
-                    <h2>8 hour Price</h2>
-                    <input
-                        className="sminput"
-                        disabled
-                    />
-                    <div className="coll1">
-                        <h2>12 hour Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
-                        <input
-                            className="sminput"
-                            disabled
-                        />
-                    </div>
-                    <div className="coll1">
-                        <h2>24 hour Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*20% discount applied</span></h2>
-                        <input
-                            className="sminput"
-                            disabled
-                        />
-                    </div>
-                </div>
+            </div>
+            <div className="coll1">
+                <h2>Enter Hourly Price in Rs.</h2>
+                <input
+                    className="input"
+                    value={finalData.pricing ? finalData.pricing.individual?.hourly_rate : ""}
+                />
             </div>
 
 
@@ -479,10 +425,9 @@ const ReviewApplication = ({ changeSection }) => {
             <div className="coll1">
                 <h2>Rules of the Host</h2>
                 <div className="row2">
-                    <input
-                        className="listingInput input"
-                        id="myInput"
-                    />
+                    <ul>
+                        {finalData.rules ? finalData.rules?.map(item => <li key={item}>{item}</li>) : ""}
+                    </ul>
                 </div>
             </div>
 
@@ -497,218 +442,204 @@ const ReviewApplication = ({ changeSection }) => {
                 <h2>Monday</h2>
                 <Switch
                     color="warning"
+                    checked={finalData?.timings?.monday?.open}
                 />
                 <div className="row2">
                     <input
                         type="radio"
                         className="radio"
                         name="monday"
+                        checked={finalData?.timings?.monday?.time === 'all day'}
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
                         type="radio"
                         className="radio"
                         name="monday"
+                        checked={finalData?.timings?.monday?.time !== 'all day'}
                     />
                     <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
-                <div className="row1 timing-row">
-                    <input
-                        className="timeInput listingInput input"
-                        type="time"
-                    />
-                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                    <input
-                        className="timeInput timeInput lisitngInput input"
-                        type="time"
-                    />
-                </div>
+                {finalData?.timings?.monday?.time !== 'all day' &&
+                    <div>
+                        <p>Start: {finalData?.timings?.monday?.time?.start}</p>
+                        <p>End: {finalData?.timings?.monday?.time?.end}</p>
+                    </div>
+                }
             </div>
             <div className="row1 timing-row">
                 <h2>Tuesday</h2>
                 <Switch
                     color="warning"
+                    checked={finalData?.timings?.tuesday?.open}
                 />
                 <div className="row2">
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="tuesday"
+                        checked={finalData?.timings?.tuesday?.time === 'all day'}
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="tuesday"
+                        checked={finalData?.timings?.tuesday?.time !== 'all day'}
                     />
                     <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
-                <div className="row1 timing-row">
-                    <input
-                        className="timeInput listingInput input"
-                        type="time"
-                    />
-                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                    <input
-                        className="timeInput timeInput lisitngInput input"
-                        type="time"
-                    />
-                </div>
+                {finalData?.timings?.tuesday?.time !== 'all day' &&
+                    <div>
+                        <p>Start: {finalData?.timings?.tuesday?.time?.start}</p>
+                        <p>End: {finalData?.timings?.tuesday?.time?.end}</p>
+                    </div>
+                }
             </div>
             <div className="row1 timing-row">
                 <h2>Wednesday</h2>
                 <Switch
                     color="warning"
+                    checked={finalData?.timings?.wednesday?.open}
                 />
                 <div className="row2">
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="wednesday"
+                        checked={finalData?.timings?.wednesday?.time === 'all day'}
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="wednesday"
+                        checked={finalData?.timings?.wednesday?.time !== 'all day'}
                     />
                     <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
-                <div className="row1 timing-row">
-                    <input
-                        className="timeInput listingInput input"
-                        type="time"
-                    />
-                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                    <input
-                        className="timeInput timeInput lisitngInput input"
-                        type="time"
-                    />
-                </div>
+                {finalData?.timings?.wednesday?.time !== 'all day' &&
+                    <div>
+                        <p>Start: {finalData?.timings?.wednesday?.time?.start}</p>
+                        <p>End: {finalData?.timings?.wednesday?.time?.end}</p>
+                    </div>
+                }
             </div>
             <div className="row1 timing-row">
                 <h2>Thursday</h2>
                 <Switch
                     color="warning"
+                    checked={finalData?.timings?.thursday?.open}
                 />
                 <div className="row2">
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="thursday"
+                        checked={finalData?.timings?.thursday?.time === 'all day'}
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="thursday"
+                        checked={finalData?.timings?.thursday?.time !== 'all day'}
                     />
                     <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
-                <div className="row1 timing-row">
-                    <input
-                        className="timeInput listingInput input"
-                        type="time"
-                    />
-                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                    <input
-                        className="timeInput timeInput lisitngInput input"
-                        type="time"
-                    />
-                </div>
+                {finalData?.timings?.thursday?.time !== 'all day' &&
+                    <div>
+                        <p>Start: {finalData?.timings?.thursday?.time?.start}</p>
+                        <p>End: {finalData?.timings?.thursday?.time?.end}</p>
+                    </div>
+                }
             </div>
             <div className="row1 timing-row">
                 <h2>Friday</h2>
                 <Switch
                     color="warning"
+                    checked={finalData?.timings?.friday?.open}
                 />
                 <div className="row2">
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="friday"
+                        checked={finalData?.timings?.friday?.time === 'all day'}
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="friday"
+                        checked={finalData?.timings?.friday?.time !== 'all day'}
                     />
                     <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
-                <div className="row1 timing-row">
-                    <input
-                        className="timeInput listingInput input"
-                        type="time"
-                    />
-                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                    <input
-                        className="timeInput timeInput lisitngInput input"
-                        type="time"
-                    />
-                </div>
+                {finalData?.timings?.friday?.time !== 'all day' &&
+                    <div>
+                        <p>Start: {finalData?.timings?.friday?.time?.start}</p>
+                        <p>End: {finalData?.timings?.friday?.time?.end}</p>
+                    </div>
+                }
             </div>
             <div className="row1 timing-row">
                 <h2>Saturday</h2>
                 <Switch
                     color="warning"
+                    checked={finalData?.timings?.saturday?.open}
                 />
                 <div className="row2">
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="saturday"
+                        checked={finalData?.timings?.saturday?.time === 'all day'}
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="saturday"
+                        checked={finalData?.timings?.saturday?.time !== 'all day'}
                     />
                     <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
-                <div className="row1 timing-row">
-                    <input
-                        className="timeInput listingInput input"
-                        type="time"
-                    />
-                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                    <input
-                        className="timeInput timeInput lisitngInput input"
-                        type="time"
-                    />
-                </div>
+                {finalData?.timings?.saturday?.time !== 'all day' &&
+                    <div>
+                        <p>Start: {finalData?.timings?.saturday?.time?.start}</p>
+                        <p>End: {finalData?.timings?.saturday?.time?.end}</p>
+                    </div>
+                }
             </div>
             <div className="row1 timing-row">
                 <h2>Sunday</h2>
                 <Switch
                     color="warning"
+                    checked={finalData?.timings?.sunday?.open}
                 />
                 <div className="row2">
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="sunday"
+                        checked={finalData?.timings?.sunday?.time === 'all day'}
                     />
                     <h2 className="timingH2AllDay">All Day</h2>
                     <input
                         type="radio"
                         className="radio"
-                        name="monday"
+                        name="sunday"
+                        checked={finalData?.timings?.sunday?.time !== 'all day'}
                     />
                     <h2 className="timingH2AllDay">Set Hours</h2>
                 </div>
-                <div className="row1 timing-row">
-                    <input
-                        className="timeInput listingInput input"
-                        type="time"
-                    />
-                    <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                    <input
-                        className="timeInput timeInput lisitngInput input"
-                        type="time"
-                    />
-                </div>
+                {finalData?.timings?.sunday?.time !== 'all day' &&
+                    <div>
+                        <p>Start: {finalData?.timings?.sunday?.time?.start}</p>
+                        <p>End: {finalData?.timings?.sunday?.time?.end}</p>
+                    </div>
+                }
             </div>
 
 
@@ -729,6 +660,7 @@ const ReviewApplication = ({ changeSection }) => {
                         <input
                             className="lginput"
                             name="name"
+                            value={finalData.contact_det ? finalData.contact_det.name : ""}
                         />
                     </div>
                 </div>
@@ -740,6 +672,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="input"
                         name="contact_name"
+                        value={finalData.contact_det ? finalData.contact_det.contact_name : ""}
                     />
                 </div>
                 <div className="coll1">
@@ -749,6 +682,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="input"
                         name="designation"
+                        value={finalData.contact_det ? finalData.contact_det.designation : ""}
                     />
                 </div>
                 <div className="coll1">
@@ -759,6 +693,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="input"
                         name="mobile_num"
                         type="tel"
+                        value={finalData.contact_det ? finalData.contact_det.mobile_num : ""}
                     />
                 </div>
                 <div className="coll1">
@@ -769,6 +704,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="input"
                         name="email"
                         type="email"
+                        value={finalData.contact_det ? finalData.contact_det.email : ""}
                     />
                 </div>
             </div>
@@ -779,6 +715,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="input"
                         name="alt_name"
+                        value={finalData.contact_det ? finalData.contact_det.alt_name : ""}
                     />
                 </div>
                 <div className="coll1">
@@ -787,6 +724,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="input"
                         name="alt_mobile"
                         type="tel"
+                        value={finalData.contact_det ? finalData.contact_det.alt_mobile : ""}
                     />
                 </div>
 
@@ -797,6 +735,7 @@ const ReviewApplication = ({ changeSection }) => {
                     <input
                         className="input"
                         name="pan_no"
+                        value={finalData.contact_det ? finalData.contact_det.pan_no : ""}
                     />
                 </div>
                 <div className="coll1">
@@ -807,6 +746,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="input"
                         name="aadhar_no"
                         type="number"
+                        value={finalData.contact_det ? finalData.contact_det.aadhar_no : ""}
                     />
                 </div>
             </div>
@@ -850,7 +790,7 @@ const ReviewApplication = ({ changeSection }) => {
                     className="listingInput input"
                     name="account_holder_name"
                     type="text"
-                    required
+                    value={finalData.bankDetails ? finalData.bankDetails.account_holder_name : ""}
                 />
             </div>
             <div className="row1">
@@ -862,7 +802,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="listingInput input"
                         name="bank_name"
                         type="text"
-                        required
+                        value={finalData.bankDetails ? finalData.bankDetails.bank_name : ""}
                     />
                 </div>
             </div>
@@ -875,7 +815,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="listingInput input"
                         name="ifsc_code"
                         type="text"
-                        required
+                        value={finalData.bankDetails ? finalData.bankDetails.ifsc_code : ""}
                     />
                 </div>
             </div>
@@ -888,7 +828,7 @@ const ReviewApplication = ({ changeSection }) => {
                         className="listingInput input"
                         name="account_number"
                         type="number"
-                        required
+                        value={finalData.bankDetails ? finalData.bankDetails.account_number : ""}
                     />
                 </div>
             </div>

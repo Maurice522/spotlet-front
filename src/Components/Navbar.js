@@ -34,8 +34,8 @@ const Navbar = ({ extraNavId }) => {
 		console.log("clicked");
 		navigate("/account");
 	};
-	let firstName = user?.personalInfo.fullName.split(" ").slice(0, -1).join(" ");
-	let profilePic = user?.personalInfo.profile_pic;
+	let firstName = user?.personalInfo?.fullName.split(" ").slice(0, -1).join(" ");
+	let profilePic = user?.personalInfo?.profile_pic;
 	return (
 		<div className="nav" id={extraNavId}>
 			<Link to="/" onClick={() => window.scrollTo(0, 0)}>

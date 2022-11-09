@@ -130,7 +130,7 @@ const BookingForm = ({
 								// console.log(e.target.value);
 								setEvent(e.target.value);
 								// console.log(val);
-								let a = (e.target.value === "Individual" || e.target.value === "Corporate") ? v3 : val;
+								let a = v3;
 								calculatePrice(e.target.value, a);
 							}}
 							value={event}
@@ -249,7 +249,7 @@ const BookingForm = ({
 								className={active === true ? "focus" : "normal"}
 								onChange={(e) => {
 									// console.log(e.target.value)
-									setVal(e.target.value === "6am-6pm" ? "12" : "22");
+									setV3(e.target.value === "6am-6pm" ? "12" : "22");
 									// (e.target.value === "6am-6pm" ? "12" : "24");
 									let a = e.target.value === "6am-6pm" ? "12" : "22";
 									calculatePrice(event, a);

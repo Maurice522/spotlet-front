@@ -12,6 +12,8 @@ import CardContent from "@mui/material/CardContent";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectUserData,
+  addUser,
+  saveOTP,
   selectUser_id,
   updateUser,
 } from "../redux/slices/userSlice";
@@ -20,18 +22,23 @@ import {
   updatePassword,
   updateUserInfo,
   uploadPics,
+  otpUpdateProfile,
 } from "../services/api";
 import { toast } from "react-toastify";
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, Select, Modal } from "@mui/material";
 import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import { LockOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
-import { Modal } from "@mui/material";
 import { set } from "date-fns";
+import OTPVerify from "./Auth/OTPVerify";
 
 const AccountInfo = (extraNavId) => {
   const [section, showSection] = useState("Profile");
   const [pass, setPass] = useState(false);
   const [deact, setDeact] = useState(false);
+  const [openOTP, setOpenOTP] = useState(false);
+  const handleOpenOTP = () => setOpenOTP(true);
+  const handleCloseOTP = () => setOpenOTP(false);
+  const [initialMobile, setInitialMobile] = useState("")
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,6 +54,11 @@ const AccountInfo = (extraNavId) => {
   const handlesection = (e) => {
     showSection(e);
   };
+
+  useEffect(() => {
+    setInitialMobile(personalInfo.mobile);
+  }, [])
+
 
   const [validLength, setValidLength] = useState(null);
   const [upperCase, setUpperCase] = useState(null);
@@ -71,16 +83,16 @@ const AccountInfo = (extraNavId) => {
 
   //user data update
   const [updateUserData, setUpdateUserData] = useState({
-    firstName: personalInfo.fullName.split(" ").slice(0, -1).join(" "),
-    lastName: personalInfo.fullName.split(" ").slice(1).join(" "),
-    email: personalInfo.email,
-    mobile: personalInfo.mobile,
-    [personalInfo.booking_type === "corporate" ? "company" : "profession"]:
-      personalInfo.booking_type === "corporate"
-        ? personalInfo.company
-        : personalInfo.profession,
-    booking_type: personalInfo.booking_type,
-    profile_pic: personalInfo.profile_pic,
+    firstName: personalInfo?.fullName.split(" ").slice(0, -1).join(" "),
+    lastName: personalInfo?.fullName.split(" ").slice(1).join(" "),
+    email: personalInfo?.email,
+    mobile: personalInfo?.mobile,
+    [personalInfo?.booking_type === "corporate" ? "company" : "profession"]:
+      personalInfo?.booking_type === "corporate"
+        ? personalInfo?.company
+        : personalInfo?.profession,
+    booking_type: personalInfo?.booking_type,
+    profile_pic: personalInfo?.profile_pic,
   });
 
   //User Password update
@@ -89,6 +101,18 @@ const AccountInfo = (extraNavId) => {
     newPassword: "",
     confirmNewPassword: "",
   });
+
+  const getOTP = async (userData) => {
+    try {
+      const response = await otpUpdateProfile(userData);
+      toast.success("OTP sent");
+      dispatch(saveOTP(response.data.otp));
+      dispatch(addUser(userData));
+      handleOpenOTP();
+    } catch (error) {
+      toast.error(error.response.data.error);
+    }
+  };
 
   const handleChange = (e) => {
     setUpdateUserData({ ...updateUserData, [e.target.name]: e.target.value });
@@ -123,12 +147,20 @@ const AccountInfo = (extraNavId) => {
           : updateUserData.profession,
       profile_pic: updateUserData.profile_pic,
     };
+    if (initialMobile != updateData.mobile) {
+      if (updateData.mobile > 9999999999 || updateData.mobile < 999999999) {
+        toast.error("Enter Valid Mobile Number")
+        return;
+      }
+      await getOTP(updateData);
+      return;
+    }
     dispatch(updateUser(updateData));
 
     try {
       const response = await updateUserInfo(user_id, updateData);
 
-      toast("Information Updated");
+      toast.success("Information Updated");
     } catch (error) {
       console.log(error);
       toast.error(error.response.data);
@@ -351,6 +383,10 @@ const AccountInfo = (extraNavId) => {
                   </button>
                 </div>
               </form>
+              <Modal open={openOTP} onClose={handleCloseOTP}>
+                {/* {console.log(updateData)} */}
+                <OTPVerify sendOTP={getOTP} signup={false} updateUserData={updateUserData} />
+              </Modal>
             </div>
           ) : (
             ""
