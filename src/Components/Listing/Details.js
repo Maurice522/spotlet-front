@@ -67,7 +67,10 @@ const Details = ({ showSection, changeSection }) => {
 	const user_id = useSelector(selectUser_id);
 	const user = useSelector(selectUserData);
 	const location = useSelector(selectLocationData);
+
+	console.log(location);
 	const location_id = useSelector(selectLocationId);
+	const [lType, setLType] = useState(0);
 	const dispatch = useDispatch();
 	const [property_desc, setPropertyDescr] = useState({
 		user_id: "",
@@ -80,6 +83,13 @@ const Details = ({ showSection, changeSection }) => {
 	});
 
 	useEffect(() => {
+		// location && setLType(" "+location.property_desc.location_type);
+		location && options.map((item,index)=>{
+			if(location.property_desc.location_type == item.value){
+				setLType(index);
+			}
+		})
+
 		user_id && setPropertyDescr({ ...property_desc, user_id });
 	}, [user_id]);
 
@@ -141,9 +151,16 @@ const Details = ({ showSection, changeSection }) => {
 					<Select
 						className="listingInput locationtype"
 						options={opt}
+						value={opt[lType]}
 						onChange={(e) =>{
-							if(e.value != 'Add New')
+							if(e.value != 'Add New'){
+								options.map((item,index)=>{
+									if(e.value == item.value){
+										setLType(index);
+									}
+								})
 								setPropertyDescr({ ...property_desc, location_type: e.value })
+							}
 							else
 								setLoc(true);
 						}
