@@ -48,6 +48,10 @@
 	font-weight: 600;
 }
 
+.fav-image{
+	height: 69vh;
+}
+
 
 @media screen and (max-width: 992px){
 	.bg-image {
@@ -71,7 +75,10 @@
 
 @media screen and (max-width: 576px){
 	.bg-image {
-		height: 19rem;
+		height: 15rem;
+	}
+	.fav-image{
+		height: 39vh;
 	}
 	.message {
 		width: 70%;
