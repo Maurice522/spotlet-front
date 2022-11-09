@@ -172,3 +172,8 @@ export const userUpdate = (data) => {
 export const getTempLocation = (location_id) => {
   return axios.get(server_domain + "/templocation/" + location_id);
 }
+
+//update otp
+export const otpUpdateProfile = (form) => {
+  return axios.post(server_domain + "/updateactivation", form);
+};

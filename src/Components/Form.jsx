@@ -17,7 +17,7 @@ const Form = ({ labels, heading }) => {
 		try {
 			console.log(cont);
 			await contactUs(cont);
-			toast("Form Submitted");
+			toast.success("Form Submitted");
 		} catch (error) {
 			toast.error(error);
 		}

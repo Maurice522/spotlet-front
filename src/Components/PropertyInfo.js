@@ -95,7 +95,7 @@ const PropertyInfo = ({
 				}}>
 				<div className="text-on-image-container-2">
 					<img
-						src={item.imagesData[0].image}
+						src={item?.imagesData[0]?.image}
 						alt={`property-${item.location_id}`}
 						className="property-image"
 					/>

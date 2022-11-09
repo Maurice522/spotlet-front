@@ -218,10 +218,12 @@ const BookingList = () => {
 		return {
 			action: gridActionButton,
 			LocationId: loc?.location_id,
-			Status: loc.verified,
+			Status: loc?.verified,
 			id: index,
 			to: "/listdetails/" + loc.location_id,
-			BookingRequest: `${locrequests?.at(index)} Requests`,
+			BookingRequest: locrequests?.at(index)
+				? `${locrequests?.at(index)} Requests`
+				: "0 Requests",
 		};
 	});
 

@@ -8,19 +8,22 @@ import {
   saveOTP,
   selectOTP,
   selectUserData,
+  selectUser_id,
+  updateUser,
 } from "../../redux/slices/userSlice";
-import { signUp } from "../../services/api";
+import { signUp, updateUserInfo } from "../../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { VpnKeyOutlined } from "@mui/icons-material";
-export default function OTPVerify({ sendOTP }) {
+export default function OTPVerify({ sendOTP, signUp, updateUserData }) {
   const [otp, setOTP] = useState("");
   const [auto, setAuto] = useState(true);
   const [timer, setTimer] = useState(120);
   const userData = useSelector(selectUserData);
   const verifyOtp = useSelector(selectOTP);
   const dispatch = useDispatch();
+  const user_id = useSelector(selectUser_id);
 
   useEffect(() => {
     // const counter = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
@@ -43,13 +46,27 @@ export default function OTPVerify({ sendOTP }) {
     !auto && e.preventDefault()
     try {
       if (verifyOtp != otp) {
-        toast("Invalid OTP please try again!!!");
+        toast.error("Invalid OTP please try again!!!");
       } else {
-        const { data: jwt } = await signUp(userData);
-        localStorage.setItem("token", jwt);
-        toast("User Created");
-        dispatch(saveOTP(-1));
-        window.location = "/";
+        let updateData = {
+          fullName: updateUserData.firstName + " " + updateUserData.lastName,
+          email: updateUserData.email,
+          mobile: updateUserData.mobile,
+          booking_type: updateUserData.booking_type,
+          [updateUserData.booking_type === "corporate" ? "company" : "profession"]:
+            updateUserData.booking_type === "corporate"
+              ? updateUserData.company
+              : updateUserData.profession,
+          profile_pic: updateUserData.profile_pic,
+        };
+        dispatch(updateUser(updateData));
+        try {
+          const response = await updateUserInfo(user_id, updateData);
+          toast.success("Information Updated");
+        } catch (error) {
+          console.log(error);
+          toast.error(error.response.data);
+        }
       }
     } catch (error) {
       toast.error(error.response.data.error);

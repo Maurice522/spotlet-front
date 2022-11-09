@@ -108,7 +108,7 @@ export default function Auth() {
 				const { data } = await signIn(userData);
 
 				localStorage.setItem("token", data.token);
-				toast("Successful login");
+				toast.success("Successful login");
 				window.location = "/";
 			} catch (error) {
 				//console.log(error.response.data);
@@ -372,7 +372,7 @@ export default function Auth() {
 					<ForgotPassword handleClose={handleClose} />
 				</Modal>
 				<Modal open={openOTP} onClose={handleCloseOTP}>
-					<OTPVerify sendOTP={getOTP} />
+					<OTPVerify sendOTP={getOTP} signUp={true} />
 				</Modal>
 			</div>
 		</div>

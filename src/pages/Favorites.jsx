@@ -45,7 +45,7 @@ const Favorites = () => {
 		<div>
 			<Navbar extraNavId="id-2" />
 			<div className="text-on-image-container">
-				<img src={image} alt="background" className="bg-image darken" style={{ height: "63vh" }} />
+				<img src={image} alt="background" className="bg-image darken fav-image" />
 				<div className="about-us-message bold">
 					Your Favourites!
 				</div>

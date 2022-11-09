@@ -72,7 +72,7 @@ const Rules = ({ showSection }) => {
 				<div className="coll1">
 					{rules.map((item, index) => (
 						<>
-							<div className="optns">
+							<div className="optns" key={index}>
 								<GoPrimitiveDot color="#ea4235" />
 								<div className="optn" key={index} style={{width:"94%"}}>
 									{item}
