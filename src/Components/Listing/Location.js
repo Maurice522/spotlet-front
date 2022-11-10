@@ -42,6 +42,9 @@ const Location = ({ showSection, changeSection }) => {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
+  const [countryKey, setCountryKey] = useState(-1);
+  const [stateKey, setStateKey] = useState(-1);
+  const [cityKey, setCityKey] = useState(-1);
 
   // const [address, setAddress] = useState({})
   // const [mapCenter, setMapCenter] = useState({
@@ -58,6 +61,34 @@ const Location = ({ showSection, changeSection }) => {
   console.log(location)
 
   useEffect(() => {
+
+    var countryiso
+    location && Country.getAllCountries().map((item, index)=>{
+      if(item.name === location.property_address.country){
+        setCountryKey(index);
+        countryiso = item.isoCode;
+        setCountry(item.isoCode);
+        // alert(index);
+      }
+    })
+    var stateiso
+    location &&  State.getAllStates().filter(item => item.countryCode === countryiso).map((item, index)=>{
+      if(item.name === location.property_address.state){
+        setStateKey(index);
+        setState(item.isoCode);
+        stateiso = item.isoCode;
+        // alert(index);
+      }
+    })
+
+    location&& City.getCitiesOfState(countryiso, stateiso).map((item, index)=>{
+      if(item.name === location.property_address.city){
+        setCityKey(index);
+        setCity(item.name);
+        // alert(index);
+      }
+    })
+
     location && setPropertyAddress(location.property_address);
     console.log(property_address);
   }, []);
@@ -68,14 +99,25 @@ const Location = ({ showSection, changeSection }) => {
     setShowmap(!showmap);
   }
 
-  const changeCountry = (id) => {
+  let stateArray = State.getAllStates().filter(item => item.countryCode === country);
+  // console.log(stateArray);
+  let cityArray = City.getCitiesOfState(country, state);
+
+  const changeCountry = (id, idx) => {
+    // alert(Country.getAllCountries()[idx].name);
+    
+    setCountryKey(idx);
     setCountry(id);
+    // stateArray = State.getAllStates().filter(item => item.countryCode === id);
   }
-  const changeState = (id) => {
+  const changeState = (id, idx) => {
+    setStateKey(idx)
     setState(id);
+    // cityArray = City.getCitiesOfState(country, id);
   }
-  const changeCity = (id) => {
-    setCity(id);
+  const changeCity = (name, idx) => {
+    setCityKey(idx)
+    setCity(name);
   }
 
   console.log(country.length);
@@ -89,8 +131,9 @@ const Location = ({ showSection, changeSection }) => {
   // console.log(country);
   // console.log(state);
 
-  let stateArray = State.getAllStates().filter(item => item.countryCode === country);
-  let cityArray = City.getCitiesOfState(country, state);
+
+
+  // console.log(cityArray);
 
   // const [cord, setCord] = useState({
   //   lat : 0,
@@ -192,14 +235,14 @@ const Location = ({ showSection, changeSection }) => {
           <Select
             id="country"
             name="country"
-            defaultValue=""
-            // value="Hyderabad"
+            // defaultValue=""
+            value={countryKey==-1?"":Country.getAllCountries()[countryKey].name}
             className={'listingInput input input__location'}
             onChange={handleChange}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {Country.getAllCountries().map(item => <MenuItem value={item.name} onClick={changeCountry.bind(this, item.isoCode)} key={item.name}>{item.name}</MenuItem>)}
+            {Country.getAllCountries().map((item, index )=> <MenuItem value={item.name} onClick={changeCountry.bind(this, item.isoCode, index)} key={item.name}>{item.name}</MenuItem>)}
           </Select>
         </div>
 
@@ -213,15 +256,15 @@ const Location = ({ showSection, changeSection }) => {
           <Select
             id="state"
             name="state"
-            defaultValue=""
-            // value="Hyderabad"
+            // defaultValue=""
+            value={country.length ?stateArray[stateKey].name: ""}
             className={'listingInput input input__location'}
             isDisabled={country.length === 0 ? true : false}
             onChange={handleChange}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {country.length ? stateArray.map(item => <MenuItem value={item.name} onClick={changeState.bind(this, item.isoCode)} key={item.name}>{item.name}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
+            {country.length ? stateArray.map((item, index) => <MenuItem value={item.name} onClick={changeState.bind(this, item.isoCode, index)} key={item.name}>{item.name}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
           </Select>
           {country.length === 0 && <p style={{ fontSize: "15px", color: "grey" }}>Please select country first</p>}
         </div>
@@ -238,13 +281,14 @@ const Location = ({ showSection, changeSection }) => {
             name="city"
             defaultValue=""
             // value="Hyderabad"
+            value={city}
             className={'listingInput input input__location'}
             isDisabled={state.length === 0 ? true : false}
             onChange={handleChange}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {cityArray.map(item => <MenuItem value={item.name} key={item.name}>{item.name}</MenuItem>)}
+            { stateArray.length && cityArray.map((item, index) => <MenuItem value={item.name} onClick={changeCity.bind(this, item.name, index)} key={item.name}>{item.name}</MenuItem>)}
           </Select>
           {state.length === 0 && <p style={{ fontSize: "15px", color: "grey" }}>Please select country and state first</p>}
         </div>
