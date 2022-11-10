@@ -98,7 +98,7 @@ const Content = () => {
 			</div>
 			<Testimonials />
 			
-			<Host title="Host your Spot with Us" buttonContent="List your space"  link={"/"}/>
+			<Host title="Host your Spot with Us"  link={"/"}/>
 				
 		</>
 	);

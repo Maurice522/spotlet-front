@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiShareAlt } from "react-icons/bi";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import "../../Assets/Styles/Details/carousel.css";
@@ -7,7 +7,7 @@ import img2 from "../../Assets/Images/property-page-carousel-img-2.jpeg";
 import img3 from "../../Assets/Images/property-page-carousel-img-3.jpeg";
 import img4 from "../../Assets/Images/property-page-carousel-img-4.jpeg";
 import img5 from "../../Assets/Images/property-page-carousel-img-5.jpeg";
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { AiOutlineLeft, AiOutlineRight, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { GiFilmProjector } from "react-icons/gi";
 import { BsPersonFill } from "react-icons/bs";
@@ -34,6 +34,15 @@ const Carousel = ({ locationData }) => {
 	const [fav, setFav] = useState(false);
 
 	const [copied, setCopied] = useState(false);
+	const [starSize, setStarSize] = useState("18px");
+
+	let x = window.matchMedia("(max-width: 576px)")
+	useEffect(() => {
+		if (x.matches)
+			setStarSize("15px");
+		else
+			setStarSize("18px");
+	}, [])
 
 	const copy = () => {
 		const el = document.createElement("input");
@@ -97,21 +106,23 @@ const Carousel = ({ locationData }) => {
 			<div className="property-info">
 				<div>
 					<div className="name">{locationData?.property_desc?.location_type}</div>
-					<div className="location">{locationData?.property_address?.address}</div>
+					<div className="location">{locationData?.location_id}</div>
+					<div>{locationData?.property_address?.city}, {locationData?.property_address?.country}</div>
 				</div>
 				<div className="icons">
-					{locationData?.pricing?.corporate?.isPresent && (
-						<MdOutlineCorporateFare size="30px" />
-					)}
-					{locationData?.pricing?.film_webseries_ad?.isPresent && (
-						<GiFilmProjector size="30px" />
-					)}
-					{locationData?.pricing?.individual?.isPresent && (
-						<BsPersonFill size="30px" />
-					)}
-					{locationData?.pricing?.tv_series_other?.isPresent && (
-						<GiFilmProjector size="30px" />
-					)}
+					<div className="icons--main">
+						{locationData?.pricing?.corporate?.isPresent && (
+							<MdOutlineCorporateFare size="30px" />
+						)}
+						{locationData?.pricing?.film_webseries_ad?.isPresent && (
+							<GiFilmProjector size="30px" />
+						)}
+						{locationData?.pricing?.individual?.isPresent && (
+							<BsPersonFill size="30px" />
+						)}
+						{locationData?.pricing?.tv_series_other?.isPresent && (
+							<GiFilmProjector size="30px" />
+						)}
 					<div
 						style={{
 							marginTop: "3px",
@@ -138,6 +149,19 @@ const Carousel = ({ locationData }) => {
 							onClick={() => setFav(true)}
 						/>
 					)}
+					</div>
+					<div className="property-info-location property-rating">
+						<div>
+							<div>
+								<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
+								<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
+								<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
+								<AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
+								<AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
+							</div>
+						</div>
+						<div>(40)</div>
+					</div>
 				</div>
 			</div>
 		</div>

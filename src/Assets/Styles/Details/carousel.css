@@ -80,8 +80,15 @@
 .icons {
 	padding-top: 8px;
 	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 	justify-content: space-around;
 	width: 15%;
+}
+
+.icons--main {
+	padding-top: 8px;
+	display: flex;
 }
 
 .dos {
