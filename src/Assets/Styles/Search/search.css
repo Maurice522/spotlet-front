@@ -66,9 +66,9 @@
 
 .property-rating {
 	display: grid;
-	grid-template-columns: 2fr 1fr 1fr;
-	align-items: center;
-	justify-items: flex-start;
+	grid-template-columns: 0.7fr 0.3fr 1fr;
+    align-items: center;
+    justify-items: flex-end;
 }
 .property-rating div:last-child {
 	display: flex;

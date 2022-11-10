@@ -23,14 +23,14 @@ const PropertyInfo = ({
 }) => {
 	const userData = useSelector(selectUserData);
 	const user_id = useSelector(selectUser_id);
-	const [starSize, setStarSize] = useState("22px");
+	const [starSize, setStarSize] = useState("18px");
 
 	let x = window.matchMedia("(max-width: 576px)")
 	useEffect(() => {
 		if (x.matches)
 			setStarSize("15px");
 		  else
-			setStarSize("22px");
+			setStarSize("18px");
 	}, [])
 
 	useEffect(() => {
@@ -118,9 +118,8 @@ const PropertyInfo = ({
 						<div>(40)</div>
 						<div>
 							{item.pricing.corporate.isPresent && <MdOutlineCorporateFare size="20px" />}
-							{item.pricing.film_webseries_ad.isPresent && <GiFilmProjector size="20px" />}
+							{(item.pricing.film_webseries_ad.isPresent ||item.pricing.tv_series_other.isPresent) && <GiFilmProjector size="20px" />}
 							{item.pricing.individual.isPresent && <BsPersonFill size="20px" />}
-							{item.pricing.tv_series_other.isPresent && <GiFilmProjector size="20px" />}
 						</div>
 					</div>
 
