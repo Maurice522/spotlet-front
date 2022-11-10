@@ -62,7 +62,7 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 	return (
 		<form id="booking-contact-form">
 			{/* <label htmlFor="name">Name</label> */}
-			<div>
+			<div className="contact-form-input">
 				<div>
 					<label htmlFor="name">Name</label>
 					<TextField
@@ -92,7 +92,7 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 				</div>
 			</div>
 
-			<div>
+			<div className="contact-form-input">
 				<div>
 					<label htmlFor="who">Who reserves</label>
 					<TextField

@@ -39,6 +39,16 @@
 	color: #ea4235;
 }
 
+.css-x9g8be-MuiButtonBase-root-MuiAccordionSummary-root{
+	padding: 0 !important;
+	padding-left: 10px !important;
+}
+
+.css-o4b71y-MuiAccordionSummary-content.Mui-expanded{
+	margin: 0 !important;
+	min-height: 0 !important;
+}
+
 
 @media screen and (max-width: 992px){
 	.booking-content-wrapper {

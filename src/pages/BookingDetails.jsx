@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import { Button, Avatar, Rating } from "@mui/material";
+import { Button, Avatar, Rating, Modal } from "@mui/material";
 import "../Assets/Styles/bookingDetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, selectUserData } from "../redux/slices/userSlice";
@@ -20,6 +20,10 @@ const BookingDetails = () => {
 	const [booking, setBooking] = useState({});
 	const [ownerData, setOwnerData] = useState({});
 	const [locationData, setLocationData] = useState({});
+	const [open, setOpen] = useState(false);
+	const [openModal, setopenModal] = useState(false);
+	const handleopenModal = () => setopenModal(true);
+	const handleCloseModal = () => setopenModal(false);
 	const [cord, setCord] = useState({
 		lat: 0,
 		lng: 0
@@ -83,22 +87,25 @@ const BookingDetails = () => {
 		return window.confirm(text);
 	}
 	const deleteBooking = async () => {
-		try {
-			if (confirmDeletion()) {
-				const newPortfolio = userData.portfolio.filter(p => p.bookingId !== bookingId);
-				const newUserData = { ...userData, portfolio: newPortfolio };
-				const data = {
-					bookingId,
-					locationId: booking.property_id,
-					user_id: booking.user_id,
+		setopenModal(true);
+		if (open) {
+			try {
+				if (confirmDeletion()) {
+					const newPortfolio = userData.portfolio.filter(p => p.bookingId !== bookingId);
+					const newUserData = { ...userData, portfolio: newPortfolio };
+					const data = {
+						bookingId,
+						locationId: booking.property_id,
+						user_id: booking.user_id,
+					}
+					const response = await deleteBookingReq(data);
+					dispatch(addUser(newUserData));
+					toast.success(response.data);
+					window.history.back();
 				}
-				const response = await deleteBookingReq(data);
-				dispatch(addUser(newUserData));
-				toast.success(response.data);
-				window.history.back();
+			} catch (error) {
+				toast.error(error);
 			}
-		} catch (error) {
-			toast.error(error);
 		}
 	}
 	//message
@@ -136,7 +143,7 @@ const BookingDetails = () => {
 			console.log(error);
 		}
 	};
-	console.log(locationData)
+	console.log(userData)
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
@@ -196,6 +203,21 @@ const BookingDetails = () => {
 							</Button>
 						</div>
 					</div>
+					<Modal open={openModal} onClose={handleCloseModal}>
+						<div className="listing-modal">
+							<h3>Do you really want to Deactivate your account?</h3>
+							<div style={{ display: "flex", gap: "2rem", width: "100%", justifyContent: "center" }}>
+								<Button className="auth-btn" onClick={() => {
+									handleCloseModal();
+									setOpen(true);
+								}}>Yes</Button>
+								<Button className="auth-btn" onClick={() => {
+									handleCloseModal();
+									setOpen(false);
+								}}>No</Button>
+							</div>
+						</div>
+					</Modal>
 					<div style={{ marginLeft: "auto", width: "20vw", display: `${booking?.payment_status !== "Approved" ? "none" : "block"}` }}>
 						<Button
 							variant="contained"
@@ -249,7 +271,7 @@ const BookingDetails = () => {
 						</div>
 					</div>
 				</div>
-				<div div className="container">
+				{userData?.portfolio[0]?.payment_status !== "Under Review" && <div div className="container">
 					<div className="booking-details-header">Reviews and Rating</div>
 					<div className="row1">
 						<div className="coll1">
@@ -307,7 +329,7 @@ const BookingDetails = () => {
 							Send Review
 						</Button>
 					</div>
-				</div>
+				</div>}
 				<div className="container">
 					<div className="booking-details-header">
 						Terms and Conditions Agreed
