@@ -10,9 +10,10 @@
 
 .bg-image {
 	width: 100%;
-	height: 90vh;
+	height: 77vh;
 	padding: 0;
 }
+
 
 .darken {
 	filter: brightness(50%);

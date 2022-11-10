@@ -1,5 +1,5 @@
 #form-wrapper {
-	margin: -30px auto 0;
+	margin: -40px auto 0;
 	width: 82vw;
 	height: 170px;
 	background-color: #ffffff;
@@ -16,7 +16,7 @@
 		-4px -4px 10px rgba(0, 0, 0, 0.25);
 	border-radius: 40px;
 	width: 77vw;
-	padding: 30px;
+	padding: 25px 30px 20px 30px;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr) auto;
 	z-index: 3;
