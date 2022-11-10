@@ -161,7 +161,11 @@ h1 {
     min-height: 6rem;
 }
 
-
+@media screen and (max-width: 420px) {
+    .locationContinue {
+      min-width: 300px;
+    }
+  }
 
 @media screen and (max-width: 1200px){
     .row1, .row1-checkbox{

@@ -62,8 +62,30 @@
   display: flex;
   position: absolute;
   flex-direction: column;
-
 }
+
+@media (max-width: 420px) {
+  .profcomp {
+    position: static;
+    margin-bottom: 70px;
+  }
+  .nav-menu.active {
+    position: static;
+    overflow: hidden;
+    height: 80px;
+    width: 100%;
+    margin-top: 60px;
+  }
+  .nav-menu-items {
+    display: flex;
+    padding: 20px;
+  }
+  .nav-text.sel,
+  .nav-text {
+    padding: 10px;
+  }
+}
+
 .accimg {
   border-radius: 50%;
   margin-right: 50px;
@@ -96,9 +118,26 @@
   flex-direction: column;
   position: relative;
   padding: 50px;
-  width:71.5vw; 
+  width: 71.5vw;
 }
-.accprofr {
+@media (max-width: 420px) {
+  .profr {
+    width: 100%;
+    padding: 10px 5px;
+  }
+  .r2 {
+    flex-direction: column !important;
+    margin-bottom: 10px 0px;
+  }
+  .acc-input {
+    margin-bottom: 10px;
+  }
+  .applyChangeAcc {
+    margin: 0px !important;
+    width: 100%;
+  }
+}
+.se .accprofr {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -114,13 +153,13 @@
   margin-top: 3%;
   color: black;
 }
-.acc-input:focus{
+.acc-input:focus {
   border: 1px solid #ff6767;
   box-shadow: 0 0 2px #ff6767;
   outline-offset: 0px;
   outline: none;
 }
-.current-pass{
+.current-pass {
   width: 270px !important;
 }
 
@@ -151,11 +190,11 @@
   padding: 10px;
   justify-content: space-around;
 }
-.r2Password{
+.r2Password {
   justify-content: left;
 }
 .css-rehpea-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.4375em;
@@ -192,46 +231,45 @@
   border: 1px solid lightgray;
   margin-top: 2%;
 }
-.applyChangeAcc{
+.applyChangeAcc {
   margin-left: 75%;
   margin-top: 1%;
 }
-.accountInfoDiv{
+.accountInfoDiv {
   background-color: beige;
   width: 60%;
 }
-.changePassword{
+.changePassword {
   margin-left: 0%;
   margin-bottom: 2%;
 }
-.deactivateBtn{
+.deactivateBtn {
   margin-left: 3%;
   margin-bottom: 0%;
   height: 41px;
-    font-size: 12px;
-
+  font-size: 12px;
 }
-.deactivateAccount{
+.deactivateAccount {
   justify-content: right;
 }
-.paymentH1{
+.paymentH1 {
   margin-bottom: 2%;
 }
 .css-xvpb4p-MuiButtonBase-root-MuiAccordionSummary-root {
   height: 60px !important;
 }
-.cardsH1{
+.cardsH1 {
   font-size: 18px !important;
   font-weight: 500 !important;
 }
-.paynowBtn{
+.paynowBtn {
   width: 200px;
   height: 38px;
   margin-left: 0.8%;
   padding-top: 9px;
   margin-bottom: 3%;
 }
-.paynowBtnCredit{
+.paynowBtnCredit {
   margin-left: 5.4%;
   width: 230px;
 }
