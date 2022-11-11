@@ -55,7 +55,7 @@ const BankDetails = ({ showSection, changeSection }) => {
 
 
 	return (
-		<div class="lbox">
+		<div className="lbox">
 			<div className="row1">
 				<div className="coll1">
 					<h2>

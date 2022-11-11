@@ -70,16 +70,14 @@ const Rules = ({ showSection }) => {
 			</div>
 			<div className="row1" style={{gridTemplateColumns: "2.4fr 0.4fr"}} >
 				<div className="coll1">
-					{rules.map((item, index) => (
-						<>
+					{rules.map((item, index) => (						
 							<div className="optns" key={index}>
 								<GoPrimitiveDot color="#ea4235" />
 								<div className="optn" key={index} style={{width:"94%"}}>
 									{item}
 								</div>
 								<ClearIcon onClick={() => deleteoptn(index)} />
-							</div>
-						</>
+							</div>						
 					))}
 				</div>
 			</div>

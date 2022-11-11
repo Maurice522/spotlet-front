@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { geocodeByAddress, getLatLng, } from 'react-places-autocomplete';
 
 /*global google*/
 export class MapContainer extends Component {
@@ -11,19 +8,17 @@ export class MapContainer extends Component {
     super(props);
     this.state = {
       // for google map places autocomplete
-      address: '',
-
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-  
+
       mapCenter: {
-        lat: this.props.lat,
-        lng: this.props.lng
+        lat: this.props?.lat,
+        lng: this.props?.lng
       }
     };
-  
-    geocodeByAddress(this.props.address)
+
+    geocodeByAddress(this.props?.address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
         console.log('Success', latLng);
@@ -32,58 +27,48 @@ export class MapContainer extends Component {
         this.setState({ mapCenter: latLng });
       })
       .catch(error => console.error('Error', error));
+
+    console.log(this.state.mapCenter); 
   }
 
- 
+
   render() {
     return (
-      <div id='googleMaps' style={{width:"40%", height:"80%"}}>
-        
-        <div id='map_render' style={{width:"30%", height:"40%"}}>
-         {this.props.loc===true?<Map 
-          google={this.props.google}
-          initialCenter={{
-            lat: this.state.mapCenter.lat,
-            lng: this.state.mapCenter.lng
-          }}
-          style={{width:"50%", height:"50%", marginTop:"70px"}}
-          center={{
-            lat: this.state.mapCenter.lat,
-            lng: this.state.mapCenter.lng
-          }}
-          >
-          <Marker 
-           icon={{
-            path: google.maps.SymbolPath.CIRCLE,
-            fillColor: 'red',
-            fillOpacity: .2,
-            scale: 40,
-            strokeColor: 'white',
-            strokeWeight: .5}
-        }
-            position={{
+      <div id='googleMaps' style={{ width: "40%", height: "80%" }}>
+
+        <div id='map_render' style={{ width: "30%", height: "40%" }}>
+          <Map
+            zoom={12}
+            // mapTypeControl={false}
+            // scaleControl={true}
+            // streetViewControl={true}
+            // rotateControl={true}
+            fullscreenControl={false}
+            disableDefaultUI={true}
+            google={this.props.google}
+            style={{ width: "50%", height: "50%", marginTop: "70px" }}
+            center={{
               lat: this.state.mapCenter.lat,
               lng: this.state.mapCenter.lng
-            }} />
-        </Map>:<Map 
-          google={this.props.google}
-          initialCenter={{
-            lat: this.state.mapCenter.lat,
-            lng: this.state.mapCenter.lng
-          }}
-          style={{width:"50%", height:"50%"}}
-          center={{
-            lat: this.state.mapCenter.lat,
-            lng: this.state.mapCenter.lng
-          }}
+            }}
           >
-          <Marker 
-            position={{
-              lat: this.state.mapCenter.lat,
-              lng: this.state.mapCenter.lng
-            }} />
-        </Map>}
-       
+            <Marker
+              icon={
+                {
+                  path: google.maps.SymbolPath.CIRCLE,
+                  fillColor: 'red',
+                  fillOpacity: .2,
+                  scale: 40,
+                  strokeColor: 'white',
+                  strokeWeight: .5
+                }
+              }
+              position={{
+                lat: this.state.mapCenter.lat,
+                lng: this.state.mapCenter.lng
+              }} />
+          </Map>
+
         </div>
       </div>
     )

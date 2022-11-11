@@ -10,14 +10,15 @@ import { useSelector } from "react-redux";
 import { selectUserData } from "../redux/slices/userSlice";
 import { locationRequest } from "../services/api";
 import { useEffect } from "react";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const gridActionButton = (props) => (
 	<Link
 		to={props.row.to}
 		style={{
 			textDecoration: "none",
-		}}>
+		}}
+	>
 		<Button
 			variant="outlined"
 			sx={{
@@ -27,7 +28,8 @@ const gridActionButton = (props) => (
 				fontWeight: "600",
 				borderRadius: "4px",
 				marginTop: "10px",
-			}}>
+			}}
+		>
 			Details
 		</Button>
 	</Link>
@@ -40,7 +42,8 @@ const gridBookingID = (props) => (
 			justifyContent: "center",
 			alignItems: "center",
 			gap: "5px",
-		}}>
+		}}
+	>
 		<GoPrimitiveDot color="#EA4235" />
 		{props.row.BookingId}
 	</div>
@@ -59,7 +62,8 @@ const gridBookingStatus = (props) => {
 			style={{
 				textAlign: "center",
 				color: color,
-			}}>
+			}}
+		>
 			{props.row.Status}
 		</div>
 	);
@@ -72,7 +76,8 @@ const gridLocationId = (props) => (
 			justifyContent: "center",
 			alignItems: "center",
 			gap: "5px",
-		}}>
+		}}
+	>
 		<GoPrimitiveDot color="#EA4235" />
 		{props.row.LocationId}
 	</div>
@@ -152,7 +157,7 @@ const listingGrid = [
 const BookingList = () => {
 	const [active, setActive] = useState(0);
 	const userData = useSelector(selectUserData);
-	console.log(userData)
+	// console.log(userData)
 	const [locrequests, setLocRequests] = useState([]);
 	useEffect(() => {
 		userData &&
@@ -160,6 +165,7 @@ const BookingList = () => {
 				try {
 					const response = await locationRequest(loc?.location_id);
 					const { requests } = response.data;
+					console.log(requests.length);
 					setLocRequests([...locrequests, requests.length]);
 				} catch (error) {
 					console.log(error);
@@ -168,38 +174,36 @@ const BookingList = () => {
 	}, [userData]);
 
 	const bookingData = userData?.portfolio.map((booking, index) => {
-		const endTime =
-			(Number(booking?.time.substr(0, 2)) +
+		let endTime =
+			(Number(booking?.time?.substr(0, 2)) +
 				Number(booking?.duration_in_hours)) %
 			24;
-		const date = new Date(booking?.timestamp?._seconds * 1000);
-		const yyyy = date.getFullYear();
-		let mm = date.getMonth() + 1; // Months start at 0!
-		let dd = date.getDate();
-
-		if (dd && dd < 10) dd = "0" + dd;
-		if (mm && mm < 10) mm = "0" + mm;
-
-		const formattedDate = dd + "/" + mm + "/" + yyyy;
+		let ampm = booking?.time?.substr(6, 7);
+		if (endTime > 12) {
+			endTime = endTime % 12;
+			if (endTime < 10) {
+				endTime = "0" + endTime;
+			}
+			ampm = ampm == "pm" ? "am" : "pm";
+		}
 		return {
 			id: index,
 			action: gridActionButton,
 			to: `/bookingdetails/${booking?.bookingId}`,
 			BookingId: booking?.bookingId,
 			Status: booking?.payment_status,
-			Date: formattedDate,
+			Date: booking.date,
 			TimeDuration:
 				booking?.time +
 				" - " +
 				endTime +
-				booking?.time.substr(2) +
+				booking?.time.substr(2, 4) +
+				ampm +
 				", " +
 				booking?.duration_in_hours,
 			TotalAmount: booking?.total_amt,
 		};
 	});
-
-	console.log(bookingData)
 
 	// const bookingData = [
 	// 	{
@@ -221,8 +225,8 @@ const BookingList = () => {
 			Status: loc?.verified,
 			id: index,
 			to: "/listdetails/" + loc.location_id,
-			BookingRequest: locrequests?.at(index)
-				? `${locrequests?.at(index)} Requests`
+			BookingRequest: locrequests?.[index]
+				? `${locrequests?.[index]} Requests`
 				: "0 Requests",
 		};
 	});
@@ -237,46 +241,52 @@ const BookingList = () => {
 	// 		BookingRequest: "`${locrequests?.at(index)} Requests`",
 	// 	},
 	// ];
-	console.log("Booking Data", bookingData);
-	console.log("Listing Data", listingData);
+	// console.log("Booking Data", bookingData);
+	// console.log("Listing Data", listingData);
 
-	const {bookingItem} = useParams();
+	const { bookingItem } = useParams();
 
 	useEffect(() => {
-		if(bookingItem === ':booking')
-			setActive(0);
-		else
-			setActive(1);
+		if (bookingItem === ":booking") setActive(0);
+		else setActive(1);
 	}, [bookingItem]);
 
-
 	const navigate = useNavigate();
-	console.log(bookingData)
 
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
 			<div className="below-nav">
 				<div className="booking-list-header" style={{ position: "relative" }}>
-					<Link to="/" >
-						<ArrowBackIcon style={{ position: "absolute", left: "0%", bottom: "20%", fontSize: "32px", color: "f26767" }} />
+					<Link to="/">
+						<ArrowBackIcon
+							style={{
+								position: "absolute",
+								left: "0%",
+								bottom: "20%",
+								fontSize: "32px",
+								color: "f26767",
+							}}
+						/>
 					</Link>
-						<div
-							className={active === 0 ? "chosen option" : "option"}
-							onClick={() => {
-								setActive(0);
-								navigate('/bookinglist/:booking');
-							}}>
-							Booking
-						</div>
-						<div
-							className={active === 1 ? "chosen option" : "option"}
-							onClick={() => {
-								setActive(1);
-								navigate('/bookinglist/:listing');
-							}}>
-							Listing
-						</div>
+					<div
+						className={active === 0 ? "chosen option" : "option"}
+						onClick={() => {
+							setActive(0);
+							navigate("/bookinglist/:booking");
+						}}
+					>
+						Booking
+					</div>
+					<div
+						className={active === 1 ? "chosen option" : "option"}
+						onClick={() => {
+							setActive(1);
+							navigate("/bookinglist/:listing");
+						}}
+					>
+						Listing
+					</div>
 				</div>
 				{active === 0 ? (
 					<div
@@ -284,8 +294,13 @@ const BookingList = () => {
 							width: "90vw",
 							margin: "40px auto",
 							height: "80vh",
-						}}>
-						<SyncfusionTable UsersData={bookingData} UsersGrid={bookingGrid} content={"Booked"} />
+						}}
+					>
+						<SyncfusionTable
+							UsersData={bookingData}
+							UsersGrid={bookingGrid}
+							content={"Booked"}
+						/>
 					</div>
 				) : (
 					<div
@@ -293,8 +308,13 @@ const BookingList = () => {
 							width: "57vw",
 							margin: "40px auto",
 							height: "85vh",
-						}}>
-						<SyncfusionTable UsersData={listingData} UsersGrid={listingGrid} content={"Listed"} />
+						}}
+					>
+						<SyncfusionTable
+							UsersData={listingData}
+							UsersGrid={listingGrid}
+							content={"Listed"}
+						/>
 					</div>
 				)}
 			</div>

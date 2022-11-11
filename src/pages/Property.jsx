@@ -37,7 +37,7 @@ const Property = ({
 	setV5,
 	setV6,
 	setTotPrice,
-	tot_price
+	tot_price,
 }) => {
 	const [locationData, setLocationData] = useState({});
 	const [propertyItems, setPropertyItems] = useState([]);
@@ -73,6 +73,7 @@ const Property = ({
 			})
 			.catch((err) => console.log(err));
 	}, [locationData]);
+	
 	const locationItem = (
 		<div
 			style={{
@@ -82,7 +83,8 @@ const Property = ({
 				flexDirection: "column",
 				alignItems: "center",
 				justifyContent: "flex-start",
-			}}>
+			}}
+		>
 			<div
 				style={{
 					width: "100%",
@@ -91,7 +93,8 @@ const Property = ({
 					alignItems: "flex-start",
 					marginBottom: "20px",
 					gap: "5px",
-				}}>
+				}}
+			>
 				<div>Address:</div>
 				<div style={{ lineHeight: "24px" }}>
 					{locationData?.property_address?.address}
@@ -106,7 +109,7 @@ const Property = ({
 			</div>
 			<div className="property--map">
 				{cord.lat !== 0 && (
-					<GoogleMap lat={cord.lat} lng={cord.lng} zoom={13} loc={false} />
+					<GoogleMap lat={cord.lat} lng={cord.lng} />
 				)}
 			</div>
 		</div>
@@ -116,7 +119,8 @@ const Property = ({
 		<div
 			style={{
 				width: "100%",
-			}}>
+			}}
+		>
 			<div className="host-info">
 				<div
 					style={{
@@ -124,7 +128,8 @@ const Property = ({
 						justifyContent: "flex-start",
 						alignItems: "center",
 						gap: "20px",
-					}}>
+					}}
+				>
 					{locationData?.contact_det?.img ? (
 						<img
 							className="user-dp"
@@ -155,7 +160,8 @@ const Property = ({
 						(window.location = `messages/${window.location.pathname.substring(
 							10
 						)}`)
-					}>
+					}
+				>
 					Message the host
 				</Button>
 			</div>
@@ -167,7 +173,8 @@ const Property = ({
 					padding: "10px",
 					paddingLeft: "5.5%",
 					lineHeight: "24px",
-				}}>
+				}}
+			>
 				Description of the host ipsum dolor sit amet, consectetur adipiscing
 				elit. Nam hendrerit nisi sed sollicitu din pellentesque. Nunc posuere
 				purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae
@@ -280,7 +287,8 @@ const Property = ({
 					display: "flex",
 					alignItems: "center",
 					cursor: "pointer",
-				}}>
+				}}
+			>
 				<AiOutlineLeft
 					size="32px"
 					onClick={() => {
@@ -290,25 +298,26 @@ const Property = ({
 				/>
 			</div>
 			<div className="similar-properties">
-			{propertyItems.map((item, index) => {
-				return (
-					<PropertyInfo
-						item={item}
-						index={index}
-						favorites={fav}
-						setFavorites={setFav}
-						key={index}
-						rating={true}
-					/>
-				);
-			})}
+				{propertyItems.map((item, index) => {
+					return (
+						<PropertyInfo
+							item={item}
+							index={index}
+							favorites={fav}
+							setFavorites={setFav}
+							key={index}
+							rating={true}
+						/>
+					);
+				})}
 			</div>
 			<div
 				style={{
 					display: "flex",
 					alignItems: "center",
 					cursor: "pointer",
-				}}>
+				}}
+			>
 				<AiOutlineRight
 					size="32px"
 					onClick={() => {
@@ -332,7 +341,8 @@ const Property = ({
 							justifyContent: "flex-start",
 							alignItems: "center",
 							gap: "10px",
-						}}>
+						}}
+					>
 						<MdDone color="#ff4d4d" size={24} />
 						<div>{val}</div>
 					</div>
@@ -348,7 +358,8 @@ const Property = ({
 							justifyContent: "flex-start",
 							alignItems: "center",
 							gap: "10px",
-						}}>
+						}}
+					>
 						<ImCross color="#ff4d4d" size={12} />
 						<div>{val}</div>
 					</div>
@@ -533,7 +544,8 @@ const Property = ({
 				setV2={setV2}
 				setV3={setV3}
 				setV4={setV4}
-				setV5={setV5}AccordionSummary
+				setV5={setV5}
+				AccordionSummary
 				setV6={setV6}
 				locationData={locationData}
 				setTotPrice={setTotPrice}
@@ -544,7 +556,8 @@ const Property = ({
 				style={{
 					width: "80vw",
 					margin: "30px auto 50px",
-				}}>
+				}}
+			>
 				{accordion.map((item, index) => (
 					<Accordion
 						key={index}
@@ -553,7 +566,8 @@ const Property = ({
 							setExpanded((prev) =>
 								prev.map((exp, i) => (i === index ? !exp : exp))
 							)
-						}>
+						}
+					>
 						<AccordionSummary
 							sx={{
 								fontFamily: "Rubik",
@@ -565,7 +579,8 @@ const Property = ({
 							}}
 							expandIcon={<MdExpandMore size="31px" color="black" />}
 							aria-controls="panel1a-content"
-							id="panel1a-header">
+							id="panel1a-header"
+						>
 							{item.title}
 						</AccordionSummary>
 						<AccordionDetails
@@ -575,7 +590,8 @@ const Property = ({
 								fontWeight: "400",
 								fontSize: "16px",
 								paddingBottom: "30px",
-							}}>
+							}}
+						>
 							{item?.type === "list" ? (
 								item?.columns === true ? (
 									<div
@@ -583,7 +599,8 @@ const Property = ({
 											display: "grid",
 											gridTemplateColumns: "1fr 1fr 1fr",
 											gap: "20px",
-										}}>
+										}}
+									>
 										{item?.info?.map((val, i) => (
 											<div
 												key={i}
@@ -593,7 +610,8 @@ const Property = ({
 													alignItems: "center",
 													gap: "10px",
 													lineHeight: "32px",
-												}}>
+												}}
+											>
 												<GoPrimitiveDot color="#ff4d4d" size={16} />
 												<div>{val}</div>
 											</div>
@@ -610,7 +628,8 @@ const Property = ({
 													alignItems: "center",
 													gap: "10px",
 													lineHeight: "32px",
-												}}>
+												}}
+											>
 												<GoPrimitiveDot color="#ff4d4d" />
 												<div>{val}</div>
 											</div>
@@ -628,10 +647,9 @@ const Property = ({
 					style={{
 						marginTop: "50px",
 						width: "100%",
-					}}>
-					<div className="properties--main">
-						Similar Properties
-					</div>
+					}}
+				>
+					<div className="properties--main">Similar Properties</div>
 					{similarProperties}
 				</div>
 			</div>

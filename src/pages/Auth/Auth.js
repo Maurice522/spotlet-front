@@ -372,7 +372,7 @@ export default function Auth() {
 					<ForgotPassword handleClose={handleClose} />
 				</Modal>
 				<Modal open={openOTP} onClose={handleCloseOTP}>
-					<OTPVerify sendOTP={getOTP} signUp={true} />
+					<OTPVerify sendOTP={getOTP} isSignUp={true} />
 				</Modal>
 			</div>
 		</div>

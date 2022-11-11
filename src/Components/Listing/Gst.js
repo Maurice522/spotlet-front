@@ -85,7 +85,7 @@ const Gst = ({ showSection, changeSection }) => {
       <div className="row1" id="photo-sec-s">
         {filesData?.map((fileData, index) => {
           return (
-            <div className="pict">
+            <div className="pict" key={index}>
               <Clear
                 sx={{
                   cursor: "pointer",

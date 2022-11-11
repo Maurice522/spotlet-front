@@ -13,7 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Clear } from "@mui/icons-material";
-const Photo = ({ showSection, changeSection }) => {
+const Photo = ({ showSection }) => {
 	//const [files, setFiles] = useState([]);
 	const [imagesData, setImagesData] = useState([]);
 	const dispatch = useDispatch();
@@ -118,7 +118,6 @@ const Photo = ({ showSection, changeSection }) => {
 								//  console.log(locData);
 								showSection("Features");
 								if (imagesData.length === 5) {
-									changeSection("Features");
 									window.scrollTo(0, 0);
 								}
 							}}>

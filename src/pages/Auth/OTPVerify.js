@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { VpnKeyOutlined } from "@mui/icons-material";
-export default function OTPVerify({ sendOTP, signUp, updateUserData }) {
+export default function OTPVerify({ sendOTP, isSignUp, updateUserData }) {
   const [otp, setOTP] = useState("");
   const [auto, setAuto] = useState(true);
   const [timer, setTimer] = useState(120);
@@ -39,8 +39,8 @@ export default function OTPVerify({ sendOTP, signUp, updateUserData }) {
     }
   }, [otp]);
 
-  console.log(auto);
-  console.log(otp.length === 4);
+  // console.log(auto);
+  // console.log(otp.length === 4);
 
   const handlSubmit = async (e) => {
     !auto && e.preventDefault()
@@ -48,25 +48,35 @@ export default function OTPVerify({ sendOTP, signUp, updateUserData }) {
       if (verifyOtp != otp) {
         toast.error("Invalid OTP please try again!!!");
       } else {
-        let updateData = {
-          fullName: updateUserData.firstName + " " + updateUserData.lastName,
-          email: updateUserData.email,
-          mobile: updateUserData.mobile,
-          booking_type: updateUserData.booking_type,
-          [updateUserData.booking_type === "corporate" ? "company" : "profession"]:
-            updateUserData.booking_type === "corporate"
-              ? updateUserData.company
-              : updateUserData.profession,
-          profile_pic: updateUserData.profile_pic,
-        };
-        dispatch(updateUser(updateData));
-        try {
-          const response = await updateUserInfo(user_id, updateData);
-          toast.success("Information Updated");
-        } catch (error) {
-          console.log(error);
-          toast.error(error.response.data);
-        }
+        if (isSignUp) {
+          const res = await signUp(userData);
+          const jwt = res.data;
+          localStorage.setItem("token", jwt);
+          toast("User Created");
+          dispatch(saveOTP(-1));
+          window.location = "/";
+        } else {
+          let updateData = {
+            fullName: updateUserData.firstName + " " + updateUserData.lastName,
+            email: updateUserData.email,
+            mobile: updateUserData.mobile,
+            booking_type: updateUserData.booking_type,
+            [updateUserData.booking_type === "corporate" ? "company" : "profession"]:
+              updateUserData.booking_type === "corporate"
+                ? updateUserData.company
+                : updateUserData.profession,
+            profile_pic: updateUserData.profile_pic,
+          };
+          dispatch(updateUser(updateData));
+          try {
+            const response = await updateUserInfo(user_id, updateData);
+            toast.success("Information Updated");
+            window.location("/account")
+          } catch (error) {
+            console.log(error);
+            toast.error(error.response.data);
+          }
+        }       
       }
     } catch (error) {
       toast.error(error.response.data.error);

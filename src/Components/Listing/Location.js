@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { createTempLocation } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { addLocation, selectLocationData, selectLocationId, updatelocation } from "../../redux/slices/locationSlice";
 import { toast } from "react-toastify";
 import GoogleMap from "../GoogleMap";
 import axios from "axios";
-import { BiRightArrow } from "react-icons/bi";
-import { GoArrowRight } from "react-icons/go";
 import { MdTravelExplore } from "react-icons/md";
 import "../../Assets/Styles/listYourSpace.css";
 import { Country, State, City } from 'country-state-city';
@@ -16,15 +13,6 @@ import {
   MenuItem
 
 } from "@mui/material";
-import { selectUserData } from "../../redux/slices/userSlice";
-
-// import {
-
-//   Autocomplete,
-
-// } from '@react-google-maps/api'
-import { Direction } from "react-toastify";
-
 
 const Location = ({ showSection, changeSection }) => {
   const [property_address, setPropertyAddress] = useState({
@@ -35,13 +23,17 @@ const Location = ({ showSection, changeSection }) => {
     country: "",
     pincode: "",
     landmark: "",
-    location_details: null
+    location_detail: null
   });
 
+  const location_id = useSelector(selectLocationId);
+  const location = useSelector(selectLocationData);
+  const dispatch = useDispatch();
 
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
+
   const [countryKey, setCountryKey] = useState(-1);
   const [stateKey, setStateKey] = useState(-1);
   const [cityKey, setCityKey] = useState(-1);
@@ -52,28 +44,22 @@ const Location = ({ showSection, changeSection }) => {
   //   lng:78.4867
   // } )
 
-  const location_id = useSelector(selectLocationId);
-  const location = useSelector(selectLocationData);
-  const user = useSelector(selectUserData);
-  const dispatch = useDispatch();
-  console.log(user)
-  // console.log(selectLocationId)
-  console.log(location)
 
   useEffect(() => {
 
     var countryiso
-    location && Country.getAllCountries().map((item, index)=>{
-      if(item.name === location.property_address.country){
+    location && Country.getAllCountries().map((item, index) => {
+      if (item.name === location?.property_address?.country) {
         setCountryKey(index);
         countryiso = item.isoCode;
         setCountry(item.isoCode);
         // alert(index);
       }
     })
+
     var stateiso
-    location &&  State.getAllStates().filter(item => item.countryCode === countryiso).map((item, index)=>{
-      if(item.name === location.property_address.state){
+    location && State.getAllStates().filter(item => item.countryCode === countryiso).map((item, index) => {
+      if (item.name === location?.property_address?.state) {
         setStateKey(index);
         setState(item.isoCode);
         stateiso = item.isoCode;
@@ -81,16 +67,15 @@ const Location = ({ showSection, changeSection }) => {
       }
     })
 
-    location&& City.getCitiesOfState(countryiso, stateiso).map((item, index)=>{
-      if(item.name === location.property_address.city){
+    location && City.getCitiesOfState(countryiso, stateiso).map((item, index) => {
+      if (item.name === location?.property_address?.city) {
         setCityKey(index);
         setCity(item.name);
         // alert(index);
       }
     })
 
-    location && setPropertyAddress(location.property_address);
-    console.log(property_address);
+    location && setPropertyAddress(location?.property_address);
   }, []);
 
   const [showmap, setShowmap] = useState(false)
@@ -104,26 +89,17 @@ const Location = ({ showSection, changeSection }) => {
   let cityArray = City.getCitiesOfState(country, state);
 
   const changeCountry = (id, idx) => {
-    // alert(Country.getAllCountries()[idx].name);
-    
     setCountryKey(idx);
     setCountry(id);
-    // stateArray = State.getAllStates().filter(item => item.countryCode === id);
   }
   const changeState = (id, idx) => {
     setStateKey(idx)
     setState(id);
-    // cityArray = City.getCitiesOfState(country, id);
   }
   const changeCity = (name, idx) => {
     setCityKey(idx)
     setCity(name);
   }
-
-  console.log(country.length);
-  console.log(state.length);
-  console.log(city);
-
 
   // console.log(Country.getAllCountries())
   // console.log(State.getAllStates())
@@ -143,9 +119,9 @@ const Location = ({ showSection, changeSection }) => {
   // const GEO_API = "b531f1d229f547d09b4c7c3207885471";
 
   // useEffect(() => {
-  //   location.property_address && setPropertyAddress(location.property_address);
+  //   location?.property_address && setPropertyAddress(location?.property_address);
   //   const address = location.property_address && encodeURI(location.property_address.location_detail)
-  //   location.property_address && axios.get(`https://api.geoapify.com/v1/geocode/search?text=${address}&format=json&apiKey=${GEO_API}`)
+  //   location?.property_address && axios.get(`https://api.geoapify.com/v1/geocode/search?text=${location?.location_details}&format=json&apiKey=${GEO_API}`)
   //   .then(
   //     (response) => {
   //       //const { lat, lng } = response.results[0].geometry.location;
@@ -156,7 +132,7 @@ const Location = ({ showSection, changeSection }) => {
   //       })
   //     })
   //    .catch(err => console.log(err))
-  // }, [])
+  // }, [property_address])
 
   // const searchMap = () => {
   //  // console.log(first)
@@ -189,8 +165,8 @@ const Location = ({ showSection, changeSection }) => {
 
   const handleSubmit = async (e) => {
     //console.log(property_address)
-    if (!property_address.city.length || !property_address.state.length || !property_address.area.length ||
-      !property_address.country.length || !property_address.pincode.length || !property_address.address.length)
+    if (!property_address?.city?.length || !property_address?.state?.length || !property_address?.area?.length ||
+      !property_address?.country?.length || !property_address?.pincode?.length || !property_address?.address?.length)
       return toast.error("Please fill all required fields!!!")
     const locData = {
       ...location,
@@ -209,7 +185,7 @@ const Location = ({ showSection, changeSection }) => {
     }
 
     changeSection("Amenities");
-		window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
 
 
@@ -236,13 +212,13 @@ const Location = ({ showSection, changeSection }) => {
             id="country"
             name="country"
             // defaultValue=""
-            value={countryKey==-1?"":Country.getAllCountries()[countryKey].name}
+            value={countryKey == -1 ? "" : Country.getAllCountries()[countryKey].name}
             className={'listingInput input input__location'}
             onChange={handleChange}>
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {Country.getAllCountries().map((item, index )=> <MenuItem value={item.name} onClick={changeCountry.bind(this, item.isoCode, index)} key={item.name}>{item.name}</MenuItem>)}
+            {Country.getAllCountries().map((item, index) => <MenuItem value={item.name} onClick={changeCountry.bind(this, item.isoCode, index)} key={item.name}>{item.name}</MenuItem>)}
           </Select>
         </div>
 
@@ -257,7 +233,7 @@ const Location = ({ showSection, changeSection }) => {
             id="state"
             name="state"
             // defaultValue=""
-            value={country.length ?stateArray[stateKey].name: ""}
+            value={country?.length ? stateArray[stateKey]?.name : ""}
             className={'listingInput input input__location'}
             isDisabled={country.length === 0 ? true : false}
             onChange={handleChange}>
@@ -288,7 +264,7 @@ const Location = ({ showSection, changeSection }) => {
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            { stateArray.length && cityArray.map((item, index) => <MenuItem value={item.name} onClick={changeCity.bind(this, item.name, index)} key={item.name}>{item.name}</MenuItem>)}
+            {stateArray.length && cityArray.map((item, index) => <MenuItem value={item.name} onClick={changeCity.bind(this, item.name, index)} key={item.name}>{item.name}</MenuItem>)}
           </Select>
           {state.length === 0 && <p style={{ fontSize: "15px", color: "grey" }}>Please select country and state first</p>}
         </div>
@@ -353,7 +329,7 @@ const Location = ({ showSection, changeSection }) => {
             className="listingInput lginput"
             name="location_detail"
             onChange={handleChange}
-            value={property_address ? property_address.location_details : ""}
+            value={property_address ? property_address.location_detail : ""}
           />
           <MdTravelExplore onClick={() => showLocation()} size={27} style={{ marginLeft: "auto", position: "relative", top: "-35px", marginRight: "10px", cursor: "pointer" }} />
         </div>
@@ -365,7 +341,7 @@ const Location = ({ showSection, changeSection }) => {
           width: "10%",
           height: "10%"
         }}>
-          <GoogleMap address={property_address ? property_address.location_details : ""} loc={true} />
+          <GoogleMap address={property_address?.location_detail} />
         </div>) : null
       }
 
