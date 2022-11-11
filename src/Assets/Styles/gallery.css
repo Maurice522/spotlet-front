@@ -62,3 +62,9 @@
   top: 15%;
   left: 5%;
 }
+
+@media screen and (max-width: 420px) {
+  .gallery-wrapper {
+    width: 80%;
+  }
+}
