@@ -254,7 +254,7 @@ export default function Messages() {
           <div>
             <h2>{locationId}</h2>
             <h4>{locationData?.property_address?.address}</h4>
-            <h5>Rs {bookingDetail?.total_amt}</h5>
+            <h5>₹ {bookingDetail?.total_amt}</h5>
             <h4>Reserved Date</h4>
             <h5>{date_of_booking}</h5>
             <h4>Reserved Time</h4>

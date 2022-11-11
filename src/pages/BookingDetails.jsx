@@ -212,11 +212,11 @@ const BookingDetails = () => {
 						<div className="booking-details-body-right">
 							<div data-attribute-3>
 								<div data-attribute-4>
-									Rs {perHourCost === "Infinity" ? 0 : perHourCost} *{" "}
+									₹ {perHourCost === "Infinity" ? 0 : perHourCost} *{" "}
 									{booking?.duration_in_hours} hrs
 								</div>
 								<div data-attribute-4>
-									Rs{" "}
+									₹{" "}
 									{(perHourCost * booking?.duration_in_hours)?.toFixed(2) ===
 									"NaN"
 										? 0
@@ -225,13 +225,13 @@ const BookingDetails = () => {
 							</div>
 							<div data-attribute-3>
 								<div data-attribute-4>Processing Fee</div>
-								<div data-attribute-4>Rs 40</div>
+								<div data-attribute-4>₹ 40</div>
 							</div>
 
 							<div data-attribute-3>
 								<div data-attribute-1>Total</div>
 								<div data-attribute-1>
-									Rs{" "}
+									₹{" "}
 									{(perHourCost * booking?.duration_in_hours + 40)?.toFixed(
 										2
 									) === "NaN"
