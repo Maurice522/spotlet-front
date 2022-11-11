@@ -185,7 +185,7 @@ const ListDetailsComponent = () => {
 						<div className="booking-details-body-right">
 							<div data-attribute-3>
 								<div data-attribute-1>Total</div>
-								<div data-attribute-1>Rs {bookingDetail?.total_amt}</div>
+								<div data-attribute-1>₹ {bookingDetail?.total_amt}</div>
 							</div>
 							<Button
 								variant={bookingDetail?.payment_status === "Rejected" ? "outlined" : "contained"}

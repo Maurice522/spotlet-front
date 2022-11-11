@@ -163,7 +163,7 @@ const Pricing = ({ location }) => {
                 <>
                     <div className="row1">
                         <div className="coll1">
-                            <h2>Enter Hourly Price in Rs.</h2>
+                            <h2>Enter Hourly Price in ₹.</h2>
                             <input
                                 className="input"
                                 onChange={(e) => settv({ ...tv, hourly_rate: e.target.value })}
@@ -214,7 +214,7 @@ const Pricing = ({ location }) => {
                 <>
                     <div className="row1">
                         <div className="coll1">
-                            <h2>Enter Hourly Price in Rs.</h2>
+                            <h2>Enter Hourly Price in ₹.</h2>
                             <input
                                 className="input"
                                 onChange={(e) =>
@@ -271,7 +271,7 @@ const Pricing = ({ location }) => {
                 <>
                     <div className="row1">
                         <div className="coll1">
-                            <h2>Enter Hourly Price in Rs.</h2>
+                            <h2>Enter Hourly Price in ₹.</h2>
                             <input
                                 className="input"
                                 onChange={(e) =>

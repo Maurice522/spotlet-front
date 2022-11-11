@@ -201,7 +201,7 @@ const BookingList = () => {
 				ampm +
 				", " +
 				booking?.duration_in_hours,
-			TotalAmount: booking?.total_amt,
+			TotalAmount: booking?.total_amt?.toFixed(2),
 		};
 	});
 

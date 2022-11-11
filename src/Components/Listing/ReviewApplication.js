@@ -406,7 +406,7 @@ const ReviewApplication = ({ changeSection }) => {
                 </div>
             </div>
             <div className="coll1">
-                <h2>Enter Hourly Price in Rs.</h2>
+                <h2>Enter Hourly Price in ₹.</h2>
                 <input
                     disabled
                     className="input"
@@ -423,7 +423,7 @@ const ReviewApplication = ({ changeSection }) => {
                 </div>
             </div>
             <div className="coll1">
-                <h2>Enter Hourly Price in Rs.</h2>
+                <h2>Enter Hourly Price in ₹.</h2>
                 <input
                     disabled
                     className="input"
@@ -441,7 +441,7 @@ const ReviewApplication = ({ changeSection }) => {
                 </div>
             </div>
             <div className="coll1">
-                <h2>Enter Hourly Price in Rs.</h2>
+                <h2>Enter Hourly Price in ₹.</h2>
                 <input
                     disabled
                     className="input"
