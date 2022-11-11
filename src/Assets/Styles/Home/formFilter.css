@@ -1,5 +1,5 @@
 #form-wrapper {
-	margin: -30px auto 0;
+	margin: -50px auto 0;
 	width: 82vw;
 	height: 170px;
 	background-color: #ffffff;
@@ -11,12 +11,12 @@
 
 #form {
 	background: #ffffff;
-	height: fit-content;
+	height: 5.5rem;
 	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25),
 		-4px -4px 10px rgba(0, 0, 0, 0.25);
 	border-radius: 40px;
-	width: 77vw;
-	padding: 30px;
+	width: 76vw;
+	padding: 25px 30px 20px 30px;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr) auto;
 	z-index: 3;
@@ -201,6 +201,7 @@
 		border-radius: 8px;
 		margin-top: 10rem;
 		background-color: rgba(255, 239, 239, 0.7);
+		height: fit-content;
 	}
 	#form div{
 		width: 90%;

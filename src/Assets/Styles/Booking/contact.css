@@ -10,6 +10,12 @@
 	gap: 20px;
 }
 
+.contact-form-input{
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
 #booking-contact-form label {
 	display: block;
 	font-family: "Rubik";

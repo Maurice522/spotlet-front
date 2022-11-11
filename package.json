@@ -30,6 +30,7 @@
     "react-geocode": "^0.2.3",
     "react-google-places-autocomplete": "^3.4.0",
     "react-icons": "^4.4.0",
+    "react-image-crop": "^10.0.8",
     "react-modal": "^3.15.1",
     "react-places-autocomplete": "^7.3.0",
     "react-redux": "^8.0.2",

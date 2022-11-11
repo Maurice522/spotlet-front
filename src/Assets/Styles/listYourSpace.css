@@ -161,6 +161,20 @@ h1 {
     min-height: 6rem;
 }
 
+@media screen and (max-width: 420px) {
+    .locationContinue {
+      min-width: 300px;
+    }
+  }
+.listing-modal h3{
+    margin-bottom: 1rem;
+}
+
+.listing-modal button{
+    min-width: none !important;
+    width: 40%;
+}
+
 
 
 @media screen and (max-width: 1200px){

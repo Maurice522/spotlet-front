@@ -86,7 +86,10 @@ hr {
 	width: 1.5em;
 	cursor: pointer;
 }
-
+.crop-image-container {
+	margin-left: 5px;
+	margin-top: 100px;
+  }
 .continue1 {
 	margin-left: 300px;
 }
@@ -175,6 +178,15 @@ h2 {
 	justify-content: center;
 	align-items: center;
 }
+
+
+.image-file-container {
+	padding: 10px 0px;
+	border-bottom: 1px solid gray;
+	font-size: 16px;
+	color: #ff6767;
+	margin-bottom: 5px;
+  }
 .inputD {
 	display: none;
 }
@@ -237,6 +249,9 @@ h2 {
 	cursor: pointer;
 	font-size: 20px;
 	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 h1 {
@@ -279,7 +294,33 @@ h1 {
 	width: 50vw !important;
 }
 
-
+@media screen and (max-width: 420px) {
+	.coll1 {
+	  margin-top: 10px;
+	  gap: 0px;
+	}
+	.row1 {
+	  margin: 0px !important;
+	}
+	.mobile-col {
+	  margin-top: 20px;
+	}
+	.menu {
+	  padding: 8px 6px;
+	  border-radius: 5px;
+	}
+	.host {
+	  gap: 10px;
+	}
+	.lbox {
+	  padding: 0px 20px;
+	  width: 80vw;
+	}
+	.uploadImage {
+	  margin: 15px 0px;
+	  width: 100%;
+	}
+  }
 @media screen and (max-width: 576px){
 	.host{
 		display: flex;
