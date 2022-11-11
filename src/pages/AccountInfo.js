@@ -385,7 +385,7 @@ const AccountInfo = (extraNavId) => {
               </form>
               <Modal open={openOTP} onClose={handleCloseOTP}>
                 {/* {console.log(updateData)} */}
-                <OTPVerify sendOTP={getOTP} signup={false} updateUserData={updateUserData} />
+                <OTPVerify sendOTP={getOTP} isSignUp={false} updateUserData={updateUserData} />
               </Modal>
             </div>
           ) : (

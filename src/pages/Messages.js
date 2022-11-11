@@ -34,14 +34,36 @@ export default function Messages() {
   const [bookingDetail, setBookingDetail] = useState({});
   const bookingId = currentChat?.bookingId;
   const locationId = currentChat?.locationId;
-  const endTime =( Number(bookingDetail?.time?.substr(0,2))+Number(bookingDetail?.duration_in_hours))%24;
-  const date = new Date(bookingDetail?.timestamp?._seconds*1000)
-	const yyyy = date.getFullYear();
-	let mm = date.getMonth() + 1; // Months start at 0!
-	let dd = date.getDate();
 
-		if (dd && dd < 10) dd = '0' + dd;
-		if (mm && mm < 10) mm = '0' + mm;
+  function toMonthName(monthNumber) {
+    const date = new Date();
+    date.setMonth(monthNumber - 1);
+
+    return date.toLocaleString('en-US', {
+      month: 'long',
+    });
+  }
+
+  let endTime =
+    (Number(bookingDetail?.time?.substr(0, 2)) +
+      Number(bookingDetail?.duration_in_hours)) %
+    24;
+  let ampm = bookingDetail?.time?.substr(6, 7);
+  if (endTime > 12) {
+    endTime = endTime % 12;
+    if (endTime < 10) {
+      endTime = "0" + endTime;
+    }
+    ampm = ampm == "pm" ? "am" : "pm";
+  }
+  let mm = bookingDetail?.date?.split("-")[1]
+  const month = toMonthName(mm);
+  const date_of_booking =
+    bookingDetail?.date?.split("-")[0] +
+    "th " +
+    month +
+    " " +
+    bookingDetail?.date?.split("-")[2];
   useEffect(() => {
     // socket.current = io.connect("https://gorecce-backend.herokuapp.com");
     socket.current = io.connect("http://localhost:8000");
@@ -132,14 +154,6 @@ export default function Messages() {
         .then((res) => setMessages(res.data))
         .catch((error) => toast.error(error.response.data));
   }, [currentChat]);
-  function toMonthName(monthNumber) {
-		const date = new Date();
-		date.setMonth(monthNumber - 1);
-	  
-		return date.toLocaleString('en-US', {
-		  month: 'long',
-		});
-	  }
   return (
     <div>
       <Navbar extraNavId={"id-2"} />
@@ -242,9 +256,13 @@ export default function Messages() {
             <h4>{locationData?.property_address?.address}</h4>
             <h5>Rs {bookingDetail?.total_amt}</h5>
             <h4>Reserved Date</h4>
-            <h5>{dd}th {toMonthName(mm)} {yyyy}</h5>
+            <h5>{date_of_booking}</h5>
             <h4>Reserved Time</h4>
-            <h5>{bookingDetail?.time + " - " + endTime + bookingDetail?.time?.substr(2)}</h5>
+                  <h5>{bookingDetail?.time +
+                    " - " +
+                    endTime +
+                    bookingDetail?.time?.substr(2, 4) +
+                    ampm}</h5>
             <h4>Attendies</h4>
             <h5>{bookingDetail?.attendies} people</h5>
           </div>
