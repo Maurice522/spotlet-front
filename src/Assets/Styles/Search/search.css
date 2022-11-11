@@ -11,7 +11,7 @@
 
 .search-property-list {
 	margin: 20px auto;
-	width: 85%;
+	width: 80%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 20px;
