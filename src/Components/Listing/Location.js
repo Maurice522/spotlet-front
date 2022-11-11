@@ -209,6 +209,11 @@ const Location = ({ showSection, changeSection }) => {
             <h2 className="locationH2">Country<span style={{ color: "red" }}>*</span></h2>
           </label>
           <Select
+            MenuProps={{
+              style: {
+                maxHeight: 300,
+              },
+            }}
             id="country"
             name="country"
             // defaultValue=""
@@ -230,6 +235,11 @@ const Location = ({ showSection, changeSection }) => {
             <h2 className="locationH2">State<span style={{ color: "red" }}>*</span></h2>
           </label>
           <Select
+            MenuProps={{
+              style: {
+                maxHeight: 300,
+              },
+            }}
             id="state"
             name="state"
             // defaultValue=""
@@ -253,6 +263,11 @@ const Location = ({ showSection, changeSection }) => {
             <h2 className="locationH2">City<span style={{ color: "red" }}>*</span></h2>
           </label>
           <Select
+            MenuProps={{
+              style: {
+                maxHeight: 300,
+              },
+            }}
             id="city"
             name="city"
             defaultValue=""
