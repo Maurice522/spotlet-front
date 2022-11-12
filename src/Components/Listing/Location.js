@@ -212,6 +212,7 @@ const Location = ({ showSection, changeSection }) => {
             MenuProps={{
               style: {
                 maxHeight: 300,
+                width: 150
               },
             }}
             id="country"
@@ -238,6 +239,7 @@ const Location = ({ showSection, changeSection }) => {
             MenuProps={{
               style: {
                 maxHeight: 300,
+                width: 150
               },
             }}
             id="state"
@@ -266,6 +268,7 @@ const Location = ({ showSection, changeSection }) => {
             MenuProps={{
               style: {
                 maxHeight: 300,
+                width: 150
               },
             }}
             id="city"

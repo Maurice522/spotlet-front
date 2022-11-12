@@ -114,14 +114,12 @@ const Carousel = ({ locationData }) => {
 						{locationData?.pricing?.corporate?.isPresent && (
 							<MdOutlineCorporateFare size="30px" />
 						)}
-						{locationData?.pricing?.film_webseries_ad?.isPresent && (
+						{locationData?.pricing?.film_webseries_ad?.isPresent || 
+							locationData?.pricing?.tv_series_other?.isPresent && (
 							<GiFilmProjector size="30px" />
 						)}
 						{locationData?.pricing?.individual?.isPresent && (
 							<BsPersonFill size="30px" />
-						)}
-						{locationData?.pricing?.tv_series_other?.isPresent && (
-							<GiFilmProjector size="30px" />
 						)}
 					<div
 						style={{
