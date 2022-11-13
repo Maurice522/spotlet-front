@@ -98,7 +98,7 @@ hr {
 	height: 180px;
 	border: 1px solid black;
 	border-radius: 8px;
-	margin: 15px 50px;
+	margin: 15px 0;
 }
 .pict > img {
 	width: 440px;

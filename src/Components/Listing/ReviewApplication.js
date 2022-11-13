@@ -301,9 +301,6 @@ const ReviewApplication = ({ changeSection }) => {
                 }}>Edit</Button>
             </div>
             <div className="coll1">
-                <h2>
-                    Amenties<span style={{ color: "red" }}>*</span>
-                </h2>
                 <ul>
                     {finalData.amenities ? finalData.amenities?.map(item => <li key={item}>{item}</li>) : ""}
                 </ul>
@@ -335,9 +332,6 @@ const ReviewApplication = ({ changeSection }) => {
                 }}>Edit</Button>
             </div>
             <div className="coll1">
-                <h2>
-                    Features<span style={{ color: "red" }}>*</span>
-                </h2>
                 <ul>
                     {finalData.features ? finalData.features?.map(item => <li key={item}>{item}</li>) : ""}
                 </ul>
@@ -473,7 +467,7 @@ const ReviewApplication = ({ changeSection }) => {
                     window.scrollTo(0, 0);
                 }}>Edit</Button>
             </div>
-            <div className="row1 timing-row">
+            <div className="row1 timing-row-rev">
                 <h2>Monday</h2>
                 <Switch
                     color="warning"
@@ -504,7 +498,7 @@ const ReviewApplication = ({ changeSection }) => {
                     </div>
                 }
             </div>
-            <div className="row1 timing-row">
+            <div className="row1 timing-row-rev">
                 <h2>Tuesday</h2>
                 <Switch
                     color="warning"
@@ -535,7 +529,7 @@ const ReviewApplication = ({ changeSection }) => {
                     </div>
                 }
             </div>
-            <div className="row1 timing-row">
+            <div className="row1 timing-row-rev">
                 <h2>Wednesday</h2>
                 <Switch
                     color="warning"
@@ -566,7 +560,7 @@ const ReviewApplication = ({ changeSection }) => {
                     </div>
                 }
             </div>
-            <div className="row1 timing-row">
+            <div className="row1 timing-row-rev">
                 <h2>Thursday</h2>
                 <Switch
                     color="warning"
@@ -597,7 +591,7 @@ const ReviewApplication = ({ changeSection }) => {
                     </div>
                 }
             </div>
-            <div className="row1 timing-row">
+            <div className="row1 timing-row-rev">
                 <h2>Friday</h2>
                 <Switch
                     color="warning"
@@ -628,7 +622,7 @@ const ReviewApplication = ({ changeSection }) => {
                     </div>
                 }
             </div>
-            <div className="row1 timing-row">
+            <div className="row1 timing-row-rev">
                 <h2>Saturday</h2>
                 <Switch
                     color="warning"
@@ -659,7 +653,7 @@ const ReviewApplication = ({ changeSection }) => {
                     </div>
                 }
             </div>
-            <div className="row1 timing-row">
+            <div className="row1 timing-row-rev">
                 <h2>Sunday</h2>
                 <Switch
                     color="warning"

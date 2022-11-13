@@ -140,6 +140,7 @@ const Details = ({ showSection, changeSection }) => {
 	const [opt, setOpt] = useState(options);
 	const [loc, setLoc] = useState(false);
 	const [newLoc, setNewLoc] = useState('');
+	console.log(opt[opt.length -1])
 
 	return (
 		<div className="lbox">
@@ -151,20 +152,22 @@ const Details = ({ showSection, changeSection }) => {
 					<Select
 						className="listingInput locationtype"
 						options={opt}
-						value={opt[lType]}
 						onChange={(e) =>{
-							if(e.value != 'Add New'){
-								options.map((item,index)=>{
-									if(e.value == item.value){
+							if(e.value !== 'Add New'){
+								opt.map((item,index)=>{
+									if(e.value === item.value){
 										setLType(index);
 									}
 								})
 								setPropertyDescr({ ...property_desc, location_type: e.value })
 							}
-							else
+							else{
+								setLType(opt.length-1)
 								setLoc(true);
+							}
 						}
 						}
+						value={opt[lType]}
 						required
 					/>
 				</div>

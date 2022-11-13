@@ -111,9 +111,11 @@ const Features = ({ showSection, changeSection }) => {
 							const filteredOptions = checkboxValue.filter(
 								item => item.value !== option.value
 							);
+							const finalOptions = features.filter(
+								item => item !== option.value
+							);
 							setValue(filteredOptions);
-							features.splice(option.value, 1);
-							setFeatures((prev) => [...prev]);
+							setFeatures(finalOptions)
 						}}
 						value={checkboxValue}
 						displayTags

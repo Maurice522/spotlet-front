@@ -144,9 +144,11 @@ const Amenities = ({ showSection, changeSection }) => {
 							const filteredOptions = checkboxValue.filter(
 								item => item.value !== option.value
 							);
+							const finalOptions = amenities.filter(
+								item => item !== option.value
+							);
 							setValue(filteredOptions);
-							amenities.splice(option.value, 1);
-							setAmenities((prev) => [...prev]);
+							setAmenities(finalOptions)
 						}}
 						value={checkboxValue}
 						displayTags

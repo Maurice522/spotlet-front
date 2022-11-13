@@ -99,8 +99,28 @@ h1 {
 	margin-top: 0px !important;
 }
 .timing-row{
-    display: flex;
-    flex-direction: column;
+    display: grid !important;
+    grid-template-columns: 1fr 0.5fr 0.4fr 2fr 2fr;
+    gap: 2rem;
+    align-items: flex-end;
+}
+.timing-row-rev{
+    display: grid !important;
+    grid-template-columns: 1fr 0.5fr 2fr 2fr;
+    gap: 2rem;
+    align-items: flex-end;
+}
+.timing-row h2{
+    margin-bottom: 5px !important;
+    margin-left: 0 !important;
+}
+.timing-row .row2{
+    margin-bottom: 0 !important;
+}
+.timing-row .row1{
+    display: flex !important;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
 }
 .timeInput {
     border: 1px solid grey;
@@ -110,7 +130,7 @@ h1 {
     padding: 1px 15px;
     border-radius: 5px;
     color: black;
-    margin: 3%;
+    margin: 0 3%;
     margin-left: 0%;
 }
 .timeInput:focus{
@@ -174,14 +194,21 @@ h1 {
     font-weight: lighter;
 }
 
+.custom-dropdown div .options{
+    max-height: 300px !important;
+}
+
 .custom-dropdown div .option{
-    padding: 10px 30px;
+    padding: 5px 30px;
+}
+
+.custom-dropdown label{
+    display: grid !important;
+    grid-template-columns: 1fr 15fr !important;
 }
 
 .custom-dropdown div .tag{
-    background-color: #dedede !important;
-    color: #000 !important;
-    padding: 8px !important;
+    display: none !important;
 }
 
 .custom-dropdown .container{
@@ -192,7 +219,15 @@ h1 {
 }
 
 .custom-dropdown .checkbox{
-    width: 20px !important;
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50%;
+}
+.custom-dropdown .checked{
+    border-radius: 50%;
+    background-color: #ff6767 !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .custom-dropdown label p{
@@ -227,6 +262,7 @@ h1 {
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        align-items: start;
     }
     .row2{
         margin-bottom: 0;
