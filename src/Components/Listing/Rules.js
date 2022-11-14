@@ -45,7 +45,7 @@ const Rules = ({ showSection }) => {
 		};
 		try {
 			await createTempLocation(form);
-			showSection("Contact Details");
+			showSection("Timings");
 		} catch (error) {
 			toast.error(error.response.data);
 		}

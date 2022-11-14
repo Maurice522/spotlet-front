@@ -95,7 +95,7 @@ const Gst = ({ showSection, changeSection }) => {
                 }}
                 onClick={() => deleteImage(fileData, index)}
               />
-              <embed src={fileData.file} width="440px" height="180px" />{" "}
+              <embed src={fileData.file} width="440px" height="330px" />{" "}
             </div>
           );
         })}

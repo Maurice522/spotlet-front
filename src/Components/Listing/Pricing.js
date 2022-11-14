@@ -97,6 +97,7 @@ const Pricing = ({ showSection, changeSection }) => {
 					<div className="row1">
 						<div className="coll1">
 							<h2>Half Day Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
+							<p style={{ color: "grey", fontSize: "14px" }}>6 AM to 6 PM</p>
 							<input
 								className="sminput"
 								disabled
@@ -105,6 +106,7 @@ const Pricing = ({ showSection, changeSection }) => {
 						</div>
 						<div className="coll1">
 							<h2>Full Day Price&nbsp;&nbsp; <span style={{ color: "grey" }}>*20% discount applied</span> </h2>
+							<p style={{ color: "grey", fontSize: "14px" }}>6 AM to 2 AM</p>
 							<input
 								className="sminput"
 								disabled
@@ -148,6 +150,7 @@ const Pricing = ({ showSection, changeSection }) => {
 						</div> */}
 						<div className="coll1">
 							<h2>Half Day Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*10% discount applied</span></h2>
+							<p style={{ color: "grey", fontSize: "14px" }}>6 AM to 6 PM</p>
 							<input
 								className="sminput"
 								disabled
@@ -156,6 +159,7 @@ const Pricing = ({ showSection, changeSection }) => {
 						</div>
 						<div className="coll1">
 							<h2>Full Day Price &nbsp;&nbsp; <span style={{ color: "grey" }}>*20% discount applied</span></h2>
+							<p style={{ color: "grey", fontSize: "14px" }}>6 AM to 2 AM</p>
 							<input
 								className="sminput"
 								disabled

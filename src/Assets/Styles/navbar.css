@@ -143,6 +143,13 @@
 	justify-content: center;
 }
 
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper{
+	width: 20% !important;
+}
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper li{
+	border-bottom: 1px solid rgb(255, 196, 196) !important;
+}
+
 
 
 @media screen and (max-width: 992px){

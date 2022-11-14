@@ -99,8 +99,28 @@ h1 {
 	margin-top: 0px !important;
 }
 .timing-row{
-    display: flex;
-    flex-direction: column;
+    display: grid !important;
+    grid-template-columns: 1fr 0.5fr 0.4fr 2fr 2fr;
+    gap: 2rem;
+    align-items: flex-end;
+}
+.timing-row-rev{
+    display: grid !important;
+    grid-template-columns: 1fr 0.5fr 2fr 2fr;
+    gap: 2rem;
+    align-items: flex-end;
+}
+.timing-row h2{
+    margin-bottom: 5px !important;
+    margin-left: 0 !important;
+}
+.timing-row .row2{
+    margin-bottom: 0 !important;
+}
+.timing-row .row1{
+    display: flex !important;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
 }
 .timeInput {
     border: 1px solid grey;
@@ -110,7 +130,7 @@ h1 {
     padding: 1px 15px;
     border-radius: 5px;
     color: black;
-    margin: 3%;
+    margin: 0 3%;
     margin-left: 0%;
 }
 .timeInput:focus{
@@ -161,6 +181,99 @@ h1 {
     min-height: 6rem;
 }
 
+.custom-dropdown > div{
+    margin-top: 2%;
+}
+
+.custom-dropdown div button{
+    min-height: 43px !important;
+}
+
+.custom-dropdown div button h3{
+    color: #8a8a8a;
+    font-weight: lighter;
+}
+
+.custom-dropdown div .options{
+    max-height: 300px !important;
+}
+
+.custom-dropdown div .option{
+    padding: 5px 30px;
+}
+
+.custom-dropdown label{
+    display: grid !important;
+    grid-template-columns: 1fr 15fr !important;
+}
+
+.custom-dropdown div .tag{
+    display: none !important;
+}
+
+.custom-dropdown div .tags{
+    padding: 0 !important;
+}
+
+.custom-dropdown .container{
+    max-width: 100% !important;
+    width: 80% !important;
+    margin: 0 !important;
+    margin-top: 20px !important;
+}
+
+.custom-dropdown .checkbox{
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50%;
+}
+.custom-dropdown .checked{
+    border-radius: 50%;
+    background-color: #ff6767 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.custom-dropdown label p{
+    text-align: left !important;
+}
+
+.selected-options{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.clear--list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    background: none;
+}
+
+input[type="time"]{
+    z-index: 0;
+    position: relative;
+}
+  
+input[type="time"]:after{
+    content: "";
+    background-image: url("../Images/dropdown.png");
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    border: none;
+    box-shadow: none;
+    padding-right: 10px;
+}
+
 @media screen and (max-width: 420px) {
     .locationContinue {
       min-width: 300px;
@@ -182,6 +295,7 @@ h1 {
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        align-items: start;
     }
     .row2{
         margin-bottom: 0;

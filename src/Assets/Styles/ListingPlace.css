@@ -95,10 +95,10 @@ hr {
 }
 .pict {
 	width: 440px;
-	height: 180px;
+	height: 330px;
 	border: 1px solid black;
 	border-radius: 8px;
-	margin: 15px 50px;
+	margin: 15px 0;
 }
 .pict > img {
 	width: 440px;
@@ -292,6 +292,84 @@ h1 {
 
 #map_render div{
 	width: 50vw !important;
+}
+
+.coll1 ul{
+	margin-left: 18px;
+}
+
+
+#box-1{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-2{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-3{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-4{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-5{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-6{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-7{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-8{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-9{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-10{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-11{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
+}
+#box-12{
+	background-color: rgba(255, 239, 239, 0.7);
+	padding: 20px;
+	margin-bottom: 40px;
+	border-radius: 16px;
 }
 
 @media screen and (max-width: 420px) {

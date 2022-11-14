@@ -11,12 +11,12 @@ import {
 } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
 import { toast } from "react-toastify";
+import CheckboxDropdownComponent from "react-checkbox-dropdown";
 
 const Amenities = ({ showSection, changeSection }) => {
 	const options = [
 		{ value: "Air Conditioning", label: "Air Conditioning" },
 		{ value: "Access to public transportation", label: " Access to public transportation" },
-		{ value: "Air conditioning", label: " Air conditioning" },
 		{ value: "All utilities included", label: " All utilities included" },
 		{ value: "Balcony", label: " Balcony" },
 		{ value: "Bark Parks", label: " Bark Parks" },
@@ -94,29 +94,15 @@ const Amenities = ({ showSection, changeSection }) => {
 	const location_id = useSelector(selectLocationId);
 	const location = useSelector(selectLocationData);
 
-	const [newAmenity, setNewAmenity] = useState("");
-	// useEffect(() => {
-	// 	location.amenities && setAmenities(location.amenities);
-	// }, []);
-
-	const HandleChange = (e) => {
-		if (!amenities.includes(e.value)) {
-			setAmenities((prev) => [...prev, e.value]);
-		}
-	};
-	const deleteoptn = (e) => {
-		amenities.splice(e, 1);
-		setAmenities((prev) => [...prev]);
-	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		//console.log(amenities);
 		if (!amenities.length)
 			return toast.error("Please fill all required fields!!!");
 		const locData = {
 			...location,
 			amenities,
 		};
+		console.log("1")
 		dispatch(addLocation(locData));
 		const form = {
 			location_id,
@@ -134,70 +120,67 @@ const Amenities = ({ showSection, changeSection }) => {
 			window.scrollTo(0, 0);
 		}
 	};
+	const [checkboxValue, setValue] = useState([]);
 	return (
 		<div className="lbox">
 			<div className="row1">
-				<div className="coll1">
+				<div className="coll1 custom-dropdown">
 					<h2>
 						Amenties<span style={{ color: "red" }}>*</span>
 					</h2>
-					<Select
-						className="listingInput select"
+					<CheckboxDropdownComponent
+						displayText="Select Amenities"
 						options={options}
-						onChange={HandleChange}
+						onChange={option => {
+							if (!checkboxValue.includes(option)) {
+								const newValue = [option, ...checkboxValue];
+								setValue(newValue);
+							}
+							if (!amenities.includes(option.value)) {
+								setAmenities((prev) => [option.value, ...prev]);
+							}
+						}}
+						onDeselectOption={option => {
+							const filteredOptions = checkboxValue.filter(
+								item => item.value !== option.value
+							);
+							const finalOptions = amenities.filter(
+								item => item !== option.value
+							);
+							setValue(filteredOptions);
+							setAmenities(finalOptions);
+						}}
+						value={checkboxValue}
+						displayTags
+						isStrict={false}
 					/>
 				</div>
-				<div className="coll1">
-					<h2
-						style={{
-							marginLeft: "30px",
-							marginBottom: "8px",
-						}}>
-						Add New Amenities
-					</h2>
-					<div
-						style={{
-							marginLeft: "30px",
-							display: "flex",
-							flexDirection: "row",
-							alignItems: "center",
-							gap: "30px",
-						}}>
-						<TextField
-							label="Add New Amenties"
-							variant="outlined"
-							size="small"
-							onChange={(e) => setNewAmenity(e.target.value)}
-						/>
-						<Button
+				<div>
+					<h2>Selected Amenities</h2>
+					<ul className="selected-options">
+						{amenities.map(item => 
+						<li className="clear--list" key={item}>
+							{item}
+							<ClearIcon
+							style={{cursor: "pointer"}}
 							onClick={() => {
-								console.log("Add this amenity to the list", newAmenity);
-								amenities.includes(newAmenity) === false
-									? setAmenities((prev) => [...prev, newAmenity])
-									: toast.error("Amenity already exists");
+								{console.log(item)}
+								const filteredOptions = checkboxValue.filter(
+									itm => itm.value !== item
+								);
+								const finalOptions = amenities.filter(
+									itm => itm !== item
+								);
+								setValue(filteredOptions);
+								setAmenities(finalOptions);
 							}}
-							variant="contained"
 							sx={{
-								backgroundColor: "#ea4235",
-							}}>
-							Add
-						</Button>
-					</div>
-				</div>
-			</div>
-			<div className="row1">
-				<div className="coll1">
-					{amenities.map((item, index) => (
-						<>
-							<div className="optns">
-								<GoPrimitiveDot color="#ea4235" />
-								<div className="optn" key={index}>
-									{item}
-								</div>
-								<ClearIcon onClick={() => deleteoptn(index)} />
-							</div>
-						</>
-					))}
+								color: "#ea4235",
+							}}
+						/>
+						</li>
+						)}
+					</ul>
 				</div>
 			</div>
 			<div className="row1">
