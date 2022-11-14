@@ -274,6 +274,10 @@ input[type="time"]:after{
     padding-right: 10px;
 }
 
+.add-more input[type="text"]{
+    border: none !important;
+}
+
 @media screen and (max-width: 420px) {
     .locationContinue {
       min-width: 300px;

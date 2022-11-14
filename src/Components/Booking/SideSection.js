@@ -158,9 +158,9 @@ const SideSection = ({
 
 			<div data-attribute-3>
 				<div data-attribute-4>
-				₹ {v6} * {v3} hrs (including Gst)
+				Total Price (including Gst)
 				</div>
-				<div data-attribute-4>₹ {gst}</div>
+				<div data-attribute-4>₹ {parseInt(gst)}</div>
 			</div>
 			<div data-attribute-3>
 				<div data-attribute-4>Discounted Price</div>

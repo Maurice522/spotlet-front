@@ -362,7 +362,7 @@ const BookingForm = ({
 						marginTop: "2%",
 						fontSize: "30px",
 					}}>
-					₹ {Number(tot_price.toFixed(2))}
+					₹ {parseInt(tot_price)}
 				</div>
 				<div
 					className="submit"

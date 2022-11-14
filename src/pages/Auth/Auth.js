@@ -73,7 +73,7 @@ export default function Auth() {
 		setSpecialChar(/[ `!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/.test(userData.password));
 	};
 
-	
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	//Handling All Input data function
@@ -98,7 +98,7 @@ export default function Auth() {
 		e.preventDefault();
 		checkPassword();
 		console.log(!isSignIn && !(validLength && upperCase && lowerCase && specialChar))
-		if(!isSignIn && !(validLength && upperCase && lowerCase && specialChar)){
+		if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar)) {
 			setValid(false);
 			return;
 		}
@@ -155,7 +155,6 @@ export default function Auth() {
 									Don’t have an account?{" "}
 									<b onClick={() => setIsSignIn(false)}>Sign Up</b>
 								</p>
-								<b onClick={() => handleOpen()}>forgot password</b>
 							</div>
 						) : (
 							<div className="auth-top">
@@ -337,7 +336,7 @@ export default function Auth() {
 								required
 							/>
 							<br />
-							{valid ? <p>Should contain minimum 8 characters</p> : <p style={{color: "red"}}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
+							{valid ? <p>Should contain minimum 8 characters</p> : <p style={{ color: "red" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
 							<Button
 								type="submit"
 								fullWidth
@@ -347,6 +346,11 @@ export default function Auth() {
 							>
 								{isSignIn ? "Sign In" : "Sign Up"}
 							</Button>
+							{isSignIn && <div
+								className="auth-top"
+								style={{ marginTop: "10px", marginBottom: "40px", display: "block", textAlign: "center" }}>
+								<b onClick={() => handleOpen()}>forgot password</b>
+							</div>}
 						</form>
 						{/* <p id="swch">Or sign up with</p>
 			<div className="diff-auth-type">

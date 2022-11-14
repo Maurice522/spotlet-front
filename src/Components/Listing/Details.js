@@ -85,7 +85,7 @@ const Details = ({ showSection, changeSection }) => {
 	useEffect(() => {
 		// location && setLType(" "+location.property_desc.location_type);
 		location && options.map((item,index)=>{
-			if(location.property_desc.location_type == item.value){
+			if(location?.property_desc?.location_type == item.value){
 				setLType(index);
 			}
 		})
