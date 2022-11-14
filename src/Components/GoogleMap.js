@@ -17,13 +17,12 @@ export class MapContainer extends Component {
         lng: this.props?.lng
       }
     };
+    console.log(this.props?.address);
 
     geocodeByAddress(this.props?.address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
         console.log('Success', latLng);
-
-        // update center state
         this.setState({ mapCenter: latLng });
       })
       .catch(error => console.error('Error', error));
@@ -47,6 +46,10 @@ export class MapContainer extends Component {
             disableDefaultUI={true}
             google={this.props.google}
             style={{ width: "50%", height: "50%", marginTop: "70px" }}
+            initialCenter={{
+              lat: this.state.mapCenter.lat,
+              lng: this.state.mapCenter.lng
+            }}
             center={{
               lat: this.state.mapCenter.lat,
               lng: this.state.mapCenter.lng

@@ -85,7 +85,7 @@ const Details = ({ showSection, changeSection }) => {
 	useEffect(() => {
 		// location && setLType(" "+location.property_desc.location_type);
 		location && options.map((item,index)=>{
-			if(location.property_desc.location_type == item.value){
+			if(location?.property_desc?.location_type == item.value){
 				setLType(index);
 			}
 		})
@@ -119,7 +119,7 @@ const Details = ({ showSection, changeSection }) => {
 				...location,
 				property_desc,
 			},
-			name: user.personalInfo.fullName,
+			name: user?.personalInfo?.fullName,
 			location_id,
 		};
 		console.log(form);
