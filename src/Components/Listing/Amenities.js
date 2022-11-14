@@ -148,7 +148,7 @@ const Amenities = ({ showSection, changeSection }) => {
 								item => item !== option.value
 							);
 							setValue(filteredOptions);
-							setAmenities(finalOptions)
+							setAmenities(finalOptions);
 						}}
 						value={checkboxValue}
 						displayTags
@@ -158,7 +158,28 @@ const Amenities = ({ showSection, changeSection }) => {
 				<div>
 					<h2>Selected Amenities</h2>
 					<ul className="selected-options">
-						{amenities.map(item => <li key={item}>{item}</li>)}
+						{amenities.map(item => 
+						<li className="clear--list" key={item}>
+							{item}
+							<ClearIcon
+							style={{cursor: "pointer"}}
+							onClick={() => {
+								{console.log(item)}
+								const filteredOptions = checkboxValue.filter(
+									itm => itm.value !== item
+								);
+								const finalOptions = amenities.filter(
+									itm => itm !== item
+								);
+								setValue(filteredOptions);
+								setAmenities(finalOptions);
+							}}
+							sx={{
+								color: "#ea4235",
+							}}
+						/>
+						</li>
+						)}
 					</ul>
 				</div>
 			</div>

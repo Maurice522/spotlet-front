@@ -115,7 +115,7 @@ const Features = ({ showSection, changeSection }) => {
 								item => item !== option.value
 							);
 							setValue(filteredOptions);
-							setFeatures(finalOptions)
+							setFeatures(finalOptions);
 						}}
 						value={checkboxValue}
 						displayTags
@@ -125,7 +125,30 @@ const Features = ({ showSection, changeSection }) => {
 				<div>
 					<h2>Selected AFeatures</h2>
 					<ul className="selected-options">
-						{features.map(item => <li key={item}>{item}</li>)}
+						{features.map(item =>
+							<li className="clear--list" key={item}>
+								{item}
+								<div>
+								<ClearIcon
+									style={{cursor: "pointer"}}
+									onClick={() => {
+										{ console.log(item) }
+										const filteredOptions = checkboxValue.filter(
+											itm => itm.value !== item
+										);
+										const finalOptions = features.filter(
+											itm => itm !== item
+										);
+										setValue(filteredOptions);
+										setFeatures(finalOptions);
+									}}
+									sx={{
+										color: "#ea4235",
+									}}
+								/>
+								</div>
+							</li>
+						)}
 					</ul>
 				</div>
 			</div>

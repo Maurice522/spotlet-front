@@ -29,6 +29,13 @@ const Navbar = ({ extraNavId }) => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+	const [NotificationEl, setNotificationEl] = useState(null);
+	const clickHandler = (event) => {
+		setNotificationEl(event.currentTarget);
+	};
+	const closeHandler = () => {
+		setNotificationEl(null);
+	};
 	const acntset = () => {
 		handleClose();
 		console.log("clicked");
@@ -73,9 +80,23 @@ const Navbar = ({ extraNavId }) => {
 						<Link to="/bookinglist/:booking" onClick={() => window.scrollTo(0, 0)}>
 							<div>Bookings</div>
 						</Link>
-						<Link to="/bookinglist/:listing" onClick={() => window.scrollTo(0, 0)}>
-							<div>Listings</div>
-						</Link>
+						<div onClick={Boolean(NotificationEl) === false ? clickHandler : closeHandler} style={{cursor: "pointer"}}>
+							<div>Notifications</div>
+						</div>
+						<Menu
+							id="simple-menu"
+							style={{minWidth: "30%"}}
+							anchorEl={NotificationEl}
+							keepMounted
+							open={Boolean(NotificationEl)}
+							onClose={closeHandler}
+							getContentAnchorEl={null}
+							anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+							transformOrigin={{ horizontal: "center" }}>
+							<MenuItem>Hi!</MenuItem>
+							<MenuItem>Hlo!</MenuItem>
+							<MenuItem>How r u?</MenuItem>
+						</Menu>
 						<Link to="/favorite" onClick={() => window.scrollTo(0, 0)}>
 							<div>Favorites</div>
 						</Link>
