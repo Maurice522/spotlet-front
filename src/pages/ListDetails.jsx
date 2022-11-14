@@ -179,11 +179,14 @@ const ListDetails = ({ setFinal }) => {
 						<div className="listing-property-address">
 							{locationData?.property_address?.address}
 						</div>
-						<div className="listing-property-address">{locationData?.property_address?.city} {locationData?.property_address?.state}</div>
-						<div className="listing-property-address">{locationData?.property_address?.country} , {locationData?.property_address?.pincode}</div>
-					</div>
-					<div>
-						<EditPricing location={locationData} />
+						<div className="listing-property-address">
+							{locationData?.property_address?.city}{" "}
+							{locationData?.property_address?.state}
+						</div>
+						<div className="listing-property-address">
+							{locationData?.property_address?.country} ,{" "}
+							{locationData?.property_address?.pincode}
+						</div>
 					</div>
 				</div>
 
@@ -195,12 +198,16 @@ const ListDetails = ({ setFinal }) => {
 						// "& .super-app-theme--header": {
 						// 	backgroundColor: "rgba(255, 7, 0, 0.55)",
 						// },
-					}}>
+					}}
+				>
 					<SyncfusionTable
 						UsersData={listDetailsData}
 						UsersGrid={listDetailsGrid}
 					/>
 				</Box>
+			</div>
+			<div>
+				<EditPricing location={locationData} />
 			</div>
 			<Footer />
 		</div>

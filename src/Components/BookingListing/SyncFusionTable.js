@@ -7,7 +7,14 @@ const SyncfusionTable = ({ UsersData, UsersGrid, content }) => {
 	document.getElementsByClassName("MuiDataGrid-cellContent").innerHTML = "Details"
 	console.log(UsersData)
 	return UsersData?.length > 0 ? (
-		<DataGrid rows={UsersData} columns={UsersGrid} pageSize={7} />
+		<DataGrid initialState={{
+			sorting: {
+				sortModel: [
+					{ field: 'Date', sort: 'desc' },
+					{ field: 'BookingRequest', sort: 'desc' }
+				],
+			},
+		}} rows={UsersData} columns={UsersGrid} pageSize={7} />
 	) : (
 		<div
 			style={{
@@ -18,9 +25,9 @@ const SyncfusionTable = ({ UsersData, UsersGrid, content }) => {
 				flexDirection: "column",
 				gap: "1rem"
 			}}>
-			<div style={{fontSize: "2rem"}}>No {content} property</div>
-			<Link to={content === "Booked" ? "/" : "/listing" }>
-				<Button variant="contained" style={{backgroundColor: "#f26767"}}>
+			<div style={{ fontSize: "2rem" }}>No {content} property</div>
+			<Link to={content === "Booked" ? "/" : "/listing"}>
+				<Button variant="contained" style={{ backgroundColor: "#f26767" }}>
 					{content === "Booked" ? "Book" : "List"} one now
 				</Button>
 			</Link>

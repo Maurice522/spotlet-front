@@ -353,16 +353,6 @@ const Location = ({ showSection, changeSection }) => {
         </div>
       </div>
 
-
-      {(showmap === true) ? (
-        <div style={{
-          width: "10%",
-          height: "10%"
-        }}>
-          <GoogleMap address={property_address?.location_detail} />
-        </div>) : null
-      }
-
       <div className="row1">
         <div className="coll1">
           <button
@@ -373,6 +363,16 @@ const Location = ({ showSection, changeSection }) => {
           </button>
         </div>
       </div>
+
+      {(showmap === true) ? (
+        <div style={{
+          width: "10%",
+          height: "10%"
+        }}>
+          <GoogleMap address={property_address?.location_detail} />
+        </div>) : null
+      }
+
 
     </div>
 
