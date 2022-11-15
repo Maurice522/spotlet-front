@@ -44,7 +44,7 @@ const ReviewApplication = ({ changeSection }) => {
     console.log(finalData)
 
     return (
-        <div className="lbox">
+        <div className="lbox" style={{height: "120vh", overflowY: "auto", overflowX: "hidden"}}>
             <div id="box-1">
                 <div className="review--edit">
                     <h1 style={{ fontSize: "1.5rem" }}>Details & Description</h1>
@@ -180,6 +180,7 @@ const ReviewApplication = ({ changeSection }) => {
                                 fontSize: "16px",
                                 lineHeight: "24px",
                                 padding: "1%",
+                                backgroundColor: "transparent"
                             }}
                             value={finalData.property_desc ? finalData.property_desc.property_info : ""}
                         />
@@ -504,11 +505,11 @@ const ReviewApplication = ({ changeSection }) => {
                             type="radio"
                             className="radio"
                             name="monday"
-                            checked={finalData?.timings?.monday?.time !== 'all day'}
+                            checked={finalData?.timings?.monday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
                     </div>
-                    {finalData?.timings?.monday?.time !== 'all day' &&
+                    {finalData?.timings?.monday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.monday?.time?.start}</p>
                             <p>End: {finalData?.timings?.monday?.time?.end}</p>
@@ -535,11 +536,11 @@ const ReviewApplication = ({ changeSection }) => {
                             type="radio"
                             className="radio"
                             name="tuesday"
-                            checked={finalData?.timings?.tuesday?.time !== 'all day'}
+                            checked={finalData?.timings?.tuesday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
                     </div>
-                    {finalData?.timings?.tuesday?.time !== 'all day' &&
+                    {finalData?.timings?.tuesday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.tuesday?.time?.start}</p>
                             <p>End: {finalData?.timings?.tuesday?.time?.end}</p>
@@ -566,11 +567,11 @@ const ReviewApplication = ({ changeSection }) => {
                             type="radio"
                             className="radio"
                             name="wednesday"
-                            checked={finalData?.timings?.wednesday?.time !== 'all day'}
+                            checked={finalData?.timings?.wednesday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
                     </div>
-                    {finalData?.timings?.wednesday?.time !== 'all day' &&
+                    {finalData?.timings?.wednesday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.wednesday?.time?.start}</p>
                             <p>End: {finalData?.timings?.wednesday?.time?.end}</p>
@@ -597,11 +598,11 @@ const ReviewApplication = ({ changeSection }) => {
                             type="radio"
                             className="radio"
                             name="thursday"
-                            checked={finalData?.timings?.thursday?.time !== 'all day'}
+                            checked={finalData?.timings?.thursday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
                     </div>
-                    {finalData?.timings?.thursday?.time !== 'all day' &&
+                    {finalData?.timings?.thursday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.thursday?.time?.start}</p>
                             <p>End: {finalData?.timings?.thursday?.time?.end}</p>
@@ -628,11 +629,11 @@ const ReviewApplication = ({ changeSection }) => {
                             type="radio"
                             className="radio"
                             name="friday"
-                            checked={finalData?.timings?.friday?.time !== 'all day'}
+                            checked={finalData?.timings?.friday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
                     </div>
-                    {finalData?.timings?.friday?.time !== 'all day' &&
+                    {finalData?.timings?.friday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.friday?.time?.start}</p>
                             <p>End: {finalData?.timings?.friday?.time?.end}</p>
@@ -659,11 +660,11 @@ const ReviewApplication = ({ changeSection }) => {
                             type="radio"
                             className="radio"
                             name="saturday"
-                            checked={finalData?.timings?.saturday?.time !== 'all day'}
+                            checked={finalData?.timings?.saturday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
                     </div>
-                    {finalData?.timings?.saturday?.time !== 'all day' &&
+                    {finalData?.timings?.saturday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.saturday?.time?.start}</p>
                             <p>End: {finalData?.timings?.saturday?.time?.end}</p>
@@ -690,11 +691,11 @@ const ReviewApplication = ({ changeSection }) => {
                             type="radio"
                             className="radio"
                             name="sunday"
-                            checked={finalData?.timings?.sunday?.time !== 'all day'}
+                            checked={finalData?.timings?.sunday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
                     </div>
-                    {finalData?.timings?.sunday?.time !== 'all day' &&
+                    {finalData?.timings?.sunday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.sunday?.time?.start}</p>
                             <p>End: {finalData?.timings?.sunday?.time?.end}</p>
@@ -844,7 +845,7 @@ const ReviewApplication = ({ changeSection }) => {
                                 value={finalData?.gst?.doc_no}
                             />
                             {console.log(finalData?.gst?.docs[0])}
-                            <div className="pict">
+                            <div className="pict" style={{width: "440px", height: "330px"}}>
                                 <embed src={finalData?.gst?.docs[0]} width="440px" height="180px" />{" "}
                             </div>
                         </div>

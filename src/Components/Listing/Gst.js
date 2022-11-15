@@ -45,27 +45,27 @@ const Gst = ({ showSection, changeSection }) => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!doc_no.length || !filesData.length)
-      return toast.error("Please fill all required fields");
-    const files = filesData.map(fileData => fileData.file);
-    const locData = {
-      ...location,
-      gst: {
-        doc_no,
-        docs: files
-      },
-    };
-    dispatch(addLocation({ ...location, gst: { doc_no, docs: filesData } }));
-    const form = {
-      location_id,
-      data: locData,
-    };
-    await createTempLocation(form);
-    //console.log(locData);
-    showSection("Bank Details");
+    if (doc_no.length && filesData.length) {
+      const files = filesData.map(fileData => fileData.file);
+      const locData = {
+        ...location,
+        gst: {
+          doc_no,
+          docs: files
+        },
+      };
+      dispatch(addLocation({ ...location, gst: { doc_no, docs: filesData } }));
+      const form = {
+        location_id,
+        data: locData,
+      };
+      await createTempLocation(form);
+      //console.log(locData);
+      showSection("Bank Details");
+    }
 
     changeSection("Bank Details");
-		window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
   return (
     <div className='lbox'>
@@ -85,7 +85,7 @@ const Gst = ({ showSection, changeSection }) => {
       <div className="row1" id="photo-sec-s">
         {filesData?.map((fileData, index) => {
           return (
-            <div className="pict" key={index}>
+            <div className="pict" style={{ width: "440px", height: "330px" }} key={index}>
               <Clear
                 sx={{
                   cursor: "pointer",

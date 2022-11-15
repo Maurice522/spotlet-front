@@ -74,12 +74,6 @@ const Navbar = ({ extraNavId }) => {
 							alignItems: "center",
 							gap: "20px",
 						}}>
-						<Link to="/messages" onClick={() => window.scrollTo(0, 0)}>
-							<div>Messages</div>
-						</Link>
-						<Link to="/bookinglist/:booking" onClick={() => window.scrollTo(0, 0)}>
-							<div>Bookings</div>
-						</Link>
 						<div onClick={Boolean(NotificationEl) === false ? clickHandler : closeHandler} style={{cursor: "pointer"}}>
 							<div>Notifications</div>
 						</div>
@@ -97,6 +91,12 @@ const Navbar = ({ extraNavId }) => {
 							<MenuItem>Hlo!</MenuItem>
 							<MenuItem>How r u?</MenuItem>
 						</Menu>
+						<Link to="/messages" onClick={() => window.scrollTo(0, 0)}>
+							<div>Messages</div>
+						</Link>
+						<Link to="/bookinglist/:booking" onClick={() => window.scrollTo(0, 0)}>
+							<div>Bookings</div>
+						</Link>
 						<Link to="/favorite" onClick={() => window.scrollTo(0, 0)}>
 							<div>Favorites</div>
 						</Link>

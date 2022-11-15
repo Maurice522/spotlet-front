@@ -98,15 +98,15 @@ hr {
 	margin-left: 300px;
 }
 .pict {
-	width: 440px;
-	height: 330px;
+	width: 300px;
+	height: 250px;
 	border: 1px solid black;
 	border-radius: 8px;
 	margin: 15px 0;
 }
 .pict > img {
-	width: 440px;
-	height: 180px;
+	width: 400px;
+	height: 250px;
 }
 .row2 {
 	display: flex;
@@ -312,6 +312,10 @@ h1 {
 
 #box-1 > div, #box-2 > div, #box-3 > div, #box-4 > div, #box-5 > div, #box-6 > div, #box-7 > div, #box-8 > div, #box-9 > div, #box-10 > div, #box-11 > div, #box-12 > div{
 	margin-top: 0 !important;
+}
+
+.coll1 input{
+	background-color: transparent;
 }
 
 @media screen and (max-width: 420px) {

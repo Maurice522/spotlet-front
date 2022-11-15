@@ -117,7 +117,7 @@ const Timing = ({ showSection, changeSection }) => {
                   setmonday({ ...monday, time: "all day", isSetHours: false })
                 }
                 name="monday"
-                checked={monday.time === "all day"}
+                checked={monday.isSetHours === false}
               />
               <h2 className="timingH2AllDay">All Day</h2>
               <input
@@ -131,7 +131,7 @@ const Timing = ({ showSection, changeSection }) => {
             </div>
             {monday.isSetHours === true ? (
               <>
-                <div className="row1 timing-row">
+                <div className="row1">
                   <input
                     className="timeInput listingInput input"
                     type="time"
@@ -182,7 +182,7 @@ const Timing = ({ showSection, changeSection }) => {
                 onClick={() =>
                   settuesday({ ...tuesday, time: "all day", isSetHours: false })
                 }
-                checked={tuesday.time === "all day"}
+                checked={tuesday.isSetHours === false}
                 name="tueday"
               />
               <h2 className="timingH2AllDay">All Day</h2>
@@ -253,7 +253,7 @@ const Timing = ({ showSection, changeSection }) => {
                     isSetHours: false,
                   })
                 }
-                checked={wednesday.time === "all day"}
+                checked={wednesday.isSetHours === false}
                 name="wed"
               />
               <h2 className="timingH2AllDay">All Day</h2>
@@ -324,7 +324,7 @@ const Timing = ({ showSection, changeSection }) => {
                     isSetHours: false,
                   })
                 }
-                checked={thursday.time === "all day"}
+                checked={thursday.isSetHours === false}
                 name="thrus"
               />
               <h2 className="timingH2AllDay">All Day</h2>
@@ -342,7 +342,7 @@ const Timing = ({ showSection, changeSection }) => {
                 <div
                   className="row1"
                 >
-                  <input classNtimeInput ame="lisitngInput input"
+                  <input className="timeInput lisitngInput input"
                     type="time"   onChange={(e) =>
                     setthursday({
                       ...thursday,
@@ -390,7 +390,7 @@ const Timing = ({ showSection, changeSection }) => {
                 onClick={() =>
                   setfriday({ ...friday, time: "all day", isSetHours: false })
                 }
-                checked={friday.time === "all day"}
+                checked={friday.isSetHours === false}
                 name="fri"
               />
               <h2 className="timingH2AllDay">All Day</h2>
@@ -462,7 +462,7 @@ const Timing = ({ showSection, changeSection }) => {
                   })
                 }
                 name="sat"
-                checked={saturday.time === "all day"}
+                checked={saturday.isSetHours === false}
               />
               <h2 className="timingH2AllDay">All Day</h2>
               <input
@@ -529,7 +529,7 @@ const Timing = ({ showSection, changeSection }) => {
                   setsunday({ ...sunday, time: "all day", isSetHours: false })
                 }
                 name="sun"
-                checked={sunday.time === "all day"}
+                checked={sunday.isSetHours === false}
               />
               <h2 className="timingH2AllDay">All Day</h2>
               <input
