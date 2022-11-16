@@ -100,7 +100,7 @@ h1 {
 }
 .timing-row{
     display: grid !important;
-    grid-template-columns: 1fr 0.5fr 0.4fr 2fr 2fr;
+    grid-template-columns: 0.6fr 0.5fr 0.4fr 2fr 2fr;
     gap: 2rem;
     align-items: flex-end;
 }
@@ -113,6 +113,7 @@ h1 {
 .timing-row h2{
     margin-bottom: 5px !important;
     margin-left: 0 !important;
+    width: 88px;
 }
 .timing-row .row2{
     margin-bottom: 0 !important;
@@ -124,7 +125,7 @@ h1 {
 }
 .timeInput {
     border: 1px solid grey;
-    width: 187px;
+    width: 140px;
     height: 37px;
     font-size: 18px;
     padding: 1px 15px;
@@ -274,11 +275,25 @@ input[type="time"]:after{
     padding-right: 10px;
 }
 
+.add-more input[type="text"]{
+    border: none !important;
+}
+.add-more .placeholder{
+    pointer-events: none;
+}
+.add-more input[type="text"]::placeholder{
+    border: none !important;
+}
+.add-more input:focus{
+    outline: none !important;
+}
+
 @media screen and (max-width: 420px) {
     .locationContinue {
       min-width: 300px;
     }
-  }
+}
+
 .listing-modal h3{
     margin-bottom: 1rem;
 }
@@ -302,6 +317,29 @@ input[type="time"]:after{
     }
     .text-input{
         width: 70vw !important;
+    }
+    .timing-row{
+        grid-template-columns: 1fr 1fr 1fr 2fr;
+        margin-bottom: 5rem;
+        align-items: center;
+    }
+    .timing-row .row1{
+        flex-direction: row;
+        grid-column: span 3;
+    }
+}
+
+@media screen and (max-width: 998px){
+    .timing-row{
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+    }
+    .timing-row .row1{
+        flex-direction: row;
+        grid-column: span 3;
+    }
+    .timing-row .row2{
+        grid-column: span 3;
     }
 }
 

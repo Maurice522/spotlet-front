@@ -212,8 +212,7 @@ const BookingDetails = () => {
 						<div className="booking-details-body-right">
 							<div data-attribute-3>
 								<div data-attribute-4>
-									₹ {perHourCost === "Infinity" ? 0 : perHourCost} *{" "}
-									{booking?.duration_in_hours} hrs
+									Total price (including GST):
 								</div>
 								<div data-attribute-4>
 									₹{" "}
