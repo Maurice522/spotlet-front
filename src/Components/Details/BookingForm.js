@@ -170,6 +170,7 @@ const BookingForm = ({
 							id="date"
 							name="date"
 							style={{ border: "2px solid lightgray", width: "78%", height: "34px" }}
+							min={new Date().toISOString().split("T")[0]}
 							defaultValue={new Date().toISOString().split("T")[0]}
 							onChange={(e) => {
 								//console.log(e.target.value);

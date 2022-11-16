@@ -10,6 +10,7 @@ import { selectUserData } from "../redux/slices/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { useEffect } from "react";
 
 const Navbar = ({ extraNavId }) => {
 
@@ -29,6 +30,12 @@ const Navbar = ({ extraNavId }) => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+	const [notifications, setNotifications] = useState([])
+	useEffect(() => {
+		setNotifications(user?.notifications);
+		console.log(notifications);
+	}, [user])
+
 	const [NotificationEl, setNotificationEl] = useState(null);
 	const clickHandler = (event) => {
 		setNotificationEl(event.currentTarget);
@@ -79,17 +86,38 @@ const Navbar = ({ extraNavId }) => {
 						</div>
 						<Menu
 							id="simple-menu"
-							style={{minWidth: "30%"}}
+							style={{ minWidth: "30%" }}
 							anchorEl={NotificationEl}
 							keepMounted
 							open={Boolean(NotificationEl)}
 							onClose={closeHandler}
 							getContentAnchorEl={null}
 							anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-							transformOrigin={{ horizontal: "center" }}>
-							<MenuItem>Hi!</MenuItem>
-							<MenuItem>Hlo!</MenuItem>
-							<MenuItem>How r u?</MenuItem>
+							transformOrigin={{ horizontal: "center" }}
+						>
+							{
+								notifications?.map((notification) => (
+									notification.admin ?
+										(
+											<MenuItem
+												style={{
+													cursor: "context-menu"
+												}}
+											>
+												{notification?.content} - {notification.date}
+											</MenuItem>
+										) : (
+
+											<MenuItem
+												component={Link}
+												to={notification?.link}
+											>
+												{notification?.content} - {notification.date}
+											</MenuItem>
+										)
+								)
+								)
+							}
 						</Menu>
 						<Link to="/messages" onClick={() => window.scrollTo(0, 0)}>
 							<div>Messages</div>

@@ -130,14 +130,20 @@ const listingGrid = [
 		headerName: "LocationId",
 		field: "LocationId",
 		renderCell: gridLocationId,
-		width: "200",
+		width: "180",
 		headerAlign: "Center",
 	},
 	{
 		headerName: "Status",
 		field: "Status",
 		renderCell: gridBookingStatus,
-		width: "200",
+		width: "180",
+		headerAlign: "Center",
+	},
+	{
+		headerName: "Date",
+		field: "Date",
+		width: "170",
 		headerAlign: "Center",
 	},
 	{
@@ -219,10 +225,20 @@ const BookingList = () => {
 	// ];
 
 	const listingData = userData?.listedLocations.map((loc, index) => {
+		const date = new Date(loc?.timestamp?._seconds * 1000);
+		const yyyy = date.getFullYear();
+		let mm = date.getMonth() + 1; // Months start at 0!
+		let dd = date.getDate();
+
+		if (dd && dd < 10) dd = "0" + dd;
+		if (mm && mm < 10) mm = "0" + mm;
+
+		const formattedToday = dd + "/" + mm + "/" + yyyy;
 		return {
 			action: gridActionButton,
 			LocationId: loc?.location_id,
 			Status: loc?.verified,
+			Date: formattedToday,
 			id: index,
 			to: "/listdetails/" + loc.location_id,
 			BookingRequest: locrequests?.[index]
