@@ -77,7 +77,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/signin" element={<Auth />} />
-					<Route path="/reset/:userId" element={<ResetPassword />} />
+					<Route path="/reset/:userId" element={user ? <ResetPassword /> : <Home />} />
 					<Route
 						path="/property/:locId"
 						element={
@@ -101,9 +101,9 @@ function App() {
 							/>
 						}
 					/>
-					<Route path="/account" element={user && <AccountInfo />} />
+					<Route path="/account" element={user ? <AccountInfo /> : <Auth />} />
 					{/* {user && <Route path="/search" element={<Search />} />} */}
-					<Route path="/search/:type" element={<Search />} />
+					<Route path="/search/" element={<Search />} />
 					<Route path="/aboutus" element={<AboutUs />} />
 					<Route path="/activities" element={<Activity />} />
 					<Route path="/listing" element={<ListingPlace />} />

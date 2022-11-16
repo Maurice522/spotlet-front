@@ -101,9 +101,15 @@ const ListDetails = ({ setFinal }) => {
 			Status: request?.payment_status,
 			DateOfRequest: formattedToday,
 			DateOfEvent: request?.date,
-			TimeDuration: request?.time + " - " + endTime + request?.time.substr(2) + ", " + request?.duration_in_hours,
-			TotalAmount: request?.total_amt,
-		}
+			TimeDuration:
+				request?.time +
+				" - " +
+				endTime +
+				request?.time.substr(2) +
+				", " +
+				request?.duration_in_hours,
+			TotalAmount: request?.total_amt.toFixed(2),
+		};
 	})
 
 	const listDetailsGrid = [

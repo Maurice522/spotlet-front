@@ -8,7 +8,7 @@ function Home() {
 	return (
 		<div>
 			<Header extraNavId="id-2" />
-			<FormFilter />
+			<FormFilter homepage={true} />
 			<Content />
 			<Footer />
 		</div>

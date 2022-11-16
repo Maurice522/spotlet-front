@@ -143,38 +143,58 @@ const ListDetailsComponent = () => {
 								</div>
 								<div>
 									<div className="item-heading">Attendies</div>
-									<div className="item-body">{bookingDetail?.attendies} People</div>
+									<div className="item-body">
+										{bookingDetail?.attendies} People
+									</div>
 								</div>
 								<div>
 									<div className="item-heading">Reserved Time</div>
-									<div className="item-body">{bookingDetail?.time + " to " + endTime + bookingDetail?.time?.substr(2,4) + ampm} </div>
+									<div className="item-body">
+										{bookingDetail?.time +
+											" to " +
+											endTime +
+											bookingDetail?.time?.substr(2, 4) +
+											ampm}{" "}
+									</div>
 								</div>
 								<div>
 									<div className="item-heading">Duration</div>
-									<div className="item-body">{bookingDetail?.duration_in_hours} Hrs</div>
+									<div className="item-body">
+										{bookingDetail?.duration_in_hours} Hrs
+									</div>
 								</div>
 							</div>
 							<div className="booking-details-header">User Details</div>
 							<div className="grid-container-2">
 								<div>
 									<div className="item-heading">Name</div>
-									<div className="item-body">{bookingDetail?.user_data?.fullName}</div>
+									<div className="item-body">
+										{bookingDetail?.user_data?.fullName}
+									</div>
 								</div>
 								<div>
 									<div className="item-heading">Number</div>
-									<div className="item-body">{userData?.personalInfo?.mobile}</div>
+									<div className="item-body">
+										{userData?.personalInfo?.mobile}
+									</div>
 								</div>
 								<div>
 									<div className="item-heading">Email ID</div>
-									<div className="item-body">{userData?.personalInfo?.email}</div>
+									<div className="item-body">
+										{userData?.personalInfo?.email}
+									</div>
 								</div>
 								<div>
 									<div className="item-heading">Who Reserves</div>
-									<div className="item-body">{bookingDetail?.user_data?.who_reserves}</div>
+									<div className="item-body">
+										{bookingDetail?.user_data?.who_reserves}
+									</div>
 								</div>
 								<div>
 									<div className="item-heading">Company Name</div>
-									<div className="item-body">{bookingDetail?.user_data?.company}</div>
+									<div className="item-body">
+										{bookingDetail?.user_data?.company}
+									</div>
 								</div>
 								<div>
 									<div className="item-heading">Activity</div>
@@ -185,10 +205,16 @@ const ListDetailsComponent = () => {
 						<div className="booking-details-body-right">
 							<div data-attribute-3>
 								<div data-attribute-1>Total</div>
-								<div data-attribute-1>₹ {bookingDetail?.total_amt}</div>
+								<div data-attribute-1>
+									₹ {bookingDetail?.total_amt?.toFixed(2)}
+								</div>
 							</div>
 							<Button
-								variant={bookingDetail?.payment_status === "Rejected" ? "outlined" : "contained"}
+								variant={
+									bookingDetail?.payment_status === "Rejected"
+										? "outlined"
+										: "contained"
+								}
 								sx={{
 									width: "20vw",
 									backgroundColor: "#EA4235",
@@ -196,14 +222,18 @@ const ListDetailsComponent = () => {
 									borderRadius: "4px",
 									marginTop: "10px",
 								}}
-								disabled = {bookingDetail?.payment_status !== "Under Review"}
+								disabled={bookingDetail?.payment_status !== "Under Review"}
 								onClick={() => updateStatus("Approved")}
-								>
+							>
 								Approved
 							</Button>
 							<br />
 							<Button
-								variant={bookingDetail?.payment_status === "Rejected" ? "contained" : "outlined"}
+								variant={
+									bookingDetail?.payment_status === "Rejected"
+										? "contained"
+										: "outlined"
+								}
 								sx={{
 									width: "20vw",
 									color: "black",
@@ -211,9 +241,9 @@ const ListDetailsComponent = () => {
 									border: "2px solid #EA4235",
 									marginTop: "10px",
 								}}
-								disabled = {bookingDetail?.payment_status !== "Under Review"}
+								disabled={bookingDetail?.payment_status !== "Under Review"}
 								onClick={() => updateStatus("Cancelled")}
-								>
+							>
 								Reject
 							</Button>
 						</div>
@@ -223,19 +253,19 @@ const ListDetailsComponent = () => {
 				<div className="container">
 					<div className="booking-details-header">Message</div>
 					<div className="user-info">
-					{userData?.personalInfo?.profile_pic ? (
-						<img src={userData?.personalInfo?.profile_pic} alt="profile" />
+						{userData?.personalInfo?.profile_pic ? (
+							<img src={userData?.personalInfo?.profile_pic} alt="profile" />
 						) : (
-						<Avatar className="user-dp" />
+							<Avatar className="user-dp" />
 						)}
-						<span className="item-heading">{userData?.personalInfo?.fullName}</span>
+						<span className="item-heading">
+							{userData?.personalInfo?.fullName}
+						</span>
 					</div>
 					<div className="booking-details-body">
 						<div className="item-heading">Message to the host: </div>
-						<div className="item-info">
-							{bookingDetail?.user_data?.message}
-						</div>
-						<div style={{marginLeft : "auto"}}>
+						<div className="item-info">{bookingDetail?.user_data?.message}</div>
+						<div style={{ marginLeft: "auto" }}>
 							<Button
 								variant="contained"
 								sx={{
@@ -247,7 +277,7 @@ const ListDetailsComponent = () => {
 									flexGrow: "1",
 								}}
 								onClick={handleChat}
-								>
+							>
 								Message
 							</Button>
 						</div>

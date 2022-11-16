@@ -574,8 +574,8 @@ const Property = ({
 							images={images}
 							openGallery={() => setGalleryOn(true)}
 							locationData={locationData}
-              favorites={favorites}
-              setFavorites={setFavorites}
+							favorites={favorites}
+							setFavorites={setFavorites}
 						/>
 					)}
 					<BookingForm
