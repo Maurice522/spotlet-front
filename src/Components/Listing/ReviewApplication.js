@@ -387,15 +387,15 @@ const ReviewApplication = ({ changeSection }) => {
                     <div></div>
                 </div>
                 <div className="coll1">
-                    <div className="row1">
-                        <h1>Film/ Ad Film/ Web Series Shoot</h1>
+                    <div className="row1" style={{marginBottom: "0"}}>
+                        <h1 style={{fontWeight: "bold"}}>Film/ Ad Film/ Web Series Shoot</h1>
                         <Switch
                             color="warning"
                             checked={finalData?.pricing?.film_webseries_ad?.isPresent}
                         />
                     </div>
                 </div>
-                <div className="coll1">
+                <div className="coll1" style={{marginBottom: "2rem"}}>
                     <h2>Enter Houly Price</h2>
                     <input
                         disabled
@@ -405,15 +405,15 @@ const ReviewApplication = ({ changeSection }) => {
                 </div>
 
                 <div className="coll1">
-                    <div className="row1">
-                        <h1>TV Series & Other Video Shoot</h1>
+                    <div className="row1" style={{marginBottom: "0"}}>
+                        <h1 style={{fontWeight: "bold"}}>TV Series & Other Video Shoot</h1>
                         <Switch
                             color="warning"
                             checked={finalData?.pricing?.tv_series_other?.isPresent}
                         />
                     </div>
                 </div>
-                <div className="coll1">
+                <div className="coll1" style={{marginBottom: "2rem"}}>
                     <h2>Enter Hourly Price in ₹.</h2>
                     <input
                         disabled
@@ -422,15 +422,15 @@ const ReviewApplication = ({ changeSection }) => {
                     />
                 </div>
                 <div className="coll1">
-                    <div className="row1">
-                        <h1>Corporate Event</h1>
+                    <div className="row1" style={{marginBottom: "0"}}>
+                        <h1 style={{fontWeight: "bold"}}>Corporate Event</h1>
                         <Switch
                             color="warning"
                             checked={finalData?.pricing?.corporate?.isPresent}
                         />
                     </div>
                 </div>
-                <div className="coll1">
+                <div className="coll1" style={{marginBottom: "2rem"}}>
                     <h2>Enter Hourly Price in ₹.</h2>
                     <input
                         disabled
@@ -440,15 +440,15 @@ const ReviewApplication = ({ changeSection }) => {
                 </div>
 
                 <div className="coll1">
-                    <div className="row1">
-                        <h1>Individual Event</h1>
+                    <div className="row1" style={{marginBottom: "0"}}>
+                        <h1 style={{fontWeight: "bold"}}>Individual Event</h1>
                         <Switch
                             color="warning"
                             checked={finalData?.pricing?.individual?.isPresent}
                         />
                     </div>
                 </div>
-                <div className="coll1">
+                <div className="coll1" style={{marginBottom: "2rem"}}>
                     <h2>Enter Hourly Price in ₹.</h2>
                     <input
                         disabled
@@ -490,8 +490,9 @@ const ReviewApplication = ({ changeSection }) => {
                     <Switch
                         color="warning"
                         checked={finalData?.timings?.monday?.open}
+                        disabled
                     />
-                    <div className="row2">
+                    {finalData?.timings?.monday?.open && <div className="row2">
                         <input
                             disabled
                             type="radio"
@@ -508,8 +509,8 @@ const ReviewApplication = ({ changeSection }) => {
                             checked={finalData?.timings?.monday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    {finalData?.timings?.monday?.isSetHours === true &&
+                    </div>}
+                    {finalData?.timings?.monday?.open && finalData?.timings?.monday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.monday?.time?.start}</p>
                             <p>End: {finalData?.timings?.monday?.time?.end}</p>
@@ -521,8 +522,9 @@ const ReviewApplication = ({ changeSection }) => {
                     <Switch
                         color="warning"
                         checked={finalData?.timings?.tuesday?.open}
+                        disabled
                     />
-                    <div className="row2">
+                    {finalData?.timings?.tuesday?.open && <div className="row2">
                         <input
                             disabled
                             type="radio"
@@ -539,8 +541,8 @@ const ReviewApplication = ({ changeSection }) => {
                             checked={finalData?.timings?.tuesday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    {finalData?.timings?.tuesday?.isSetHours === true &&
+                    </div>}
+                    {finalData?.timings?.tuesday?.open && finalData?.timings?.tuesday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.tuesday?.time?.start}</p>
                             <p>End: {finalData?.timings?.tuesday?.time?.end}</p>
@@ -552,8 +554,9 @@ const ReviewApplication = ({ changeSection }) => {
                     <Switch
                         color="warning"
                         checked={finalData?.timings?.wednesday?.open}
+                        disabled
                     />
-                    <div className="row2">
+                    {finalData?.timings?.wednesday?.open && <div className="row2">
                         <input
                             disabled
                             type="radio"
@@ -570,8 +573,8 @@ const ReviewApplication = ({ changeSection }) => {
                             checked={finalData?.timings?.wednesday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    {finalData?.timings?.wednesday?.isSetHours === true &&
+                    </div>}
+                    {finalData?.timings?.wednesday?.open && finalData?.timings?.wednesday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.wednesday?.time?.start}</p>
                             <p>End: {finalData?.timings?.wednesday?.time?.end}</p>
@@ -583,8 +586,9 @@ const ReviewApplication = ({ changeSection }) => {
                     <Switch
                         color="warning"
                         checked={finalData?.timings?.thursday?.open}
+                        disabled
                     />
-                    <div className="row2">
+                    {finalData?.timings?.thursday?.open && <div className="row2">
                         <input
                             disabled
                             type="radio"
@@ -601,8 +605,8 @@ const ReviewApplication = ({ changeSection }) => {
                             checked={finalData?.timings?.thursday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    {finalData?.timings?.thursday?.isSetHours === true &&
+                    </div>}
+                    {finalData?.timings?.thursday?.open && finalData?.timings?.thursday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.thursday?.time?.start}</p>
                             <p>End: {finalData?.timings?.thursday?.time?.end}</p>
@@ -614,8 +618,9 @@ const ReviewApplication = ({ changeSection }) => {
                     <Switch
                         color="warning"
                         checked={finalData?.timings?.friday?.open}
+                        disabled
                     />
-                    <div className="row2">
+                    {finalData?.timings?.friday?.open && <div className="row2">
                         <input
                             disabled
                             type="radio"
@@ -632,8 +637,8 @@ const ReviewApplication = ({ changeSection }) => {
                             checked={finalData?.timings?.friday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    {finalData?.timings?.friday?.isSetHours === true &&
+                    </div>}
+                    {finalData?.timings?.friday?.open && finalData?.timings?.friday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.friday?.time?.start}</p>
                             <p>End: {finalData?.timings?.friday?.time?.end}</p>
@@ -645,8 +650,9 @@ const ReviewApplication = ({ changeSection }) => {
                     <Switch
                         color="warning"
                         checked={finalData?.timings?.saturday?.open}
+                        disabled
                     />
-                    <div className="row2">
+                    {finalData?.timings?.saturday?.open && <div className="row2">
                         <input
                             disabled
                             type="radio"
@@ -663,8 +669,8 @@ const ReviewApplication = ({ changeSection }) => {
                             checked={finalData?.timings?.saturday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    {finalData?.timings?.saturday?.isSetHours === true &&
+                    </div>}
+                    {finalData?.timings?.saturday?.open && finalData?.timings?.saturday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.saturday?.time?.start}</p>
                             <p>End: {finalData?.timings?.saturday?.time?.end}</p>
@@ -676,8 +682,9 @@ const ReviewApplication = ({ changeSection }) => {
                     <Switch
                         color="warning"
                         checked={finalData?.timings?.sunday?.open}
+                        disabled
                     />
-                    <div className="row2">
+                    {finalData?.timings?.sunday?.open && <div className="row2">
                         <input
                             type="radio"
                             className="radio"
@@ -694,8 +701,8 @@ const ReviewApplication = ({ changeSection }) => {
                             checked={finalData?.timings?.sunday?.isSetHours === true}
                         />
                         <h2 className="timingH2AllDay">Set Hours</h2>
-                    </div>
-                    {finalData?.timings?.sunday?.isSetHours === true &&
+                    </div>}
+                    {finalData?.timings?.sunday?.open && finalData?.timings?.sunday?.isSetHours === true &&
                         <div>
                             <p>Start: {finalData?.timings?.sunday?.time?.start}</p>
                             <p>End: {finalData?.timings?.sunday?.time?.end}</p>

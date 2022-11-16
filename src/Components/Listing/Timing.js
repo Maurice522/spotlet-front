@@ -53,7 +53,7 @@ const Timing = ({ showSection, changeSection }) => {
   const location = useSelector(selectLocationData);
 
   useEffect(() => {
-    if(location){
+    if (location) {
       location.timings && setmonday(location.timings.monday);
       location.timings && settuesday(location.timings.tuesday);
       location.timings && setwednesday(location.timings.wednesday);
@@ -64,10 +64,10 @@ const Timing = ({ showSection, changeSection }) => {
     }
   }, []);
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!monday.open && !tuesday.open && !wednesday.open && !thursday.open && !friday.open && !saturday.open && !sunday.open)
-         return toast.error("Please fill all required fields");
+    if (!monday.open && !tuesday.open && !wednesday.open && !thursday.open && !friday.open && !saturday.open && !sunday.open)
+      return toast.error("Please fill all required fields");
     const timings = {
       monday,
       tuesday,
@@ -89,13 +89,13 @@ const Timing = ({ showSection, changeSection }) => {
     };
     try {
       await createTempLocation(form);
-    showSection("Rules of the Host");
+      showSection("Rules of the Host");
     } catch (error) {
       toast.error(error.response.data);
     }
 
     changeSection("Contact Details");
-		window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
   return (
     <div className="lbox">
@@ -104,9 +104,9 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setmonday({ ...monday, open: !monday.open })}
           color="warning"
-          checked = {monday.open}
+          checked={monday.open}
         />
-        {monday.open === false ? <h2></h2> : <h2 style={{color:"#ff6767"}}>Open</h2>}
+        {monday.open === false ? <h2></h2> : <h2 style={{ color: "#ff6767" }}>Open</h2>}
         {monday.open === true ? (
           <>
             <div className="row2">
@@ -132,9 +132,14 @@ const Timing = ({ showSection, changeSection }) => {
             {monday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
+                  <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
                     className="timeInput listingInput input"
-                    type="time"
                     onChange={(e) =>
                       setmonday({
                         ...monday,
@@ -142,11 +147,42 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     value={monday.time.start}
-                  />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput timeInput lisitngInput input"
-                    type="time" 
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
                       setmonday({
                         ...monday,
@@ -154,7 +190,33 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     value={monday.time.end}
-                  />
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
                 </div>
               </>
             ) : (
@@ -170,7 +232,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => settuesday({ ...tuesday, open: !tuesday.open })}
           color="warning"
-          checked = {tuesday.open}
+          checked={tuesday.open}
         />
         {tuesday.open === false ? <h2></h2> : <h2>Open</h2>}
         {tuesday.open === true ? (
@@ -198,29 +260,91 @@ const Timing = ({ showSection, changeSection }) => {
             {tuesday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput lisitngInput input"
-                    type="time" 
+                <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      settuesday({
+                      setmonday({
                         ...tuesday,
                         time: { ...tuesday.time, start: e.target.value },
                       })
                     }
                     value={tuesday.time.start}
-                  />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput lisitngInput input"
-                    type="time" 
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      settuesday({
+                      setmonday({
                         ...tuesday,
                         time: { ...tuesday.time, end: e.target.value },
                       })
                     }
                     value={tuesday.time.end}
-                  />
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
                 </div>
               </>
             ) : (
@@ -237,7 +361,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setwednesday({ ...wednesday, open: !wednesday.open })}
           color="warning"
-          checked = {wednesday.open}
+          checked={wednesday.open}
         />
         {wednesday.open === false ? <h2></h2> : <h2>Open</h2>}
         {wednesday.open === true ? (
@@ -269,29 +393,91 @@ const Timing = ({ showSection, changeSection }) => {
             {wednesday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput lisitngInput input"
-                    type="time" 
+                <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      setwednesday({
+                      setmonday({
                         ...wednesday,
                         time: { ...wednesday.time, start: e.target.value },
                       })
                     }
                     value={wednesday.time.start}
-                  />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput lisitngInput input"
-                    type="time" 
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      setwednesday({
+                      setmonday({
                         ...wednesday,
                         time: { ...wednesday.time, end: e.target.value },
                       })
                     }
                     value={wednesday.time.end}
-                  />
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
                 </div>
               </>
             ) : (
@@ -308,7 +494,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setthursday({ ...thursday, open: !thursday.open })}
           color="warning"
-          checked = {thursday.open}
+          checked={thursday.open}
         />
         {thursday.open === false ? <h2></h2> : <h2>Open</h2>}
         {thursday.open === true ? (
@@ -342,26 +528,91 @@ const Timing = ({ showSection, changeSection }) => {
                 <div
                   className="row1"
                 >
-                  <input className="timeInput lisitngInput input"
-                    type="time"   onChange={(e) =>
-                    setthursday({
-                      ...thursday,
-                      time: { ...thursday.time, start: e.target.value },
-                    })
-                  }
-                  value={thursday.time.start} />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput lisitngInput input"
-                    type="time" 
+                  <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      setthursday({
+                      setmonday({
+                        ...thursday,
+                        time: { ...thursday.time, start: e.target.value },
+                      })
+                    }
+                    value={thursday.time.start}
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
+                    onChange={(e) =>
+                      setmonday({
                         ...thursday,
                         time: { ...thursday.time, end: e.target.value },
                       })
                     }
                     value={thursday.time.end}
-                  />
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
                 </div>
               </>
             ) : (
@@ -378,7 +629,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setfriday({ ...friday, open: !friday.open })}
           color="warning"
-          checked = {friday.open}
+          checked={friday.open}
         />
         {friday.open === false ? <h2></h2> : <h2>Open</h2>}
         {friday.open === true ? (
@@ -406,29 +657,91 @@ const Timing = ({ showSection, changeSection }) => {
             {friday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      setfriday({
+                      setmonday({
                         ...friday,
                         time: { ...friday.time, start: e.target.value },
                       })
                     }
                     value={friday.time.start}
-                  />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      setfriday({
+                      setmonday({
                         ...friday,
                         time: { ...friday.time, end: e.target.value },
                       })
                     }
                     value={friday.time.end}
-                  />
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
                 </div>
               </>
             ) : (
@@ -445,7 +758,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setsaturday({ ...saturday, open: !saturday.open })}
           color="warning"
-          checked = {saturday.open}
+          checked={saturday.open}
         />
         {saturday.open === false ? <h2></h2> : <h2>Open</h2>}
         {saturday.open === true ? (
@@ -477,29 +790,91 @@ const Timing = ({ showSection, changeSection }) => {
             {saturday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      setsaturday({
+                      setmonday({
                         ...saturday,
                         time: { ...saturday.time, start: e.target.value },
                       })
                     }
                     value={saturday.time.start}
-                  />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      setsaturday({
+                      setmonday({
                         ...saturday,
                         time: { ...saturday.time, end: e.target.value },
                       })
                     }
                     value={saturday.time.end}
-                  />
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
                 </div>
               </>
             ) : (
@@ -516,7 +891,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setsunday({ ...sunday, open: !sunday.open })}
           color="warning"
-          checked = {sunday.open}
+          checked={sunday.open}
         />
         {sunday.open === false ? <h2></h2> : <h2>Open</h2>}
         {sunday.open === true ? (
@@ -544,29 +919,91 @@ const Timing = ({ showSection, changeSection }) => {
             {sunday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      setsunday({
+                      setmonday({
                         ...sunday,
                         time: { ...sunday.time, start: e.target.value },
                       })
                     }
                     value={sunday.time.start}
-                  />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "16px" }}
+                    defaultValue="06:30 pm"
+                    type="text"
+                    className="timeInput listingInput input"
                     onChange={(e) =>
-                      setsunday({
+                      setmonday({
                         ...sunday,
                         time: { ...sunday.time, end: e.target.value },
                       })
                     }
                     value={sunday.time.end}
-                  />
+                  >
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 pm">01:00 pm</option>
+                    <option value="02:00 pm">02:00 pm</option>
+                    <option value="03:00 pm">03:00 pm</option>
+                    <option value="04:00 pm">04:00 pm</option>
+                    <option value="05:00 pm">05:00 pm</option>
+                    <option value="06:00 pm">06:00 pm</option>
+                    <option value="07:00 pm">07:00 pm</option>
+                    <option value="08:00 pm">08:00 pm</option>
+                    <option value="09:00 pm">09:00 pm</option>
+                    <option value="10:00 pm">10:00 pm</option>
+                    <option value="11:00 pm">11:00 pm</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="01:00 am">01:00 am</option>
+                    <option value="02:00 am">02:00 am</option>
+                    <option value="03:00 am">03:00 am</option>
+                    <option value="04:00 am">04:00 am</option>
+                    <option value="05:00 am">05:00 am</option>
+                    <option value="06:00 am">06:00 am</option>
+                    <option value="07:00 am">07:00 am</option>
+                    <option value="08:00 am">08:00 am</option>
+                    <option value="09:00 am">09:00 am</option>
+
+                  </select>
                 </div>
               </>
             ) : (
@@ -583,7 +1020,7 @@ const Timing = ({ showSection, changeSection }) => {
       >
         Continue
       </button>
-    </div>
+    </div >
   );
 };
 

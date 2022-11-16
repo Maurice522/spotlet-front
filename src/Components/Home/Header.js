@@ -53,7 +53,7 @@ const Header = ({ extraNavId }) => {
 							}}
 						/>
 					</div>
-					with Spotlet
+					with SpotLet
 				</div>
 			</div>
 		</>

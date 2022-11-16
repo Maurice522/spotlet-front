@@ -221,12 +221,14 @@ h1 {
     width: 80% !important;
     margin: 0 !important;
     margin-top: 20px !important;
+    box-shadow: none !important;
 }
 
 .custom-dropdown .checkbox{
     width: 15px !important;
     height: 15px !important;
     border-radius: 50%;
+    border: 1px solid #ff6767 !important;
 }
 .custom-dropdown .checked{
     border-radius: 50%;

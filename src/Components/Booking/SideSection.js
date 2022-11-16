@@ -130,6 +130,7 @@ const SideSection = ({
 	tot_price = Math.round(tot_price, 2);
 	let gst = v6 * v3 * 1.18;
 	gst = Math.round(gst, 2);
+	console.log(v6, v3, gst)
 	// console.log(v1, v3, v4);
 	const userBooking = useSelector(selectUserData);
 
@@ -164,7 +165,7 @@ const SideSection = ({
 			</div>
 			<div data-attribute-3>
 				<div data-attribute-4>Discounted Price</div>
-				<div data-attribute-4>{tot_price}</div>
+				<div data-attribute-4>₹ {tot_price}</div>
 			</div>
 
 			<div data-attribute-3>

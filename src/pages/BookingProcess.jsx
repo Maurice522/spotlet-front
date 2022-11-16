@@ -7,6 +7,7 @@ import Booking from "../Components/Booking/Booking";
 import Rules from "../Components/Booking/Rules";
 import Contact from "../Components/Booking/Contact";
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { useNavigate } from "react-router-dom";
 
 const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 	const [index, setIndex] = useState(0);
@@ -37,6 +38,8 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 		  else
 			setLines(true);
 	}, [])
+
+	const navigate = useNavigate();
 	return (
 		<>
 			<Navbar extraNavId="id-2" />
@@ -44,7 +47,13 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 				<div className="booking-content-wrapper">
 					<div className="left-section">
 						<div className="booking-process-main">
-							<AiOutlineArrowLeft size="20px" tyle={{cursor: "pointer"}}  onClick={() => setIndex(prev => prev > 0 ? prev-1 : prev)} />
+							<AiOutlineArrowLeft size="20px" tyle={{cursor: "pointer"}}  onClick={() => {
+								if(index === 0){
+									navigate(-1);
+									window.scrollTo(0, 0);
+								}
+								setIndex(prev => prev > 0 ? prev-1 : prev)}
+								} />
 							<div className="booking-process">
 							<div className={`booking-item ${index === 0 ? "highlight" : ""}`}>
 								BOOKING
