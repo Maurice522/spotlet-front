@@ -3,7 +3,12 @@ import { Apps, Pending } from "@mui/icons-material";
 import "./image-grid.css";
 import { useEffect } from "react";
 import { useState } from "react";
-import { AiFillHeart, AiFillStar, AiOutlineHeart, AiOutlineStar } from "react-icons/ai";
+import {
+  AiFillHeart,
+  AiFillStar,
+  AiOutlineHeart,
+  AiOutlineStar,
+} from "react-icons/ai";
 import { BiShareAlt } from "react-icons/bi";
 import { BsPersonFill } from "react-icons/bs";
 import { GiFilmProjector } from "react-icons/gi";
@@ -12,12 +17,18 @@ import { toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
 import { getUserData } from "../../services/api";
 
-function ImageGrid({ images, openGallery, locationData, favorites, setFavorites }) {
+function ImageGrid({
+  images,
+  openGallery,
+  locationData,
+  favorites,
+  setFavorites,
+}) {
   const [starSize, setStarSize] = useState("18px");
   const [copied, setCopied] = useState(false);
-  
+
   const currentLocation = window.location;
-  const location_id = currentLocation.href.split('/')[4];
+  const location_id = currentLocation.href.split("/")[4];
 
   const copy = () => {
     const el = document.createElement("input");
@@ -41,17 +52,19 @@ function ImageGrid({ images, openGallery, locationData, favorites, setFavorites 
       <div className="image-grid-main">
         {images ? (
           <div className="image-grid-container">
-            <div className="image-hero-container">
-              <img
-                src={images[0].image}
-                alt="Main"
-                className="image-grid-image"
-                style={{
-                  borderTopLeftRadius: "10px",
-                  borderBottomLeftRadius: "10px",
-                }}
-              />
-            </div>
+            {!x.matches && (
+              <div className="image-hero-container">
+                <img
+                  src={images[0].image}
+                  alt="Main"
+                  className="image-grid-image"
+                  style={{
+                    borderTopLeftRadius: "10px",
+                    borderBottomLeftRadius: "10px",
+                  }}
+                />
+              </div>
+            )}
             <div className="image-right-container">
               <div>
                 <img
@@ -98,17 +111,26 @@ function ImageGrid({ images, openGallery, locationData, favorites, setFavorites 
           </button>
         )}
       </div>
-      <div className="property-info">
+      <div className="property-details">
         <div>
           <div className="name">{location_id}</div>
-          <div className="location">Apartment parking: {locationData?.property_desc?.house_parking.toUpperCase()}</div>
-          <div>{locationData?.property_address?.city}, {locationData?.property_address?.state}</div>
+          <div className="location">
+            Apartment parking:{" "}
+            {locationData?.property_desc?.house_parking.toUpperCase()}
+          </div>
+          <div>
+            {locationData?.property_address?.city},{" "}
+            {locationData?.property_address?.state}
+          </div>
         </div>
         <div className="icons">
-          <div className="icons--main">
+          <div
+            className="icons--main"
+            style={{ gap: !x.matches && "12px", justifyContent: "flex-end" }}
+          >
             {locationData?.pricing?.corporate?.isPresent && (
-                <MdOutlineCorporateFare size="30px" />
-              )}
+              <MdOutlineCorporateFare size="30px" />
+            )}
             {(locationData?.pricing?.film_webseries_ad?.isPresent ||
               locationData?.pricing?.tv_series_other?.isPresent) && (
               <GiFilmProjector size="30px" />
@@ -119,7 +141,8 @@ function ImageGrid({ images, openGallery, locationData, favorites, setFavorites 
             <div
               style={{
                 marginTop: "3px",
-              }}>
+              }}
+            >
               <BiShareAlt
                 color="#374047"
                 size="24px"
@@ -136,28 +159,35 @@ function ImageGrid({ images, openGallery, locationData, favorites, setFavorites 
                   setFavorites((prev) =>
                     prev.filter((element) => element !== location_id)
                   );
-                }}              />
+                }}
+              />
             ) : (
               <AiOutlineHeart
                 style={{ cursor: "pointer" }}
                 color="#374047"
                 size="30px"
-                  onClick={() => {
-                    setFavorites((prev) => [...prev, location_id]);
-                  }}              />
+                onClick={() => {
+                  setFavorites((prev) => [...prev, location_id]);
+                }}
+              />
             )}
           </div>
-          <div className="property-info-location property-rating">
-            <div>
-              <div>
-                <AiFillStar style={{ color: '#FFC736' }} size={starSize} />
-                <AiFillStar style={{ color: '#FFC736' }} size={starSize} />
-                <AiFillStar style={{ color: '#FFC736' }} size={starSize} />
-                <AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
-                <AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
-              </div>
+          <div
+            className="property-info-location"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div style={{ textAlign: x.matches ? "left" : "right" }}>(40)</div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <AiFillStar style={{ color: "#FFC736" }} size={starSize} />
+              <AiFillStar style={{ color: "#FFC736" }} size={starSize} />
+              <AiFillStar style={{ color: "#FFC736" }} size={starSize} />
+              <AiOutlineStar style={{ color: "#FFC736" }} size={starSize} />
+              <AiOutlineStar style={{ color: "#FFC736" }} size={starSize} />
             </div>
-            <div>(40)</div>
           </div>
         </div>
       </div>

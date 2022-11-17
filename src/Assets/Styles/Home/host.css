@@ -1,69 +1,67 @@
 .host-bg {
-	background: url("../../Images/host-bg.jpeg") no-repeat center center;
-	height: 500px;
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 700;
-	font-size: 31px;
-	line-height: 44px;
-	text-align: center;
-	color: #ffffff;
-	margin: 100px auto 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  background: url("../../Images/host-bg.jpeg") no-repeat center center;
+  height: 500px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 31px;
+  line-height: 44px;
+  text-align: center;
+  color: #ffffff;
+  margin: 0px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .host-header {
-	font-family: "Rubik";
-	font-style: normal;
-	font-size: 40px;
-	margin-bottom: 20px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
 .list-btn {
-	font-family: "Rubik";
-	font-style: normal;
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 24px;
-	background: #ea4235;
-	border-radius: 4px;
-	width: fit-content;
-	margin: 40px auto;
-	padding: 10px;
-	cursor: pointer;
-	width: 20%;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  background: #ea4235;
+  border-radius: 4px;
+  width: fit-content;
+  margin: 40px auto;
+  padding: 10px;
+  cursor: pointer;
+  width: 20%;
 }
 
-
-
-@media screen and (max-width: 992px){
-	.host-bg {
-		font-size: 28px;
-	}
-	.host-header {
-		font-family: "Rubik";
-		font-style: normal;
-		font-size: 36px;
-	}
-	.list-btn {
-		font-size: 14px;
-		line-height: 20px;
-	}
+@media screen and (max-width: 992px) {
+  .host-bg {
+    font-size: 28px;
+  }
+  .host-header {
+    font-family: "Rubik";
+    font-style: normal;
+    font-size: 36px;
+  }
+  .list-btn {
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 
-@media screen and (max-width: 768px){
-	.host-bg {
-		font-size: 20px;
-	}
-	.host-header {
-		font-family: "Rubik";
-		font-style: normal;
-		font-size: 28px;
-	}
-	.list-btn {
-		font-size: 12px;
-		line-height: 20px;
-	}
+@media screen and (max-width: 768px) {
+  .host-bg {
+    font-size: 20px;
+  }
+  .host-header {
+    font-family: "Rubik";
+    font-style: normal;
+    font-size: 28px;
+  }
+  .list-btn {
+    font-size: 12px;
+    line-height: 20px;
+  }
 }

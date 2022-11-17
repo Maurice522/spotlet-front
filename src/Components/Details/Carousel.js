@@ -114,49 +114,47 @@ const Carousel = ({ locationData }) => {
 						{locationData?.pricing?.corporate?.isPresent && (
 							<MdOutlineCorporateFare size="30px" />
 						)}
-						{locationData?.pricing?.film_webseries_ad?.isPresent || 
+						{locationData?.pricing?.film_webseries_ad?.isPresent ||
 							locationData?.pricing?.tv_series_other?.isPresent && (
-							<GiFilmProjector size="30px" />
-						)}
+								<GiFilmProjector size="30px" />
+							)}
 						{locationData?.pricing?.individual?.isPresent && (
 							<BsPersonFill size="30px" />
 						)}
-					<div
-						style={{
-							marginTop: "3px",
-						}}>
-						<BiShareAlt
-							color="#374047"
-							size="24px"
-							style={{ cursor: "pointer" }}
-							onClick={copy}
-						/>
+						<div
+							style={{
+								marginTop: "3px",
+							}}>
+							<BiShareAlt
+								color="#374047"
+								size="24px"
+								style={{ cursor: "pointer" }}
+								onClick={copy}
+							/>
+						</div>
+						{fav === true ? (
+							<AiFillHeart
+								style={{ cursor: "pointer" }}
+								color="#ff4d4d"
+								size="30px"
+								onClick={() => setFav(false)}
+							/>
+						) : (
+							<AiOutlineHeart
+								style={{ cursor: "pointer" }}
+								color="#374047"
+								size="30px"
+								onClick={() => setFav(true)}
+							/>
+						)}
 					</div>
-					{fav === true ? (
-						<AiFillHeart
-							style={{ cursor: "pointer" }}
-							color="#ff4d4d"
-							size="30px"
-							onClick={() => setFav(false)}
-						/>
-					) : (
-						<AiOutlineHeart
-							style={{ cursor: "pointer" }}
-							color="#374047"
-							size="30px"
-							onClick={() => setFav(true)}
-						/>
-					)}
-					</div>
-					<div className="property-info-location property-rating">
+					<div className="property-info-location">
 						<div>
-							<div>
-								<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
-								<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
-								<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
-								<AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
-								<AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
-							</div>
+							<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
+							<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
+							<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
+							<AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
+							<AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
 						</div>
 						<div>(40)</div>
 					</div>

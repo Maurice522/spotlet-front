@@ -1,39 +1,45 @@
 .flex-container {
-	width: 99%;
-	margin: 20px auto;
-	padding: 20px 0;
-	display: flex;
-	gap: 20px;
-	border-bottom: 2px solid #d9d9d9;
+  width: 99%;
+  margin: 20px auto;
+  padding: 20px 0;
+  display: flex;
+  gap: 20px;
+  border-bottom: 2px solid #d9d9d9;
 }
 
 .justify-center {
-	justify-content: center;
+  justify-content: center;
 }
 
 .listing-property-image {
-	width: 30vw;
-	aspect-ratio: 5 / 2;
+  width: 30vw;
+  aspect-ratio: 5 / 2;
+}
+
+@media screen and (max-width: 420px) {
+  .listing-property-image {
+    width: 80vw !important;
+  }
 }
 
 .listing-property-details {
-	margin-top: 7px;
+  margin-top: 7px;
 }
 
 .listing-property-id {
-	font-family: "Rubik";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 25px;
-	line-height: 36px;
-	margin-bottom: 30px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 36px;
+  margin-bottom: 30px;
 }
 
 .listing-property-address {
-	font-family: "Rubik";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 20px;
-	line-height: 32px;
-	margin: 10px auto;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  margin: 10px auto;
 }

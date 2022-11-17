@@ -150,6 +150,7 @@ const Contact = ({ setReadyForRequest, setUserData, userData }) => {
 							fullWidth
 							size="small"
 							name="dob"
+							placeholder="dd-mm-yyyy"
 							onChange={handleChange}
 							value={userData.dob}
 							inputProps={{ max: maxDate }}

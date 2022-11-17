@@ -78,7 +78,6 @@ const Content = () => {
 				alignItems:"center",
 				textAlign:"center",
 				// height:"90vh",
-				marginTop:"5%"
 			}}>
 			<video src={Video1} controls="controls" autoPlay muted style={{height:"100%",width:"100%"}}  />
 				{/* <img

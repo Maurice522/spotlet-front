@@ -158,6 +158,15 @@
 	color: #000000 !important;
 }
 
+#simple-menu-nav .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root{
+	padding: 16px !important;
+	border-bottom: 1px solid #c4d1e0 !important;
+}
+
+#simple-menu-nav .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper{
+	top: 60px !important;
+}
+
 
 
 @media screen and (max-width: 992px){

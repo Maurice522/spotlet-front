@@ -172,11 +172,12 @@ const BookingList = () => {
 					const response = await locationRequest(loc?.location_id);
 					const { requests } = response.data;
 					console.log(requests.length);
-					setLocRequests([...locrequests, requests.length]);
+					setLocRequests((prev) => [...prev, requests.length]);
 				} catch (error) {
 					console.log(error);
 				}
 			});
+		console.log(locrequests);
 	}, [userData]);
 
 	const bookingData = userData?.portfolio.map((booking, index) => {
@@ -207,7 +208,7 @@ const BookingList = () => {
 				ampm +
 				", " +
 				booking?.duration_in_hours,
-			TotalAmount: parseInt(booking?.total_amt),
+			TotalAmount: booking?.total_amt?.toFixed(2),
 		};
 	});
 

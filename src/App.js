@@ -106,19 +106,19 @@ function App() {
 					<Route path="/search/" element={<Search />} />
 					<Route path="/aboutus" element={<AboutUs />} />
 					<Route path="/activities" element={<Activity />} />
-					<Route path="/listing" element={<ListingPlace />} />
-					<Route path="/messages/:bookingId" element={<Messages />} />
-					<Route path="/messages" element={<Messages />} />
-					<Route path="/bookinglist/:bookingItem" element={<BookingList />} />
+					<Route path="/listing" element={user ? <ListingPlace /> : <Auth />} />
+					<Route path="/messages/:bookingId" element={user ? <Messages /> : <Auth />} />
+					<Route path="/messages" element={user ? <Messages /> : <Auth />} />
+					<Route path="/bookinglist/:bookingItem" element={user ? <BookingList /> : <Auth />} />
 					<Route path="/blogs" element={<Blogs />} />
 					<Route path="/blog/:blogid" element={<Blog />} />
 					<Route
 						path="/bookingdetails/:bookingId"
-						element={<BookingDetails />}
+						element={user ? <BookingDetails /> : <Auth />}
 					/>
 
-					<Route path="/listdetails/:locId" element={<ListDetails />} />
-					<Route path="/favorite" element={<Favorites />} />
+					<Route path="/listdetails/:locId" element={user ? <ListDetails /> : <Auth />} />
+					<Route path="/favorite" element={user ? <Favorites /> : <Auth />} />
 					<Route path="/guidelines" element={<Guidelines />} />
 					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
 					<Route path="/termsofservice" element={<TermsofService />} />

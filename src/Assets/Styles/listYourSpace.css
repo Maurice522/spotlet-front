@@ -100,7 +100,7 @@ h1 {
 }
 .timing-row{
     display: grid !important;
-    grid-template-columns: 0.6fr 0.5fr 0.4fr 2fr 2fr;
+    grid-template-columns: 0.6fr 0.5fr 0.4fr 1.5fr 2fr;
     gap: 2rem;
     align-items: flex-end;
 }
@@ -113,15 +113,18 @@ h1 {
 .timing-row h2{
     margin-bottom: 5px !important;
     margin-left: 0 !important;
-    width: 88px;
 }
 .timing-row .row2{
     margin-bottom: 0 !important;
 }
 .timing-row .row1{
     display: flex !important;
+    gap: 20px !important;
     margin-left: 0 !important;
     margin-bottom: 0 !important;
+}
+.timing-row .css-b62m3t-container{
+    width: 135px !important;
 }
 .timeInput {
     border: 1px solid grey;

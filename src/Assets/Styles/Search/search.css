@@ -25,6 +25,7 @@
 	transform: scale(1);
 	transition-duration: 0.5s;
 	border: 2px solid rgb(3, 218, 247);
+	width: 95%;
 }
 
 .item:hover {
@@ -50,6 +51,9 @@
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 24px;
+	justify-content: flex-start !important;
+	flex-direction: row-reverse !important;
+	gap: 0.5rem !important;
 }
 
 .property-info-price {
