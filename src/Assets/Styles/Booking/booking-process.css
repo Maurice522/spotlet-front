@@ -1,6 +1,6 @@
 .booking-content-wrapper {
 	max-width: 85vw;
-	margin: 3px auto;
+	margin: 8rem auto;
 	display: flex;
 	justify-content: space-around;
 }

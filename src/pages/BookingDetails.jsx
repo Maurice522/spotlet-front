@@ -216,14 +216,18 @@ const BookingDetails = () => {
 								</div>
 								<div data-attribute-4>
 									₹{" "}
-									{(perHourCost * booking?.duration_in_hours)?.toFixed(2) ===
+									{parseInt(perHourCost * booking?.duration_in_hours) ===
 									"NaN"
 										? 0
-										: (perHourCost * booking?.duration_in_hours)?.toFixed(2)}
+										: parseInt(perHourCost * booking?.duration_in_hours)}
 								</div>
 							</div>
 							<div data-attribute-3>
 								<div data-attribute-4>Processing Fee</div>
+								<div data-attribute-4>₹ 40</div>
+							</div>
+							<div data-attribute-3>
+								<div data-attribute-4>Cleaning Fee</div>
 								<div data-attribute-4>₹ 40</div>
 							</div>
 
@@ -231,13 +235,9 @@ const BookingDetails = () => {
 								<div data-attribute-1>Total</div>
 								<div data-attribute-1>
 									₹{" "}
-									{(perHourCost * booking?.duration_in_hours + 40)?.toFixed(
-										2
-									) === "NaN"
+									{parseInt(perHourCost * booking?.duration_in_hours + 40 + 40) === "NaN"
 										? 0
-										: (perHourCost * booking?.duration_in_hours + 40)?.toFixed(
-												2
-										  )}
+										: parseInt(perHourCost * booking?.duration_in_hours + 40 + 40)}
 								</div>
 							</div>
 

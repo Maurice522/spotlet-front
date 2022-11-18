@@ -7,15 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserData, selectUser_id } from "../../redux/slices/userSlice";
 import { createTempLocation } from "../../services/api";
 import {
-	addLocation,
-	addLocationId,
-	selectLocationData,
-	selectLocationId,
+  addLocation,
+  addLocationId,
+  selectLocationData,
+  selectLocationId,
 } from "../../redux/slices/locationSlice";
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
-
-
+import { ClearAll } from "@mui/icons-material";
 
 let options = [
 	{ value: "Add New", label: "Add Custom to List" },
@@ -63,24 +62,25 @@ let options = [
 	{ value: "Wooden house", label: "Wooden house" },
 ];
 
-const Details = ({ showSection, changeSection }) => {
-	const user_id = useSelector(selectUser_id);
-	const user = useSelector(selectUserData);
-	const location = useSelector(selectLocationData);
+const initialState = {
+  user_id: "",
+  location_type: "",
+  property_size: "",
+  property_info: "",
+  street_parking: "",
+  house_parking: "",
+  security_camera: "",
+};
 
-	console.log(location);
-	const location_id = useSelector(selectLocationId);
-	const [lType, setLType] = useState(0);
-	const dispatch = useDispatch();
-	const [property_desc, setPropertyDescr] = useState({
-		user_id: "",
-		location_type: "",
-		property_size: "",
-		property_info: "",
-		street_parking: "",
-		house_parking: "",
-		security_camera: "",
-	});
+const Details = ({ showSection, changeSection }) => {
+  const user_id = useSelector(selectUser_id);
+  const user = useSelector(selectUserData);
+  const location = useSelector(selectLocationData);
+
+  const location_id = useSelector(selectLocationId);
+  const [lType, setLType] = useState(0);
+  const dispatch = useDispatch();
+  const [property_desc, setPropertyDescr] = useState(initialState);
 
 	useEffect(() => {
 		// location && setLType(" "+location.property_desc.location_type);
@@ -90,12 +90,12 @@ const Details = ({ showSection, changeSection }) => {
 			}
 		})
 
-		user_id && setPropertyDescr({ ...property_desc, user_id });
-	}, [user_id]);
+    user_id && setPropertyDescr({ ...property_desc, user_id });
+  }, [user_id]);
 
-	useEffect(() => {
-		location && setPropertyDescr(location.property_desc);
-	}, []);
+  useEffect(() => {
+    location && setPropertyDescr(location.property_desc);
+  }, []);
 
 	const handleChange = (e) => {
 		setPropertyDescr({
@@ -132,10 +132,9 @@ const Details = ({ showSection, changeSection }) => {
 			toast.error(error.response.data);
 		}
 
-		changeSection("Location");
-		window.scrollTo(0, 0);
-
-	};
+    changeSection("Location");
+    window.scrollTo(0, 0);
+  };
 
 	const [opt, setOpt] = useState(options);
 	const [loc, setLoc] = useState(false);

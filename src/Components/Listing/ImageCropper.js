@@ -1,4 +1,3 @@
-
 import { Button } from "@mui/material";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -6,13 +5,7 @@ import ReactCrop, { centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 
 function ImageCropper(props) {
-  const {
-    imageToCrop,
-    onImageCropped,
-    onChangePreview,
-    croppedImage,
-    preview,
-  } = props;
+  const { imageToCrop, onImageCropped } = props;
   const [cropConfig, setCropConfig] = useState(undefined);
   const [imageRef, setImageRef] = useState();
   const [adjustOpen, setAdjustOpen] = useState(true);
@@ -107,21 +100,6 @@ function ImageCropper(props) {
         >
           {adjustOpen && <img src={imageToCrop} alt="" onLoad={onImageLoad} />}
         </ReactCrop>
-        {imageRef && (
-          <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-            <Button
-              variant="contained"
-              onClick={() => setAdjustOpen(!adjustOpen)} style={{background:"#f26767"}}
-            >
-              {adjustOpen ? "Close" : "Resize"}
-            </Button>
-            {croppedImage && (
-              <Button variant="contained" onClick={onChangePreview} style={{background:"#f26767"}}>
-                {preview ? "Minimize" : "Show Cropped"}
-              </Button>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );

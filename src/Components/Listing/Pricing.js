@@ -198,7 +198,7 @@ const Pricing = ({ showSection, changeSection }) => {
 							/>
 						</div>
 					</div>
-					<div className="row1">
+					<div className="row2" style={{gap: "5%"}}>
 						<div className="coll1">
 							<h2>8 hour Price</h2>
 							<input
@@ -255,7 +255,7 @@ const Pricing = ({ showSection, changeSection }) => {
 							/>
 						</div>
 					</div>
-					<div className="row1">
+					<div className="row2" style={{gap: "5%"}}>
 						<div className="coll1">
 							<h2>8 hour Price</h2>
 							<input

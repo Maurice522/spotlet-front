@@ -72,7 +72,7 @@ const Contact = ({ showSection, changeSection }) => {
 			<div className="row1">
 				<div className="coll1">
 					<h2>
-						Name required on the Booking (Company/Individual)
+						Name of the Location
 						<span style={{ color: "red" }}>*</span>
 					</h2>
 					<input

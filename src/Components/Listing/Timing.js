@@ -10,7 +10,36 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
+import Select from "react-select";
 
+const options = [
+  
+    {value:"01:00 pm", label:"01:00 pm"},
+    {value:"02:00 pm", label:"02:00 pm"},
+    {value:"03:00 pm", label:"03:00 pm"},
+    {value:"04:00 pm", label:"04:00 pm"},
+    {value:"05:00 pm", label:"05:00 pm"},
+    {value:"06:00 pm", label:"06:00 pm"},
+    {value:"07:00 pm", label:"07:00 pm"},
+    {value:"08:00 pm", label:"08:00 pm"},
+    {value:"09:00 pm", label:"09:00 pm"},
+    {value:"10:00 pm", label:"10:00 pm"},
+    {value:"11:00 pm", label:"11:00 pm"},
+    {value:"12:00 pm", label:"12:00 pm"},
+    {value:"01:00 am", label:"01:00 am"},
+    {value:"02:00 am", label:"02:00 am"},
+    {value:"03:00 am", label:"03:00 am"},
+    {value:"04:00 am", label:"04:00 am"},
+    {value:"05:00 am", label:"05:00 am"},
+    {value:"06:00 am", label:"06:00 am"},
+    {value:"07:00 am", label:"07:00 am"},
+    {value:"08:00 am", label:"08:00 am"},
+    {value:"09:00 am", label:"09:00 am"},
+    {value:"10:00 am", label:"10:00 am"},
+    {value:"11:00 am", label:"11:00 am"},
+    {value:"12:00 am", label:"12:00 am"},
+
+];
 
 const Timing = ({ showSection, changeSection }) => {
   const [monday, setmonday] = useState({
@@ -53,7 +82,7 @@ const Timing = ({ showSection, changeSection }) => {
   const location = useSelector(selectLocationData);
 
   useEffect(() => {
-    if(location){
+    if (location) {
       location.timings && setmonday(location.timings.monday);
       location.timings && settuesday(location.timings.tuesday);
       location.timings && setwednesday(location.timings.wednesday);
@@ -64,10 +93,10 @@ const Timing = ({ showSection, changeSection }) => {
     }
   }, []);
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!monday.open && !tuesday.open && !wednesday.open && !thursday.open && !friday.open && !saturday.open && !sunday.open)
-         return toast.error("Please fill all required fields");
+    if (!monday.open && !tuesday.open && !wednesday.open && !thursday.open && !friday.open && !saturday.open && !sunday.open)
+      return toast.error("Please fill all required fields");
     const timings = {
       monday,
       tuesday,
@@ -77,6 +106,7 @@ const Timing = ({ showSection, changeSection }) => {
       saturday,
       sunday,
     };
+    console.log(timings)
     //console.log(timings);
     const locData = {
       ...location,
@@ -89,13 +119,13 @@ const Timing = ({ showSection, changeSection }) => {
     };
     try {
       await createTempLocation(form);
-    showSection("Rules of the Host");
+      showSection("Rules of the Host");
     } catch (error) {
       toast.error(error.response.data);
     }
 
     changeSection("Contact Details");
-		window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
   return (
     <div className="lbox">
@@ -104,9 +134,9 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setmonday({ ...monday, open: !monday.open })}
           color="warning"
-          checked = {monday.open}
+          checked={monday.open}
         />
-        {monday.open === false ? <h2></h2> : <h2 style={{color:"#ff6767"}}>Open</h2>}
+        {monday.open === false ? <h2></h2> : <h2 style={{ color: "#ff6767" }}>Open</h2>}
         {monday.open === true ? (
           <>
             <div className="row2">
@@ -132,29 +162,37 @@ const Timing = ({ showSection, changeSection }) => {
             {monday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput listingInput input"
-                    type="time"
+                  <Select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setmonday({
                         ...monday,
-                        time: { ...monday.time, start: e.target.value },
+                        time: { ...monday.time, start: e.value },
                       })
                     }
-                    value={monday.time.start}
+                    options={options}
                   />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput timeInput lisitngInput input"
-                    type="time" 
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <Select
+                    required
+                    id="end-time"
+                    name="end-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setmonday({
                         ...monday,
-                        time: { ...monday.time, end: e.target.value },
+                        time: { ...monday.time, end: e.value },
                       })
                     }
-                    value={monday.time.end}
-                  />
+                    options={options}
+                    />
                 </div>
               </>
             ) : (
@@ -170,7 +208,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => settuesday({ ...tuesday, open: !tuesday.open })}
           color="warning"
-          checked = {tuesday.open}
+          checked={tuesday.open}
         />
         {tuesday.open === false ? <h2></h2> : <h2>Open</h2>}
         {tuesday.open === true ? (
@@ -198,28 +236,36 @@ const Timing = ({ showSection, changeSection }) => {
             {tuesday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput lisitngInput input"
-                    type="time" 
+                <Select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       settuesday({
                         ...tuesday,
-                        time: { ...tuesday.time, start: e.target.value },
+                        time: { ...tuesday.time, start: e.value },
                       })
                     }
-                    value={tuesday.time.start}
+                    options={options}
                   />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput lisitngInput input"
-                    type="time" 
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <Select
+                    required
+                    id="end-time"
+                    name="end-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       settuesday({
                         ...tuesday,
-                        time: { ...tuesday.time, end: e.target.value },
+                        time: { ...tuesday.time, end: e.value },
                       })
                     }
-                    value={tuesday.time.end}
+                    options={options}
                   />
                 </div>
               </>
@@ -237,7 +283,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setwednesday({ ...wednesday, open: !wednesday.open })}
           color="warning"
-          checked = {wednesday.open}
+          checked={wednesday.open}
         />
         {wednesday.open === false ? <h2></h2> : <h2>Open</h2>}
         {wednesday.open === true ? (
@@ -269,28 +315,36 @@ const Timing = ({ showSection, changeSection }) => {
             {wednesday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput lisitngInput input"
-                    type="time" 
+                <Select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setwednesday({
                         ...wednesday,
-                        time: { ...wednesday.time, start: e.target.value },
+                        time: { ...wednesday.time, start: e.value },
                       })
                     }
-                    value={wednesday.time.start}
+                    options={options}
                   />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput lisitngInput input"
-                    type="time" 
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <Select
+                    required
+                    id="end-time"
+                    name="end-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setwednesday({
                         ...wednesday,
-                        time: { ...wednesday.time, end: e.target.value },
+                        time: { ...wednesday.time, end: e.value },
                       })
                     }
-                    value={wednesday.time.end}
+                    options={options}
                   />
                 </div>
               </>
@@ -308,7 +362,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setthursday({ ...thursday, open: !thursday.open })}
           color="warning"
-          checked = {thursday.open}
+          checked={thursday.open}
         />
         {thursday.open === false ? <h2></h2> : <h2>Open</h2>}
         {thursday.open === true ? (
@@ -342,25 +396,36 @@ const Timing = ({ showSection, changeSection }) => {
                 <div
                   className="row1"
                 >
-                  <input className="timeInput lisitngInput input"
-                    type="time"   onChange={(e) =>
-                    setthursday({
-                      ...thursday,
-                      time: { ...thursday.time, start: e.target.value },
-                    })
-                  }
-                  value={thursday.time.start} />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput lisitngInput input"
-                    type="time" 
+                  <Select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setthursday({
                         ...thursday,
-                        time: { ...thursday.time, end: e.target.value },
+                        time: { ...thursday.time, start: e.value },
                       })
                     }
-                    value={thursday.time.end}
+                    options={options}
+                  />
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <Select
+                    required
+                    id="end-time"
+                    name="end-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
+                    onChange={(e) =>
+                      setthursday({
+                        ...thursday,
+                        time: { ...thursday.time, end: e.value },
+                      })
+                    }
+                    options={options}
                   />
                 </div>
               </>
@@ -378,7 +443,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setfriday({ ...friday, open: !friday.open })}
           color="warning"
-          checked = {friday.open}
+          checked={friday.open}
         />
         {friday.open === false ? <h2></h2> : <h2>Open</h2>}
         {friday.open === true ? (
@@ -406,29 +471,37 @@ const Timing = ({ showSection, changeSection }) => {
             {friday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                <Select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setfriday({
                         ...friday,
-                        time: { ...friday.time, start: e.target.value },
+                        time: { ...friday.time, start: e.value },
                       })
                     }
-                    value={friday.time.start}
-                  />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                    options={options}
+                    />
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <Select
+                    required
+                    id="end-time"
+                    name="end-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setfriday({
                         ...friday,
-                        time: { ...friday.time, end: e.target.value },
+                        time: { ...friday.time, end: e.value },
                       })
                     }
-                    value={friday.time.end}
-                  />
+                    options={options}
+                    />
                 </div>
               </>
             ) : (
@@ -445,7 +518,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setsaturday({ ...saturday, open: !saturday.open })}
           color="warning"
-          checked = {saturday.open}
+          checked={saturday.open}
         />
         {saturday.open === false ? <h2></h2> : <h2>Open</h2>}
         {saturday.open === true ? (
@@ -477,28 +550,36 @@ const Timing = ({ showSection, changeSection }) => {
             {saturday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                <Select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setsaturday({
                         ...saturday,
-                        time: { ...saturday.time, start: e.target.value },
+                        time: { ...saturday.time, start: e.value },
                       })
                     }
-                    value={saturday.time.start}
+                    options={options}
                   />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <Select
+                    required
+                    id="end-time"
+                    name="end-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setsaturday({
                         ...saturday,
-                        time: { ...saturday.time, end: e.target.value },
+                        time: { ...saturday.time, end: e.value },
                       })
                     }
-                    value={saturday.time.end}
+                    options={options}
                   />
                 </div>
               </>
@@ -516,7 +597,7 @@ const Timing = ({ showSection, changeSection }) => {
         <Switch
           onClick={() => setsunday({ ...sunday, open: !sunday.open })}
           color="warning"
-          checked = {sunday.open}
+          checked={sunday.open}
         />
         {sunday.open === false ? <h2></h2> : <h2>Open</h2>}
         {sunday.open === true ? (
@@ -544,28 +625,36 @@ const Timing = ({ showSection, changeSection }) => {
             {sunday.isSetHours === true ? (
               <>
                 <div className="row1">
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                <Select
+                    required
+                    id="start-time"
+                    name="start-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setsunday({
                         ...sunday,
-                        time: { ...sunday.time, start: e.target.value },
+                        time: { ...sunday.time, start: e.value },
                       })
                     }
-                    value={sunday.time.start}
+                    options={options}
                   />
-                  <h2 style={{display:"inline-block",marginRight:"2%",marginLeft:"27%",}}> to </h2>
-                  <input
-                    className="timeInput input"
-                    type="time" 
+                  <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
+                  <Select
+                    required
+                    id="end-time"
+                    name="end-time"
+                    style={{ border: "2px solid lightgray", width: "50%", height: "38px", padding: 0, fontSize: "8px" }}
+                    defaultValue="06:00 pm"
+                    type="text"
                     onChange={(e) =>
                       setsunday({
                         ...sunday,
-                        time: { ...sunday.time, end: e.target.value },
+                        time: { ...sunday.time, end: e.value },
                       })
                     }
-                    value={sunday.time.end}
+                    options={options}
                   />
                 </div>
               </>
@@ -583,7 +672,7 @@ const Timing = ({ showSection, changeSection }) => {
       >
         Continue
       </button>
-    </div>
+    </div >
   );
 };
 

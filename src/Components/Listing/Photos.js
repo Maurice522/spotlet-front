@@ -11,8 +11,18 @@ import {
 } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { Clear, Delete, Done, Upload } from "@mui/icons-material";
+import { Clear, ClearAll, Delete, Done, Upload } from "@mui/icons-material";
 import ImageCropper from "./ImageCropper";
+
+function urltoFile(url, filename, mimeType) {
+  return fetch(url)
+    .then(function (res) {
+      return res.arrayBuffer();
+    })
+    .then(function (buf) {
+      return new File([buf], filename, { type: mimeType });
+    });
+}
 
 const Photo = ({ showSection, changeSection }) => {
   const [files, setFiles] = useState({});
@@ -20,7 +30,7 @@ const Photo = ({ showSection, changeSection }) => {
   const dispatch = useDispatch();
   const location_id = useSelector(selectLocationId);
   const location = useSelector(selectLocationData);
-
+  let x = window.matchMedia("(max-width: 576px)");
   useEffect(() => {
     if (location) location.imagesData && setImagesData(location.imagesData);
   }, []);
@@ -31,8 +41,13 @@ const Photo = ({ showSection, changeSection }) => {
       for (let i = 0; i < fileNames.length; i++) {
         const flobj = files[fileNames[i]];
         if (flobj.uploaded) continue;
+        var file = await urltoFile(
+          flobj.croppedImage,
+          fileNames[i],
+          "text/plain"
+        );
         const formData = new FormData();
-        formData.append("pic", flobj.file);
+        formData.append("pic", file);
         const response = await uploadLocationPics(formData);
         setImagesData((prev) => [
           ...prev,
@@ -115,6 +130,15 @@ const Photo = ({ showSection, changeSection }) => {
       toast.error(error.response.data);
     }
   };
+
+  const clearAll = async () => {
+    for (let i = 0; i < imagesData.length; i++) {
+      await deleteImage(imagesData[i], i);
+    }
+    dispatch(addLocation({ ...location }));
+    setImagesData([]);
+    setFiles({});
+  };
   return (
     <div>
       <div className="lbox">
@@ -134,7 +158,7 @@ const Photo = ({ showSection, changeSection }) => {
           </div>
         </div>
         {Object.keys(files).map((fileName) => {
-          const { imageSrc, croppedImage, preview, uploaded } = files[fileName];
+          const { imageSrc, uploaded } = files[fileName];
           return (
             <div className="image-file-container">
               <div
@@ -152,27 +176,30 @@ const Photo = ({ showSection, changeSection }) => {
                 onImageCropped={(croppedImage) =>
                   saveCropImages(fileName, croppedImage)
                 }
-                onChangePreview={() => previewToggle(fileName)}
-                croppedImage={croppedImage}
-                preview={preview}
               />
-              {croppedImage && preview && (
-                <div style={{ marginBottom: "10px" }}>
-                  <p style={{ marginBottom: "5px" }}>Cropped Image</p>
-                  <img alt="Cropped" src={croppedImage} />
-                </div>
-              )}
             </div>
           );
         })}
         <p>Add minimum 5 images</p>
-        <div className="row1">
-          <button className="continue" onClick={handleSubmit}>
-            <Upload /> Upload Files
+        <div
+          style={{
+            display: "flex",
+            gap: "20px",
+            marginTop: "20px",
+            flexWrap: x.matches ? "wrap" : "nowrap",
+          }}
+        >
+          <button
+            className="continue"
+            onClick={handleSubmit}
+            style={{ margin: "0px" }}
+          >
+            <Upload /> Save
           </button>
-          <div className="coll1">
+          <div className="">
             <button
               className="continue"
+              style={{ margin: "0px" }}
               onClick={async () => {
                 if (imagesData.length < 5)
                   return toast.error("Please add minimum 5 Photos");
@@ -188,9 +215,8 @@ const Photo = ({ showSection, changeSection }) => {
                 };
                 await createTempLocation(form);
                 //  console.log(locData);
-                showSection("Features");
                 if (imagesData.length === 5) {
-                  changeSection("Features");
+                  showSection("Features");
                   window.scrollTo(0, 0);
                 }
               }}
@@ -198,6 +224,53 @@ const Photo = ({ showSection, changeSection }) => {
               Continue
             </button>
           </div>
+          {imagesData.length > 0 && (
+            <button
+              className="continue"
+              onClick={clearAll}
+              style={{ margin: "0px" }}
+            >
+              <ClearAll /> Clear All
+            </button>
+          )}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+          }}
+        >
+          <h3
+            style={{
+              width: "100%",
+              margin: "20px 0px",
+            }}
+          >
+            Uploaded Files
+          </h3>
+          {imagesData.map((imageData, id) => {
+            return (
+              <div key={id} style={{ position: "relative" }}>
+                <img
+                  src={imageData.image}
+                  alt="id"
+                  className="uploaded-image"
+                  style={{
+                    width: "100%",
+                    objectFit: "cover",
+                    maxWidth: "250px",
+                  }}
+                />
+                <span
+                  className="clear"
+                  onClick={() => deleteImage(imageData, id)}
+                >
+                  <Clear sx={{ cursor: "pointer", color: "red" }} />
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

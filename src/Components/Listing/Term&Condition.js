@@ -141,10 +141,10 @@ export default function TermCondition() {
       <Modal open={open} onClose={handleClose}>
         <div>
           <div className="listing-modal">
-            <h3>Congratulations! You have completed a Booking/listing</h3>
+            <h3>Congratulations! You have completed a Listing</h3>
             <Button className="auth-btn" onClick={() => {
               handleClose();
-              navigate("/");
+              navigate("/bookinglist/:booking");
             }}>OK</Button>
           </div>
         </div>

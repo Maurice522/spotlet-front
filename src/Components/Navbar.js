@@ -113,7 +113,7 @@ const Navbar = ({ extraNavId }) => {
 							<div>Notifications</div>
 						</div>
 						<Menu
-							id="simple-menu"
+							id="simple-menu-nav"
 							style={{ minWidth: "30%" }}
 							anchorEl={NotificationEl}
 							keepMounted

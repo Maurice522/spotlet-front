@@ -11,7 +11,7 @@ const Spotletpro = () => {
 			<div className="text-on-image-container">
 				<img src={image} alt="background" className="bg-image darken" />
 				<div className="about-us-message bold">
-					Spotlet Pro Comming Soon !
+					SpotLet Pro Comming Soon !
                     
 				</div>
 			</div>

@@ -1,97 +1,95 @@
 .property-section {
-	width: 80vw;
-	margin: 0 auto;
+  width: 80vw;
+  margin: 0 auto;
 }
 
 .property-heading {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 600;
-	font-size: 24px;
-	line-height: 56px;
-	margin-bottom: 30px;
-	
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 56px;
+  margin-bottom: 30px;
 }
 
 .property-list {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	gap: 25px;
-	row-gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+  row-gap: 30px;
 }
 
 .property-image {
-	/* z-index: 100; */
-	width: 100%;
-	aspect-ratio: 1;
-	border-radius: 10px;
+  /* z-index: 100; */
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 10px;
 }
 
 .property-info-heading {
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 18px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
 }
 
 .property-info-location {
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 12px;
-	color: #374047;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: #374047;
 }
 
 .property-info-price {
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 12px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
 }
 
 .favorite-icon-wrapper {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	cursor: pointer;
-	z-index: 3;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 3;
 }
 
-
-@media screen and (max-width: 992px){
-	.property-section {
-		width: 86vw;
-	}
+@media screen and (max-width: 992px) {
+  .property-section {
+    width: 86vw;
+  }
 }
-@media screen and (max-width: 768px){
-	.property-list {
-		grid-template-columns: repeat(3, 1fr);
-	}
-	.property-info-heading {
-		font-size: 16px;
-	}
-}
-
-@media screen and (max-width: 576px){
-	.property-list {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 8px;
-	}
-	.property-heading {
-		margin-top: 6rem;
-		width: 90vw;
-		font-size: 15px;
-		line-height: 40px;
-		margin-left: 20px;
-	}
+@media screen and (max-width: 768px) {
+  .property-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .property-info-heading {
+    font-size: 16px;
+  }
 }
 
-@media screen and (max-width: 360px){
-	.property-section{
-		width: 95vw;
-	}
+@media screen and (max-width: 576px) {
+  .property-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .property-heading {
+    margin-top: 6rem;
+    width: 90vw;
+    font-size: 15px;
+    line-height: 40px;
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .property-section {
+    width: 95vw;
+  }
 }

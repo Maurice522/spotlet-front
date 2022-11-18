@@ -72,17 +72,29 @@
   box-shadow: 0px 8px 15px #f3d1cf;
 }
 
+.property-details {
+  box-sizing: border-box;
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+}
+
 @media screen and (max-width: 420px) {
   .image-grid-main {
     padding: 20px;
     margin-bottom: 40px;
+    margin-top: 77px;
   }
   .image-grid-container {
     height: auto;
     flex-direction: column !important;
   }
   .show-all-photo {
-    bottom: -30px;
-    transform: translateX(-50%);
+    bottom: -40px;
+    transform: translateX(-51%);
+  }
+  .property-details {
+    width: 89vw;
   }
 }

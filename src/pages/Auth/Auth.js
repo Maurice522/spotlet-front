@@ -164,7 +164,7 @@ export default function Auth() {
 								</p>
 							</div>
 						)}
-						<h1>{isSignIn ? "Sign in " : "Sign up "}to Spotlet</h1>
+						<h1>{isSignIn ? "Sign in " : "Sign up "}to SpotLet</h1>
 						<form onSubmit={handleSubmit}>
 							{!isSignIn && (
 								<div className="horizontal-itm">
@@ -336,7 +336,7 @@ export default function Auth() {
 								required
 							/>
 							<br />
-							{valid ? <p>Should contain minimum 8 characters</p> : <p style={{ color: "red" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
+							{valid ? "" : <p style={{ color: "red" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
 							<Button
 								type="submit"
 								fullWidth
@@ -349,7 +349,7 @@ export default function Auth() {
 							{isSignIn && <div
 								className="auth-top"
 								style={{ marginTop: "10px", marginBottom: "40px", display: "block", textAlign: "center" }}>
-								<b onClick={() => handleOpen()}>forgot password</b>
+								<b onClick={() => handleOpen()}>forgot password ?</b>
 							</div>}
 						</form>
 						{/* <p id="swch">Or sign up with</p>
