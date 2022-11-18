@@ -4,7 +4,12 @@ import { TextField } from "@mui/material";
 import "../../Assets/Styles/Booking/booking.css";
 
 const Booking = ({ v1, v2, v3, v4, v5, v6 }) => {
-	console.log(v1, v2, v3, v4, v5, v6);
+	// console.log(v1, v2, v3, v4, v5, v6);
+	// console.log(v1);
+	const day = v1.getDate()
+	const month = v1.getMonth() + 1;
+	const year = v1.getFullYear();
+	console.log(day + "-" + month + "-" + year);
 	return (
 		<form id="booking-page-form">
 			<div>
@@ -13,10 +18,11 @@ const Booking = ({ v1, v2, v3, v4, v5, v6 }) => {
 					required
 					disabled
 					id="date"
-					type="date"
+					type="text"
 					fullWidth
 					size="small"
-					defaultValue={v1}
+					// defaultValue={day + "-" + month + "-" + year}
+					value={day + "-" + month + "-" + year}
 				/>
 			</div>
 			<div>

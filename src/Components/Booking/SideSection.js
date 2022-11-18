@@ -64,9 +64,9 @@ const SideSection = ({
 	}, []);
 	//console.log(v1, v2, v3, v4, v5, v6, event, userData);
 
-	const year = v1.slice(0, 4);
-	const month = v1.slice(5, 7);
-	const day = v1.slice(8, 10);
+	const day = v1.getDate()
+	const month = v1.getMonth() + 1;
+	const year = v1.getFullYear();
 
 	const handleClick = async () => {
 		//console.log("clicked");
