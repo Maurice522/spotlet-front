@@ -215,9 +215,8 @@ const Photo = ({ showSection, changeSection }) => {
                 };
                 await createTempLocation(form);
                 //  console.log(locData);
-                showSection("Features");
                 if (imagesData.length === 5) {
-                  changeSection("Features");
+                  showSection("Features");
                   window.scrollTo(0, 0);
                 }
               }}

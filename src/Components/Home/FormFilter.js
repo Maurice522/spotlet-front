@@ -18,34 +18,6 @@ const FormFilter = ({ fullScreen, homepage, setSearchEvent, setSearchLocation, s
 		!homepage && setSearchLocation(e.value)
 	}
 
-	const changeMinPrice = (e) => {
-		setMin(e.value);
-	}
-
-	const changeMaxPrice = (e) => {
-		setMax(e.value);
-	}
-
-	const changeSort = (e) => {
-		setSort(e.value);
-	}
-
-	const price = [
-		{ value: 0, label: 0 },
-		{ value: 1000, label: "1,000" },
-		{ value: 2000, label: "2,000" },
-		{ value: 5000, label: "5,000" },
-		{ value: 10000, label: "10,000" },
-		{ value: 20000, label: "20,000" },
-		{ value: 50000, label: "50,000" },
-		{ value: 100000, label: "1,00,000" },
-	];
-
-	const sortOptions = [
-		{ value: "highesttolowest", label: "Highest to Lowest" },
-		{ value: "lowesttohighest", label: "Lowest to Highest" },
-	]
-
 	const options = [
 		{ value: "FilmShooting", label: "Film Shooting" },
 		{ value: "CorporateBooking", label: "Corporate Booking" },
@@ -255,73 +227,15 @@ const FormFilter = ({ fullScreen, homepage, setSearchEvent, setSearchLocation, s
 						className={active === true ? "focus-select" : "form-filter-select"}>
 					</Select>
 				</div>
-				{
-					homepage ?
 
-						<Link
-							to={`/search/`}
-							style={{
-								textDecoration: "none",
-							}}>
-							<div id="submit">Search</div>
-						</Link>
-						: ""
-				}
+				<Link
+					to={`/search/`}
+					style={{
+						textDecoration: "none",
+					}}>
+					<div id="submit">Search</div>
+				</Link>
 			</form>
-			{
-				homepage ? "" :
-					<>
-						<div>
-							<div >
-								<label
-									htmlFor="mincost"
-									className={active === true ? "focus-label" : "form-filter-label"}>
-									Min Price
-								</label>
-								<Select
-									id="mincost"
-									name="mincost"
-									options={price}
-									defaultValue=""
-									className={active === true ? "focus-select" : "form-filter-select"}
-									onChange={changeMinPrice}>
-								</Select>
-							</div>
-							<div>
-								<label
-									htmlFor="maxcost"
-									className={active === true ? "focus-label" : "form-filter-label"}>
-									Max Price
-								</label>
-								<Select
-									id="mincost"
-									name="mincost"
-									options={price}
-									defaultValue=""
-									className={active === true ? "focus-select" : "form-filter-select"}
-									onChange={changeMaxPrice}>
-								</Select>
-							</div>
-						</div>
-						<div>
-							<label
-								htmlFor="maxcost"
-								className={active === true ? "focus-label" : "form-filter-label"}>
-								Sort By
-							</label>
-							<Select
-								id="sort"
-								name="sort"
-								options={sortOptions}
-								defaultValue=""
-								isDisabled={event === "all" ? true : false}
-								className={active === true ? "focus-select" : "form-filter-select"}
-								onChange={changeSort}>
-							</Select>
-							{event === "all" && <p style={{ fontSize: "15px", color: "grey" }}>Please select event first</p>}
-						</div>
-					</>
-			}
 		</div>
 	);
 };

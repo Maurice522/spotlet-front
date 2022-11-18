@@ -105,7 +105,7 @@ const SectionProperty = () => {
 				Featured Properties in Hyderabad
 			</div>
 			<div className="property-list">
-				{propertyDetails.slice(0, 5).map((item) => (
+				{propertyDetails.slice(0, 10).map((item) => (
 					// <div>hi</div>
 					<PropertyInfo
 						item={item}

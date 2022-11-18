@@ -165,6 +165,7 @@
 
 #simple-menu-nav .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper{
 	top: 60px !important;
+	max-height: 22rem !important;
 }
 
 
