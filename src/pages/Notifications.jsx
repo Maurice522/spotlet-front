@@ -47,11 +47,12 @@ const Notifications = () => {
 					</Button>
 					{open && (
 						<div
+							style={{ color: "red" }}
 							onClick={() => {
 								setOpen(!open);
 							}}
 						>
-							hello
+							{props.row.content}
 						</div>
 					)}
 				</>
@@ -105,6 +106,7 @@ const Notifications = () => {
 			id: index,
 			to: notification.admin ? "" : notification?.link,
 			admin: notification.admin,
+			content: notification.content,
 		};
 	});
 	notificationData?.reverse();
