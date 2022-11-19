@@ -56,19 +56,25 @@ const Property = ({
     lng: 0,
   });
   const GEO_API = "b531f1d229f547d09b4c7c3207885471";
+
   useEffect(() => {
     getAllLocations()
       .then((res) => setPropertyItems(res.data.locations))
       .catch((err) => console.log(err));
   }, []);
+  
   useEffect(() => {
     getLocation(window.location.pathname.substring(10))
       .then((res) => setLocationData(res.data))
       .catch((err) => console.log(err));
   }, []);
+  console.log(locationData);
+
   useEffect(() => {
     setImages(locationData?.imagesData);
   }, [locationData]);
+
+
   useEffect(() => {
     // Get latitude & longitude from address.
     axios
@@ -198,9 +204,8 @@ const Property = ({
               toast.error("You need to login first", 1000);
               return;
             }
-            window.location = `messages/${window.location.pathname.substring(
-              10
-            )}`;
+            console.log(`${window.location.pathname.split("/")[0]}/messages/${locationData?.property_desc?.user_id}`);
+            window.location = `http://localhost:3000/messages/${locationData?.property_desc?.user_id}`;
           }}
         >
           Message the host

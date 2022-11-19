@@ -101,7 +101,7 @@ const SectionMenu = () => {
 		<div className={`${classes[index]} ${classesResp[index]}`} key={index}>
 			<Link
 				to={{
-					pathname:"/search/"+shoot
+					pathname:"/search/"
 				}}
 				onClick={() => window.scrollTo(0, 0)}
 				style={{

@@ -15,6 +15,7 @@ const Notifications = () => {
 	const [notifications, setNotifications] = useState([]);
 	const [open, setOpen] = useState(false);
 	const handleClose = () => setOpen(false);
+	const [msg, setMsg] = useState();
 
 	useEffect(() => {
 		setNotifications(user?.notifications);
@@ -32,6 +33,7 @@ const Notifications = () => {
 					<Button
 						onClick={() => {
 							setOpen(!open);
+							setMsg(props.row.content);
 						}}
 						variant="outlined"
 						sx={{
@@ -43,18 +45,8 @@ const Notifications = () => {
 							marginTop: "10px",
 						}}
 					>
-						Admin
+						VIEW
 					</Button>
-					{open && (
-						<div
-							style={{ color: "red" }}
-							onClick={() => {
-								setOpen(!open);
-							}}
-						>
-							{props.row.content}
-						</div>
-					)}
 				</>
 			) : (
 				<Button
@@ -147,6 +139,25 @@ const Notifications = () => {
 				</div>
 			</div>
 			<Footer />
+			{open && (
+				<Modal open={open}>
+					<div onClick={handleClose}>
+						<div className="notification-modal">
+							<div>
+								<p>{msg}</p>
+								<Button
+									className="notification-btn"
+									onClick={() => {
+										handleClose();
+									}}
+								>
+									OK
+								</Button>
+							</div>
+						</div>
+					</div>
+				</Modal>
+			)}
 		</div>
 	);
 };

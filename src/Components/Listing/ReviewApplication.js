@@ -32,7 +32,7 @@ const ReviewApplication = ({ changeSection }) => {
             try {
                 const res = await getTempLocation(location_id);
                 setFinalData(res.data);
-                console.log(finalData)
+                // console.log(finalData)
             } catch (error) {
                 console.log(error)
             }
@@ -44,7 +44,7 @@ const ReviewApplication = ({ changeSection }) => {
     console.log(finalData)
 
     return (
-        <div className="lbox" style={{height: "120vh", overflowY: "auto", overflowX: "hidden"}}>
+        <div className="lbox" style={{ height: "120vh", overflowY: "auto", overflowX: "hidden" }}>
             <div id="box-1">
                 <div className="review--edit">
                     <h1 style={{ fontSize: "1.5rem" }}>Details & Description</h1>
@@ -387,15 +387,15 @@ const ReviewApplication = ({ changeSection }) => {
                     <div></div>
                 </div>
                 <div className="coll1">
-                    <div className="row1" style={{marginBottom: "0"}}>
-                        <h1 style={{fontWeight: "bold"}}>Film/ Ad Film/ Web Series Shoot</h1>
+                    <div className="row1" style={{ marginBottom: "0" }}>
+                        <h1 style={{ fontWeight: "bold" }}>Film/ Ad Film/ Web Series Shoot</h1>
                         <Switch
                             color="warning"
                             checked={finalData?.pricing?.film_webseries_ad?.isPresent}
                         />
                     </div>
                 </div>
-                <div className="coll1" style={{marginBottom: "2rem"}}>
+                <div className="coll1" style={{ marginBottom: "2rem" }}>
                     <h2>Enter Houly Price</h2>
                     <input
                         disabled
@@ -405,15 +405,15 @@ const ReviewApplication = ({ changeSection }) => {
                 </div>
 
                 <div className="coll1">
-                    <div className="row1" style={{marginBottom: "0"}}>
-                        <h1 style={{fontWeight: "bold"}}>TV Series & Other Video Shoot</h1>
+                    <div className="row1" style={{ marginBottom: "0" }}>
+                        <h1 style={{ fontWeight: "bold" }}>TV Series & Other Video Shoot</h1>
                         <Switch
                             color="warning"
                             checked={finalData?.pricing?.tv_series_other?.isPresent}
                         />
                     </div>
                 </div>
-                <div className="coll1" style={{marginBottom: "2rem"}}>
+                <div className="coll1" style={{ marginBottom: "2rem" }}>
                     <h2>Enter Hourly Price in ₹.</h2>
                     <input
                         disabled
@@ -422,15 +422,15 @@ const ReviewApplication = ({ changeSection }) => {
                     />
                 </div>
                 <div className="coll1">
-                    <div className="row1" style={{marginBottom: "0"}}>
-                        <h1 style={{fontWeight: "bold"}}>Corporate Event</h1>
+                    <div className="row1" style={{ marginBottom: "0" }}>
+                        <h1 style={{ fontWeight: "bold" }}>Corporate Event</h1>
                         <Switch
                             color="warning"
                             checked={finalData?.pricing?.corporate?.isPresent}
                         />
                     </div>
                 </div>
-                <div className="coll1" style={{marginBottom: "2rem"}}>
+                <div className="coll1" style={{ marginBottom: "2rem" }}>
                     <h2>Enter Hourly Price in ₹.</h2>
                     <input
                         disabled
@@ -440,15 +440,15 @@ const ReviewApplication = ({ changeSection }) => {
                 </div>
 
                 <div className="coll1">
-                    <div className="row1" style={{marginBottom: "0"}}>
-                        <h1 style={{fontWeight: "bold"}}>Individual Event</h1>
+                    <div className="row1" style={{ marginBottom: "0" }}>
+                        <h1 style={{ fontWeight: "bold" }}>Individual Event</h1>
                         <Switch
                             color="warning"
                             checked={finalData?.pricing?.individual?.isPresent}
                         />
                     </div>
                 </div>
-                <div className="coll1" style={{marginBottom: "2rem"}}>
+                <div className="coll1" style={{ marginBottom: "2rem" }}>
                     <h2>Enter Hourly Price in ₹.</h2>
                     <input
                         disabled
@@ -851,10 +851,15 @@ const ReviewApplication = ({ changeSection }) => {
                                 name="gst"
                                 value={finalData?.gst?.doc_no}
                             />
-                            {console.log(finalData?.gst?.docs[0])}
-                            <div className="pict" style={{width: "440px", height: "330px"}}>
-                                <embed src={finalData?.gst?.docs[0]} width="440px" height="180px" />{" "}
-                            </div>
+
+                            {finalData?.gst?.docs.map((fileData, index) => {
+                                return (
+                                    <div className="pict" style={{ width: "440px", height: "330px" }} key={index}>
+                                        <embed src={fileData} width="440px" height="330px" />{" "}
+                                    </div>
+                                );
+                            })}
+
                         </div>
                     </div>
                 </div>

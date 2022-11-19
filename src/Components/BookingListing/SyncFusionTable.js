@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 
 const SyncfusionTable = ({ UsersData, UsersGrid, content }) => {
 	document.getElementsByClassName("MuiDataGrid-cellContent").innerHTML = "Details"
-	// console.log(UsersData)
+	console.log(content)
 	return UsersData?.length > 0 ? (
 		<DataGrid initialState={{
 			// sorting: {
@@ -25,12 +25,23 @@ const SyncfusionTable = ({ UsersData, UsersGrid, content }) => {
 				flexDirection: "column",
 				gap: "1rem"
 			}}>
-			<div style={{ fontSize: "2rem" }}>No {content} property</div>
-			<Link to={content === "Booked" ? "/" : "/listing"}>
-				<Button variant="contained" style={{ backgroundColor: "#f26767" }}>
-					{content === "Booked" ? "Book" : "List"} one now
-				</Button>
-			</Link>
+			{
+				content == "Notifications" ?
+					<div style={{ fontSize: "2rem" }}>No {content}</div>
+					:
+					<div style={{ fontSize: "2rem" }}>No {content} property</div>
+			}
+
+			{
+				content == "Notifications" ?
+					""
+					: <Link to={content === "Booked" ? "/" : "/listing"}>
+						<Button variant="contained" style={{ backgroundColor: "#f26767" }}>
+							{content === "Booked" ? "Book" : "List"} one now
+						</Button>
+					</Link>
+			}
+
 		</div>
 	);
 };
