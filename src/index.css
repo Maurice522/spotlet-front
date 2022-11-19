@@ -9,3 +9,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.react-datepicker__day--selected, .react-datepicker__day--keyboard-selected{
+	border-radius: 0.3rem;
+    background-color: #ff4d4d !important;
+    color: #fff;
+}

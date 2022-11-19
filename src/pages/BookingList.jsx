@@ -180,7 +180,7 @@ const BookingList = () => {
 		console.log(locrequests);
 	}, [userData]);
 
-	const bookingData = userData?.portfolio.map((booking, index) => {
+	let bookingData = userData?.portfolio.map((booking, index) => {
 		let endTime =
 			(Number(booking?.time?.substr(0, 2)) +
 				Number(booking?.duration_in_hours)) %
@@ -211,6 +211,7 @@ const BookingList = () => {
 			TotalAmount: parseInt(booking?.total_amt),
 		};
 	});
+	bookingData.reverse();
 
 	// const bookingData = [
 	// 	{
@@ -225,7 +226,7 @@ const BookingList = () => {
 	// 	},
 	// ];
 
-	const listingData = userData?.listedLocations.map((loc, index) => {
+	let listingData = userData?.listedLocations.map((loc, index) => {
 		const date = new Date(loc?.timestamp?._seconds * 1000);
 		const yyyy = date.getFullYear();
 		let mm = date.getMonth() + 1; // Months start at 0!
@@ -247,6 +248,7 @@ const BookingList = () => {
 				: "0 Requests",
 		};
 	});
+	listingData.reverse();
 
 	// const listingData = [
 	// 	{
@@ -269,6 +271,22 @@ const BookingList = () => {
 	}, [bookingItem]);
 
 	const navigate = useNavigate();
+
+	// const sortedData = (obj) => {
+	// 	let newArray = [];
+	// 	console.log(obj);
+	// 	Object.keys(obj)
+	// 		.sort()
+	// 		.reverse()
+
+	// 	console.log(obj);
+	// 	return newArray;
+	// };
+
+	// useEffect(() => {
+	// 	listingData = sortedData(listingData);
+	// 	bookingData = sortedData(bookingData);
+	// }, []);
 
 	return (
 		<div>

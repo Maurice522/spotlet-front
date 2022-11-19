@@ -6,15 +6,18 @@ import { Avatar, Button, TextField } from "@mui/material";
 import "../Assets/Styles/navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { selectUserData } from "../redux/slices/userSlice";
+import { selectUserData, selectUser_id } from "../redux/slices/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect } from "react";
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
+import { userUpdate } from "../services/api";
 
 const Navbar = ({ extraNavId }) => {
 
 	const user = useSelector(selectUserData);
+	const user_id = useSelector(selectUser_id);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const logout = () => {
@@ -23,6 +26,8 @@ const Navbar = ({ extraNavId }) => {
 		window.location = "/";
 	};
 
+	const [flag, setFlag] = useState()
+
 	const [anchorEl, setAnchorEl] = useState(null);
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -30,19 +35,42 @@ const Navbar = ({ extraNavId }) => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+
+	const handleNotification = async () => {
+		const updatedUserData = {
+			...user,
+			notificationFlag: false,
+		}
+		const data = {
+			updatedUserData,
+			user_id
+		}
+		console.log(data);
+		try {
+			await userUpdate(data);
+			window.location.reload(true);
+			window.location = "/notifications";
+		} catch (error) {
+			toast.error(error.response);
+		}
+	};
+
 	const [notifications, setNotifications] = useState([])
 	useEffect(() => {
+		console.log(user);
 		setNotifications(user?.notifications);
-		console.log(notifications);
+		setFlag(user?.notificationFlag)
+		// console.log(notifications);
+		console.log(flag);
 	}, [user])
 
-	const [NotificationEl, setNotificationEl] = useState(null);
-	const clickHandler = (event) => {
-		setNotificationEl(event.currentTarget);
-	};
-	const closeHandler = () => {
-		setNotificationEl(null);
-	};
+	// const [NotificationEl, setNotificationEl] = useState(null);
+	// const clickHandler = (event) => {
+	// 	setNotificationEl(event.currentTarget);
+	// };
+	// const closeHandler = () => {
+	// 	setNotificationEl(null);
+	// };
 	const acntset = () => {
 		handleClose();
 		console.log("clicked");
@@ -81,7 +109,7 @@ const Navbar = ({ extraNavId }) => {
 							alignItems: "center",
 							gap: "20px",
 						}}>
-						<div onClick={Boolean(NotificationEl) === false ? clickHandler : closeHandler} style={{cursor: "pointer"}}>
+						{/* <div onClick={Boolean(NotificationEl) === false ? clickHandler : closeHandler} style={{cursor: "pointer"}}>
 							<div>Notifications</div>
 						</div>
 						<Menu
@@ -109,8 +137,8 @@ const Navbar = ({ extraNavId }) => {
 										) : (
 
 											<MenuItem
-												component={Link}
-												to={notification?.link}
+												// component={Link}
+												// to={notification?.link}
 											>
 												{notification?.content} - {notification.date}
 											</MenuItem>
@@ -118,7 +146,12 @@ const Navbar = ({ extraNavId }) => {
 								)
 								)
 							}
-						</Menu>
+						</Menu> */}
+						<a>
+							<div onClick={handleNotification} style={{ cursor:"pointer"}}>
+								Notifications{flag && <PriorityHighIcon />}
+							</div>
+						</a>
 						<Link to="/messages" onClick={() => window.scrollTo(0, 0)}>
 							<div>Messages</div>
 						</Link>

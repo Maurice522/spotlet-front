@@ -42,6 +42,7 @@ import Affiliate from "./pages/Affiliate";
 import Activity from "./pages/Activity";
 import Cancellation from "./pages/Cancellation";
 import KnowledgeCenter from "./pages/KnowledgeCenter";
+import Notifications from "./pages/Notifications";
 
 
 function App() {
@@ -60,15 +61,14 @@ function App() {
 		Start();
 	}, []);
 
-	const date = new Date().toISOString().split("T")[0];
 
-	const [v1, setV1] = useState(date); // date
-	const [v2, setV2] = useState("06:30"); // time
+	const [v1, setV1] = useState(); // date
+	const [v2, setV2] = useState(); // time
 	const [v3, setV3] = useState(0); // price
 	const [v4, setV4] = useState("");
 	const [v5, setV5] = useState("");
 	const [v6, setV6] = useState(0);
-	const [event, setEvent] = useState("Individual");
+	const [event, setEvent] = useState("Select Event");
 	const [tot_price, setTotPrice] = useState(0);
 	return (
 		<BrowserRouter>
@@ -76,6 +76,7 @@ function App() {
 				<ToastContainer />
 				<Routes>
 					<Route path="/" element={<Home />} />
+					<Route path="/notifications" element={<Notifications />} />
 					<Route path="/signin" element={<Auth />} />
 					<Route path="/reset/:userId" element={user ? <ResetPassword /> : <Home />} />
 					<Route
@@ -101,24 +102,24 @@ function App() {
 							/>
 						}
 					/>
-					<Route path="/account" element={user ? <AccountInfo /> : <Auth />} />
+					<Route path="/account" element={user ? <AccountInfo /> : ""} />
 					{/* {user && <Route path="/search" element={<Search />} />} */}
 					<Route path="/search/" element={<Search />} />
 					<Route path="/aboutus" element={<AboutUs />} />
 					<Route path="/activities" element={<Activity />} />
-					<Route path="/listing" element={user ? <ListingPlace /> : <Auth />} />
-					<Route path="/messages/:bookingId" element={user ? <Messages /> : <Auth />} />
-					<Route path="/messages" element={user ? <Messages /> : <Auth />} />
-					<Route path="/bookinglist/:bookingItem" element={user ? <BookingList /> : <Auth />} />
+					<Route path="/listing" element={user ? <ListingPlace /> : ""} />
+					<Route path="/messages/:bookingId" element={user ? <Messages /> : ""} />
+					<Route path="/messages" element={user ? <Messages /> : ""} />
+					<Route path="/bookinglist/:bookingItem" element={user ? <BookingList /> : ""} />
 					<Route path="/blogs" element={<Blogs />} />
 					<Route path="/blog/:blogid" element={<Blog />} />
 					<Route
 						path="/bookingdetails/:bookingId"
-						element={user ? <BookingDetails /> : <Auth />}
+						element={user ? <BookingDetails /> : ""}
 					/>
 
-					<Route path="/listdetails/:locId" element={user ? <ListDetails /> : <Auth />} />
-					<Route path="/favorite" element={user ? <Favorites /> : <Auth />} />
+					<Route path="/listdetails/:locId" element={user ? <ListDetails /> : ""} />
+					<Route path="/favorite" element={user ? <Favorites /> : ""} />
 					<Route path="/guidelines" element={<Guidelines />} />
 					<Route path="/privacypolicy" element={<PrivacyPolicy />} />
 					<Route path="/termsofservice" element={<TermsofService />} />

@@ -5,15 +5,15 @@ import { Button } from "@mui/material";
 
 const SyncfusionTable = ({ UsersData, UsersGrid, content }) => {
 	document.getElementsByClassName("MuiDataGrid-cellContent").innerHTML = "Details"
-	console.log(UsersData)
+	// console.log(UsersData)
 	return UsersData?.length > 0 ? (
 		<DataGrid initialState={{
-			sorting: {
-				sortModel: [
-					{ field: 'Date', sort: 'desc' },
-					{ field: 'BookingRequest', sort: 'desc' }
-				],
-			},
+			// sorting: {
+			// 	sortModel: [
+			// 		{ field: 'Date', sort: 'desc' },
+			// 		{ field: 'BookingRequest', sort: 'desc' }
+			// 	],
+			// },
 		}} rows={UsersData} columns={UsersGrid} pageSize={7} />
 	) : (
 		<div
