@@ -23,6 +23,7 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 		dob : "",
 		message : "",
 	});
+
 	useEffect(() => {
 		if(userData.firstName !== "" && userData.lastName !== "" &&
 			userData.who_reserves !== "" && userData.dob !== "" && userData.message !== "")

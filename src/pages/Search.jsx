@@ -174,11 +174,14 @@ const Search = () => {
 				/>
 			</div>
 			<div className="filter-box">
+				<div>
 				<button className="filter-btn" onClick={handleOpenFilter}>
 					<BiFilterAlt />
 					<h2>Filter</h2>
 				</button>
-				<h2>528 Stays</h2>
+				<Button style={{color: "red", padding: "6px 0"}}>Clear Filter</Button>
+				</div>
+				<h2>{sortedProperties?.length} Stays</h2>
 			</div>
 			<Modal open={openFilter} onClose={handleCloseFilter}>
 				<div className="listing-modal filter-modal">

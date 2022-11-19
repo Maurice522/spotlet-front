@@ -127,9 +127,9 @@ const SideSection = ({
 		window.scrollTo(0, 0)
 	};
 
-	tot_price = Math.round(tot_price, 2);
+	tot_price = parseInt(tot_price);
 	let gst = v6 * v3 * 1.18;
-	gst = Math.round(gst, 2);
+	gst = parseInt(gst);
 	console.log(v6, v3, gst)
 	// console.log(v1, v3, v4);
 	const userBooking = useSelector(selectUserData);

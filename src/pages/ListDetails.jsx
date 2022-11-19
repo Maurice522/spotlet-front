@@ -3,7 +3,7 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import "../Assets/Styles/listDetails.css";
 import { BiArrowBack } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Box } from "@mui/material";
 import { GoPrimitiveDot } from "react-icons/go";
 import SyncfusionTable from "../Components/BookingListing/SyncFusionTable";
@@ -17,6 +17,7 @@ const ListDetails = ({ setFinal }) => {
   const [locationData, setLocationData] = useState({});
   const locationId = window.location.pathname.substr(13);
   const [requests, setRequests] = useState([]);
+  const navigate = useNavigate();
   let x = window.matchMedia("(max-width: 576px)");
   console.log(x.matches);
   useEffect(() => {
@@ -190,7 +191,9 @@ const ListDetails = ({ setFinal }) => {
               padding: "0px 20px",
             }}
           >
-            <BiArrowBack size="24px" />
+            <BiArrowBack size="24px" style={{cursor: "pointer"}} onClick={() => {
+              navigate("/bookinglist/:listing");
+            }} />
             <img
               src={locationData?.imagesData?.at(0).image}
               alt="property"

@@ -77,3 +77,21 @@
 .e-hide {
 	display: none;
 }
+
+
+.css-7gvw80-MuiButtonBase-root-MuiButton-root{
+	width: 100% !important;
+}
+
+
+.booking-checkbox{
+	padding: 0;
+	margin-left: 0 !important;
+	gap: 0 !important;
+	width: fit-content;
+}
+.booking-checkbox .filter--coll3{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}

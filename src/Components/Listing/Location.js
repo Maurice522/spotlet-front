@@ -349,18 +349,31 @@ const Location = ({ showSection, changeSection }) => {
             onChange={handleChange}
             value={property_address ? property_address.location_detail : ""}
           />
-          <MdTravelExplore onClick={() => showLocation()} size={27} style={{ marginLeft: "auto", position: "relative", top: "-35px", marginRight: "10px", cursor: "pointer" }} />
+          {/* <MdTravelExplore onClick={() => showLocation()} size={27} style={{ marginLeft: "auto", position: "relative", top: "-35px", marginRight: "10px", cursor: "pointer" }} /> */}
         </div>
       </div>
 
-      <div className="row1">
-        <div className="coll1">
-          <button
-            className="locationContinue continue"
-            onClick={handleSubmit}
-          >
-            Continue
-          </button>
+      <div style={{display: "flex", flexDirection: "column", gap: "2rem", marginTop: "3rem"}}>
+        <div className="row1">
+          <div className="coll1">
+            <button
+              className="locationContinue continue"
+              onClick={() => showLocation()}
+            >
+              Show On Map
+            </button>
+          </div>
+        </div>
+
+        <div className="row1">
+          <div className="coll1">
+            <button
+              className="locationContinue continue"
+              onClick={handleSubmit}
+            >
+              Continue
+            </button>
+          </div>
         </div>
       </div>
 
