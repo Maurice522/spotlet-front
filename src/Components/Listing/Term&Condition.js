@@ -144,7 +144,7 @@ export default function TermCondition() {
             <h3>Congratulations! You have completed a Listing</h3>
             <Button className="auth-btn" onClick={() => {
               handleClose();
-              navigate("/bookinglist/:booking");
+              navigate("/bookinglist/:listing");
             }}>OK</Button>
           </div>
         </div>

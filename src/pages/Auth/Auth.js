@@ -336,7 +336,7 @@ export default function Auth() {
 								required
 							/>
 							<br />
-							{valid ? "" : <p style={{ color: "red" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
+							{valid ? (isSignIn ? "" : <p>Should contain minimum 8 characters</p>) : <p style={{ color: "red" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
 							<Button
 								type="submit"
 								fullWidth

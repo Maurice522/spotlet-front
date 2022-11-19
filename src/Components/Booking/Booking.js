@@ -67,6 +67,19 @@ const Booking = ({ v1, v2, v3, v4, v5, v6 }) => {
 					defaultValue={v5}
 				/>
 			</div>
+			<div className="filter-body booking-checkbox">
+				<h2>Do you need a location manager?</h2>
+				<div className="filter--coll3">
+					<label class="filter-container">Yes
+						<input type="checkbox" />
+						<span class="checkmark"></span>
+					</label>
+					<label class="filter-container">No
+						<input type="checkbox" />
+						<span class="checkmark"></span>
+					</label>
+				</div>
+			</div>
 		</form>
 	);
 };

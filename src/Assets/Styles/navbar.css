@@ -161,11 +161,13 @@
 #simple-menu-nav .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root{
 	padding: 16px !important;
 	border-bottom: 1px solid #c4d1e0 !important;
+	white-space: inherit !important;
 }
 
 #simple-menu-nav .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper{
 	top: 60px !important;
 	max-height: 22rem !important;
+	width: 20% !important;
 }
 
 
