@@ -11,8 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect } from "react";
-import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
-import { userUpdate } from "../services/api";
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'; import { userUpdate } from "../services/api";
 
 const Navbar = ({ extraNavId }) => {
 
@@ -147,9 +146,10 @@ const Navbar = ({ extraNavId }) => {
 								)
 							}
 						</Menu> */}
+						{console.log(flag)}
 						<a>
-							<div onClick={handleNotification} style={{ cursor:"pointer"}}>
-								Notifications{flag && <PriorityHighIcon />}
+							<div onClick={handleNotification} style={{ cursor: "pointer" }}>
+								Notifications{flag && <FiberManualRecordIcon styles={{ color: "red" }} />}
 							</div>
 						</a>
 						<Link to="/messages" onClick={() => window.scrollTo(0, 0)}>
