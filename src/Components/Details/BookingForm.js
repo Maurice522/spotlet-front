@@ -30,6 +30,7 @@ const BookingForm = ({
   let disabledDates = [];
   let finalDates = [];
   let gst = v6 * v3 * 1.18;
+  let x = window.matchMedia("(max-width: 576px)");
   const [dateRange, setDateRange] = useState({
     startDate: new Date(moment().startOf("isoweek").utc()),
     endDate: new Date(moment().endOf("week").utc()),
@@ -192,7 +193,8 @@ const BookingForm = ({
       >
         <form
           className={
-            event === "Individual" || event === "Corporate" ? "form" : "form-2"
+            // event === "Individual" || event === "Corporate" ? "form" : "form-2"
+            x.matches ? "form-2" : "form-3"
           }
         >
           <div>
