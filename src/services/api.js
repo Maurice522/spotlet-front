@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // const server_domain = "https://gorecceback.herokuapp.com";
-// const server_domain = "https://nipunbacky.herokuapp.com"; //TEMP HOSTED SERVER
-const server_domain = "http://localhost:8000";
+const server_domain = "https://nipunbacky.herokuapp.com"; //TEMP HOSTED SERVER
+// const server_domain = "http://localhost:8000";
 
 
 ////////////////////////Auth////////////////////////
@@ -149,11 +149,6 @@ export const deleteBookingReq = (form) => {
   return axios.delete(server_domain + "/deletebookingrequest", {data : form});
 }
 
-//help center
-export const contactUs = (form) => {
-  return axios.post(server_domain + "/contactus", form);
-};
-
 export const getBlog = (blogid) => {
   return axios.get(server_domain + "/getblog/"+blogid);
 }
@@ -176,4 +171,14 @@ export const getTempLocation = (location_id) => {
 //update otp
 export const otpUpdateProfile = (form) => {
   return axios.post(server_domain + "/updateactivation", form);
+};
+
+//help center
+export const contactUs = (form) => {
+  return axios.post(server_domain + "/contactus", form);
+};
+
+//photography
+export const photoshootRequest = (form) => {
+  return axios.post(server_domain + "/photoshootreq", form);
 };
