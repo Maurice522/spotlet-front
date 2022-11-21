@@ -158,9 +158,14 @@ const Amenities = ({ showSection, changeSection }) => {
     "TV Included",
     "Wine Cellar",
   ]);
+
   const dispatch = useDispatch();
   const location_id = useSelector(selectLocationId);
   const location = useSelector(selectLocationData);
+
+  useEffect(() => {
+    if (location.amenities) setAmenities(location.amenities);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -170,8 +175,8 @@ const Amenities = ({ showSection, changeSection }) => {
       ...location,
       amenities,
     };
-    console.log("1");
     dispatch(addLocation(locData));
+
     const form = {
       location_id,
       data: locData,
@@ -183,83 +188,85 @@ const Amenities = ({ showSection, changeSection }) => {
       toast.error(error.response.data);
     }
 
-		if (amenities.length === 5) {
-			changeSection("Photos");
-			window.scrollTo(0, 0);
-		}
-	};
-	const [checkboxValue, setValue] = useState([]);
-	return (
-		<div className="lbox">
-			<div className="row1">
-				<div className="coll1 custom-dropdown">
-					<h2>
-						Amenties<span style={{ color: "red" }}>*</span>
-					</h2>
-					<CheckboxDropdownComponent
-						displayText="Select Amenities"
-						options={options}
-						onChange={option => {
-							if (!checkboxValue.includes(option)) {
-								const newValue = [option, ...checkboxValue];
-								setValue(newValue);
-							}
-							if (!amenities.includes(option.value)) {
-								setAmenities((prev) => [option.value, ...prev]);
-							}
-						}}
-						onDeselectOption={option => {
-							const filteredOptions = checkboxValue.filter(
-								item => item.value !== option.value
-							);
-							const finalOptions = amenities.filter(
-								item => item !== option.value
-							);
-							setValue(filteredOptions);
-							setAmenities(finalOptions);
-						}}
-						value={checkboxValue}
-						displayTags
-						isStrict={false}
-					/>
-				</div>
-				<div>
-					<h2>Selected Amenities</h2>
-					<ul className="selected-options">
-						{amenities.map(item => 
-						<li className="clear--list" key={item}>
-							{item}
-							<ClearIcon
-							style={{cursor: "pointer"}}
-							onClick={() => {
-								{console.log(item)}
-								const filteredOptions = checkboxValue.filter(
-									itm => itm.value !== item
-								);
-								const finalOptions = amenities.filter(
-									itm => itm !== item
-								);
-								setValue(filteredOptions);
-								setAmenities(finalOptions);
-							}}
-							sx={{
-								color: "#ea4235",
-							}}
-						/>
-						</li>
-						)}
-					</ul>
-				</div>
-			</div>
-			<div className="row1">
-				<div className="coll1">
-					<button className="continue" onClick={handleSubmit}>
-						Continue
-					</button>
-				</div>
-			</div>
-		</div>
-	);
+    if (amenities.length === 5) {
+      changeSection("Photos");
+      window.scrollTo(0, 0);
+    }
+  };
+  const [checkboxValue, setValue] = useState([]);
+  return (
+    <div className="lbox">
+      <div className="row1">
+        <div className="coll1 custom-dropdown">
+          <h2>
+            Amenties<span style={{ color: "red" }}>*</span>
+          </h2>
+          <CheckboxDropdownComponent
+            displayText="Select Amenities"
+            options={options}
+            onChange={(option) => {
+              if (!checkboxValue.includes(option)) {
+                const newValue = [option, ...checkboxValue];
+                setValue(newValue);
+              }
+              if (!amenities.includes(option.value)) {
+                setAmenities((prev) => [option.value, ...prev]);
+              }
+            }}
+            onDeselectOption={(option) => {
+              const filteredOptions = checkboxValue.filter(
+                (item) => item.value !== option.value
+              );
+              const finalOptions = amenities.filter(
+                (item) => item !== option.value
+              );
+              setValue(filteredOptions);
+              setAmenities(finalOptions);
+            }}
+            value={checkboxValue}
+            displayTags
+            isStrict={false}
+          />
+        </div>
+        <div>
+          <h2>Selected Amenities</h2>
+          <ul className="selected-options">
+            {amenities.map((item) => (
+              <li className="clear--list" key={item}>
+                {item}
+                <ClearIcon
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    {
+                      console.log(item);
+                    }
+                    const filteredOptions = checkboxValue.filter(
+                      (itm) => itm.value !== item
+                    );
+                    const finalOptions = amenities.filter(
+                      (itm) => itm !== item
+                    );
+                    setValue(filteredOptions);
+                    setAmenities(finalOptions);
+                  }}
+                  sx={{
+                    color: "#ea4235",
+                  }}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="row1">
+        <div className="coll1">
+          <button className="continue" onClick={handleSubmit}>
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Amenities;
