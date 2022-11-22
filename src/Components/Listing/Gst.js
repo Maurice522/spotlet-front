@@ -1,9 +1,17 @@
-import { Clear } from '@mui/icons-material';
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import { addLocation, selectLocationData, selectLocationId } from '../../redux/slices/locationSlice';
-import { createTempLocation, deleteFiles, uploadGstDocs } from '../../services/api';
+import { Clear } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import {
+  addLocation,
+  selectLocationData,
+  selectLocationId,
+} from "../../redux/slices/locationSlice";
+import {
+  createTempLocation,
+  deleteFiles,
+  uploadGstDocs,
+} from "../../services/api";
 
 const Gst = ({ showSection, changeSection }) => {
   const [filesData, setFilesData] = useState([]);
@@ -15,7 +23,7 @@ const Gst = ({ showSection, changeSection }) => {
   useEffect(() => {
     location?.gst && setDoc_no(location.gst.doc_no);
     location?.gst && setFilesData(location.gst.docs);
-  }, [])
+  }, []);
   console.log(filesData);
   const handleChange = async (e) => {
     try {
@@ -24,7 +32,10 @@ const Gst = ({ showSection, changeSection }) => {
         const formData = new FormData();
         formData.append("pic", e.target.files[i]);
         const response = await uploadGstDocs(formData);
-        setFilesData(prev => [...prev, { file: response.data.url, fileRef: response.data.fileRef }]);
+        setFilesData((prev) => [
+          ...prev,
+          { file: response.data.url, fileRef: response.data.fileRef },
+        ]);
       }
     } catch (error) {
       console.log(error);
@@ -32,7 +43,7 @@ const Gst = ({ showSection, changeSection }) => {
   };
   const handleClick = () => {
     document.getElementById("inputD").click();
-  }
+  };
   const deleteImage = async (fileData, index) => {
     //console.log(fileRef);
     try {
@@ -42,16 +53,22 @@ const Gst = ({ showSection, changeSection }) => {
     } catch (error) {
       toast.error(error.response.data);
     }
-  }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      (doc_no !== "" && filesData.length === 0) ||
+      (doc_no.length === 0 && filesData.length > 0)
+    ) {
+      return toast.error("Kindly fill both field");
+    }
     if (doc_no.length && filesData.length) {
-      const files = filesData.map(fileData => fileData.file);
+      const files = filesData.map((fileData) => fileData.file);
       const locData = {
         ...location,
         gst: {
           doc_no,
-          docs: files
+          docs: files,
         },
       };
       dispatch(addLocation({ ...location, gst: { doc_no, docs: filesData } }));
@@ -66,26 +83,43 @@ const Gst = ({ showSection, changeSection }) => {
 
     changeSection("Bank Details");
     window.scrollTo(0, 0);
-  }
+  };
   return (
-    <div className='lbox'>
-      <div className='row1'>
-        <div className='coll1'>
+    <div className="lbox">
+      <div className="row1">
+        <div className="coll1">
           <h2>GST Number</h2>
-          <input className="lginput" onChange={(e) => setDoc_no(e.target.value)} value={doc_no} />
+          <input
+            className="lginput"
+            onChange={(e) => setDoc_no(e.target.value)}
+            value={doc_no}
+          />
         </div>
       </div>
-      <div className='row1'>
-        <div className='uploadImage'>
-          <div className='button1' onClick={handleClick}> <h2 style={{ fontSize: "15px" }}>Upload GST Docs</h2>
-            <input type="file" multiple id="inputD" className='inputD' onChange={handleChange} accept=".xlsx,.xls,,.doc, .docx,.ppt, .pptx,.txt,.pdf" />
+      <div className="row1">
+        <div className="uploadImage">
+          <div className="button1" onClick={handleClick}>
+            {" "}
+            <h2 style={{ fontSize: "15px" }}>Upload GST Docs</h2>
+            <input
+              type="file"
+              multiple
+              id="inputD"
+              className="inputD"
+              onChange={handleChange}
+              accept=".xlsx,.xls,,.doc, .docx,.ppt, .pptx,.txt,.pdf"
+            />
           </div>
         </div>
       </div>
       <div className="row1" id="photo-sec-s">
         {filesData?.map((fileData, index) => {
           return (
-            <div className="pict" style={{ width: "440px", height: "330px" }} key={index}>
+            <div
+              className="pict"
+              style={{ width: "440px", height: "330px" }}
+              key={index}
+            >
               <Clear
                 sx={{
                   cursor: "pointer",
@@ -102,17 +136,13 @@ const Gst = ({ showSection, changeSection }) => {
       </div>
       <div className="row1">
         <div className="coll1">
-          <button
-            className="continue"
-            onClick={handleSubmit}
-          >
+          <button className="continue" onClick={handleSubmit}>
             Continue
           </button>
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Gst
+export default Gst;

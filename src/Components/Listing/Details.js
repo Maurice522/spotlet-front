@@ -72,6 +72,10 @@ const initialState = {
   security_camera: "",
 };
 
+function isNumeric(value) {
+  return /^-?\d+$/.test(value);
+}
+
 const Details = ({ showSection, changeSection }) => {
   const user_id = useSelector(selectUser_id);
   const user = useSelector(selectUserData);
@@ -118,6 +122,8 @@ const Details = ({ showSection, changeSection }) => {
       !property_desc?.house_parking?.length
     )
       return toast.error("Please fill all required fields!!!");
+    if (!isNumeric(property_desc.property_size))
+      return toast.error("Invalid property size");
     const form = {
       data: {
         ...location,
@@ -234,7 +240,7 @@ const Details = ({ showSection, changeSection }) => {
             onChange={handleChange}
             value={property_desc ? property_desc.property_size : ""}
             required
-            type="number"
+            type="text"
           />
         </div>
       </div>

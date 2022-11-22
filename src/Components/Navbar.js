@@ -276,8 +276,8 @@ const Navbar = ({ extraNavId }) => {
               transformOrigin={{ horizontal: "center" }}
             >
               <MenuItem>Hi, {firstName}</MenuItem>
-              <MenuItem onClick={() => navigate("/bookinglist/:booking", true)}>
-                Bookings
+              <MenuItem onClick={() => navigate("/bookinglist/:listing", true)}>
+                Listing
               </MenuItem>
               <MenuItem onClick={acntset}>Account Settings</MenuItem>
               <MenuItem onClick={logout}>Logout</MenuItem>

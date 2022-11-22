@@ -19,6 +19,7 @@ import { Button, Modal } from "@mui/material";
 import { BiFilterAlt } from "react-icons/bi";
 import { ImCross } from "react-icons/im";
 import Select from "react-select";
+import Host from "../Components/Home/Host";
 
 const Search = () => {
   var sortedProperties;
@@ -385,7 +386,14 @@ const Search = () => {
           </>
         </div>
       </Modal>
-      <div className="search-heading">All Locations</div>
+      <div className="search-heading">
+        <h1 style={{ fontSize: "22px", fontWeight: 700, marginBottom: "10px" }}>
+          "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
+          commodi iusto odit aspernatur doloribus unde adipisci esse praesentium
+          quae fugiat?"
+        </h1>
+        <h1 style={{ fontWeight: 500, fontSize: "20px" }}>Locations Found</h1>
+      </div>
 
       <div className="search-property-list">
         {sortedProperties?.map((item, index) => {
@@ -564,10 +572,23 @@ const Search = () => {
           }
         })}
       </div>
-      {/* <Host
-				title="Get in buisness with GoRecce"
-				buttonContent="Become a Host"
-			/> */}
+      <div className="paginated-container">
+        {Array(8)
+          .fill(0)
+          .map((item, id) => {
+            return (
+              <div key={id} className={`paginated-box ${id === 0 && "active"}`}>
+                {id + 1}
+              </div>
+            );
+          })}
+      </div>
+      <div style={{ margin: "40px 0px" }}>
+        <Host
+          title="Get in buisness with GoRecce"
+          buttonContent="Become a Host"
+        />
+      </div>
       <Footer />
     </>
   );
