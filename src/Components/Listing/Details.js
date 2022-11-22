@@ -16,49 +16,49 @@ import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
 
 let options = [
-	{ value: "Add New", label: "Add Custom to List" },
-	{ value: "Apartment Parking", label: "Apartment Parking" },
-	{ value: "Banquet Halls", label: "Banquet Halls" },
-	{ value: "Beach House", label: "Beach House" },
-	{ value: "BT roads (open roads)", label: "BT roads (open roads)" },
-	{ value: "Bus Stand", label: "Bus Stand" },
-	{ value: "Civil Court", label: "Civil Court" },
-	{ value: "College", label: "College" },
-	{ value: "Convention Centres", label: "Convention Centres" },
-	{ value: "Corporate Office", label: "Corporate Office" },
-	{ value: "Dhaba", label: " Dhaba" },
-	{ value: "Event auditoriums", label: "Event auditoriums" },
-	{ value: "Factory", label: "Factory" },
-	{ value: "Farmhouse", label: " Farmhouse" },
-	{ value: "Farmland", label: "Farmland" },
-	{ value: "Forest", label: "Forest" },
-	{ value: "Forest Stay", label: "Forest Stay" },
-	{ value: "Gated Community", label: "Gated Community" },
-	{ value: "Hospital", label: "Hospital" },
-	{ value: "Hotel", label: "Hotel" },
-	{ value: "Hotel Stay", label: "Hotel Stay" },
-	{ value: "Industry", label: "Industry" },
-	{ value: "Jail", label: "Jail" },
-	{ value: "Lake House", label: "Lake House" },
-	{ value: "Lake Stay", label: "Lake Stay" },
-	{ value: "Lakes", label: "Lakes" },
-	{ value: "Manduva House", label: "Manduva House" },
-	{ value: "Movie Theatres", label: "Movie Theatres" },
-	{ value: "Police station", label: "Police station" },
-	{ value: "Pubs", label: "Pubs" },
-	{ value: "Railway station", label: "Railway station" },
-	{ value: "Resorts", label: "Resorts" },
-	{ value: "Restaurants", label: "Restaurants" },
-	{ value: "Rich house", label: "Rich house" },
-	{ value: "School", label: "School" },
-	{ value: "Shooting floors", label: "Shooting floors" },
-	{ value: "Shopping Malls", label: "Shopping Malls" },
-	{ value: "Sports auditoriums", label: "Sports auditoriums" },
-	{ value: "Studio Floors", label: "Studio Floors" },
-	{ value: "TV Stations", label: "TV Stations" },
-	{ value: "Village atmosphere", label: "Village atmosphere" },
-	{ value: "Weekend Farming", label: "Weekend Farming" },
-	{ value: "Wooden house", label: "Wooden house" },
+  { value: "Add New", label: "Add Custom to List" },
+  { value: "Apartment Parking", label: "Apartment Parking" },
+  { value: "Banquet Halls", label: "Banquet Halls" },
+  { value: "Beach House", label: "Beach House" },
+  { value: "BT roads (open roads)", label: "BT roads (open roads)" },
+  { value: "Bus Stand", label: "Bus Stand" },
+  { value: "Civil Court", label: "Civil Court" },
+  { value: "College", label: "College" },
+  { value: "Convention Centres", label: "Convention Centres" },
+  { value: "Corporate Office", label: "Corporate Office" },
+  { value: "Dhaba", label: " Dhaba" },
+  { value: "Event auditoriums", label: "Event auditoriums" },
+  { value: "Factory", label: "Factory" },
+  { value: "Farmhouse", label: " Farmhouse" },
+  { value: "Farmland", label: "Farmland" },
+  { value: "Forest", label: "Forest" },
+  { value: "Forest Stay", label: "Forest Stay" },
+  { value: "Gated Community", label: "Gated Community" },
+  { value: "Hospital", label: "Hospital" },
+  { value: "Hotel", label: "Hotel" },
+  { value: "Hotel Stay", label: "Hotel Stay" },
+  { value: "Industry", label: "Industry" },
+  { value: "Jail", label: "Jail" },
+  { value: "Lake House", label: "Lake House" },
+  { value: "Lake Stay", label: "Lake Stay" },
+  { value: "Lakes", label: "Lakes" },
+  { value: "Manduva House", label: "Manduva House" },
+  { value: "Movie Theatres", label: "Movie Theatres" },
+  { value: "Police station", label: "Police station" },
+  { value: "Pubs", label: "Pubs" },
+  { value: "Railway station", label: "Railway station" },
+  { value: "Resorts", label: "Resorts" },
+  { value: "Restaurants", label: "Restaurants" },
+  { value: "Rich house", label: "Rich house" },
+  { value: "School", label: "School" },
+  { value: "Shooting floors", label: "Shooting floors" },
+  { value: "Shopping Malls", label: "Shopping Malls" },
+  { value: "Sports auditoriums", label: "Sports auditoriums" },
+  { value: "Studio Floors", label: "Studio Floors" },
+  { value: "TV Stations", label: "TV Stations" },
+  { value: "Village atmosphere", label: "Village atmosphere" },
+  { value: "Weekend Farming", label: "Weekend Farming" },
+  { value: "Wooden house", label: "Wooden house" },
 ];
 
 const initialState = {
@@ -82,13 +82,14 @@ const Details = ({ showSection, changeSection }) => {
 	const dispatch = useDispatch();
 	const [property_desc, setPropertyDescr] = useState(initialState);
 
-	useEffect(() => {
-		// location && setLType(" "+location.property_desc.location_type);
-		location && options.map((item, index) => {
-			if (location?.property_desc?.location_type == item.value) {
-				setLType(index);
-			}
-		})
+  useEffect(() => {
+    // location && setLType(" "+location.property_desc.location_type);
+    location &&
+      options.map((item, index) => {
+        if (location?.property_desc?.location_type == item.value) {
+          setLType(index);
+        }
+      });
 
 		user_id && setPropertyDescr({ ...property_desc, user_id });
 	}, [user_id]);
@@ -135,10 +136,9 @@ const Details = ({ showSection, changeSection }) => {
 		window.scrollTo(0, 0);
 	};
 
-	const [opt, setOpt] = useState(options);
-	const [loc, setLoc] = useState(false);
-	const [newLoc, setNewLoc] = useState('');
-	console.log(opt[opt.length - 1])
+  const [opt, setOpt] = useState(options);
+  const [loc, setLoc] = useState(false);
+  const [newLoc, setNewLoc] = useState("");
 
 	return (
 		<div className="lbox">

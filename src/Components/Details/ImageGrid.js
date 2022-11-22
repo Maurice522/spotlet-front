@@ -115,8 +115,7 @@ function ImageGrid({
         <div>
           <div className="name">{location_id}</div>
           <div className="location">
-            Apartment parking:{" "}
-            {locationData?.property_desc?.house_parking.toUpperCase()}
+            Apartment parking: {locationData?.property_desc?.location_type}
           </div>
           <div>
             {locationData?.property_address?.city},{" "}

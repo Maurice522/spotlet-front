@@ -1,15 +1,15 @@
 .wrapper {
-	margin: 10px auto;
-    width: 77vw;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    /* justify-content: space-between; */
-    padding: 30px 18px 24px 34px;
-    border: 1px solid lightgray;
-	border-radius: 10px;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-	/* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin: 10px auto;
+  width: 77vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* justify-content: space-between; */
+  padding: 30px 18px 24px 34px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -17,94 +17,102 @@
 }
 
 .active-rate {
-	color: black;
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 36px;
-	line-height: 40px;
+  color: black;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 40px;
 }
 
 .rate {
-	color: #808b93;
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 36px;
-	line-height: 40px;
+  color: #808b93;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 40px;
 }
 
 .form {
-	background: #fff;
-    height: fit-content;
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(6, 1fr) auto;
-    z-index: 3;
-    gap: 0px;
-    align-items: center;
+  background: #fff;
+  height: fit-content;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(6, 1fr) auto;
+  z-index: 3;
+  gap: 0px;
+  align-items: center;
 }
 
 .form-2 {
-	background: #fff;
-	height: fit-content;
-	display: grid;
-	grid-template-columns: repeat(5, 1fr) auto;
-	z-index: 3;
-	gap: 20px;
-	align-items: center;
+  background: #fff;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr) auto;
+  z-index: 3;
+  gap: 20px;
+  align-items: center;
+}
+
+.form-3 {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  width: 100%;
+}
+.form-3 > div {
+  min-width: 16%;
 }
 
 .booking-form-label {
-	display: block;
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 24px;
-	color: #374047;
+  display: block;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #374047;
 }
 
 .normal {
-	display: block;
-    margin-top: 7px;
-    width: 90%;
-    height: 40px;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    background: #ffffff;
-    border: 2px solid white;
-    padding-left: 7%;
-	padding-right: 3%;
-    border-radius: 4px;
-    color: black;
+  display: block;
+  margin-top: 7px;
+  width: 90%;
+  height: 40px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  background: #ffffff;
+  border: 2px solid white;
+  padding-left: 7%;
+  padding-right: 3%;
+  border-radius: 4px;
+  color: black;
 }
 
 .focus {
-	display: block;
-    margin-top: 7px;
-    width: 90%;
-    height: 40px;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    background: #ffffff;
-    border: 2px solid white;
-    padding-left: 7%;
-	padding-right: 3%;
-    border-radius: 4px;
-    color: black;
-
+  display: block;
+  margin-top: 7px;
+  width: 90%;
+  height: 40px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  background: #ffffff;
+  border: 2px solid white;
+  padding-left: 7%;
+  padding-right: 3%;
+  border-radius: 4px;
+  color: black;
 }
 
-
 .focus::placeholder {
-	color: black;
+  color: black;
 }
 
 /* .focus-label {
@@ -119,90 +127,94 @@
 } */
 
 .submit {
-	cursor: pointer;
-	border: none;
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 500;
-	font-size: 20px;
-	line-height: 24px;
-	color: #ffffff;
-	background: #ff4d4d;
-	border: 2px solid #ff4d4d;
-	border-radius: 8px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	padding: 12px 24px;
-	gap: 8px;
+  cursor: pointer;
+  border: none;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+  background: #ff4d4d;
+  border: 2px solid #ff4d4d;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 8px;
 }
 
 .submit:hover {
-	background: #ffffff;
-	color: #ff4d4d;
-	border: 2px solid #ff4d4d;
+  background: #ffffff;
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
 }
 
 .form > a {
-	text-decoration: none;
+  text-decoration: none;
 }
-
 
 @media screen and (max-width: 992px) {
-	.wrapper {
-		margin: 10px auto;
-		width: 89vw;}
+  .wrapper {
+    margin: 10px auto;
+    width: 89vw;
+  }
 }
-@media screen and (max-width: 576px){
-	.wrapper{
-		background-color: transparent;
-		padding: 0;
-	}
-	.form, .form-2 {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: start;
-		gap: 1rem;
-		padding: 20px 0;
-		border-radius: 8px;
-		background-color: rgba(255, 235, 235, 0.7);
-	}
-	.form div, .form-2 div{
-		width: 90%;
-	}
-	.form div label, .form-2 div label{
-		border: none;
-	}
-	.form a, .form-2 a{
-		grid-column: span 4;
-		width: 70vw;
-		margin-left: -10vw;
-	}
-	.form-2{
-		width: 100%;
-	}
-	.submit {
-		font-size: 14px;
-		line-height: 20px;
-		padding: 8px 20px;
-		margin-left: 10px !important;
-		width: fit-content !important;
-	}
-	.MuiButtonBase-root button{
-		margin-left: 10px;
-	}
-	.booking-form-label{
-		font-size: 14px;
-	}
-	.normal{
-		font-size: 12px;
-	}
-	.css-o4b71y-MuiAccordionSummary-content{
-		font-size: 16px;
-	}
-	.css-1uir9b3-MuiAccordionDetails-root{
-		font-size: 13px !important;
-	}
+@media screen and (max-width: 576px) {
+  .wrapper {
+    background-color: transparent;
+    padding: 0;
+  }
+  .form,
+  .form-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+    padding: 20px 0;
+    border-radius: 8px;
+    background-color: rgba(255, 235, 235, 0.7);
+  }
+  .form div,
+  .form-2 div {
+    width: 90%;
+  }
+  .form div label,
+  .form-2 div label {
+    border: none;
+  }
+  .form a,
+  .form-2 a {
+    grid-column: span 4;
+    width: 70vw;
+    margin-left: -10vw;
+  }
+  .form-2 {
+    width: 100%;
+  }
+  .submit {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 20px;
+    margin-left: 10px !important;
+    width: fit-content !important;
+  }
+  .MuiButtonBase-root button {
+    margin-left: 10px;
+  }
+  .booking-form-label {
+    font-size: 14px;
+  }
+  .normal {
+    font-size: 12px;
+  }
+  .css-o4b71y-MuiAccordionSummary-content {
+    font-size: 16px;
+  }
+  .css-1uir9b3-MuiAccordionDetails-root {
+    font-size: 13px !important;
+  }
 }

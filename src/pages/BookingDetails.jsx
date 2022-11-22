@@ -111,23 +111,32 @@ const BookingDetails = () => {
 		});
 	}
 
+	const confirmDeletion = () => {
+		let text = "Do you really want to delete this booking?";
+		return window.confirm(text);
+	};
 	const deleteBooking = async () => {
-		try {
-			const newPortfolio = userData.portfolio.filter(
-				(p) => p.bookingId !== bookingId
-			);
-			const newUserData = { ...userData, portfolio: newPortfolio };
-			const data = {
-				bookingId,
-				locationId: booking.property_id,
-				user_id: booking.user_id,
-			};
-			const response = await deleteBookingReq(data);
-			dispatch(addUser(newUserData));
-			toast.success(response.data);
-			window.history.back();
-		} catch (error) {
-			toast.error(error);
+		setopenModal(true);
+		if (open) {
+			try {
+				if (confirmDeletion()) {
+					const newPortfolio = userData.portfolio.filter(
+						(p) => p.bookingId !== bookingId
+					);
+					const newUserData = { ...userData, portfolio: newPortfolio };
+					const data = {
+						bookingId,
+						locationId: booking.property_id,
+						user_id: booking.user_id,
+					};
+					const response = await deleteBookingReq(data);
+					dispatch(addUser(newUserData));
+					toast.success(response.data);
+					window.history.back();
+				}
+			} catch (error) {
+				toast.error(error);
+			}
 		}
 	};
 	//message
@@ -165,7 +174,7 @@ const BookingDetails = () => {
 			console.log(error);
 		}
 	};
-	console.log(booking);
+	console.log(userData);
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
@@ -207,21 +216,17 @@ const BookingDetails = () => {
 								<div data-attribute-4>Total price (including GST):</div>
 								<div data-attribute-4>
 									₹{" "}
-									{parseInt(booking?.total_amt) === "NaN"
+									{(perHourCost * booking?.duration_in_hours)?.toFixed(2) ===
+									"NaN"
 										? 0
-										: parseInt(booking?.total_amt)}
+										: (perHourCost * booking?.duration_in_hours)?.toFixed(2)}
 								</div>
 							</div>
 							<div data-attribute-3>
 								<div data-attribute-4>Processing Fee</div>
 								<div data-attribute-4>
-									₹ {Number(booking?.total_amt / 10).toFixed(2)}
-								</div>
-							</div>
-							<div data-attribute-3>
-								<div data-attribute-4>Cleaning Fee</div>
-								<div data-attribute-4>
-									₹ {locationData?.pricing?.cleaningFee}
+									₹{" "}
+									{(perHourCost * booking?.duration_in_hours/ 10)?.toFixed(2) }
 								</div>
 							</div>
 
@@ -229,9 +234,13 @@ const BookingDetails = () => {
 								<div data-attribute-1>Total</div>
 								<div data-attribute-1>
 									₹{" "}
-									{parseInt(booking?.total_amt + 40 + 40) === "NaN"
+									{(perHourCost * booking?.duration_in_hours + 40)?.toFixed(
+										2
+									) === "NaN"
 										? 0
-										: parseInt(booking?.total_amt + 40 + 40)}
+										: (perHourCost * booking?.duration_in_hours + 40)?.toFixed(
+												2
+										  )}
 								</div>
 							</div>
 
@@ -245,7 +254,7 @@ const BookingDetails = () => {
 									marginTop: "10px",
 								}}
 								disabled={booking?.payment_status !== "Under Review"}
-								onClick={() => setopenModal(true)}
+								onClick={deleteBooking}
 							>
 								Cancel Booking
 							</Button>
@@ -253,7 +262,7 @@ const BookingDetails = () => {
 					</div>
 					<Modal open={openModal} onClose={handleCloseModal}>
 						<div className="listing-modal">
-							<h3>Do you really want to cancle this booking?</h3>
+							<h3>Do you really want to Deactivate your account?</h3>
 							<div
 								style={{
 									display: "flex",
@@ -265,7 +274,6 @@ const BookingDetails = () => {
 								<Button
 									className="auth-btn"
 									onClick={() => {
-										deleteBooking();
 										handleCloseModal();
 										setOpen(true);
 									}}
@@ -455,10 +463,7 @@ const BookingDetails = () => {
 						venenatis. Donec a dui et dui fringilla consectetur id nec massa.
 						Aliquam erat volutpat.
 					</div>
-					<div
-						className="terms-conditions item-info"
-						style={{ marginBottom: "7rem" }}
-					>
+					<div className="terms-conditions item-info">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 						hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
 						rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.
