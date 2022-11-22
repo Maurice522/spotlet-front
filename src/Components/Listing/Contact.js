@@ -17,7 +17,6 @@ const Contact = ({ showSection, changeSection }) => {
 	const location = useSelector(selectLocationData);
 	const user = useSelector(selectUserData);
 	const [contact_det, setContactDet] = useState({
-		name: "",
 		contact_name: "",
 		designation: "",
 		mobile_num: "",
@@ -44,10 +43,12 @@ const Contact = ({ showSection, changeSection }) => {
 		e.preventDefault();
 		if (
 			!contact_det.email.length ||
-			!contact_det.mobile_num.length ||
-			!contact_det.name.length
+			!contact_det.mobile_num.length
 		)
 			return toast.error("Please fill all required fields");
+		// if (contact_det.alt_name.length != 12) {
+		// 	return toast.error("Please enter valid aadhar no.");
+		// }
 		const locData = {
 			...location,
 			contact_det,
@@ -69,21 +70,6 @@ const Contact = ({ showSection, changeSection }) => {
 	};
 	return (
 		<div className="lbox">
-			<div className="row1">
-				<div className="coll1">
-					<h2>
-						Name of the Location
-						<span style={{ color: "red" }}>*</span>
-					</h2>
-					<input
-						className="lginput"
-						name="name"
-						onChange={handleChange}
-						value={contact_det.name}
-					/>
-				</div>
-			</div>
-
 			<div className="row1">
 				<div className="coll1">
 					<h2>

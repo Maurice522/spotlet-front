@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
 import { selectUserData, selectUser_id } from "../redux/slices/userSlice";
 import { useSelector } from "react-redux";
+import { TextField } from "@mui/material";
 
 const Pricing = ({ location }) => {
   const [listedLocations, setListedLocations] = useState([]);
@@ -24,6 +25,7 @@ const Pricing = ({ location }) => {
     fetchListedLoc();
   }, []);
 
+  const [cleaningFee, setCleaningFee] = useState(0)
   const [film, setfilm] = useState({
     hourly_rate: 0,
     isPresent: false,
@@ -56,6 +58,7 @@ const Pricing = ({ location }) => {
     if (!film.isPresent && !tv.isPresent && !corp.isPresent && !event.isPresent)
       return toast.error("Please add atleast one event type!");
     const pricing = {
+      cleaningFee: cleaningFee,
       film_webseries_ad: film,
       tv_series_other: tv,
       corporate: corp,
@@ -99,6 +102,28 @@ const Pricing = ({ location }) => {
   };
   return (
     <div className="lbox" style={{ marginTop: "30px !important" }}>
+
+      <div className="coll1">
+        <div className="row1">
+          <h1>Cleaning Fee
+            <span style={{ color: "red" }}>
+              *
+            </span>
+          </h1>
+          <TextField
+            required
+            type="text"
+            // label="Cleaning Fee"
+            name="cleaningFee"
+            variant="outlined"
+            size="small"
+            onChange={(e) => setCleaningFee(e.target.value)}
+          />
+        </div>
+      </div>
+      <hr />
+      <br />
+
       <div className="coll1">
         <div className="row1">
           <h1>Film/ Ad Film/ Web Series Shoot</h1>

@@ -55,8 +55,8 @@ const SideSection = ({
 		v3 === "12"
 			? v6 * v3 * 0.9 * 1.18 + 80
 			: v3 === "24"
-			? v6 * v3 * 0.8 * 1.18 + 80
-			: v6 * v3 * 1.18 + 80;
+				? v6 * v3 * 0.8 * 1.18 + 80
+				: v6 * v3 * 1.18 + 80;
 	useEffect(() => {
 		getLocation(location_id)
 			.then((res) => setLocationData(res.data))
@@ -134,7 +134,7 @@ const SideSection = ({
 	// console.log(v1, v3, v4);
 	const userBooking = useSelector(selectUserData);
 
-	// console.log(userBooking.portfolio[userBooking.portfolio.length - 1].bookingId)
+	console.log(locationData)
 
 	return (
 		<div className="side-section">
@@ -148,7 +148,7 @@ const SideSection = ({
 
 			<div data-attribute-1>{location_id}</div>
 			<div data-attribute-2>Location</div>
-			<br/><br/>
+			<br /><br />
 
 			{/* <div className="booking-side-section-title">Reserved Date</div>
 			<div className="booking-side-section-info">
@@ -159,7 +159,7 @@ const SideSection = ({
 
 			<div data-attribute-3>
 				<div data-attribute-4>
-				Total Price (including Gst)
+					Total Price (including Gst)
 				</div>
 				<div data-attribute-4>₹ {parseInt(gst)}</div>
 			</div>
@@ -170,17 +170,17 @@ const SideSection = ({
 
 			<div data-attribute-3>
 				<div data-attribute-4>Cleaning Fee (including Gst)</div>
-				<div data-attribute-4>₹ 40</div>
+				<div data-attribute-4>₹ {locationData?.pricing?.cleaningFee}</div>
 			</div>
 
 			<div data-attribute-3>
 				<div data-attribute-4>Processing Fee (including Gst)</div>
-				<div data-attribute-4>₹ 40</div>
+				<div data-attribute-4>₹ {(tot_price / 10).toFixed(2)}</div>
 			</div>
 
 			<div data-attribute-3>
 				<div data-attribute-1>Total</div>
-				<div data-attribute-1>₹ {tot_price+80}</div>
+				<div data-attribute-1>₹ {tot_price + 80}</div>
 			</div>
 
 			<Button

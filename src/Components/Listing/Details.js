@@ -7,14 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserData, selectUser_id } from "../../redux/slices/userSlice";
 import { createTempLocation } from "../../services/api";
 import {
-  addLocation,
-  addLocationId,
-  selectLocationData,
-  selectLocationId,
+	addLocation,
+	addLocationId,
+	selectLocationData,
+	selectLocationId,
 } from "../../redux/slices/locationSlice";
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
-import { ClearAll } from "@mui/icons-material";
 
 let options = [
 	{ value: "Add New", label: "Add Custom to List" },
@@ -63,24 +62,25 @@ let options = [
 ];
 
 const initialState = {
-  user_id: "",
-  location_type: "",
-  property_size: "",
-  property_info: "",
-  street_parking: "",
-  house_parking: "",
-  security_camera: "",
+	user_id: "",
+	property_name: "",
+	location_type: "",
+	property_size: "",
+	property_info: "",
+	street_parking: "",
+	house_parking: "",
+	security_camera: "",
 };
 
 const Details = ({ showSection, changeSection }) => {
-  const user_id = useSelector(selectUser_id);
-  const user = useSelector(selectUserData);
-  const location = useSelector(selectLocationData);
+	const user_id = useSelector(selectUser_id);
+	const user = useSelector(selectUserData);
+	const location = useSelector(selectLocationData);
 
-  const location_id = useSelector(selectLocationId);
-  const [lType, setLType] = useState(0);
-  const dispatch = useDispatch();
-  const [property_desc, setPropertyDescr] = useState(initialState);
+	const location_id = useSelector(selectLocationId);
+	const [lType, setLType] = useState(0);
+	const dispatch = useDispatch();
+	const [property_desc, setPropertyDescr] = useState(initialState);
 
 	useEffect(() => {
 		// location && setLType(" "+location.property_desc.location_type);
@@ -90,12 +90,12 @@ const Details = ({ showSection, changeSection }) => {
 			}
 		})
 
-    user_id && setPropertyDescr({ ...property_desc, user_id });
-  }, [user_id]);
+		user_id && setPropertyDescr({ ...property_desc, user_id });
+	}, [user_id]);
 
-  useEffect(() => {
-    location && setPropertyDescr(location.property_desc);
-  }, []);
+	useEffect(() => {
+		location && setPropertyDescr(location.property_desc);
+	}, []);
 
 	const handleChange = (e) => {
 		setPropertyDescr({
@@ -119,7 +119,6 @@ const Details = ({ showSection, changeSection }) => {
 				...location,
 				property_desc,
 			},
-			name: user?.personalInfo?.fullName,
 			location_id,
 		};
 		console.log(form);
@@ -132,9 +131,9 @@ const Details = ({ showSection, changeSection }) => {
 			toast.error(error.response.data);
 		}
 
-    changeSection("Location");
-    window.scrollTo(0, 0);
-  };
+		changeSection("Location");
+		window.scrollTo(0, 0);
+	};
 
 	const [opt, setOpt] = useState(options);
 	const [loc, setLoc] = useState(false);
@@ -195,9 +194,9 @@ const Details = ({ showSection, changeSection }) => {
 						<Button
 							onClick={() => {
 								newLoc === '' ? toast.error("Location can't be empty") :
-								(options.filter(item => item.label === newLoc).length === 0
-									? setOpt(prev => [...prev, { value: `${newLoc}`, label: `${newLoc}` }])
-									: toast.error("Location already exists"))
+									(options.filter(item => item.label === newLoc).length === 0
+										? setOpt(prev => [...prev, { value: `${newLoc}`, label: `${newLoc}` }])
+										: toast.error("Location already exists"))
 								newLoc === '' ? setLoc(true) : setLoc(false)
 							}}
 							variant="contained"
@@ -222,6 +221,22 @@ const Details = ({ showSection, changeSection }) => {
 					/>
 				</div>
 			</div>
+
+			<div className="row1">
+				<div className="coll1">
+					<h2>
+						Name of the Location
+						<span style={{ color: "red" }}>*</span>
+					</h2>
+					<input
+						className="listingInput input"
+						name="property_name"
+						onChange={handleChange}
+						value={property_desc ? property_desc.property_name : ""}
+					/>
+				</div>
+			</div>
+
 			<div className="row1-checkbox">
 				<div className="coll1">
 					<h2>

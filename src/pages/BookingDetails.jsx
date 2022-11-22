@@ -70,8 +70,8 @@ const BookingDetails = () => {
 		booking?.duration_in_hours === "24"
 			? 0.8
 			: booking?.duration_in_hours === "12"
-				? 0.9
-				: 1;
+			? 0.9
+			: 1;
 	const perHourCost = (
 		(booking?.total_amt - 40) /
 		booking?.duration_in_hours /
@@ -113,13 +113,15 @@ const BookingDetails = () => {
 
 	const deleteBooking = async () => {
 		try {
-			const newPortfolio = userData.portfolio.filter(p => p.bookingId !== bookingId);
+			const newPortfolio = userData.portfolio.filter(
+				(p) => p.bookingId !== bookingId
+			);
 			const newUserData = { ...userData, portfolio: newPortfolio };
 			const data = {
 				bookingId,
 				locationId: booking.property_id,
 				user_id: booking.user_id,
-			}
+			};
 			const response = await deleteBookingReq(data);
 			dispatch(addUser(newUserData));
 			toast.success(response.data);
@@ -127,7 +129,7 @@ const BookingDetails = () => {
 		} catch (error) {
 			toast.error(error);
 		}
-	}
+	};
 	//message
 	//message
 	const handleChat = async () => {
@@ -163,7 +165,7 @@ const BookingDetails = () => {
 			console.log(error);
 		}
 	};
-	console.log(booking)
+	console.log(booking);
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
@@ -202,24 +204,25 @@ const BookingDetails = () => {
 						</div>
 						<div className="booking-details-body-right">
 							<div data-attribute-3>
-								<div data-attribute-4>
-									Total price (including GST):
-								</div>
+								<div data-attribute-4>Total price (including GST):</div>
 								<div data-attribute-4>
 									₹{" "}
-									{parseInt(booking?.total_amt) ===
-										"NaN"
+									{parseInt(booking?.total_amt) === "NaN"
 										? 0
 										: parseInt(booking?.total_amt)}
 								</div>
 							</div>
 							<div data-attribute-3>
 								<div data-attribute-4>Processing Fee</div>
-								<div data-attribute-4>₹ 40</div>
+								<div data-attribute-4>
+									₹ {Number(booking?.total_amt / 10).toFixed(2)}
+								</div>
 							</div>
 							<div data-attribute-3>
 								<div data-attribute-4>Cleaning Fee</div>
-								<div data-attribute-4>₹ 40</div>
+								<div data-attribute-4>
+									₹ {locationData?.pricing?.cleaningFee}
+								</div>
 							</div>
 
 							<div data-attribute-3>
@@ -251,20 +254,45 @@ const BookingDetails = () => {
 					<Modal open={openModal} onClose={handleCloseModal}>
 						<div className="listing-modal">
 							<h3>Do you really want to cancle this booking?</h3>
-							<div style={{ display: "flex", gap: "2rem", width: "100%", justifyContent: "center" }}>
-								<Button className="auth-btn" onClick={() => {
-									deleteBooking();
-									handleCloseModal();
-									setOpen(true);
-								}}>Yes</Button>
-								<Button className="auth-btn" onClick={() => {
-									handleCloseModal();
-									setOpen(false);
-								}}>No</Button>
+							<div
+								style={{
+									display: "flex",
+									gap: "2rem",
+									width: "100%",
+									justifyContent: "center",
+								}}
+							>
+								<Button
+									className="auth-btn"
+									onClick={() => {
+										deleteBooking();
+										handleCloseModal();
+										setOpen(true);
+									}}
+								>
+									Yes
+								</Button>
+								<Button
+									className="auth-btn"
+									onClick={() => {
+										handleCloseModal();
+										setOpen(false);
+									}}
+								>
+									No
+								</Button>
 							</div>
 						</div>
 					</Modal>
-					<div style={{ marginLeft: "auto", width: "20vw", display: `${booking?.payment_status !== "Approved" ? "none" : "block"}` }}>
+					<div
+						style={{
+							marginLeft: "auto",
+							width: "20vw",
+							display: `${
+								booking?.payment_status !== "Approved" ? "none" : "block"
+							}`,
+						}}
+					>
 						<Button
 							variant="contained"
 							sx={{
@@ -284,13 +312,12 @@ const BookingDetails = () => {
 						width: "80%",
 						height: "500px",
 						margin: "auto",
-						display: `${booking?.payment_status !== "Approved" ? "none" : "block"
-							}`,
+						display: `${
+							booking?.payment_status !== "Approved" ? "none" : "block"
+						}`,
 					}}
 				>
-					{cord.lat !== 0 && (
-						<GoogleMap lat={cord.lat} lng={cord.lng} />
-					)}
+					{cord.lat !== 0 && <GoogleMap lat={cord.lat} lng={cord.lng} />}
 				</div>
 				<div className="container">
 					<div className="booking-details-header">Message</div>
@@ -328,65 +355,67 @@ const BookingDetails = () => {
 						</div>
 					</div>
 				</div>
-				{userData?.portfolio[0]?.payment_status !== "Under Review" && <div div className="container">
-					<div className="booking-details-header">Reviews and Rating</div>
-					<div className="row1">
-						<div className="coll1">
-							<h2>
-								Write A review
-								<span style={{ color: "red" }}>*</span>
-							</h2>
-							<TextareaAutosize
-								className="listingInput text-input"
-								aria-label="minimum height"
-								minRows={6}
-								maxLength={500}
-								name="property_info"
-								onChange={(e) => setReview(e.target.value)}
-								// value={property_desc ? property_desc.property_info : ""}
-								style={{
-									width: 690,
-									fontSize: "16px",
-									lineHeight: "24px",
-									padding: "1%",
+				{userData?.portfolio[0]?.payment_status !== "Under Review" && (
+					<div div className="container">
+						<div className="booking-details-header">Reviews and Rating</div>
+						<div className="row1">
+							<div className="coll1">
+								<h2>
+									Write A review
+									<span style={{ color: "red" }}>*</span>
+								</h2>
+								<TextareaAutosize
+									className="listingInput text-input"
+									aria-label="minimum height"
+									minRows={6}
+									maxLength={500}
+									name="property_info"
+									onChange={(e) => setReview(e.target.value)}
+									// value={property_desc ? property_desc.property_info : ""}
+									style={{
+										width: 690,
+										fontSize: "16px",
+										lineHeight: "24px",
+										padding: "1%",
+									}}
+									required
+								/>
+							</div>
+						</div>
+						<div className="row1">
+							<div className="coll1">
+								<h2>
+									Ratings
+									<span style={{ color: "red" }}>*</span>
+								</h2>
+								<Rating
+									name="simple-controlled"
+									value={rating}
+									onChange={(event, newValue) => {
+										setRating(newValue);
+									}}
+								/>
+							</div>
+						</div>
+						<div className="row1">
+							<Button
+								variant="contained"
+								sx={{
+									width: "20vw",
+									backgroundColor: "#EA4235",
+									color: "white",
+									borderRadius: "4px",
+									marginTop: "10px",
+									flexGrow: "1",
 								}}
-								required
-							/>
+								disabled={booking?.payment_status === "Cancelled"}
+								onClick={handleReview}
+							>
+								Send Review
+							</Button>
 						</div>
 					</div>
-					<div className="row1">
-						<div className="coll1">
-							<h2>
-								Ratings
-								<span style={{ color: "red" }}>*</span>
-							</h2>
-							<Rating
-								name="simple-controlled"
-								value={rating}
-								onChange={(event, newValue) => {
-									setRating(newValue);
-								}}
-							/>
-						</div>
-					</div>
-					<div className="row1">
-						<Button
-							variant="contained"
-							sx={{
-								width: "20vw",
-								backgroundColor: "#EA4235",
-								color: "white",
-								borderRadius: "4px",
-								marginTop: "10px",
-								flexGrow: "1",
-							}}
-							disabled={booking?.payment_status === "Cancelled"}
-							onClick={handleReview}
-						>
-							Send Review
-						</Button>
-					</div>
-				</div>}
+				)}
 				<div className="container">
 					<div className="booking-details-header">
 						Terms and Conditions Agreed
@@ -426,7 +455,10 @@ const BookingDetails = () => {
 						venenatis. Donec a dui et dui fringilla consectetur id nec massa.
 						Aliquam erat volutpat.
 					</div>
-					<div className="terms-conditions item-info" style={{marginBottom: "7rem"}}>
+					<div
+						className="terms-conditions item-info"
+						style={{ marginBottom: "7rem" }}
+					>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
 						hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
 						rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat.

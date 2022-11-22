@@ -185,6 +185,7 @@ const Navbar = ({ extraNavId }) => {
 							transformOrigin={{ horizontal: "center" }}>
 							<MenuItem>Hi, {firstName}</MenuItem>
 							<MenuItem onClick={acntset}>Account Settings</MenuItem>
+							<MenuItem onClick={() => window.location = '/bookinglist/:listing'}>Listings</MenuItem>
 							<MenuItem onClick={logout}>Logout</MenuItem>
 						</Menu>
 					</div>
@@ -246,6 +247,7 @@ const Navbar = ({ extraNavId }) => {
 							transformOrigin={{ horizontal: "center" }}>
 							<MenuItem>Hi, {firstName}</MenuItem>
 							<MenuItem onClick={acntset}>Account Settings</MenuItem>
+							<MenuItem onClick={() => window.location = '/bookinglist/:listing'}>Listings</MenuItem>
 							<MenuItem onClick={logout}>Logout</MenuItem>
 						</Menu>
 					</div>

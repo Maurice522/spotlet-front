@@ -227,7 +227,7 @@ const Search = () => {
 										</Select>
 									</div>
 								</div>
-								<div>
+								{/* <div>
 									<h2>No. of Attendees</h2>
 									<div>
 										<label class="filter-container">0 - 10
@@ -350,7 +350,7 @@ const Search = () => {
 											<span class="checkmark"></span>
 										</label>
 									</div>
-								</div>
+								</div> */}
 							</div>
 							<div className="apply">
 								<button className="accbut apply-btn">Apply Changes</button>

@@ -79,6 +79,20 @@ const ReviewApplication = ({ changeSection }) => {
                         />
                     </div>
                 </div>
+                <div className="row1">
+                    <div className="coll1">
+                        <h2>
+                            Name of the Location
+                            <span style={{ color: "red" }}>*</span>
+                        </h2>
+                        <input
+                            disabled
+                            className="listingInput input"
+                            name="name"
+                            value={finalData.property_desc ? finalData.property_desc.property_name : ""}
+                        />
+                    </div>
+                </div>
                 <div>
                     <div className="coll1">
                         <h2>
@@ -721,21 +735,7 @@ const ReviewApplication = ({ changeSection }) => {
                             window.scrollTo(0, 0);
                         }}>Edit</Button>
                     </div>
-                    <div className="row1">
-                        <div className="coll1">
-                            <h2>
-                                Name required on the Booking (Company/Individual)
-                                <span style={{ color: "red" }}>*</span>
-                            </h2>
-                            <input
-                                disabled
-                                className="lginput"
-                                name="name"
-                                value={finalData.contact_det ? finalData.contact_det.name : ""}
-                            />
-                        </div>
-                    </div>
-
+                    
                     <div className="coll1">
                         <h2>
                             Contact Person Name<span style={{ color: "red" }}>*</span>

@@ -66,7 +66,7 @@ const BankDetails = ({ showSection, changeSection }) => {
 						name="account_holder_name"
 						type="text"
 						onChange={handleChange}
-						value={bankDetails.account_holder_name}
+						value={location.bankDetails?.account_holder_name}
 						required
 					/>
 				</div>
@@ -81,7 +81,7 @@ const BankDetails = ({ showSection, changeSection }) => {
 						name="bank_name"
 						type="text"
 						onChange={handleChange}
-						value={bankDetails.bank_name}
+						value={location.bankDetails?.bank_name}
 						required
 					/>
 				</div>
@@ -96,7 +96,7 @@ const BankDetails = ({ showSection, changeSection }) => {
 						name="ifsc_code"
 						type="text"
 						onChange={handleChange}
-						value={bankDetails.ifsc_code}
+						value={location.bankDetails?.ifsc_code}
 						required
 					/>
 				</div>
@@ -111,7 +111,7 @@ const BankDetails = ({ showSection, changeSection }) => {
 						name="account_number"
 						type="number"
 						onChange={handleChange}
-						value={bankDetails.account_number}
+						value={location.bankDetails?.account_number}
 						required
 					/>
 				</div>

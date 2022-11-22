@@ -45,7 +45,7 @@ const Gst = ({ showSection, changeSection }) => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (doc_no.length && filesData.length) {
+    if (filesData.length) {
       const files = filesData.map(fileData => fileData.file);
       const locData = {
         ...location,

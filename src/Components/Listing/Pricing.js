@@ -8,8 +8,10 @@ import {
 } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
 import { toast } from "react-toastify";
+import { TextField } from "@mui/material";
 
 const Pricing = ({ showSection, changeSection }) => {
+	const [cleaningFee, setCleaningFee] = useState(0)
 	const [film, setfilm] = useState({
 		hourly_rate: 0,
 		isPresent: false,
@@ -43,6 +45,7 @@ const Pricing = ({ showSection, changeSection }) => {
 		if (!film.isPresent && !tv.isPresent && !corp.isPresent && !event.isPresent)
 			return toast.error("Please add atleast one event type!");
 		const pricing = {
+			cleaningFee: cleaningFee,
 			film_webseries_ad: film,
 			tv_series_other: tv,
 			corporate: corp,
@@ -70,6 +73,28 @@ const Pricing = ({ showSection, changeSection }) => {
 	};
 	return (
 		<div className="lbox">
+
+			<div className="coll1">
+				<div className="row1">
+					<h1>Cleaning Fee
+						<span style={{ color: "red" }}>
+							*
+						</span>
+					</h1>
+					<TextField
+						required
+						type="text"
+						// label="Cleaning Fee"
+						name="cleaningFee"
+						variant="outlined"
+						size="small"
+						onChange={(e) => setCleaningFee(e.target.value)}
+					/>
+				</div>
+			</div>
+			<hr />
+			<br />
+
 			<div className="coll1">
 				<div className="row1">
 					<h1>Film/ Ad Film/ Web Series Shoot</h1>
@@ -198,7 +223,7 @@ const Pricing = ({ showSection, changeSection }) => {
 							/>
 						</div>
 					</div>
-					<div className="row2" style={{gap: "5%"}}>
+					<div className="row2" style={{ gap: "5%" }}>
 						<div className="coll1">
 							<h2>8 hour Price</h2>
 							<input
@@ -255,7 +280,7 @@ const Pricing = ({ showSection, changeSection }) => {
 							/>
 						</div>
 					</div>
-					<div className="row2" style={{gap: "5%"}}>
+					<div className="row2" style={{ gap: "5%" }}>
 						<div className="coll1">
 							<h2>8 hour Price</h2>
 							<input
