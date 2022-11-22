@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { createTempLocation } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
-import { addLocation, selectLocationData, selectLocationId, updatelocation } from "../../redux/slices/locationSlice";
+import {
+  addCity,
+  addLocation,
+  selectLocationData,
+  selectLocationId,
+  updatelocation,
+} from "../../redux/slices/locationSlice";
 import { toast } from "react-toastify";
 import GoogleMap from "../GoogleMap";
 import axios from "axios";
 import { MdTravelExplore } from "react-icons/md";
 import "../../Assets/Styles/listYourSpace.css";
-import { Country, State, City } from 'country-state-city';
-import {
-  Select,
-  MenuItem
-
-} from "@mui/material";
+import { Country, State, City } from "country-state-city";
+import { Select, MenuItem } from "@mui/material";
 
 const Location = ({ showSection, changeSection }) => {
   const [property_address, setPropertyAddress] = useState({
@@ -23,16 +25,16 @@ const Location = ({ showSection, changeSection }) => {
     country: "",
     pincode: "",
     landmark: "",
-    location_detail: null
+    location_detail: null,
   });
 
   const location_id = useSelector(selectLocationId);
   const location = useSelector(selectLocationData);
   const dispatch = useDispatch();
 
-  const [country, setCountry] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
 
   const [countryKey, setCountryKey] = useState(-1);
   const [stateKey, setStateKey] = useState(-1);
@@ -44,70 +46,73 @@ const Location = ({ showSection, changeSection }) => {
   //   lng:78.4867
   // } )
 
-
   useEffect(() => {
+    var countryiso;
+    location &&
+      Country.getAllCountries().map((item, index) => {
+        if (item.name === location?.property_address?.country) {
+          setCountryKey(index);
+          countryiso = item.isoCode;
+          setCountry(item.isoCode);
+          // alert(index);
+        }
+      });
 
-    var countryiso
-    location && Country.getAllCountries().map((item, index) => {
-      if (item.name === location?.property_address?.country) {
-        setCountryKey(index);
-        countryiso = item.isoCode;
-        setCountry(item.isoCode);
-        // alert(index);
-      }
-    })
+    var stateiso;
+    location &&
+      State.getAllStates()
+        .filter((item) => item.countryCode === countryiso)
+        .map((item, index) => {
+          if (item.name === location?.property_address?.state) {
+            setStateKey(index);
+            setState(item.isoCode);
+            stateiso = item.isoCode;
+            // alert(index);
+          }
+        });
 
-    var stateiso
-    location && State.getAllStates().filter(item => item.countryCode === countryiso).map((item, index) => {
-      if (item.name === location?.property_address?.state) {
-        setStateKey(index);
-        setState(item.isoCode);
-        stateiso = item.isoCode;
-        // alert(index);
-      }
-    })
-
-    location && City.getCitiesOfState(countryiso, stateiso).map((item, index) => {
-      if (item.name === location?.property_address?.city) {
-        setCityKey(index);
-        setCity(item.name);
-        // alert(index);
-      }
-    })
+    location &&
+      City.getCitiesOfState(countryiso, stateiso).map((item, index) => {
+        if (item.name === location?.property_address?.city) {
+          setCityKey(index);
+          setCity(item.name);
+          // alert(index);
+        }
+      });
 
     location && setPropertyAddress(location?.property_address);
   }, []);
 
-  const [showmap, setShowmap] = useState(false)
+  const [showmap, setShowmap] = useState(false);
 
   const showLocation = () => {
     setShowmap(!showmap);
-  }
+  };
 
-  let stateArray = State.getAllStates().filter(item => item.countryCode === country);
+  let stateArray = State.getAllStates().filter(
+    (item) => item.countryCode === country
+  );
   // console.log(stateArray);
   let cityArray = City.getCitiesOfState(country, state);
 
   const changeCountry = (id, idx) => {
     setCountryKey(idx);
     setCountry(id);
-  }
+  };
   const changeState = (id, idx) => {
-    setStateKey(idx)
+    setStateKey(idx);
     setState(id);
-  }
+  };
   const changeCity = (name, idx) => {
-    setCityKey(idx)
+    setCityKey(idx);
     setCity(name);
-  }
+  };
 
   // console.log(Country.getAllCountries())
   // console.log(State.getAllStates())
 
   // console.log(country);
   // console.log(state);
-
-
 
   // console.log(cityArray);
 
@@ -150,9 +155,7 @@ const Location = ({ showSection, changeSection }) => {
   //    .catch(err => console.log(err))
   // }
 
-
   const handleChange = (e) => {
-
     setPropertyAddress({
       ...property_address,
       [e.target.name]: e.target.value,
@@ -160,23 +163,27 @@ const Location = ({ showSection, changeSection }) => {
     console.log(property_address);
   };
 
-
-
-
   const handleSubmit = async (e) => {
     //console.log(property_address)
-    if (!property_address?.city?.length || !property_address?.state?.length || !property_address?.area?.length ||
-      !property_address?.country?.length || !property_address?.pincode?.length || !property_address?.address?.length)
-      return toast.error("Please fill all required fields!!!")
+    if (
+      !property_address?.city?.length ||
+      !property_address?.state?.length ||
+      !property_address?.area?.length ||
+      !property_address?.country?.length ||
+      !property_address?.pincode?.length ||
+      !property_address?.address?.length
+    )
+      return toast.error("Please fill all required fields!!!");
     const locData = {
       ...location,
-      property_address
-    }
+      property_address,
+    };
+    dispatch(addCity(property_address.city));
     dispatch(addLocation(locData));
     const form = {
       location_id,
-      data: locData
-    }
+      data: locData,
+    };
     try {
       await createTempLocation(form);
       showSection("Amenities");
@@ -186,8 +193,7 @@ const Location = ({ showSection, changeSection }) => {
 
     changeSection("Amenities");
     window.scrollTo(0, 0);
-  }
-
+  };
 
   // const handleMap = (loc) =>{
   //   geocodeByAddress(loc)
@@ -198,77 +204,104 @@ const Location = ({ showSection, changeSection }) => {
   // );
   // }
 
-
   return (
     <div className="lbox">
-
       <div className="row1">
         <div className="coll1">
-          <label
-            htmlFor="country">
-            <h2 className="locationH2">Country<span style={{ color: "red" }}>*</span></h2>
+          <label htmlFor="country">
+            <h2 className="locationH2">
+              Country<span style={{ color: "red" }}>*</span>
+            </h2>
           </label>
           <Select
             MenuProps={{
               style: {
                 maxHeight: 300,
-                width: 150
+                width: 150,
               },
             }}
             id="country"
             name="country"
             // defaultValue=""
-            value={countryKey == -1 ? "" : Country.getAllCountries()[countryKey].name}
-            className={'listingInput input input__location'}
-            onChange={handleChange}>
+            value={
+              countryKey == -1 ? "" : Country.getAllCountries()[countryKey].name
+            }
+            className={"listingInput input input__location"}
+            onChange={handleChange}
+          >
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {Country.getAllCountries().map((item, index) => <MenuItem value={item.name} onClick={changeCountry.bind(this, item.isoCode, index)} key={item.name}>{item.name}</MenuItem>)}
+            {Country.getAllCountries().map((item, index) => (
+              <MenuItem
+                value={item.name}
+                onClick={changeCountry.bind(this, item.isoCode, index)}
+                key={item.name}
+              >
+                {item.name}
+              </MenuItem>
+            ))}
           </Select>
         </div>
 
-
-
         <div className="coll1">
-          <label
-            htmlFor="wstate">
-            <h2 className="locationH2">State<span style={{ color: "red" }}>*</span></h2>
+          <label htmlFor="wstate">
+            <h2 className="locationH2">
+              State<span style={{ color: "red" }}>*</span>
+            </h2>
           </label>
           <Select
             MenuProps={{
               style: {
                 maxHeight: 300,
-                width: 150
+                width: 150,
               },
             }}
             id="state"
             name="state"
             // defaultValue=""
             value={country?.length ? stateArray[stateKey]?.name : ""}
-            className={'listingInput input input__location'}
+            className={"listingInput input input__location"}
             isDisabled={country.length === 0 ? true : false}
-            onChange={handleChange}>
+            onChange={handleChange}
+          >
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {country.length ? stateArray.map((item, index) => <MenuItem value={item.name} onClick={changeState.bind(this, item.isoCode, index)} key={item.name}>{item.name}</MenuItem>) : <MenuItem value={''} key={''}></MenuItem>}
+            {country.length ? (
+              stateArray.map((item, index) => (
+                <MenuItem
+                  value={item.name}
+                  onClick={changeState.bind(this, item.isoCode, index)}
+                  key={item.name}
+                >
+                  {item.name}
+                </MenuItem>
+              ))
+            ) : (
+              <MenuItem value={""} key={""}></MenuItem>
+            )}
           </Select>
-          {country.length === 0 && <p style={{ fontSize: "15px", color: "grey" }}>Please select country first</p>}
+          {country.length === 0 && (
+            <p style={{ fontSize: "15px", color: "grey" }}>
+              Please select country first
+            </p>
+          )}
         </div>
       </div>
 
       <div className="row1">
         <div className="coll1">
-          <label
-            htmlFor="wcity">
-            <h2 className="locationH2">City<span style={{ color: "red" }}>*</span></h2>
+          <label htmlFor="wcity">
+            <h2 className="locationH2">
+              City<span style={{ color: "red" }}>*</span>
+            </h2>
           </label>
           <Select
             MenuProps={{
               style: {
                 maxHeight: 300,
-                width: 150
+                width: 150,
               },
             }}
             id="city"
@@ -276,22 +309,36 @@ const Location = ({ showSection, changeSection }) => {
             defaultValue=""
             // value="Hyderabad"
             value={city}
-            className={'listingInput input input__location'}
+            className={"listingInput input input__location"}
             isDisabled={state.length === 0 ? true : false}
-            onChange={handleChange}>
+            onChange={handleChange}
+          >
             {/* <MenuItem value="" disabled hidden>
 							Where?
 						</MenuItem> */}
-            {stateArray.length && cityArray.map((item, index) => <MenuItem value={item.name} onClick={changeCity.bind(this, item.name, index)} key={item.name}>{item.name}</MenuItem>)}
+            {stateArray.length &&
+              cityArray.map((item, index) => (
+                <MenuItem
+                  value={item.name}
+                  onClick={changeCity.bind(this, item.name, index)}
+                  key={item.name}
+                >
+                  {item.name}
+                </MenuItem>
+              ))}
           </Select>
-          {state.length === 0 && <p style={{ fontSize: "15px", color: "grey" }}>Please select country and state first</p>}
+          {state.length === 0 && (
+            <p style={{ fontSize: "15px", color: "grey" }}>
+              Please select country and state first
+            </p>
+          )}
         </div>
 
-
         <div className="coll1">
-          <label
-            htmlFor="pin">
-            <h2 className="locationH2">Pincode<span style={{ color: "red" }}>*</span></h2>
+          <label htmlFor="pin">
+            <h2 className="locationH2">
+              Pincode<span style={{ color: "red" }}>*</span>
+            </h2>
           </label>
           <input
             className="listingInput input"
@@ -303,10 +350,10 @@ const Location = ({ showSection, changeSection }) => {
           />
         </div>
 
-
-
         <div className="coll1">
-          <h2 className="locationH2" style={{ marginTop: "3%" }}>Area<span style={{ color: "red", }}>*</span></h2>
+          <h2 className="locationH2" style={{ marginTop: "3%" }}>
+            Area<span style={{ color: "red" }}>*</span>
+          </h2>
           <input
             className="listingInput input input--border"
             name="area"
@@ -316,7 +363,9 @@ const Location = ({ showSection, changeSection }) => {
         </div>
 
         <div className="coll1">
-          <h2 className="locationH2" style={{ marginTop: "3%" }}>Landmark<span style={{ color: "red", }}>*</span></h2>
+          <h2 className="locationH2" style={{ marginTop: "3%" }}>
+            Landmark<span style={{ color: "red" }}>*</span>
+          </h2>
           <input
             className="listingInput input input--border"
             name="landmark"
@@ -326,11 +375,11 @@ const Location = ({ showSection, changeSection }) => {
         </div>
       </div>
 
-
-
       <div className="row1">
         <div className="coll1">
-          <h2 className="locationH2">Address<span style={{ color: "red" }}>*</span></h2>
+          <h2 className="locationH2">
+            Address<span style={{ color: "red" }}>*</span>
+          </h2>
           <input
             className="listingInput lginput input--border"
             name="address"
@@ -353,7 +402,14 @@ const Location = ({ showSection, changeSection }) => {
         </div>
       </div>
 
-      <div style={{display: "flex", flexDirection: "column", gap: "2rem", marginTop: "3rem"}}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "2rem",
+          marginTop: "3rem",
+        }}
+      >
         <div className="row1">
           <div className="coll1">
             <button
@@ -377,18 +433,17 @@ const Location = ({ showSection, changeSection }) => {
         </div>
       </div>
 
-      {(showmap === true) ? (
-        <div style={{
-          width: "10%",
-          height: "10%"
-        }}>
+      {showmap === true ? (
+        <div
+          style={{
+            width: "10%",
+            height: "10%",
+          }}
+        >
           <GoogleMap address={property_address?.location_detail} />
-        </div>) : null
-      }
-
-
+        </div>
+      ) : null}
     </div>
-
   );
 };
 

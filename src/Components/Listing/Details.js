@@ -72,6 +72,10 @@ const initialState = {
 	security_camera: "",
 };
 
+function isNumeric(value) {
+  return /^-?\d+$/.test(value);
+}
+
 const Details = ({ showSection, changeSection }) => {
 	const user_id = useSelector(selectUser_id);
 	const user = useSelector(selectUserData);

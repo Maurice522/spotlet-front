@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import {
-	addLocation,
-	selectLocationData,
-	selectLocationId,
+  addLocation,
+  selectLocationData,
+  selectLocationId,
 } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserData } from "../../redux/slices/userSlice";
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
+
+function isNumeric(value) {
+  return /^-?\d+$/.test(value);
+}
 
 const Contact = ({ showSection, changeSection }) => {
 	const dispatch = useDispatch();
@@ -119,60 +123,60 @@ const Contact = ({ showSection, changeSection }) => {
 				</div>
 			</div>
 
-			<div className="row1">
-				<div className="coll1">
-					<h2>Alternate person’s name</h2>
-					<input
-						className="input"
-						name="alt_name"
-						onChange={handleChange}
-						value={contact_det.alt_name}
-					/>
-				</div>
-				<div className="coll1">
-					<h2>Alternate person’s Mobile Number</h2>
-					<input
-						className="input"
-						name="alt_mobile"
-						onChange={handleChange}
-						value={contact_det.alt_mobile}
-						type="tel"
-					/>
-				</div>
+      <div className="row1">
+        <div className="coll1">
+          <h2>Alternate person’s name</h2>
+          <input
+            className="input"
+            name="alt_name"
+            onChange={handleChange}
+            value={contact_det.alt_name}
+          />
+        </div>
+        <div className="coll1">
+          <h2>Alternate person’s Mobile Number</h2>
+          <input
+            className="input"
+            name="alt_mobile"
+            onChange={handleChange}
+            value={contact_det.alt_mobile}
+            type="tel"
+          />
+        </div>
 
-				<div className="coll1">
-					<h2 style={{ marginTop: "3%" }}>
-						Pan Number<span style={{ color: "red" }}>*</span>
-					</h2>
-					<input
-						className="input"
-						name="pan_no"
-						onChange={handleChange}
-						value={contact_det.pan_no}
-					/>
-				</div>
-				<div className="coll1">
-					<h2 style={{ marginTop: "3%" }}>
-						Aadhar Card Number<span style={{ color: "red" }}>*</span>
-					</h2>
-					<input
-						className="input"
-						name="aadhar_no"
-						onChange={handleChange}
-						value={contact_det.aadhar_no}
-						type="number"
-					/>
-				</div>
-			</div>
-			<div className="row1">
-				<div className="coll1">
-					<button className="continue" onClick={handleSubmit}>
-						Continue
-					</button>
-				</div>
-			</div>
-		</div>
-	);
+        <div className="coll1">
+          <h2 style={{ marginTop: "3%" }}>
+            Pan Number<span style={{ color: "red" }}>*</span>
+          </h2>
+          <input
+            className="input"
+            name="pan_no"
+            onChange={handleChange}
+            value={contact_det.pan_no}
+          />
+        </div>
+        <div className="coll1">
+          <h2 style={{ marginTop: "3%" }}>
+            Aadhar Card Number<span style={{ color: "red" }}>*</span>
+          </h2>
+          <input
+            className="input"
+            name="aadhar_no"
+            onChange={handleChange}
+            value={contact_det.aadhar_no}
+            type="text"
+          />
+        </div>
+      </div>
+      <div className="row1">
+        <div className="coll1">
+          <button className="continue" onClick={handleSubmit}>
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Contact;

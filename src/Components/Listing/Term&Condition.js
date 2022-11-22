@@ -19,20 +19,18 @@ export default function TermCondition() {
   const [policy, setPolicy] = useState({
     privacy_policy: false,
     term_cond: false,
-    grant_info: false
+    grant_info: false,
   });
   const handleChange = (e) => {
-    setPolicy({ ...policy, [e.target.name]: e.target.checked })
+    setPolicy({ ...policy, [e.target.name]: e.target.checked });
   };
 
   const navigate = useNavigate();
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!policy.grant_info || !policy.privacy_policy || !policy.term_cond)
-      return toast.error("Please check all fields!!")
+      return toast.error("Please check all fields!!");
     const locData = {
       data,
       location_id,
@@ -42,20 +40,38 @@ export default function TermCondition() {
       localStorage.removeItem("locationData");
       localStorage.removeItem("locationId");
       toast.success(response.data);
-      window.location = "/";
+      window.location = "/bookinglist/:listing";
     } catch (error) {
       toast.error(error.response.data);
     }
     setOpen(true);
-  }
+  };
   return (
-    <div style={{
-      height: "800px",
-
-      position: "relative"
-    }}>
-      <h1 style={{ marginTop: "10%", fontWeight: "600", paddingLeft: "30px", paddingRight: "30px" }}>Terms and Conditions</h1>
-      <p style={{ lineHeight: "24px", width: "60vw", textAlign: "justify", paddingLeft: "30px", paddingRight: "30px" }}>
+    <div
+      style={{
+        height: "800px",
+        position: "relative",
+      }}
+    >
+      <h1
+        style={{
+          marginTop: "10%",
+          fontWeight: "600",
+          paddingLeft: "30px",
+          paddingRight: "30px",
+        }}
+      >
+        Terms and Conditions
+      </h1>
+      <p
+        style={{
+          lineHeight: "24px",
+          width: "60vw",
+          textAlign: "justify",
+          paddingLeft: "30px",
+          paddingRight: "30px",
+        }}
+      >
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
@@ -75,7 +91,10 @@ export default function TermCondition() {
         sometimes by accident, sometimes on purpose injected humour and the
         like.
       </p>
-      <div className="terms-conditions" style={{ paddingLeft: "30px", paddingRight: "30px" }}>
+      <div
+        className="terms-conditions"
+        style={{ paddingLeft: "30px", paddingRight: "30px" }}
+      >
         <FormControlLabel
           control={
             <Checkbox
@@ -142,10 +161,15 @@ export default function TermCondition() {
         <div>
           <div className="listing-modal">
             <h3>Congratulations! You have completed a Listing</h3>
-            <Button className="auth-btn" onClick={() => {
-              handleClose();
-              navigate("/bookinglist/:listing");
-            }}>OK</Button>
+            <Button
+              className="auth-btn"
+              onClick={() => {
+                handleClose();
+                navigate("/bookinglist/:listing");
+              }}
+            >
+              OK
+            </Button>
           </div>
         </div>
       </Modal>
