@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../Assets/Styles/Home/formFilter.css";
 import Select from "react-select";
-import { selectCities } from "../../redux/slices/locationSlice";
+// import { selectCities } from "../../redux/slices/locationSlice";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -18,7 +18,7 @@ const FormFilter = ({
   const [active, setActive] = useState(false);
   const [event, setEvent] = useState("all");
   const [location, setLocation] = useState("all");
-  const citiesOption = useSelector(selectCities);
+  // const citiesOption = useSelector(selectCities);
 
   const changeEvent = (e) => {
     setEvent(e.value);
@@ -136,9 +136,9 @@ const FormFilter = ({
   let city = [{ value: "hyderabad", label: "Hyderabad" }];
 
   useEffect(() => {
-    citiesOption.forEach((item) => {
-      city.push({ value: item, label: item });
-    });
+    // citiesOption.forEach((item) => {
+    //   city.push({ value: item, label: item });
+    // });
   });
 
   return (
