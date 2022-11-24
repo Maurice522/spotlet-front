@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { AiOutlineSearch, AiOutlineHome, AiOutlineHeart } from "react-icons/ai";
+import {
+  AiOutlineSearch,
+  AiOutlineHome,
+  AiOutlineHeart,
+  AiFillHome,
+} from "react-icons/ai";
 import { BiBookmark } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { Avatar, Button, TextField } from "@mui/material";
@@ -13,6 +18,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { useEffect } from "react";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { userUpdate } from "../services/api";
+import { NotificationImportant, Notifications } from "@mui/icons-material";
+import { BsFillBellFill, BsFillBookmarkFill } from "react-icons/bs";
+import { FaSearch, FaUserAlt } from "react-icons/fa";
 
 const Navbar = ({ extraNavId }) => {
   const user = useSelector(selectUserData);
@@ -249,25 +257,29 @@ const Navbar = ({ extraNavId }) => {
         {user ? (
           <div>
             <Link to="/listing">
-              <AiOutlineSearch size="15px" color="#ff6767" />
+              <FaSearch size="15px" color="#ff6767" />
               <div>List Space</div>
             </Link>
             <Link to="/bookinglist/:booking">
-              <BiBookmark size="15px" color="#ff6767" />
+              <BsFillBookmarkFill size="15px" color="#ff6767" />
               <div>Bookings</div>
             </Link>
             <Link to="/">
-              <AiOutlineHome size="15px" color="#ff6767" />
+              <AiFillHome size="15px" color="#ff6767" />
               <div>Home</div>
             </Link>
-            <Link to="/favorite">
+            {/* <Link to="/favorite">
               <AiOutlineHeart size="15px" color="#ff6767" />
               <div>Favorites</div>
+            </Link> */}
+            <Link to="/notifications">
+              <BsFillBellFill size="15px" color="#ff6767" />
+              <div>Notifications</div>
             </Link>
             <button
               onClick={Boolean(anchorEl) === false ? handleClick : handleClose}
             >
-              <CgProfile size="15px" color="#ff6767" />
+              <FaUserAlt size="15px" color="#ff6767" />
               <div>Account</div>
             </button>
             <Menu
@@ -283,6 +295,12 @@ const Navbar = ({ extraNavId }) => {
               <MenuItem>Hi, {firstName}</MenuItem>
               <MenuItem onClick={() => navigate("/bookinglist/:listing", true)}>
                 Listings
+              </MenuItem>
+              <MenuItem onClick={() => navigate("/favorite", true)}>
+                Favourites
+              </MenuItem>
+              <MenuItem onClick={() => navigate("/messages", true)}>
+                Messages
               </MenuItem>
               <MenuItem onClick={acntset}>Account Settings</MenuItem>
               <MenuItem onClick={logout}>Logout</MenuItem>

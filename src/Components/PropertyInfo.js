@@ -133,6 +133,22 @@ const PropertyInfo = ({
               </div>
             </div>
             <div>(40)</div>
+            {!x.matches && (
+              <div>
+                {item.pricing.corporate.isPresent && (
+                  <MdOutlineCorporateFare size="20px" />
+                )}
+                {(item.pricing.film_webseries_ad.isPresent ||
+                  item.pricing.tv_series_other.isPresent) && (
+                  <GiFilmProjector size="20px" />
+                )}
+                {item.pricing.individual.isPresent && (
+                  <BsPersonFill size="20px" />
+                )}
+              </div>
+            )}
+          </div>
+          {x.matches && (
             <div>
               {item.pricing.corporate.isPresent && (
                 <MdOutlineCorporateFare size="20px" />
@@ -145,7 +161,7 @@ const PropertyInfo = ({
                 <BsPersonFill size="20px" />
               )}
             </div>
-          </div>
+          )}
 
           {/* <div className="property-info-price">{item.price}</div> */}
           <div

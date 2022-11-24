@@ -75,10 +75,19 @@
 }
 
 @media screen and (max-width: 576px) {
+  .property-section {
+    width: 95vw;
+  }
   .property-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 20px 0px;
+    /* grid-template-columns: repeat(2, 1fr); */
+  }
+  .property-list > div {
+    flex: 1;
+    max-width: 45%;
   }
   .property-heading {
     margin-top: 6rem;

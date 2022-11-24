@@ -50,6 +50,18 @@ function ImageGrid({
   return (
     <>
       <div className="image-grid-main">
+        {x.matches && (
+          <img
+            src={images?.[0].image}
+            alt="Main"
+            className="image-grid-image"
+            style={{
+              borderTopLeftRadius: "10px",
+              borderTopRightRadius: "10px",
+              margin: "10px 0px",
+            }}
+          />
+        )}
         {images ? (
           <div className="image-grid-container">
             {!x.matches && (

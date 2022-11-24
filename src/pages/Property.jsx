@@ -49,6 +49,7 @@ const Property = ({
   const [propertyItems, setPropertyItems] = useState([]);
   const [galleryOn, setGalleryOn] = useState(false);
   const [images, setImages] = useState(locationData?.imagesData);
+  let x = window.matchMedia("(max-width: 576px)");
   const navigate = useNavigate();
   const userData = useSelector(selectUserData);
   const [cord, setCord] = useState({
@@ -376,7 +377,7 @@ const Property = ({
   );
 
   const dosDonts = (
-    <div className="dos">
+    <div className="dos" style={{ lineHeight: x.matches && "20px" }}>
       <div>
         {locationData?.do_and_dont?.do_s?.map((val, i) => (
           <div
@@ -674,8 +675,8 @@ const Property = ({
                               display: "flex",
                               justifyContent: "flex-start",
                               alignItems: "center",
-                              gap: "10px",
-                              lineHeight: "32px",
+                              gap: x.matches ? "2px" : "10px",
+                              lineHeight: x.matches ? "20px" : "32px",
                             }}
                           >
                             <GoPrimitiveDot color="#ff4d4d" size={16} />
@@ -693,7 +694,7 @@ const Property = ({
                               justifyContent: "flex-start",
                               alignItems: "center",
                               gap: "10px",
-                              lineHeight: "32px",
+                              lineHeight: x.matches ? "20px" : "32px",
                             }}
                           >
                             <GoPrimitiveDot color="#ff4d4d" />

@@ -125,6 +125,30 @@ const bookingGrid = [
   },
 ];
 
+const mobileBookingGrid = [
+  {
+    headerName: "Booking ID",
+    field: "BookingId",
+    renderCell: gridBookingID,
+    width: "150",
+    headerAlign: "Center",
+  },
+  {
+    headerName: "Status",
+    field: "Status",
+    renderCell: gridBookingStatus,
+    width: "70",
+    headerAlign: "Center",
+  },
+  {
+    headerName: "Action",
+    renderCell: gridActionButton,
+    field: "action",
+    width: "120",
+    headerAlign: "Center",
+  },
+];
+
 const listingGrid = [
   {
     headerName: "LocationId",
@@ -160,11 +184,35 @@ const listingGrid = [
   },
 ];
 
+const mobileListingGrid = [
+  {
+    headerName: "LocationId",
+    field: "LocationId",
+    renderCell: gridLocationId,
+    width: "150",
+    headerAlign: "Center",
+  },
+  {
+    headerName: "Status",
+    field: "Status",
+    renderCell: gridBookingStatus,
+    width: "70",
+    headerAlign: "Center",
+  },
+  {
+    headerName: "Action",
+    field: "action",
+    width: "120",
+    headerAlign: "Center",
+  },
+];
+
 const BookingList = () => {
   const [active, setActive] = useState(0);
   const userData = useSelector(selectUserData);
   // console.log(userData)
   const [locrequests, setLocRequests] = useState([]);
+  let x = window.matchMedia("(max-width: 576px)");
   useEffect(() => {
     userData &&
       userData?.listedLocations.map(async (loc) => {
@@ -327,7 +375,7 @@ const BookingList = () => {
           >
             <SyncfusionTable
               UsersData={bookingData}
-              UsersGrid={bookingGrid}
+              UsersGrid={x.matches ? mobileBookingGrid : bookingGrid}
               content={"Booked"}
             />
           </div>
@@ -341,7 +389,7 @@ const BookingList = () => {
           >
             <SyncfusionTable
               UsersData={listingData}
-              UsersGrid={listingGrid}
+              UsersGrid={x.matches ? mobileListingGrid : listingGrid}
               content={"Listed"}
             />
           </div>
