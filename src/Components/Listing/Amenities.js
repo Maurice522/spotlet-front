@@ -164,7 +164,7 @@ const Amenities = ({ showSection, changeSection }) => {
   const location = useSelector(selectLocationData);
 
   useEffect(() => {
-    if (location.amenities) setAmenities(location.amenities);
+    if (location?.amenities) setAmenities(location.amenities);
   }, []);
 
   const handleSubmit = async (e) => {

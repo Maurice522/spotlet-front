@@ -116,9 +116,9 @@ const PropertyInfo = ({
           <div className="property-info-location" style={{ fontWeight: "600" }}>
             {item?.property_desc?.location_type}
           </div>
-          <div className="property-info-location">
+          {/* <div className="property-info-location">
             {item?.property_address?.city}
-          </div>
+          </div> */}
           <div className="property-info-location">
             &#8377; {price_per_12_hr}/12 hrs
           </div>
