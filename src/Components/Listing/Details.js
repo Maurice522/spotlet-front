@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import Checkbox from "@mui/material/Checkbox";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Modal } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserData, selectUser_id } from "../../redux/slices/userSlice";
@@ -119,6 +119,8 @@ const Details = ({ showSection, changeSection }) => {
       !property_desc?.house_parking?.length
     )
       return toast.error("Please fill all required fields!!!");
+    if (!isNumeric(property_desc?.property_size))
+      return toast.error("Property size invalid");
     const form = {
       data: {
         ...location,
@@ -142,11 +144,12 @@ const Details = ({ showSection, changeSection }) => {
 
   const [opt, setOpt] = useState(options);
   const [loc, setLoc] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [newLoc, setNewLoc] = useState("");
 
   const handleNewLocationAdd = (newLoc) => {
     setOpt((prev) => [...prev, { value: `${newLoc}`, label: `${newLoc}` }]);
-    toast.success("Your location has been added to the list", 500);
+    setModalOpen(true);
   };
 
   return (
@@ -237,7 +240,7 @@ const Details = ({ showSection, changeSection }) => {
             onChange={handleChange}
             value={property_desc ? property_desc.property_size : ""}
             required
-            type="number"
+            type="text"
           />
         </div>
       </div>
@@ -392,6 +395,16 @@ const Details = ({ showSection, changeSection }) => {
           </button>
         </div>
       </div>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+        <div>
+          <div className="listing-modal">
+            <h3>Your location has been sucessfully added to the list !</h3>
+            <Button className="auth-btn" onClick={() => setModalOpen(false)}>
+              OK
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

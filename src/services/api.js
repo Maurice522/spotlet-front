@@ -1,9 +1,8 @@
 import axios from "axios";
 
 // const server_domain = "https://gorecceback.herokuapp.com";
-// const server_domain = "https://nipunbacky.herokuapp.com"; //TEMP HOSTED SERVER
-const server_domain = "http://localhost:7000";
-
+const server_domain = "https://nipunbacky.herokuapp.com"; //TEMP HOSTED SERVER
+// const server_domain = "http://localhost:7000";
 
 ////////////////////////Auth////////////////////////
 // function to send signin request to backend
@@ -64,7 +63,7 @@ export const deleteRequest = (user_id) => {
 //create a converstion
 export const createConversation = (bookingId, form) => {
   return axios.post(server_domain + `/createconversation/${bookingId}`, form);
-}
+};
 
 //get contact list of a user
 export const contactList = (user_id) => {
@@ -111,8 +110,8 @@ export const uploadGstDocs = (formData) => {
 
 //delete files from storage
 export const deleteFiles = (form) => {
-  return axios.delete(server_domain + `/deletefile`, {data : form});
-}
+  return axios.delete(server_domain + `/deletefile`, { data: form });
+};
 
 //get all locations
 export const getAllLocations = () => {
@@ -122,51 +121,51 @@ export const getAllLocations = () => {
 //get location
 export const getLocation = (locId) => {
   return axios.get(server_domain + "/getlocation/" + locId);
-}
+};
 
 //bookings
 export const bookingRequest = (form) => {
   return axios.post(server_domain + "/bookingreq", form);
-}
+};
 
 //get booking detail
 export const getBookingDetail = (bookingId, form) => {
-  return axios.put(server_domain + `/getbookingdetail/${bookingId}`, form)
-}
+  return axios.put(server_domain + `/getbookingdetail/${bookingId}`, form);
+};
 
 //get total requests
 export const locationRequest = (locId) => {
-  return axios.get(server_domain + "/totrequest/"+locId);
-}
+  return axios.get(server_domain + "/totrequest/" + locId);
+};
 
 //update booking sttaus
 export const updateBookingStatus = (form) => {
   return axios.put(server_domain + "/updatepaymentstatus", form);
-}
+};
 
 //delete booking request
 export const deleteBookingReq = (form) => {
-  return axios.delete(server_domain + "/deletebookingrequest", {data : form});
-}
+  return axios.delete(server_domain + "/deletebookingrequest", { data: form });
+};
 
 export const getBlog = (blogid) => {
-  return axios.get(server_domain + "/getblog/"+blogid);
-}
+  return axios.get(server_domain + "/getblog/" + blogid);
+};
 
 //update location info
 export const locationUpdate = (data) => {
   return axios.post(server_domain + "/updatelocation/", data);
-}
+};
 
 //update user data
 export const userUpdate = (data) => {
   return axios.post(server_domain + "/updateuser/", data);
-}
+};
 
 //get temp location
 export const getTempLocation = (location_id) => {
   return axios.get(server_domain + "/templocation/" + location_id);
-}
+};
 
 //update otp
 export const otpUpdateProfile = (form) => {

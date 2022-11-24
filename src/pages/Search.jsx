@@ -175,17 +175,7 @@ const Search = () => {
           setSort={setSort}
         />
       </div>
-      <div className="filter-box">
-        <div>
-          <button className="filter-btn" onClick={handleOpenFilter}>
-            <BiFilterAlt />
-            <h2>Filter</h2>
-          </button>
-          <Button style={{ color: "red", padding: "6px 0" }}>
-            Clear Filter
-          </Button>
-        </div>
-      </div>
+
       <Modal open={openFilter} onClose={handleCloseFilter}>
         <div className="listing-modal filter-modal">
           <>
@@ -380,9 +370,21 @@ const Search = () => {
           “ Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod
           tempor occaecat cupidatat ”{" "}
         </h1>
-        <h2 style={{ fontSize: "24px", fontWeight: "500" }}>Locations Found</h2>
       </div>
-
+      <div className="filter-box">
+        <div>
+          <button className="filter-btn" onClick={handleOpenFilter}>
+            <BiFilterAlt />
+            <h2>Filter</h2>
+          </button>
+          <Button style={{ color: "red", padding: "6px 0" }}>
+            Clear Filter
+          </Button>
+        </div>
+      </div>
+      <h2 style={{ fontSize: "24px", fontWeight: "500", textAlign: "center" }}>
+        Locations Found
+      </h2>
       <div className="search-property-list">
         {sortedProperties?.map((item, index) => {
           if (
