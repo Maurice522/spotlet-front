@@ -98,8 +98,9 @@ const Navbar = ({ extraNavId }) => {
         <input
           type="text"
           placeholder="Search"
-          className={`nav-search-input ${extraNavId !== "" ? "blacken" : "whiten"
-            }`}
+          className={`nav-search-input ${
+            extraNavId !== "" ? "blacken" : "whiten"
+          }`}
         />
       </div>
       <div className="nav-items">
@@ -210,7 +211,11 @@ const Navbar = ({ extraNavId }) => {
             >
               <MenuItem>Hi, {firstName}</MenuItem>
               <MenuItem onClick={acntset}>Account Settings</MenuItem>
-              <MenuItem onClick={() => window.location = '/bookinglist/:listing'}>Listings</MenuItem>
+              <MenuItem
+                onClick={() => (window.location = "/bookinglist/:listing")}
+              >
+                Listings
+              </MenuItem>
               <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>
           </div>
@@ -277,10 +282,9 @@ const Navbar = ({ extraNavId }) => {
             >
               <MenuItem>Hi, {firstName}</MenuItem>
               <MenuItem onClick={() => navigate("/bookinglist/:listing", true)}>
-                Listing
+                Listings
               </MenuItem>
               <MenuItem onClick={acntset}>Account Settings</MenuItem>
-              <MenuItem onClick={() => window.location = '/bookinglist/:listing'}>Listings</MenuItem>
               <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>
           </div>

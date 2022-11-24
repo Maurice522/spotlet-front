@@ -20,6 +20,7 @@ import { BiFilterAlt } from "react-icons/bi";
 import { ImCross } from "react-icons/im";
 import Select from "react-select";
 import Host from "../Components/Home/Host";
+import { MarginRounded } from "@mui/icons-material";
 
 const Search = () => {
   var sortedProperties;
@@ -152,83 +153,97 @@ const Search = () => {
     }
   }
 
-	// console.log(searchEvent, sort);
-	// console.log(sortedProperties);
-	return (
-		<>
-			<Navbar extraNavId="id-2" />
-			<div className="below-nav" style={{ minHeight: "14rem" }}>
-				<AiOutlineArrowLeft
-					size="20px"
-					style={{ cursor: "pointer" }}
-					onClick={() => navigate("/")}
-				/>
-				<FormFilter
-					fullScreen={true}
-					homepage={false}
-					setSearchEvent={setSearchEvent}
-					setSearchLocation={setSearchLocation}
-					setMax={setMax}
-					setMin={setMin}
-					sort={sort}
-					setSort={setSort}
-				/>
-			</div>
-			<div className="filter-box">
-				<div>
-				<button className="filter-btn" onClick={handleOpenFilter}>
-					<BiFilterAlt />
-					<h2>Filter</h2>
-				</button>
-				<Button style={{color: "red", padding: "6px 0"}}>Clear Filter</Button>
-				</div>
-				<h2>{sortedProperties?.length} Stays</h2>
-			</div>
-			<Modal open={openFilter} onClose={handleCloseFilter}>
-				<div className="listing-modal filter-modal">
-					<>
-						<button className="accbut">
-							<h2>Filter</h2>
-							<ImCross onClick={() => {
-								handleCloseFilter();
-							}} style={{ cursor: "pointer" }} />
-						</button>
-						<div className="filter-body">
-							<h2>Price - Set price for 8 hours</h2>
-							<div className="filter--coll">
-								<div className="filter--coll1">
-									<div className="filter--coll2">
-										<label
-											htmlFor="mincost"
-											className={active === true ? "focus-label" : "form-filter-label"}>
-											Min Price
-										</label>
-										<Select
-											id="mincost"
-											name="mincost"
-											options={price}
-											defaultValue=""
-											className={active === true ? "focus-select" : "form-filter-select"}
-											onChange={changeMinPrice}>
-										</Select>
-									</div>
-									<div className="filter--coll2">
-										<label
-											htmlFor="maxcost"
-											className={active === true ? "focus-label" : "form-filter-label"}>
-											Max Price
-										</label>
-										<Select
-											id="mincost"
-											name="mincost"
-											options={price}
-											defaultValue=""
-											className={active === true ? "focus-select" : "form-filter-select"}
-											onChange={changeMaxPrice}>
-										</Select>
-									</div>
-								</div>
-								{/* <div>
+  // console.log(searchEvent, sort);
+  // console.log(sortedProperties);
+  return (
+    <>
+      <Navbar extraNavId="id-2" />
+      <div className="below-nav" style={{ minHeight: "14rem" }}>
+        <AiOutlineArrowLeft
+          size="20px"
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/")}
+        />
+        <FormFilter
+          fullScreen={true}
+          homepage={false}
+          setSearchEvent={setSearchEvent}
+          setSearchLocation={setSearchLocation}
+          setMax={setMax}
+          setMin={setMin}
+          sort={sort}
+          setSort={setSort}
+        />
+      </div>
+      <div className="filter-box">
+        <div>
+          <button className="filter-btn" onClick={handleOpenFilter}>
+            <BiFilterAlt />
+            <h2>Filter</h2>
+          </button>
+          <Button style={{ color: "red", padding: "6px 0" }}>
+            Clear Filter
+          </Button>
+        </div>
+      </div>
+      <Modal open={openFilter} onClose={handleCloseFilter}>
+        <div className="listing-modal filter-modal">
+          <>
+            <button className="accbut">
+              <h2>Filter</h2>
+              <ImCross
+                onClick={() => {
+                  handleCloseFilter();
+                }}
+                style={{ cursor: "pointer" }}
+              />
+            </button>
+            <div className="filter-body">
+              <h2>Price - Set price for 8 hours</h2>
+              <div className="filter--coll">
+                <div className="filter--coll1">
+                  <div className="filter--coll2">
+                    <label
+                      htmlFor="mincost"
+                      className={
+                        active === true ? "focus-label" : "form-filter-label"
+                      }
+                    >
+                      Min Price
+                    </label>
+                    <Select
+                      id="mincost"
+                      name="mincost"
+                      options={price}
+                      defaultValue=""
+                      className={
+                        active === true ? "focus-select" : "form-filter-select"
+                      }
+                      onChange={changeMinPrice}
+                    ></Select>
+                  </div>
+                  <div className="filter--coll2">
+                    <label
+                      htmlFor="maxcost"
+                      className={
+                        active === true ? "focus-label" : "form-filter-label"
+                      }
+                    >
+                      Max Price
+                    </label>
+                    <Select
+                      id="mincost"
+                      name="mincost"
+                      options={price}
+                      defaultValue=""
+                      className={
+                        active === true ? "focus-select" : "form-filter-select"
+                      }
+                      onChange={changeMaxPrice}
+                    ></Select>
+                  </div>
+                </div>
+                {/* <div>
 									<h2>No. of Attendees</h2>
 									<div>
 										<label class="filter-container">0 - 10
@@ -352,15 +367,21 @@ const Search = () => {
 										</label>
 									</div>
 								</div> */}
-							</div>
-							<div className="apply">
-								<button className="accbut apply-btn">Apply Changes</button>
-							</div>
-						</div>
-					</>
-				</div>
-			</Modal>
-			<div className="search-heading">All Locations</div>
+              </div>
+              {/* <div className="apply">
+                <button className="accbut apply-btn">Apply Changes</button>
+              </div> */}
+            </div>
+          </>
+        </div>
+      </Modal>
+      <div className="search-heading">
+        <h1 style={{ fontSize: "30px", fontWeight: "700", margin: "20px 0px" }}>
+          “ Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod
+          tempor occaecat cupidatat ”{" "}
+        </h1>
+        <h2 style={{ fontSize: "24px", fontWeight: "500" }}>Locations Found</h2>
+      </div>
 
       <div className="search-property-list">
         {sortedProperties?.map((item, index) => {

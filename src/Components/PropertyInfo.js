@@ -108,14 +108,13 @@ const PropertyInfo = ({
           {/* {review && <div className="type-of-property-icon">{item.icon}</div>} */}
         </div>
         <div className="property-info--cards">
-          <div className="property-info-heading">
-            {item?.property_desc?.location_type}
-          </div>
+          <div className="property-info-heading">{item?.location_id}</div>
+
           {/* <div className="property-info-location">
             {item?.property_address?.city}
           </div> */}
           <div className="property-info-location" style={{ fontWeight: "600" }}>
-            {item?.location_id}
+            {item?.property_desc?.location_type}
           </div>
           <div className="property-info-location">
             {item?.property_address?.city}

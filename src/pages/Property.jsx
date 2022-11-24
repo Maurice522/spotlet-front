@@ -62,7 +62,7 @@ const Property = ({
       .then((res) => setPropertyItems(res.data.locations))
       .catch((err) => console.log(err));
   }, []);
-  
+
   useEffect(() => {
     getLocation(window.location.pathname.substring(10))
       .then((res) => setLocationData(res.data))
@@ -73,7 +73,6 @@ const Property = ({
   useEffect(() => {
     setImages(locationData?.imagesData);
   }, [locationData]);
-
 
   useEffect(() => {
     // Get latitude & longitude from address.
@@ -187,7 +186,7 @@ const Property = ({
             <div>{locationData?.contact_det?.name}</div>
           </div>
         </div>
-        <Button
+        {/* <Button
           style={{
             height: "fit-content",
             border: "2px solid #ff5f5f",
@@ -209,7 +208,7 @@ const Property = ({
           }}
         >
           Message the host
-        </Button>
+        </Button> */}
       </div>
       <div
         style={{
@@ -345,7 +344,7 @@ const Property = ({
         />
       </div>
       <div className="similar-properties">
-        {propertyItems.slice(0,4).map((item, index) => {
+        {propertyItems.slice(0, 4).map((item, index) => {
           return (
             <PropertyInfo
               item={item}
