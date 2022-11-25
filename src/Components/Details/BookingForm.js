@@ -560,32 +560,52 @@ const BookingForm = ({
                 }
               >
                 <strong>Number of Hours</strong>
-              </label>
-              <Select
-                required
-                type="number"
-                id="number-of-hours"
-                name="number-of-hours"
-                className={active === true ? "focus" : "normal"}
-                onChange={(e) => {
-                  // console.log(e.target.value);
-                  setV3(e.target.value);
-                  calculatePrice(event, e.target.value);
-                }}
-                value={v3}
-                displayEmpty
-              >
-                {
-                  timemenuitems?.length > 8 &&
-                  <MenuItem value="8">8 hours</ MenuItem>
-                }{
-                  timemenuitems?.length > 12 &&
-                  <MenuItem value="12">12 hours</MenuItem>
-                }{
-                  timemenuitems?.length > 24 &&
-                  <MenuItem value="24">24 hours</MenuItem>
-                }
-              </Select>
+              </label>{
+                timemenuitems.length ?
+                  <Select
+                    required
+                    type="number"
+                    id="number-of-hours"
+                    name="number-of-hours"
+                    className={active === true ? "focus" : "normal"}
+                    onChange={(e) => {
+                      // console.log(e.target.value);
+                      setV3(e.target.value);
+                      calculatePrice(event, e.target.value);
+                    }}
+                    value={v3}
+                    displayEmpty
+                  >
+                    {
+                      timemenuitems?.length > 8 &&
+                      <MenuItem value="8">8 hours</ MenuItem>
+                    }{
+                      timemenuitems?.length > 12 &&
+                      <MenuItem value="12">12 hours</MenuItem>
+                    }{
+                      timemenuitems?.length > 24 &&
+                      <MenuItem value="24">24 hours</MenuItem>
+                    }
+                  </Select>
+                  : <Select
+                    required
+                    type="number"
+                    id="number-of-hours"
+                    name="number-of-hours"
+                    className={active === true ? "focus" : "normal"}
+                    onChange={(e) => {
+                      // console.log(e.target.value);
+                      setV3(e.target.value);
+                      calculatePrice(event, e.target.value);
+                    }}
+                    value={v3}
+                    displayEmpty
+                  >
+                    <MenuItem value="8">8 hours</ MenuItem>
+                    <MenuItem value="12">12 hours</MenuItem>
+                    <MenuItem value="24">24 hours</MenuItem>
+                  </Select>
+              }
             </div>
           )}
           <div>

@@ -395,10 +395,8 @@ const Search = () => {
 									</div>
 								</div> */}
 							</div>
-							//{" "}
 							<div className="apply">
-								// <button className="accbut apply-btn">Apply Changes</button>
-								//{" "}
+								<button className="accbut apply-btn">Apply Changes</button>
 							</div>
 						</div>
 					</>
