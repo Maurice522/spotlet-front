@@ -11,7 +11,7 @@ import img5 from "../Assets/Images/property-5.jpeg";
 import img6 from "../Assets/Images/property-6.jpeg";
 import "../Assets/Styles/Search/search.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import jwtDecode from "jwt-decode";
 import { getUserData } from "../services/api";
@@ -22,135 +22,141 @@ import Select from "react-select";
 import Host from "../Components/Home/Host";
 
 const Search = () => {
-  var sortedProperties;
-  const navigate = useNavigate();
+	var sortedProperties;
+	const navigate = useNavigate();
+	const { event, location } = useParams();
+	const [searchEvent, setSearchEvent] = useState("all");
+	const [searchLocation, setSearchLocation] = useState("all");
+	const [propertyDetails, setPropertiesDetail] = useState([]);
+	const [favorites, setFavorites] = useState([]);
+	const [sort, setSort] = useState("");
+	const [openFilter, setOpenFilter] = useState(false);
+	const handleOpenFilter = () => setOpenFilter(true);
+	const handleCloseFilter = () => setOpenFilter(false);
+	// const [event, setEvent] = useState("all");
+	const [active, setActive] = useState(false);
 
-  const [searchEvent, setSearchEvent] = useState("all");
-  const [searchLocation, setSearchLocation] = useState("all");
-  const [propertyDetails, setPropertiesDetail] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-  const [sort, setSort] = useState("");
-  const [openFilter, setOpenFilter] = useState(false);
-  const handleOpenFilter = () => setOpenFilter(true);
-  const handleCloseFilter = () => setOpenFilter(false);
-  const [event, setEvent] = useState("all");
-  const [active, setActive] = useState(false);
+	// if (event && location) {
+	// 	console.log(event, location);
+	// 	setSearchEvent(event);
+	// 	setSearchLocation(location);
+	// }
 
-  const price = [
-    { value: 0, label: 0 },
-    { value: 1000, label: "1,000" },
-    { value: 2000, label: "2,000" },
-    { value: 5000, label: "5,000" },
-    { value: 10000, label: "10,000" },
-    { value: 20000, label: "20,000" },
-    { value: 50000, label: "50,000" },
-    { value: 100000, label: "1,00,000" },
-  ];
+	const price = [
+		{ value: 0, label: 0 },
+		{ value: 1000, label: "1,000" },
+		{ value: 2000, label: "2,000" },
+		{ value: 5000, label: "5,000" },
+		{ value: 10000, label: "10,000" },
+		{ value: 20000, label: "20,000" },
+		{ value: 50000, label: "50,000" },
+		{ value: 100000, label: "1,00,000" },
+	];
 
-  const sortOptions = [
-    { value: "highesttolowest", label: "Highest to Lowest" },
-    { value: "lowesttohighest", label: "Lowest to Highest" },
-  ];
+	const sortOptions = [
+		{ value: "highesttolowest", label: "Highest to Lowest" },
+		{ value: "lowesttohighest", label: "Lowest to Highest" },
+	];
 
-  const changeMinPrice = (e) => {
-    setMin(e.value);
-  };
+	const changeMinPrice = (e) => {
+		setMin(e.value);
+	};
 
-  const changeMaxPrice = (e) => {
-    setMax(e.value);
-  };
+	const changeMaxPrice = (e) => {
+		setMax(e.value);
+	};
 
-  const changeSort = (e) => {
-    setSort(e.value);
-  };
+	const changeSort = (e) => {
+		setSort(e.value);
+	};
 
-  useEffect(() => {
-    const getAllLocations = async () => {
-      const response = await axios.get(
-        "https://nipunbacky.herokuapp.com/getlocations"
-      );
+	useEffect(() => {
+		const getAllLocations = async () => {
+			const response = await axios.get(
+				"https://nipunbacky.herokuapp.com/getlocations"
+			);
 
-      const res = response.data;
-      const result = res.locations;
-      // console.log(result);
-      setPropertiesDetail(result);
-    };
-    getAllLocations();
-  }, []);
+			const res = response.data;
+			const result = res.locations;
+			// console.log(result);
+			setPropertiesDetail(result);
+		};
+		getAllLocations();
+	}, []);
 
-  useEffect(() => {
-    const fetchFav = async () => {
-      const jwt = localStorage.getItem("token");
-      if (jwt) {
-        const user_jwt = jwtDecode(jwt);
-        const { data } = await getUserData(user_jwt._id);
-        setFavorites(data.favourites);
-        // console.log(favorites);
-      }
-    };
-    fetchFav();
-  }, []);
+	useEffect(() => {
+		const fetchFav = async () => {
+			const jwt = localStorage.getItem("token");
+			if (jwt) {
+				const user_jwt = jwtDecode(jwt);
+				const { data } = await getUserData(user_jwt._id);
+				setFavorites(data.favourites);
+				// console.log(favorites);
+			}
+		};
+		fetchFav();
+	}, []);
 
-  // console.log(searchEvent, searchLocation);
-  const [min, setMin] = useState(0);
-  const [max, setMax] = useState(Number.MAX_SAFE_INTEGER);
+	// console.log(searchEvent, searchLocation);
+	const [min, setMin] = useState(0);
+	const [max, setMax] = useState(Number.MAX_SAFE_INTEGER);
 
-  // console.log("max min", max, min);
+	// console.log("max min", max, min);
 
-  if (searchEvent == "all") {
-    sortedProperties = propertyDetails;
-  }
-  if (searchEvent == "CorporateBooking") {
-    if (sort == "highesttolowest") {
-      sortedProperties = [...propertyDetails].sort((a, b) =>
-        Number(a.pricing.corporate?.hourly_rate) <
-        Number(b.pricing.corporate?.hourly_rate)
-          ? 1
-          : -1
-      );
-    } else {
-      sortedProperties = [...propertyDetails].sort((a, b) =>
-        Number(a.pricing.corporate?.hourly_rate) <
-        Number(b.pricing.corporate?.hourly_rate)
-          ? -1
-          : 1
-      );
-    }
-  }
-  if (searchEvent == "IndividualBooking") {
-    if (sort == "highesttolowest") {
-      sortedProperties = [...propertyDetails].sort((a, b) =>
-        Number(a.pricing.individual?.hourly_rate) <
-        Number(b.pricing.individual?.hourly_rate)
-          ? 1
-          : -1
-      );
-    } else {
-      sortedProperties = [...propertyDetails].sort((a, b) =>
-        Number(a.pricing.individual?.hourly_rate) <
-        Number(b.pricing.individual?.hourly_rate)
-          ? -1
-          : 1
-      );
-    }
-  }
-  if (searchEvent == "FilmShooting") {
-    if (sort == "highesttolowest") {
-      sortedProperties = [...propertyDetails].sort((a, b) =>
-        Number(a.pricing.film_webseries_ad?.hourly_rate) <
-        Number(b.pricing.film_webseries_ad?.hourly_rate)
-          ? 1
-          : -1
-      );
-    } else {
-      sortedProperties = [...propertyDetails].sort((a, b) =>
-        Number(a.pricing.film_webseries_ad?.hourly_rate) <
-        Number(b.pricing.film_webseries_ad?.hourly_rate)
-          ? -1
-          : 1
-      );
-    }
-  }
+	if (searchEvent == "all") {
+		sortedProperties = propertyDetails;
+	}
+	if (searchEvent == "CorporateBooking") {
+		if (sort == "highesttolowest") {
+			sortedProperties = [...propertyDetails].sort((a, b) =>
+				Number(a.pricing.corporate?.hourly_rate) <
+				Number(b.pricing.corporate?.hourly_rate)
+					? 1
+					: -1
+			);
+		} else {
+			sortedProperties = [...propertyDetails].sort((a, b) =>
+				Number(a.pricing.corporate?.hourly_rate) <
+				Number(b.pricing.corporate?.hourly_rate)
+					? -1
+					: 1
+			);
+		}
+	}
+	if (searchEvent == "IndividualBooking") {
+		if (sort == "highesttolowest") {
+			sortedProperties = [...propertyDetails].sort((a, b) =>
+				Number(a.pricing.individual?.hourly_rate) <
+				Number(b.pricing.individual?.hourly_rate)
+					? 1
+					: -1
+			);
+		} else {
+			sortedProperties = [...propertyDetails].sort((a, b) =>
+				Number(a.pricing.individual?.hourly_rate) <
+				Number(b.pricing.individual?.hourly_rate)
+					? -1
+					: 1
+			);
+		}
+	}
+	if (searchEvent == "FilmShooting") {
+		if (sort == "highesttolowest") {
+			sortedProperties = [...propertyDetails].sort((a, b) =>
+				Number(a.pricing.film_webseries_ad?.hourly_rate) <
+				Number(b.pricing.film_webseries_ad?.hourly_rate)
+					? 1
+					: -1
+			);
+		} else {
+			sortedProperties = [...propertyDetails].sort((a, b) =>
+				Number(a.pricing.film_webseries_ad?.hourly_rate) <
+				Number(b.pricing.film_webseries_ad?.hourly_rate)
+					? -1
+					: 1
+			);
+		}
+	}
 
 	// console.log(searchEvent, sort);
 	// console.log(sortedProperties);
@@ -176,11 +182,13 @@ const Search = () => {
 			</div>
 			<div className="filter-box">
 				<div>
-				<button className="filter-btn" onClick={handleOpenFilter}>
-					<BiFilterAlt />
-					<h2>Filter</h2>
-				</button>
-				<Button style={{color: "red", padding: "6px 0"}}>Clear Filter</Button>
+					<button className="filter-btn" onClick={handleOpenFilter}>
+						<BiFilterAlt />
+						<h2>Filter</h2>
+					</button>
+					<Button style={{ color: "red", padding: "6px 0" }}>
+						Clear Filter
+					</Button>
 				</div>
 				<h2>{sortedProperties?.length} Stays</h2>
 			</div>
@@ -189,9 +197,12 @@ const Search = () => {
 					<>
 						<button className="accbut">
 							<h2>Filter</h2>
-							<ImCross onClick={() => {
-								handleCloseFilter();
-							}} style={{ cursor: "pointer" }} />
+							<ImCross
+								onClick={() => {
+									handleCloseFilter();
+								}}
+								style={{ cursor: "pointer" }}
+							/>
 						</button>
 						<div className="filter-body">
 							<h2>Price - Set price for 8 hours</h2>
@@ -200,7 +211,10 @@ const Search = () => {
 									<div className="filter--coll2">
 										<label
 											htmlFor="mincost"
-											className={active === true ? "focus-label" : "form-filter-label"}>
+											className={
+												active === true ? "focus-label" : "form-filter-label"
+											}
+										>
 											Min Price
 										</label>
 										<Select
@@ -208,14 +222,19 @@ const Search = () => {
 											name="mincost"
 											options={price}
 											defaultValue=""
-											className={active === true ? "focus-select" : "form-filter-select"}
-											onChange={changeMinPrice}>
-										</Select>
+											className={
+												active === true ? "focus-select" : "form-filter-select"
+											}
+											onChange={changeMinPrice}
+										></Select>
 									</div>
 									<div className="filter--coll2">
 										<label
 											htmlFor="maxcost"
-											className={active === true ? "focus-label" : "form-filter-label"}>
+											className={
+												active === true ? "focus-label" : "form-filter-label"
+											}
+										>
 											Max Price
 										</label>
 										<Select
@@ -223,9 +242,31 @@ const Search = () => {
 											name="mincost"
 											options={price}
 											defaultValue=""
-											className={active === true ? "focus-select" : "form-filter-select"}
-											onChange={changeMaxPrice}>
-										</Select>
+											className={
+												active === true ? "focus-select" : "form-filter-select"
+											}
+											onChange={changeMaxPrice}
+										></Select>
+									</div>
+									<div className="filter--coll2">
+										<label
+											htmlFor="sort"
+											className={
+												active === true ? "focus-label" : "form-filter-label"
+											}
+										>
+											Sort{" "}
+										</label>
+										<Select
+											id="sort"
+											name="sort"
+											options={sortOptions}
+											defaultValue=""
+											className={
+												active === true ? "focus-select" : "form-filter-select"
+											}
+											onChange={changeSort}
+										></Select>
 									</div>
 								</div>
 								{/* <div>
@@ -286,7 +327,7 @@ const Search = () => {
 										</label>
 									</div>
 								</div> */}
-                {/* <div>
+								{/* <div>
 									<h2>Unique Features</h2>
 									<div className="filter--coll3">
 										<label class="filter-container">Location Manager
@@ -362,203 +403,203 @@ const Search = () => {
 			</Modal>
 			<div className="search-heading">All Locations</div>
 
-      <div className="search-property-list">
-        {sortedProperties?.map((item, index) => {
-          if (
-            searchEvent == "all" &&
-            ((item.pricing.film_webseries_ad?.hourly_rate <= max &&
-              item.pricing.film_webseries_ad?.hourly_rate >= min) ||
-              (item.pricing?.tv_series_other?.hourly_rate <= max &&
-                item.pricing?.tv_series_other?.hourly_rate >= min) ||
-              (item.pricing.corporate?.hourly_rate <= max &&
-                item.pricing.corporate?.hourly_rate >= min) ||
-              (item.pricing.individual?.hourly_rate <= max &&
-                item.pricing.individual?.hourly_rate >= min))
-          ) {
-            return (
-              <PropertyInfo
-                item={item}
-                // index={index}
-                // isFav={true}
-                favPage={false}
-                favorites={favorites}
-                setFavorites={setFavorites}
-                key={item.location_id}
-                handleClick={() => {
-                  console.log("clicked");
-                }}
-                border={false}
-              />
-            );
-          } else if (searchLocation == "all") {
-            if (
-              searchEvent == "FilmShooting" &&
-              (item.pricing.film_webseries_ad.isPresent == true ||
-                item.pricing.tv_series_other.isPresent == true) &&
-              ((item.pricing.film_webseries_ad?.hourly_rate <= max &&
-                item.pricing.film_webseries_ad?.hourly_rate > min) ||
-                (item.pricing?.tv_series_other?.hourly_rate <= max &&
-                  item.pricing?.tv_series_other?.hourly_rate > min))
-            ) {
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            } else if (
-              searchEvent == "CorporateBooking" &&
-              item.pricing.corporate.isPresent == true &&
-              item.pricing.corporate?.hourly_rate <= max &&
-              item.pricing.corporate?.hourly_rate >= min
-            ) {
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            } else if (
-              searchEvent == "IndividualBooking" &&
-              item.pricing.individual.isPresent == true &&
-              item.pricing.individual?.hourly_rate <= max &&
-              item.pricing.individual?.hourly_rate >= min
-            ) {
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            }
-          } else if (
-            searchEvent == "FilmShooting" &&
-            (item.pricing.film_webseries_ad.isPresent == true ||
-              item.pricing.tv_series_other.isPresent == true) &&
-            ((item.pricing.film_webseries_ad?.hourly_rate <= max &&
-              item.pricing.film_webseries_ad?.hourly_rate >= min) ||
-              (item.pricing?.tv_series_other?.hourly_rate <= max &&
-                item.pricing?.tv_series_other?.hourly_rate >= min))
-          ) {
-            console.log(searchEvent);
-            if (searchLocation == item.property_desc.location_type) {
-              console.log(searchLocation, item.property_desc.location_type);
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            }
-          } else if (
-            searchEvent == "CorporateBooking" &&
-            item.pricing.corporate.isPresent == true &&
-            item.pricing.corporate?.hourly_rate <= max &&
-            item.pricing.corporate?.hourly_rate >= min
-          ) {
-            console.log(searchEvent);
-            if (searchLocation == item.property_desc.location_type) {
-              console.log(searchLocation, item.property_desc.location_type);
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            }
-          } else if (
-            searchEvent == "IndividualBooking" &&
-            item.pricing.individual.isPresent == true &&
-            item.pricing.individual?.hourly_rate <= max &&
-            item.pricing.individual?.hourly_rate >= min
-          ) {
-            console.log(searchEvent);
-            if (searchLocation == item.property_desc.location_type) {
-              console.log(searchLocation, item.property_desc.location_type);
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            }
-          }
-        })}
-      </div>
-      <div className="paginated-container">
-        {Array(8)
-          .fill(0)
-          .map((item, id) => {
-            return (
-              <div key={id} className={`paginated-box ${id === 0 && "active"}`}>
-                {id + 1}
-              </div>
-            );
-          })}
-      </div>
-      <div style={{ margin: "40px 0px" }}>
-        <Host
-          title="Get in buisness with GoRecce"
-          buttonContent="Become a Host"
-        />
-      </div>
-      <Footer />
-    </>
-  );
+			<div className="search-property-list">
+				{sortedProperties?.map((item, index) => {
+					if (
+						searchEvent == "all" &&
+						((item.pricing.film_webseries_ad?.hourly_rate <= max &&
+							item.pricing.film_webseries_ad?.hourly_rate >= min) ||
+							(item.pricing?.tv_series_other?.hourly_rate <= max &&
+								item.pricing?.tv_series_other?.hourly_rate >= min) ||
+							(item.pricing.corporate?.hourly_rate <= max &&
+								item.pricing.corporate?.hourly_rate >= min) ||
+							(item.pricing.individual?.hourly_rate <= max &&
+								item.pricing.individual?.hourly_rate >= min))
+					) {
+						return (
+							<PropertyInfo
+								item={item}
+								// index={index}
+								// isFav={true}
+								favPage={false}
+								favorites={favorites}
+								setFavorites={setFavorites}
+								key={item.location_id}
+								handleClick={() => {
+									console.log("clicked");
+								}}
+								border={false}
+							/>
+						);
+					} else if (searchLocation == "all") {
+						if (
+							searchEvent == "FilmShooting" &&
+							(item.pricing.film_webseries_ad.isPresent == true ||
+								item.pricing.tv_series_other.isPresent == true) &&
+							((item.pricing.film_webseries_ad?.hourly_rate <= max &&
+								item.pricing.film_webseries_ad?.hourly_rate > min) ||
+								(item.pricing?.tv_series_other?.hourly_rate <= max &&
+									item.pricing?.tv_series_other?.hourly_rate > min))
+						) {
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						} else if (
+							searchEvent == "CorporateBooking" &&
+							item.pricing.corporate.isPresent == true &&
+							item.pricing.corporate?.hourly_rate <= max &&
+							item.pricing.corporate?.hourly_rate >= min
+						) {
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						} else if (
+							searchEvent == "IndividualBooking" &&
+							item.pricing.individual.isPresent == true &&
+							item.pricing.individual?.hourly_rate <= max &&
+							item.pricing.individual?.hourly_rate >= min
+						) {
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						}
+					} else if (
+						searchEvent == "FilmShooting" &&
+						(item.pricing.film_webseries_ad.isPresent == true ||
+							item.pricing.tv_series_other.isPresent == true) &&
+						((item.pricing.film_webseries_ad?.hourly_rate <= max &&
+							item.pricing.film_webseries_ad?.hourly_rate >= min) ||
+							(item.pricing?.tv_series_other?.hourly_rate <= max &&
+								item.pricing?.tv_series_other?.hourly_rate >= min))
+					) {
+						console.log(searchEvent);
+						if (searchLocation == item.property_desc.location_type) {
+							console.log(searchLocation, item.property_desc.location_type);
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						}
+					} else if (
+						searchEvent == "CorporateBooking" &&
+						item.pricing.corporate.isPresent == true &&
+						item.pricing.corporate?.hourly_rate <= max &&
+						item.pricing.corporate?.hourly_rate >= min
+					) {
+						console.log(searchEvent);
+						if (searchLocation == item.property_desc.location_type) {
+							console.log(searchLocation, item.property_desc.location_type);
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						}
+					} else if (
+						searchEvent == "IndividualBooking" &&
+						item.pricing.individual.isPresent == true &&
+						item.pricing.individual?.hourly_rate <= max &&
+						item.pricing.individual?.hourly_rate >= min
+					) {
+						console.log(searchEvent);
+						if (searchLocation == item.property_desc.location_type) {
+							console.log(searchLocation, item.property_desc.location_type);
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						}
+					}
+				})}
+			</div>
+			<div className="paginated-container">
+				{Array(8)
+					.fill(0)
+					.map((item, id) => {
+						return (
+							<div key={id} className={`paginated-box ${id === 0 && "active"}`}>
+								{id + 1}
+							</div>
+						);
+					})}
+			</div>
+			<div style={{ margin: "40px 0px" }}>
+				<Host
+					title="Get in buisness with GoRecce"
+					buttonContent="Become a Host"
+				/>
+			</div>
+			<Footer />
+		</>
+	);
 };
 
 export default Search;

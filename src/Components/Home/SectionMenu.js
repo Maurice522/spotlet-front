@@ -41,7 +41,7 @@ const SectionMenu = () => {
 	}, [])
 
 
-	const filmShooting = [
+	const FilmShooting = [
 		{ image: film_img1, text: "Ad Film Shoot" },
 		{ image: film_img3, text: "Film Shoot" },
 		{ image: film_img2, text: "Web Series Shoot" },
@@ -49,7 +49,7 @@ const SectionMenu = () => {
 		{ image: film_img5, text: "TV Serial" },
 		{ image: film_img6, text: "Photoshoot" },
 	];
-	const corporateShooting = [
+	const CorporateShooting = [
 		{ image: corp_img1, text: "Company Meetings" },
 		{ image: corp_img3, text: "Product Launch" },
 		{ image: corp_img2, text: "Company Party" },
@@ -57,7 +57,7 @@ const SectionMenu = () => {
 		{ image: corp_img5, text: "Conference" },
 		{ image: corp_img6, text: "Award Ceremony" },
 	];
-	const individualShooting = [
+	const IndividualShooting = [
 		{ image: indi_img1, text: "Birthday Party" },
 		{ image: indi_img3, text: "Engagement Party" },
 		{ image: indi_img2, text: "Family/Friends Gathering" },
@@ -69,9 +69,9 @@ const SectionMenu = () => {
 	const [shoot, setShoot] = useState(1);
 
 	const shootMap = {
-		1: filmShooting,
-		2: corporateShooting,
-		3: individualShooting,
+		1: FilmShooting,
+		2: CorporateShooting,
+		3: IndividualShooting,
 	};
 
 	const classes = [
