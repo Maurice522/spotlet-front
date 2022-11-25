@@ -5,6 +5,7 @@ import { selectUserData } from "../../redux/slices/userSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { MenuItem, Select } from "@mui/material";
+import { IoMdArrowDropdown } from "react-icons/io";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
@@ -391,30 +392,36 @@ const BookingForm = ({
 							}}
 							value={v1}
 						/> */}
-            <DatePicker
-              required
-              type="date"
-              className={active === true ? "focus" : "normal"}
-              id="date"
-              name="date"
-              style={{
-                border: "2px solid lightgray",
-                width: "78%",
-                height: "34px",
-              }}
-              // selected={new Date(dateRange.startDate)}
-              onChange={(date) => {
-                setDateRange({ ...dateRange, startDate: date });
-                setV1(date);
-              }}
-              selected={v1}
-              // name="startDate"
-              dateFormat="dd/MM/yyyy"
-              filterDate={isDisabled}
-              placeholderText="dd/mm/yyyy"
-              minDate={moment().toDate() - 1}
-              value={v1}
-            />
+            <div style={{ position: "relative" }}>
+              <DatePicker
+                required
+                type="date"
+                className={active === true ? "focus" : "normal"}
+                id="date"
+                name="date"
+                style={{
+                  border: "2px solid gray",
+                  width: "78%",
+                  height: "34px",
+                }}
+                // selected={new Date(dateRange.startDate)}
+                onChange={(date) => {
+                  setDateRange({ ...dateRange, startDate: date });
+                  console.log(date);
+                  setV1(date);
+                }}
+                selected={v1}
+                // name="startDate"
+                dateFormat="dd/MM/yyyy"
+                filterDate={isDisabled}
+                placeholderText="dd/mm/yyyy"
+                minDate={moment().toDate() - 1}
+                value={v1}
+              />
+              <span style={{ position: "absolute", top: "30%", right: "5%" }}>
+                <IoMdArrowDropdown size={20} color="gray" />
+              </span>
+            </div>
           </div>
           {event === "Individual" || event === "Corporate" ? (
             (

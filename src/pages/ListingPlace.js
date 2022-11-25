@@ -81,7 +81,7 @@
 // 	return (
 // 		<>
 // 			<div>
-				
+
 // 				<Navbar extraNavId={"id-2"} />
 // 				<div className="host">
 
@@ -96,15 +96,14 @@
 // 									{item}
 // 								</button>
 // 							</div>
-							
+
 // 						))}
-// 						</nav> : 
+// 						</nav> :
 // 						<div className="menu">
 // 							<AiOutlineArrowLeft size="30px" onClick={() => showSection("")} />
 // 							<h3>{section}</h3>
 // 						</div>
 // 						}
-					
 
 // 					<div
 // 						style={{
@@ -290,7 +289,9 @@ const ListingPlace = () => {
           ) : (
             <div className="menu">
               <AiOutlineArrowLeft size="30px" onClick={() => showSection("")} />
-              <h3>{section}</h3>
+              <h3 style={{ color: "#ff4d4d", fontSize: x.matches && "20px" }}>
+                {section}
+              </h3>
             </div>
           )}
 

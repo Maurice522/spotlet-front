@@ -49,6 +49,7 @@ const Property = ({
   const [propertyItems, setPropertyItems] = useState([]);
   const [galleryOn, setGalleryOn] = useState(false);
   const [images, setImages] = useState(locationData?.imagesData);
+  let x = window.matchMedia("(max-width: 576px)");
   const navigate = useNavigate();
   const userData = useSelector(selectUserData);
   const [cord, setCord] = useState({
@@ -62,7 +63,7 @@ const Property = ({
       .then((res) => setPropertyItems(res.data.locations))
       .catch((err) => console.log(err));
   }, []);
-  
+
   useEffect(() => {
     getLocation(window.location.pathname.substring(10))
       .then((res) => setLocationData(res.data))
@@ -73,7 +74,6 @@ const Property = ({
   useEffect(() => {
     setImages(locationData?.imagesData);
   }, [locationData]);
-
 
   useEffect(() => {
     // Get latitude & longitude from address.
@@ -187,7 +187,7 @@ const Property = ({
             <div>{locationData?.contact_det?.name}</div>
           </div>
         </div>
-        <Button
+        {/* <Button
           style={{
             height: "fit-content",
             border: "2px solid #ff5f5f",
@@ -209,7 +209,7 @@ const Property = ({
           }}
         >
           Message the host
-        </Button>
+        </Button> */}
       </div>
       <div
         style={{
@@ -345,7 +345,7 @@ const Property = ({
         />
       </div>
       <div className="similar-properties">
-        {propertyItems.slice(0,4).map((item, index) => {
+        {propertyItems.slice(0, 4).map((item, index) => {
           return (
             <PropertyInfo
               item={item}
@@ -377,7 +377,7 @@ const Property = ({
   );
 
   const dosDonts = (
-    <div className="dos">
+    <div className="dos" style={{ lineHeight: x.matches && "20px" }}>
       <div>
         {locationData?.do_and_dont?.do_s?.map((val, i) => (
           <div
@@ -675,8 +675,8 @@ const Property = ({
                               display: "flex",
                               justifyContent: "flex-start",
                               alignItems: "center",
-                              gap: "10px",
-                              lineHeight: "32px",
+                              gap: x.matches ? "2px" : "10px",
+                              lineHeight: x.matches ? "20px" : "32px",
                             }}
                           >
                             <GoPrimitiveDot color="#ff4d4d" size={16} />
@@ -694,7 +694,7 @@ const Property = ({
                               justifyContent: "flex-start",
                               alignItems: "center",
                               gap: "10px",
-                              lineHeight: "32px",
+                              lineHeight: x.matches ? "20px" : "32px",
                             }}
                           >
                             <GoPrimitiveDot color="#ff4d4d" />

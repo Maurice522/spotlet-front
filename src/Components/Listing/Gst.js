@@ -56,8 +56,14 @@ const Gst = ({ showSection, changeSection }) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (filesData.length) {
-      const files = filesData.map(fileData => fileData.file);
+    if (
+      (doc_no !== "" && filesData.length === 0) ||
+      (doc_no.length === 0 && filesData.length > 0)
+    ) {
+      return toast.error("Kindly fill both field");
+    }
+    if (doc_no.length && filesData.length) {
+      const files = filesData.map((fileData) => fileData.file);
       const locData = {
         ...location,
         gst: {

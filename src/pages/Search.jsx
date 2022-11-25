@@ -20,6 +20,7 @@ import { BiFilterAlt } from "react-icons/bi";
 import { ImCross } from "react-icons/im";
 import Select from "react-select";
 import Host from "../Components/Home/Host";
+import { MarginRounded } from "@mui/icons-material";
 
 const Search = () => {
 	var sortedProperties;
@@ -180,7 +181,7 @@ const Search = () => {
 					setSort={setSort}
 				/>
 			</div>
-			<div className="filter-box">
+			{/* <div className="filter-box">
 				<div>
 					<button className="filter-btn" onClick={handleOpenFilter}>
 						<BiFilterAlt />
@@ -191,7 +192,7 @@ const Search = () => {
 					</Button>
 				</div>
 				<h2>{sortedProperties?.length} Stays</h2>
-			</div>
+			</div> */}
 			<Modal open={openFilter} onClose={handleCloseFilter}>
 				<div className="listing-modal filter-modal">
 					<>
@@ -394,15 +395,35 @@ const Search = () => {
 									</div>
 								</div> */}
 							</div>
+							//{" "}
 							<div className="apply">
-								<button className="accbut apply-btn">Apply Changes</button>
+								// <button className="accbut apply-btn">Apply Changes</button>
+								//{" "}
 							</div>
 						</div>
 					</>
 				</div>
 			</Modal>
-			<div className="search-heading">All Locations</div>
-
+			<div className="search-heading">
+				<h1 style={{ fontSize: "30px", fontWeight: "700", margin: "20px 0px" }}>
+					“ Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod
+					tempor occaecat cupidatat ”{" "}
+				</h1>
+			</div>
+			<div className="filter-box">
+				<div>
+					<button className="filter-btn" onClick={handleOpenFilter}>
+						<BiFilterAlt />
+						<h2>Filter</h2>
+					</button>
+					<Button style={{ color: "red", padding: "6px 0" }}>
+						Clear Filter
+					</Button>
+				</div>
+			</div>
+			<h2 style={{ fontSize: "24px", fontWeight: "500", textAlign: "center" }}>
+				Locations Found
+			</h2>
 			<div className="search-property-list">
 				{sortedProperties?.map((item, index) => {
 					if (

@@ -166,7 +166,7 @@ const Location = ({ showSection, changeSection }) => {
   const handleSubmit = async (e) => {
     //console.log(property_address)
     if (
-      // !property_address?.city?.length ||
+      !property_address?.city?.length ||
       !property_address?.state?.length ||
       !property_address?.area?.length ||
       !property_address?.country?.length ||
@@ -178,7 +178,7 @@ const Location = ({ showSection, changeSection }) => {
       ...location,
       property_address,
     };
-    // dispatch(addCity(property_address.city));
+    dispatch(addCity(property_address.city));
     dispatch(addLocation(locData));
     const form = {
       location_id,
@@ -290,7 +290,7 @@ const Location = ({ showSection, changeSection }) => {
         </div>
       </div>
 
-       <div className="row1">
+      <div className="row1">
         {/* <div className="coll1">
           <label htmlFor="wcity">
             <h2 className="locationH2">
@@ -334,6 +334,21 @@ const Location = ({ showSection, changeSection }) => {
           )}
         </div>  */}
 
+        <div className="coll1">
+          <label htmlFor="city">
+            <h2 className="locationH2">
+              City<span style={{ color: "red" }}>*</span>
+            </h2>
+          </label>
+          <input
+            className="listingInput input"
+            id="city"
+            name="city"
+            type="text"
+            onChange={handleChange}
+            value={property_address ? property_address.city : ""}
+          />
+        </div>
         <div className="coll1">
           <label htmlFor="pin">
             <h2 className="locationH2">
