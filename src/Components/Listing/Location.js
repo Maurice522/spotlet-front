@@ -178,7 +178,7 @@ const Location = ({ showSection, changeSection }) => {
       ...location,
       property_address,
     };
-    dispatch(addCity(property_address.city));
+    // dispatch(addCity(property_address.city));
     dispatch(addLocation(locData));
     const form = {
       location_id,
@@ -431,7 +431,7 @@ const Location = ({ showSection, changeSection }) => {
               className="locationContinue continue"
               onClick={() => showLocation()}
             >
-              Show On Map
+              {showmap ? "Hide" : "Show on"} Map
             </button>
           </div>
         </div>

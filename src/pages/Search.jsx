@@ -25,7 +25,7 @@ import { MarginRounded } from "@mui/icons-material";
 const Search = () => {
 	var sortedProperties;
 	const navigate = useNavigate();
-	const { event, location } = useParams();
+	const { event } = useParams();
 	const [searchEvent, setSearchEvent] = useState("all");
 	const [searchLocation, setSearchLocation] = useState("all");
 	const [propertyDetails, setPropertiesDetail] = useState([]);
@@ -37,11 +37,14 @@ const Search = () => {
 	// const [event, setEvent] = useState("all");
 	const [active, setActive] = useState(false);
 
-	// if (event && location) {
-	// 	console.log(event, location);
-	// 	setSearchEvent(event);
-	// 	setSearchLocation(location);
-	// }
+	useEffect(() => {
+		console.log("useeffect");
+		console.log(event);
+		if (event) {
+			setSearchEvent(event);
+			setSearchLocation('all');
+		}
+	}, []);
 
 	const price = [
 		{ value: 0, label: 0 },
@@ -414,7 +417,13 @@ const Search = () => {
 						<BiFilterAlt />
 						<h2>Filter</h2>
 					</button>
-					<Button style={{ color: "red", padding: "6px 0" }}>
+					<Button
+						style={{ color: "red", padding: "6px 0" }}
+						onClick={() => {
+							setSearchEvent("all");
+							setSearchLocation("all");
+						}}
+					>
 						Clear Filter
 					</Button>
 				</div>

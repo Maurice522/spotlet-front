@@ -49,7 +49,7 @@ const SectionMenu = () => {
 		{ image: film_img5, text: "TV Serial" },
 		{ image: film_img6, text: "Photoshoot" },
 	];
-	const CorporateShooting = [
+	const CorporateBooking = [
 		{ image: corp_img1, text: "Company Meetings" },
 		{ image: corp_img3, text: "Product Launch" },
 		{ image: corp_img2, text: "Company Party" },
@@ -57,7 +57,7 @@ const SectionMenu = () => {
 		{ image: corp_img5, text: "Conference" },
 		{ image: corp_img6, text: "Award Ceremony" },
 	];
-	const IndividualShooting = [
+	const IndividualBooking = [
 		{ image: indi_img1, text: "Birthday Party" },
 		{ image: indi_img3, text: "Engagement Party" },
 		{ image: indi_img2, text: "Family/Friends Gathering" },
@@ -67,11 +67,12 @@ const SectionMenu = () => {
 	];
 
 	const [shoot, setShoot] = useState(1);
+	const [shootvalue, setShootvalue] = useState('FilmShooting')
 
 	const shootMap = {
 		1: FilmShooting,
-		2: CorporateShooting,
-		3: IndividualShooting,
+		2: CorporateBooking,
+		3: IndividualBooking,
 	};
 
 	const classes = [
@@ -100,9 +101,7 @@ const SectionMenu = () => {
 	let gridItems = shootMap[shoot].map((img, index) => (
 		<div className={`${classes[index]} ${classesResp[index]}`} key={index}>
 			<Link
-				to={{
-					pathname:"/search/"
-				}}
+				to={`/search/${shootvalue}/`}
 				onClick={() => window.scrollTo(0, 0)}
 				style={{
 					textDecoration: "none",
@@ -128,6 +127,7 @@ const SectionMenu = () => {
 					}}
 					onClick={() => {
 						setShoot(1);
+						setShootvalue('FilmShooting')
 						setArrowState({
 							film: true,
 							corporate: false,
@@ -157,6 +157,7 @@ const SectionMenu = () => {
 					}}
 					onClick={() => {
 						setShoot(2);
+						setShootvalue('CorporateBooking');
 						setArrowState({
 							film: false,
 							corporate: true,
@@ -186,6 +187,7 @@ const SectionMenu = () => {
 					}}
 					onClick={() => {
 						setShoot(3);
+						setShootvalue('IndividualBooking');
 						setArrowState({
 							film: false,
 							corporate: false,

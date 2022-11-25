@@ -159,7 +159,7 @@ const Navbar = ({ extraNavId }) => {
 								)
 							}
 						</Menu> */}
-            {console.log(flag)}
+            {/* {console.log(flag)} */}
             <a>
               <div
                 onClick={handleNotification}

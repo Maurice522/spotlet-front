@@ -24,6 +24,7 @@ const FormFilter = ({
   const changeEvent = (e) => {
     setEvent(e.value);
     !homepage && setSearchEvent(e.value);
+    setSearchLocation('all')
   };
 
   const changeLocation = (e) => {
