@@ -14,6 +14,7 @@ import {
 } from "../../redux/slices/locationSlice";
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
+import { CancelRounded } from "@mui/icons-material";
 
 let options = [
   { value: "Add New", label: "Add Custom to List" },
@@ -85,6 +86,7 @@ const Details = ({ showSection, changeSection }) => {
   const [lType, setLType] = useState(0);
   const dispatch = useDispatch();
   const [property_desc, setPropertyDescr] = useState(initialState);
+  let x = window.matchMedia("(max-width:576px)");
 
   useEffect(() => {
     // location && setLType(" "+location.property_desc.location_type);
@@ -154,7 +156,7 @@ const Details = ({ showSection, changeSection }) => {
 
   return (
     <div className="lbox">
-      <div className="row1">
+      <div className="row1" style={{ gap: x.matches && "0px" }}>
         <div className="coll1">
           <h2>
             Type of Location<span style={{ color: "red" }}>*</span>
@@ -177,13 +179,21 @@ const Details = ({ showSection, changeSection }) => {
             }}
             value={opt[lType]}
             required
+            isDisabled={loc}
           />
+          {loc && (
+            <span
+              style={{ cursor: "pointer", marginTop: x.matches && "5px" }}
+              onClick={() => setLoc(false)}
+            >
+              <CancelRounded sx={{ color: "red" }} />
+            </span>
+          )}
         </div>
         {loc && (
           <div className="coll1">
             <h2
               style={{
-                marginLeft: "30px",
                 marginBottom: "8px",
               }}
             >
@@ -191,7 +201,6 @@ const Details = ({ showSection, changeSection }) => {
             </h2>
             <div
               style={{
-                marginLeft: "30px",
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
@@ -389,8 +398,12 @@ const Details = ({ showSection, changeSection }) => {
         </div>
       </div>
       <div className="row1">
-        <div className="coll1">
-          <button className="continue" onClick={handleSubmit}>
+        <div className="coll1" style={{ width: x.matches && "100%" }}>
+          <button
+            className="continue"
+            onClick={handleSubmit}
+            style={{ width: x.matches && "100%" }}
+          >
             Continue
           </button>
         </div>

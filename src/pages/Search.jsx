@@ -36,28 +36,29 @@ const fillData = (data, splitRange) => {
 };
 
 const Search = () => {
-	var sortedProperties;
-	const navigate = useNavigate();
-	const { event } = useParams();
-	const [searchEvent, setSearchEvent] = useState("all");
-	const [searchLocation, setSearchLocation] = useState("all");
-	const [propertyDetails, setPropertiesDetail] = useState([]);
-	const [favorites, setFavorites] = useState([]);
-	const [sort, setSort] = useState("");
-	const [openFilter, setOpenFilter] = useState(false);
-	const handleOpenFilter = () => setOpenFilter(true);
-	const handleCloseFilter = () => setOpenFilter(false);
-	// const [event, setEvent] = useState("all");
-	const [active, setActive] = useState(false);
+  var sortedProperties;
+  const navigate = useNavigate();
+  const { event } = useParams();
+  const [searchEvent, setSearchEvent] = useState("all");
+  const [searchLocation, setSearchLocation] = useState("all");
+  const [propertyDetails, setPropertiesDetail] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [sort, setSort] = useState("");
+  const [openFilter, setOpenFilter] = useState(false);
+  const handleOpenFilter = () => setOpenFilter(true);
+  const handleCloseFilter = () => setOpenFilter(false);
+  // const [event, setEvent] = useState("all");
+  const [active, setActive] = useState(false);
+  let x = window.matchMedia("(max-width:576px)");
 
-	useEffect(() => {
-		console.log("useeffect");
-		console.log(event);
-		if (event) {
-			setSearchEvent(event);
-			setSearchLocation('all');
-		}
-	}, []);
+  useEffect(() => {
+    console.log("useeffect");
+    console.log(event);
+    if (event) {
+      setSearchEvent(event);
+      setSearchLocation("all");
+    }
+  }, []);
 
   const price = [
     { value: 0, label: 0 },
@@ -395,7 +396,10 @@ const Search = () => {
           </>
         </div>
       </Modal>
-      <div className="search-heading">
+      <div
+        className="search-heading"
+        style={{ marginTop: x.matches && "300px" }}
+      >
         <h1 style={{ fontSize: "30px", fontWeight: "700", margin: "20px 0px" }}>
           “ Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod
           tempor occaecat cupidatat ”{" "}

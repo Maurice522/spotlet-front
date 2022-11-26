@@ -1,26 +1,26 @@
 .about-us-message {
-	position: absolute;
-	top: 40%;
-	left: 100px;
-	right: 100px;
-	text-align: center;
-	font-size: 38px;
-	font-family: "Rubik";
-	color: white;
-	line-height: 140%;
+  position: absolute;
+  top: 40%;
+  left: 100px;
+  right: 100px;
+  text-align: center;
+  font-size: 38px;
+  font-family: "Rubik";
+  color: white;
+  line-height: 140%;
 }
 
 .bold {
-	font-size: 49px;
-	font-weight: 700;
+  font-size: 49px;
+  font-weight: 700;
 }
 
 .about-us-content {
-	padding: 50px;
-	font-family: "Rubik";
-	font-style: normal;
-	width: 80%;
-	margin: auto;
+  padding: 50px;
+  font-family: "Rubik";
+  font-style: normal;
+  width: 80%;
+  margin: auto;
 }
 
 /* .about-us-content > div {
@@ -28,124 +28,134 @@
 } */
 
 .about-us-content-heading {
-	font-weight: 700;
-	font-size: 28px;
-	line-height: 44px;
-	margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 44px;
+  margin-bottom: 5px;
 }
 
 .about-us-content-info {
-	font-size: 16px;
-	line-height: 26px;
-	text-align: justify;
-	margin-top: 2%;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: justify;
+  margin-top: 2%;
 }
 .about-us-content-info h6 {
-	font-size: 16px;
-	line-height: 26px;
-	text-align: justify;
-	margin-top: 2%;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: justify;
+  margin-top: 2%;
 }
 .content-with-image {
-	display: grid;
-	margin-top: 12%;
-	grid-template-columns: 1.5fr 1fr;
+  display: grid;
+  margin-top: 12%;
+  grid-template-columns: 1.5fr 1fr;
 }
 /* for careers */
 .content-with-image1 {
-	display: grid;
-	margin-top: 2%;
-	grid-template-columns: 1.5fr 1fr;
+  display: grid;
+  margin-top: 2%;
+  grid-template-columns: 1.5fr 1fr;
 }
 
-
 .content-with-image-2 {
-	display: grid;
-	grid-template-columns: 1fr 1.5fr;
-	margin-top: 10%;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  margin-top: 10%;
 }
 
 .about-us-bottom-text {
-	width: 80%;
-	display: grid;
-	grid-template-columns: 1fr 1.5fr;
-	gap: 50px;
-	text-align: justify;
-	align-content: flex-start;
-	margin: auto;
-	margin-top: 6%;
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 50px;
+  text-align: justify;
+  align-content: flex-start;
+  margin: auto;
+  margin-top: 6%;
 }
 
 .about-us-content-text {
-	font-size: 17px;
-	line-height: 24px;
-	margin-top: 1%;
+  font-size: 17px;
+  line-height: 24px;
+  margin-top: 1%;
 }
 
 .about-us-content-text > div {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .about-us-btn-container {
-	width: 100%;
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	gap: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
 }
-.buttonHover:hover{
-	background-color: #EA4235 !important;
-	color: white !important;
-	border: 2px solid #f36767 !important;
+.buttonHover:hover {
+  background-color: #ea4235 !important;
+  color: white !important;
+  border: 2px solid #f36767 !important;
 }
-.buttonHover1:hover{
-	background-color: white !important;
-	color: black !important;
-	border: 2px solid #EA4235 !important;
+.buttonHover1:hover {
+  background-color: white !important;
+  color: black !important;
+  border: 2px solid #ea4235 !important;
 }
 
+@media screen and (max-width: 576px) {
+  .about-us-message {
+    left: 0px;
+    width: 100%;
+  }
+}
 
 @media screen and (max-width: 1200px) {
-	.content-with-image {
-		display: flex;
-		flex-direction: column-reverse;
-		align-items: center;
-		justify-content: center;
-		margin-bottom: 5rem;
-		gap: 4rem;
-	}
-	.content-with-image div:last-child {
-		margin-left: -30px;
-	}
-	.content-with-image-2 {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 4rem;
-	}
-	.content-with-image-2 div:first-child {
-		margin-left: -30px;
-	}
+  .content-with-image {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+    gap: 4rem;
+  }
+  .content-with-image div:last-child {
+    margin-left: -30px;
+  }
+  .content-with-image-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+  }
+  .content-with-image-2 div:first-child {
+    margin-left: -30px;
+  }
 }
 
 @media screen and (max-width: 992px) {
-	.about-us-btn-container {
-		flex-direction: column;
-	}
-	.css-68j4z7-MuiButtonBase-root-MuiButton-root, .css-37g7mt-MuiButtonBase-root-MuiButton-root{
-		width: 30vw !important;
-	}
-	.about-us-message {
-		font-size: 32px;
-	}
-	.about-us-content-heading{
-		font-size: 24px;
-	}
-	.about-us-content-info, .about-us-content-text{
-		font-size: 14px;
-	}
-	.css-y8eu5t-MuiButtonBase-root-MuiButton-root, .css-1wdiwyf-MuiButtonBase-root-MuiButton-root, .css-68j4z7-MuiButtonBase-root-MuiButton-root, .css-37g7mt-MuiButtonBase-root-MuiButton-root{
-		font-size: 12px !important;
-	}
+  .about-us-btn-container {
+    flex-direction: column;
+  }
+  .css-68j4z7-MuiButtonBase-root-MuiButton-root,
+  .css-37g7mt-MuiButtonBase-root-MuiButton-root {
+    width: 30vw !important;
+  }
+  .about-us-message {
+    font-size: 32px;
+  }
+  .about-us-content-heading {
+    font-size: 24px;
+  }
+  .about-us-content-info,
+  .about-us-content-text {
+    font-size: 14px;
+  }
+  .css-y8eu5t-MuiButtonBase-root-MuiButton-root,
+  .css-1wdiwyf-MuiButtonBase-root-MuiButton-root,
+  .css-68j4z7-MuiButtonBase-root-MuiButton-root,
+  .css-37g7mt-MuiButtonBase-root-MuiButton-root {
+    font-size: 12px !important;
+  }
 }

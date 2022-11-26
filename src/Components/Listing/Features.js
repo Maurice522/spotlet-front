@@ -16,6 +16,7 @@ import AddNew from "../Listing/AddNew";
 import CheckboxDropdownComponent from "react-checkbox-dropdown";
 
 const Features = ({ showSection, changeSection }) => {
+  let x = window.matchMedia("(max-width:576px)");
   const options = [
     { value: "Alarm system", label: " Alarm system" },
     {
@@ -213,8 +214,12 @@ const Features = ({ showSection, changeSection }) => {
         </div>
       </div>
       <div className="row1">
-        <div className="coll1">
-          <button className="continue" onClick={handleSubmit}>
+        <div className="coll1" style={{ width: x.matches && "100%" }}>
+          <button
+            className="continue"
+            onClick={handleSubmit}
+            style={{ width: x.matches && "100%" }}
+          >
             Continue
           </button>
         </div>

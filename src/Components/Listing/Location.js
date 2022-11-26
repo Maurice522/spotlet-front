@@ -87,6 +87,7 @@ const Location = ({ showSection, changeSection }) => {
 
   const showLocation = () => {
     setShowmap(!showmap);
+    window.scrollTo(0, document.body.scrollHeight * 0.8);
   };
 
   let stateArray = State.getAllStates().filter(
@@ -178,7 +179,7 @@ const Location = ({ showSection, changeSection }) => {
       ...location,
       property_address,
     };
-    // dispatch(addCity(property_address.city));
+    dispatch(addCity(property_address.city));
     dispatch(addLocation(locData));
     const form = {
       location_id,

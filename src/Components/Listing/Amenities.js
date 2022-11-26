@@ -15,6 +15,7 @@ import CheckboxDropdownComponent from "react-checkbox-dropdown";
 import { ClearAll } from "@mui/icons-material";
 
 const Amenities = ({ showSection, changeSection }) => {
+  let x = window.matchMedia("(max-width:576px)");
   const options = [
     { value: "Air Conditioning", label: "Air Conditioning" },
     {
@@ -228,7 +229,7 @@ const Amenities = ({ showSection, changeSection }) => {
             isStrict={false}
           />
         </div>
-        <div>
+        <div style={{ width: x.matches && "100%" }}>
           <h2>Selected Amenities</h2>
           <ul className="selected-options">
             {amenities.map((item) => (
@@ -259,8 +260,12 @@ const Amenities = ({ showSection, changeSection }) => {
         </div>
       </div>
       <div className="row1">
-        <div className="coll1">
-          <button className="continue" onClick={handleSubmit}>
+        <div className="coll1" style={{ width: x.matches && "100%" }}>
+          <button
+            className="continue"
+            onClick={handleSubmit}
+            style={{ width: x.matches && "100%" }}
+          >
             Continue
           </button>
         </div>

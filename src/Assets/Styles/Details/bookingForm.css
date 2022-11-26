@@ -157,9 +157,7 @@
 }
 .react-datepicker__input-container input {
   border: 1px solid rgb(203, 198, 198);
-  min-width: 110%;
 }
-
 @media screen and (max-width: 992px) {
   .wrapper {
     margin: 10px auto;
@@ -220,5 +218,11 @@
   }
   .css-1uir9b3-MuiAccordionDetails-root {
     font-size: 13px !important;
+  }
+  .react-datepicker {
+    display: none !important;
+  }
+  .react-datepicker__input-container input {
+    min-width: 110%;
   }
 }

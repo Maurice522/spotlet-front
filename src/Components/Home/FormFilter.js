@@ -5,6 +5,7 @@ import Select from "react-select";
 // import { selectCities } from "../../redux/slices/locationSlice";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { selectCities } from "../../redux/slices/locationSlice";
 // import { selectCities } from "../../redux/slices/locationSlice";
 
 const FormFilter = ({
@@ -19,12 +20,12 @@ const FormFilter = ({
   const [active, setActive] = useState(false);
   const [event, setEvent] = useState("all");
   const [location, setLocation] = useState("all");
-  // const citiesOption = useSelector(selectCities);
+  const citiesOption = useSelector(selectCities);
 
   const changeEvent = (e) => {
     setEvent(e.value);
     !homepage && setSearchEvent(e.value);
-    setSearchLocation('all')
+    setSearchLocation("all");
   };
 
   const changeLocation = (e) => {
@@ -139,13 +140,13 @@ const FormFilter = ({
     { value: "hyderabad", label: "Hyderabad" },
   ]);
 
-  // useEffect(() => {
-  //   let newCity = [...city];
-  //   citiesOption.forEach((item) => {
-  //     newCity.push({ value: item, label: item });
-  //   });
-  //   setCity(newCity);
-  // }, []);
+  useEffect(() => {
+    let newCity = [...city];
+    citiesOption.forEach((item) => {
+      newCity.push({ value: item, label: item });
+    });
+    setCity(newCity);
+  }, []);
 
   return (
     <div

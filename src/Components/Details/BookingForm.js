@@ -29,8 +29,8 @@ const BookingForm = ({
   setTotPrice,
 }) => {
   let start24, end24, startampm, endampm;
-  const [allday, setAllday] = useState(false)
-  const [timemenuitems, setTimemenuitems] = useState([])
+  const [allday, setAllday] = useState(false);
+  const [timemenuitems, setTimemenuitems] = useState([]);
   let disabledDates = [];
   let finalDates = [];
   let gst = v6 * v3 * 1.18;
@@ -41,6 +41,7 @@ const BookingForm = ({
   });
 
   const isDisabled = (date) => {
+    if (!timings) return;
     Object.keys(timings).forEach(function (key, index) {
       if (!timings[key].open) {
         // console.log(key);
@@ -132,23 +133,23 @@ const BookingForm = ({
   const getdayName = (day) => {
     switch (day) {
       case 0:
-        return "sunday"
+        return "sunday";
       case 1:
-        return "monday"
+        return "monday";
       case 2:
-        return "tuesday"
+        return "tuesday";
       case 3:
-        return "wednesday"
+        return "wednesday";
       case 4:
-        return "thursday"
+        return "thursday";
       case 5:
-        return "friday"
+        return "friday";
       case 6:
-        return "saturday"
+        return "saturday";
       default:
         break;
     }
-  }
+  };
 
   const setTimes = (v1) => {
     setTimemenuitems([]);
@@ -159,55 +160,55 @@ const BookingForm = ({
         start24 = Number(timings?.monday?.time?.start?.substring(0, 2));
         end24 = Number(timings?.monday?.time?.end?.substring(0, 2));
         startampm = timings?.monday?.time?.start?.substring(6, 8);
-        endampm = timings?.monday?.time?.end?.substring(6, 8)
-        setAllday(timings?.monday?.isSetHours)
+        endampm = timings?.monday?.time?.end?.substring(6, 8);
+        setAllday(timings?.monday?.isSetHours);
         // console.log("monday", timings?.monday?.isSetHours);
         break;
       case "tuesday":
         start24 = Number(timings?.tuesday?.time?.start?.substring(0, 2));
         end24 = Number(timings?.tuesday?.time?.end?.substring(0, 2));
         startampm = timings?.tuesday?.time?.start?.substring(6, 8);
-        endampm = timings?.tuesday?.time?.end?.substring(6, 8)
-        setAllday(timings?.tuesday?.isSetHours)
+        endampm = timings?.tuesday?.time?.end?.substring(6, 8);
+        setAllday(timings?.tuesday?.isSetHours);
         // console.log("tuesday", timings?.tuesday?.isSetHours);
         break;
       case "wednesday":
         start24 = Number(timings?.wednesday?.time?.start?.substring(0, 2));
         end24 = Number(timings?.wednesday?.time?.end?.substring(0, 2));
         startampm = timings?.wednesday?.time?.start?.substring(6, 8);
-        endampm = timings?.wednesday?.time?.end?.substring(6, 8)
-        setAllday(timings?.wednesday?.isSetHours)
+        endampm = timings?.wednesday?.time?.end?.substring(6, 8);
+        setAllday(timings?.wednesday?.isSetHours);
         // console.log("wednesday", timings?.wednesday?.isSetHours);
         break;
       case "thursday":
         start24 = Number(timings?.thursday?.time?.start?.substring(0, 2));
         end24 = Number(timings?.thursday?.time?.end?.substring(0, 2));
         startampm = timings?.thursday?.time?.start?.substring(6, 8);
-        endampm = timings?.thursday?.time?.end?.substring(6, 8)
-        setAllday(timings?.thursday?.isSetHours)
+        endampm = timings?.thursday?.time?.end?.substring(6, 8);
+        setAllday(timings?.thursday?.isSetHours);
         // console.log("thursday", timings?.thursday?.isSetHours);
         break;
       case "friday":
         start24 = Number(timings?.friday?.time?.start?.substring(0, 2));
         end24 = Number(timings?.friday?.time?.end?.substring(0, 2));
         startampm = timings?.friday?.time?.start?.substring(6, 8);
-        endampm = timings?.friday?.time?.end?.substring(6, 8)
-        setAllday(timings?.friday?.isSetHours)
+        endampm = timings?.friday?.time?.end?.substring(6, 8);
+        setAllday(timings?.friday?.isSetHours);
         // console.log("friday", timings?.friday?.isSetHours);
         break;
       case "saturday":
         start24 = Number(timings?.saturday?.time?.start?.substring(0, 2));
         end24 = Number(timings?.saturday?.time?.end?.substring(0, 2));
         startampm = timings?.saturday?.time?.start?.substring(6, 8);
-        endampm = timings?.saturday?.time?.end?.substring(6, 8)
-        setAllday(timings?.saturday?.isSetHours)
+        endampm = timings?.saturday?.time?.end?.substring(6, 8);
+        setAllday(timings?.saturday?.isSetHours);
         // console.log("saturday", timings?.saturday?.isSetHours);
         break;
       case "sunday":
         start24 = Number(timings?.sunday?.time?.start?.substring(0, 2));
         end24 = Number(timings?.sunday?.time?.end?.substring(0, 2));
         startampm = timings?.sunday?.time?.start?.substring(6, 8);
-        endampm = timings?.sunday?.time?.end?.substring(6, 8)
+        endampm = timings?.sunday?.time?.end?.substring(6, 8);
         console.log("sunday", timings?.sunday?.isSetHours);
         // setAllday(timings?.sunday?.isSetHours)
         break;
@@ -217,44 +218,38 @@ const BookingForm = ({
     if (startampm === endampm)
       for (let i = start24; i <= end24; i++) {
         let element;
-        if (i < 10)
-          element = "0" + i + ":" + "00 " + startampm;
-        else
-          element = i + ":" + "00 " + startampm;
+        if (i < 10) element = "0" + i + ":" + "00 " + startampm;
+        else element = i + ":" + "00 " + startampm;
         if (!timemenuitems.includes(element))
-          setTimemenuitems((prev) => [...prev, element])
+          setTimemenuitems((prev) => [...prev, element]);
       }
     else {
       for (let i = start24; i <= 12; i++) {
         let element;
-        if (i < 10)
-          element = "0" + i + ":" + "00 " + startampm;
-        else
-          element = i + ":" + "00 " + startampm;
+        if (i < 10) element = "0" + i + ":" + "00 " + startampm;
+        else element = i + ":" + "00 " + startampm;
         if (i == 12) {
           element = i + ":" + "00 " + endampm;
         }
         if (!timemenuitems.includes(element))
-          setTimemenuitems((prev) => [...prev, element])
+          setTimemenuitems((prev) => [...prev, element]);
       }
       for (let i = 1; i <= end24; i++) {
         let element;
-        if (i < 10)
-          element = "0" + i + ":" + "00 " + endampm;
-        else
-          element = i + ":" + "00 " + endampm;
+        if (i < 10) element = "0" + i + ":" + "00 " + endampm;
+        else element = i + ":" + "00 " + endampm;
         if (!timemenuitems.includes(element))
-          setTimemenuitems((prev) => [...prev, element])
+          setTimemenuitems((prev) => [...prev, element]);
       }
     }
     // console.log(startampm, endampm);
     // console.log(timemenuitems);
     // console.log(timemenuitems.length);
-  }
+  };
 
   useEffect(() => {
-    setTimes(v1)
-  }, [v1])
+    setTimes(v1);
+  }, [v1]);
 
   const calculatePrice = (eventType, hour_rate = 0) => {
     // console.log(eventType, hour_rate);
@@ -315,12 +310,12 @@ const BookingForm = ({
     <div>
       <div
         className="wrapper"
-      // onMouseEnter={() => {
-      // 	setActive(true);
-      // }}
-      // onMouseLeave={() => {
-      // 	setActive(false);
-      // }}
+        // onMouseEnter={() => {
+        // 	setActive(true);
+        // }}
+        // onMouseLeave={() => {
+        // 	setActive(false);
+        // }}
       >
         <form
           className={
@@ -350,7 +345,7 @@ const BookingForm = ({
               }}
               value={event}
               displayEmpty
-            // defaultValue={new Date().toISOString().split("T")[0]}
+              // defaultValue={new Date().toISOString().split("T")[0]}
             >
               {locationData?.pricing?.corporate?.isPresent && (
                 <MenuItem value="Corporate">Corporate</MenuItem>
@@ -424,97 +419,92 @@ const BookingForm = ({
             </div>
           </div>
           {event === "Individual" || event === "Corporate" ? (
-            (
-              <div>
-                <label
-                  htmlFor="start-time"
-                  className={
-                    active === true ? "focus-label" : "booking-form-label"
-                  }
-                >
-                  <strong>Start time</strong>
-                </label>
-                {
-                  allday ?
-                    <Select
-                      required
-                      id="start-time"
-                      name="start-time"
-                      MenuProps={{
-                        style: {
-                          maxHeight: 300,
-                          width: 150,
-                        },
-                      }} // defaultValue="06:30 pm"
-                      type="text"
-                      className={active === true ? "focus" : "normal"}
-                      onChange={(e) => {
-                        // console.log(e.target.value, "v2");
-                        setV2(e.target.value);
-                        // console.log(v2);
-                      }}
-                      value={`${v2}`}
-                    >{
-                        // console.log("dynamic")
-                      }
-                      {
-                        timemenuitems?.map((item) => (
-                          <MenuItem value={item}>{item}</MenuItem>
-                        ))
-                      }
-                    </Select>
-                    :
-                    (
-                      <Select
-                        required
-                        id="start-time"
-                        name="start-time"
-                        MenuProps={{
-                          style: {
-                            maxHeight: 300,
-                            width: 150,
-                          },
-                        }} // defaultValue="06:30 pm"
-                        type="text"
-                        className={active === true ? "focus" : "normal"}
-                        onChange={(e) => {
-                          // console.log(e.target.value, "v2");
-                          setV2(e.target.value);
-                          // console.log(v2);
-                        }}
-                        value={`${v2}`}
-                      >{
-                          // console.log("static")
-                        }
-                        <MenuItem value="10:00 am">10:00 am</MenuItem>
-                        <MenuItem value="11:00 am">11:00 am</MenuItem>
-                        <MenuItem value="12:00 pm">12:00 pm</MenuItem>
-                        <MenuItem value="01:00 pm">01:00 pm</MenuItem>
-                        <MenuItem value="02:00 pm">02:00 pm</MenuItem>
-                        <MenuItem value="03:00 pm">03:00 pm</MenuItem>
-                        <MenuItem value="04:00 pm">04:00 pm</MenuItem>
-                        <MenuItem value="05:00 pm">05:00 pm</MenuItem>
-                        <MenuItem value="06:00 pm">06:00 pm</MenuItem>
-                        <MenuItem value="07:00 pm">07:00 pm</MenuItem>
-                        <MenuItem value="08:00 pm">08:00 pm</MenuItem>
-                        <MenuItem value="09:00 pm">09:00 pm</MenuItem>
-                        <MenuItem value="10:00 pm">10:00 pm</MenuItem>
-                        <MenuItem value="11:00 pm">11:00 pm</MenuItem>
-                        <MenuItem value="12:00 pm">12:00 pm</MenuItem>
-                        <MenuItem value="01:00 am">01:00 am</MenuItem>
-                        <MenuItem value="02:00 am">02:00 am</MenuItem>
-                        <MenuItem value="03:00 am">03:00 am</MenuItem>
-                        <MenuItem value="04:00 am">04:00 am</MenuItem>
-                        <MenuItem value="05:00 am">05:00 am</MenuItem>
-                        <MenuItem value="06:00 am">06:00 am</MenuItem>
-                        <MenuItem value="07:00 am">07:00 am</MenuItem>
-                        <MenuItem value="08:00 am">08:00 am</MenuItem>
-                        <MenuItem value="09:00 am">09:00 am</MenuItem>
-                      </Select>
-                    )
+            <div>
+              <label
+                htmlFor="start-time"
+                className={
+                  active === true ? "focus-label" : "booking-form-label"
                 }
-              </div>
-            )
+              >
+                <strong>Start time</strong>
+              </label>
+              {allday ? (
+                <Select
+                  required
+                  id="start-time"
+                  name="start-time"
+                  MenuProps={{
+                    style: {
+                      maxHeight: 300,
+                      width: 150,
+                    },
+                  }} // defaultValue="06:30 pm"
+                  type="text"
+                  className={active === true ? "focus" : "normal"}
+                  onChange={(e) => {
+                    // console.log(e.target.value, "v2");
+                    setV2(e.target.value);
+                    // console.log(v2);
+                  }}
+                  value={`${v2}`}
+                >
+                  {
+                    // console.log("dynamic")
+                  }
+                  {timemenuitems?.map((item) => (
+                    <MenuItem value={item}>{item}</MenuItem>
+                  ))}
+                </Select>
+              ) : (
+                <Select
+                  required
+                  id="start-time"
+                  name="start-time"
+                  MenuProps={{
+                    style: {
+                      maxHeight: 300,
+                      width: 150,
+                    },
+                  }} // defaultValue="06:30 pm"
+                  type="text"
+                  className={active === true ? "focus" : "normal"}
+                  onChange={(e) => {
+                    // console.log(e.target.value, "v2");
+                    setV2(e.target.value);
+                    // console.log(v2);
+                  }}
+                  value={`${v2}`}
+                >
+                  {
+                    // console.log("static")
+                  }
+                  <MenuItem value="10:00 am">10:00 am</MenuItem>
+                  <MenuItem value="11:00 am">11:00 am</MenuItem>
+                  <MenuItem value="12:00 pm">12:00 pm</MenuItem>
+                  <MenuItem value="01:00 pm">01:00 pm</MenuItem>
+                  <MenuItem value="02:00 pm">02:00 pm</MenuItem>
+                  <MenuItem value="03:00 pm">03:00 pm</MenuItem>
+                  <MenuItem value="04:00 pm">04:00 pm</MenuItem>
+                  <MenuItem value="05:00 pm">05:00 pm</MenuItem>
+                  <MenuItem value="06:00 pm">06:00 pm</MenuItem>
+                  <MenuItem value="07:00 pm">07:00 pm</MenuItem>
+                  <MenuItem value="08:00 pm">08:00 pm</MenuItem>
+                  <MenuItem value="09:00 pm">09:00 pm</MenuItem>
+                  <MenuItem value="10:00 pm">10:00 pm</MenuItem>
+                  <MenuItem value="11:00 pm">11:00 pm</MenuItem>
+                  <MenuItem value="12:00 pm">12:00 pm</MenuItem>
+                  <MenuItem value="01:00 am">01:00 am</MenuItem>
+                  <MenuItem value="02:00 am">02:00 am</MenuItem>
+                  <MenuItem value="03:00 am">03:00 am</MenuItem>
+                  <MenuItem value="04:00 am">04:00 am</MenuItem>
+                  <MenuItem value="05:00 am">05:00 am</MenuItem>
+                  <MenuItem value="06:00 am">06:00 am</MenuItem>
+                  <MenuItem value="07:00 am">07:00 am</MenuItem>
+                  <MenuItem value="08:00 am">08:00 am</MenuItem>
+                  <MenuItem value="09:00 am">09:00 am</MenuItem>
+                </Select>
+              )}
+            </div>
           ) : (
             <div>
               <label
@@ -560,52 +550,52 @@ const BookingForm = ({
                 }
               >
                 <strong>Number of Hours</strong>
-              </label>{
-                timemenuitems.length ?
-                  <Select
-                    required
-                    type="number"
-                    id="number-of-hours"
-                    name="number-of-hours"
-                    className={active === true ? "focus" : "normal"}
-                    onChange={(e) => {
-                      // console.log(e.target.value);
-                      setV3(e.target.value);
-                      calculatePrice(event, e.target.value);
-                    }}
-                    value={v3}
-                    displayEmpty
-                  >
-                    {
-                      timemenuitems?.length > 8 &&
-                      <MenuItem value="8">8 hours</ MenuItem>
-                    }{
-                      timemenuitems?.length > 12 &&
-                      <MenuItem value="12">12 hours</MenuItem>
-                    }{
-                      timemenuitems?.length > 24 &&
-                      <MenuItem value="24">24 hours</MenuItem>
-                    }
-                  </Select>
-                  : <Select
-                    required
-                    type="number"
-                    id="number-of-hours"
-                    name="number-of-hours"
-                    className={active === true ? "focus" : "normal"}
-                    onChange={(e) => {
-                      // console.log(e.target.value);
-                      setV3(e.target.value);
-                      calculatePrice(event, e.target.value);
-                    }}
-                    value={v3}
-                    displayEmpty
-                  >
-                    <MenuItem value="8">8 hours</ MenuItem>
+              </label>
+              {timemenuitems.length ? (
+                <Select
+                  required
+                  type="number"
+                  id="number-of-hours"
+                  name="number-of-hours"
+                  className={active === true ? "focus" : "normal"}
+                  onChange={(e) => {
+                    // console.log(e.target.value);
+                    setV3(e.target.value);
+                    calculatePrice(event, e.target.value);
+                  }}
+                  value={v3}
+                  displayEmpty
+                >
+                  {timemenuitems?.length > 8 && (
+                    <MenuItem value="8">8 hours</MenuItem>
+                  )}
+                  {timemenuitems?.length > 12 && (
                     <MenuItem value="12">12 hours</MenuItem>
+                  )}
+                  {timemenuitems?.length > 24 && (
                     <MenuItem value="24">24 hours</MenuItem>
-                  </Select>
-              }
+                  )}
+                </Select>
+              ) : (
+                <Select
+                  required
+                  type="number"
+                  id="number-of-hours"
+                  name="number-of-hours"
+                  className={active === true ? "focus" : "normal"}
+                  onChange={(e) => {
+                    // console.log(e.target.value);
+                    setV3(e.target.value);
+                    calculatePrice(event, e.target.value);
+                  }}
+                  value={v3}
+                  displayEmpty
+                >
+                  <MenuItem value="8">8 hours</MenuItem>
+                  <MenuItem value="12">12 hours</MenuItem>
+                  <MenuItem value="24">24 hours</MenuItem>
+                </Select>
+              )}
             </div>
           )}
           <div>
@@ -664,7 +654,7 @@ const BookingForm = ({
             </Select>
           </div>
         </form>
-      </div >
+      </div>
       <div
         style={{
           width: "80%",
@@ -698,7 +688,7 @@ const BookingForm = ({
           Reserve
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
