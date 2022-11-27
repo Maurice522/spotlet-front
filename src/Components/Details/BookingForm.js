@@ -310,12 +310,12 @@ const BookingForm = ({
     <div>
       <div
         className="wrapper"
-        // onMouseEnter={() => {
-        // 	setActive(true);
-        // }}
-        // onMouseLeave={() => {
-        // 	setActive(false);
-        // }}
+      // onMouseEnter={() => {
+      // 	setActive(true);
+      // }}
+      // onMouseLeave={() => {
+      // 	setActive(false);
+      // }}
       >
         <form
           className={
@@ -345,7 +345,7 @@ const BookingForm = ({
               }}
               value={event}
               displayEmpty
-              // defaultValue={new Date().toISOString().split("T")[0]}
+            // defaultValue={new Date().toISOString().split("T")[0]}
             >
               {locationData?.pricing?.corporate?.isPresent && (
                 <MenuItem value="Corporate">Corporate</MenuItem>
@@ -478,6 +478,15 @@ const BookingForm = ({
                   {
                     // console.log("static")
                   }
+                  <MenuItem value="01:00 am">01:00 am</MenuItem>
+                  <MenuItem value="02:00 am">02:00 am</MenuItem>
+                  <MenuItem value="03:00 am">03:00 am</MenuItem>
+                  <MenuItem value="04:00 am">04:00 am</MenuItem>
+                  <MenuItem value="05:00 am">05:00 am</MenuItem>
+                  <MenuItem value="06:00 am">06:00 am</MenuItem>
+                  <MenuItem value="07:00 am">07:00 am</MenuItem>
+                  <MenuItem value="08:00 am">08:00 am</MenuItem>
+                  <MenuItem value="09:00 am">09:00 am</MenuItem>
                   <MenuItem value="10:00 am">10:00 am</MenuItem>
                   <MenuItem value="11:00 am">11:00 am</MenuItem>
                   <MenuItem value="12:00 pm">12:00 pm</MenuItem>
@@ -493,15 +502,6 @@ const BookingForm = ({
                   <MenuItem value="10:00 pm">10:00 pm</MenuItem>
                   <MenuItem value="11:00 pm">11:00 pm</MenuItem>
                   <MenuItem value="12:00 pm">12:00 pm</MenuItem>
-                  <MenuItem value="01:00 am">01:00 am</MenuItem>
-                  <MenuItem value="02:00 am">02:00 am</MenuItem>
-                  <MenuItem value="03:00 am">03:00 am</MenuItem>
-                  <MenuItem value="04:00 am">04:00 am</MenuItem>
-                  <MenuItem value="05:00 am">05:00 am</MenuItem>
-                  <MenuItem value="06:00 am">06:00 am</MenuItem>
-                  <MenuItem value="07:00 am">07:00 am</MenuItem>
-                  <MenuItem value="08:00 am">08:00 am</MenuItem>
-                  <MenuItem value="09:00 am">09:00 am</MenuItem>
                 </Select>
               )}
             </div>

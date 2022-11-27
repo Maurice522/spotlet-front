@@ -145,7 +145,7 @@ const Photo = ({ showSection, changeSection }) => {
         <div className="row1">
           <div className="uploadImage">
             <div className="button1" onClick={handleClick}>
-              <h2>Select Image</h2>
+              <h2>Browse Image</h2>
               <input
                 type="file"
                 accept="image/*"

@@ -12,6 +12,8 @@ import {
 } from "@mui/icons-material";
 import {
 	Button,
+	Checkbox,
+	FormControlLabel,
 	IconButton,
 	InputAdornment,
 	MenuItem,
@@ -336,6 +338,25 @@ export default function Auth() {
 								required
 							/>
 							<br />
+							{
+								!isSignIn &&
+								<div>
+									<FormControlLabel
+										control={
+											<Checkbox
+												sx={{
+													color: "#ea4235",
+													"&.Mui-checked": {
+														color: "#ea4235",
+													},
+												}}
+											/>
+										}
+										label="I agree to the Term and Conditions"
+									/>
+								</div>
+							}
+
 							{valid ? (isSignIn ? "" : <p>Should contain minimum 8 characters</p>) : <p style={{ color: "red" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
 							<Button
 								type="submit"

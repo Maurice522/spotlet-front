@@ -108,7 +108,7 @@ const PropertyInfo = ({
           {/* {review && <div className="type-of-property-icon">{item.icon}</div>} */}
         </div>
         <div className="property-info--cards">
-          <div className="property-info-heading">{item?.location_id}</div>
+          <div className="property-info-heading">#{item?.location_id}</div>
 
           {/* <div className="property-info-location">
             {item?.property_address?.city}

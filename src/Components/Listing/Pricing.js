@@ -76,27 +76,6 @@ const Pricing = ({ showSection, changeSection }) => {
 
 			<div className="coll1">
 				<div className="row1">
-					<h1>Cleaning Fee
-						<span style={{ color: "red" }}>
-							*
-						</span>
-					</h1>
-					<TextField
-						required
-						type="text"
-						// label="Cleaning Fee"
-						name="cleaningFee"
-						variant="outlined"
-						size="small"
-						onChange={(e) => setCleaningFee(e.target.value)}
-					/>
-				</div>
-			</div>
-			<hr />
-			<br />
-
-			<div className="coll1">
-				<div className="row1">
 					<h1>Film/ Ad Film/ Web Series Shoot</h1>
 					<Switch
 						onClick={() => setfilm({ ...film, isPresent: !film.isPresent })}
@@ -310,6 +289,26 @@ const Pricing = ({ showSection, changeSection }) => {
 			) : (
 				""
 			)}
+			<hr />
+			<br />
+			<div className="coll1">
+				<div className="row1">
+					<h1>Cleaning Fee
+						<span style={{ color: "red" }}>
+							*
+						</span>
+					</h1>
+					<TextField
+						required
+						type="text"
+						// label="Cleaning Fee"
+						name="cleaningFee"
+						variant="outlined"
+						size="small"
+						onChange={(e) => setCleaningFee(e.target.value)}
+					/>
+				</div>
+			</div>
 			<hr />
 			<div className="row1">
 				<div className="coll1">

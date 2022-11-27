@@ -13,31 +13,31 @@ import "../../Assets/Styles/listYourSpace.css";
 import Select from "react-select";
 
 const options = [
-  
-    {value:"01:00 pm", label:"01:00 pm"},
-    {value:"02:00 pm", label:"02:00 pm"},
-    {value:"03:00 pm", label:"03:00 pm"},
-    {value:"04:00 pm", label:"04:00 pm"},
-    {value:"05:00 pm", label:"05:00 pm"},
-    {value:"06:00 pm", label:"06:00 pm"},
-    {value:"07:00 pm", label:"07:00 pm"},
-    {value:"08:00 pm", label:"08:00 pm"},
-    {value:"09:00 pm", label:"09:00 pm"},
-    {value:"10:00 pm", label:"10:00 pm"},
-    {value:"11:00 pm", label:"11:00 pm"},
-    {value:"12:00 pm", label:"12:00 pm"},
-    {value:"01:00 am", label:"01:00 am"},
-    {value:"02:00 am", label:"02:00 am"},
-    {value:"03:00 am", label:"03:00 am"},
-    {value:"04:00 am", label:"04:00 am"},
-    {value:"05:00 am", label:"05:00 am"},
-    {value:"06:00 am", label:"06:00 am"},
-    {value:"07:00 am", label:"07:00 am"},
-    {value:"08:00 am", label:"08:00 am"},
-    {value:"09:00 am", label:"09:00 am"},
-    {value:"10:00 am", label:"10:00 am"},
-    {value:"11:00 am", label:"11:00 am"},
-    {value:"12:00 am", label:"12:00 am"},
+
+  { value: "01:00 am", label: "01:00 am" },
+  { value: "02:00 am", label: "02:00 am" },
+  { value: "03:00 am", label: "03:00 am" },
+  { value: "04:00 am", label: "04:00 am" },
+  { value: "05:00 am", label: "05:00 am" },
+  { value: "06:00 am", label: "06:00 am" },
+  { value: "07:00 am", label: "07:00 am" },
+  { value: "08:00 am", label: "08:00 am" },
+  { value: "09:00 am", label: "09:00 am" },
+  { value: "10:00 am", label: "10:00 am" },
+  { value: "11:00 am", label: "11:00 am" },
+  { value: "12:00 am", label: "12:00 am" },
+  { value: "01:00 pm", label: "01:00 pm" },
+  { value: "02:00 pm", label: "02:00 pm" },
+  { value: "03:00 pm", label: "03:00 pm" },
+  { value: "04:00 pm", label: "04:00 pm" },
+  { value: "05:00 pm", label: "05:00 pm" },
+  { value: "06:00 pm", label: "06:00 pm" },
+  { value: "07:00 pm", label: "07:00 pm" },
+  { value: "08:00 pm", label: "08:00 pm" },
+  { value: "09:00 pm", label: "09:00 pm" },
+  { value: "10:00 pm", label: "10:00 pm" },
+  { value: "11:00 pm", label: "11:00 pm" },
+  { value: "12:00 pm", label: "12:00 pm" },
 
 ];
 
@@ -192,7 +192,7 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     options={options}
-                    />
+                  />
                 </div>
               </>
             ) : (
@@ -236,7 +236,7 @@ const Timing = ({ showSection, changeSection }) => {
             {tuesday.isSetHours === true ? (
               <>
                 <div className="row1">
-                <Select
+                  <Select
                     required
                     id="start-time"
                     name="start-time"
@@ -315,7 +315,7 @@ const Timing = ({ showSection, changeSection }) => {
             {wednesday.isSetHours === true ? (
               <>
                 <div className="row1">
-                <Select
+                  <Select
                     required
                     id="start-time"
                     name="start-time"
@@ -471,7 +471,7 @@ const Timing = ({ showSection, changeSection }) => {
             {friday.isSetHours === true ? (
               <>
                 <div className="row1">
-                <Select
+                  <Select
                     required
                     id="start-time"
                     name="start-time"
@@ -485,7 +485,7 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     options={options}
-                    />
+                  />
                   <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
                   <Select
                     required
@@ -501,7 +501,7 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     options={options}
-                    />
+                  />
                 </div>
               </>
             ) : (
@@ -550,7 +550,7 @@ const Timing = ({ showSection, changeSection }) => {
             {saturday.isSetHours === true ? (
               <>
                 <div className="row1">
-                <Select
+                  <Select
                     required
                     id="start-time"
                     name="start-time"
@@ -625,7 +625,7 @@ const Timing = ({ showSection, changeSection }) => {
             {sunday.isSetHours === true ? (
               <>
                 <div className="row1">
-                <Select
+                  <Select
                     required
                     id="start-time"
                     name="start-time"

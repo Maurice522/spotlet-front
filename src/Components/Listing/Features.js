@@ -155,7 +155,7 @@ const Features = ({ showSection, changeSection }) => {
             Features<span style={{ color: "red" }}>*</span>
           </h2>
           <CheckboxDropdownComponent
-            displayText="Select Amenities"
+            displayText="Select Features"
             options={options}
             onChange={(option) => {
               if (!checkboxValue.includes(option)) {
