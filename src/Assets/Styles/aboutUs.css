@@ -159,3 +159,65 @@
     font-size: 12px !important;
   }
 }
+
+.image-box1-overlay {
+  position: relative;
+  top: 15%;
+  left: 20%;
+  width: 320px;
+  height: 320px;
+  background-color: #ff6767;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.image-box {
+  position: absolute;
+  top: -30px;
+  left: -28px;
+  width: 320px;
+  height: 320px;
+  background-color: #d9d9d9;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.image-box2-overlay {
+  position: relative;
+  top: 15%;
+  left: 10%;
+  width: 330px;
+  height: 330px;
+  background-color: #ff6767;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+@media screen and (max-width: 576px) {
+  .content-with-image1 {
+    grid-template-columns: 1fr;
+  }
+  .content-with-image-2 {
+    gap: 0px;
+  }
+
+  .image-box1-overlay,
+  .image-box2-overlay,
+  .image-box {
+    width: 250px !important;
+    height: 250px !important;
+  }
+  .image-box1-overlay,
+  .image-box2-overlay {
+    margin: 20px 0px;
+  }
+  .about-us-content {
+    box-sizing: border-box;
+    padding: 30px;
+    width: 100%;
+  }
+  .image-box1-overlay {
+    left: 10%;
+    margin-bottom: 60px;
+    margin-top: -15px;
+  }
+  .buttonHover1,
+  .buttonHover {
+    width: 200px !important;
+  }
+}

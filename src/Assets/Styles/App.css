@@ -1,31 +1,31 @@
 * {
-	margin: 0;
-	padding: 0;
-	user-select: none;
+  margin: 0;
+  padding: 0;
+  user-select: text;
 }
 
 .primary-heading {
-	font-style: normal;
-	font-weight: 500;
-	font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
 }
 
 .secondary-heading {
-	font-style: normal;
-	font-weight: 600;
-	font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .text {
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .inter {
-	font-family: "Inter";
+  font-family: "Inter";
 }
 
 .rubik {
-	font-family: "Rubik";
+  font-family: "Rubik";
 }
