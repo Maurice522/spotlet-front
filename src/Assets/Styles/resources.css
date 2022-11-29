@@ -1,52 +1,60 @@
 .myMessage {
-	text-align: center;
-	right: 40px;
-	margin-top: 7.5%;
-	color: white;
-	font-weight: 800;
-	font-size: 3rem;
+  text-align: center;
+  right: 40px;
+  margin-top: 7.5%;
+  color: white;
+  font-weight: 800;
+  font-size: 3rem;
 }
 .container {
-	width: 82%;
-	margin: auto;
-	margin-top: 5%;
-	box-sizing: border-box;
+  width: 82%;
+  margin: auto;
+  margin-top: 5%;
+  box-sizing: border-box;
 }
 .Div1 {
-	width: 49.5%;
-	box-sizing: border-box;
-	display: inline-block;
-	/* border: 1px solid black; */
-	padding: 3%;
+  width: 49.5%;
+  box-sizing: border-box;
+  display: inline-block;
+  /* border: 1px solid black; */
+  padding: 3%;
 }
 .resoourceImg {
-	height: 350px;
-	width: 100%;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: 350px;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  object-fit: cover;
 }
 .resourceContent h3 {
-	margin-top: 4%;
+  margin-top: 4%;
 }
 .resourceContent p {
-	margin-top: 4%;
-	line-height: 1.2;
+  margin-top: 4%;
+  line-height: 1.2;
 }
 .readmore {
-	color: red;
+  color: red;
+}
+
+@media screen and (max-width: 576px) {
+  .myMessage {
+    font-size: 30px;
+    width: 80%;
+    margin: auto;
+  }
 }
 
 /* *************************individual Resource********************** */
-.singleBlogContent{
-	width: 80%;
-	margin: auto;
-	line-height: 24px;
-	text-align: justify;
-	margin-top:2%;
-	margin-bottom: 16%;
+.singleBlogContent {
+  width: 80%;
+  margin: auto;
+  line-height: 24px;
+  text-align: justify;
+  margin-top: 2%;
+  margin-bottom: 16%;
 }
-.singleBlogContent h1{
-	font-weight: 600;
-	font-size: 30px;
-	margin-bottom:5%;
+.singleBlogContent h1 {
+  font-weight: 600;
+  font-size: 30px;
+  margin-bottom: 5%;
 }
-

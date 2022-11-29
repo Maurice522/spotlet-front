@@ -220,4 +220,10 @@
   .buttonHover {
     width: 200px !important;
   }
+  .about-us-bottom-text {
+    grid-template-columns: 1fr;
+  }
+  .about-us-message {
+    font-size: 30px;
+  }
 }

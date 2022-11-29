@@ -1,40 +1,43 @@
-.text-only-container{
-	width: 80%;
-	margin: auto !important;
-	text-align: justify;
-	margin-top: 8% !important;
+.text-only-container {
+  width: 80%;
+  margin: auto !important;
+  text-align: justify;
+  margin-top: 8% !important;
 }
 .text-only-main-heading {
-	font-family: "Rubik";
-	font-style: normal;
-	font-weight: 700;
-	font-size: 31px;
-	margin-top: 3%;
-	line-height: 64px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 31px;
+  margin-top: 3%;
+  line-height: 64px;
 }
 
 .text-only-heading {
-	font-family: "Rubik";
-	font-style: normal;
-	font-weight: 500;
-	font-size: 25px;
-	line-height: 44px;
-	color: #ff6767;
-	margin-top: 5%;
-	font-weight: 500;
-
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 44px;
+  color: #ff6767;
+  margin-top: 5%;
+  font-weight: 500;
 }
 
 .text-only-info {
-	font-family: "Rubik";
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 36px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 36px;
 }
 
 .text-only-item {
-	margin: 20px 0;
+  margin: 20px 0;
 }
 
-
+@media screen and (max-width: 576px) {
+  .text-only-main-heading {
+    margin-top: 100px;
+  }
+}

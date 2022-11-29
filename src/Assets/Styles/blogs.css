@@ -1,105 +1,108 @@
 .myMessage {
-	text-align: center;
-	right: 70px;
-	margin-top: 5.3%;
-	color: white;
-	font-weight: 800;
-	font-size: 3rem;
+  text-align: center;
+  right: 70px;
+  margin-top: 5.3%;
+  color: white;
+  font-weight: 800;
+  font-size: 3rem;
 }
 .container {
-	width: 88%;
-	margin: auto;
-	/* background-color: beige; */
-	margin-top: 5%;
-	box-sizing: border-box;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 .Div1 {
-	width: 33%;
-	height: 20%;
-	box-sizing: border-box;
-	display: inline-block;
-	/* border: 1px solid black; */
-	padding: 2%;
+  width: 33%;
+  box-sizing: border-box;
+  display: inline-block;
+  /* border: 1px solid black; */
+  padding: 2%;
+}
+@media screen and (max-width: 576px) {
+  .Div1 {
+    width: 100% !important;
+  }
 }
 .resoourceImg {
-	height: 300px;
-	width: 100%;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: 300px;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .resourceContent h3 {
-	margin-top: 4%;
+  margin-top: 4%;
 }
 .resourceContent p {
-	margin-top: 4%;
-	line-height: 1.2;
+  margin-top: 4%;
+  line-height: 1.2;
 }
 .readmore {
-	color: red;
+  color: red;
 }
 .resourceContent > a {
-	text-decoration: none;
-	color: red;
+  text-decoration: none;
+  color: red;
 }
 
 .singleBlogContent {
-	width: 90%;
-	margin: 25px auto;
+  width: 90%;
+  margin: 25px auto;
 }
 .reactions {
-	display: flex;
-	gap: 20px;
-	width: 69%;
-	margin: 10px auto;
-	justify-content: flex-start;
-	align-items: center;
+  display: flex;
+  gap: 20px;
+  width: 69%;
+  margin: 10px auto;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .singleBlogContent > h1 {
-	margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .comments {
-	width: 64%;
-    margin: 1% auto 2% auto ;
-    border: 2px solid #ea4235;
-    padding: 27px 3%;
-    border-radius: 10px;
+  width: 64%;
+  margin: 1% auto 2% auto;
+  border: 2px solid #ea4235;
+  padding: 27px 3%;
+  border-radius: 10px;
 }
 
 .comment-header {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .comment-input-field {
-	width: 100%;
-	display: flex;
-	gap: 10px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
 }
 
 .userCommentSection {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
 }
 
 .comment {
-	margin: 20px 0;
+  margin: 20px 0;
 }
 
 .comment-body {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-    font: inherit;
-    letter-spacing: inherit;
-    color: currentColor;
-    padding: 4px 0 5px;
-    border: 0;
-    box-sizing: content-box;
-    background: none;
-    height: 11px;
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 11px;
 }

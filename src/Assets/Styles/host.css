@@ -1,35 +1,56 @@
 .become-host-heading {
-	font-family: "Rubik";
-	font-style: normal;
-	font-weight: 600;
-	font-size: 28px;
-	line-height: 56px;
-	width: fit-content;
-	margin: 10% auto 3% auto;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 56px;
+  width: fit-content;
+  margin: 10% auto 3% auto;
 }
 
 .become-host-steps {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	width: 80%;
-	margin: 50px auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  margin: 50px auto;
 }
 
 .become-host-steps > div {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
 }
 .host-message {
-    color: white;
-    position: absolute;
-    top: 25%;
-    left: 93px;
-    right: 200px;
-    font-family: "Rubik Bold";
-    font-size: 64px;
-    font-weight: 500;
-    line-height: 140%;
+  color: white;
+  position: absolute;
+  top: 25%;
+  left: 93px;
+  right: 200px;
+  font-family: "Rubik Bold";
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+@media screen and (max-width: 576px) {
+  .host-message {
+    font-size: 25px;
+    width: 100%;
+    left: 8%;
+    top: 35%;
+  }
+  .become-host-heading {
+    padding: 20px;
+    font-size: 22px;
+  }
+  .become-host-steps {
+    margin: 10px auto !important;
+  }
+  .host-steps-text-wrap {
+    font-size: 12px;
+    text-align: center;
+  }
 }

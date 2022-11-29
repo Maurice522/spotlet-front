@@ -1,23 +1,28 @@
 .general-form {
-	width: 70%;
-	margin: 20px auto 50px auto;
-	border: 1px solid #ff6767;
-	padding: 10px 30px;
-	border-radius: 10px;
+  width: 70%;
+  margin: 20px auto 50px auto;
+  border: 1px solid #ff6767;
+  padding: 10px 30px;
+  border-radius: 10px;
 }
 
 .general-form > div {
-	width: 90%;
-	margin: 20px 0;
+  width: 90%;
+  margin: 20px 0;
 }
 
 .general-form > span {
-	display: block;
-	margin: 40px auto 20px auto;
-	display: flex;
-	justify-content: center;
+  display: block;
+  margin: 40px auto 20px auto;
+  display: flex;
+  justify-content: center;
 }
 
 .form-heading {
-	text-align: center;
+  text-align: center;
+}
+@media screen and (max-width: 576px) {
+  .form-heading {
+    padding: 0px 20px;
+  }
 }

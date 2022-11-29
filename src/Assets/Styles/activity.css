@@ -1,24 +1,33 @@
 .activity-container {
-	display: grid;
-	width: 80vw;
-	grid-template-columns: repeat(4, 1fr);
-	font-family: "Rubik";
-	font-size: 18px;
-	margin: 20px auto;
-	row-gap: 20px;
+  display: grid;
+  width: 80vw;
+  grid-template-columns: repeat(4, 1fr);
+  font-family: "Rubik";
+  font-size: 18px;
+  margin: 20px auto;
+  row-gap: 20px;
 }
 
 .activity-container > h1 {
-	font-weight: 700;
-	grid-column: 1 / span 4;
-	font-size: 28px;
-	margin-bottom: 20px;
+  font-weight: 700;
+  grid-column: 1 / span 4;
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
 .activity-item {
-	grid-column: 1 / span 4;
-	font-size: 24px;
-	font-weight: 600;
-	margin-bottom: 10px;
-	margin-top: 20px;
+  grid-column: 1 / span 4;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 576px) {
+  .activity-container {
+    gap: 12px;
+  }
+  .activity-item ~ div {
+    font-size: 13px;
+  }
 }
