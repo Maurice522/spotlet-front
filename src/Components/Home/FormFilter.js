@@ -154,9 +154,10 @@ const FormFilter = ({
       style={
         fullScreen === true
           ? {
-              width: "98.7vw",
-              borderRadius: "0",
+              width: "78.7vw",
+              borderRadius: "12px",
               marginTop: "10px",
+              // boxShadow:
             }
           : {}
       }
@@ -167,7 +168,7 @@ const FormFilter = ({
           fullScreen === true
             ? {
                 width: "99%",
-                borderRadius: "0",
+                borderRadius: "12px",
               }
             : {}
         }

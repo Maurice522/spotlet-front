@@ -28,7 +28,7 @@ const PropertyInfo = ({
   useEffect(() => {
     if (x.matches) setStarSize("15px");
     else setStarSize("18px");
-  }, []);
+  }, [x]);
 
   useEffect(() => {
     const updateFav = async () => {
@@ -56,9 +56,11 @@ const PropertyInfo = ({
   return (
     <div
       className="item"
-      style={{
-        border: border && "1px solid #00aaff",
-      }}
+      style={
+        {
+          // border: border && "1px solid #00aaff",
+        }
+      }
     >
       <div className="favorite-icon-wrapper">
         {favPage === true ? (
@@ -100,11 +102,18 @@ const PropertyInfo = ({
         }}
       >
         <div className="text-on-image-container-2">
-          <img
-            src={item?.imagesData[0]?.image}
-            alt={`property-${item.location_id}`}
+          <div
             className="property-image"
-          />
+            style={{ backgroundColor: "#fcfcfc" }}
+          >
+            {item?.imagesData[0]?.image && (
+              <img
+                src={item?.imagesData[0]?.image}
+                alt={`property-${item.location_id}`}
+                className="property-image"
+              />
+            )}
+          </div>
           {/* {review && <div className="type-of-property-icon">{item.icon}</div>} */}
         </div>
         <div className="property-info--cards">

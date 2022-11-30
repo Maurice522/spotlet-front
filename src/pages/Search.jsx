@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import FormFilter from "../Components/Home/FormFilter";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
@@ -98,7 +98,7 @@ const Search = () => {
 
       const res = response.data;
       const result = res.locations;
-      // console.log(result);
+      console.log(result);
       setPropertiesDetail(result);
     };
     getAllLocations();
@@ -175,17 +175,32 @@ const Search = () => {
     }
   }
 
-  useEffect(() => {
-    setPageData(fillData(sortedProperties, 5));
-  }, [sortedProperties]);
+  // useEffect(() => {
+  //   setPageData(fillData(sortedProperties, 5));
+  // }, [sortedProperties]);
 
-  const handlePageIndex = (index) => {
-    if (!pageData[index]) return toast.error("More locations cannot be found");
-    setPageIndex(index);
-  };
+  // const handlePageIndex = (index) => {
+  //   if (!pageData[index]) return toast.error("More locations cannot be found");
+  //   setPageIndex(index);
+  // };
 
   // console.log(searchEvent, sort);
   // console.log(sortedProperties);
+
+  // total no of propertyDetails are avaiable  =propertyDetails.length
+  // const propertyDetailsCount = propertyDetails?.length;
+
+  const MaxPropertyAtPage = 15; //this can be modiefied according to the user choice
+  const totalPageCount = Math.ceil(propertyDetails?.length / MaxPropertyAtPage);
+  const [currentPage, setCurrentPage] = useState(1);
+  // console.log(totalPageCount);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * MaxPropertyAtPage;
+    const lastPageIndex = firstPageIndex + MaxPropertyAtPage;
+    return propertyDetails.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, propertyDetails]);
+
   return (
     <>
       <Navbar extraNavId="id-2" />
@@ -420,7 +435,8 @@ const Search = () => {
         Locations Found
       </h2>
       <div className="search-property-list">
-        {pageData[pageIndex]?.map((item, index) => {
+        {/* {pageData[pageIndex]?.map((item, index) => { */}
+        {currentTableData?.map((item, index) => {
           if (!item) return null;
           if (
             searchEvent == "all" &&
@@ -598,7 +614,7 @@ const Search = () => {
         })}
       </div>
       <div className="paginated-container">
-        {Array(8)
+        {/* {Array(8)
           .fill(0)
           .map((item, id) => {
             return (
@@ -606,6 +622,22 @@ const Search = () => {
                 key={id}
                 className={`paginated-box ${id === pageIndex && "active"}`}
                 onClick={() => handlePageIndex(id)}
+              >
+                {id + 1}
+              </div>
+            );
+          })} */}
+        {/* pagination  */}
+        {Array(totalPageCount)
+          .fill(0)
+          .map((item, id) => {
+            return (
+              <div
+                key={id}
+                className={`paginated-box ${
+                  id + 1 === currentPage && "active"
+                }`}
+                onClick={() => setCurrentPage(id + 1)}
               >
                 {id + 1}
               </div>

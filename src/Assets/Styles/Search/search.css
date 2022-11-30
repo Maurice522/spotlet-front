@@ -34,33 +34,36 @@
   color: black;
   cursor: pointer;
 }
+
 .paginated-box.active {
   border: 1px solid red;
 }
+
 .item {
-  padding: 3px;
+  padding: 5px;
   border-radius: 10px;
   transform: scale(1);
   transition-duration: 0.5s;
-  border: 2px solid rgb(3, 218, 247);
+  /* border: 2px solid rgb(3, 218, 247); */
   width: 95%;
 }
 
 .item:hover {
-  transform: scale(1.1);
-  transition-duration: 0.5s;
+  transform: scale(1.05);
+  transition: 0.5s ease-in-out;
 }
 
 .property-info-cards {
-  padding: 0 4px;
+  /* padding: 0 4px; */
 }
 
 .property-info-heading {
   font-family: "Inter";
   font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: 400;
+  font-size: 1rem;
   line-height: 32px;
+  text-transform: uppercase;
 }
 
 .property-info-location {
@@ -71,7 +74,7 @@
   line-height: 24px;
   justify-content: flex-start !important;
   flex-direction: row-reverse !important;
-  gap: 0.5rem !important;
+  /* gap: 0.5rem !important; */
 }
 
 .property-info-price {
@@ -311,7 +314,10 @@
     font-size: 14px;
     line-height: 24px;
   }
-
+  .item:hover {
+    transform: scale(1);
+    /* transition-duration: 0.5s; */
+  }
   .property-info-location {
     font-size: 12px;
   }

@@ -1,0 +1,122 @@
+.career_page {
+  margin: 9rem auto 4rem;
+  width: 80%;
+  display: flex;
+  gap: 7rem;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.careerPage_article1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+}
+
+.career_heading {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.career_heading2 {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.careerPage_article_info {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  /* flex-grow: 1; */
+  gap: 1rem;
+}
+
+.careerPage_article_sub_info {
+  display: flex;
+}
+
+.CareerPage_image_main {
+  flex-grow: 1;
+  /* align-self: flex-end; */
+}
+
+.CareerPage_image_red {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  background-color: #ff6767;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.CareerPage_image,
+.CareerPage_image > img {
+  width: 100%;
+  height: 100%;
+}
+
+.CareerPage_image {
+  position: absolute;
+  top: -30px;
+  left: -28px;
+  background-color: #d9d9d9;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.career_btn {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  gap: 3rem;
+}
+
+@media screen and (max-width: 992px) {
+  .careerPage_article1 {
+    flex-direction: column-reverse;
+    width: 100%;
+    gap: 2rem;
+  }
+  .CareerPage_image_red {
+    margin: 0 auto;
+    width: 65%;
+  }
+  .careerPage_article_info {
+    width: 100%;
+  }
+  .careerPage_article2 {
+    flex-direction: column;
+    width: 100%;
+    gap: 3rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .career_page {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .CareerPage_image_red {
+    margin: 0 auto;
+    width: 90%;
+  }
+  .CareerPage_image {
+    left: -5px;
+    top: -5px;
+    width: 95%;
+    height: 95%;
+    margin: auto auto;
+  }
+
+  .careerPage_article_sub_info {
+    flex-direction: column;
+  }
+
+  .career_btn {
+    width: 100%;
+    margin-top: 2rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

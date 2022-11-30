@@ -1,90 +1,88 @@
 * {
-	font-family: "Rubik" !important;
+  font-family: "Rubik" !important;
 }
 
 .text-on-image-container {
-	max-width: 100vw;
-	position: relative;
-	z-index: -1;
+  max-width: 100vw;
+  position: relative;
+  z-index: -1;
 }
 
 .bg-image {
-	width: 100%;
-	height: 77vh;
-	padding: 0;
+  width: 100%;
+  height: 77vh;
+  padding: 0;
 }
 
-
 .darken {
-	filter: brightness(50%);
+  filter: brightness(50%);
 }
 
 .message {
-	color: white;
-	position: absolute;
-	top: 25%;
-	left: 100px;
-	right: 200px;
-	font-family: "Rubik Bold";
-	/* font-style: normal;
+  color: white;
+  position: absolute;
+  top: 25%;
+  left: 100px;
+  right: 200px;
+  font-family: "Rubik Bold";
+  /* font-style: normal;
 	font-weight: 600; */
-	font-size: 64px;
-	line-height: 140%;
+  font-size: 64px;
+  line-height: 140%;
 }
 
 .host-message {
-	width: 50%;
+  width: 50%;
 }
 
 .message-btn {
-	color: white;
-	position: absolute;
-	bottom: 20%;
-	left: 100px;
+  color: white;
+  position: absolute;
+  bottom: 20%;
+  left: 100px;
 }
 
 .colored {
-	color: #ff6767;
-	font-style: normal;
-	font-weight: 600;
+  color: #ff6767;
+  font-style: normal;
+  font-weight: 600;
 }
 
-.fav-image{
-	height: 69vh;
+.fav-image {
+  height: 69vh;
 }
 
-
-@media screen and (max-width: 992px){
-	.bg-image {
-		height: 70vh;
-	}
-	.message {
-		top: 30%;
-		font-size: 48px;
-	}
+@media screen and (max-width: 992px) {
+  .bg-image {
+    height: 70vh;
+  }
+  .message {
+    top: 30%;
+    font-size: 48px;
+  }
 }
 
-@media screen and (max-width: 768px){
-	.bg-image {
-		height: 80vh;
-	}
-	.message {
-		top: 35%;
-		font-size: 36px;
-	}
+@media screen and (max-width: 768px) {
+  .bg-image {
+    height: 80vh;
+  }
+  .message {
+    top: 35%;
+    font-size: 36px;
+  }
 }
 
-@media screen and (max-width: 576px){
-	.bg-image {
-		height: 15rem;
-	}
-	.fav-image{
-		height: 39vh;
-	}
-	.message {
-		width: 70%;
-		top: 40%;
-		font-size: 21px;
-		left: 25px;
-	}
+@media screen and (max-width: 576px) {
+  .bg-image {
+    height: 15rem;
+  }
+  .fav-image {
+    height: 39vh;
+  }
+  .message {
+    width: 70%;
+    top: 40%;
+    font-size: 21px;
+    left: 25px;
+  }
 }

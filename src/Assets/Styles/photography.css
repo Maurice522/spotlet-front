@@ -1,124 +1,127 @@
 .myMessage {
-	color: white;
-	text-align: center;
-	right: 100px;
-	margin-top: 150px;
+  color: white;
+  text-align: center;
+  right: 100px;
+  margin-top: 150px;
 }
 .subtextBanner {
-	font-size: 1.9rem;
-	line-height: 2;
-	margin-top: 2%;
+  font-size: 1.9rem;
+  line-height: 2;
+  margin-top: 2%;
 }
 .container1,
 .container2 {
-	/* background-color: aqua; */
-	margin-top: 11%;
-	position: relative;
+  /* background-color: aqua; */
+  margin-top: 11%;
+  position: relative;
 }
+
 .leftContainer1 {
-	width: 45%;
-	display: inline-block;
-	/* background-color: bisque; */
+  width: 45%;
+  display: inline-block;
+  /* background-color: bisque; */
 }
 .contentLeftContainer {
-	width: 35%;
-	display: inline-block;
-	position: absolute;
-	top: 16%;
-	left: 13%;
+  width: 35%;
+  display: inline-block;
+  position: absolute;
+  top: 16%;
+  left: 13%;
 }
 .contentLeftContainerSubtext,
 .contentRightContainerSubtext {
-	margin-top: 3%;
-	text-align: justify;
-	line-height: 2;
+  margin-top: 3%;
+  text-align: justify;
+  line-height: 2;
 }
 .rightContainer1 {
-	width: 45%;
-	display: inline-block;
+  width: 45%;
+  display: inline-block;
 }
 .colouredbg {
-	background-color: #ff6767;
-	height: 350px;
-	width: 70%;
-	margin-left: 24%;
-	position: relative;
+  background-color: #ff6767;
+  height: 350px;
+  width: 70%;
+  margin-left: 24%;
+  position: relative;
 }
 .container1Img {
-	height: 350px;
-	width: 100%;
-	position: absolute;
-	bottom: 8%;
-	right: 15%;
+  height: 350px;
+  width: 100%;
+  position: absolute;
+  bottom: 8%;
+  right: 15%;
 }
 .rightContainer2 {
-	width: 45%;
-	display: inline-block;
-	/* background-color: bisque; */
+  width: 45%;
+  display: inline-block;
+  /* background-color: bisque; */
 }
 .contentRightContainer {
-	width: 35%;
-	display: inline-block;
-	position: absolute;
-	top: 16%;
-	right: 7%;
+  width: 35%;
+  display: inline-block;
+  position: absolute;
+  top: 16%;
+  right: 7%;
 }
 .contenRightContainerSubtext {
-	margin-top: 3%;
-	line-height: 2;
+  margin-top: 3%;
+  line-height: 2;
 }
 .leftContainer2 {
-	width: 45%;
-	display: inline-block;
+  width: 45%;
+  display: inline-block;
 }
 .container1Img {
-	height: 350px;
-	width: 100%;
-	position: absolute;
-	bottom: 9%;
-	left: 8%;
+  height: 350px;
+  width: 100%;
+  position: absolute;
+  bottom: 9%;
+  left: 8%;
 }
 .faqSection {
-	margin-top: 8%;
-	text-align: center;
-	margin-bottom: 50px;
+  margin-top: 8%;
+  text-align: center;
+  margin-bottom: 50px;
 }
 .faqSection h1 {
-	font-weight: 800;
-	/* margin-bottom: 3%; */
+  font-weight: 800;
+  /* margin-bottom: 3%; */
 }
 .faqContent {
-	text-align: left;
-	/* background-color: beige; */
-	width: 70%;
-	margin: auto;
+  text-align: left;
+  /* background-color: beige; */
+  width: 70%;
+  margin: auto;
 }
 .faqContent h2 {
-	font-weight: 800;
-	margin-bottom: 3%;
-	margin-top: 5%;
-	position: relative;
+  font-weight: 800;
+  margin-bottom: 3%;
+  margin-top: 5%;
+  position: relative;
 }
 .faqContent p {
-	text-align: justify;
-	line-height: 1.5;
-	margin-top: 1%;
-	margin-bottom: 1%;
+  text-align: justify;
+  line-height: 1.5;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 .faqContentPAddClass {
-	display: none;
+  display: none;
 }
 .dropDownArrow {
-	position: absolute;
-	right: 0%;
-	top: 3%;
+  position: absolute;
+  right: 0%;
+  top: 3%;
 }
 
 .help-info {
-	width: 80%;
-	margin: 50px auto;
+  width: 80%;
+  margin: 50px auto;
 }
 
 .help-info > h1 {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
+
+/* responsive  */
