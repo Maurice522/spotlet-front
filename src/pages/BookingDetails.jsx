@@ -174,7 +174,7 @@ const BookingDetails = () => {
       console.log(error);
     }
   };
-  console.log(userData);
+  console.log(booking);
   return (
     <div>
       <Navbar extraNavId="id-2" />
@@ -348,7 +348,7 @@ const BookingDetails = () => {
             </span>
           </div>
           <div className="booking-details-body">
-            <div className="item-heading" style={{ width: "30%" }}>
+            <div className="item-heading" style={{ width: "max-content" }}>
               Message to the host:{" "}
             </div>
             <div className="item-info">{booking?.user_data?.message}</div>

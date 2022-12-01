@@ -191,9 +191,13 @@ const ListDetails = ({ setFinal }) => {
               padding: "0px 20px",
             }}
           >
-            <BiArrowBack size="24px" style={{cursor: "pointer"}} onClick={() => {
-              navigate("/bookinglist/:listing");
-            }} />
+            <BiArrowBack
+              size="24px"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                navigate("/bookinglist/:listing");
+              }}
+            />
             <img
               src={locationData?.imagesData?.at(0).image}
               alt="property"
@@ -220,7 +224,7 @@ const ListDetails = ({ setFinal }) => {
         <Box
           sx={{
             width: "90vw",
-            height: "80vh",
+            maxheight: "80vh",
             margin: "40px auto",
             // "& .super-app-theme--header": {
             // 	backgroundColor: "rgba(255, 7, 0, 0.55)",
@@ -234,9 +238,8 @@ const ListDetails = ({ setFinal }) => {
         </Box>
 
         <div style={{ padding: x.matches ? "0px 20px" : "0px 60px" }}>
-            <EditPricing location={locationData} />
-          </div>
-          
+          <EditPricing location={locationData} />
+        </div>
       </div>
       <Footer />
     </div>

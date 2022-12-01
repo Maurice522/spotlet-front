@@ -38,7 +38,7 @@ const SyncfusionTable = ({ UsersData, UsersGrid, content }) => {
       {content == "Notifications" ? (
         <div style={{ fontSize: "2rem" }}>No {content}</div>
       ) : (
-        <div style={{ fontSize: "2rem" }}>No {content} property</div>
+        <div style={{ fontSize: "2rem" }}>You have No bookings yet!</div>
       )}
 
       {content == "Notifications" ? (

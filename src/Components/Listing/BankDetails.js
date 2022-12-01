@@ -47,6 +47,8 @@ const BankDetails = ({ showSection, changeSection }) => {
       return toast.error("Please fill all required fields!!!");
     if (!isNumeric(bankDetails.account_number))
       return toast.error("Account number invalid");
+    if (bankDetails.ifsc_code.length !== 11)
+      return toast.error("IFSC code invalid");
     const locData = {
       ...location,
       bankDetails,

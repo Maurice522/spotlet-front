@@ -38,7 +38,7 @@ const AccountInfo = (extraNavId) => {
   const [openOTP, setOpenOTP] = useState(false);
   const handleOpenOTP = () => setOpenOTP(true);
   const handleCloseOTP = () => setOpenOTP(false);
-  const [initialMobile, setInitialMobile] = useState("")
+  const [initialMobile, setInitialMobile] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -57,8 +57,7 @@ const AccountInfo = (extraNavId) => {
 
   useEffect(() => {
     setInitialMobile(personalInfo.mobile);
-  }, [])
-
+  }, []);
 
   const [validLength, setValidLength] = useState(null);
   const [upperCase, setUpperCase] = useState(null);
@@ -68,9 +67,15 @@ const AccountInfo = (extraNavId) => {
 
   const checkPassword = () => {
     setValidLength(userCredential.newPassword.length >= 8 ? true : false);
-    setUpperCase(userCredential.newPassword.toLowerCase() !== userCredential.newPassword);
-    setLowerCase(userCredential.newPassword.toUpperCase() !== userCredential.newPassword);
-    setSpecialChar(/[ `!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/.test(userCredential.newPassword));
+    setUpperCase(
+      userCredential.newPassword.toLowerCase() !== userCredential.newPassword
+    );
+    setLowerCase(
+      userCredential.newPassword.toUpperCase() !== userCredential.newPassword
+    );
+    setSpecialChar(
+      /[ `!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/.test(userCredential.newPassword)
+    );
   };
 
   const [show, setShow] = useState({
@@ -149,7 +154,7 @@ const AccountInfo = (extraNavId) => {
     };
     if (initialMobile != updateData.mobile) {
       if (updateData.mobile > 9999999999 || updateData.mobile < 999999999) {
-        toast.error("Enter Valid Mobile Number")
+        toast.error("Enter Valid Mobile Number");
         return;
       }
       await getOTP(updateData);
@@ -170,11 +175,11 @@ const AccountInfo = (extraNavId) => {
   //handle update passowrd
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
-    console.log(pass)
+    console.log(pass);
     setOpen(true);
     if (pass) {
       checkPassword();
-      console.log(!(validLength && upperCase && lowerCase && specialChar))
+      console.log(!(validLength && upperCase && lowerCase && specialChar));
       if (!(validLength && upperCase && lowerCase && specialChar)) {
         setValid(false);
         return;
@@ -196,7 +201,7 @@ const AccountInfo = (extraNavId) => {
   //Deactivate Account
   const handleDeactivate = async (e) => {
     e.preventDefault();
-    console.log(deact)
+    console.log(deact);
     setOpenDeact(true);
     if (deact) {
       try {
@@ -238,7 +243,7 @@ const AccountInfo = (extraNavId) => {
 
                 <hr />
               </div>
-              <div>
+              {/* <div>
                 <button
                   onClick={() => handlesection("Payments")}
                   className={
@@ -249,7 +254,7 @@ const AccountInfo = (extraNavId) => {
                 </button>
 
                 <hr />
-              </div>
+              </div> */}
             </div>
           </nav>
           {/* Profile Section  */}
@@ -346,7 +351,6 @@ const AccountInfo = (extraNavId) => {
                       sx={{ height: "2.8em" }}
                       required
                     >
-
                       <MenuItem value="individual">Individual</MenuItem>
                       <MenuItem value="corporate">Corporate</MenuItem>
                     </Select>
@@ -385,7 +389,11 @@ const AccountInfo = (extraNavId) => {
               </form>
               <Modal open={openOTP} onClose={handleCloseOTP}>
                 {/* {console.log(updateData)} */}
-                <OTPVerify sendOTP={getOTP} isSignUp={false} updateUserData={updateUserData} />
+                <OTPVerify
+                  sendOTP={getOTP}
+                  isSignUp={false}
+                  updateUserData={updateUserData}
+                />
               </Modal>
             </div>
           ) : (
@@ -433,7 +441,11 @@ const AccountInfo = (extraNavId) => {
                               }
                               edge="end"
                             >
-                              {!show.showNewPassword ? <VisibilityOff /> : <Visibility />}
+                              {!show.showNewPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
                             </IconButton>
                           </InputAdornment>
                         ),
@@ -476,7 +488,11 @@ const AccountInfo = (extraNavId) => {
                               }
                               edge="end"
                             >
-                              {!show.showNewPassword ? <VisibilityOff /> : <Visibility />}
+                              {!show.showNewPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
                             </IconButton>
                           </InputAdornment>
                         ),
@@ -519,7 +535,11 @@ const AccountInfo = (extraNavId) => {
                               }
                               edge="end"
                             >
-                              {!show.showNewPassword ? <VisibilityOff /> : <Visibility />}
+                              {!show.showNewPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
                             </IconButton>
                           </InputAdornment>
                         ),
@@ -537,29 +557,48 @@ const AccountInfo = (extraNavId) => {
                   <div className="listing-modal">
                     <h3>Do you really want to change your password?</h3>
                     <div style={{ display: "flex", gap: "1rem" }}>
-                      <Button className="auth-btn" onClick={() => {
-                        handleClose();
-                        setPass(true);
-                      }}>Yes</Button>
-                      <Button className="auth-btn" onClick={() => {
-                        handleClose();
-                        setPass(false);
-                      }}>No</Button>
+                      <Button
+                        className="auth-btn"
+                        onClick={(e) => {
+                          handleUpdatePassword(e);
+                          handleClose();
+                          setPass(true);
+                        }}
+                      >
+                        Yes
+                      </Button>
+                      <Button
+                        className="auth-btn"
+                        onClick={() => {
+                          handleClose();
+                          setPass(false);
+                        }}
+                      >
+                        No
+                      </Button>
                     </div>
                   </div>
                 </Modal>
                 <Modal open={openSuccess} onClose={handleCloseSuccess}>
                   <div className="listing-modal">
                     <h3>Your Password has been updated!</h3>
-                    <Button className="auth-btn" onClick={() => {
-                      handleCloseSuccess();
-                    }}>Ok</Button>
+                    <Button
+                      className="auth-btn"
+                      onClick={() => {
+                        handleCloseSuccess();
+                      }}
+                    >
+                      Ok
+                    </Button>
                   </div>
                 </Modal>
               </form>
               <div className="r1de r2Password deactivateAccount">
                 Deactivate Your Account:
-                <button className="accbut deactivateBtn" onClick={handleDeactivate}>
+                <button
+                  className="accbut deactivateBtn"
+                  onClick={handleDeactivate}
+                >
                   Deactivate Account
                 </button>
               </div>
@@ -571,14 +610,24 @@ const AccountInfo = (extraNavId) => {
             <div className="listing-modal">
               <h3>Do you really want to Deactivate your account?</h3>
               <div style={{ display: "flex", gap: "1rem" }}>
-                <Button className="auth-btn" onClick={() => {
-                  handleCloseDeact();
-                  setDeact(true);
-                }}>Yes</Button>
-                <Button className="auth-btn" onClick={() => {
-                  handleCloseDeact();
-                  setDeact(false);
-                }}>No</Button>
+                <Button
+                  className="auth-btn"
+                  onClick={() => {
+                    handleCloseDeact();
+                    setDeact(true);
+                  }}
+                >
+                  Yes
+                </Button>
+                <Button
+                  className="auth-btn"
+                  onClick={() => {
+                    handleCloseDeact();
+                    setDeact(false);
+                  }}
+                >
+                  No
+                </Button>
               </div>
             </div>
           </Modal>
@@ -603,7 +652,7 @@ const AccountInfo = (extraNavId) => {
                   <Typography>
                     <Card sx={{ minWidth: 275 }}>
                       <CardContent>
-                        <Typography sx={{ fontSize: 18 }} >
+                        <Typography sx={{ fontSize: 18 }}>
                           ICICI Credit Card
                         </Typography>
                         <Typography variant="h6" component="div">
@@ -612,7 +661,9 @@ const AccountInfo = (extraNavId) => {
                           Saket Mundra
                         </Typography>
                         <Typography>
-                          <h2 style={{ marginTop: "2%", color: "#f26767" }}>CVV</h2>
+                          <h2 style={{ marginTop: "2%", color: "#f26767" }}>
+                            CVV
+                          </h2>
                           <input
                             style={{ width: "100px", height: "28px" }}
                             type="text"
@@ -685,7 +736,9 @@ const AccountInfo = (extraNavId) => {
                           </label>
                         </div>
                         <div className="r2 r2Password">
-                          <button className="accbut paynowBtnCredit">Pay Now</button>
+                          <button className="accbut paynowBtnCredit">
+                            Pay Now
+                          </button>
                         </div>
                       </form>
                     </div>
@@ -722,7 +775,12 @@ const AccountInfo = (extraNavId) => {
                             />
                           </label>
                         </div>
-                        <button className="accbut" style={{ marginTop: "2%", width: " 200px" }}>Pay Now</button>
+                        <button
+                          className="accbut"
+                          style={{ marginTop: "2%", width: " 200px" }}
+                        >
+                          Pay Now
+                        </button>
                       </form>
                     </div>
                   </Typography>

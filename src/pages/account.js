@@ -156,7 +156,7 @@ const account = (extraNavId) => {
 
                 <hr />
               </div>
-              <div>
+              {/* <div>
                 <button
                   onClick={() => handlesection("Payments")}
                   className={
@@ -167,7 +167,7 @@ const account = (extraNavId) => {
                 </button>
 
                 <hr />
-              </div>
+              </div> */}
             </div>
           </nav>
           {/* Profile Section  */}
@@ -264,7 +264,6 @@ const account = (extraNavId) => {
                       sx={{ height: "2.8em" }}
                       required
                     >
-                      
                       <MenuItem value="individual">Individual</MenuItem>
                       <MenuItem value="corporate">Corporate</MenuItem>
                     </Select>

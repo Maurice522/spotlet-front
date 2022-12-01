@@ -9,58 +9,14 @@ import { createTempLocation } from "../../services/api";
 import {
   addLocation,
   addLocationId,
+  addLocationType,
   selectLocationData,
   selectLocationId,
+  selectLocationTypeOptions,
 } from "../../redux/slices/locationSlice";
 import { toast } from "react-toastify";
 import "../../Assets/Styles/listYourSpace.css";
 import { CancelRounded } from "@mui/icons-material";
-
-let options = [
-  { value: "Add New", label: "Add Custom to List" },
-  { value: "Apartment Parking", label: "Apartment Parking" },
-  { value: "Banquet Halls", label: "Banquet Halls" },
-  { value: "Beach House", label: "Beach House" },
-  { value: "BT roads (open roads)", label: "BT roads (open roads)" },
-  { value: "Bus Stand", label: "Bus Stand" },
-  { value: "Civil Court", label: "Civil Court" },
-  { value: "College", label: "College" },
-  { value: "Convention Centres", label: "Convention Centres" },
-  { value: "Corporate Office", label: "Corporate Office" },
-  { value: "Dhaba", label: " Dhaba" },
-  { value: "Event auditoriums", label: "Event auditoriums" },
-  { value: "Factory", label: "Factory" },
-  { value: "Farmhouse", label: " Farmhouse" },
-  { value: "Farmland", label: "Farmland" },
-  { value: "Forest", label: "Forest" },
-  { value: "Forest Stay", label: "Forest Stay" },
-  { value: "Gated Community", label: "Gated Community" },
-  { value: "Hospital", label: "Hospital" },
-  { value: "Hotel", label: "Hotel" },
-  { value: "Hotel Stay", label: "Hotel Stay" },
-  { value: "Industry", label: "Industry" },
-  { value: "Jail", label: "Jail" },
-  { value: "Lake House", label: "Lake House" },
-  { value: "Lake Stay", label: "Lake Stay" },
-  { value: "Lakes", label: "Lakes" },
-  { value: "Manduva House", label: "Manduva House" },
-  { value: "Movie Theatres", label: "Movie Theatres" },
-  { value: "Police station", label: "Police station" },
-  { value: "Pubs", label: "Pubs" },
-  { value: "Railway station", label: "Railway station" },
-  { value: "Resorts", label: "Resorts" },
-  { value: "Restaurants", label: "Restaurants" },
-  { value: "Rich house", label: "Rich house" },
-  { value: "School", label: "School" },
-  { value: "Shooting floors", label: "Shooting floors" },
-  { value: "Shopping Malls", label: "Shopping Malls" },
-  { value: "Sports auditoriums", label: "Sports auditoriums" },
-  { value: "Studio Floors", label: "Studio Floors" },
-  { value: "TV Stations", label: "TV Stations" },
-  { value: "Village atmosphere", label: "Village atmosphere" },
-  { value: "Weekend Farming", label: "Weekend Farming" },
-  { value: "Wooden house", label: "Wooden house" },
-];
 
 const initialState = {
   user_id: "",
@@ -81,12 +37,14 @@ const Details = ({ showSection, changeSection }) => {
   const user_id = useSelector(selectUser_id);
   const user = useSelector(selectUserData);
   const location = useSelector(selectLocationData);
+  const options = useSelector(selectLocationTypeOptions);
 
   const location_id = useSelector(selectLocationId);
   const [lType, setLType] = useState(0);
   const dispatch = useDispatch();
   const [property_desc, setPropertyDescr] = useState(initialState);
   let x = window.matchMedia("(max-width:576px)");
+  console.log(options);
 
   useEffect(() => {
     // location && setLType(" "+location.property_desc.location_type);
@@ -112,6 +70,7 @@ const Details = ({ showSection, changeSection }) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(property_desc);
     if (
       !property_desc?.location_type?.length ||
       !property_desc?.property_info?.length ||
@@ -151,7 +110,9 @@ const Details = ({ showSection, changeSection }) => {
 
   const handleNewLocationAdd = (newLoc) => {
     setOpt((prev) => [...prev, { value: `${newLoc}`, label: `${newLoc}` }]);
+    dispatch(addLocationType(newLoc));
     setModalOpen(true);
+    setPropertyDescr({ ...property_desc, location_type: newLoc });
   };
 
   return (
@@ -173,7 +134,7 @@ const Details = ({ showSection, changeSection }) => {
                 });
                 setPropertyDescr({ ...property_desc, location_type: e.value });
               } else {
-                setLType(opt.length - 1);
+                setLType(opt.length);
                 setLoc(true);
               }
             }}

@@ -25,7 +25,7 @@ const Pricing = ({ location }) => {
     fetchListedLoc();
   }, []);
 
-  const [cleaningFee, setCleaningFee] = useState(0)
+  const [cleaningFee, setCleaningFee] = useState(0);
   const [film, setfilm] = useState({
     hourly_rate: 0,
     isPresent: false,
@@ -50,6 +50,7 @@ const Pricing = ({ location }) => {
       location.pricing && settv(location.pricing.tv_series_other);
       location.pricing && setcorp(location.pricing.corporate);
       location.pricing && setevent(location.pricing.individual);
+      location.pricing && setCleaningFee(location.pricing.cleaningFee);
     }
   }, [location]);
 
@@ -102,13 +103,11 @@ const Pricing = ({ location }) => {
   };
   return (
     <div className="lbox" style={{ marginTop: "30px !important" }}>
-
       <div className="coll1">
         <div className="row1">
-          <h1>Cleaning Fee
-            <span style={{ color: "red" }}>
-              *
-            </span>
+          <h1>
+            Cleaning Fee
+            <span style={{ color: "red" }}>*</span>
           </h1>
           <TextField
             required
@@ -116,6 +115,7 @@ const Pricing = ({ location }) => {
             // label="Cleaning Fee"
             name="cleaningFee"
             variant="outlined"
+            value={cleaningFee}
             size="small"
             onChange={(e) => setCleaningFee(e.target.value)}
           />
