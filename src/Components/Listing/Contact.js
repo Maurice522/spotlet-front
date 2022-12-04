@@ -162,7 +162,7 @@ const Contact = ({ showSection, changeSection }) => {
 
         <div className="coll1">
           <h2 style={{ marginTop: "3%" }}>
-            Pan Number<span style={{ color: "red" }}>*</span>
+            Pan Number (Bank Account Owner)<span style={{ color: "red" }}>*</span>
           </h2>
           <input
             className="input"

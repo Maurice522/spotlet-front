@@ -88,7 +88,7 @@ const Gst = ({ showSection, changeSection }) => {
     <div className="lbox">
       <div className="row1">
         <div className="coll1">
-          <h2>GST Number</h2>
+          <h2>GST Number (Bank Account Owner)</h2>
           <input
             className="lginput"
             onChange={(e) => setDoc_no(e.target.value)}

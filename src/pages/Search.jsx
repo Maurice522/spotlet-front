@@ -55,6 +55,7 @@ const Search = () => {
     console.log("useeffect");
     console.log(event);
     if (event) {
+      // console.log("hi")
       setSearchEvent(event);
       setSearchLocation("all");
     }
@@ -411,7 +412,10 @@ const Search = () => {
             <BiFilterAlt />
             <h2>Filter</h2>
           </button>
-          <Button style={{ color: "red", padding: "6px 0" }}>
+          <Button style={{ color: "red", padding: "6px 0" }} onClick={() => {
+            setSearchLocation("all")
+            setSearchEvent("all")
+          }}>
             Clear Filter
           </Button>
         </div>

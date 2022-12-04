@@ -338,9 +338,10 @@ export default function Auth() {
 								required
 							/>
 							<br />
+							{valid ? (isSignIn ? "" : <p>Should contain minimum 8 characters</p>) : <p style={{ color: "red" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
 							{
 								!isSignIn &&
-								<div>
+								<div style={{fontSize: "0.8rem"}}>
 									<FormControlLabel
 										control={
 											<Checkbox
@@ -354,10 +355,10 @@ export default function Auth() {
 										}
 										label="I agree to the Term and Conditions"
 									/>
+									<p style={{marginTop: "0"}}>By clicking on SignUp you are agreeing to our <a href="/" style={{color: "#ff6767"}}>terms of services</a> and <a href="/" style={{color: "#ff6767"}}>privacy policy</a></p>
 								</div>
 							}
 
-							{valid ? (isSignIn ? "" : <p>Should contain minimum 8 characters</p>) : <p style={{ color: "red" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
 							<Button
 								type="submit"
 								fullWidth

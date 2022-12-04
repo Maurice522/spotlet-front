@@ -183,7 +183,7 @@ const BookingDetails = () => {
           <div className="booking-details-header">Booking Details</div>
           <div className="booking-details-body">
             <div className="booking-details-body-left">
-              <div className="item-heading">{booking?.property_id}</div>
+              {/* <div className="item-heading">{booking?.property_id}</div> */}
               <div className="grid-container">
                 <div>
                   <div className="item-heading">Reserved Date</div>
@@ -207,6 +207,12 @@ const BookingDetails = () => {
                   <div className="item-heading">Duration</div>
                   <div className="item-body">
                     {booking?.duration_in_hours} Hrs
+                  </div>
+                </div>
+                <div>
+                  <div className="item-heading">Location Id</div>
+                  <div className="item-body">
+                    {booking?.property_id}
                   </div>
                 </div>
               </div>
