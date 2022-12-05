@@ -44,25 +44,25 @@ const SideSection = ({
   v6,
   tot_price,
 }) => {
-	const [open, setOpen] = React.useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
-	const [locationData, setLocationData] = useState({});
-	const navigate = useNavigate();
-	const user_id = useSelector(selectUser_id);
-	const location_id = window.location.pathname.substring(1, 10);
-	const total_amt =
-		v3 === "12"
-			? v6 * v3 * 0.9 * 1.18 + 80
-			: v3 === "24"
-				? v6 * v3 * 0.8 * 1.18 + 80
-				: v6 * v3 * 1.18 + 80;
-	useEffect(() => {
-		getLocation(location_id)
-			.then((res) => setLocationData(res.data))
-			.catch((err) => console.log(err));
-	}, []);
-	//console.log(v1, v2, v3, v4, v5, v6, event, userData);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [locationData, setLocationData] = useState({});
+  const navigate = useNavigate();
+  const user_id = useSelector(selectUser_id);
+  const location_id = window.location.pathname.substring(1, 10);
+  const total_amt =
+    v3 === "12"
+      ? v6 * v3 * 0.9 * 1.18
+      : v3 === "24"
+        ? v6 * v3 * 0.8 * 1.18
+        : v6 * v3 * 1.18;
+  useEffect(() => {
+    getLocation(location_id)
+      .then((res) => setLocationData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+  //console.log(v1, v2, v3, v4, v5, v6, event, userData);
 
   const day = v1?.getDate();
   const month = v1?.getMonth() + 1;
@@ -97,7 +97,10 @@ const SideSection = ({
           owner_id: locationData.property_desc.user_id,
           property_id: location_id,
           time: v2,
-          total_amt: tot_price + 80,
+          total_amt: gst,
+          discount: parseInt(parseInt(gst) - tot_price),
+          processfee: Math.round(tot_price / 10),
+          final_amount: tot_price + parseInt(locationData?.pricing?.cleaningFee) + Math.round(tot_price / 10),
           user_id,
           user_data: {
             fullName: userData.firstName + " " + userData.lastName,
@@ -110,6 +113,7 @@ const SideSection = ({
             message: userData.message,
           },
         };
+        // console.log(bookingDet);
         try {
           await bookingRequest(bookingDet);
           handleOpen();
@@ -134,7 +138,7 @@ const SideSection = ({
   // console.log(v1, v3, v4);
   const userBooking = useSelector(selectUserData);
 
-	console.log(locationData)
+  console.log(locationData)
 
   return (
     <div className="side-section">
@@ -146,9 +150,9 @@ const SideSection = ({
         />
       </div>
 
-			<div data-attribute-1>{location_id}</div>
-			<div data-attribute-2>Location</div>
-			<br /><br />
+      <div data-attribute-1>{location_id}</div>
+      <div data-attribute-2>Location</div>
+      <br /><br />
 
       {/* <div className="booking-side-section-title">Reserved Date</div>
 			<div className="booking-side-section-info">
@@ -157,31 +161,31 @@ const SideSection = ({
       {/* <div className="booking-side-section-title">Reserved Time</div>
 			<div className="booking-side-section-info">{`${v3} Hours`}</div> */}
 
-			<div data-attribute-3>
-				<div data-attribute-4>
-					Total Price (including Gst)
-				</div>
-				<div data-attribute-4>₹ {parseInt(gst)}</div>
-			</div>
-			<div data-attribute-3>
-				<div data-attribute-4>Discounted Price</div>
-				<div data-attribute-4>₹ {tot_price}</div>
-			</div>
+      <div data-attribute-3>
+        <div data-attribute-4>
+          Total Price (including Gst)
+        </div>
+        <div data-attribute-4>₹ {parseInt(gst)}</div>
+      </div>
+      <div data-attribute-3>
+        <div data-attribute-4>Discount</div>
+        <div data-attribute-4>₹ -{parseInt(parseInt(gst) - tot_price)}</div>
+      </div>
 
-			<div data-attribute-3>
-				<div data-attribute-4>Cleaning Fee (including Gst)</div>
-				<div data-attribute-4>₹ {locationData?.pricing?.cleaningFee}</div>
-			</div>
+      <div data-attribute-3>
+        <div data-attribute-4>Cleaning Fee (including Gst)</div>
+        <div data-attribute-4>₹ {locationData?.pricing?.cleaningFee}</div>
+      </div>
 
-			<div data-attribute-3>
-				<div data-attribute-4>Processing Fee (including Gst)</div>
-				<div data-attribute-4>₹ {(tot_price / 10).toFixed(2)}</div>
-			</div>
+      <div data-attribute-3>
+        <div data-attribute-4>Processing Fee (including Gst)</div>
+        <div data-attribute-4>₹ {Math.round(tot_price / 10)}</div>
+      </div>
 
-			<div data-attribute-3>
-				<div data-attribute-1>Total</div>
-				<div data-attribute-1>₹ {tot_price + 80}</div>
-			</div>
+      <div data-attribute-3>
+        <div data-attribute-1>Total</div>
+        <div data-attribute-1>₹ {tot_price + parseInt(locationData?.pricing?.cleaningFee) + Math.round(tot_price / 10)}</div>
+      </div>
 
       <Button
         variant="contained"
@@ -218,7 +222,7 @@ const SideSection = ({
               Booking Id:{" "}
               {userBooking?.portfolio.length !== 0
                 ? userBooking.portfolio[userBooking.portfolio.length - 1]
-                    .bookingId
+                  .bookingId
                 : ""}
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>

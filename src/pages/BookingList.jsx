@@ -242,16 +242,16 @@ const BookingList = () => {
       ampm = ampm == "pm" ? "am" : "pm";
     }
     return {
-      id: index,
-      action: gridActionButton,
-      to: `/bookingdetails/${booking?.bookingId}`,
-      BookingId: booking?.bookingId,
-      Status: booking?.payment_status,
-      Date: booking.date,
-      TimeDuration:
-        booking?.time + " - " + endTime + booking?.time.substr(2, 4) + ampm,
-      TotalAmount: parseInt(booking?.total_amt),
-    };
+			id: index,
+			action: gridActionButton,
+			to: `/bookingdetails/${booking?.bookingId}`,
+			BookingId: booking?.bookingId,
+			Status: booking?.payment_status,
+			Date: booking.date,
+			TimeDuration:
+				booking?.time + " - " + endTime + booking?.time.substr(2, 4) + ampm,
+			TotalAmount: parseInt(booking?.final_amount),
+		};
   });
   bookingData.reverse();
 

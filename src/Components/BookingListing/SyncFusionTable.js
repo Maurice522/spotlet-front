@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 
 const SyncfusionTable = ({ UsersData, UsersGrid, content }) => {
+  console.log(UsersData, UsersGrid, content);
   document.getElementsByClassName("MuiDataGrid-cellContent").innerHTML =
     "Details";
   let x = window.matchMedia("(max-width: 576px)");
@@ -41,7 +42,7 @@ const SyncfusionTable = ({ UsersData, UsersGrid, content }) => {
         <div style={{ fontSize: "2rem" }}>You have No bookings yet!</div>
       )}
 
-      {content == "Notifications" ? (
+      {content == "Notifications" || content == "Bookings" ? (
         ""
       ) : (
         <Link to={content === "Booked" ? "/" : "/listing"}>
