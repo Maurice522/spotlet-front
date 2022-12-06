@@ -21,7 +21,7 @@ const Blogs = () => {
 
     useEffect(() => {
         axios
-            .get("https://gorecceback.herokuapp.com/getBlogs")
+            .get("https://spotlet.onrender.com/getBlogs")
             .then((response) => {
                 const data2 = response.data;
                 setData(data2);

@@ -1,8 +1,9 @@
 import axios from "axios";
 
 // const server_domain = "https://gorecceback.herokuapp.com";
-// const server_domain = "https://spotlet.onrender.com"; //TEMP HOSTED SERVER
-const server_domain = "http://localhost:8000";
+const server_domain = "https://spotlet.onrender.com"; //TEMP HOSTED SERVER
+// const server_domain = "http://localhost:8000";
+// const server_domain = "https://hilarious-vestments-colt.cyclic.app"; //NEW SERVER
 
 ////////////////////////Auth////////////////////////
 // function to send signin request to backend

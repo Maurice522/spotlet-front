@@ -65,8 +65,8 @@ export default function Messages() {
     " " +
     bookingDetail?.date?.split("-")[2];
   useEffect(() => {
-    // socket.current = io.connect("https://gorecce-backend.herokuapp.com");
-    socket.current = io.connect("http://localhost:8000");
+    socket.current = io.connect("https://spotlet.onrender.com/");
+    // socket.current = io.connect("http://localhost:8000");
     socket.current.on("getMessage", (data) => {
       //console.log(data);
       setArrivalMessage({

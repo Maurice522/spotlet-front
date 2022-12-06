@@ -36,7 +36,7 @@ const Guidelines = () => {
 			<Navbar extraNavId="id-2" />
 			<div className="text-only-container">
 				<div className="text-only-main-heading">
-					What are GoRecce’s Hosting Guidelines
+					What are Spotlet Hosting Guidelines
 				</div>
 				<div className="text-only-info">
 					Community of hosts and renters is built on a foundation of trust and

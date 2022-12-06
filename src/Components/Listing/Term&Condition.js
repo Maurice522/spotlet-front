@@ -143,7 +143,7 @@ export default function TermCondition() {
               checked={policy.grant_info}
             />
           }
-          label="I consent to GoRecce using my information"
+          label="I consent to Spotlet using my information"
         />
       </div>
       <div className="row1">

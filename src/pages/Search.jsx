@@ -94,8 +94,8 @@ const Search = () => {
   useEffect(() => {
     const getAllLocations = async () => {
       const response = await axios.get(
-        "https://nipunbacky.herokuapp.com/getlocations"
-      );
+				"https://spotlet.onrender.com/getlocations"
+			);
 
       const res = response.data;
       const result = res.locations;
@@ -185,87 +185,107 @@ const Search = () => {
     setPageIndex(index);
   };
 
-  // console.log(searchEvent, sort);
+  console.log(searchEvent, sort);
   // console.log(sortedProperties);
   return (
-    <>
-      <Navbar extraNavId="id-2" />
-      <div className="below-nav" style={{ minHeight: "14rem" }}>
-        <AiOutlineArrowLeft
-          size="20px"
-          style={{ cursor: "pointer" }}
-          onClick={() => navigate("/")}
-        />
-        <FormFilter
-          fullScreen={true}
-          homepage={false}
-          setSearchEvent={setSearchEvent}
-          setSearchLocation={setSearchLocation}
-          setMax={setMax}
-          setMin={setMin}
-          sort={sort}
-          setSort={setSort}
-        />
-      </div>
+		<>
+			<Navbar extraNavId="id-2" />
+			<div className="below-nav" style={{ minHeight: "14rem" }}>
+				<AiOutlineArrowLeft
+					size="20px"
+					style={{ cursor: "pointer" }}
+					onClick={() => navigate("/")}
+				/>
+				<FormFilter
+					fullScreen={true}
+					homepage={false}
+					setSearchEvent={setSearchEvent}
+					setSearchLocation={setSearchLocation}
+					setMax={setMax}
+					setMin={setMin}
+					sort={sort}
+					setSort={setSort}
+				/>
+			</div>
 
-      <Modal open={openFilter} onClose={handleCloseFilter}>
-        <div className="listing-modal filter-modal">
-          <>
-            <button className="accbut">
-              <h2>Filter</h2>
-              <ImCross
-                onClick={() => {
-                  handleCloseFilter();
-                }}
-                style={{ cursor: "pointer" }}
-              />
-            </button>
-            <div className="filter-body">
-              <h2>Price - Set price for 8 hours</h2>
-              <div className="filter--coll">
-                <div className="filter--coll1">
-                  <div className="filter--coll2">
-                    <label
-                      htmlFor="mincost"
-                      className={
-                        active === true ? "focus-label" : "form-filter-label"
-                      }
-                    >
-                      Min Price
-                    </label>
-                    <Select
-                      id="mincost"
-                      name="mincost"
-                      options={price}
-                      defaultValue=""
-                      className={
-                        active === true ? "focus-select" : "form-filter-select"
-                      }
-                      onChange={changeMinPrice}
-                    ></Select>
-                  </div>
-                  <div className="filter--coll2">
-                    <label
-                      htmlFor="maxcost"
-                      className={
-                        active === true ? "focus-label" : "form-filter-label"
-                      }
-                    >
-                      Max Price
-                    </label>
-                    <Select
-                      id="mincost"
-                      name="mincost"
-                      options={price}
-                      defaultValue=""
-                      className={
-                        active === true ? "focus-select" : "form-filter-select"
-                      }
-                      onChange={changeMaxPrice}
-                    ></Select>
-                  </div>
-                </div>
-                {/* <div>
+			<Modal open={openFilter} onClose={handleCloseFilter}>
+				<div className="listing-modal filter-modal">
+					<>
+						<button className="accbut">
+							<h2>Filter</h2>
+							<ImCross
+								onClick={() => {
+									handleCloseFilter();
+								}}
+								style={{ cursor: "pointer" }}
+							/>
+						</button>
+						<div className="filter-body">
+							<h2>Price - Set price for 8 hours</h2>
+							<div className="filter--coll">
+								<div className="filter--coll1">
+									<div className="filter--coll2">
+										<label
+											htmlFor="mincost"
+											className={
+												active === true ? "focus-label" : "form-filter-label"
+											}
+										>
+											Min Price
+										</label>
+										<Select
+											id="mincost"
+											name="mincost"
+											options={price}
+											defaultValue=""
+											className={
+												active === true ? "focus-select" : "form-filter-select"
+											}
+											onChange={changeMinPrice}
+										></Select>
+									</div>
+									<div className="filter--coll2">
+										<label
+											htmlFor="maxcost"
+											className={
+												active === true ? "focus-label" : "form-filter-label"
+											}
+										>
+											Max Price
+										</label>
+										<Select
+											id="mincost"
+											name="mincost"
+											options={price}
+											defaultValue=""
+											className={
+												active === true ? "focus-select" : "form-filter-select"
+											}
+											onChange={changeMaxPrice}
+										></Select>
+									</div>
+									<div className="filter--coll2">
+										<label
+											htmlFor="maxcost"
+											className={
+												active === true ? "focus-label" : "form-filter-label"
+											}
+										>
+											Sort
+										</label>
+										<Select
+											id="sort"
+											name="sort"
+											options={sortOptions}
+											defaultValue=""
+											className={
+												active === true ? "focus-select" : "form-filter-select"
+											}
+											onChange={changeSort}
+										></Select>
+									</div>
+								</div>
+								{/* <div>
 									<h2>No. of Attendees</h2>
 									<div>
 										<label class="filter-container">0 - 10
@@ -323,7 +343,7 @@ const Search = () => {
 										</label>
 									</div>
 								</div> */}
-                {/* <div>
+								{/* <div>
 									<h2>Unique Features</h2>
 									<div className="filter--coll3">
 										<label class="filter-container">Location Manager
@@ -389,242 +409,245 @@ const Search = () => {
 										</label>
 									</div>
 								</div> */}
-              </div>
-              {/* <div className="apply">
+							</div>
+							{/* <div className="apply">
                 <button className="accbut apply-btn">Apply Changes</button>
               </div> */}
-            </div>
-          </>
-        </div>
-      </Modal>
-      <div
-        className="search-heading"
-        style={{ marginTop: x.matches && "300px" }}
-      >
-        <h1 style={{ fontSize: "30px", fontWeight: "700", margin: "20px 0px" }}>
-          “ Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod
-          tempor occaecat cupidatat ”{" "}
-        </h1>
-      </div>
-      <div className="filter-box">
-        <div>
-          <button className="filter-btn" onClick={handleOpenFilter}>
-            <BiFilterAlt />
-            <h2>Filter</h2>
-          </button>
-          <Button style={{ color: "red", padding: "6px 0" }} onClick={() => {
-            setSearchLocation("all")
-            setSearchEvent("all")
-          }}>
-            Clear Filter
-          </Button>
-        </div>
-      </div>
-      <h2 style={{ fontSize: "24px", fontWeight: "500", textAlign: "center" }}>
-        Locations Found
-      </h2>
-      <div className="search-property-list">
-        {pageData[pageIndex]?.map((item, index) => {
-          if (!item) return null;
-          if (
-            searchEvent == "all" &&
-            ((item.pricing.film_webseries_ad?.hourly_rate <= max &&
-              item.pricing.film_webseries_ad?.hourly_rate >= min) ||
-              (item.pricing?.tv_series_other?.hourly_rate <= max &&
-                item.pricing?.tv_series_other?.hourly_rate >= min) ||
-              (item.pricing.corporate?.hourly_rate <= max &&
-                item.pricing.corporate?.hourly_rate >= min) ||
-              (item.pricing.individual?.hourly_rate <= max &&
-                item.pricing.individual?.hourly_rate >= min))
-          ) {
-            return (
-              <PropertyInfo
-                item={item}
-                // index={index}
-                // isFav={true}
-                favPage={false}
-                favorites={favorites}
-                setFavorites={setFavorites}
-                key={item.location_id}
-                handleClick={() => {
-                  console.log("clicked");
-                }}
-                border={false}
-              />
-            );
-          } else if (searchLocation == "all") {
-            if (
-              searchEvent == "FilmShooting" &&
-              (item.pricing.film_webseries_ad.isPresent == true ||
-                item.pricing.tv_series_other.isPresent == true) &&
-              ((item.pricing.film_webseries_ad?.hourly_rate <= max &&
-                item.pricing.film_webseries_ad?.hourly_rate > min) ||
-                (item.pricing?.tv_series_other?.hourly_rate <= max &&
-                  item.pricing?.tv_series_other?.hourly_rate > min))
-            ) {
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            } else if (
-              searchEvent == "CorporateBooking" &&
-              item.pricing.corporate.isPresent == true &&
-              item.pricing.corporate?.hourly_rate <= max &&
-              item.pricing.corporate?.hourly_rate >= min
-            ) {
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            } else if (
-              searchEvent == "IndividualBooking" &&
-              item.pricing.individual.isPresent == true &&
-              item.pricing.individual?.hourly_rate <= max &&
-              item.pricing.individual?.hourly_rate >= min
-            ) {
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            }
-          } else if (
-            searchEvent == "FilmShooting" &&
-            (item.pricing.film_webseries_ad.isPresent == true ||
-              item.pricing.tv_series_other.isPresent == true) &&
-            ((item.pricing.film_webseries_ad?.hourly_rate <= max &&
-              item.pricing.film_webseries_ad?.hourly_rate >= min) ||
-              (item.pricing?.tv_series_other?.hourly_rate <= max &&
-                item.pricing?.tv_series_other?.hourly_rate >= min))
-          ) {
-            console.log(searchEvent);
-            if (searchLocation == item.property_desc.location_type) {
-              console.log(searchLocation, item.property_desc.location_type);
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            }
-          } else if (
-            searchEvent == "CorporateBooking" &&
-            item.pricing.corporate.isPresent == true &&
-            item.pricing.corporate?.hourly_rate <= max &&
-            item.pricing.corporate?.hourly_rate >= min
-          ) {
-            console.log(searchEvent);
-            if (searchLocation == item.property_desc.location_type) {
-              console.log(searchLocation, item.property_desc.location_type);
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            }
-          } else if (
-            searchEvent == "IndividualBooking" &&
-            item.pricing.individual.isPresent == true &&
-            item.pricing.individual?.hourly_rate <= max &&
-            item.pricing.individual?.hourly_rate >= min
-          ) {
-            console.log(searchEvent);
-            if (searchLocation == item.property_desc.location_type) {
-              console.log(searchLocation, item.property_desc.location_type);
-              return (
-                <PropertyInfo
-                  item={item}
-                  // index={index}
-                  // isFav={true}
-                  favPage={false}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  key={item.location_id}
-                  handleClick={() => {
-                    console.log("clicked");
-                  }}
-                  border={false}
-                />
-              );
-            }
-          }
-        })}
-      </div>
-      <div className="paginated-container">
-        {Array(8)
-          .fill(0)
-          .map((item, id) => {
-            return (
-              <div
-                key={id}
-                className={`paginated-box ${id === pageIndex && "active"}`}
-                onClick={() => handlePageIndex(id)}
-              >
-                {id + 1}
-              </div>
-            );
-          })}
-      </div>
-      <div style={{ margin: "40px 0px" }}>
-        <Host
-          title="Get in buisness with GoRecce"
-          buttonContent="Become a Host"
-        />
-      </div>
-      <Footer />
-    </>
-  );
+						</div>
+					</>
+				</div>
+			</Modal>
+			<div
+				className="search-heading"
+				style={{ marginTop: x.matches && "300px" }}
+			>
+				<h1 style={{ fontSize: "30px", fontWeight: "700", margin: "20px 0px" }}>
+					“ Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod
+					tempor occaecat cupidatat ”{" "}
+				</h1>
+			</div>
+			<div className="filter-box">
+				<div>
+					<button className="filter-btn" onClick={handleOpenFilter}>
+						<BiFilterAlt />
+						<h2>Filter</h2>
+					</button>
+					<Button
+						style={{ color: "red", padding: "6px 0" }}
+						onClick={() => {
+							setSearchLocation("all");
+							setSearchEvent("all");
+						}}
+					>
+						Clear Filter
+					</Button>
+				</div>
+			</div>
+			<h2 style={{ fontSize: "24px", fontWeight: "500", textAlign: "center" }}>
+				Locations Found
+			</h2>
+			<div className="search-property-list">
+				{pageData[pageIndex]?.map((item, index) => {
+					if (!item) return null;
+					if (
+						searchEvent == "all" &&
+						((item.pricing.film_webseries_ad?.hourly_rate <= max &&
+							item.pricing.film_webseries_ad?.hourly_rate >= min) ||
+							(item.pricing?.tv_series_other?.hourly_rate <= max &&
+								item.pricing?.tv_series_other?.hourly_rate >= min) ||
+							(item.pricing.corporate?.hourly_rate <= max &&
+								item.pricing.corporate?.hourly_rate >= min) ||
+							(item.pricing.individual?.hourly_rate <= max &&
+								item.pricing.individual?.hourly_rate >= min))
+					) {
+						return (
+							<PropertyInfo
+								item={item}
+								// index={index}
+								// isFav={true}
+								favPage={false}
+								favorites={favorites}
+								setFavorites={setFavorites}
+								key={item.location_id}
+								handleClick={() => {
+									console.log("clicked");
+								}}
+								border={false}
+							/>
+						);
+					} else if (searchLocation == "all") {
+						if (
+							searchEvent == "FilmShooting" &&
+							(item.pricing.film_webseries_ad.isPresent == true ||
+								item.pricing.tv_series_other.isPresent == true) &&
+							((item.pricing.film_webseries_ad?.hourly_rate <= max &&
+								item.pricing.film_webseries_ad?.hourly_rate > min) ||
+								(item.pricing?.tv_series_other?.hourly_rate <= max &&
+									item.pricing?.tv_series_other?.hourly_rate > min))
+						) {
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						} else if (
+							searchEvent == "CorporateBooking" &&
+							item.pricing.corporate.isPresent == true &&
+							item.pricing.corporate?.hourly_rate <= max &&
+							item.pricing.corporate?.hourly_rate >= min
+						) {
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						} else if (
+							searchEvent == "IndividualBooking" &&
+							item.pricing.individual.isPresent == true &&
+							item.pricing.individual?.hourly_rate <= max &&
+							item.pricing.individual?.hourly_rate >= min
+						) {
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						}
+					} else if (
+						searchEvent == "FilmShooting" &&
+						(item.pricing.film_webseries_ad.isPresent == true ||
+							item.pricing.tv_series_other.isPresent == true) &&
+						((item.pricing.film_webseries_ad?.hourly_rate <= max &&
+							item.pricing.film_webseries_ad?.hourly_rate >= min) ||
+							(item.pricing?.tv_series_other?.hourly_rate <= max &&
+								item.pricing?.tv_series_other?.hourly_rate >= min))
+					) {
+						console.log(searchEvent);
+						if (searchLocation == item.property_desc.location_type) {
+							console.log(searchLocation, item.property_desc.location_type);
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						}
+					} else if (
+						searchEvent == "CorporateBooking" &&
+						item.pricing.corporate.isPresent == true &&
+						item.pricing.corporate?.hourly_rate <= max &&
+						item.pricing.corporate?.hourly_rate >= min
+					) {
+						console.log(searchEvent);
+						if (searchLocation == item.property_desc.location_type) {
+							console.log(searchLocation, item.property_desc.location_type);
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						}
+					} else if (
+						searchEvent == "IndividualBooking" &&
+						item.pricing.individual.isPresent == true &&
+						item.pricing.individual?.hourly_rate <= max &&
+						item.pricing.individual?.hourly_rate >= min
+					) {
+						console.log(searchEvent);
+						if (searchLocation == item.property_desc.location_type) {
+							console.log(searchLocation, item.property_desc.location_type);
+							return (
+								<PropertyInfo
+									item={item}
+									// index={index}
+									// isFav={true}
+									favPage={false}
+									favorites={favorites}
+									setFavorites={setFavorites}
+									key={item.location_id}
+									handleClick={() => {
+										console.log("clicked");
+									}}
+									border={false}
+								/>
+							);
+						}
+					}
+				})}
+			</div>
+			<div className="paginated-container">
+				{Array(8)
+					.fill(0)
+					.map((item, id) => {
+						return (
+							<div
+								key={id}
+								className={`paginated-box ${id === pageIndex && "active"}`}
+								onClick={() => handlePageIndex(id)}
+							>
+								{id + 1}
+							</div>
+						);
+					})}
+			</div>
+			<div style={{ margin: "40px 0px" }}>
+				<Host
+					title="Get in buisness with Spotlet"
+					buttonContent="Become a Host"
+				/>
+			</div>
+			<Footer />
+		</>
+	);
 };
 
 export default Search;

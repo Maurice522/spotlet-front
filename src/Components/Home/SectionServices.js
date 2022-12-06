@@ -47,7 +47,7 @@ const SectionServices = () => {
 
 	return (
 		<div className="services-section">
-			<div className="services-heading">Gorecce Provides</div>
+			<div className="services-heading">SpotLet Provides</div>
 			<div className="services-list">{element}</div>
 		</div>
 	);

@@ -64,11 +64,10 @@ const Navbar = ({ extraNavId }) => {
 
   const [notifications, setNotifications] = useState([]);
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
     setNotifications(user?.notifications);
     setFlag(user?.notificationFlag);
     // console.log(notifications);
-    console.log(flag);
   }, [user]);
 
   // const [NotificationEl, setNotificationEl] = useState(null);
