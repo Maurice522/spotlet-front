@@ -15,18 +15,19 @@
   margin-top: 11%;
   position: relative;
 }
+
 .leftContainer1 {
   width: 45%;
   display: inline-block;
   /* background-color: bisque; */
 }
-/* .contentLeftContainer {
+.contentLeftContainer {
   width: 35%;
   display: inline-block;
   position: absolute;
   top: 16%;
   left: 13%;
-} */
+}
 .contentLeftContainerSubtext,
 .contentRightContainerSubtext {
   margin-top: 3%;
@@ -56,13 +57,13 @@
   display: inline-block;
   /* background-color: bisque; */
 }
-/* .contentRightContainer {
+.contentRightContainer {
   width: 35%;
   display: inline-block;
   position: absolute;
   top: 16%;
   right: 7%;
-} */
+}
 .contenRightContainerSubtext {
   margin-top: 3%;
   line-height: 2;
@@ -123,52 +124,4 @@
   margin-bottom: 10px;
 }
 
-.container1,
-.container2 {
-  display: flex;
-  justify-content: center;
-}
-.contentLeftContainer,
-.contentRightContainer {
-  padding: 50px;
-}
-
-.rightContainer2 {
-  margin-right: auto;
-}
-
-@media screen and (max-width: 576px) {
-  .container1 {
-    flex-direction: column;
-  }
-  .container2 {
-    flex-direction: column-reverse;
-    margin: 0px;
-  }
-  .leftContainer1 {
-    width: 80%;
-  }
-  .contentLeftContainer {
-    padding: 20px;
-    width: 100%;
-  }
-  .contentRightContainer {
-    padding: 20px;
-    width: 80%;
-  }
-  .rightContainer1,
-  .rightContainer2,
-  .leftContainer2 {
-    width: 100%;
-    margin: 20px 0px;
-  }
-  .colouredbg,
-  .container1Img {
-    height: 250px;
-    width: 250px;
-  }
-  .colouredbg {
-    margin: 0px auto;
-    transform: translateX(-20px);
-  }
-}
+/* responsive  */

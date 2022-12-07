@@ -13,9 +13,8 @@ import { Button } from "@mui/material";
 import "../Assets/Styles/aboutUs.css";
 
 const AboutUs = () => {
-  let x = window.matchMedia("(max-width:576px)");
   return (
-    <div style={{ overflow: "hidden" }}>
+    <div>
       <Navbar extraNavId="id-2" />
       <div className="text-on-image-container">
         <img src={image} alt="background" className="bg-image darken" />
@@ -132,15 +131,7 @@ const AboutUs = () => {
             </div>
           </div>
           <div>
-            <div
-              className="about-us-content-heading"
-              style={{
-                padding: x.matches && "20px",
-                marginTop: x.matches && "20px",
-              }}
-            >
-              SpotLet for Hosts
-            </div>
+            <div className="about-us-content-heading">SpotLet for Hosts</div>
             <div className="about-us-content-info">
               We invite you to list your property for free, get more visibility
               and manage bookings for your spaces with various simplified tools.
@@ -171,11 +162,11 @@ const AboutUs = () => {
       </div>
 
       <div
-        style={{
-          width: "98.8vw",
-          height: "500px",
-          marginTop: "4%",
-        }}
+        // style={{
+        //   width: "98.8vw",
+        //   height: "500px",
+        //   marginTop: "4%",
+        // }}
       >
         <img
           src={image2}
@@ -183,7 +174,6 @@ const AboutUs = () => {
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "cover",
           }}
         />
       </div>

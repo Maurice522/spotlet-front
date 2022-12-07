@@ -40,7 +40,6 @@ const objArray = [
 ];
 
 const HostPage = () => {
-  let x = window.matchMedia("(max-width:576px)");
   const accordion = [
     {
       title: "Who can be a SpotLet Host?",
@@ -63,14 +62,15 @@ const HostPage = () => {
   return (
     <div>
       <Navbar extraNavId="id-2" />
-      <div className="text-on-image-container">
+      <div className="text-on-image-container" style={{ overflowX: "hidden" }}>
         <img src={image} alt="background" className="bg-image darken" />
-        <div className="message host-message ">
+        <div className="list_your_space ">
           Enjoy a Second Source of Income. Host with SpotLet
         </div>
-        <div className="message-btn">
-          <Link to="/lisitng">
+        <div className="list_your_space_btn">
+          <Link to="/lisitng" className="space_btn">
             <Button
+              className="space_btn"
               variant="contained"
               sx={{
                 backgroundColor: "#EA4235",
@@ -87,54 +87,39 @@ const HostPage = () => {
         imageReason={image1}
         objArray={objArray}
       />
-      <div>
-        <div className="become-host-heading">Become a host in 3 easy steps</div>
-        <div className="become-host-steps">
-          <div>
-            <div>
-              <IoLocationOutline
-                color="#EA4235"
-                size={x.matches ? "30px" : "50px"}
-              />
+      <div className="become_host">
+        <div className="become_host_heading">Become a host in 3 easy steps</div>
+        <div className="become_host_steps">
+          <div className="steps">
+            <div className="icon">
+              <IoLocationOutline color="#EA4235" />
             </div>
-            <div className="host-steps-text-wrap">Add Location Details</div>
+            <div className="icon_text">Add Location Details</div>
           </div>
-          <div>
-            <div>
-              <AiFillContainer
-                color="#EA4235"
-                size={x.matches ? "30px" : "50px"}
-              />
+          <div className="steps">
+            <div className="icon">
+              <AiFillContainer color="#EA4235" />
             </div>
-            <div className="host-steps-text-wrap">Complete your features</div>
+            <div className="icon_text">Complete your features</div>
           </div>
-          <div>
-            <div>
-              <FiDollarSign
-                color="#EA4235"
-                size={x.matches ? "30px" : "50px"}
-              />
+          <div className="steps">
+            <div className="icon">
+              <FiDollarSign color="#EA4235" />
             </div>
-            <div className="host-steps-text-wrap">Set your price</div>
+            <div className="icon_text">Set your price</div>
           </div>
         </div>
       </div>
-      <div
-        style={{
-          alignItems: "center",
-          textAlign: "center",
-          // height:"90vh",
-          marginTop: "5%",
-        }}
-      >
+      <div className="video_div">
         <video
           src={Video1}
           controls="controls"
           autoPlay
           muted
-          style={{ height: "80%", width: "70%" }}
+          style={{ height: "100%", width: "100%" }}
         />
       </div>
+
       <Testimonials />
       <div
         style={{

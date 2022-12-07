@@ -81,8 +81,7 @@ const Photography = () => {
               <img src={image2} alt="background" className="container1Img" />
             </div>
           </div>
-
-          <div className="leftContainer2">
+          <div className="rightContainer2">
             <div className="contentRightContainer">
               <h1>Preparing for Noteworthy Shoots</h1>
               <p className="contentRightContainerSubtext">

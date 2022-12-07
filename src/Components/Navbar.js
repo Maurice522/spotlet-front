@@ -306,14 +306,25 @@ const Navbar = ({ extraNavId }) => {
             </Menu>
           </div>
         ) : (
-          <div>
-            <div onClick={() => toast.error("Please sign in first")}>
+          <div className="navbar_mobile">
+            <div
+              className="navbar_links"
+              onClick={() => toast.error("Please sign in first")}
+            >
               List Space
             </div>
-            <Link to={"/signin"} state={{ isSignIn: true }}>
+            <Link
+              className="navbar_links"
+              to={"/signin"}
+              state={{ isSignIn: true }}
+            >
               Sign In
             </Link>
-            <Link to={"/signin"} state={{ isSignIn: false }}>
+            <Link
+              className="navbar_links"
+              to={"/signin"}
+              state={{ isSignIn: false }}
+            >
               Sign Up
             </Link>
           </div>

@@ -6,6 +6,7 @@
 .property-heading {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-family: "Inter";
   font-style: normal;
@@ -65,6 +66,7 @@
     width: 86vw;
   }
 }
+
 @media screen and (max-width: 768px) {
   .property-list {
     grid-template-columns: repeat(3, 1fr);

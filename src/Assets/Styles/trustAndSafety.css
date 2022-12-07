@@ -1,46 +1,74 @@
 .container {
-	width: 80%;
-	margin: 40px auto;
+  width: 80%;
+  margin: 40px auto;
 }
 
 .container > h3 {
-	margin-bottom: 10px;
-	font-size: 30px;
-	color: #ff6767;
+  margin-bottom: 10px;
+  font-size: 30px;
+  color: #ff6767;
 }
 .container > div {
-	line-height: 24px;
-	text-align: justify;
+  line-height: 24px;
+  text-align: justify;
 }
 
 .tas-card-container {
-	width: 80%;
-	margin: 50px auto;
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 30px;
+  width: 80%;
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
 }
 
 .flex {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .left-container {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .container-img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .myMessage {
-    text-align: center;
-    right: 40px;
-    margin-top: 3.5% !important;
+  text-align: center;
+  right: 40px;
+  margin-top: 3.5% !important;
 }
-.subtextBanner{
-	font-weight: 400;
-	line-height: 40px;
+.subtextBanner {
+  font-weight: 400;
+  line-height: 40px;
+}
+
+.trust_safe_container {
+  width: 80%;
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 2rem;
+}
+
+@media screen and (max-width: 992px) {
+  .trust_safe_container {
+    width: 90%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .trust_safe_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 596px) {
+  .trust_safe_container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

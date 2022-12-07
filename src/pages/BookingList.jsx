@@ -78,7 +78,6 @@ const gridLocationId = (props) => (
       gap: "5px",
     }}
   >
-    <GoPrimitiveDot color="#EA4235" />
     {props.row.LocationId}
   </div>
 );
@@ -92,6 +91,13 @@ const bookingGrid = [
     headerAlign: "Center",
   },
   {
+    headerName: "Location ID",
+    field: "LocationId",
+    renderCell: gridLocationId,
+    width: "180",
+    headerAlign: "Center",
+  },
+  {
     headerName: "Status",
     field: "Status",
     renderCell: gridBookingStatus,
@@ -101,13 +107,13 @@ const bookingGrid = [
   {
     headerName: "Date",
     field: "Date",
-    width: "180",
+    width: "170",
     headerAlign: "Center",
   },
   {
     headerName: "Time, Duration",
     field: "TimeDuration",
-    width: "250",
+    width: "230",
     headerAlign: "Center",
   },
   {
@@ -246,6 +252,7 @@ const BookingList = () => {
 			action: gridActionButton,
 			to: `/bookingdetails/${booking?.bookingId}`,
 			BookingId: booking?.bookingId,
+      LocationId: booking?.property_id,
 			Status: booking?.payment_status,
 			Date: booking.date,
 			TimeDuration:

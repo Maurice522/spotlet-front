@@ -19,45 +19,53 @@ export default function ForgotPassword({ handleClose }) {
   };
   return (
     <div className="reset-password modal-reset">
-      { !sent ? <form onSubmit={handlSubmit}>
-        <h1 style={{ fontSize: "26px" }}>Forgot Password</h1>
-        <label>Email</label>
-        <br />
-        <TextField
-          type="email"
-          name="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          fullWidth
-          placeholder="Enter your email address"
-          size="small"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <MailOutline />
-              </InputAdornment>
-            ),
-          }}
-          required
-        />
-        <Button
-          type="submit"
-          fullWidth
-          className="auth-btn"
-          variant="contained"
-          disableElevation
-          sx={{ marginTop: "30px !important" }}
-        >
-          Reset
-        </Button>
-      </form> : 
-      <div className="conf-modal">
-        <h3>An email has been sent to you. Please check your Inbox!</h3>
-        <Button className="auth-btn" onClick={() => {
-          handleClose();
-          setSent(false);
-        }}>OK</Button>
-      </div>}
+      {!sent ? (
+        <form onSubmit={handlSubmit}>
+          <h1 style={{ fontSize: "26px" }}>Forgot Password</h1>
+          <label>Email</label>
+          <br />
+          <TextField
+            type="email"
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            fullWidth
+            placeholder="Enter your email address"
+            size="small"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <MailOutline />
+                </InputAdornment>
+              ),
+            }}
+            required
+          />
+          <Button
+            type="submit"
+            fullWidth
+            className="auth-btn"
+            variant="contained"
+            disableElevation
+            sx={{ marginTop: "30px !important" }}
+          >
+            Reset
+          </Button>
+        </form>
+      ) : (
+        <div className="conf-modal">
+          <h3>An email has been sent to you. Please check your Inbox!</h3>
+          <Button
+            className="auth-btn"
+            onClick={() => {
+              handleClose();
+              setSent(false);
+            }}
+          >
+            OK
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

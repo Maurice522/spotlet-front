@@ -37,7 +37,18 @@ const FormFilter = ({
     { value: "FilmShooting", label: "Film Shooting" },
     { value: "CorporateBooking", label: "Corporate Booking" },
     { value: "IndividualBooking", label: "Individual Booking" },
-  ];
+  ].sort((a, b) => {
+    let fa = a.label.toLowerCase(),
+        fb = b.label.toLowerCase();
+
+    if (fa < fb) {
+        return -1;
+    }
+    if (fa > fb) {
+        return 1;
+    }
+    return 0;
+});
 
   const filterOptions = {
     Activity: [
@@ -49,13 +60,35 @@ const FormFilter = ({
         { value: "Music Album Shoot", label: "Music Album Shoot" },
         { value: "Green Screen", label: "Green Screen" },
         { value: "Photoshoot", label: "Photoshoot" },
-      ],
+      ].sort((a, b) => {
+        let fa = a.label.toLowerCase(),
+            fb = b.label.toLowerCase();
+    
+        if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;
+    }),
       [
         { value: "Party", label: "Party" },
         { value: "Product Release / Demo", label: "Product Release / Demo" },
         { value: "Awards Ceremony", label: "Awards Ceremony" },
         { value: "Conference", label: "Conference" },
-      ],
+      ].sort((a, b) => {
+        let fa = a.label.toLowerCase(),
+            fb = b.label.toLowerCase();
+    
+        if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;
+    }),
       [
         { value: "Birthday Party", label: "Birthday Party" },
         {
@@ -66,7 +99,18 @@ const FormFilter = ({
           value: "Conference / Counselling",
           label: "Conference / Counselling",
         },
-      ],
+      ].sort((a, b) => {
+        let fa = a.label.toLowerCase(),
+            fb = b.label.toLowerCase();
+    
+        if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;
+    }),
     ],
 
     Location: [
@@ -106,7 +150,18 @@ const FormFilter = ({
         { value: "Shopping Malls", label: "Shopping Malls" },
         { value: "Gated Community", label: "Gated Community" },
         { value: "Shooting floors", label: "Shooting floors" },
-      ],
+      ].sort((a, b) => {
+        let fa = a.label.toLowerCase(),
+            fb = b.label.toLowerCase();
+    
+        if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;
+    }),
       [
         { value: "Resorts", label: "Resorts" },
         { value: "Weekend Farming", label: "Weekend Farming" },
@@ -119,7 +174,18 @@ const FormFilter = ({
         { value: "Banquet Halls", label: "Banquet Halls" },
         { value: "Pubs", label: "Pubs" },
         { value: "Restaurants", label: "Restaurants" },
-      ],
+      ].sort((a, b) => {
+        let fa = a.label.toLowerCase(),
+            fb = b.label.toLowerCase();
+    
+        if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;
+    }),
 
       [
         { value: "Resorts", label: "Resorts" },
@@ -132,7 +198,18 @@ const FormFilter = ({
         { value: "Convention Centres", label: "Convention Centres" },
         { value: "Banquet Halls", label: "Banquet Halls" },
         { value: "Restaurants", label: "Restaurants" },
-      ],
+      ].sort((a, b) => {
+        let fa = a.label.toLowerCase(),
+            fb = b.label.toLowerCase();
+    
+        if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;
+    }),
     ],
   };
 
@@ -154,10 +231,11 @@ const FormFilter = ({
       style={
         fullScreen === true
           ? {
-              width: "98.7vw",
-              borderRadius: "0",
-              marginTop: "10px",
-            }
+            width: "78.7vw",
+            borderRadius: "12px",
+            marginTop: "10px",
+            // boxShadow:
+          }
           : {}
       }
     >
@@ -166,9 +244,9 @@ const FormFilter = ({
         style={
           fullScreen === true
             ? {
-                width: "99%",
-                borderRadius: "0",
-              }
+              width: "99%",
+              borderRadius: "12px",
+            }
             : {}
         }
         onMouseEnter={() => {
@@ -192,7 +270,7 @@ const FormFilter = ({
           <Select
             id="what"
             name="what"
-            options={options}
+            options={options.sort((a, b) => a.label - b.label)}
             defaultValue=""
             className={active === true ? "focus-select" : "form-filter-select"}
             onChange={changeEvent}
@@ -212,8 +290,8 @@ const FormFilter = ({
               event == "FilmShooting"
                 ? filterOptions.Activity[1]
                 : event == "CorporateBooking"
-                ? filterOptions.Activity[2]
-                : filterOptions.Activity[3]
+                  ? filterOptions.Activity[2]
+                  : filterOptions.Activity[3]
             }
             defaultValue=""
             isDisabled={event === "all" ? true : false}
@@ -239,8 +317,8 @@ const FormFilter = ({
               event == "FilmShooting"
                 ? filterOptions.Location[1]
                 : event == "CorporateBooking"
-                ? filterOptions.Location[2]
-                : filterOptions.Location[3]
+                  ? filterOptions.Location[2]
+                  : filterOptions.Location[3]
             }
             defaultValue=""
             isDisabled={event === "all" ? true : false}
