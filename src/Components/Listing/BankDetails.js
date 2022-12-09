@@ -36,6 +36,26 @@ const BankDetails = ({ showSection, changeSection }) => {
     });
   };
 
+  const handleChange1 = (e) => {
+    if (e.target.value.length < 17) {
+      const value = e.target.value.replace(/\D/g, "");
+      setbankDetails({
+        ...bankDetails,
+        [e.target.name]: value,
+      });
+    }
+  };
+
+  const handleChange2 = (e) => {
+    if (e.target.value.length < 17) {
+      const value = e.target.value.replace(/[^A-Za-z]/ig, "");
+      setbankDetails({
+        ...bankDetails,
+        [e.target.name]: value,
+      });
+    }
+  };
+
   const handleSubmit = async (e) => {
     console.log(bankDetails);
     if (
@@ -80,7 +100,7 @@ const BankDetails = ({ showSection, changeSection }) => {
             className="listingInput input"
             name="account_holder_name"
             type="text"
-            onChange={handleChange}
+            onChange={handleChange2}
             value={bankDetails.account_holder_name}
             required
           />
@@ -95,7 +115,7 @@ const BankDetails = ({ showSection, changeSection }) => {
             className="listingInput input"
             name="bank_name"
             type="text"
-            onChange={handleChange}
+            onChange={handleChange2}
             value={bankDetails.bank_name}
             required
           />
@@ -125,7 +145,7 @@ const BankDetails = ({ showSection, changeSection }) => {
             className="listingInput input"
             name="account_number"
             type="text"
-            onChange={handleChange}
+            onChange={handleChange1}
             value={bankDetails.account_number}
             pattern="[0-9]+"
             required

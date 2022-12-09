@@ -103,7 +103,7 @@ export default function Auth() {
     e.preventDefault();
     checkPassword();
     console.log(
-      !isSignIn && !(validLength && upperCase && lowerCase && specialChar)
+      !(validLength && upperCase && lowerCase && specialChar)
     );
     if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar)) {
       setValid(false);
