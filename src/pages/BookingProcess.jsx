@@ -9,7 +9,7 @@ import Contact from "../Components/Booking/Contact";
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useNavigate } from "react-router-dom";
 
-const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
+const BookingProcess = ({ v1, v2, v3, v4, v5, v6, v7, event,tot_price }) => {
 	const [index, setIndex] = useState(0);
 	const [ok, setOk] = useState(false);
 	const [readyForRequest, setReadyForRequest] = useState(false);
@@ -71,7 +71,7 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, event,tot_price }) => {
 						</div>
 
 						{index === 0 ? (
-							<Booking v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} />
+							<Booking v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} v7={v7} />
 						) : index === 1 ? (
 							<Rules isOk={setOk} />
 						) : (

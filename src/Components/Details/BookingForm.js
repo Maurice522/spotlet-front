@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import { selectUserData } from "../../redux/slices/userSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { MenuItem, Select } from "@mui/material";
+import { Button, MenuItem, Select } from "@mui/material";
 import { IoMdArrowDropdown } from "react-icons/io";
 import DatePicker from "react-datepicker";
+import DateTimePicker from 'react-datetime-picker';
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
+import { Modal } from "@mui/material";
 const BookingForm = ({
   v1,
   v2,
@@ -16,6 +18,7 @@ const BookingForm = ({
   v4,
   v5,
   v6,
+  v7,
   event,
   setEvent,
   setV1,
@@ -24,6 +27,7 @@ const BookingForm = ({
   setV4,
   setV5,
   setV6,
+  setV7,
   locationData,
   tot_price,
   setTotPrice,
@@ -108,6 +112,10 @@ const BookingForm = ({
   const user = useSelector(selectUserData);
   const [timings, setTimings] = useState([]);
   const [active, setActive] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -419,6 +427,48 @@ const BookingForm = ({
                 minDate={moment().toDate() - 1}
                 value={v1}
               />
+              <Button style={{ color: "#ff6767", textTransform: "initial" }} onClick={handleOpen}>Add a Date</Button>
+              <Modal open={open} onClose={handleClose}>
+                <div className="listing-modal date-time-modal">
+                  <h3>Select Date and Time</h3>
+                  <div style={{ display: "grid", gridTemplateColumns: "20fr 0.1fr 0.1fr", width: "100%" }}>
+                    <DateTimePicker
+                      required
+                      className={active === true ? "focus" : "normal"}
+                      id="date-time"
+                      name="date-time"
+                      style={{
+                        border: "2px solid gray",
+                        width: "100%",
+                        height: "34px",
+                      }}
+                      // selected={new Date(dateRange.startDate)}
+                      onChange={(dateTime) => {
+                        // console.log(dateTime);
+                        setV7(dateTime);
+                      }}
+                      selected={v7}
+                      // name="startDate"
+                      dayPlaceholder="dd"
+                      monthPlaceholder="mm"
+                      yearPlaceholder="yyyy"
+                      hourPlaceholder="hh"
+                      minutePlaceholder="mm"
+                      // filterDate={isDisabled}
+                      // placeholderText="dd/mm/yyyy"
+                      // minDate={moment().toDate() - 1}
+                      value={v7}
+                      disableClock
+                    />
+                  </div>
+                  <Button
+                    className="auth-btn"
+                    onClick={() => {
+                      handleClose();
+                    }}>Save
+                  </Button>
+                </div>
+              </Modal>
               <span style={{ position: "absolute", top: "30%", right: "5%" }}>
                 <IoMdArrowDropdown size={20} color="gray" />
               </span>

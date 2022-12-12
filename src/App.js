@@ -68,6 +68,7 @@ function App() {
 	const [v4, setV4] = useState("");
 	const [v5, setV5] = useState("");
 	const [v6, setV6] = useState(0);
+	const [v7, setV7] = useState("");
 	const [event, setEvent] = useState("Select Event");
 	const [tot_price, setTotPrice] = useState(0);
 	return (
@@ -89,6 +90,7 @@ function App() {
 								v4={v4}
 								v5={v5}
 								v6={v6}
+								v7={v7}
 								event={event}
 								setEvent={setEvent}
 								setV1={setV1}
@@ -97,6 +99,7 @@ function App() {
 								setV4={setV4}
 								setV5={setV5}
 								setV6={setV6}
+								setV7={setV7}
 								setTotPrice={setTotPrice}
 								tot_price={tot_price}
 							/>
@@ -156,6 +159,7 @@ function App() {
 								v4={v4}
 								v5={v5}
 								v6={v6}
+								v7={v7}
 								event={event}
 								tot_price={tot_price}
 							/>
