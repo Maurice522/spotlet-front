@@ -221,7 +221,7 @@ const SideSection = ({
             <Typography>
               Booking Id:{" "}
               {userBooking?.portfolio.length !== 0
-                ? userBooking.portfolio[userBooking.portfolio.length - 1]
+                ? userBooking.portfolio[userBooking?.portfolio?.length - 1]
                   .bookingId
                 : ""}
             </Typography>

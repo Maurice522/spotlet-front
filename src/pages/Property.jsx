@@ -34,6 +34,7 @@ const Property = ({
   v4,
   v5,
   v6,
+  v7,
   event,
   setEvent,
   setV1,
@@ -42,6 +43,7 @@ const Property = ({
   setV4,
   setV5,
   setV6,
+  setV7,
   setTotPrice,
   tot_price,
 }) => {
@@ -605,6 +607,7 @@ const Property = ({
             v4={v4}
             v5={v5}
             v6={v6}
+            v7={v7}
             event={event}
             setEvent={setEvent}
             setV1={setV1}
@@ -614,6 +617,7 @@ const Property = ({
             setV5={setV5}
             AccordionSummary
             setV6={setV6}
+            setV7={setV7}
             locationData={locationData}
             setTotPrice={setTotPrice}
             tot_price={tot_price}

@@ -49,6 +49,14 @@
 	min-height: 0 !important;
 }
 
+.date-time-modal button{
+	width: 15% !important;
+}
+
+.react-datetime-picker__inputGroup__input:invalid{
+	background-color: #fff !important;
+}
+
 
 @media screen and (max-width: 992px){
 	.booking-content-wrapper {
