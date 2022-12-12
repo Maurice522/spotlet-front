@@ -31,6 +31,7 @@ const BookingForm = ({
   let start24, end24, startampm, endampm;
   const [allday, setAllday] = useState(false);
   const [timemenuitems, setTimemenuitems] = useState([]);
+  const [bookedDates, setBookedDates] = useState([])
   let disabledDates = [];
   let finalDates = [];
   let gst = v6 * v3 * 1.18;
@@ -98,6 +99,10 @@ const BookingForm = ({
   useEffect(() => {
     // console.log(v1, v2, v3, v4, v5, v6);
     setTimings(locationData?.timings);
+    locationData?.bookedDates?.map((date) => {
+      const newDate = new Date(date);
+      setBookedDates((prev) => [...prev, newDate])
+    })
   }, [locationData]);
 
   const user = useSelector(selectUserData);
@@ -409,6 +414,7 @@ const BookingForm = ({
                 // name="startDate"
                 dateFormat="dd/MM/yyyy"
                 filterDate={isDisabled}
+                excludeDates={bookedDates}
                 placeholderText="dd/mm/yyyy"
                 minDate={moment().toDate() - 1}
                 value={v1}
