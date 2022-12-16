@@ -10,16 +10,18 @@ const Booking = ({ v1, v2, v3, v4, v5, v6, v7 }) => {
   const day = v1?.getDate();
   const month = v1?.getMonth() + 1;
   const year = v1?.getFullYear();
-  const newDay = date?.getDate();
-  const newMonth = date?.getMonth() + 1;
-  const newYear = date?.getFullYear();
-  const ampm = date?.getHours() > 12 ? "pm" : "am";
-  let newHour = date?.getHours() > 12 ? date?.getHours() - 12 : date?.getHours();
-  console.log(newHour.toString().length);
-  if(newHour.toString().length < 2)
-    newHour = "0" + newHour;
-  const newMin = date?.getMinutes();
-  console.log(newHour);
+
+  // const newDay = date?.getDate();
+  // const newMonth = date?.getMonth() + 1;
+  // const newYear = date?.getFullYear();
+  // const ampm = date?.getHours() > 12 ? "pm" : "am";
+  // let newHour = date?.getHours() > 12 ? date?.getHours() - 12 : date?.getHours();
+  // console.log(newHour.toString().length);
+  // if(newHour.toString().length < 2)
+  //   newHour = "0" + newHour;
+  // const newMin = date?.getMinutes();
+  // console.log(newHour);
+
   console.log(day + "-" + month + "-" + year);
   return (
     <form id="booking-page-form">
@@ -33,7 +35,8 @@ const Booking = ({ v1, v2, v3, v4, v5, v6, v7 }) => {
           fullWidth
           size="small"
           // defaultValue={day + "-" + month + "-" + year}
-          value={day + "-" + month + "-" + year + ", " + newDay + "-" + newMonth + "-" + newYear}
+          value={day + "-" + month + "-" + year}
+          // value={day + "-" + month + "-" + year + ", " + newDay + "-" + newMonth + "-" + newYear}
         />
       </div>
       <div>
@@ -43,7 +46,8 @@ const Booking = ({ v1, v2, v3, v4, v5, v6, v7 }) => {
           disabled
           id="start-time"
           type="text"
-          defaultValue={v2 + ", " + newHour + ":" + newMin + " " + ampm}
+          defaultValue={v2}
+          // defaultValue={v2 + ", " + newHour + ":" + newMin + " " + ampm}
           fullWidth
           size="small"
         />

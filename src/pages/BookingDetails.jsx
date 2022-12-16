@@ -26,7 +26,7 @@ const BookingDetails = () => {
 	const [booking, setBooking] = useState({});
 	// const [ownerData, setOwnerData] = useState({});
 	const [locationData, setLocationData] = useState({});
-	const [open, setOpen] = useState(false);
+	const [deleteBook, setDeteleBook] = useState(false);
 	const [openModal, setopenModal] = useState(false);
 	const handleopenModal = () => setopenModal(true);
 	const handleCloseModal = () => setopenModal(false);
@@ -43,7 +43,12 @@ const BookingDetails = () => {
 
 	useEffect(() => {
 		userData?.portfolio.map((booking) => {
-			if (booking.bookingId === bookingId) setBooking(booking);
+			if (booking.bookingId === bookingId) {
+				setBooking(booking)
+				getLocation(booking?.property_id)
+					.then((res) => setLocationData(res.data))
+					.catch((err) => console.log(err));
+			};
 		});
 	}, [userData]);
 
@@ -70,8 +75,8 @@ const BookingDetails = () => {
 		booking?.duration_in_hours === "24"
 			? 0.8
 			: booking?.duration_in_hours === "12"
-			? 0.9
-			: 1;
+				? 0.9
+				: 1;
 	const perHourCost = (
 		(booking?.total_amt - 40) /
 		booking?.duration_in_hours /
@@ -79,11 +84,11 @@ const BookingDetails = () => {
 	)?.toFixed(2);
 	const GEO_API = "b531f1d229f547d09b4c7c3207885471";
 
-	useEffect(() => {
-		getLocation(booking?.property_id)
-			.then((res) => setLocationData(res.data))
-			.catch((err) => console.log(err));
-	}, [booking]);
+	// useEffect(() => {
+	// 	getLocation(booking?.property_id)
+	// 		.then((res) => setLocationData(res.data))
+	// 		.catch((err) => console.log(err));
+	// }, [booking]);
 
 	useEffect(() => {
 		// Get latitude & longitude from address.
@@ -116,27 +121,24 @@ const BookingDetails = () => {
 	//   return window.confirm(text);
 	// };
 	const deleteBooking = async () => {
-		setopenModal(true);
-		if (open) {
-			try {
-				// if (confirmDeletion()) {
-				const newPortfolio = userData.portfolio.filter(
-					(p) => p.bookingId !== bookingId
-				);
-				const newUserData = { ...userData, portfolio: newPortfolio };
-				const data = {
-					bookingId,
-					locationId: booking.property_id,
-					user_id: booking.user_id,
-				};
-				const response = await deleteBookingReq(data);
-				dispatch(addUser(newUserData));
-				toast.success(response.data);
-				window.history.back();
-				// }
-			} catch (error) {
-				toast.error(error);
-			}
+		try {
+			// if (confirmDeletion()) {
+			const newPortfolio = userData.portfolio.filter(
+				(p) => p.bookingId !== bookingId
+			);
+			const newUserData = { ...userData, portfolio: newPortfolio };
+			const data = {
+				bookingId,
+				locationId: booking.property_id,
+				user_id: booking.user_id,
+			};
+			const response = await deleteBookingReq(data);
+			dispatch(addUser(newUserData));
+			toast.success(response.data);
+			window.history.back();
+			// }
+		} catch (error) {
+			toast.error(error);
 		}
 	};
 	//message
@@ -175,6 +177,7 @@ const BookingDetails = () => {
 		}
 	};
 	console.log(booking);
+	console.log(locationData);
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
@@ -224,7 +227,7 @@ const BookingDetails = () => {
 							</div>
 							<div data-attribute-3>
 								<div data-attribute-4>Discount</div>
-								<div data-attribute-4>₹ -{booking?.discount}</div>
+								<div data-attribute-4>- ₹ {booking?.discount ? booking?.discount : 0}</div>
 							</div>
 							<div data-attribute-3>
 								<div data-attribute-4>Cleaning Fee (including Gst)</div>
@@ -235,7 +238,7 @@ const BookingDetails = () => {
 							<div data-attribute-3>
 								<div data-attribute-4>Processing Fee</div>
 								<div data-attribute-4 style={{ textAlign: "right" }}>
-									₹ {booking?.processfee}
+									₹ {booking?.processfee ? booking?.processfee : 0}
 								</div>
 							</div>
 
@@ -264,7 +267,7 @@ const BookingDetails = () => {
 									marginTop: "10px",
 								}}
 								disabled={booking?.payment_status !== "Under Review"}
-								onClick={deleteBooking}
+								onClick={() => setopenModal(true)}
 							>
 								Cancel Booking
 							</Button>
@@ -285,7 +288,7 @@ const BookingDetails = () => {
 									className="auth-btn"
 									onClick={() => {
 										handleCloseModal();
-										setOpen(true);
+										deleteBooking();
 									}}
 								>
 									Yes
@@ -294,7 +297,6 @@ const BookingDetails = () => {
 									className="auth-btn"
 									onClick={() => {
 										handleCloseModal();
-										setOpen(false);
 									}}
 								>
 									No
@@ -306,9 +308,8 @@ const BookingDetails = () => {
 						style={{
 							marginLeft: "auto",
 							width: "20vw",
-							display: `${
-								booking?.payment_status !== "Approved" ? "none" : "block"
-							}`,
+							display: `${booking?.payment_status !== "Approved" ? "none" : "block"
+								}`,
 						}}
 					>
 						<Button
@@ -330,9 +331,8 @@ const BookingDetails = () => {
 						width: "80%",
 						height: "500px",
 						margin: "auto",
-						display: `${
-							booking?.payment_status !== "Approved" ? "none" : "block"
-						}`,
+						display: `${booking?.payment_status !== "Approved" ? "none" : "block"
+							}`,
 					}}
 				>
 					{cord.lat !== 0 && <GoogleMap lat={cord.lat} lng={cord.lng} />}
