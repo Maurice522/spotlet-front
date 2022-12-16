@@ -102,6 +102,7 @@ const SideSection = ({
           property_id: location_id,
           time: v2,
           total_amt: gst,
+          bookedDate:v1,
           discount: parseInt(parseInt(gst) - tot_price),
           processfee: Math.round(tot_price / 10),
           final_amount: tot_price + parseInt(locationData?.pricing?.cleaningFee) + Math.round(tot_price / 10),
