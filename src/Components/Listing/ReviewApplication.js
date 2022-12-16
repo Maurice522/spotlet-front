@@ -470,6 +470,19 @@ const ReviewApplication = ({ changeSection }) => {
                         value={finalData.pricing ? finalData.pricing.individual?.hourly_rate : ""}
                     />
                 </div>
+
+                <div className="coll1">
+                    <div className="row1" style={{ marginBottom: "0" }}>
+                        <h1 style={{ fontWeight: "bold" }}>Cleaning Fee</h1>
+                    </div>
+                </div>
+                <div className="coll1" style={{ marginBottom: "2rem" }}>
+                    <input
+                        disabled
+                        className="input"
+                        value={finalData.pricing ? finalData.pricing.cleaningFee : ""}
+                    />
+                </div>
             </div>
 
 

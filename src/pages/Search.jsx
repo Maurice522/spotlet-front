@@ -257,7 +257,7 @@ const Search = () => {
 							/>
 						</button>
 						<div className="filter-body">
-							<h2>Price - Set price for 8 hours</h2>
+							<h2>Price - Set price per hour</h2>
 							<div className="filter--coll">
 								<div className="filter--coll1">
 									<div className="filter--coll2">

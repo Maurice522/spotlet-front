@@ -427,9 +427,7 @@ const BookingForm = ({
                 minDate={moment().toDate() - 1}
                 value={v1}
               />
-              {v1 &&
-              <Button style={{ color: "#ff6767", textTransform: "initial" }} onClick={handleOpen}>Add a Date</Button>
-              }
+              {/* <Button style={{ color: "#ff6767", textTransform: "initial" }} onClick={handleOpen}>Add a Date</Button>
               <Modal open={open} onClose={handleClose}>
                 <div className="listing-modal date-time-modal">
                   <h3>Select Date and Time</h3>
@@ -470,7 +468,7 @@ const BookingForm = ({
                     }}>Save
                   </Button>
                 </div>
-              </Modal>
+              </Modal> */}
               <span style={{ position: "absolute", top: "30%", right: "5%" }}>
                 <IoMdArrowDropdown size={20} color="gray" />
               </span>
