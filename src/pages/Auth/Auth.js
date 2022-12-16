@@ -22,7 +22,7 @@ import {
   TextField,
 } from "@mui/material";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { otpVerify, signIn } from "../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,7 +38,7 @@ import { Link } from "react-router-dom";
 import image1 from "../../Assets/Images/signupinBg.jpeg";
 export default function Auth() {
   const state = useLocation();
-  console.log(state);
+  // console.log(state);
   const [showPassword, setShowPassword] = useState(false);
   const [isSignIn, setIsSignIn] = useState(
     state.state ? state.state.isSignIn : true
@@ -64,10 +64,10 @@ export default function Auth() {
     company: "",
   });
 
-  const [validLength, setValidLength] = useState(null);
-  const [upperCase, setUpperCase] = useState(null);
-  const [lowerCase, setLowerCase] = useState(null);
-  const [specialChar, setSpecialChar] = useState(null);
+  const [validLength, setValidLength] = useState(false);
+  const [upperCase, setUpperCase] = useState(false);
+  const [lowerCase, setLowerCase] = useState(false);
+  const [specialChar, setSpecialChar] = useState(false);
   const [valid, setValid] = useState(true);
 
   const checkPassword = () => {
@@ -98,13 +98,15 @@ export default function Auth() {
     }
   };
 
+
+  useEffect(() => {
+    checkPassword();  
+  }, [userData.password])
+  
   //SignIn and SignUp function -
   const handleSubmit = async (e) => {
     e.preventDefault();
-    checkPassword();
-    console.log(
-      !(validLength && upperCase && lowerCase && specialChar)
-    );
+    // console.log(isSignIn, validLength, upperCase, lowerCase, specialChar);
     if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar)) {
       setValid(false);
       return;
@@ -156,17 +158,17 @@ export default function Auth() {
             style={
               isSignIn
                 ? {
-                    position: "absolute",
-                    right: "3%",
-                    top: "3%",
-                    color: "black",
-                  }
+                  position: "absolute",
+                  right: "3%",
+                  top: "3%",
+                  color: "black",
+                }
                 : {
-                    position: "absolute",
-                    right: "3%",
-                    top: "3%",
-                    color: "white",
-                  }
+                  position: "absolute",
+                  right: "3%",
+                  top: "3%",
+                  color: "white",
+                }
             }
           />
         </Link>
@@ -183,14 +185,14 @@ export default function Auth() {
               >
                 <p>
                   Don’t have an account?{" "}
-                  <b onClick={() => setIsSignIn(false)} style={{color: "#ff6767"}}>Sign Up</b>
+                  <b onClick={() => setIsSignIn(false)} style={{ color: "#ff6767" }}>Sign Up</b>
                 </p>
               </div>
             ) : (
               <div className="auth-top">
                 <p>
                   Already have an account?{" "}
-                  <b onClick={() => setIsSignIn(true)} style={{color: "#ff6767"}}>Sign In</b>
+                  <b onClick={() => setIsSignIn(true)} style={{ color: "#ff6767" }}>Sign In</b>
                 </p>
               </div>
             )}
@@ -296,112 +298,112 @@ export default function Auth() {
                         {/* <MenuItem value="">None</MenuItem>
 						<MenuItem value="individual">Individual</MenuItem>
 						<MenuItem value="corporate">Corporate</MenuItem> */}
-												<MenuItem value="individual">Individual</MenuItem>
-												<MenuItem value="corporate">Corporate</MenuItem>
-											</Select>
-										</div>
-										<div>
-											<label>
-												{userData.booking_type === "corporate"
-													? "Company Name"
-													: "Profession"}
-											</label>
-											<input
-												className="authInput"
-												type="text"
-												name={
-													userData.booking_type === "corporate"
-														? "company"
-														: "profession"
-												}
-												onChange={handleInput}
-												value={
-													userData.booking_type === "corporate"
-														? userData.company
-														: userData.profession
-												}
-												fullWidth
-												placeholder={
-													userData.booking_type === "corporate"
-														? "Company Name"
-														: "Profession"
-												}
-												size="small"
-												required
-											/>
-										</div>
-									</div>
-								</>
-							)}
-							<label>Password</label>
-							<br />
-							<TextField
-								className="authInput pass"
-								type={!showPassword ? "password" : "text"}
-								name="password"
-								onChange={handleInput}
-								value={userData.password}
-								fullWidth
-								placeholder="Enter password"
-								size="small"
-								InputProps={{
-									startAdornment: (
-										<InputAdornment position="start">
-											<LockOutlined />
-										</InputAdornment>
-									),
-									endAdornment: (
-										<InputAdornment position="end">
-											<IconButton
-												aria-label="toggle password visibility"
-												onClick={() => setShowPassword((prev) => !prev)}
-												edge="end"
-											>
-												{!showPassword ? <VisibilityOff /> : <Visibility />}
-											</IconButton>
-										</InputAdornment>
-									),
-								}}
-								required
-							/>
-							<br />
-							{valid ? (isSignIn ? "" : <p>Should contain minimum 8 characters</p>) : <p style={{ color: "red" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
-							{
-								!isSignIn &&
-								<div style={{fontSize: "0.8rem"}}>
-									<FormControlLabel
-										control={
-											<Checkbox
-												sx={{
-													color: "#ea4235",
-													"&.Mui-checked": {
-														color: "#ea4235",
-													},
-												}}
-											/>
-										}
-										label="I agree to the Term and Conditions"
-									/>
-									<p style={{marginTop: "0"}}>By clicking on SignUp you are agreeing to our <a href="/" style={{color: "#ff6767"}}>terms of services</a> and <a href="/" style={{color: "#ff6767"}}>privacy policy</a></p>
-								</div>
-							}
+                        <MenuItem value="individual">Individual</MenuItem>
+                        <MenuItem value="corporate">Corporate</MenuItem>
+                      </Select>
+                    </div>
+                    <div>
+                      <label>
+                        {userData.booking_type === "corporate"
+                          ? "Company Name"
+                          : "Profession"}
+                      </label>
+                      <input
+                        className="authInput"
+                        type="text"
+                        name={
+                          userData.booking_type === "corporate"
+                            ? "company"
+                            : "profession"
+                        }
+                        onChange={handleInput}
+                        value={
+                          userData.booking_type === "corporate"
+                            ? userData.company
+                            : userData.profession
+                        }
+                        fullWidth
+                        placeholder={
+                          userData.booking_type === "corporate"
+                            ? "Company Name"
+                            : "Profession"
+                        }
+                        size="small"
+                        required
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
+              <label>Password</label>
+              <br />
+              <TextField
+                className="authInput pass"
+                type={!showPassword ? "password" : "text"}
+                name="password"
+                onChange={handleInput}
+                value={userData.password}
+                fullWidth
+                placeholder="Enter password"
+                size="small"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LockOutlined />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        edge="end"
+                      >
+                        {!showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                required
+              />
+              <br />
+              {valid ? (isSignIn ? "" : <p>Should contain minimum 8 characters</p>) : <p style={{ color: "red" }}>The length of password should be greater than 8 and it should contain an uppercase, a lowercase and a special character</p>}
+              {
+                !isSignIn &&
+                <div style={{ fontSize: "0.8rem" }}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        sx={{
+                          color: "#ea4235",
+                          "&.Mui-checked": {
+                            color: "#ea4235",
+                          },
+                        }}
+                      />
+                    }
+                    label="I agree to the Term and Conditions"
+                  />
+                  <p style={{ marginTop: "0" }}>By clicking on SignUp you are agreeing to our <a href="/" style={{ color: "#ff6767" }}>terms of services</a> and <a href="/" style={{ color: "#ff6767" }}>privacy policy</a></p>
+                </div>
+              }
 
-							<Button
-								type="submit"
-								fullWidth
-								className="auth-btn"
-								variant="contained"
-								disableElevation
-							>
-								{isSignIn ? "Sign In" : "Sign Up"}
-							</Button>
-							{isSignIn && <div
-								className="auth-top"
-								style={{ marginTop: "10px", marginBottom: "40px", display: "block", textAlign: "center" }}>
-								<b onClick={() => handleOpen()}>forgot password ?</b>
-							</div>}
-						</form>
-						{/* <p id="swch">Or sign up with</p>
+              <Button
+                type="submit"
+                fullWidth
+                className="auth-btn"
+                variant="contained"
+                disableElevation
+              >
+                {isSignIn ? "Sign In" : "Sign Up"}
+              </Button>
+              {isSignIn && <div
+                className="auth-top"
+                style={{ marginTop: "10px", marginBottom: "40px", display: "block", textAlign: "center" }}>
+                <b onClick={() => handleOpen()}>forgot password ?</b>
+              </div>}
+            </form>
+            {/* <p id="swch">Or sign up with</p>
 			<div className="diff-auth-type">
 			  <IconButton className="auth-icon">
 				<Google />

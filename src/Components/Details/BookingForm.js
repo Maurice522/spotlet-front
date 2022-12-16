@@ -427,7 +427,9 @@ const BookingForm = ({
                 minDate={moment().toDate() - 1}
                 value={v1}
               />
+              {v1 &&
               <Button style={{ color: "#ff6767", textTransform: "initial" }} onClick={handleOpen}>Add a Date</Button>
+              }
               <Modal open={open} onClose={handleClose}>
                 <div className="listing-modal date-time-modal">
                   <h3>Select Date and Time</h3>
