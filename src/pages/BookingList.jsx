@@ -184,6 +184,7 @@ const listingGrid = [
   },
   {
     headerName: "Action",
+    renderCell: gridActionButton,
     field: "action",
     width: "150",
     headerAlign: "Center",
@@ -207,6 +208,7 @@ const mobileListingGrid = [
   },
   {
     headerName: "Action",
+    renderCell: gridActionButton,
     field: "action",
     width: "120",
     headerAlign: "Center",
