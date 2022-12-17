@@ -156,63 +156,63 @@ const mobileBookingGrid = [
 ];
 
 const listingGrid = [
-  {
-    headerName: "LocationId",
-    field: "LocationId",
-    renderCell: gridLocationId,
-    width: "180",
-    headerAlign: "Center",
-  },
-  {
-    headerName: "Status",
-    field: "Status",
-    renderCell: gridBookingStatus,
-    width: "180",
-    headerAlign: "Center",
-  },
-  {
-    headerName: "Date",
-    field: "Date",
-    width: "170",
-    headerAlign: "Center",
-  },
-  {
-    headerName: "Booking Request",
-    field: "BookingRequest",
-    width: "190",
-    headerAlign: "Center",
-  },
-  {
-    headerName: "Action",
-    renderCell: gridActionButton,
-    field: "action",
-    width: "150",
-    headerAlign: "Center",
-  },
+	{
+		headerName: "LocationId",
+		field: "LocationId",
+		renderCell: gridLocationId,
+		width: "180",
+		headerAlign: "Center",
+	},
+	{
+		headerName: "Status",
+		field: "Status",
+		renderCell: gridBookingStatus,
+		width: "180",
+		headerAlign: "Center",
+	},
+	{
+		headerName: "Date",
+		field: "Date",
+		width: "170",
+		headerAlign: "Center",
+	},
+	{
+		headerName: "Booking Request",
+		field: "BookingRequest",
+		width: "190",
+		headerAlign: "Center",
+	},
+	{
+		headerName: "Action",
+		field: "action",
+		renderCell: gridActionButton,
+		width: "150",
+		headerAlign: "Center",
+	},
 ];
 
 const mobileListingGrid = [
-  {
-    headerName: "LocationId",
-    field: "LocationId",
-    renderCell: gridLocationId,
-    width: "150",
-    headerAlign: "Center",
-  },
-  {
-    headerName: "Status",
-    field: "Status",
-    renderCell: gridBookingStatus,
-    width: "70",
-    headerAlign: "Center",
-  },
-  {
-    headerName: "Action",
-    renderCell: gridActionButton,
-    field: "action",
-    width: "120",
-    headerAlign: "Center",
-  },
+	{
+		headerName: "LocationId",
+		field: "LocationId",
+		renderCell: gridLocationId,
+		width: "150",
+		headerAlign: "Center",
+	},
+	{
+		headerName: "Status",
+		field: "Status",
+		renderCell: gridBookingStatus,
+		width: "70",
+		headerAlign: "Center",
+	},
+	{
+		headerName: "Action",
+		field: "action",
+		width: "120",
+		renderCell: gridActionButton,
+		headerAlign: "Center",
+	},
 ];
 
 const BookingList = () => {

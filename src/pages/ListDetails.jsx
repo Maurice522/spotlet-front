@@ -55,7 +55,7 @@ const ListDetails = ({ setFinal }) => {
 		<Link to={props.row.to} style={{ textDecoration: "none" }}>
 			<Button
 				variant="outlined"
-				onClick={() => setFinal(true)}
+				// onClick={() => setFinal(true)}
 				sx={{
 					padding: "6px 10px",
 					border: "1px solid #EA4235",

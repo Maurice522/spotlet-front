@@ -12,7 +12,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 export default function TermCondition() {
   const location_id = useSelector(selectLocationId);
-  const data = useSelector(selectLocationData);
+  let data = useSelector(selectLocationData);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -31,6 +31,10 @@ export default function TermCondition() {
     e.preventDefault();
     if (!policy.grant_info || !policy.privacy_policy || !policy.term_cond)
       return toast.error("Please check all fields!!");
+    data = {
+      ...data,
+      bookedDates: []
+    }
     const locData = {
       data,
       location_id,

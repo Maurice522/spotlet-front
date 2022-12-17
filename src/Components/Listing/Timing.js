@@ -136,7 +136,7 @@ const Timing = ({ showSection, changeSection }) => {
           color="warning"
           checked={monday.open}
         />
-        {monday.open === false ? <h2></h2> : <h2 style={{ color: "#ff6767" }}>Open</h2>}
+        {monday.open === false ? <h2></h2> : <h2>Open</h2>}
         {monday.open === true ? (
           <>
             <div className="row2">

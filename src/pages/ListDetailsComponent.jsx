@@ -11,6 +11,7 @@ import {
 	locationRequest,
 	updateBookingStatus,
 	getLocation,
+	locationUpdate,
 } from "../services/api";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
@@ -40,7 +41,7 @@ const ListDetailsComponent = () => {
 	}
 	//const [ownerData, setOwnerData] = useState({});
 
-	let mm = bookingDetail?.date?.split("-")[1]; 
+	let mm = bookingDetail?.date?.split("-")[1];
 	const month = toMonthName(mm);
 	const date_of_booking =
 		bookingDetail?.date?.split("-")[0] +
@@ -89,11 +90,11 @@ const ListDetailsComponent = () => {
 		};
 
 		const googleSheetData = {
-			host_name: ownerData.personalInfo.fullName,
-			host_email: ownerData.personalInfo.email,
-			host_phone: ownerData.personalInfo.mobile,
-			location_address: locationDetails.property_address.address,
-			location_code: locationDetails.property_address.pincode,
+			host_name: ownerData?.personalInfo?.fullName,
+			host_email: ownerData?.personalInfo.email,
+			host_phone: ownerData?.personalInfo?.mobile,
+			location_address: locationDetails?.property_address?.address,
+			location_code: locationDetails?.property_address?.pincode,
 			user_name: bookingDetail?.user_data?.fullName,
 			user_email: userData?.personalInfo?.email,
 			user_phone: userData?.personalInfo?.mobile,
@@ -102,7 +103,27 @@ const ListDetailsComponent = () => {
 			date_of_booking: date_of_booking,
 			status: status,
 		};
-		// console.log(googleSheetData);
+		// console.log(bookingDetail); 
+		// console.log(locationDetails);
+		// if (status == "Approved") {
+		// 	try {
+		// 		const newLocData = {
+		// 			...locationDetails,
+		// 			bookedDates: [
+		// 				...locationDetails.bookedDates,
+		// 				bookingDetail.reqBookedDate,
+		// 			],
+		// 		};
+		// 		const data = {
+		// 			newLocData,
+		// 			locationId,
+		// 		};
+		// 		console.log(data);
+		// 		await locationUpdate(data)
+		// 	} catch (error) {
+		// 		console.log(error);
+		// 	}
+		// }
 
 		const response = await updateBookingStatus(data);
 		try {

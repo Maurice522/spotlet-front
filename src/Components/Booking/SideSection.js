@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { toast } from "react-toastify";
 import { MdDone } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { bookingRequest, getLocation } from "../../services/api";
+import { bookingRequest, getLocation, locationUpdate } from "../../services/api";
 import { selectUser_id } from "../../redux/slices/userSlice";
 import { useSelector } from "react-redux";
 import { selectUserData } from "../../redux/slices/userSlice";
@@ -48,6 +48,7 @@ const SideSection = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [locationData, setLocationData] = useState({});
+  const [bookedDates, setBookedDates] = useState([])
   const navigate = useNavigate();
   const user_id = useSelector(selectUser_id);
   const location_id = window.location.pathname.substring(1, 10);
@@ -59,7 +60,10 @@ const SideSection = ({
         : v6 * v3 * 1.18;
   useEffect(() => {
     getLocation(location_id)
-      .then((res) => setLocationData(res.data))
+      .then((res) => {
+        setLocationData(res.data)
+        setBookedDates([...res.data.bookedDates, v1])
+      })
       .catch((err) => console.log(err));
   }, []);
   //console.log(v1, v2, v3, v4, v5, v6, event, userData);
@@ -98,6 +102,7 @@ const SideSection = ({
           property_id: location_id,
           time: v2,
           total_amt: gst,
+          bookedDate:v1,
           discount: parseInt(parseInt(gst) - tot_price),
           processfee: Math.round(tot_price / 10),
           final_amount: tot_price + parseInt(locationData?.pricing?.cleaningFee) + Math.round(tot_price / 10),
@@ -113,8 +118,17 @@ const SideSection = ({
             message: userData.message,
           },
         };
-        // console.log(bookingDet);
+        const newLocData = {
+          ...locationData,
+          bookedDates
+        }
+        const data = {
+          newLocData,
+          location_id,
+        };
+        console.log(data);
         try {
+          await locationUpdate(data)
           await bookingRequest(bookingDet);
           handleOpen();
           setReadyForRequest(false);
