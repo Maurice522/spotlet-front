@@ -163,7 +163,7 @@ const SideSection = ({
 
       <div data-attribute-3>
         <div data-attribute-4>
-          Total Price (including Gst)
+          Total Price (incl. Gst)
         </div>
         <div data-attribute-4>₹ {parseInt(gst)}</div>
       </div>
@@ -173,12 +173,12 @@ const SideSection = ({
       </div>
 
       <div data-attribute-3>
-        <div data-attribute-4>Cleaning Fee (including Gst)</div>
+        <div data-attribute-4>Cleaning Fee (incl. Gst)</div>
         <div data-attribute-4>₹ {locationData?.pricing?.cleaningFee}</div>
       </div>
 
       <div data-attribute-3>
-        <div data-attribute-4>Processing Fee (including Gst)</div>
+        <div data-attribute-4>Processing Fee (incl. Gst)</div>
         <div data-attribute-4>₹ {Math.round(tot_price / 10)}</div>
       </div>
 

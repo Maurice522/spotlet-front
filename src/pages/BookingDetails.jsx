@@ -220,7 +220,7 @@ const BookingDetails = () => {
 						</div>
 						<div className="booking-details-body-right">
 							<div data-attribute-3>
-								<div data-attribute-4>Total price (including GST)</div>
+								<div data-attribute-4>Total price (incl. GST)</div>
 								<div data-attribute-4 style={{ textAlign: "right" }}>
 									₹ {booking?.total_amt}
 								</div>
@@ -230,13 +230,13 @@ const BookingDetails = () => {
 								<div data-attribute-4>- ₹ {booking?.discount ? booking?.discount : 0}</div>
 							</div>
 							<div data-attribute-3>
-								<div data-attribute-4>Cleaning Fee (including Gst)</div>
+								<div data-attribute-4>Cleaning Fee (incl. Gst)</div>
 								<div data-attribute-4>
 									₹ {locationData?.pricing?.cleaningFee}
 								</div>
 							</div>
 							<div data-attribute-3>
-								<div data-attribute-4>Processing Fee</div>
+								<div data-attribute-4>Processing Fee (incl. Gst)</div>
 								<div data-attribute-4 style={{ textAlign: "right" }}>
 									₹ {booking?.processfee ? booking?.processfee : 0}
 								</div>
