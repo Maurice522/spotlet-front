@@ -19,7 +19,7 @@ const AboutUs = () => {
       <div className="text-on-image-container">
         <img src={image} alt="background" className="bg-image darken" />
         <div className="about-us-message bold">
-          We Celebrate Happiness and Togetherness Every Day.
+          We Celebrate Happiness and Togetherness Every Day
         </div>
       </div>
       <div className="about-us-content">
@@ -29,18 +29,15 @@ const AboutUs = () => {
           </div>
           <div className="about-us-content-info">
             <p>
-              SpotLet connects people through our unique spaces. Our
-              state-of-the-art online platform enables guests to look for
-              specific locations, communicate with their hosts, and make
-              payments quickly, all in a single place. We aspire to create a
-              community wherein you can always meet, create and celebrate with
-              like-minded people through our online marketplace. So book the
-              best spaces for any activity and enjoy a rewarding experience. We
-              aspire to provide guests with a simplified booking platform and
-              give property owners in India a channel to showcase their spaces
-              and earn additional income.
+            SpotLet connects people through our unique spaces. Our state-of-the-art online platform enables guests to look for specific locations, communicate with their hosts, and make payments quickly, all in a single place.
             </p>
-            {/* <h6>Let's Get Together</h6> */}
+            <p>
+            We aspire to create a community wherein you can always meet, create and celebrate with like-minded people through our online marketplace. So book the best spaces for any activity and enjoy a rewarding experience. 
+            </p>
+            <p>
+            We aspire to provide guests with a simplified booking platform and give property owners in India a channel to showcase their spaces and earn additional income.
+            </p>
+            <h4>Let’s Get Together!</h4>
           </div>
         </div>
 
@@ -48,10 +45,7 @@ const AboutUs = () => {
           <div>
             <div className="about-us-content-heading">SpotLet for Guests</div>
             <div className="about-us-content-info">
-              Whether you’re looking for the prettiest pre-wedding shoot
-              locations, the fanciest business retreat centres or the latest TV
-              serial shooting locations, SpotLet has you covered. Find the keys
-              to the most unique and exciting spaces on our portal.
+            Whether you’re looking for the prettiest pre-wedding shoot locations, the fanciest business retreat centres or the latest TV serial shooting locations, SpotLet has you covered. Find the keys to the most unique and exciting spaces on our portal.
             </div>
             <Link to="/">
               <Button
@@ -133,11 +127,7 @@ const AboutUs = () => {
           <div>
             <div className="about-us-content-heading">SpotLet for Hosts</div>
             <div className="about-us-content-info">
-              We invite you to list your property for free, get more visibility
-              and manage bookings for your spaces with various simplified tools.
-              Share your unutilised property with the world and welcome
-              professionals, families and film crew to experience your unique
-              offerings.
+            We invite you to list your property for free, get more visibility and manage bookings for your spaces with various simplified tools. Share your unutilised property with the world and welcome professionals, families and film crew to experience your unique offerings.
             </div>
             <Link to="/host">
               <Button
@@ -154,7 +144,7 @@ const AboutUs = () => {
                   padding: "6px 12px",
                 }}
               >
-                Let’s Get Started
+                Let’s Get Hosting
               </Button>
             </Link>
           </div>
@@ -207,8 +197,9 @@ const AboutUs = () => {
                   padding: "12px 24px",
                   width: "100%",
                 }}
+                onClick={() => window.scrollTo(0, 0)}
               >
-                List a Place
+                Current Openings
               </Button>
             </Link>
 
@@ -222,8 +213,9 @@ const AboutUs = () => {
                   padding: "12px 24px",
                   width: "100%",
                 }}
+                onClick={() => window.scrollTo(0, 0)}
               >
-                Connect with Us
+                Send your Resume
               </Button>
             </Link>
           </div>

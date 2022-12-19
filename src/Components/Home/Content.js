@@ -44,22 +44,22 @@ const Content = () => {
 			<div className="content-wrapper">
 				<div className="left">
 					<div className="left-heading">
-						SIMPLE
+						A SIMPLE
 						<br /> 3-STEP BOOKING
 						<br /> PROCESS
 					</div>
 					<div className="left-subsection-right">
 						<div className="content-container">
 							<FaDharmachakra color="#ff6767" size="28px" />
-							<div>Choose your desired interst</div>
+							<div>Choose your Desired Interest</div>
 						</div>
 						<div className="content-container">
 							<MdLocationOn color="#ff6767" size="28px" />
-							<div>Find the perfect spot</div>
+							<div>Find the Perfect Spot</div>
 						</div>
 						<div className="content-container">
 							<BsCalendarWeek color="#ff6767" size="28px" />
-							<div>Book your date</div>
+							<div>Book your Dates</div>
 						</div>
 					</div>
 				</div>

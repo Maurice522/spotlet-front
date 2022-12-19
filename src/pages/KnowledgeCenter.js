@@ -77,15 +77,11 @@ const KnowledgeCenter = () => {
         </div>
         <div class="Blog_container">
           <p style={{ textAlign: "center", fontSize: "1rem" }}>
-            Welcome to SpotLet’s Knowledge Base. We’re always working diligently
-            to provide the best booking experience for our hosts and customers.
-            If you need any particular information that you can’t find on our
-            website, please feel free to email us at &lt;<strong>email</strong>{" "}
-            &gt;
+          Welcome to SpotLet’s Knowledge Base. We’re always working diligently to provide the best booking experience for our hosts and customers. If you need any particular information that you can’t find on our website, please feel free to email us at <strong>support@spotlet.in</strong>
           </p>
           {elements.map((item, ind) => (
             <div key={ind} class="Blog_container_div">
-              <Link to={`/resource/${item.id}`}>
+              <Link to={`/resource/${item.id}`} onClick={() => window.scrollTo(0, 0)}>
                 <div className="Blog_containerImage">
                   <img
                     src={item.image}

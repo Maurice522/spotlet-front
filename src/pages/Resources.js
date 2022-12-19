@@ -75,6 +75,7 @@ const Resources = () => {
             RESOURCE CENTRE
           </div>
         </div>
+        <h2 style={{width: "80%", margin: "auto", marginTop: "2rem"}}>We’re happy to share all the information you need to make your hosting or renting experience on SpotLet truly seamless. Please go through our blogs and let us know if you have any further questions.</h2>
         <div class="Blog_container">
           {elements.map((item, ind) => (
             <div class="Blog_container_div" key={ind}>
