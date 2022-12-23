@@ -17,7 +17,7 @@ const Header = ({ extraNavId }) => {
 	const messages = [
 		"Corporate Retreat",
 		"Film & TV Shoot",
-		"Personal Celebration",
+		"Personal Event",
 	];
 
 	const messages2 = [

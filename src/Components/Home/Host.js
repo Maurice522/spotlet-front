@@ -2,15 +2,15 @@ import React from "react";
 import "../../Assets/Styles/Home/host.css";
 import { Link } from "react-router-dom";
 
-const Host = ({ title, link }) => {
+const Host = ({ title, link, content }) => {
   return (
     <div className="host-bg">
       <div>
         <div className="host-header">{title}</div>
-        <div>Have a unique property which you want to list</div>
-        <div>Then why wait</div>
+        <div style={{width: "60%", margin: "auto"}}>{content ? content : "If you’d like to become a host and list your unique property, we’d be happy to showcase it on our website"}</div>
+        <div>{content ? "" : "We invite you to join our growing family"}</div>
         <Link to={"/host"} onClick={() => window.scrollTo(0, 0)}>
-          <div className="list-btn">Host With Us</div>
+          <div className="list-btn">List your Space</div>
         </Link>
       </div>
     </div>

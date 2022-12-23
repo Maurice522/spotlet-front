@@ -15,6 +15,9 @@ import Host from "../Components/Home/Host";
 import { Link } from "react-router-dom";
 import Testimonials from "../Components/Home/Testimonials";
 import Video1 from "../Assets/Images/Video1.mp4";
+import img1 from "../Assets/Images/testimonial-image-1.jpeg";
+import img2 from "../Assets/Images/testimonial-image-2.jpeg";
+import img3 from "../Assets/Images/testimonial-image-3.jpeg";
 
 //for section reason
 import PaidIcon from "@mui/icons-material/Paid";
@@ -25,17 +28,17 @@ const objArray = [
   {
     icon: <AttachMoneyIcon />,
     title: "Free Listing",
-    info: "We don’t charge our customers to list their spaces on SpotLet. The only premium charge is if you want to showcase your spaces in the spotlight.",
+    info: "We don’t charge our customers to list their spaces on SpotLet. The only premium charge is if you want to showcase your spaces in the spotlight. Of course, you can always add your property for free on our portal!",
   },
   {
     icon: <CurrencyExchangeIcon />,
     title: "High Earning Potential",
-    info: "We’re reaching out to many new customers every day. As a result, you can earn lots of extra income as you rent spaces for weddings, film shoots or corporate events.",
+    info: "We’re reaching out to many new customers every day. As a result, you can earn lots of extra income as you rent spaces for weddings, film shoots or corporate events. Moreover, since you get more business during the downtime, you can look forward to a prosperous future!",
   },
   {
     icon: <CheckCircleIcon />,
     title: "Complete Control",
-    info: "You can choose to host corporate lunches, film shoots over the weekends or weddings during the season. You can select what’s best for you and decide all the details with the renters beforehand.",
+    info: "You can decide how you want to share your space with customers. For example, you can choose to host corporate lunches, film shoots over the weekends or weddings during the season. You can select what’s best for you and decide all the details with the renters beforehand. ",
   },
 ];
 
@@ -55,9 +58,49 @@ const HostPage = () => {
     },
     {
       title: "How Can I get more Customers?",
-      info: " We encourage our hosts to share as much information about the property as possible since it helps close bookings faster. Also, you can try our premium packages to ensure that your space gets the spotlight on our platform. We also support you with marketing and advertising and are constantly increasing our website traffic to boost sales.",
+      info: "We encourage our hosts to share as much information about the property as possible since it helps close bookings faster. Also, you can try our premium packages to ensure that your space gets the spotlight on our platform. We also support you with marketing and advertising and are constantly increasing our website traffic to boost sales. ",
     },
   ];
+
+
+  const testObj = [
+		{
+			image: img1,
+			name: "Dhir Acharya",
+			testimony:
+				"I own a picturesque resort in Hyderabad, and while weekends are usually busy, we weren’t serving many customers during the weekdays. When we hosted on SpotLet, we started getting enquiries for OTT shoots and ad films. Our team is now happy to get more business throughout the week, and we love the support from SpotLet to help us grow.",
+		},
+		{
+			image: img2,
+			name: "Aadhya Patel",
+			testimony:
+				"We’re a renowned 5-star hotel in the heart of the city, often booked by families and outstation guests. However, we wanted to expand our customer base and become a preferred location for corporate events. SpotLet allowed us to reach out to our potential customers, and we’re doing great business with corporates now!",
+		},
+		{
+			image: img3,
+			name: "Divya Balakrishnan",
+			testimony:
+				"We own a studio in Hyderabad and have been low on business since the pandemic. Although we have all the latest shooting and editing technologies, we couldn’t reach out to the right audience. SpotLet listing made us a top shoot location, and we now offer studio rental for photoshoots too.",
+		},
+		{
+			image: img1,
+			name: "Shrey Apte",
+			testimony:
+				"We’re an offbeat space on the outskirts, often visited by a specific crowd. However, post the pandemic, we wanted to scale our business and, thus, decided to position ourselves as a top wedding destination. SpotLet has allowed us to showcase our space and get many bookings as an outdoor wedding venue.",
+		},
+		{
+			image: img2,
+			name: "Manavi Malhotra",
+			testimony:
+				"We’re a three-floored space, ideal for corporate events, birthday parties, weddings, and more. Since we listed on SpotLet, we’re running at a 25% higher occupancy, and we’re booked almost every weekend. Thank you, SpotLet, for helping us grow your business.",
+		},
+		{
+			image: img3,
+			name: "Diya Gupta",
+			testimony:
+				"As a property owner, I truly enjoyed interacting with the SpotLet team. Their processes are very organised, payment is always on time, and all regulations are set in place. As a result, every booking is smooth and satisfactory for the host and the guest.",
+		},
+	];
 
   return (
     <div>
@@ -65,7 +108,9 @@ const HostPage = () => {
       <div className="text-on-image-container" style={{ overflowX: "hidden" }}>
         <img src={image} alt="background" className="bg-image darken" />
         <div className="list_your_space ">
-          Enjoy a Second Source of Income. Host with SpotLet
+          Enjoy a Second Source of Income
+          <br />
+          Host with SpotLet
         </div>
         <div className="list_your_space_btn">
           <Link to="/lisitng" className="space_btn">
@@ -83,12 +128,12 @@ const HostPage = () => {
       </div>
 
       <SectionReason
-        heading="Why Choose Us"
+        heading="Why Host with SpotLet?"
         imageReason={image1}
         objArray={objArray}
       />
       <div className="become_host">
-        <div className="become_host_heading">Become a host in 3 easy steps</div>
+        <div className="become_host_heading">Become a Host in just 3 Simple Steps</div>
         <div className="become_host_steps">
           <div className="steps">
             <div className="icon">
@@ -100,13 +145,13 @@ const HostPage = () => {
             <div className="icon">
               <AiFillContainer color="#EA4235" />
             </div>
-            <div className="icon_text">Complete your features</div>
+            <div className="icon_text">Complete your Features</div>
           </div>
           <div className="steps">
             <div className="icon">
               <FiDollarSign color="#EA4235" />
             </div>
-            <div className="icon_text">Set your price</div>
+            <div className="icon_text">Set your Price</div>
           </div>
         </div>
       </div>
@@ -120,7 +165,7 @@ const HostPage = () => {
         />
       </div>
 
-      <Testimonials />
+      <Testimonials testObj={testObj} />
       <div
         style={{
           marginTop: "50px",
@@ -168,6 +213,7 @@ const HostPage = () => {
 
       <Host
         title="Create your listing today"
+        content="Love your property? Why not List it and Become a Successful SpotLet Host? "
         buttonContent="Let's Begin"
         link="/listing"
       />

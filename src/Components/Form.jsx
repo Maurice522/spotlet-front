@@ -4,7 +4,7 @@ import { TextField, Button } from "@mui/material";
 import { contactUs, photoshootRequest } from "../services/api";
 import { toast } from "react-toastify";
 
-const Form = ({ labels, heading }) => {
+const Form = ({ labels, heading, btnContent }) => {
 	const [form, setform] = useState({
 		fullName: "",
 		email: "",
@@ -61,7 +61,7 @@ const Form = ({ labels, heading }) => {
 							backgroundColor: "#ff6767",
 						}}
 					>
-						Send
+						{btnContent ? btnContent : "Send"}
 					</Button>
 				</span>
 			</form>

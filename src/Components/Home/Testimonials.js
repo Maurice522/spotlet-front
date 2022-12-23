@@ -5,7 +5,7 @@ import img1 from "../../Assets/Images/testimonial-image-1.jpeg";
 import img2 from "../../Assets/Images/testimonial-image-2.jpeg";
 import img3 from "../../Assets/Images/testimonial-image-3.jpeg";
 
-const Testimonials = () => {
+const Testimonials = ({testObj}) => {
 	const infoObj = [
 		{
 			image: img1,
@@ -17,7 +17,7 @@ const Testimonials = () => {
 			image: img2,
 			name: "Aadhya Patel",
 			testimony:
-				"After working from home for almost two years, our teams finally came to the office this year. However, the employees couldn’t bond well since we had many new recruits. So, we decided to host a corporate event and started looking for team meeting locations. Thankfully, SpotLet’s great list of venues helped us find the best corporate retreat centre at an affordable price. As a result, our teams are now indeed in sync. Thank you for this service.",
+				"After working from home for almost two years, our teams finally came to the office this year. However, the employees couldn't bond well since we had many new recruits. So, we decided to host a corporate event, especially for the team and started looking for team meeting locations. Thankfully, SpotLet’s great list of venues helped us find the best corporate retreat centre at an affordable price. As a result, our teams are now indeed in sync. Thank you for this service.",
 		},
 		{
 			image: img3,
@@ -43,7 +43,7 @@ const Testimonials = () => {
 
 	const objArray = [
 		{
-			info: infoObj[cnt % 5],
+			info: testObj ? testObj[cnt % 6] : infoObj[cnt % 5],
 			classes: [
 				"testimonial-carousel-card secondary",
 				"avatar",
@@ -54,7 +54,7 @@ const Testimonials = () => {
 			],
 		},
 		{
-			info: infoObj[(cnt + 1) % 5],
+			info: testObj ? testObj[(cnt + 1) % 6] : infoObj[(cnt + 1) % 5],
 			classes: [
 				"testimonial-carousel-card primary",
 				"avatar main",
@@ -65,7 +65,7 @@ const Testimonials = () => {
 			],
 		},
 		{
-			info: infoObj[(cnt + 2) % 5],
+			info: testObj ? testObj[(cnt + 2) % 6] : infoObj[(cnt + 2) % 5],
 			classes: [
 				"testimonial-carousel-card secondary",
 				"avatar",
@@ -75,28 +75,6 @@ const Testimonials = () => {
 				"starter",
 			],
 		},
-		// {
-		// 	info: infoObj[(cnt + 3) % 5],
-		// 	classes: [
-		// 		"testimonial-carousel-card primary",
-		// 		"avatar main",
-		// 		"middle card",
-		// 		"testimonial-name-main",
-		// 		"testimonial-testimony-main",
-		// 		"starter-main",
-		// 	],
-		// },
-		// {
-		// 	info: infoObj[(cnt + 4) % 5],
-		// 	classes: [
-		// 		"testimonial-carousel-card secondary",
-		// 		"avatar",
-		// 		"side card",
-		// 		"testimonial-name",
-		// 		"testimonial-testimony",
-		// 		"starter",
-		// 	],
-		// },
 	];
 
 	return (

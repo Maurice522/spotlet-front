@@ -26,16 +26,12 @@ const Photography = () => {
     },
     {
       title: "What all will be photographed?",
-      info: "The more pictures are available on your listing, the higher your chances of getting more bookings. We photograph all the spaces around your property – rooms, kitchen, living,resort outdoors, pool, dining areas and more. Our photographers will take pictures of every space we feel our customers would like to see before confirming the booking. We will inform you in advance of the images we will be taking so that you can prepare your property accordingly.",
+      info: "The more pictures are available on your listing, the higher your chances of getting more bookings. We photograph all the spaces around your property – rooms, kitchen, living, resort outdoors, pool, dining areas and more. Our photographers will take pictures of every space we feel our customers would like to see before confirming the booking. We will inform you in advance of the images we will be taking so that you can prepare your property accordingly.",
     },
     {
       title: "What are the Charges for the Photoshoot?",
-      info: " We can give you the most affordable photography rates depending on your property and the package you choose. We aim to help you get more bookings and make your listing as attractive as possible. Contact us for a customised quote today.",
-    },
-    {
-      title: "What is in it for you?",
-      info: " lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text lorem ipsum text",
-    },
+      info: "We can give you the most affordable photography rates depending on your property and the package you choose. We aim to help you get more bookings and make your listing as attractive as possible. Contact us for a customised quote today.",
+    }
   ];
 
   const labels = ["Name", "Email", "Phone Number", "Address"];
@@ -48,8 +44,7 @@ const Photography = () => {
           <div className="message myMessage ">
             Professional Photography
             <p className="subtextBanner">
-              Showcase your Property in the best light and earn the spotlight
-              with our exclusive and cost-effective photography services.
+            Showcase your Property in the best light and earn the spotlight with our exclusive and cost-effective photography services.
             </p>
           </div>
         </div>
@@ -57,13 +52,9 @@ const Photography = () => {
         <div className="container1">
           <div className="leftContainer1">
             <div className="contentLeftContainer">
-              <h1>Capturing the Essence of your Spaces</h1>
+              <h1><strong>Capturing the Essence of your Spaces</strong></h1>
               <p className="contentLeftContainerSubtext">
-                Just like e-commerce is driven by exceptional photographs,
-                getting more enquiries and bookings for your space is primarily
-                driven by high-quality photos of your location. So if you want
-                to boost sales for your area, we can offer photoshoots with
-                professional photographers across the country.{" "}
+              Just like e-commerce is driven by exceptional photographs, getting more enquiries and bookings for your space is primarily driven by high-quality photos of your location. So if you want to boost sales for your area, we can offer photoshoots with professional photographers across the country.{" "}
               </p>
             </div>
           </div>
@@ -83,13 +74,9 @@ const Photography = () => {
           </div>
           <div className="rightContainer2">
             <div className="contentRightContainer">
-              <h1>Preparing for Noteworthy Shoots</h1>
+              <h1><strong>Preparing for Noteworthy Shoots</strong></h1>
               <p className="contentRightContainerSubtext">
-                Our photographers are highly skilled in clicking all kinds of
-                properties and bringing out the best features of your space that
-                will appeal to potential clients and maximise your earning
-                potential. Here are a few valuable tips to make the most of your
-                photography sessions:
+              Our photographers are highly skilled in clicking all kinds of properties and bringing out the best features of your space that will appeal to potential clients and maximise your earning potential.
               </p>
             </div>
           </div>
@@ -101,6 +88,7 @@ const Photography = () => {
         <Form
           labels={labels}
           heading="Leverage the Power of Professional Photos for your Listing."
+          btnContent="Book your Photoshoot with SpotLet"
         />
 
         <div className="faqSection">
