@@ -51,11 +51,11 @@ const gridBookingID = (props) => (
 
 const gridBookingStatus = (props) => {
   let color;
-  //console.log(props);
+  console.log(props);
   if (props.row.Status === "Under Review") color = "#E8B500";
   else if (props.row.Status === "Approved") color = "#0079D7";
-  else if (props.row.Status === "Cancelled") color = "#E20000";
-  else if (props.row.Status === "Booked") color = "#19AF00";
+  else if (props.row.Status === "Rejected") color = "#E20000";
+	else if (props.row.Status === "Booked") color = "#19AF00";
 
   return (
     <div
@@ -255,7 +255,7 @@ const BookingList = () => {
 			to: `/bookingdetails/${booking?.bookingId}`,
 			BookingId: booking?.bookingId,
       LocationId: booking?.property_id,
-			Status: booking?.payment_status,
+			Status: booking?.status,
 			Date: booking.date,
 			TimeDuration:
 				booking?.time + " - " + endTime + booking?.time.substr(2, 4) + ampm,
@@ -270,7 +270,7 @@ const BookingList = () => {
   // 		action: gridActionButton,
   // 		to: `/bookingdetails/1}`,
   // 		BookingId: "booking?.bookingId",
-  // 		Status: "booking?.payment_status",
+  // 		Status: "booking?.status",
   // 		Date: "formattedDate",
   // 		TimeDuration: "4 hours",
   // 		TotalAmount: "booking?.total_amt",

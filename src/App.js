@@ -107,8 +107,9 @@ function App() {
 					/>
 					<Route path="/account" element={user ? <AccountInfo /> : ""} />
 					{/* {user && <Route path="/search" element={<Search />} />} */}
-					<Route path="/search/" element={<Search />} />
+					{/* <Route path="/search/" element={<Search />} /> */}
 					<Route path="/search/:event/" element={<Search />} />
+					<Route path="/search/:event/:loctype/:city" element={<Search />} />
 					<Route path="/aboutus" element={<AboutUs />} />
 					<Route path="/activities" element={<Activity />} />
 					<Route path="/listing" element={user ? <ListingPlace /> : ""} />

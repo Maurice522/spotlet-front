@@ -868,7 +868,7 @@ const ReviewApplication = ({ changeSection }) => {
                             {finalData?.gst?.docs.map((fileData, index) => {
                                 return (
                                     <div className="pict" style={{ width: "440px", height: "330px" }} key={index}>
-                                        <embed src={fileData} width="440px" height="330px" />{" "}
+                                        <embed src={fileData.file} width="440px" height="330px" />{" "}
                                     </div>
                                 );
                             })}

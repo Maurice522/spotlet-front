@@ -3,61 +3,56 @@ import FormFilter from "../Components/Home/FormFilter";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import PropertyInfo from "../Components/PropertyInfo";
-import img1 from "../Assets/Images/property-1.jpeg";
-import img2 from "../Assets/Images/property-2.jpeg";
-import img3 from "../Assets/Images/property-3.jpeg";
-import img4 from "../Assets/Images/property-4.jpeg";
-import img5 from "../Assets/Images/property-5.jpeg";
-import img6 from "../Assets/Images/property-6.jpeg";
 import "../Assets/Styles/Search/search.css";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import jwtDecode from "jwt-decode";
-import { getUserData } from "../services/api";
+import { getAllLocations, getUserData } from "../services/api";
 import { Button, Modal } from "@mui/material";
 import { BiFilterAlt } from "react-icons/bi";
 import { ImCross } from "react-icons/im";
 import Select from "react-select";
 import Host from "../Components/Home/Host";
-import { MarginRounded } from "@mui/icons-material";
-import { toast } from "react-toastify";
 
-const fillData = (data, splitRange) => {
-	let j = 0;
-	const values = [];
-	for (let i = 0; i < 8; i++) {
-		let arr = [];
-		if (!data[j]) break;
-		for (; j < (i + 1) * splitRange; j++) arr.push(data[j]);
-		values.push(arr);
-	}
-	return values;
-};
+// const fillData = (data, splitRange) => {
+// 	let j = 0;
+// 	const values = [];
+// 	for (let i = 0; i < 8; i++) {
+// 		let arr = [];
+// 		if (!data[j]) break;
+// 		for (; j < (i + 1) * splitRange; j++) arr.push(data[j]);
+// 		values.push(arr);
+// 	}
+// 	return values;
+// };
 
 const Search = () => {
-	var sortedProperties;
+	// let sortedProperties;
 	const navigate = useNavigate();
-	const { event } = useParams();
+	const { event, loctype, city } = useParams();
 	const [searchEvent, setSearchEvent] = useState("all");
 	const [searchLocation, setSearchLocation] = useState("all");
+	const [searchCity, setSearchCity] = useState("all");
 	const [propertyDetails, setPropertiesDetail] = useState([]);
 	const [favorites, setFavorites] = useState([]);
-	const [sort, setSort] = useState("");
+	const [sort, setSort] = useState("highesttolowest");
 	const [openFilter, setOpenFilter] = useState(false);
 	const handleOpenFilter = () => setOpenFilter(true);
 	const handleCloseFilter = () => setOpenFilter(false);
-	// const [event, setEvent] = useState("all");
 	const [active, setActive] = useState(false);
 	let x = window.matchMedia("(max-width:576px)");
 
 	useEffect(() => {
-		console.log("useeffect");
-		console.log(event);
 		if (event) {
-			// console.log("hi")
 			setSearchEvent(event);
 			setSearchLocation("all");
+			setSearchCity("all");
+		}
+		if (loctype) {
+			setSearchLocation(loctype);
+		}
+		if (city) {
+			setSearchCity(city);
 		}
 	}, []);
 
@@ -72,8 +67,6 @@ const Search = () => {
 		{ value: 100000, label: "1,00,000" },
 	];
 
-	const [pageIndex, setPageIndex] = useState(0);
-	const [pageData, setPageData] = useState([[]]);
 	const sortOptions = [
 		{ value: "highesttolowest", label: "Highest to Lowest" },
 		{ value: "lowesttohighest", label: "Lowest to Highest" },
@@ -92,17 +85,14 @@ const Search = () => {
 	};
 
 	useEffect(() => {
-		const getAllLocations = async () => {
-			const response = await axios.get(
-				"https://spotlet.onrender.com/getlocations"
-			);
-
+		const fetchData = async () => {
+			const response = await getAllLocations();
 			const res = response.data;
 			const result = res.locations;
-			console.log(result);
+			// console.log(result);
 			setPropertiesDetail(result);
 		};
-		getAllLocations();
+		fetchData();
 	}, []);
 
 	useEffect(() => {
@@ -121,82 +111,8 @@ const Search = () => {
 	const [min, setMin] = useState(0);
 	const [max, setMax] = useState(Number.MAX_SAFE_INTEGER);
 
-	useEffect(() => {
-	  if (searchEvent == "all") {
-			sortedProperties = propertyDetails;
-			if (sort == "highesttolowest") {
-				console.log("allhl");
-				sortedProperties = [...propertyDetails].sort((a, b) =>
-					Number(a.pricing.corporate?.hourly_rate) <
-					Number(b.pricing.corporate?.hourly_rate)
-						? 1
-						: -1
-				);
-			} else {
-				console.log("alllh");
-				sortedProperties = [...propertyDetails].sort((a, b) =>
-					Number(a.pricing.corporate?.hourly_rate) <
-					Number(b.pricing.corporate?.hourly_rate)
-						? -1
-						: 1
-				);
-			}
-		}
-		if (searchEvent == "CorporateBooking") {
-			if (sort == "highesttolowest") {
-				console.log("cbhl");
-				sortedProperties = [...propertyDetails].sort((a, b) =>
-					Number(a.pricing.corporate?.hourly_rate) <
-					Number(b.pricing.corporate?.hourly_rate)
-						? 1
-						: -1
-				);
-			} else {
-				console.log("cblh");
-				sortedProperties = [...propertyDetails].sort((a, b) =>
-					Number(a.pricing.corporate?.hourly_rate) <
-					Number(b.pricing.corporate?.hourly_rate)
-						? -1
-						: 1
-				);
-			}
-		}
-		if (searchEvent == "IndividualBooking") {
-			if (sort == "highesttolowest") {
-				sortedProperties = [...propertyDetails].sort((a, b) =>
-					Number(a.pricing.individual?.hourly_rate) <
-					Number(b.pricing.individual?.hourly_rate)
-						? 1
-						: -1
-				);
-			} else {
-				sortedProperties = [...propertyDetails].sort((a, b) =>
-					Number(a.pricing.individual?.hourly_rate) <
-					Number(b.pricing.individual?.hourly_rate)
-						? -1
-						: 1
-				);
-			}
-		}
-		if (searchEvent == "FilmShooting") {
-			if (sort == "highesttolowest") {
-				sortedProperties = [...propertyDetails].sort((a, b) =>
-					Number(a.pricing.film_webseries_ad?.hourly_rate) <
-					Number(b.pricing.film_webseries_ad?.hourly_rate)
-						? 1
-						: -1
-				);
-			} else {
-				sortedProperties = [...propertyDetails].sort((a, b) =>
-					Number(a.pricing.film_webseries_ad?.hourly_rate) <
-					Number(b.pricing.film_webseries_ad?.hourly_rate)
-						? -1
-						: 1
-				);
-			}
-		}
-	}, [sort])
-	
+	// const [pageIndex, setPageIndex] = useState(0);
+	// const [pageData, setPageData] = useState([[]]);
 	// useEffect(() => {
 	//   setPageData(fillData(sortedProperties, 5));
 	// }, [sortedProperties]);
@@ -223,6 +139,82 @@ const Search = () => {
 		return propertyDetails.slice(firstPageIndex, lastPageIndex);
 	}, [currentPage, propertyDetails]);
 
+	// useEffect(() => {
+	// 	if (searchEvent == "all") {
+	// 		sortedProperties = currentTableData;
+	// 		if (sort == "highesttolowest") {
+	// 			console.log("allhl");
+	// 			sortedProperties = [...currentTableData].sort((a, b) =>
+	// 				Number(a.pricing.corporate?.hourly_rate) <
+	// 				Number(b.pricing.corporate?.hourly_rate)
+	// 					? 1
+	// 					: -1
+	// 			);
+	// 		} else {
+	// 			console.log("alllh");
+	// 			sortedProperties = [...currentTableData].sort((a, b) =>
+	// 				Number(a.pricing.corporate?.hourly_rate) <
+	// 				Number(b.pricing.corporate?.hourly_rate)
+	// 					? -1
+	// 					: 1
+	// 			);
+	// 		}
+	// 	}
+	// 	if (searchEvent == "CorporateBooking") {
+	// 		if (sort == "highesttolowest") {
+	// 			console.log("cbhl");
+	// 			sortedProperties = [...currentTableData].sort((a, b) =>
+	// 				Number(a.pricing.corporate?.hourly_rate) <
+	// 				Number(b.pricing.corporate?.hourly_rate)
+	// 					? 1
+	// 					: -1
+	// 			);
+	// 		} else {
+	// 			console.log("cblh");
+	// 			sortedProperties = [...currentTableData].sort((a, b) =>
+	// 				Number(a.pricing.corporate?.hourly_rate) <
+	// 				Number(b.pricing.corporate?.hourly_rate)
+	// 					? -1
+	// 					: 1
+	// 			);
+	// 		}
+	// 	}
+	// 	if (searchEvent == "IndividualBooking") {
+	// 		if (sort == "highesttolowest") {
+	// 			sortedProperties = [...currentTableData].sort((a, b) =>
+	// 				Number(a.pricing.individual?.hourly_rate) <
+	// 				Number(b.pricing.individual?.hourly_rate)
+	// 					? 1
+	// 					: -1
+	// 			);
+	// 		} else {
+	// 			sortedProperties = [...currentTableData].sort((a, b) =>
+	// 				Number(a.pricing.individual?.hourly_rate) <
+	// 				Number(b.pricing.individual?.hourly_rate)
+	// 					? -1
+	// 					: 1
+	// 			);
+	// 		}
+	// 	}
+	// 	if (searchEvent == "FilmShooting") {
+	// 		if (sort == "highesttolowest") {
+	// 			sortedProperties = [...currentTableData].sort((a, b) =>
+	// 				Number(a.pricing.film_webseries_ad?.hourly_rate) <
+	// 				Number(b.pricing.film_webseries_ad?.hourly_rate)
+	// 					? 1
+	// 					: -1
+	// 			);
+	// 		} else {
+	// 			sortedProperties = [...currentTableData].sort((a, b) =>
+	// 				Number(a.pricing.film_webseries_ad?.hourly_rate) <
+	// 				Number(b.pricing.film_webseries_ad?.hourly_rate)
+	// 					? -1
+	// 					: 1
+	// 			);
+	// 		}
+	// 	}
+	// }, []);
+
 	return (
 		<>
 			<Navbar extraNavId="id-2" />
@@ -235,12 +227,13 @@ const Search = () => {
 				<FormFilter
 					fullScreen={true}
 					homepage={false}
+					searchEvent={searchEvent}
 					setSearchEvent={setSearchEvent}
+					searchLocation={searchLocation}
 					setSearchLocation={setSearchLocation}
+					searchCity={searchCity}
+					setSearchCity={setSearchCity}
 					setMax={setMax}
-					setMin={setMin}
-					sort={sort}
-					setSort={setSort}
 				/>
 			</div>
 
@@ -447,12 +440,13 @@ const Search = () => {
 								</div> */}
 							</div>
 							{/* <div className="apply">
-                <button className="accbut apply-btn">Apply Changes</button>
-              </div> */}
+								<button className="accbut apply-btn">Apply Changes</button>
+							</div> */}
 						</div>
 					</>
 				</div>
 			</Modal>
+
 			<div
 				className="search-heading"
 				style={{ marginTop: x.matches && "300px" }}
@@ -471,8 +465,11 @@ const Search = () => {
 					<Button
 						style={{ color: "red", padding: "6px 0" }}
 						onClick={() => {
-							setSearchEvent("all");
-							setSearchLocation("all");
+							// setSearchEvent("all");
+							// setSearchLocation("all");
+							// setSearchCity("all");
+							setMin(0);
+							setMax(Number.MAX_SAFE_INTEGER);
 						}}
 					>
 						Clear Filter
@@ -497,6 +494,28 @@ const Search = () => {
 							(item.pricing.individual?.hourly_rate <= max &&
 								item.pricing.individual?.hourly_rate >= min))
 					) {
+						if (searchCity != "all") {
+							if (searchCity === item.property_address.city) {
+								console.log(searchCity, item.property_address.city);
+								return (
+									<PropertyInfo
+										item={item}
+										// index={index}
+										// isFav={true}
+										favPage={false}
+										favorites={favorites}
+										setFavorites={setFavorites}
+										key={item.location_id}
+										handleClick={() => {
+											console.log("clicked");
+										}}
+										border={false}
+									/>
+								);
+							} else {
+								return;
+							}
+						}
 						return (
 							<PropertyInfo
 								item={item}
@@ -522,6 +541,28 @@ const Search = () => {
 								(item.pricing?.tv_series_other?.hourly_rate <= max &&
 									item.pricing?.tv_series_other?.hourly_rate > min))
 						) {
+							if (searchCity != "all") {
+								if (searchCity === item.property_address.city) {
+									console.log(searchCity, item.property_address.city);
+									return (
+										<PropertyInfo
+											item={item}
+											// index={index}
+											// isFav={true}
+											favPage={false}
+											favorites={favorites}
+											setFavorites={setFavorites}
+											key={item.location_id}
+											handleClick={() => {
+												console.log("clicked");
+											}}
+											border={false}
+										/>
+									);
+								} else {
+									return;
+								}
+							}
 							return (
 								<PropertyInfo
 									item={item}
@@ -543,6 +584,28 @@ const Search = () => {
 							item.pricing.corporate?.hourly_rate <= max &&
 							item.pricing.corporate?.hourly_rate >= min
 						) {
+							if (searchCity != "all") {
+								if (searchCity === item.property_address.city) {
+									console.log(searchCity, item.property_address.city);
+									return (
+										<PropertyInfo
+											item={item}
+											// index={index}
+											// isFav={true}
+											favPage={false}
+											favorites={favorites}
+											setFavorites={setFavorites}
+											key={item.location_id}
+											handleClick={() => {
+												console.log("clicked");
+											}}
+											border={false}
+										/>
+									);
+								} else {
+									return;
+								}
+							}
 							return (
 								<PropertyInfo
 									item={item}
@@ -564,6 +627,28 @@ const Search = () => {
 							item.pricing.individual?.hourly_rate <= max &&
 							item.pricing.individual?.hourly_rate >= min
 						) {
+							if (searchCity != "all") {
+								if (searchCity === item.property_address.city) {
+									console.log(searchCity, item.property_address.city);
+									return (
+										<PropertyInfo
+											item={item}
+											// index={index}
+											// isFav={true}
+											favPage={false}
+											favorites={favorites}
+											setFavorites={setFavorites}
+											key={item.location_id}
+											handleClick={() => {
+												console.log("clicked");
+											}}
+											border={false}
+										/>
+									);
+								} else {
+									return;
+								}
+							}
 							return (
 								<PropertyInfo
 									item={item}
@@ -592,6 +677,28 @@ const Search = () => {
 						console.log(searchEvent);
 						if (searchLocation == item.property_desc.location_type) {
 							console.log(searchLocation, item.property_desc.location_type);
+							if (searchCity != "all") {
+								if (searchCity === item.property_address.city) {
+									console.log(searchCity, item.property_address.city);
+									return (
+										<PropertyInfo
+											item={item}
+											// index={index}
+											// isFav={true}
+											favPage={false}
+											favorites={favorites}
+											setFavorites={setFavorites}
+											key={item.location_id}
+											handleClick={() => {
+												console.log("clicked");
+											}}
+											border={false}
+										/>
+									);
+								} else {
+									return;
+								}
+							}
 							return (
 								<PropertyInfo
 									item={item}
@@ -617,6 +724,28 @@ const Search = () => {
 						console.log(searchEvent);
 						if (searchLocation == item.property_desc.location_type) {
 							console.log(searchLocation, item.property_desc.location_type);
+							if (searchCity != "all") {
+								if (searchCity === item.property_address.city) {
+									console.log(searchCity, item.property_address.city);
+									return (
+										<PropertyInfo
+											item={item}
+											// index={index}
+											// isFav={true}
+											favPage={false}
+											favorites={favorites}
+											setFavorites={setFavorites}
+											key={item.location_id}
+											handleClick={() => {
+												console.log("clicked");
+											}}
+											border={false}
+										/>
+									);
+								} else {
+									return;
+								}
+							}
 							return (
 								<PropertyInfo
 									item={item}
@@ -642,6 +771,28 @@ const Search = () => {
 						console.log(searchEvent);
 						if (searchLocation == item.property_desc.location_type) {
 							console.log(searchLocation, item.property_desc.location_type);
+							if (searchCity != "all") {
+								if (searchCity === item.property_address.city) {
+									console.log(searchCity, item.property_address.city);
+									return (
+										<PropertyInfo
+											item={item}
+											// index={index}
+											// isFav={true}
+											favPage={false}
+											favorites={favorites}
+											setFavorites={setFavorites}
+											key={item.location_id}
+											handleClick={() => {
+												console.log("clicked");
+											}}
+											border={false}
+										/>
+									);
+								} else {
+									return;
+								}
+							}
 							return (
 								<PropertyInfo
 									item={item}
@@ -663,18 +814,19 @@ const Search = () => {
 			</div>
 			<div className="paginated-container">
 				{/* {Array(8)
-          .fill(0)
-          .map((item, id) => {
-            return (
-              <div
-                key={id}
-                className={`paginated-box ${id === pageIndex && "active"}`}
-                onClick={() => handlePageIndex(id)}
-              >
-                {id + 1}
-              </div>
-            );
-          })} */}
+					.fill(0)
+					.map((item, id) => {
+						return (
+							<div
+								key={id}
+								className={`paginated-box ${id === pageIndex && "active"}`}
+								onClick={() => handlePageIndex(id)}
+							>
+								{id + 1}
+							</div>
+						);
+					})} */}
+
 				{/* pagination  */}
 				{Array(totalPageCount)
 					.fill(0)

@@ -3,7 +3,6 @@ import axios from "axios";
 // const server_domain = "https://gorecceback.herokuapp.com";
 // const server_domain = "https://spotlet.onrender.com"; //TEMP HOSTED SERVER
 const server_domain = "http://localhost:8000";
-// const server_domain = "https://hilarious-vestments-colt.cyclic.app"; //NEW SERVER
 
 ////////////////////////Auth////////////////////////
 // function to send signin request to backend
@@ -181,4 +180,26 @@ export const contactUs = (form) => {
 //photography
 export const photoshootRequest = (form) => {
   return axios.post(server_domain + "/photoshootreq", form);
+};
+
+
+//DROPDOWNS
+//add city
+export const createCity = (form) => {
+  return axios.post(server_domain + "/createcity", form);
+};
+
+//get cities
+export const getCities = () => {
+  return axios.get(server_domain + "/getcities");
+};
+
+//add loc type
+export const createLocType = (form) => {
+  return axios.post(server_domain + "/createloctype", form);
+};
+
+//get loc types
+export const getLocTypes = () => {
+  return axios.get(server_domain + "/getloctypes");
 };

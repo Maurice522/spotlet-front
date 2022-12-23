@@ -48,7 +48,6 @@ const SideSection = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [locationData, setLocationData] = useState({});
-  const [bookedDates, setBookedDates] = useState([])
   const navigate = useNavigate();
   const user_id = useSelector(selectUser_id);
   const location_id = window.location.pathname.substring(1, 10);
@@ -62,7 +61,6 @@ const SideSection = ({
     getLocation(location_id)
       .then((res) => {
         setLocationData(res.data)
-        setBookedDates([...res.data.bookedDates, v1])
       })
       .catch((err) => console.log(err));
   }, []);
@@ -102,7 +100,7 @@ const SideSection = ({
           property_id: location_id,
           time: v2,
           total_amt: gst,
-          bookedDate:v1,
+          reqDate:v1,
           discount: parseInt(parseInt(gst) - tot_price),
           processfee: Math.round(tot_price / 10),
           final_amount: tot_price + parseInt(locationData?.pricing?.cleaningFee) + Math.round(tot_price / 10),
@@ -118,17 +116,7 @@ const SideSection = ({
             message: userData.message,
           },
         };
-        const newLocData = {
-          ...locationData,
-          bookedDates
-        }
-        const data = {
-          newLocData,
-          location_id,
-        };
-        console.log(data);
         try {
-          await locationUpdate(data)
           await bookingRequest(bookingDet);
           handleOpen();
           setReadyForRequest(false);

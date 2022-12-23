@@ -179,7 +179,7 @@ const Location = ({ showSection, changeSection }) => {
       ...location,
       property_address,
     };
-    dispatch(addCity(property_address.city));
+    // dispatch(addCity(property_address.city));
     dispatch(addLocation(locData));
     const form = {
       location_id,

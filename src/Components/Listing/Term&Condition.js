@@ -4,7 +4,7 @@ import {
   selectLocationData,
   selectLocationId,
 } from "../../redux/slices/locationSlice";
-import { createLocation } from "../../services/api";
+import { createCity, createLocation, createLocType } from "../../services/api";
 import { toast } from "react-toastify";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { Modal } from "@mui/material";
@@ -39,10 +39,21 @@ export default function TermCondition() {
       data,
       location_id,
     };
+    const cityData = {
+      value: locData.data.property_address.city,
+      label: locData.data.property_address.city
+    }
+    const loctypedata = {
+      value: locData.data.property_desc.location_type,
+      label: locData.data.property_desc.location_type
+    }
     try {
       const response = await createLocation(locData);
+      await createCity(cityData);
+      await createLocType(loctypedata);
       localStorage.removeItem("locationData");
       localStorage.removeItem("locationId");
+      localStorage.removeItem("locationTypeOptions");
       toast.success(response.data);
       window.location = "/bookinglist/:listing";
     } catch (error) {

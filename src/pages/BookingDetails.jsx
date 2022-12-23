@@ -44,11 +44,11 @@ const BookingDetails = () => {
 	useEffect(() => {
 		userData?.portfolio.map((booking) => {
 			if (booking.bookingId === bookingId) {
-				setBooking(booking)
+				setBooking(booking);
 				getLocation(booking?.property_id)
 					.then((res) => setLocationData(res.data))
 					.catch((err) => console.log(err));
-			};
+			}
 		});
 	}, [userData]);
 
@@ -75,8 +75,8 @@ const BookingDetails = () => {
 		booking?.duration_in_hours === "24"
 			? 0.8
 			: booking?.duration_in_hours === "12"
-				? 0.9
-				: 1;
+			? 0.9
+			: 1;
 	const perHourCost = (
 		(booking?.total_amt - 40) /
 		booking?.duration_in_hours /
@@ -227,7 +227,9 @@ const BookingDetails = () => {
 							</div>
 							<div data-attribute-3>
 								<div data-attribute-4>Discount</div>
-								<div data-attribute-4>- ₹ {booking?.discount ? booking?.discount : 0}</div>
+								<div data-attribute-4>
+									- ₹ {booking?.discount ? booking?.discount : 0}
+								</div>
 							</div>
 							<div data-attribute-3>
 								<div data-attribute-4>Cleaning Fee (including Gst)</div>
@@ -247,12 +249,12 @@ const BookingDetails = () => {
 								<div data-attribute-1>
 									₹
 									{/* {(perHourCost * booking?.duration_in_hours + 40)?.toFixed(
-                    2
-                  ) === "NaN"
-                    ? 0
-                    : (perHourCost * booking?.duration_in_hours + 40)?.toFixed(
-                        2
-                      )} */}
+										2
+									) === "NaN"
+										? 0
+										: (perHourCost * booking?.duration_in_hours + 40)?.toFixed(
+												2
+										  )} */}
 									{booking?.final_amount}
 								</div>
 							</div>
@@ -266,7 +268,7 @@ const BookingDetails = () => {
 									borderRadius: "4px",
 									marginTop: "10px",
 								}}
-								disabled={booking?.payment_status !== "Under Review"}
+								disabled={booking?.status !== "Under Review"}
 								onClick={() => setopenModal(true)}
 							>
 								Cancel Booking
@@ -308,8 +310,9 @@ const BookingDetails = () => {
 						style={{
 							marginLeft: "auto",
 							width: "20vw",
-							display: `${booking?.payment_status !== "Approved" ? "none" : "block"
-								}`,
+							display: `${
+								booking?.status !== "Approved" ? "none" : "block"
+							}`,
 						}}
 					>
 						<Button
@@ -331,8 +334,9 @@ const BookingDetails = () => {
 						width: "80%",
 						height: "500px",
 						margin: "auto",
-						display: `${booking?.payment_status !== "Approved" ? "none" : "block"
-							}`,
+						display: `${
+							booking?.status !== "Approved" ? "none" : "block"
+						}`,
 					}}
 				>
 					{cord.lat !== 0 && <GoogleMap lat={cord.lat} lng={cord.lng} />}
@@ -365,7 +369,7 @@ const BookingDetails = () => {
 									marginTop: "10px",
 									flexGrow: "1",
 								}}
-								disabled={booking?.payment_status === "Cancelled"}
+								disabled={booking?.status === "Cancelled"}
 								onClick={handleChat}
 							>
 								Message
@@ -373,7 +377,7 @@ const BookingDetails = () => {
 						</div>
 					</div>
 				</div>
-				{userData?.portfolio[0]?.payment_status !== "Under Review" && (
+				{userData?.portfolio[0]?.status !== "Under Review" && (
 					<div div className="container">
 						<div className="booking-details-header">Reviews and Rating</div>
 						<div className="row1">
@@ -426,7 +430,7 @@ const BookingDetails = () => {
 									marginTop: "10px",
 									flexGrow: "1",
 								}}
-								disabled={booking?.payment_status === "Cancelled"}
+								disabled={booking?.status === "Cancelled"}
 								onClick={handleReview}
 							>
 								Send Review

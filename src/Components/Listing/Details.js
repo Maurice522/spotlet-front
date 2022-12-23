@@ -44,7 +44,7 @@ const Details = ({ showSection, changeSection }) => {
   const dispatch = useDispatch();
   const [property_desc, setPropertyDescr] = useState(initialState);
   let x = window.matchMedia("(max-width:576px)");
-  console.log(options);
+  // console.log(options);
 
   useEffect(() => {
     // location && setLType(" "+location.property_desc.location_type);

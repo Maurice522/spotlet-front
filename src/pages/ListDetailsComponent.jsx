@@ -24,7 +24,7 @@ const ListDetailsComponent = () => {
 	const locationId = window.location.pathname.substr(10, 9);
 	const [userData, setUserData] = useState({});
 	const [locationDetails, setLocationDetails] = useState({});
-
+	const [bookedDates, setBookedDates] = useState([]);
 	const ownerData = useSelector(selectUserData);
 
 	let endTime =
@@ -65,10 +65,13 @@ const ListDetailsComponent = () => {
 	}, [bookingDetail]);
 	useEffect(() => {
 		getLocation(locationId)
-			.then((res) => setLocationDetails(res.data))
+			.then((res) => {
+				setLocationDetails(res.data);
+				setBookedDates(res.data.bookedDates);
+			})
 			.catch((err) => console.log(err));
 	}, [locationId]);
-	console.log(bookingDetail);
+	// console.log(bookingDetail);
 	//console.log(form);
 	//console.log(userData);
 	function toMonthName(monthNumber) {
@@ -103,27 +106,24 @@ const ListDetailsComponent = () => {
 			date_of_booking: date_of_booking,
 			status: status,
 		};
-		// console.log(bookingDetail); 
+		// console.log(bookingDetail);
 		// console.log(locationDetails);
-		// if (status == "Approved") {
-		// 	try {
-		// 		const newLocData = {
-		// 			...locationDetails,
-		// 			bookedDates: [
-		// 				...locationDetails.bookedDates,
-		// 				bookingDetail.reqBookedDate,
-		// 			],
-		// 		};
-		// 		const data = {
-		// 			newLocData,
-		// 			locationId,
-		// 		};
-		// 		console.log(data);
-		// 		await locationUpdate(data)
-		// 	} catch (error) {
-		// 		console.log(error);
-		// 	}
-		// }
+		if (status == "Approved") {
+			try {
+				const newLocData = {
+					...locationDetails,
+					bookedDates: [...locationDetails.bookedDates, bookingDetail.reqDate],
+				};
+				const data = {
+					newLocData,
+					location_id: locationId,
+				};
+				console.log(data);
+				await locationUpdate(data);
+			} catch (error) {
+				console.log(error);
+			}
+		}
 
 		const response = await updateBookingStatus(data);
 		try {
@@ -240,43 +240,45 @@ const ListDetailsComponent = () => {
 									₹ {bookingDetail?.total_amt?.toFixed(2)}
 								</div>
 							</div>
-							<Button
-								variant={
-									bookingDetail?.payment_status === "Rejected"
-										? "outlined"
-										: "contained"
-								}
-								sx={{
-									width: "20vw",
-									backgroundColor: "#EA4235",
-									color: "white",
-									borderRadius: "4px",
-									marginTop: "10px",
-								}}
-								disabled={bookingDetail?.payment_status !== "Under Review"}
-								onClick={() => updateStatus("Approved")}
-							>
-								Approved
-							</Button>
-							<br />
-							<Button
-								variant={
-									bookingDetail?.payment_status === "Rejected"
-										? "contained"
-										: "outlined"
-								}
-								sx={{
-									width: "20vw",
-									color: "black",
-									borderRadius: "4px",
-									border: "2px solid #EA4235",
-									marginTop: "10px",
-								}}
-								disabled={bookingDetail?.payment_status !== "Under Review"}
-								onClick={() => updateStatus("Cancelled")}
-							>
-								Reject
-							</Button>
+							<div>
+								<Button
+									variant={
+										bookingDetail?.status === "Rejected"
+											? "outlined"
+											: "contained"
+									}
+									sx={{
+										width: "20vw",
+										backgroundColor: "#EA4235",
+										color: "white",
+										borderRadius: "4px",
+										marginTop: "10px",
+									}}
+									disabled={bookingDetail?.status !== "Under Review"}
+									onClick={() => updateStatus("Approved")}
+								>
+									Approve
+								</Button>
+								<br />
+								<Button
+									variant={
+										bookingDetail?.status === "Rejected"
+											? "contained"
+											: "outlined"
+									}
+									sx={{
+										width: "20vw",
+										color: "black",
+										borderRadius: "4px",
+										border: "2px solid #EA4235",
+										marginTop: "10px",
+									}}
+									disabled={bookingDetail?.status !== "Under Review"}
+									onClick={() => updateStatus("Rejected")}
+								>
+									Reject
+								</Button>
+							</div>
 						</div>
 					</div>
 				</div>

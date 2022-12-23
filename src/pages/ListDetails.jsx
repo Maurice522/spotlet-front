@@ -25,7 +25,7 @@ const ListDetails = ({ setFinal }) => {
 			if (loc.location_id === locationId) setLocationData(loc);
 		});
 	}, [userData]);
-	console.log(locationData, "locationData");
+	// console.log(requests, "requests");
 
 	useEffect(() => {
 		locationRequest(locationId)
@@ -35,7 +35,7 @@ const ListDetails = ({ setFinal }) => {
 			.catch((err) => {
 				console.log(err);
 			});
-	}, []);
+	}, [locationId]);
 	//console.log(locationData);
 	const gridBookingName = (props) => (
 		<div
@@ -75,7 +75,7 @@ const ListDetails = ({ setFinal }) => {
 		//console.log(props);
 		if (props.row.Status === "Under Review") color = "#E8B500";
 		else if (props.row.Status === "Approved") color = "#0079D7";
-		else if (props.row.Status === "Cancelled") color = "#E20000";
+		else if (props.row.Status === "Rejected") color = "#E20000";
 		else if (props.row.Status === "Booked") color = "#19AF00";
 
 		return (
@@ -108,7 +108,7 @@ const ListDetails = ({ setFinal }) => {
 			action: gridActionButton,
 			to: `/location/${locationId}/bookingdetail/${request?.req_id}`,
 			Name: request?.user_data?.fullName,
-			Status: request?.payment_status,
+			Status: request?.status,
 			DateOfRequest: formattedToday,
 			DateOfEvent: request?.date,
 			TimeDuration:
