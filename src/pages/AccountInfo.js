@@ -34,7 +34,6 @@ import OTPVerify from "./Auth/OTPVerify";
 const AccountInfo = (extraNavId) => {
   const [section, showSection] = useState("Profile");
   const [pass, setPass] = useState(false);
-  const [deact, setDeact] = useState(false);
   const [openOTP, setOpenOTP] = useState(false);
   const handleOpenOTP = () => setOpenOTP(true);
   const handleCloseOTP = () => setOpenOTP(false);
@@ -199,18 +198,13 @@ const AccountInfo = (extraNavId) => {
   };
 
   //Deactivate Account
-  const handleDeactivate = async (e) => {
-    e.preventDefault();
-    console.log(deact);
-    setOpenDeact(true);
-    if (deact) {
+  const handleDeactivate = async () => {
       try {
         const response = await deleteRequest(user_id);
         toast.success(response.data);
       } catch (error) {
         toast.error(error.response.data);
       }
-    }
   };
   return (
     <>
@@ -597,7 +591,7 @@ const AccountInfo = (extraNavId) => {
                 Deactivate Your Account:
                 <button
                   className="accbut deactivateBtn"
-                  onClick={handleDeactivate}
+                  onClick={() => setOpenDeact(true)}
                 >
                   Deactivate Account
                 </button>
@@ -613,8 +607,8 @@ const AccountInfo = (extraNavId) => {
                 <Button
                   className="auth-btn"
                   onClick={() => {
+                    handleDeactivate();
                     handleCloseDeact();
-                    setDeact(true);
                   }}
                 >
                   Yes
@@ -623,7 +617,6 @@ const AccountInfo = (extraNavId) => {
                   className="auth-btn"
                   onClick={() => {
                     handleCloseDeact();
-                    setDeact(false);
                   }}
                 >
                   No
