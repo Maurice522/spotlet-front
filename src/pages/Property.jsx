@@ -347,7 +347,7 @@ const Property = ({
         />
       </div>
       <div className="similar-properties">
-        {propertyItems.slice(0, 4).map((item, index) => {
+        {propertyItems?.slice(0, 4).map((item, index) => {
           return (
             <PropertyInfo
               item={item}

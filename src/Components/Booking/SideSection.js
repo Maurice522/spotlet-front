@@ -146,7 +146,7 @@ const SideSection = ({
     <div className="side-section">
       <div className="side-section-image-wrapper">
         <img
-          src={locationData?.imagesData?.at(0).image}
+          src={locationData?.imagesData?.at(0)?.image}
           alt="booking-process"
           className="image"
         />
@@ -222,8 +222,8 @@ const SideSection = ({
             </Typography>
             <Typography>
               Booking Id:{" "}
-              {userBooking?.portfolio.length !== 0
-                ? userBooking.portfolio[userBooking?.portfolio?.length - 1]
+              {userBooking?.portfolio?.length !== 0
+                ? userBooking?.portfolio[userBooking?.portfolio?.length - 1]
                   .bookingId
                 : ""}
             </Typography>

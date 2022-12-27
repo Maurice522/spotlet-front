@@ -58,7 +58,7 @@ const Favorites = () => {
 					}}>
 					<div className="property-list">
 						{console.log(propertyDetails)}
-						{propertyDetails.map(
+						{propertyDetails?.map(
 							(item) =>
 								favorites.includes(item.location_id) && (
 									<PropertyInfo

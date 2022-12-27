@@ -67,7 +67,7 @@ function ImageGrid({
             {!x.matches && (
               <div className="image-hero-container">
                 <img
-                  src={images[0].image}
+                  src={images[0]?.image}
                   alt="Main"
                   className="image-grid-image"
                   style={{
@@ -80,14 +80,14 @@ function ImageGrid({
             <div className="image-right-container">
               <div>
                 <img
-                  src={images[1].image}
+                  src={images[1]?.image}
                   alt="Second"
                   className="image-grid-image"
                 />
               </div>
               <div>
                 <img
-                  src={images[2].image}
+                  src={images[2]?.image}
                   alt="Third"
                   className="image-grid-image"
                   style={{ borderTopRightRadius: "10px" }}
@@ -95,14 +95,14 @@ function ImageGrid({
               </div>
               <div>
                 <img
-                  src={images[3].image}
+                  src={images[3]?.image}
                   alt="Fourth"
                   className="image-grid-image"
                 />
               </div>
               <div>
                 <img
-                  src={images[4].image}
+                  src={images[4]?.image}
                   alt="Fifth"
                   className="image-grid-image"
                   style={{ borderBottomRightRadius: "10px" }}

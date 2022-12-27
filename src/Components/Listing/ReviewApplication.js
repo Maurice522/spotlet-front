@@ -31,8 +31,8 @@ const ReviewApplication = ({ changeSection }) => {
         const fetchData = async () => {
             try {
                 const res = await getTempLocation(location_id);
+                console.log(res)
                 setFinalData(res.data);
-                // console.log(finalData)
             } catch (error) {
                 console.log(error)
             }

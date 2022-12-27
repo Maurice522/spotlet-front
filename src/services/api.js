@@ -174,6 +174,7 @@ export const updateFavourites = (data) => {
 
 //get temp location
 export const getTempLocation = (location_id) => {
+  console.log(location_id)
   return axios.get(server_domain + "/templocation/" + location_id);
 };
 

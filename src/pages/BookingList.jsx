@@ -51,7 +51,7 @@ const gridBookingID = (props) => (
 
 const gridBookingStatus = (props) => {
   let color;
-  console.log(props);
+  // console.log(props);
   if (props.row.Status === "Under Review") color = "#E8B500";
   else if (props.row.Status === "Approved") color = "#0079D7";
   else if (props.row.Status === "Rejected") color = "#E20000";
@@ -222,13 +222,13 @@ const BookingList = () => {
   const [locrequests, setLocRequests] = useState([]);
   let x = window.matchMedia("(max-width: 576px)");
   useEffect(() => {
+    console.log(userData?.portfolio)
     userData &&
-      userData?.listedLocations.map(async (loc) => {
+      userData?.listedLocations?.map(async (loc) => {
         try {
           const response = await locationRequest(loc?.location_id);
-          const { requests } = response.data;
-          console.log(requests.length);
-          setLocRequests((prev) => [...prev, requests.length]);
+          console.log(response.data.length);
+          setLocRequests((prev) => [...prev, response.data.length]);
         } catch (error) {
           console.log(error);
         }
@@ -236,7 +236,9 @@ const BookingList = () => {
     console.log(locrequests);
   }, [userData]);
 
-  let bookingData = userData?.portfolio.map((booking, index) => {
+  console.log(userData)
+
+  let bookingData = userData?.portfolio?.map((booking, index) => {
     let endTime =
       (Number(booking?.time?.substr(0, 2)) +
         Number(booking?.duration_in_hours)) %
@@ -252,8 +254,8 @@ const BookingList = () => {
     return {
 			id: index,
 			action: gridActionButton,
-			to: `/bookingdetails/${booking?.bookingId}`,
-			BookingId: booking?.bookingId,
+			to: `/bookingdetails/${booking?.owner_id}`,
+			BookingId: booking?._id,
       LocationId: booking?.property_id,
 			Status: booking?.status,
 			Date: booking.date,
@@ -262,7 +264,7 @@ const BookingList = () => {
 			TotalAmount: parseInt(booking?.final_amount),
 		};
   });
-  bookingData.reverse();
+  bookingData?.reverse();
 
   // const bookingData = [
   // 	{
@@ -277,8 +279,8 @@ const BookingList = () => {
   // 	},
   // ];
 
-  let listingData = userData?.listedLocations.map((loc, index) => {
-    const date = new Date(loc?.timestamp?._seconds * 1000);
+  let listingData = userData?.listedLocations?.map((loc, index) => {
+    const date = new Date(loc?.createdAt);
     const yyyy = date.getFullYear();
     let mm = date.getMonth() + 1; // Months start at 0!
     let dd = date.getDate();
@@ -299,7 +301,7 @@ const BookingList = () => {
         : "0 Requests",
     };
   });
-  listingData.reverse();
+  listingData?.reverse();
 
   // const listingData = [
   // 	{

@@ -42,8 +42,9 @@ const BookingDetails = () => {
 	const ownerData = useSelector(selectUserData);
 
 	useEffect(() => {
+		console.log(userData)
 		userData?.portfolio.map((booking) => {
-			if (booking.bookingId === bookingId) {
+			if (booking._id === bookingId) {
 				setBooking(booking);
 				getLocation(booking?.property_id)
 					.then((res) => setLocationData(res.data))
@@ -51,6 +52,8 @@ const BookingDetails = () => {
 			}
 		});
 	}, [userData]);
+
+	console.log(booking)
 
 	let endTime =
 		(Number(booking?.time?.substr(0, 2)) + Number(booking?.duration_in_hours)) %
@@ -100,8 +103,8 @@ const BookingDetails = () => {
 				//const { lat, lng } = response.results[0].geometry.location;
 				//  console.log(response.data.results[0]);
 				setCord({
-					lat: response.data.results[0].lat,
-					lng: response.data.results[0].lon,
+					lat: response?.data?.results[0]?.lat,
+					lng: response?.data?.results[0]?.lon,
 				});
 			})
 			.catch((err) => console.log(err));

@@ -94,7 +94,7 @@ const ListDetails = ({ setFinal }) => {
 			(Number(request?.time.substr(0, 2)) +
 				Number(request?.duration_in_hours)) %
 			24;
-		const date = new Date(request?.timestamp?._seconds * 1000);
+		const date = new Date(request?.createdAt);
 		const yyyy = date.getFullYear();
 		let mm = date.getMonth() + 1; // Months start at 0!
 		let dd = date.getDate();
@@ -199,7 +199,7 @@ const ListDetails = ({ setFinal }) => {
 							}}
 						/>
 						<img
-							src={locationData?.imagesData?.at(0).image}
+							src={locationData?.imagesData?.at(0)?.image}
 							alt="property"
 							className="listing-property-image"
 							style={{ borderRadius: "8px" }}
