@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { toast } from "react-toastify";
 import { MdDone } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { bookingRequest, getLocation, locationUpdate } from "../../services/api";
+import { bookingRequest, getLocation } from "../../services/api";
 import { selectUser_id } from "../../redux/slices/userSlice";
 import { useSelector } from "react-redux";
 import { selectUserData } from "../../redux/slices/userSlice";

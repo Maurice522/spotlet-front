@@ -10,7 +10,7 @@ import SyncfusionTable from "../Components/BookingListing/SyncFusionTable";
 import { useSelector } from "react-redux";
 import { selectUserData } from "../redux/slices/userSlice";
 import { locationRequest } from "../services/api";
-import EditPricing from "../Components/EditPricing";
+// import EditPricing from "../Components/EditPricing";
 
 const ListDetails = ({ setFinal }) => {
 	const userData = useSelector(selectUserData);
@@ -238,9 +238,9 @@ const ListDetails = ({ setFinal }) => {
 					/>
 				</Box>
 
-				<div style={{ padding: x.matches ? "0px 20px" : "0px 60px" }}>
+				{/* <div style={{ padding: x.matches ? "0px 20px" : "0px 60px" }}>
 					<EditPricing location={locationData} />
-				</div>
+				</div> */}
 			</div>
 			<Footer />
 		</div>

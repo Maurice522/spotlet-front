@@ -17,7 +17,10 @@ const SectionProperty = () => {
 
   useEffect(() => {
     getAllLocations()
-      .then((res) => setPropertiesDetail(res.data.locations))
+      .then((res) => {
+        setPropertiesDetail(res.data)
+        console.log(res.data);
+      })
       .catch((err) => console.log(err));
   }, []);
 
@@ -102,7 +105,7 @@ const SectionProperty = () => {
         Featured Properties in Hyderabad
       </div>
       <div className="property-list">
-        {propertyDetails.slice(0, 10).map((item) => (
+        {propertyDetails?.slice(0, 10).map((item) => (
           // <div>hi</div>
           <PropertyInfo
             item={item}

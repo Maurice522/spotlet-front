@@ -11,7 +11,7 @@ import {
 	locationRequest,
 	updateBookingStatus,
 	getLocation,
-	locationUpdate,
+	bookedDatesApi,
 } from "../services/api";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
@@ -110,16 +110,12 @@ const ListDetailsComponent = () => {
 		// console.log(locationDetails);
 		if (status == "Approved") {
 			try {
-				const newLocData = {
-					...locationDetails,
-					bookedDates: [...locationDetails.bookedDates, bookingDetail.reqDate],
-				};
 				const data = {
-					newLocData,
+					bookedDates: [...locationDetails.bookedDates, bookingDetail.reqDate],
 					location_id: locationId,
 				};
 				console.log(data);
-				await locationUpdate(data);
+				await bookedDatesApi(data);
 			} catch (error) {
 				console.log(error);
 			}

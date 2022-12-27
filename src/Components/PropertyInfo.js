@@ -6,7 +6,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { GiFilmProjector } from "react-icons/gi";
 import { BsPersonFill } from "react-icons/bs";
 import { MdOutlineCorporateFare } from "react-icons/md";
-import { userUpdate } from "../services/api";
+import { updateFavourites } from "../services/api";
 import { selectUserData, selectUser_id } from "../redux/slices/userSlice";
 import { useSelector } from "react-redux";
 
@@ -32,15 +32,11 @@ const PropertyInfo = ({
 
   useEffect(() => {
     const updateFav = async () => {
-      const updatedUserData = {
-        ...userData,
-        favourites: favorites,
-      };
       const data = {
-        updatedUserData,
+        favourites: favorites,
         user_id,
       };
-      await userUpdate(data);
+      await updateFavourites(data);
     };
     updateFav();
   }, [favorites]);
@@ -48,10 +44,10 @@ const PropertyInfo = ({
   let price_per_12_hr = item?.pricing?.corporate?.isPresent
     ? parseInt(item?.pricing?.corporate?.hourly_rate) * 12
     : item?.pricing?.film_webseries_ad?.isPresent
-    ? parseInt(item?.pricing?.film_webseries_ad?.hourly_rate) * 12
-    : item?.pricing?.individual?.isPresent
-    ? parseInt(item?.pricing?.individual?.hourly_rate) * 12
-    : parseInt(item?.pricing?.tv_series_other?.hourly_rate) * 12;
+      ? parseInt(item?.pricing?.film_webseries_ad?.hourly_rate) * 12
+      : item?.pricing?.individual?.isPresent
+        ? parseInt(item?.pricing?.individual?.hourly_rate) * 12
+        : parseInt(item?.pricing?.tv_series_other?.hourly_rate) * 12;
 
   return (
     <div
@@ -73,7 +69,7 @@ const PropertyInfo = ({
               );
             }}
           />
-        ) : favorites.includes(item.location_id) === true ? (
+        ) : favorites?.includes(item.location_id) === true ? (
           <MdFavorite
             size="28px"
             color="#ff6767"
@@ -149,8 +145,8 @@ const PropertyInfo = ({
                 )}
                 {(item.pricing.film_webseries_ad.isPresent ||
                   item.pricing.tv_series_other.isPresent) && (
-                  <GiFilmProjector size="20px" />
-                )}
+                    <GiFilmProjector size="20px" />
+                  )}
                 {item.pricing.individual.isPresent && (
                   <BsPersonFill size="20px" />
                 )}
@@ -164,8 +160,8 @@ const PropertyInfo = ({
               )}
               {(item.pricing.film_webseries_ad.isPresent ||
                 item.pricing.tv_series_other.isPresent) && (
-                <GiFilmProjector size="20px" />
-              )}
+                  <GiFilmProjector size="20px" />
+                )}
               {item.pricing.individual.isPresent && (
                 <BsPersonFill size="20px" />
               )}

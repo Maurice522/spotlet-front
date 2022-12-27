@@ -11,7 +11,7 @@ import {
 	deleteBookingReq,
 	getLocation,
 	getUserData,
-	locationUpdate,
+	addReviewRating,
 } from "../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -160,17 +160,13 @@ const BookingDetails = () => {
 			rating,
 		};
 		// console.log(booking.property_id);
-		setLocationData({
-			...locationData,
-			review_and_rating: data,
-		});
 		const data = {
-			locationData,
+			review_and_rating: data,
 			location_id: booking.property_id,
 		};
 		try {
 			// console.log("Review Start");
-			await locationUpdate(data);
+			await addReviewRating(data);
 			// console.log("Review Sent");
 		} catch (error) {
 			console.log(error);

@@ -17,7 +17,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect } from "react";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import { userUpdate } from "../services/api";
+import { updateNotificationStatus } from "../services/api";
 import { NotificationImportant, Notifications } from "@mui/icons-material";
 import { BsFillBellFill, BsFillBookmarkFill } from "react-icons/bs";
 import { FaSearch, FaUserAlt } from "react-icons/fa";
@@ -44,17 +44,8 @@ const Navbar = ({ extraNavId }) => {
   };
 
   const handleNotification = async () => {
-    const updatedUserData = {
-      ...user,
-      notificationFlag: false,
-    };
-    const data = {
-      updatedUserData,
-      user_id,
-    };
-    console.log(data);
     try {
-      await userUpdate(data);
+      await updateNotificationStatus(user_id);
       window.location.reload(true);
       window.location = "/notifications";
     } catch (error) {
@@ -105,9 +96,8 @@ const Navbar = ({ extraNavId }) => {
         <input
           type="text"
           placeholder="Search"
-          className={`nav-search-input ${
-            extraNavId !== "" ? "blacken" : "whiten"
-          }`}
+          className={`nav-search-input ${extraNavId !== "" ? "blacken" : "whiten"
+            }`}
         />
       </div>
       <div className="nav-items">

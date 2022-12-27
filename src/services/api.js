@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const server_domain = "https://gorecceback.herokuapp.com";
 // const server_domain = "https://spotlet.onrender.com"; //TEMP HOSTED SERVER
-const server_domain = "http://localhost:8000";
+const server_domain = "http://localhost:7000";
 
 ////////////////////////Auth////////////////////////
 // function to send signin request to backend
@@ -152,14 +152,24 @@ export const getBlog = (blogid) => {
   return axios.get(server_domain + "/getblog/" + blogid);
 };
 
-//update location info
-export const locationUpdate = (data) => {
-  return axios.post(server_domain + "/updatelocation/", data);
+//booked dates location
+export const bookedDatesApi = (data) => {
+  return axios.post(server_domain + "/bookeddates/", data);
 };
 
-//update user data
-export const userUpdate = (data) => {
-  return axios.post(server_domain + "/updateuser/", data);
+//booked dates location
+export const addReviewRating = (data) => {
+  return axios.post(server_domain + "/reviewrating/", data);
+};
+
+//update notification status
+export const updateNotificationStatus = (user_id) => {
+  return axios.post(server_domain + "/notificationstatus/", user_id);
+};
+
+//update fav
+export const updateFavourites = (data) => {
+  return axios.post(server_domain + "/favourites/", data);
 };
 
 //get temp location
