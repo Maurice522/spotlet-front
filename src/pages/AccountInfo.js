@@ -33,7 +33,6 @@ import OTPVerify from "./Auth/OTPVerify";
 
 const AccountInfo = (extraNavId) => {
   const [section, showSection] = useState("Profile");
-  const [pass, setPass] = useState(false);
   const [openOTP, setOpenOTP] = useState(false);
   const handleOpenOTP = () => setOpenOTP(true);
   const handleCloseOTP = () => setOpenOTP(false);
@@ -174,9 +173,6 @@ const AccountInfo = (extraNavId) => {
   //handle update passowrd
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
-    console.log(pass);
-    setOpen(true);
-    if (pass) {
       checkPassword();
       console.log(!(validLength && upperCase && lowerCase && specialChar));
       if (!(validLength && upperCase && lowerCase && specialChar)) {
@@ -194,7 +190,6 @@ const AccountInfo = (extraNavId) => {
         toast.error(error.response.data);
       }
       setOpenSuccess(true);
-    }
   };
 
   //Deactivate Account
@@ -543,7 +538,7 @@ const AccountInfo = (extraNavId) => {
                   </label>
                 </div>
                 <div className="r2 r2Password">
-                  <button type="submit" className="accbut">
+                  <button type="submit" className="accbut" onClick={() => setOpen(true)}>
                     Update Password
                   </button>
                 </div>
@@ -556,7 +551,6 @@ const AccountInfo = (extraNavId) => {
                         onClick={(e) => {
                           handleUpdatePassword(e);
                           handleClose();
-                          setPass(true);
                         }}
                       >
                         Yes
@@ -565,7 +559,6 @@ const AccountInfo = (extraNavId) => {
                         className="auth-btn"
                         onClick={() => {
                           handleClose();
-                          setPass(false);
                         }}
                       >
                         No

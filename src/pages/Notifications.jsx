@@ -19,6 +19,8 @@ const Notifications = () => {
 
   console.log(notifications);
 
+  console.log(user)
+
   useEffect(() => {
     setNotifications(user?.notifications);
   }, [user]);

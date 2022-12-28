@@ -55,7 +55,7 @@ const gridBookingStatus = (props) => {
   if (props.row.Status === "Under Review") color = "#E8B500";
   else if (props.row.Status === "Approved") color = "#0079D7";
   else if (props.row.Status === "Rejected") color = "#E20000";
-	else if (props.row.Status === "Booked") color = "#19AF00";
+  else if (props.row.Status === "Booked") color = "#19AF00";
 
   return (
     <div
@@ -156,63 +156,63 @@ const mobileBookingGrid = [
 ];
 
 const listingGrid = [
-	{
-		headerName: "LocationId",
-		field: "LocationId",
-		renderCell: gridLocationId,
-		width: "180",
-		headerAlign: "Center",
-	},
-	{
-		headerName: "Status",
-		field: "Status",
-		renderCell: gridBookingStatus,
-		width: "180",
-		headerAlign: "Center",
-	},
-	{
-		headerName: "Date",
-		field: "Date",
-		width: "170",
-		headerAlign: "Center",
-	},
-	{
-		headerName: "Booking Request",
-		field: "BookingRequest",
-		width: "190",
-		headerAlign: "Center",
-	},
-	{
-		headerName: "Action",
-		field: "action",
-		renderCell: gridActionButton,
-		width: "150",
-		headerAlign: "Center",
-	},
+  {
+    headerName: "LocationId",
+    field: "LocationId",
+    renderCell: gridLocationId,
+    width: "180",
+    headerAlign: "Center",
+  },
+  {
+    headerName: "Status",
+    field: "Status",
+    renderCell: gridBookingStatus,
+    width: "180",
+    headerAlign: "Center",
+  },
+  {
+    headerName: "Date",
+    field: "Date",
+    width: "170",
+    headerAlign: "Center",
+  },
+  {
+    headerName: "Booking Request",
+    field: "BookingRequest",
+    width: "190",
+    headerAlign: "Center",
+  },
+  {
+    headerName: "Action",
+    field: "action",
+    renderCell: gridActionButton,
+    width: "150",
+    headerAlign: "Center",
+  },
 ];
 
 const mobileListingGrid = [
-	{
-		headerName: "LocationId",
-		field: "LocationId",
-		renderCell: gridLocationId,
-		width: "150",
-		headerAlign: "Center",
-	},
-	{
-		headerName: "Status",
-		field: "Status",
-		renderCell: gridBookingStatus,
-		width: "70",
-		headerAlign: "Center",
-	},
-	{
-		headerName: "Action",
-		field: "action",
-		width: "120",
-		renderCell: gridActionButton,
-		headerAlign: "Center",
-	},
+  {
+    headerName: "LocationId",
+    field: "LocationId",
+    renderCell: gridLocationId,
+    width: "150",
+    headerAlign: "Center",
+  },
+  {
+    headerName: "Status",
+    field: "Status",
+    renderCell: gridBookingStatus,
+    width: "70",
+    headerAlign: "Center",
+  },
+  {
+    headerName: "Action",
+    field: "action",
+    width: "120",
+    renderCell: gridActionButton,
+    headerAlign: "Center",
+  },
 ];
 
 const BookingList = () => {
@@ -236,7 +236,7 @@ const BookingList = () => {
     console.log(locrequests);
   }, [userData]);
 
-  console.log(userData)
+  // console.log(userData)
 
   let bookingData = userData?.portfolio?.map((booking, index) => {
     let endTime =
@@ -252,17 +252,17 @@ const BookingList = () => {
       ampm = ampm == "pm" ? "am" : "pm";
     }
     return {
-			id: index,
-			action: gridActionButton,
-			to: `/bookingdetails/${booking?.owner_id}`,
-			BookingId: booking?._id,
+      id: index,
+      action: gridActionButton,
+      to: `/bookingdetails/${booking?._id}`,
+      BookingId: booking?._id,
       LocationId: booking?.property_id,
-			Status: booking?.status,
-			Date: booking.date,
-			TimeDuration:
-				booking?.time + " - " + endTime + booking?.time.substr(2, 4) + ampm,
-			TotalAmount: parseInt(booking?.final_amount),
-		};
+      Status: booking?.status,
+      Date: booking?.date,
+      TimeDuration:
+        booking?.time + " - " + endTime + booking?.time.substr(2, 4) + ampm,
+      TotalAmount: parseInt(booking?.final_amount),
+    };
   });
   bookingData?.reverse();
 

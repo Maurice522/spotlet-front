@@ -88,9 +88,7 @@ const Search = () => {
 		const fetchData = async () => {
 			const response = await getAllLocations();
 			const res = response.data;
-			const result = res.locations;
-			// console.log(result);
-			setPropertiesDetail(result);
+			setPropertiesDetail(res);
 		};
 		fetchData();
 	}, []);
@@ -130,13 +128,14 @@ const Search = () => {
 
 	const MaxPropertyAtPage = 15; //this can be modiefied according to the user choice
 	const totalPageCount = Math.ceil(propertyDetails?.length / MaxPropertyAtPage);
+	console.log(totalPageCount)
 	const [currentPage, setCurrentPage] = useState(1);
 	// console.log(totalPageCount);
 
 	const currentTableData = useMemo(() => {
 		const firstPageIndex = (currentPage - 1) * MaxPropertyAtPage;
 		const lastPageIndex = firstPageIndex + MaxPropertyAtPage;
-		return propertyDetails.slice(firstPageIndex, lastPageIndex);
+		return propertyDetails?.slice(firstPageIndex, lastPageIndex);
 	}, [currentPage, propertyDetails]);
 
 	// useEffect(() => {

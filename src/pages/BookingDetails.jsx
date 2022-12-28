@@ -44,7 +44,7 @@ const BookingDetails = () => {
 	useEffect(() => {
 		console.log(userData)
 		userData?.portfolio.map((booking) => {
-			if (booking._id === bookingId) {
+			if (booking?._id === bookingId) {
 				setBooking(booking);
 				getLocation(booking?.property_id)
 					.then((res) => setLocationData(res.data))

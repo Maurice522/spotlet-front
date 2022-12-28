@@ -127,6 +127,7 @@ export default function Messages() {
   };
 
   useEffect(() => {
+    console.log(user_id)
     user_id &&
       contactList(user_id)
         .then((response) => {
@@ -150,7 +151,7 @@ export default function Messages() {
 
   useEffect(() => {
     user_id &&
-      messsageRoom(currentChat?.id)
+      messsageRoom(currentChat?._id)
         .then((res) => setMessages(res.data))
         .catch((error) => toast.error(error.response.data));
   }, [currentChat]);
