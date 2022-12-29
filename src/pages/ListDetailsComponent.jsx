@@ -27,6 +27,35 @@ const ListDetailsComponent = () => {
 	const [bookedDates, setBookedDates] = useState([]);
 	const ownerData = useSelector(selectUserData);
 
+	useEffect(() => {
+		locationRequest(locationId)
+			.then((res) =>
+				res.data.map((req) => {
+					console.log(req)
+					if (req._id === bookingId) setBookingDetail(req);
+				})
+			)
+			.catch((err) => console.log(err));
+	}, []);
+	useEffect(() => {
+		getUserData(bookingDetail?.user_id)
+			.then((res) => setUserData(res.data))
+			.catch((err) => console.log(err));
+	}, [bookingDetail]);
+	useEffect(() => {
+		getLocation(locationId)
+			.then((res) => {
+				setLocationDetails(res.data);
+				setBookedDates(res.data.bookedDates);
+			})
+			.catch((err) => console.log(err));
+	}, [locationId]);
+	// console.log(bookingDetail);
+	//console.log(form);
+	// console.log(userData);
+	// console.log(bookingDetail)
+
+
 	let endTime =
 		(Number(bookingDetail?.time?.substr(0, 2)) +
 			Number(bookingDetail?.duration_in_hours)) %
@@ -49,31 +78,9 @@ const ListDetailsComponent = () => {
 		month +
 		" " +
 		bookingDetail?.date?.split("-")[2];
-	useEffect(() => {
-		locationRequest(locationId)
-			.then((res) =>
-				res.data.requests.map((req) => {
-					if (req.req_id === bookingId) setBookingDetail(req);
-				})
-			)
-			.catch((err) => console.log(err));
-	}, []);
-	useEffect(() => {
-		getUserData(bookingDetail?.user_id)
-			.then((res) => setUserData(res.data))
-			.catch((err) => console.log(err));
-	}, [bookingDetail]);
-	useEffect(() => {
-		getLocation(locationId)
-			.then((res) => {
-				setLocationDetails(res.data);
-				setBookedDates(res.data.bookedDates);
-			})
-			.catch((err) => console.log(err));
-	}, [locationId]);
-	// console.log(bookingDetail);
-	//console.log(form);
-	//console.log(userData);
+
+
+
 	function toMonthName(monthNumber) {
 		const date = new Date();
 		date.setMonth(monthNumber - 1);
@@ -106,7 +113,7 @@ const ListDetailsComponent = () => {
 			date_of_booking: date_of_booking,
 			status: status,
 		};
-		// console.log(bookingDetail);
+		console.log(bookingDetail);
 		// console.log(locationDetails);
 		if (status == "Approved") {
 			try {
@@ -220,7 +227,7 @@ const ListDetailsComponent = () => {
 								<div>
 									<div className="item-heading">Company Name</div>
 									<div className="item-body">
-										{bookingDetail?.user_data?.company}
+										{bookingDetail?.user_data?.who_reserves === "Individual" ? bookingDetail?.user_data?.profession : bookingDetail?.user_data?.company}
 									</div>
 								</div>
 								<div>
@@ -233,7 +240,7 @@ const ListDetailsComponent = () => {
 							<div data-attribute-3>
 								<div data-attribute-1>Total</div>
 								<div data-attribute-1>
-									₹ {bookingDetail?.total_amt?.toFixed(2)}
+									₹ {bookingDetail?.total_amt}
 								</div>
 							</div>
 							<div>

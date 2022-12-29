@@ -224,7 +224,7 @@ const SideSection = ({
               Booking Id:{" "}
               {userBooking?.portfolio?.length !== 0
                 ? userBooking?.portfolio[userBooking?.portfolio?.length - 1]
-                  .bookingId
+                  ._id
                 : ""}
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>

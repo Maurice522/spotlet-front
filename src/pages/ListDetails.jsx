@@ -30,7 +30,7 @@ const ListDetails = ({ setFinal }) => {
 	useEffect(() => {
 		locationRequest(locationId)
 			.then((res) => {
-				setRequests(res.data.requests);
+				setRequests(res.data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -102,12 +102,13 @@ const ListDetails = ({ setFinal }) => {
 
 		if (dd && dd < 10) dd = "0" + dd;
 		if (mm && mm < 10) mm = "0" + mm;
+		console.log(request)
 
 		const formattedToday = dd + "/" + mm + "/" + yyyy;
 		return {
 			id: index,
 			action: gridActionButton,
-			to: `/location/${locationId}/bookingdetail/${request?.req_id}`,
+			to: `/location/${locationId}/bookingdetail/${request?._id}`,
 			Name: request?.user_data?.fullName,
 			Status: request?.status,
 			DateOfRequest: formattedToday,
