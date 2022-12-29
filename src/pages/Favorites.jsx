@@ -12,16 +12,15 @@ import { getAllLocations, getUserData } from "../services/api";
 import image from "../Assets/Images/Favourite1.jpeg";
 import jwtDecode from "jwt-decode";
 
-
-
-
 const Favorites = () => {
 	const [propertyDetails, setPropertiesDetail] = useState([]);
 	const [favorites, setFavorites] = useState([]);
 
 	useEffect(() => {
 		getAllLocations()
-			.then((res) => setPropertiesDetail(res.data.locations))
+			.then((res) => {
+				setPropertiesDetail(res.data);
+			})
 			.catch((err) => console.log(err));
 	}, []);
 
@@ -38,26 +37,28 @@ const Favorites = () => {
 		fetchFav();
 	}, []);
 
-	console.log(propertyDetails);
-
+	// console.log(favorites);
+	// console.log(propertyDetails);
 
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
 			<div className="text-on-image-container">
-				<img src={image} alt="background" className="bg-image darken fav-image" />
-				<div className="about-us-message bold">
-					Your Favourites!
-				</div>
+				<img
+					src={image}
+					alt="background"
+					className="bg-image darken fav-image"
+				/>
+				<div className="about-us-message bold">Your Favourites!</div>
 			</div>
 			<div className="below-nav">
 				<div
 					style={{
 						width: "80%",
 						margin: "10px auto",
-					}}>
+					}}
+				>
 					<div className="property-list">
-						{console.log(propertyDetails)}
 						{propertyDetails?.map(
 							(item) =>
 								favorites.includes(item.location_id) && (
@@ -75,8 +76,6 @@ const Favorites = () => {
 						)}
 					</div>
 				</div>
-
-
 			</div>
 			<Footer />
 		</div>

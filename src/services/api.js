@@ -130,7 +130,7 @@ export const bookingRequest = (form) => {
 
 //get booking detail
 export const getBookingDetail = (bookingId, form) => {
-  return axios.put(server_domain + `/getbookingdetail/${bookingId}`, form);
+  return axios.get(server_domain + `/getbookingdetail/${bookingId}`, form);
 };
 
 //get total requests
@@ -163,8 +163,8 @@ export const addReviewRating = (data) => {
 };
 
 //update notification status
-export const updateNotificationStatus = (user_id) => {
-  return axios.post(server_domain + "/notificationstatus/", user_id);
+export const updateNotificationStatus = (data) => {
+  return axios.post(server_domain + "/notificationstatus/", data);
 };
 
 //update fav

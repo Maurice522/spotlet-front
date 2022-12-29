@@ -8,10 +8,9 @@ import { addUser, selectUserData } from "../redux/slices/userSlice";
 import { useEffect } from "react";
 import {
 	createConversation,
-	deleteBookingReq,
 	getLocation,
-	getUserData,
 	addReviewRating,
+	updateBookingStatus,
 } from "../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +41,7 @@ const BookingDetails = () => {
 	const ownerData = useSelector(selectUserData);
 
 	useEffect(() => {
-		console.log(userData)
+		// console.log(userData);
 		userData?.portfolio.map((booking) => {
 			if (booking?._id === bookingId) {
 				setBooking(booking);
@@ -53,7 +52,7 @@ const BookingDetails = () => {
 		});
 	}, [userData]);
 
-	console.log(booking)
+	// console.log(bookingId)
 
 	let endTime =
 		(Number(booking?.time?.substr(0, 2)) + Number(booking?.duration_in_hours)) %
@@ -126,16 +125,20 @@ const BookingDetails = () => {
 	const deleteBooking = async () => {
 		try {
 			// if (confirmDeletion()) {
-			const newPortfolio = userData.portfolio.filter(
-				(p) => p.bookingId !== bookingId
-			);
+			const newPortfolio = userData?.portfolio.map((p) => {
+				if (p._id.toString() === bookingId) {
+					p.status = "Cancelled";
+				}
+			});
 			const newUserData = { ...userData, portfolio: newPortfolio };
 			const data = {
 				bookingId,
 				locationId: booking.property_id,
-				user_id: booking.user_id,
+				status: "Cancelled",
+				user_id: booking?.user_id,
 			};
-			const response = await deleteBookingReq(data);
+			console.log(data);
+			const response = await updateBookingStatus(data);
 			dispatch(addUser(newUserData));
 			toast.success(response.data);
 			window.history.back();
@@ -152,7 +155,11 @@ const BookingDetails = () => {
 			receiverId: booking.user_id,
 			locationId: booking.property_id,
 		};
-		await createConversation(bookingId, data);
+		try {
+			await createConversation(bookingId, data);
+		} catch (error) {
+			console.log(error);
+		}
 		window.location = `/messages/${bookingId}`;
 	};
 
@@ -175,8 +182,8 @@ const BookingDetails = () => {
 			console.log(error);
 		}
 	};
-	console.log(booking);
-	console.log(locationData);
+	// console.log(booking);
+	// console.log(locationData);
 	return (
 		<div>
 			<Navbar extraNavId="id-2" />
@@ -288,8 +295,8 @@ const BookingDetails = () => {
 								<Button
 									className="auth-btn"
 									onClick={() => {
-										handleCloseModal();
 										deleteBooking();
+										handleCloseModal();
 									}}
 								>
 									Yes
@@ -309,9 +316,7 @@ const BookingDetails = () => {
 						style={{
 							marginLeft: "auto",
 							width: "20vw",
-							display: `${
-								booking?.status !== "Approved" ? "none" : "block"
-							}`,
+							display: `${booking?.status !== "Approved" ? "none" : "block"}`,
 						}}
 					>
 						<Button
@@ -333,9 +338,7 @@ const BookingDetails = () => {
 						width: "80%",
 						height: "500px",
 						margin: "auto",
-						display: `${
-							booking?.status !== "Approved" ? "none" : "block"
-						}`,
+						display: `${booking?.status !== "Approved" ? "none" : "block"}`,
 					}}
 				>
 					{cord.lat !== 0 && <GoogleMap lat={cord.lat} lng={cord.lng} />}

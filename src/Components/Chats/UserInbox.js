@@ -27,7 +27,7 @@ function UserInbox({ conversation }) {
   return (
     <div className="user-inbox">
       <div className="online"></div>
-        <img src={locationData?.imagesData?.at(0).image} alt="profile" />
+        <img src={locationData?.imagesData?.at(0)?.image} alt="profile" />
       <div>
         <h6>{locationId} </h6>
       </div>

@@ -65,8 +65,8 @@ export default function Messages() {
     " " +
     bookingDetail?.date?.split("-")[2];
   useEffect(() => {
-    socket.current = io.connect("https://spotlet.onrender.com/");
-    // socket.current = io.connect("http://localhost:8000");
+    // socket.current = io.connect("https://spotlet.onrender.com/");
+    socket.current = io.connect("http://localhost:7000");
     socket.current.on("getMessage", (data) => {
       //console.log(data);
       setArrivalMessage({
@@ -78,7 +78,7 @@ export default function Messages() {
     });
   }, []);
   useEffect(() => {
-    arrivalMessage &&
+    arrivalMessage && currentChat &&
       currentChat?.members.includes(arrivalMessage.sender) &&
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
@@ -88,17 +88,17 @@ export default function Messages() {
   }, [user_id]);
 
   useEffect(() => {
-    getLocation(locationId).then(res => setLocationData(res.data))
-    .catch(err => console.log(err))
+    currentChat && getLocation(locationId).then(res => setLocationData(res.data))
+      .catch(err => console.log(err))
   }, [locationId])
 
   //get booking detail
   useEffect(() => {
-    getBookingDetail(currentChat?.bookingId, {locationId} )
-    .then(res => setBookingDetail(res.data))
-    .catch(err => console.log(err))
+    currentChat && getBookingDetail(currentChat?.bookingId, { locationId })
+      .then(res => setBookingDetail(res.data))
+      .catch(err => console.log(err))
   }, [currentChat])
-  //console.log(messages);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -106,7 +106,7 @@ export default function Messages() {
         const form = {
           senderId: user_id,
           message: newMessage,
-          conversationId: currentChat.id,
+          conversationId: currentChat._id,
         };
         const receiverId = currentChat.members.find(
           (member) => member !== user_id
@@ -127,7 +127,6 @@ export default function Messages() {
   };
 
   useEffect(() => {
-    console.log(user_id)
     user_id &&
       contactList(user_id)
         .then((response) => {
@@ -164,10 +163,10 @@ export default function Messages() {
       <div className="messages">
         <div className="chat-inbox">
           {conversations.length > 0 ? (
-            conversations.map((conversation) => {
+            conversations.map((conversation, key) => {
               return (
-                <div onClick={() => setCurrentChat(conversation)}>
-                  <UserInbox conversation={conversation}  />
+                <div onClick={() => setCurrentChat(conversation)} key={key}>
+                  <UserInbox conversation={conversation} />
                 </div>
               );
             })
@@ -181,7 +180,7 @@ export default function Messages() {
           {currentChat ? (
             <div className="chat-sec">
               <div className="chat-head">
-                  <img src={locationData?.imagesData?.at(0).image} alt="profile" />
+                <img src={locationData?.imagesData?.at(0)?.image} alt="profile" />
                 <div>
                   <h5>{currentChat?.locationId}</h5>
                   <p>{friend?.personalInfo.fullName}</p>
@@ -193,7 +192,7 @@ export default function Messages() {
                   {messages?.map((message, index) => {
                     scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
                     return (
-                      <div>
+                      <div key={index}>
                         <MessageThread
                           message={message}
                           own={message.senderId === user_id}
@@ -246,35 +245,34 @@ export default function Messages() {
             </div>
           )}
         </div>
-       
+
         <div className="chat-propery-info">
-        {
-          currentChat ? (
-            <>
-            <img src={locationData?.imagesData?.at(0).image} alt="property-img" />
-          <div>
-            <h2>{locationId}</h2>
-            <h4>{locationData?.property_address?.address}</h4>
-            <h5>₹ {bookingDetail?.total_amt}</h5>
-            <h4>Reserved Date</h4>
-            <h5>{date_of_booking}</h5>
-            <h4>Reserved Time</h4>
+          {
+            currentChat ? (
+              <>
+                <img src={locationData?.imagesData?.at(0)?.image} alt="property-img" />
+                <div>
+                  <h2>{locationId}</h2>
+                  <h4>{locationData?.property_address?.address}</h4>
+                  <h5>₹ {bookingDetail?.total_amt}</h5>
+                  <h4>Reserved Date</h4>
+                  <h5>{date_of_booking}</h5>
+                  <h4>Reserved Time</h4>
                   <h5>{bookingDetail?.time +
                     " - " +
                     endTime +
                     bookingDetail?.time?.substr(2, 4) +
                     ampm}</h5>
-            <h4>Attendies</h4>
-            <h5>{bookingDetail?.attendies} people</h5>
-          </div>
-        
-            </>
-          ) : (
-            <div className="no-chat">
-            <h4>Your Location</h4>
-          </div>
-          )
-        }
+                  <h4>Attendies</h4>
+                  <h5>{bookingDetail?.attendies} people</h5>
+                </div>
+              </>
+            ) : (
+              <div className="no-chat">
+                <h4>Your Location</h4>
+              </div>
+            )
+          }
         </div>
       </div>
     </div>

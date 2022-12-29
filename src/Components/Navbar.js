@@ -45,11 +45,11 @@ const Navbar = ({ extraNavId }) => {
 
   const handleNotification = async () => {
     try {
-      await updateNotificationStatus(user_id);
+      await updateNotificationStatus({ user_id });
       window.location.reload(true);
       window.location = "/notifications";
     } catch (error) {
-      toast.error(error.response);
+      toast.error(error.message);
     }
   };
 

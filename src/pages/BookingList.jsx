@@ -56,6 +56,7 @@ const gridBookingStatus = (props) => {
   else if (props.row.Status === "Approved") color = "#0079D7";
   else if (props.row.Status === "Rejected") color = "#E20000";
   else if (props.row.Status === "Booked") color = "#19AF00";
+  else if (props.row.Status === "Cancelled") color = "#808080";
 
   return (
     <div
