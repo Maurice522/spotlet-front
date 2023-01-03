@@ -2,7 +2,8 @@ import axios from "axios";
 
 // const server_domain = "https://gorecceback.herokuapp.com";
 // const server_domain = "https://spotlet.onrender.com"; //TEMP HOSTED SERVER
-const server_domain = "http://localhost:7000";
+// const server_domain = "http://localhost:7000";
+const server_domain = `${process.env.REACT_APP_API_URL}`;
 
 ////////////////////////Auth////////////////////////
 // function to send signin request to backend
