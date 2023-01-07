@@ -404,71 +404,99 @@ const ReviewApplication = ({ changeSection }) => {
                     <div className="row1" style={{ marginBottom: "0" }}>
                         <h1 style={{ fontWeight: "bold" }}>Film/ Ad Film/ Web Series Shoot</h1>
                         <Switch
+                            disabled
                             color="warning"
                             checked={finalData?.pricing?.film_webseries_ad?.isPresent}
                         />
                     </div>
                 </div>
                 <div className="coll1" style={{ marginBottom: "2rem" }}>
-                    <h2>Enter Houly Price</h2>
+                    <h2>Houly Price in ₹.</h2>
                     <input
                         disabled
                         className="input"
                         value={finalData.pricing ? finalData.pricing.film_webseries_ad?.hourly_rate : ""}
                     />
+                    {finalData?.pricing?.film_webseries_ad?.hourly_rate != 0 && <h2>Number Of Attendees</h2>}
+                    {finalData?.pricing?.film_webseries_ad?.hourly_rate != 0 && <input
+                        disabled
+                        className="input"
+                        value={finalData.pricing ? finalData.pricing.film_webseries_ad?.attendees : ""}
+                    />}
                 </div>
 
                 <div className="coll1">
                     <div className="row1" style={{ marginBottom: "0" }}>
                         <h1 style={{ fontWeight: "bold" }}>TV Series & Other Video Shoot</h1>
                         <Switch
+                            disabled
                             color="warning"
                             checked={finalData?.pricing?.tv_series_other?.isPresent}
                         />
                     </div>
                 </div>
                 <div className="coll1" style={{ marginBottom: "2rem" }}>
-                    <h2>Enter Hourly Price in ₹.</h2>
+                    <h2>Hourly Price in ₹.</h2>
                     <input
                         disabled
                         className="input"
                         value={finalData.pricing ? finalData.pricing.tv_series_other?.hourly_rate : ""}
                     />
+                    {finalData?.pricing?.tv_series_other?.hourly_rate != 0 && <h2>Number Of Attendees</h2>}
+                    {finalData?.pricing?.tv_series_other?.hourly_rate != 0 && <input
+                        disabled
+                        className="input"
+                        value={finalData.pricing ? finalData.pricing.tv_series_other?.attendees : ""}
+                    />}
                 </div>
                 <div className="coll1">
                     <div className="row1" style={{ marginBottom: "0" }}>
                         <h1 style={{ fontWeight: "bold" }}>Corporate Event</h1>
                         <Switch
+                            disabled
                             color="warning"
                             checked={finalData?.pricing?.corporate?.isPresent}
                         />
                     </div>
                 </div>
                 <div className="coll1" style={{ marginBottom: "2rem" }}>
-                    <h2>Enter Hourly Price in ₹.</h2>
+                    <h2>Hourly Price in ₹.</h2>
                     <input
                         disabled
                         className="input"
                         value={finalData.pricing ? finalData.pricing.corporate?.hourly_rate : ""}
                     />
+                    {finalData?.pricing?.corporate?.hourly_rate != 0 && <h2>Number Of Attendees</h2>}
+                    {finalData?.pricing?.corporate?.hourly_rate != 0 && <input
+                        disabled
+                        className="input"
+                        value={finalData.pricing ? finalData.pricing.corporate?.attendees : ""}
+                    />}
                 </div>
 
                 <div className="coll1">
                     <div className="row1" style={{ marginBottom: "0" }}>
                         <h1 style={{ fontWeight: "bold" }}>Individual Event</h1>
                         <Switch
+                            disabled
                             color="warning"
                             checked={finalData?.pricing?.individual?.isPresent}
                         />
                     </div>
                 </div>
                 <div className="coll1" style={{ marginBottom: "2rem" }}>
-                    <h2>Enter Hourly Price in ₹.</h2>
+                    <h2>Hourly Price in ₹.</h2>
                     <input
                         disabled
                         className="input"
                         value={finalData.pricing ? finalData.pricing.individual?.hourly_rate : ""}
                     />
+                    {finalData?.pricing?.individual?.hourly_rate != 0 && <h2>Number Of Attendees</h2>}
+                    {finalData?.pricing?.individual?.hourly_rate != 0 && <input
+                        disabled
+                        className="input"
+                        value={finalData.pricing ? finalData.pricing.individual?.attendees : ""}
+                    />}
                 </div>
 
                 <div className="coll1">
@@ -748,7 +776,7 @@ const ReviewApplication = ({ changeSection }) => {
                             window.scrollTo(0, 0);
                         }}>Edit</Button>
                     </div>
-                    
+
                     <div className="coll1">
                         <h2>
                             Contact Person Name<span style={{ color: "red" }}>*</span>

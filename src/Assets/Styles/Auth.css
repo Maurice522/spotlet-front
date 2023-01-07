@@ -23,11 +23,15 @@
 
 /* detail part */
 .auth-detail {
-	margin-top: 20px;
+	margin: 20px 0;
 	width: 38%;
 }
 .auth-detail > div {
 	width: 100%;
+}
+.auth-input-div{
+	height: 94%;
+	overflow-y: auto;
 }
 .auth-top {
 	display: flex;
@@ -127,7 +131,7 @@ form > .horizontal-itm > div > p {
 }
 
 .authInput{
-	width: 100%;
+	width: 95%;
 	height: 30px;
 	border: 1px solid lightgray;
 	padding: 1%;
@@ -251,6 +255,31 @@ form p{
 	border-radius: 8px;
 	width: 100%;
 	text-align: center;
+}
+
+
+.google-login {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.google-login p {
+	color: #98a1a8;
+}
+
+.google-login .line{
+	display: flex;
+	place-items: center;
+	gap: 10px;
+}
+.google-login .border-line{
+	border: 1px solid #98a1a8;
+	height: 0;
+	width: 12vw;
 }
 
 

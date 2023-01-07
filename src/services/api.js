@@ -18,6 +18,7 @@ export const signUp = (form) => {
 
 //otp
 export const otpVerify = (form) => {
+  console.log(form)
   return axios.post(server_domain + "/activation", form);
 };
 

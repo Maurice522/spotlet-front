@@ -13,6 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Clear, ClearAll, Delete, Done, Upload } from "@mui/icons-material";
 import ImageCropper from "./ImageCropper";
+import logo from "../../Assets/Images/logo2.jpg";
+
+const watermark = require('watermarkjs');
 
 function urltoFile(url, filename, mimeType) {
   return fetch(url)
@@ -30,6 +33,7 @@ const Photo = ({ showSection, changeSection }) => {
   const dispatch = useDispatch();
   const location_id = useSelector(selectLocationId);
   const location = useSelector(selectLocationData);
+  const [destinationPath, setDestinationPath] = useState("");
   let x = window.matchMedia("(max-width: 576px)");
   useEffect(() => {
     if (location) location.imagesData && setImagesData(location.imagesData);
@@ -41,8 +45,8 @@ const Photo = ({ showSection, changeSection }) => {
       for (let i = 0; i < fileNames.length; i++) {
         const flobj = files[fileNames[i]];
         if (flobj.uploaded) continue;
-        var file = await urltoFile(
-          flobj.croppedImage,
+        let file = await urltoFile(
+          flobj.watermarkImage,
           fileNames[i],
           "text/plain"
         );
@@ -68,11 +72,24 @@ const Photo = ({ showSection, changeSection }) => {
     }
   };
 
-  const saveCropImages = (fileName, newCropped) => {
+  const watermarkImageFunction = (originalImageFile, watermarkImagePath, fileName) => {
+    watermark([originalImageFile, watermarkImagePath])
+      .image(watermark.image.lowerRight())
+      .then((watermarkedImage) => {
+        console.log(watermarkedImage.src)
+        setFiles((prevData) => {
+          prevData[fileName].watermarkImage = watermarkedImage.src;
+          return { ...prevData };
+        });
+      });
+  }
+
+  const saveImages = (fileName, newCropped) => {
     setFiles((prevData) => {
       prevData[fileName].croppedImage = newCropped;
       return { ...prevData };
     });
+    watermarkImageFunction(newCropped, logo, fileName);
   };
 
   const previewToggle = (fileName) => {
@@ -92,8 +109,9 @@ const Photo = ({ showSection, changeSection }) => {
             file,
             imageSrc: URL.createObjectURL(file),
             croppedImage: "",
+            watermarkImage: "",
             preview: false,
-            uploaded: false,
+            uploaded: false
           };
         });
         return { ...prevFiles, ...imageObj };
@@ -139,6 +157,8 @@ const Photo = ({ showSection, changeSection }) => {
     setImagesData([]);
     setFiles({});
   };
+
+  console.log(files)
   return (
     <div>
       <div className="lbox">
@@ -173,9 +193,9 @@ const Photo = ({ showSection, changeSection }) => {
               </div>
               <ImageCropper
                 imageToCrop={imageSrc}
-                onImageCropped={(croppedImage) =>
-                  saveCropImages(fileName, croppedImage)
-                }
+                onImageCropped={(croppedImage) => {
+                  saveImages(fileName, croppedImage)
+                }}
               />
             </div>
           );

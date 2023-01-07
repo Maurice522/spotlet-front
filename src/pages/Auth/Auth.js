@@ -34,9 +34,13 @@ import OTPVerify from "./OTPVerify";
 import ForgotPassword from "./ForgotPassword";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
+import { GoogleLogin } from 'react-google-login';
+import { gapi } from 'gapi-script';
+
 
 import image1 from "../../Assets/Images/signupinBg.jpeg";
 export default function Auth() {
+
   const state = useLocation();
   // console.log(state);
   const [showPassword, setShowPassword] = useState(false);
@@ -49,10 +53,8 @@ export default function Auth() {
   const handleCloseOTP = () => setOpenOTP(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [fullname, setFullName] = useState({
-    fname: "",
-    lname: "",
-  });
+  const [fullName, setFullName] = useState({});
+  const [userEmail, setUserEmail] = useState("")
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -62,7 +64,43 @@ export default function Auth() {
     booking_type: "",
     profession: "",
     company: "",
+    googleLogin: false,
   });
+
+
+
+  useEffect(() => {
+    const initClient = () => {
+      gapi.client.init({
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        scope: ''
+      });
+    };
+    gapi.load('client:auth2', initClient);
+  });
+
+
+  const onSuccess = (res) => {
+    console.log('success:', res);
+    setUserEmail(res.profileObj.email)
+    { !isSignIn && setFullName({ fname: res.profileObj.givenName, lname: res.profileObj.familyName }) }
+    setUserData({ ...userData, googleLogin: true })
+  };
+
+  useEffect(() => {
+    { isSignIn && setUserData({ ...userData, email: userEmail }) }
+    { !isSignIn && setUserData({ ...userData, email: userEmail, firstName: fullName.fname, lastName: fullName.lname }) }
+  }, [userEmail, fullName])
+  console.log(userData)
+  console.log(userData.googleLogin)
+  console.log(userData.email)
+
+
+  const onFailure = (err) => {
+    console.log('failed:', err);
+  };
+
+
 
   const [validLength, setValidLength] = useState(false);
   const [upperCase, setUpperCase] = useState(false);
@@ -79,12 +117,15 @@ export default function Auth() {
     );
   };
 
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   //Handling All Input data function
   const handleInput = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
+
 
   const getOTP = async (userData) => {
     try {
@@ -100,12 +141,14 @@ export default function Auth() {
 
 
   useEffect(() => {
-    checkPassword();  
+    checkPassword();
   }, [userData.password])
-  
+
+
   //SignIn and SignUp function -
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    !userData.googleLogin && e.preventDefault();
+    (!isSignIn && userData.googleLogin) && e.preventDefault();
     // console.log(isSignIn, validLength, upperCase, lowerCase, specialChar);
     if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar)) {
       setValid(false);
@@ -127,13 +170,19 @@ export default function Auth() {
       try {
         console.log("signing up");
         if (userData.password.length < 8)
-          return toast.error("Passwod must contain atleast 8 characters");
+          return toast.error("Password must contain atleast 8 characters");
         getOTP(userData);
       } catch (error) {
         toast.error(error.response.data);
       }
     }
   };
+
+  useEffect(() => {
+    if (userData.googleLogin && userData.email)
+      handleSubmit();
+  }, [userData.googleLogin, userData.email])
+
 
   return (
     <div
@@ -177,7 +226,7 @@ export default function Auth() {
           className="auth-detail"
           style={isSignIn ? { paddingRight: "5%" } : { paddingLeft: "0%" }}
         >
-          <div>
+          <div className="auth-input-div">
             {isSignIn ? (
               <div
                 className="auth-top"
@@ -197,8 +246,39 @@ export default function Auth() {
               </div>
             )}
             <h1>{isSignIn ? "Sign in " : "Sign up "}to SpotLet</h1>
+            {isSignIn ? <div className="google-login">
+              <GoogleLogin
+                clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
+                buttonText="Sign in with Google"
+                onSuccess={onSuccess}
+                onFailure={onFailure}
+                cookiePolicy={'single_host_origin'}
+                isSignedIn={false}
+              />
+              <div className="line">
+                <p className="border-line"></p>
+                <p>or</p>
+                <p className="border-line"></p>
+              </div>
+            </div> : <>
+              {!userData.googleLogin && <div className="google-login">
+                <GoogleLogin
+                  clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
+                  buttonText="Sign up with Google"
+                  onSuccess={onSuccess}
+                  onFailure={onFailure}
+                  cookiePolicy={'single_host_origin'}
+                  isSignedIn={false}
+                />
+                <div className="line">
+                  <p className="border-line"></p>
+                  <p>or</p>
+                  <p className="border-line"></p>
+                </div>
+              </div>}
+            </>}
             <form onSubmit={handleSubmit}>
-              {!isSignIn && (
+              {(!isSignIn && !userData.googleLogin) && (
                 <div className="horizontal-itm">
                   <div>
                     <label>First Name</label>
@@ -207,7 +287,7 @@ export default function Auth() {
                       className="authInput"
                       placeholder="First Name"
                       name="firstName"
-                      style={{ width: "95%" }}
+                      style={{ width: "91%" }}
                       onChange={handleInput}
                       value={userData.firstName}
                       size="small"
@@ -227,7 +307,7 @@ export default function Auth() {
                     <br />
                     <input
                       className="authInput"
-                      style={{ width: "95%" }}
+                      style={{ width: "91%" }}
                       placeholder="Last Name"
                       name="lastName"
                       onChange={handleInput}
@@ -238,28 +318,31 @@ export default function Auth() {
                   </div>
                 </div>
               )}
-              <label>Email</label>
-              <br />
-              <input
-                className="authInput"
-                type="email"
-                name="email"
-                onChange={handleInput}
-                value={userData.email}
-                fullWidth
-                placeholder="Enter your email address"
-                size="small"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <MailOutline />
-                    </InputAdornment>
-                  ),
-                }}
-                required
-              />
+              {!userData.googleLogin && <>
+                <label>Email</label>
+                <br />
+                <input
+                  className="authInput"
+                  type="email"
+                  name="email"
+                  onChange={handleInput}
+                  value={userData.email}
+                  fullWidth
+                  placeholder="Enter your email address"
+                  size="small"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <MailOutline />
+                      </InputAdornment>
+                    ),
+                  }}
+                  required
+                />
+              </>}
               {!isSignIn && (
                 <>
+                  {userData.googleLogin && <br />}
                   <label>Phone Number</label>
                   <br />
                   <input
@@ -311,6 +394,7 @@ export default function Auth() {
                       <input
                         className="authInput"
                         type="text"
+                        style={{ width: "91%" }}
                         name={
                           userData.booking_type === "corporate"
                             ? "company"

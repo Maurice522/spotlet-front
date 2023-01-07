@@ -8,24 +8,28 @@ import {
 } from "../../redux/slices/locationSlice";
 import { createTempLocation } from "../../services/api";
 import { toast } from "react-toastify";
-import { TextField } from "@mui/material";
+import { MenuItem, Select, TextField } from "@mui/material";
 
 const Pricing = ({ showSection, changeSection }) => {
   const [cleaningFee, setCleaningFee] = useState(0);
   const [film, setfilm] = useState({
     hourly_rate: 0,
+    attendees: "",
     isPresent: false,
   });
   const [tv, settv] = useState({
     hourly_rate: 0,
+    attendees: "",
     isPresent: false,
   });
   const [corp, setcorp] = useState({
     hourly_rate: 0,
+    attendees: "",
     isPresent: false,
   });
   const [event, setevent] = useState({
     hourly_rate: 0,
+    attendees: "",
     isPresent: false,
   });
   const dispatch = useDispatch();
@@ -99,6 +103,35 @@ const Pricing = ({ showSection, changeSection }) => {
                 value={film.hourly_rate}
               />
             </div>
+            <div>
+            <label
+              htmlFor="number-of-people"
+              className="booking-form-label"
+            >
+              <h2>Number Of Attendees</h2>
+            </label>
+            <Select
+              required
+              type="number"
+              id="number-of-people"
+              name="number-of-people"
+              placeholder="Approx. no."
+              className="normal input"
+              style={{border: "none"}}
+              onChange={(e) => {
+                //console.log(e.target.value);
+                setfilm({ ...film, attendees: e.target.value })
+              }}
+              value={film.attendees}
+            >
+              <MenuItem value="5">1-5</MenuItem>
+              <MenuItem value="15">6-15</MenuItem>
+              <MenuItem value="25">15-25</MenuItem>
+              <MenuItem value="50">25-50</MenuItem>
+              <MenuItem value="100">50-100</MenuItem>
+              <MenuItem value="more than 100">More than 100</MenuItem>
+            </Select>
+          </div>
           </div>
           <div className="row1">
             <div className="coll1">
@@ -154,6 +187,35 @@ const Pricing = ({ showSection, changeSection }) => {
                 value={tv.hourly_rate}
               />
             </div>
+            <div>
+            <label
+              htmlFor="number-of-people"
+              className="booking-form-label"
+            >
+              <h2>Number Of Attendees</h2>
+            </label>
+            <Select
+              required
+              type="number"
+              id="number-of-people"
+              name="number-of-people"
+              placeholder="Approx. no."
+              className="normal input"
+              style={{border: "none"}}
+              onChange={(e) => {
+                //console.log(e.target.value);
+                settv({ ...tv, attendees: e.target.value })
+              }}
+              value={tv.attendees}
+            >
+              <MenuItem value="5">1-5</MenuItem>
+              <MenuItem value="15">6-15</MenuItem>
+              <MenuItem value="25">15-25</MenuItem>
+              <MenuItem value="50">25-50</MenuItem>
+              <MenuItem value="100">50-100</MenuItem>
+              <MenuItem value="more than 100">More than 100</MenuItem>
+            </Select>
+          </div>
           </div>
           <div className="row1">
             {/* <div className="coll1">
@@ -215,6 +277,35 @@ const Pricing = ({ showSection, changeSection }) => {
                 value={corp.hourly_rate}
               />
             </div>
+            <div>
+            <label
+              htmlFor="number-of-people"
+              className="booking-form-label"
+            >
+              <h2>Number Of Attendees</h2>
+            </label>
+            <Select
+              required
+              type="number"
+              id="number-of-people"
+              name="number-of-people"
+              placeholder="Approx. no."
+              className="normal input"
+              style={{border: "none"}}
+              onChange={(e) => {
+                //console.log(e.target.value);
+                setcorp({ ...corp, attendees: e.target.value })
+              }}
+              value={corp.attendees}
+            >
+              <MenuItem value="5">1-5</MenuItem>
+              <MenuItem value="15">6-15</MenuItem>
+              <MenuItem value="25">15-25</MenuItem>
+              <MenuItem value="50">25-50</MenuItem>
+              <MenuItem value="100">50-100</MenuItem>
+              <MenuItem value="more than 100">More than 100</MenuItem>
+            </Select>
+          </div>
           </div>
           <div className="row2" style={{ gap: "5%" }}>
             <div className="coll1">
@@ -278,6 +369,35 @@ const Pricing = ({ showSection, changeSection }) => {
                 value={event.hourly_rate}
               />
             </div>
+            <div>
+            <label
+              htmlFor="number-of-people"
+              className="booking-form-label"
+            >
+              <h2>Number Of Attendees</h2>
+            </label>
+            <Select
+              required
+              type="number"
+              id="number-of-people"
+              name="number-of-people"
+              placeholder="Approx. no."
+              className="normal input"
+              style={{border: "none"}}
+              onChange={(e) => {
+                //console.log(e.target.value);
+                setevent({ ...event, attendees: e.target.value })
+              }}
+              value={event.attendees}
+            >
+              <MenuItem value="5">1-5</MenuItem>
+              <MenuItem value="15">6-15</MenuItem>
+              <MenuItem value="25">15-25</MenuItem>
+              <MenuItem value="50">25-50</MenuItem>
+              <MenuItem value="100">50-100</MenuItem>
+              <MenuItem value="more than 100">More than 100</MenuItem>
+            </Select>
+          </div>
           </div>
           <div className="row2" style={{ gap: "5%" }}>
             <div className="coll1">
