@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Button, Avatar } from "@mui/material";
-import { BiArrowBack } from "react-icons/bi";
 import { useState } from "react";
 import { useEffect } from "react";
 import {
@@ -31,7 +30,7 @@ const ListDetailsComponent = () => {
 		locationRequest(locationId)
 			.then((res) =>
 				res.data.map((req) => {
-					console.log(req)
+					// console.log(req);
 					if (req._id === bookingId) setBookingDetail(req);
 				})
 			)
@@ -51,16 +50,15 @@ const ListDetailsComponent = () => {
 			.catch((err) => console.log(err));
 	}, [locationId]);
 	// console.log(bookingDetail);
-	//console.log(form);
+	// console.log(form);
 	// console.log(userData);
 	// console.log(bookingDetail)
 
-
 	let endTime =
-		(Number(bookingDetail?.time?.substr(0, 2)) +
-			Number(bookingDetail?.duration_in_hours)) %
+		(Number(bookingDetail?.bookedTimeDates?.at(0)?.bookedTime?.substr(0, 2)) +
+			Number(bookingDetail.bookedTimeDates?.at(0)?.bookedHours)) %
 		24;
-	let ampm = bookingDetail?.time?.substr(6, 7);
+	let ampm = bookingDetail.bookedTimeDates?.at(0)?.bookedTime?.substr(6, 7);
 	if (endTime > 12) {
 		endTime = endTime % 12;
 		if (endTime < 10) {
@@ -68,18 +66,18 @@ const ListDetailsComponent = () => {
 		}
 		ampm = ampm == "pm" ? "am" : "pm";
 	}
-	//const [ownerData, setOwnerData] = useState({});
 
-	let mm = bookingDetail?.date?.split("-")[1];
-	const month = toMonthName(mm);
 	const date_of_booking =
-		bookingDetail?.date?.split("-")[0] +
-		"th " +
-		month +
+		bookingDetail?.bookedTimeDates
+			?.at(0)
+			?.bookedDate?.split("-")[2]
+			.split("T")[0] +
 		" " +
-		bookingDetail?.date?.split("-")[2];
-
-
+		toMonthName(
+			bookingDetail?.bookedTimeDates?.at(0)?.bookedDate?.split("-")[1]
+		) +
+		" " +
+		bookingDetail?.bookedTimeDates?.at(0)?.bookedDate?.split("-")[0];
 
 	function toMonthName(monthNumber) {
 		const date = new Date();
@@ -89,7 +87,7 @@ const ListDetailsComponent = () => {
 			month: "long",
 		});
 	}
-	//Approved
+
 	//Approved
 	const updateStatus = async (status) => {
 		const data = {
@@ -113,12 +111,15 @@ const ListDetailsComponent = () => {
 			date_of_booking: date_of_booking,
 			status: status,
 		};
-		console.log(bookingDetail);
+		// console.log(bookingDetail);
 		// console.log(locationDetails);
 		if (status == "Approved") {
 			try {
 				const data = {
-					bookedDates: [...locationDetails.bookedDates, bookingDetail.reqDate],
+					bookedDates: [
+						...locationDetails.bookedDates,
+						...bookingDetail.reqDates,
+					],
 					location_id: locationId,
 				};
 				console.log(data);
@@ -143,7 +144,8 @@ const ListDetailsComponent = () => {
 		}
 
 		toast.success(response.data);
-		window.history.back();
+		// window.history.back();
+		window.location.reload();
 	};
 	//message
 	const handleChat = async () => {
@@ -184,17 +186,19 @@ const ListDetailsComponent = () => {
 								<div>
 									<div className="item-heading">Reserved Time</div>
 									<div className="item-body">
-										{bookingDetail?.time +
+										{bookingDetail?.bookedTimeDates?.at(0)?.bookedTime +
 											" to " +
 											endTime +
-											bookingDetail?.time?.substr(2, 4) +
-											ampm}{" "}
+											bookingDetail?.bookedTimeDates
+												?.at(0)
+												?.bookedTime?.substr(2, 4) +
+											ampm}
 									</div>
 								</div>
 								<div>
 									<div className="item-heading">Duration</div>
 									<div className="item-body">
-										{bookingDetail?.duration_in_hours} Hrs
+										{bookingDetail?.bookedTimeDates?.at(0)?.bookedHours} Hrs
 									</div>
 								</div>
 							</div>
@@ -227,7 +231,9 @@ const ListDetailsComponent = () => {
 								<div>
 									<div className="item-heading">Company Name</div>
 									<div className="item-body">
-										{bookingDetail?.user_data?.who_reserves === "Individual" ? bookingDetail?.user_data?.profession : bookingDetail?.user_data?.company}
+										{bookingDetail?.user_data?.who_reserves === "Individual"
+											? bookingDetail?.user_data?.profession
+											: bookingDetail?.user_data?.company}
 									</div>
 								</div>
 								<div>
@@ -239,9 +245,7 @@ const ListDetailsComponent = () => {
 						<div className="booking-details-body-right">
 							<div data-attribute-3>
 								<div data-attribute-1>Total</div>
-								<div data-attribute-1>
-									₹ {bookingDetail?.total_amt}
-								</div>
+								<div data-attribute-1>₹ {bookingDetail?.total_amt}</div>
 							</div>
 							<div>
 								<Button

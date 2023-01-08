@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../Assets/Styles/Booking/sideSection.css";
 import { Button, Backdrop, Fade, Box, Typography, Modal } from "@mui/material";
-import { format } from "date-fns";
 import { toast } from "react-toastify";
 import { MdDone } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -66,9 +65,9 @@ const SideSection = ({
   }, []);
   //console.log(v1, v2, v3, v4, v5, v6, event, userData);
 
-  const day = v1?.getDate();
-  const month = v1?.getMonth() + 1;
-  const year = v1?.getFullYear();
+  // const day = v1?.getDate();
+  // const month = v1?.getMonth() + 1;
+  // const year = v1?.getFullYear();
 
   const handleClick = async () => {
     //console.log("clicked");
@@ -93,14 +92,17 @@ const SideSection = ({
         const bookingDet = {
           activity: v5,
           attendies: v4,
-          date: day + "-" + month + "-" + year,
-          duration_in_hours: v3,
+          // date: day + "-" + month + "-" + year,
+          bookedTimeDates: {
+            bookedDate: v1,
+            bookedTime: v2,
+            bookedHours: v3,
+          },
           event,
           owner_id: locationData.property_desc.user_id,
           property_id: location_id,
-          time: v2,
           total_amt: gst,
-          reqDate:v1,
+          reqDate: [v1],
           discount: parseInt(parseInt(gst) - tot_price),
           processfee: Math.round(tot_price / 10),
           final_amount: tot_price + parseInt(locationData?.pricing?.cleaningFee) + Math.round(tot_price / 10),
@@ -112,7 +114,7 @@ const SideSection = ({
               userData.who_reserves === "Individual"
                 ? userData.profession
                 : userData.company,
-            dob: userData.dob,
+            dob: userData.dob, 
             message: userData.message,
           },
         };

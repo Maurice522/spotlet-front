@@ -15,14 +15,12 @@ const PropertyInfo = ({
   // index,
   favPage,
   favorites,
-  setFavorites,
-  review,
-  rating,
-  border,
+  setFavorites
 }) => {
   const userData = useSelector(selectUserData);
   const user_id = useSelector(selectUser_id);
   const [starSize, setStarSize] = useState("18px");
+  const [rating, setRating] = useState(null)
 
   let x = window.matchMedia("(max-width: 576px)");
   useEffect(() => {
@@ -40,6 +38,19 @@ const PropertyInfo = ({
     };
     updateFav();
   }, [favorites]);
+
+  useEffect(() => {
+    let sum = 0;
+    item?.review_and_rating?.map((rat) => {
+      sum += rat.rating;
+    })
+    if (item?.review_and_rating?.length > 0)
+      setRating(Number(sum / item?.review_and_rating.length))
+    else
+      setRating(0)
+  }, [])
+
+  // console.log(rating);
 
   let price_per_12_hr = item?.pricing?.corporate?.isPresent
     ? parseInt(item?.pricing?.corporate?.hourly_rate) * 12
@@ -129,15 +140,18 @@ const PropertyInfo = ({
           </div>
           <div className="property-info-location property-rating">
             <div>
-              <div>
-                <AiFillStar style={{ color: "#FFC736" }} size={starSize} />
-                <AiFillStar style={{ color: "#FFC736" }} size={starSize} />
-                <AiFillStar style={{ color: "#FFC736" }} size={starSize} />
-                <AiOutlineStar style={{ color: "#FFC736" }} size={starSize} />
-                <AiOutlineStar style={{ color: "#FFC736" }} size={starSize} />
+              <div>{
+                rating !== null &&
+                <Rating
+                  name="simple-controlled"
+                  precision={0.1}
+                  value={rating}
+                  size={starSize}
+                  readOnly
+                />}
               </div>
             </div>
-            <div>(40)</div>
+            <div>({item?.review_and_rating?.length})</div>
             {!x.matches && (
               <div>
                 {item.pricing.corporate.isPresent && (
