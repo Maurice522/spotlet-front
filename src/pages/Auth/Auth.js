@@ -224,7 +224,6 @@ export default function Auth() {
 
         <div
           className="auth-detail"
-          style={isSignIn ? { paddingRight: "5%" } : { paddingLeft: "0%" }}
         >
           <div className="auth-input-div">
             {isSignIn ? (
@@ -468,7 +467,7 @@ export default function Auth() {
                     }
                     label="I agree to the Term and Conditions"
                   />
-                  <p style={{ marginTop: "0" }}>By clicking on SignUp you are agreeing to our <a href="/" style={{ color: "#ff6767" }}>terms of services</a> and <a href="/" style={{ color: "#ff6767" }}>privacy policy</a></p>
+                  <p style={{ marginTop: "0" }}>By clicking on SignUp you are agreeing to our <a href="/termsofservice" target="#" style={{ color: "#ff6767" }}>terms of services</a> and <a href="/privacypolicy" target="#" style={{ color: "#ff6767" }}>privacy policy</a></p>
                 </div>
               }
 

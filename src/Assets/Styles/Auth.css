@@ -24,7 +24,7 @@
 /* detail part */
 .auth-detail {
 	margin: 20px 0;
-	width: 38%;
+	width: 50%;
 }
 .auth-detail > div {
 	width: 100%;
@@ -32,6 +32,9 @@
 .auth-input-div{
 	height: 94%;
 	overflow-y: auto;
+}
+:is(.auth-input-div) > div, form, h1 {
+	padding: 0 10%;
 }
 .auth-top {
 	display: flex;

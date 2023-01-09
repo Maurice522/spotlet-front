@@ -121,6 +121,7 @@ const Footer = () => {
 					</div>
 					{items}
 				</div>
+				<p className="footer-conc">SpotLet is a platform where hosts, guests, clients and customers come together to find their dream spaces! It’s a collaboration of ideas, places and people to create beautiful moments and memories.</p>
 			</div>
 		</div>
 	);

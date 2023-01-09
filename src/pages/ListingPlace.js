@@ -270,12 +270,12 @@ const ListingPlace = () => {
               {items.map((item, ind) => (
                 <div key={ind}>
                   <button
-                    onClick={() =>
-                      itemsObj[item] <= itemsObj[section]
-                        ? handlesection(item)
-                        : ""
-                    }
-                    // onClick={() => handlesection(item)}
+                    // onClick={() =>
+                    //   itemsObj[item] <= itemsObj[section]
+                    //     ? handlesection(item)
+                    //     : ""
+                    // }
+                    onClick={() => handlesection(item)}
                     className={section === item ? "lnav-text sel" : "lnav-text"}
                     style={{
                       color: itemsObj[item] > itemsObj[section] ? "grey" : "",

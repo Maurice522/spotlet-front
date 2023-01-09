@@ -52,9 +52,34 @@
   text-align: justify;
   margin-top: 2%;
   margin-bottom: 16%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .singleBlogContent h1 {
   font-weight: 600;
   font-size: 30px;
-  margin-bottom: 5%;
+  margin: 10% 0 5% 0;
+  padding: 0;
+}
+
+.singleBlogContent .img1{
+  width: 80%;
+}
+
+.singleBlogContent .img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.singleBlogContent .img-container > div {
+  display: flex;
+  gap: 1%;
+  margin: 0 10%;
+}
+.singleBlogContent .img-container .img2 {
+  width: 49.5%;
 }
