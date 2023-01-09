@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import { Button, Avatar, Rating, Modal } from "@mui/material";
+import { Button, Avatar, Rating, Modal, MenuItem, Select } from "@mui/material";
 import "../Assets/Styles/bookingDetails.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, selectUserData } from "../redux/slices/userSlice";
@@ -11,15 +11,23 @@ import {
 	getLocation,
 	addReviewRating,
 	updateBookingStatus,
+	addADayInBooking,
 } from "../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import GoogleMap from "../Components/GoogleMap";
 import axios from "axios";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
+import DatePicker from "react-datepicker";
+import moment from "moment";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const BookingDetails = () => {
 	let data;
+	let disabledDates = [];
+	let finalDates = [];
+	let start24, end24, startampm, endampm;
+
 	const userData = useSelector(selectUserData);
 	const dispatch = useDispatch();
 	const [booking, setBooking] = useState({});
@@ -35,6 +43,19 @@ const BookingDetails = () => {
 	});
 	const [rating, setRating] = useState(0);
 	const [review, setReview] = useState("");
+	const [active, setActive] = useState(false);
+	const [timings, setTimings] = useState([]);
+	const [bookedDates, setBookedDates] = useState([]);
+	const [dateRange, setDateRange] = useState({
+		startDate: new Date(moment().startOf("isoweek").utc()),
+		endDate: new Date(moment().endOf("week").utc()),
+	});
+	const [allday, setAllday] = useState(false);
+	const [timemenuitems, setTimemenuitems] = useState([]);
+
+	const [bookedDay, setBookedDay] = useState();
+	const [bookedTime, setBookedTime] = useState();
+	const [bookedHours, setBookedHours] = useState();
 
 	const bookingId = window.location.pathname.substr(16);
 	// const endTime = (Number(booking?.time?.substr(0, 2)) + Number(booking?.duration_in_hours)) % 24;
@@ -46,18 +67,204 @@ const BookingDetails = () => {
 			if (booking?._id === bookingId) {
 				setBooking(booking);
 				getLocation(booking?.property_id)
-					.then((res) => setLocationData(res.data))
+					.then((res) => {
+						setLocationData(res.data);
+					})
 					.catch((err) => console.log(err));
 			}
 		});
 	}, [userData]);
 
 	// console.log(bookingId)
+	useEffect(() => {
+		// console.log(v1, v2, v3, v4, v5, v6);
+		setTimings(locationData?.timings);
+		locationData?.bookedDates?.map((date) => {
+			const newDate = new Date(date);
+			setBookedDates((prev) => [...prev, newDate]);
+		});
+	}, [locationData]);
+
+	const isDisabled = (date) => {
+		if (!timings) return;
+		Object.keys(timings).forEach(function (key, index) {
+			if (!timings[key].open) {
+				// console.log(key);
+				disabledDates.push(key.substring(0, 3));
+			}
+		});
+		// for (let index = 0; index < 7; index++) {
+		// 	const weekDay = moment().day(disabledDates[index]).format("D");
+		// 	finalDates.push(weekDay)
+		// }
+
+		for (let i = 0; i < 7; i++) {
+			switch (disabledDates[i]) {
+				case "mon":
+					finalDates.push(1);
+					break;
+				case "tue":
+					finalDates.push(2);
+					break;
+				case "wed":
+					finalDates.push(3);
+					break;
+				case "thu":
+					finalDates.push(4);
+					break;
+				case "fri":
+					finalDates.push(5);
+					break;
+				case "sat":
+					finalDates.push(6);
+					break;
+				case "sun":
+					finalDates.push(0);
+					break;
+				default:
+					break;
+			}
+		}
+		// console.log(finalDates);
+		const day = date.getDay();
+		// console.log(day);
+		return (
+			day !== finalDates[0] &&
+			day !== finalDates[1] &&
+			day !== finalDates[2] &&
+			day !== finalDates[3] &&
+			day !== finalDates[4] &&
+			day !== finalDates[5] &&
+			day !== finalDates[6]
+		);
+	};
+
+	const getdayName = (day) => {
+		switch (day) {
+			case 0:
+				return "sunday";
+			case 1:
+				return "monday";
+			case 2:
+				return "tuesday";
+			case 3:
+				return "wednesday";
+			case 4:
+				return "thursday";
+			case 5:
+				return "friday";
+			case 6:
+				return "saturday";
+			default:
+				break;
+		}
+	};
+
+	const setTimes = (v1) => {
+		setTimemenuitems([]);
+		const timeSlotDay = getdayName(v1?.getDay());
+		// console.log(timeSlotDay);
+		switch (timeSlotDay) {
+			case "monday":
+				start24 = Number(timings?.monday?.time?.start?.substring(0, 2));
+				end24 = Number(timings?.monday?.time?.end?.substring(0, 2));
+				startampm = timings?.monday?.time?.start?.substring(6, 8);
+				endampm = timings?.monday?.time?.end?.substring(6, 8);
+				setAllday(timings?.monday?.isSetHours);
+				// console.log("monday", timings?.monday?.isSetHours);
+				break;
+			case "tuesday":
+				start24 = Number(timings?.tuesday?.time?.start?.substring(0, 2));
+				end24 = Number(timings?.tuesday?.time?.end?.substring(0, 2));
+				startampm = timings?.tuesday?.time?.start?.substring(6, 8);
+				endampm = timings?.tuesday?.time?.end?.substring(6, 8);
+				setAllday(timings?.tuesday?.isSetHours);
+				// console.log("tuesday", timings?.tuesday?.isSetHours);
+				break;
+			case "wednesday":
+				start24 = Number(timings?.wednesday?.time?.start?.substring(0, 2));
+				end24 = Number(timings?.wednesday?.time?.end?.substring(0, 2));
+				startampm = timings?.wednesday?.time?.start?.substring(6, 8);
+				endampm = timings?.wednesday?.time?.end?.substring(6, 8);
+				setAllday(timings?.wednesday?.isSetHours);
+				// console.log("wednesday", timings?.wednesday?.isSetHours);
+				break;
+			case "thursday":
+				start24 = Number(timings?.thursday?.time?.start?.substring(0, 2));
+				end24 = Number(timings?.thursday?.time?.end?.substring(0, 2));
+				startampm = timings?.thursday?.time?.start?.substring(6, 8);
+				endampm = timings?.thursday?.time?.end?.substring(6, 8);
+				setAllday(timings?.thursday?.isSetHours);
+				// console.log("thursday", timings?.thursday?.isSetHours);
+				break;
+			case "friday":
+				start24 = Number(timings?.friday?.time?.start?.substring(0, 2));
+				end24 = Number(timings?.friday?.time?.end?.substring(0, 2));
+				startampm = timings?.friday?.time?.start?.substring(6, 8);
+				endampm = timings?.friday?.time?.end?.substring(6, 8);
+				setAllday(timings?.friday?.isSetHours);
+				// console.log("friday", timings?.friday?.isSetHours);
+				break;
+			case "saturday":
+				start24 = Number(timings?.saturday?.time?.start?.substring(0, 2));
+				end24 = Number(timings?.saturday?.time?.end?.substring(0, 2));
+				startampm = timings?.saturday?.time?.start?.substring(6, 8);
+				endampm = timings?.saturday?.time?.end?.substring(6, 8);
+				setAllday(timings?.saturday?.isSetHours);
+				// console.log("saturday", timings?.saturday?.isSetHours);
+				break;
+			case "sunday":
+				start24 = Number(timings?.sunday?.time?.start?.substring(0, 2));
+				end24 = Number(timings?.sunday?.time?.end?.substring(0, 2));
+				startampm = timings?.sunday?.time?.start?.substring(6, 8);
+				endampm = timings?.sunday?.time?.end?.substring(6, 8);
+				console.log("sunday", timings?.sunday?.isSetHours);
+				// setAllday(timings?.sunday?.isSetHours)
+				break;
+			default:
+				break;
+		}
+		if (startampm === endampm)
+			for (let i = start24; i <= end24; i++) {
+				let element;
+				if (i < 10) element = "0" + i + ":" + "00 " + startampm;
+				else element = i + ":" + "00 " + startampm;
+				if (!timemenuitems.includes(element))
+					setTimemenuitems((prev) => [...prev, element]);
+			}
+		else {
+			for (let i = start24; i <= 12; i++) {
+				let element;
+				if (i < 10) element = "0" + i + ":" + "00 " + startampm;
+				else element = i + ":" + "00 " + startampm;
+				if (i == 12) {
+					element = i + ":" + "00 " + endampm;
+				}
+				if (!timemenuitems.includes(element))
+					setTimemenuitems((prev) => [...prev, element]);
+			}
+			for (let i = 1; i <= end24; i++) {
+				let element;
+				if (i < 10) element = "0" + i + ":" + "00 " + endampm;
+				else element = i + ":" + "00 " + endampm;
+				if (!timemenuitems.includes(element))
+					setTimemenuitems((prev) => [...prev, element]);
+			}
+		}
+		// console.log(startampm, endampm);
+		// console.log(timemenuitems);
+		// console.log(timemenuitems.length);
+	};
+
+	useEffect(() => {
+		setTimes(bookedDay);
+	}, [bookedDay]);
 
 	let endTime =
-		(Number(booking?.time?.substr(0, 2)) + Number(booking?.duration_in_hours)) %
+		(Number(booking?.bookedTimeDates?.at(0)?.bookedTime?.substr(0, 2)) +
+			Number(booking.bookedTimeDates?.at(0)?.bookedHours)) %
 		24;
-	let ampm = booking?.time?.substr(6, 7);
+	let ampm = booking.bookedTimeDates?.at(0)?.bookedTime?.substr(6, 7);
 	if (endTime > 12) {
 		endTime = endTime % 12;
 		if (endTime < 10) {
@@ -65,23 +272,22 @@ const BookingDetails = () => {
 		}
 		ampm = ampm == "pm" ? "am" : "pm";
 	}
-	let mm = booking?.date?.split("-")[1];
-	const month = toMonthName(mm);
+
 	const date_of_booking =
-		booking?.date?.split("-")[0] +
-		"th " +
-		month +
+		booking?.bookedTimeDates?.at(0)?.bookedDate?.split("-")[2].split("T")[0] +
 		" " +
-		booking?.date?.split("-")[2];
+		toMonthName(booking?.bookedTimeDates?.at(0)?.bookedDate?.split("-")[1]) +
+		" " +
+		booking?.bookedTimeDates?.at(0)?.bookedDate?.split("-")[0];
 	const discount =
-		booking?.duration_in_hours === "24"
+		booking?.booking?.bookedTimeDates?.bookedHours === "24"
 			? 0.8
-			: booking?.duration_in_hours === "12"
+			: booking?.booking?.bookedTimeDates?.bookedHours === "12"
 			? 0.9
 			: 1;
 	const perHourCost = (
 		(booking?.total_amt - 40) /
-		booking?.duration_in_hours /
+		booking?.booking?.bookedTimeDates?.bookedHours /
 		discount
 	)?.toFixed(2);
 	const GEO_API = "b531f1d229f547d09b4c7c3207885471";
@@ -122,6 +328,7 @@ const BookingDetails = () => {
 	//   let text = "Do you really want to delete this booking?";
 	//   return window.confirm(text);
 	// };
+
 	const deleteBooking = async () => {
 		try {
 			// if (confirmDeletion()) {
@@ -141,13 +348,14 @@ const BookingDetails = () => {
 			const response = await updateBookingStatus(data);
 			dispatch(addUser(newUserData));
 			toast.success(response.data);
-			window.history.back();
+			// window.history.back();
+			window.location.reload();
 			// }
 		} catch (error) {
 			toast.error(error);
 		}
 	};
-	//message
+
 	//message
 	const handleChat = async () => {
 		const data = {
@@ -165,23 +373,44 @@ const BookingDetails = () => {
 
 	//review
 	const handleReview = async () => {
-		data = {
+		const review_and_rating = {
 			review,
 			rating,
 		};
-		// console.log(booking.property_id);
+
 		const data = {
-			review_and_rating: data,
+			review_and_rating: review_and_rating,
 			location_id: booking.property_id,
 		};
 		try {
-			// console.log("Review Start");
-			await addReviewRating(data);
-			// console.log("Review Sent");
+			const response = await addReviewRating(data);
+			toast.success(response.data);
+			window.location.reload(true);
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
+	//add a day
+	const handleAddADay = async () => {
+		try {
+			const addedDayDetails = {
+				bookedDate: bookedDay,
+				bookedTime: bookedTime,
+				bookedHours: bookedHours,
+			};
+			// console.log(addedDayDetails);
+			const response = await addADayInBooking({
+				addedDayDetails,
+				id: bookingId,
+			});
+			toast.success(response.data);
+			// window.location.reload(true);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	// console.log(booking);
 	// console.log(locationData);
 	return (
@@ -205,17 +434,19 @@ const BookingDetails = () => {
 								<div>
 									<div className="item-heading">Reserved Time</div>
 									<div className="item-body">
-										{booking?.time +
+										{booking?.bookedTimeDates?.at(0)?.bookedTime +
 											" to " +
 											endTime +
-											booking?.time?.substr(2, 4) +
+											booking?.bookedTimeDates
+												?.at(0)
+												?.bookedTime?.substr(2, 4) +
 											ampm}
 									</div>
 								</div>
 								<div>
 									<div className="item-heading">Duration</div>
 									<div className="item-body">
-										{booking?.duration_in_hours} Hrs
+										{booking?.bookedTimeDates?.at(0)?.bookedHours} Hrs
 									</div>
 								</div>
 								<div>
@@ -312,6 +543,255 @@ const BookingDetails = () => {
 							</div>
 						</div>
 					</Modal>
+					{booking?.status === "Under Review" && (
+						<div>
+							<div style={{ display: "flex", flexDirection: "row" }}>
+								<div>
+									<label
+										htmlFor="date"
+										className={
+											active === true ? "focus-label" : "booking-form-label"
+										}
+									>
+										<strong>Date</strong>
+									</label>
+									<div style={{ position: "relative" }}>
+										<DatePicker
+											required
+											type="date"
+											className={active === true ? "focus" : "normal"}
+											disabled={booking?.status === "Cancelled"}
+											id="date"
+											name="date"
+											style={{
+												border: "2px solid gray",
+												width: "78%",
+												height: "34px",
+											}}
+											// selected={new Date(dateRange.startDate)}
+											onChange={(date) => {
+												setDateRange({ ...dateRange, startDate: date });
+												console.log(date);
+												setBookedDay(date);
+											}}
+											selected={bookedDay}
+											// name="startDate"
+											dateFormat="dd/MM/yyyy"
+											filterDate={isDisabled}
+											excludeDates={bookedDates}
+											placeholderText="dd/mm/yyyy"
+											minDate={moment().toDate() - 1}
+											value={bookedDay}
+										/>
+										<span
+											style={{ position: "absolute", top: "30%", right: "5%" }}
+										>
+											<IoMdArrowDropdown size={20} color="gray" />
+										</span>
+									</div>
+								</div>
+								{booking.event === "Individual" ||
+								booking.event === "Corporate" ? (
+									<div>
+										<label
+											htmlFor="start-time"
+											className={
+												active === true ? "focus-label" : "booking-form-label"
+											}
+										>
+											<strong>Start time</strong>
+										</label>
+										{allday ? (
+											<Select
+												required
+												id="start-time"
+												name="start-time"
+												MenuProps={{
+													style: {
+														maxHeight: 300,
+														width: 150,
+													},
+												}}
+												disabled={booking?.status === "Cancelled"}
+												type="text"
+												className={active === true ? "focus" : "normal"}
+												onChange={(e) => {
+													console.log(e.target.value, "v2");
+													setBookedTime(e.target.value);
+												}}
+												value={bookedTime}
+											>
+												{timemenuitems?.map((item) => (
+													<MenuItem value={item}>{item}</MenuItem>
+												))}
+											</Select>
+										) : (
+											<Select
+												required
+												id="start-time"
+												name="start-time"
+												MenuProps={{
+													style: {
+														maxHeight: 300,
+														width: 150,
+													},
+												}}
+												disabled={booking?.status === "Cancelled"}
+												type="text"
+												className={active === true ? "focus" : "normal"}
+												onChange={(e) => {
+													console.log(e.target.value, "v2");
+													setBookedTime(e.target.value);
+												}}
+												value={bookedTime}
+											>
+												<MenuItem value="01:00 am">01:00 am</MenuItem>
+												<MenuItem value="02:00 am">02:00 am</MenuItem>
+												<MenuItem value="03:00 am">03:00 am</MenuItem>
+												<MenuItem value="04:00 am">04:00 am</MenuItem>
+												<MenuItem value="05:00 am">05:00 am</MenuItem>
+												<MenuItem value="06:00 am">06:00 am</MenuItem>
+												<MenuItem value="07:00 am">07:00 am</MenuItem>
+												<MenuItem value="08:00 am">08:00 am</MenuItem>
+												<MenuItem value="09:00 am">09:00 am</MenuItem>
+												<MenuItem value="10:00 am">10:00 am</MenuItem>
+												<MenuItem value="11:00 am">11:00 am</MenuItem>
+												<MenuItem value="12:00 pm">12:00 pm</MenuItem>
+												<MenuItem value="01:00 pm">01:00 pm</MenuItem>
+												<MenuItem value="02:00 pm">02:00 pm</MenuItem>
+												<MenuItem value="03:00 pm">03:00 pm</MenuItem>
+												<MenuItem value="04:00 pm">04:00 pm</MenuItem>
+												<MenuItem value="05:00 pm">05:00 pm</MenuItem>
+												<MenuItem value="06:00 pm">06:00 pm</MenuItem>
+												<MenuItem value="07:00 pm">07:00 pm</MenuItem>
+												<MenuItem value="08:00 pm">08:00 pm</MenuItem>
+												<MenuItem value="09:00 pm">09:00 pm</MenuItem>
+												<MenuItem value="10:00 pm">10:00 pm</MenuItem>
+												<MenuItem value="11:00 pm">11:00 pm</MenuItem>
+												<MenuItem value="12:00 pm">12:00 pm</MenuItem>
+											</Select>
+										)}
+									</div>
+								) : (
+									<div>
+										<label
+											htmlFor="time-shifts"
+											className={
+												active === true ? "focus-label" : "booking-form-label"
+											}
+										>
+											<strong>Time Slot</strong>
+										</label>
+										<Select
+											required
+											id="time-shifts"
+											name="time-shifts"
+											defaultValue=""
+											disabled={booking?.status === "Cancelled"}
+											type="time"
+											className={active === true ? "focus" : "normal"}
+											onChange={(e) => {
+												console.log(e.target.value);
+												setBookedHours(
+													e.target.value === "6am-6pm" ? "12" : "22"
+												);
+												let a = e.target.value === "6am-6pm" ? "12" : "22";
+												setBookedTime("06:00 am");
+												setBookedHours(e.target.value === "6am-6pm" ? 12 : 22);
+											}}
+											value={"6am-6pm"}
+											displayEmpty
+										>
+											<MenuItem value="6am-6pm">Half Day (6am to 6pm)</MenuItem>
+											<MenuItem value=""></MenuItem>
+											<MenuItem value="6am-2am">Full Day (6am to 2am)</MenuItem>
+										</Select>
+									</div>
+								)}
+								{(booking.event === "Individual" ||
+									booking.event === "Corporate") && (
+									<div>
+										<label
+											htmlFor="number-of-hours"
+											className={
+												active === true ? "focus-label" : "booking-form-label"
+											}
+										>
+											<strong>Number of Hours</strong>
+										</label>
+										{timemenuitems.length ? (
+											<Select
+												disabled={booking?.status === "Cancelled"}
+												required
+												type="number"
+												id="number-of-hours"
+												name="number-of-hours"
+												className={active === true ? "focus" : "normal"}
+												onChange={(e) => {
+													console.log(e.target.value);
+													setBookedHours(e.target.value);
+												}}
+												value={bookedHours}
+												displayEmpty
+											>
+												{timemenuitems?.length > 8 && (
+													<MenuItem value="8">8 hours</MenuItem>
+												)}
+												{timemenuitems?.length > 12 && (
+													<MenuItem value="12">12 hours</MenuItem>
+												)}
+												{timemenuitems?.length > 24 && (
+													<MenuItem value="24">24 hours</MenuItem>
+												)}
+											</Select>
+										) : (
+											<Select
+												required
+												type="number"
+												id="number-of-hours"
+												name="number-of-hours"
+												disabled={booking?.status === "Cancelled"}
+												className={active === true ? "focus" : "normal"}
+												onChange={(e) => {
+													console.log(e.target.value);
+													setBookedHours(e.target.value);
+												}}
+												value={bookedHours}
+												displayEmpty
+											>
+												<MenuItem value="8">8 hours</MenuItem>
+												<MenuItem value="12">12 hours</MenuItem>
+												<MenuItem value="24">24 hours</MenuItem>
+											</Select>
+										)}
+									</div>
+								)}
+							</div>
+							<div
+								style={{
+									marginLeft: "auto",
+									width: "20vw",
+									display: `${
+										booking?.status === "Under Review" ? "block" : "none"
+									}`,
+								}}
+							>
+								<Button
+									variant="contained"
+									onClick={handleAddADay}
+									sx={{
+										width: "20vw",
+										backgroundColor: "#0079D7",
+										color: "white",
+										borderRadius: "4px",
+										marginTop: "10px",
+									}}
+								>
+									Add a Day
+								</Button>
+							</div>
+						</div>
+					)}
 					<div
 						style={{
 							marginLeft: "auto",

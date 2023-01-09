@@ -2,8 +2,8 @@ import axios from "axios";
 
 // const server_domain = "https://gorecceback.herokuapp.com";
 // const server_domain = "https://spotlet.onrender.com"; //TEMP HOSTED SERVER
+// const server_domain = "https://api.spotlet.in";
 const server_domain = "http://localhost:7000";
-// const server_domain = `${process.env.REACT_APP_API_URL}`;
 
 ////////////////////////Auth////////////////////////
 // function to send signin request to backend
@@ -18,7 +18,6 @@ export const signUp = (form) => {
 
 //otp
 export const otpVerify = (form) => {
-  console.log(form)
   return axios.post(server_domain + "/activation", form);
 };
 
@@ -140,9 +139,14 @@ export const locationRequest = (locId) => {
   return axios.get(server_domain + "/totrequest/" + locId);
 };
 
-//update booking sttaus
+//update booking status
 export const updateBookingStatus = (form) => {
   return axios.put(server_domain + "/updatepaymentstatus", form);
+};
+
+//add a booking day
+export const addADayInBooking = ({ id, addedDayDetails }) => {
+  return axios.put(server_domain + "/addaday/" + id, { data: addedDayDetails });
 };
 
 //delete booking request

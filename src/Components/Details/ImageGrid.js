@@ -161,7 +161,7 @@ function ImageGrid({
                 onClick={copy}
               />
             </div>
-            {favorites.includes(location_id) ? (
+            {favorites?.includes(location_id) ? (
               <AiFillHeart
                 style={{ cursor: "pointer" }}
                 color="#ff4d4d"

@@ -91,10 +91,19 @@ const ListDetails = ({ setFinal }) => {
 		);
 	};
 	const listDetailsData = requests?.map((request, index) => {
-		const endTime =
-			(Number(request?.time.substr(0, 2)) +
-				Number(request?.duration_in_hours)) %
+		let endTime =
+			(Number(request?.bookedTimeDates?.at(0)?.bookedTime?.substr(0, 2)) +
+				Number(request.bookedTimeDates?.at(0)?.bookedHours)) %
 			24;
+		let ampm = request.bookedTimeDates?.at(0)?.bookedTime?.substr(6, 7);
+		if (endTime > 12) {
+			endTime = endTime % 12;
+			if (endTime < 10) {
+				endTime = "0" + endTime;
+			}
+			ampm = ampm == "pm" ? "am" : "pm";
+		}
+
 		const date = new Date(request?.createdAt);
 		const yyyy = date.getFullYear();
 		let mm = date.getMonth() + 1; // Months start at 0!
@@ -102,7 +111,7 @@ const ListDetails = ({ setFinal }) => {
 
 		if (dd && dd < 10) dd = "0" + dd;
 		if (mm && mm < 10) mm = "0" + mm;
-		console.log(request)
+		console.log(request);
 
 		const formattedToday = dd + "/" + mm + "/" + yyyy;
 		return {
@@ -112,14 +121,24 @@ const ListDetails = ({ setFinal }) => {
 			Name: request?.user_data?.fullName,
 			Status: request?.status,
 			DateOfRequest: formattedToday,
-			DateOfEvent: request?.date,
+			DateOfEvent:
+				request?.bookedTimeDates
+					?.at(0)
+					?.bookedDate?.split("-")[2]
+					.split("T")[0] +
+				"/" +
+				request?.bookedTimeDates?.at(0)?.bookedDate?.split("-")[1] +
+				"/" +
+				request?.bookedTimeDates?.at(0)?.bookedDate?.split("-")[0],
 			TimeDuration:
-				request?.time +
-				" - " +
+				request?.bookedTimeDates?.at(0)?.bookedTime +
+				"-" +
 				endTime +
-				request?.time.substr(2) +
+				request?.bookedTimeDates?.at(0)?.bookedTime?.substr(2, 4) +
+				ampm +
 				", " +
-				request?.duration_in_hours,
+				request?.bookedTimeDates?.at(0)?.bookedHours +
+				"hrs",
 			TotalAmount: request?.total_amt,
 		};
 	});
