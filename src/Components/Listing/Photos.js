@@ -23,7 +23,7 @@ function urltoFile(url, filename, mimeType) {
       return res.arrayBuffer();
     })
     .then(function (buf) {
-      return new File([buf], filename, { type: mimeType });
+      return new File([buf], Date.now() + filename, { type: mimeType });
     });
 }
 
@@ -45,7 +45,7 @@ const Photo = ({ showSection, changeSection }) => {
       for (let i = 0; i < fileNames.length; i++) {
         const flobj = files[fileNames[i]];
         if (flobj.uploaded) continue;
-        let file = await urltoFile(
+        const file = await urltoFile(
           flobj.watermarkImage,
           fileNames[i],
           "text/plain"

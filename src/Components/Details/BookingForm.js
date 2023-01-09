@@ -112,10 +112,30 @@ const BookingForm = ({
   const user = useSelector(selectUserData);
   const [timings, setTimings] = useState([]);
   const [active, setActive] = useState(false);
+  const [noOfPeople, setNoOfPeople] = useState();
+  useEffect(() => {
+    switch (event) {
+      case "Individual":
+        setNoOfPeople(locationData?.pricing?.individual?.attendees)
+        break;
+      case "Corporate":
+        setNoOfPeople(locationData?.pricing?.corporate?.attendees)
+        break;
+      case "Film, Webseries or Ad":
+        setNoOfPeople(locationData?.pricing?.film_webseries_ad?.attendees)
+        break;
+      case "TV Series and Others":
+        setNoOfPeople(locationData?.pricing?.tv_series_other?.attendees)
+        break;
+      default:
+        setNoOfPeople(100)
+        break;
+    }
+  }, [event]);
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const [open, setOpen] = useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -674,12 +694,30 @@ const BookingForm = ({
               }}
               value={v4}
             >
-              <MenuItem value="5">1-5</MenuItem>
-              <MenuItem value="15">6-15</MenuItem>
-              <MenuItem value="25">15-25</MenuItem>
-              <MenuItem value="50">25-50</MenuItem>
-              <MenuItem value="100">50-100</MenuItem>
-              <MenuItem value="more than 100">More than 100</MenuItem>
+              {
+                Number(noOfPeople) >= 5 &&
+                <MenuItem value="5">1-5</MenuItem>
+              }
+              {
+                Number(noOfPeople) >= 15 &&
+                <MenuItem value="15">6-15</MenuItem>
+              }
+              {
+                Number(noOfPeople) >= 25 &&
+                <MenuItem value="25">15-25</MenuItem>
+              }
+              {
+                Number(noOfPeople) >= 50 &&
+                <MenuItem value="50">25-50</MenuItem>
+              }
+              {
+                Number(noOfPeople) >= 100 &&
+                <MenuItem value="100">50-100</MenuItem>
+              }
+              {
+                Number(noOfPeople) > 100 &&
+                <MenuItem value="more than 100">More than 100</MenuItem>
+              }
             </Select>
           </div>
           <div>
