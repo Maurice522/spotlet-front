@@ -11,18 +11,12 @@ const Careers = () => {
   return (
     <div>
       <Navbar extraNavId="id-2" />
-      {/* <div className="text-on-image-container">
+      <div className="text-on-image-container">
 				<img src={image} alt="background" className="bg-image darken" />
-				<div className="about-us-message">
-					<div>OUR MISSION</div>
-					<br />
-					<div>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
-						rhoncus pulvinar aliquam.
-					</div>
+				<div className="about-us-message bold">
+					<div>Careers</div>
 				</div>
-			</div> */}
+			</div>
       <div className="career_page">
         <div className="careerPage_article1">
           <div className="careerPage_article_info">
