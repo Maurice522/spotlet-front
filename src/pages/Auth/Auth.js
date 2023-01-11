@@ -54,7 +54,8 @@ export default function Auth() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [fullName, setFullName] = useState({});
-  const [userEmail, setUserEmail] = useState("")
+  const [userEmail, setUserEmail] = useState("");
+  const [checked, setChecked] = useState(false)
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -106,12 +107,14 @@ export default function Auth() {
   const [upperCase, setUpperCase] = useState(false);
   const [lowerCase, setLowerCase] = useState(false);
   const [specialChar, setSpecialChar] = useState(false);
+  const [number, setNumber] = useState(false);
   const [valid, setValid] = useState(true);
 
   const checkPassword = () => {
     setValidLength(userData.password.length >= 8 ? true : false);
     setUpperCase(userData.password.toLowerCase() !== userData.password);
     setLowerCase(userData.password.toUpperCase() !== userData.password);
+    setNumber(/\d/.test(userData.password));
     setSpecialChar(
       /[ `!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/.test(userData.password)
     );
@@ -128,14 +131,19 @@ export default function Auth() {
 
 
   const getOTP = async (userData) => {
-    try {
-      const response = await otpVerify(userData);
-      toast("OTP sent");
-      dispatch(saveOTP(response.data.otp));
-      dispatch(addUser(userData));
-      handleOpenOTP();
-    } catch (error) {
-      toast.error(error.response.data.error);
+    if (checked) {
+      try {
+        const response = await otpVerify(userData);
+        toast("OTP sent");
+        dispatch(saveOTP(response.data.otp));
+        dispatch(addUser(userData));
+        handleOpenOTP();
+      } catch (error) {
+        toast.error(error.response.data.error);
+      }
+    }
+    else {
+      toast("Please accept our terms and conditions")
     }
   };
 
@@ -150,7 +158,7 @@ export default function Auth() {
     !userData.googleLogin && e.preventDefault();
     (!isSignIn && userData.googleLogin) && e.preventDefault();
     // console.log(isSignIn, validLength, upperCase, lowerCase, specialChar);
-    if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar)) {
+    if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar && number)) {
       setValid(false);
       return;
     }
@@ -463,6 +471,7 @@ export default function Auth() {
                             color: "#ea4235",
                           },
                         }}
+                        onClick={() => setChecked((prevState) => { return !prevState })}
                       />
                     }
                     label="I agree to the Term and Conditions"

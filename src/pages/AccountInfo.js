@@ -61,6 +61,7 @@ const AccountInfo = (extraNavId) => {
   const [upperCase, setUpperCase] = useState(null);
   const [lowerCase, setLowerCase] = useState(null);
   const [specialChar, setSpecialChar] = useState(null);
+  const [number, setNumber] = useState(false);
   const [valid, setValid] = useState(true);
 
   const checkPassword = () => {
@@ -74,6 +75,7 @@ const AccountInfo = (extraNavId) => {
     setSpecialChar(
       /[ `!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/.test(userCredential.newPassword)
     );
+    setNumber(/\d/.test(userCredential.newPassword));
   };
 
   const [show, setShow] = useState({
@@ -174,8 +176,8 @@ const AccountInfo = (extraNavId) => {
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
       checkPassword();
-      console.log(!(validLength && upperCase && lowerCase && specialChar));
-      if (!(validLength && upperCase && lowerCase && specialChar)) {
+      console.log(!(validLength && upperCase && lowerCase && specialChar && number));
+      if (!(validLength && upperCase && lowerCase && specialChar && number)) {
         setValid(false);
         return;
       }

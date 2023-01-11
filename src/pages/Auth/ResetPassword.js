@@ -27,6 +27,7 @@ export default function ResetPassword() {
   const [upperCase, setUpperCase] = useState(null);
   const [lowerCase, setLowerCase] = useState(null);
   const [specialChar, setSpecialChar] = useState(null);
+  const [number, setNumber] = useState(false);
   const [valid, setValid] = useState(true);
 
   const checkPassword = () => {
@@ -34,6 +35,7 @@ export default function ResetPassword() {
     setUpperCase(userCredential.newPassword.toLowerCase() !== userCredential.newPassword);
     setLowerCase(userCredential.newPassword.toUpperCase() !== userCredential.newPassword);
     setSpecialChar(/[ `!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/.test(userCredential.newPassword));
+    setNumber(/\d/.test(userCredential.newPassword));
   };
 
 
@@ -43,8 +45,8 @@ export default function ResetPassword() {
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
     checkPassword();
-    console.log(!(validLength && upperCase && lowerCase && specialChar))
-    if (!(validLength && upperCase && lowerCase && specialChar)) {
+    console.log(!(validLength && upperCase && lowerCase && specialChar && number))
+    if (!(validLength && upperCase && lowerCase && specialChar && number)) {
       setValid(false);
       return;
     }
