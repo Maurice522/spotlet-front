@@ -41,7 +41,7 @@ const Photography = () => {
         <Navbar extraNavId={"id-2"} />
         <div className="text-on-image-container">
           <img src={image} alt="background" className="bg-image darken" />
-          <div className="message myMessage ">
+          <div className="message myMessage photo-msg" style={{right: "100px"}}>
             Professional Photography
             <p className="subtextBanner">
             Showcase your Property in the best light and earn the spotlight with our exclusive and cost-effective photography services.

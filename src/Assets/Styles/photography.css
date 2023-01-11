@@ -13,18 +13,21 @@
 .container2 {
   /* background-color: aqua; */
   margin-top: 11%;
+  width: 100%;
   position: relative;
+  display: flex;
+  place-items: center;
 }
 
 .leftContainer1 {
-  width: 45%;
+  width: 100%;
   display: inline-block;
+  text-align: center;
   /* background-color: bisque; */
 }
 .contentLeftContainer {
-  width: 35%;
+  width: 70%;
   display: inline-block;
-  position: absolute;
   top: 16%;
   left: 13%;
 }
@@ -35,14 +38,14 @@
   line-height: 2;
 }
 .rightContainer1 {
-  width: 45%;
+  width: 100%;
   display: inline-block;
 }
 .colouredbg {
   background-color: #ff6767;
   height: 350px;
   width: 70%;
-  margin-left: 24%;
+  margin: 0 auto;
   position: relative;
 }
 .container1Img {
@@ -53,14 +56,14 @@
   right: 15%;
 }
 .rightContainer2 {
-  width: 45%;
+  width: 100%;
   display: inline-block;
+  text-align: center;
   /* background-color: bisque; */
 }
 .contentRightContainer {
-  width: 35%;
+  width: 70%;
   display: inline-block;
-  position: absolute;
   top: 16%;
   right: 7%;
 }
@@ -69,7 +72,7 @@
   line-height: 2;
 }
 .leftContainer2 {
-  width: 45%;
+  width: 100%;
   display: inline-block;
 }
 .container1Img {
@@ -124,4 +127,32 @@
   margin-bottom: 10px;
 }
 
-/* responsive  */
+
+@media screen and (max-width: 992px) {
+  .container1 {
+    flex-direction: column-reverse;
+    gap: 4rem;
+    margin-top: 7rem;
+  }
+  .container2 {
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 7rem;
+  }
+  
+}
+
+@media screen and (max-width: 768px) {
+  .myMessage {
+    margin-top: -4% !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  .subtextBanner {
+    display: none;
+  }
+  .myMessage {
+    margin-top: 4% !important;
+    right: 10px !important;
+  }
+}
