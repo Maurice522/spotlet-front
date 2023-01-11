@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { GiFilmProjector } from "react-icons/gi";
 import { BsPersonFill } from "react-icons/bs";
 import { MdOutlineCorporateFare } from "react-icons/md";
+import { Rating } from "@mui/material";
 
 const Carousel = ({ locationData }) => {
 	const images = locationData?.imagesData;
@@ -32,6 +33,17 @@ const Carousel = ({ locationData }) => {
 
 	const [val, setVal] = useState(1);
 	const [fav, setFav] = useState(false);
+	const [rating, setRating] = useState(null)
+	useEffect(() => {
+		let sum = 0;
+		locationData?.review_and_rating?.map((rat) => {
+			sum += rat.rating;
+		})
+		if (locationData?.review_and_rating?.length > 0)
+			setRating(Number(sum / locationData?.review_and_rating.length))
+		else
+			setRating(0)
+	}, [locationData])
 
 	const [copied, setCopied] = useState(false);
 	const [starSize, setStarSize] = useState("18px");
@@ -150,13 +162,18 @@ const Carousel = ({ locationData }) => {
 					</div>
 					<div className="property-info-location">
 						<div>
-							<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
-							<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
-							<AiFillStar style={{ color: '#FFC736' }} size={starSize} />
-							<AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
-							<AiOutlineStar style={{ color: '#FFC736' }} size={starSize} />
+							{
+								rating !== null &&
+								<Rating
+									name="simple-controlled"
+									precision={0.1}
+									value={rating}
+									size={starSize}
+									readOnly
+								/>
+							}
 						</div>
-						<div>(40)</div>
+						<div>({locationData?.review_and_rating?.length})</div>
 					</div>
 				</div>
 			</div>
