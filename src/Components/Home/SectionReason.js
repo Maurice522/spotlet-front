@@ -45,7 +45,7 @@ const SectionReason = ({ heading, imageReason,objArray }) => {
 				{/* <div className="image-wrapper"> */}
 				<img src={image} alt="reason-1" className="reason-image" />
 				{/* </div> */}
-				<div className="reason-content-wrapper">{items}</div>
+				<div className="reason-content-wrapper" style={{gap: "1.5rem"}}>{items}</div>
 			</div>
 		</div>
 	);

@@ -35,7 +35,7 @@
 .reason-image {
   min-width: 500px;
   max-width: 600px;
-  height: 100%;
+  height: 80%;
   display: block;
   border-radius: 30px;
 }
@@ -43,9 +43,9 @@
 .reason-content-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   width: 50%;
-  height: 70vh;
+  overflow-y: auto;
+  padding-right: 1rem;
 }
 
 .reason-content-item {

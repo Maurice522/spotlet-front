@@ -132,6 +132,10 @@ const BookingForm = ({
         break;
     }
   }, [event]);
+  console.log(locationData?.pricing?.individual?.attendees)
+  console.log(locationData?.pricing?.corporate?.attendees)
+  console.log(locationData?.pricing?.film_webseries_ad?.attendees)
+  console.log(locationData?.pricing?.tv_series_other?.attendees)
 
   // const [open, setOpen] = useState(false);
   // const handleOpen = () => setOpen(true);

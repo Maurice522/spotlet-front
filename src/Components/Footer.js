@@ -1,7 +1,7 @@
 import React from "react";
 import "../Assets/Styles/footer.css";
 import { MdExpandLess } from "react-icons/md";
-import { BsInstagram, BsFacebook, BsTwitter, BsLinkedin, BsPinterest } from "react-icons/bs";
+import { BsInstagram, BsFacebook, BsTwitter, BsLinkedin, BsPinterest, BsYoutube } from "react-icons/bs";
 // import { AiFillInstagram } from "react-icons/ai";
 
 const Footer = () => {
@@ -71,8 +71,13 @@ const Footer = () => {
 				},
 				{
 					name: "Pinterest",
-					to: "https://in.pinterest.com/SpotLetIN/ ",
+					to: "https://in.pinterest.com/SpotLetIN/",
 					icon: <BsPinterest size="18px" color="white" />,
+				},
+				{
+					name: "Youtube",
+					to: "/",
+					icon: <BsYoutube size="18px" color="white" />,
 				},
 			],
 		},
@@ -115,13 +120,12 @@ const Footer = () => {
 						<div className="company-name">SpotLet</div>
 						<div className="company-details">
 							{" "}
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod
-							aliquam tempus at sapien, quis.
+							SpotLet is a platform where hosts, guests, clients and customers come together to find their dream spaces! It’s a collaboration of ideas, places and people to create beautiful moments and memories.
 						</div>
 					</div>
 					{items}
 				</div>
-				<p className="footer-conc">SpotLet is a platform where hosts, guests, clients and customers come together to find their dream spaces! It’s a collaboration of ideas, places and people to create beautiful moments and memories.</p>
+				<p className="footer-conc">© 2023 SpotLet. All rights reserved.</p>
 			</div>
 		</div>
 	);
