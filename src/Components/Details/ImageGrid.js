@@ -16,6 +16,7 @@ import { MdOutlineCorporateFare } from "react-icons/md";
 import { toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
 import { getUserData } from "../../services/api";
+import { Rating } from "@mui/material";
 
 function ImageGrid({
   images,
@@ -26,6 +27,17 @@ function ImageGrid({
 }) {
   const [starSize, setStarSize] = useState("18px");
   const [copied, setCopied] = useState(false);
+  const [rating, setRating] = useState(null)
+  useEffect(() => {
+    let sum = 0;
+    locationData?.review_and_rating?.map((rat) => {
+      sum += rat.rating;
+    })
+    if (locationData?.review_and_rating?.length > 0)
+      setRating(Number(sum / locationData?.review_and_rating.length))
+    else
+      setRating(0)
+  }, [locationData])
 
   const currentLocation = window.location;
   const location_id = currentLocation.href.split("/")[4];
@@ -144,8 +156,8 @@ function ImageGrid({
             )}
             {(locationData?.pricing?.film_webseries_ad?.isPresent ||
               locationData?.pricing?.tv_series_other?.isPresent) && (
-              <GiFilmProjector size="30px" />
-            )}
+                <GiFilmProjector size="30px" />
+              )}
             {locationData?.pricing?.individual?.isPresent && (
               <BsPersonFill size="30px" />
             )}
@@ -191,13 +203,18 @@ function ImageGrid({
               alignItems: "center",
             }}
           >
-            <div style={{ textAlign: x.matches ? "left" : "right" }}>(40)</div>
+            <div style={{ textAlign: x.matches ? "left" : "right" }}>({locationData?.review_and_rating?.length})</div>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <AiFillStar style={{ color: "#FFC736" }} size={starSize} />
-              <AiFillStar style={{ color: "#FFC736" }} size={starSize} />
-              <AiFillStar style={{ color: "#FFC736" }} size={starSize} />
-              <AiOutlineStar style={{ color: "#FFC736" }} size={starSize} />
-              <AiOutlineStar style={{ color: "#FFC736" }} size={starSize} />
+              {
+                rating !== null &&
+                <Rating
+                  name="simple-controlled"
+                  precision={0.1}
+                  value={rating}
+                  size={starSize}
+                  readOnly
+                />
+              }
             </div>
           </div>
         </div>
