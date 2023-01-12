@@ -3,6 +3,7 @@
 	margin: 8rem auto;
 	display: flex;
 	justify-content: space-around;
+	gap: 8rem;
 }
 
 .left-section {
