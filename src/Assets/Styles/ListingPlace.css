@@ -158,6 +158,7 @@ h2 {
   background-color: white;
   border: none;
   margin-left: 60px;
+  text-align: initial;
 }
 
 .lnav-text:hover:enabled {

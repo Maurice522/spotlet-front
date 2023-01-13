@@ -223,17 +223,19 @@ const Search = () => {
 					style={{ cursor: "pointer" }}
 					onClick={() => navigate("/")}
 				/>
-				<FormFilter
-					fullScreen={true}
-					homepage={false}
-					searchEvent={searchEvent}
-					setSearchEvent={setSearchEvent}
-					searchLocation={searchLocation}
-					setSearchLocation={setSearchLocation}
-					searchCity={searchCity}
-					setSearchCity={setSearchCity}
-					setMax={setMax}
-				/>
+				<div className="search-form">
+					<FormFilter
+						fullScreen={true}
+						homepage={false}
+						searchEvent={searchEvent}
+						setSearchEvent={setSearchEvent}
+						searchLocation={searchLocation}
+						setSearchLocation={setSearchLocation}
+						searchCity={searchCity}
+						setSearchCity={setSearchCity}
+						setMax={setMax}
+					/>
+				</div>
 			</div>
 
 			<Modal open={openFilter} onClose={handleCloseFilter}>
@@ -833,9 +835,8 @@ const Search = () => {
 						return (
 							<div
 								key={id}
-								className={`paginated-box ${
-									id + 1 === currentPage && "active"
-								}`}
+								className={`paginated-box ${id + 1 === currentPage && "active"
+									}`}
 								onClick={() => setCurrentPage(id + 1)}
 							>
 								{id + 1}

@@ -53,10 +53,6 @@
   transition: 0.5s ease-in-out;
 }
 
-.property-info-cards {
-  /* padding: 0 4px; */
-}
-
 .property-info-heading {
   font-family: "Inter";
   font-style: normal;
@@ -307,6 +303,14 @@
   .property-info-location {
     font-size: 14px;
   }
+  
+  .search-heading h1{
+    font-size: 25px !important;
+  }
+
+  .search-property-list{
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -331,5 +335,43 @@
   }
   .search-property-list {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-form {
+    margin-top: 6rem !important;
+  }
+  .search-form #form a {
+    margin-right: 6% !important;
+  }
+  .search-heading h1{
+    font-size: 20px !important;
+    margin-top: 18rem !important;
+  }
+
+  .filter-btn {
+    padding: 5px;
+  }
+  .filter-btn h2{
+    font-size: 12px !important;
+  }
+  .css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+    font-size: 12px !important;
+  }
+
+  .filter-modal{
+    width: 75% !important;
+  }
+  .filter-modal h2{
+    font-size: 1rem;
+  }
+  .filter-body .filter--coll1{
+    gap: 1rem;
+  }
+  .filter-body .form-filter-select{
+    border: 0 !important;
+  }
+
+  .search-property-list{
+    width: 90% !important;
   }
 }
