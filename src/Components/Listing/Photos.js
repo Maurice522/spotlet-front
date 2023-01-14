@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Clear, ClearAll, Delete, Done, Upload } from "@mui/icons-material";
 import ImageCropper from "./ImageCropper";
-import logo from "../../Assets/Images/logo2.jpg";
+import logo from "../../Assets/Images/logo2.png";
 
 const watermark = require('watermarkjs');
 
@@ -33,7 +33,6 @@ const Photo = ({ showSection, changeSection }) => {
   const dispatch = useDispatch();
   const location_id = useSelector(selectLocationId);
   const location = useSelector(selectLocationData);
-  const [destinationPath, setDestinationPath] = useState("");
   let x = window.matchMedia("(max-width: 576px)");
   useEffect(() => {
     if (location) location.imagesData && setImagesData(location.imagesData);
@@ -44,6 +43,7 @@ const Photo = ({ showSection, changeSection }) => {
       const fileNames = Object.keys(files);
       for (let i = 0; i < fileNames.length; i++) {
         const flobj = files[fileNames[i]];
+        console.log(fileNames[i])
         if (flobj.uploaded) continue;
         const file = await urltoFile(
           flobj.watermarkImage,
@@ -89,6 +89,7 @@ const Photo = ({ showSection, changeSection }) => {
       prevData[fileName].croppedImage = newCropped;
       return { ...prevData };
     });
+    console.log(newCropped, fileName)
     watermarkImageFunction(newCropped, logo, fileName);
   };
 
