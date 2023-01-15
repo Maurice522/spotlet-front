@@ -135,11 +135,11 @@ export default function Auth() {
       try {
         const response = await otpVerify(userData);
         toast("OTP sent");
-        dispatch(saveOTP(response.data.otp));
+        dispatch(saveOTP(response?.data?.otp));
         dispatch(addUser(userData));
         handleOpenOTP();
       } catch (error) {
-        toast.error(error.response.data.error);
+        toast.error(error?.response?.data?.error);
       }
     }
     else {
@@ -155,8 +155,8 @@ export default function Auth() {
 
   //SignIn and SignUp function -
   const handleSubmit = async (e) => {
-    !userData.googleLogin && e.preventDefault();
-    (!isSignIn && userData.googleLogin) && e.preventDefault();
+    !userData?.googleLogin && e.preventDefault();
+    (!isSignIn && userData?.googleLogin) && e.preventDefault();
     // console.log(isSignIn, validLength, upperCase, lowerCase, specialChar);
     if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar && number)) {
       setValid(false);
@@ -167,12 +167,12 @@ export default function Auth() {
       try {
         const { data } = await signIn(userData);
 
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("token", data?.token);
         toast.success("Successful login");
         window.location = "/";
       } catch (error) {
         //console.log(error.response.data);
-        toast.error(error.response.data.error);
+        toast.error(error?.response?.data?.error);
       }
     } else {
       try {
@@ -181,13 +181,13 @@ export default function Auth() {
           return toast.error("Password must contain atleast 8 characters");
         getOTP(userData);
       } catch (error) {
-        toast.error(error.response.data);
+        toast.error(error?.response?.data);
       }
     }
   };
 
   useEffect(() => {
-    if (userData.googleLogin && userData.email)
+    if (userData?.googleLogin && userData?.email)
       handleSubmit();
   }, [userData.googleLogin, userData.email])
 
