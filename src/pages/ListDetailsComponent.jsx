@@ -175,7 +175,7 @@ const ListDetailsComponent = () => {
 							<div className="grid-container">
 								<div>
 									<div className="item-heading">Reserved Date</div>
-									<div className="item-body">{date_of_booking}</div>
+									{bookingDetail?.bookedTimeDates?.map((item, index) => <div className="item-body" key={index}>{bookingDetail?.bookedTimeDates?.at(index)?.bookedDate?.split("-")[2].split("T")[0] + " " + toMonthName(bookingDetail?.bookedTimeDates?.at(index)?.bookedDate?.split("-")[1]) + " " + bookingDetail?.bookedTimeDates?.at(index)?.bookedDate?.split("-")[0]}</div>)}
 								</div>
 								<div>
 									<div className="item-heading">Attendies</div>
@@ -185,21 +185,30 @@ const ListDetailsComponent = () => {
 								</div>
 								<div>
 									<div className="item-heading">Reserved Time</div>
-									<div className="item-body">
-										{bookingDetail?.bookedTimeDates?.at(0)?.bookedTime +
+									{bookingDetail?.bookedTimeDates?.map((item, index) => <div className="item-body" key={index}>
+										{bookingDetail?.bookedTimeDates?.at(index)?.bookedTime +
 											" to " +
-											endTime +
+											((Number(bookingDetail?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+												Number(bookingDetail.bookedTimeDates?.at(index)?.bookedHours)) %
+												24 > 12 ? (Number(bookingDetail?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+													Number(bookingDetail.bookedTimeDates?.at(index)?.bookedHours)) %
+												24 % 12 : (Number(bookingDetail?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+													Number(bookingDetail.bookedTimeDates?.at(index)?.bookedHours)) %
+													24 % 12 < 10 ? "0" + (Number(bookingDetail?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+														Number(bookingDetail.bookedTimeDates?.at(index)?.bookedHours)) %
+													24 % 12 : (Number(bookingDetail?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+														Number(bookingDetail?.bookedTimeDates?.at(index)?.bookedHours)) %
+											24) +
 											bookingDetail?.bookedTimeDates
-												?.at(0)
-												?.bookedTime?.substr(2, 4) +
-											ampm}
-									</div>
+												?.at(index)
+												?.bookedTime?.substr(2, 4) + ((Number(bookingDetail?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+													Number(bookingDetail?.bookedTimeDates?.at(index)?.bookedHours)) %
+													24 > 12 ? bookingDetail?.bookedTimeDates?.at(index)?.bookedTime?.substr(6, 7) == "pm" ? "am" : "pm" : bookingDetail?.bookedTimeDates?.at(index)?.bookedTime?.substr(6, 7))}
+									</div>)}
 								</div>
 								<div>
 									<div className="item-heading">Duration</div>
-									<div className="item-body">
-										{bookingDetail?.bookedTimeDates?.at(0)?.bookedHours} Hrs
-									</div>
+									{bookingDetail?.bookedTimeDates?.map((item, index) => <div className="item-body" key={index}>{bookingDetail?.bookedTimeDates?.at(index)?.bookedHours} Hrs</div>)}
 								</div>
 							</div>
 							<div className="booking-details-header">User Details</div>

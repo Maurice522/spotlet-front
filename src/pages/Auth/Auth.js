@@ -171,8 +171,8 @@ export default function Auth() {
         toast.success("Successful login");
         window.location = "/";
       } catch (error) {
-        //console.log(error.response.data);
-        toast.error(error.response.data.error);
+        console.log(error?.response);
+        toast.error(error?.response?.data?.error);
       }
     } else {
       try {

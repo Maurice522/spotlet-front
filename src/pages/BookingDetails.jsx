@@ -272,19 +272,12 @@ const BookingDetails = () => {
 		}
 		ampm = ampm == "pm" ? "am" : "pm";
 	}
-
-	const date_of_booking =
-		booking?.bookedTimeDates?.at(0)?.bookedDate?.split("-")[2].split("T")[0] +
-		" " +
-		toMonthName(booking?.bookedTimeDates?.at(0)?.bookedDate?.split("-")[1]) +
-		" " +
-		booking?.bookedTimeDates?.at(0)?.bookedDate?.split("-")[0];
 	const discount =
 		booking?.booking?.bookedTimeDates?.bookedHours === "24"
 			? 0.8
 			: booking?.booking?.bookedTimeDates?.bookedHours === "12"
-			? 0.9
-			: 1;
+				? 0.9
+				: 1;
 	const perHourCost = (
 		(booking?.total_amt - 40) /
 		booking?.booking?.bookedTimeDates?.bookedHours /
@@ -411,7 +404,7 @@ const BookingDetails = () => {
 		}
 	};
 
-	// console.log(booking);
+	console.log(booking);
 	// console.log(locationData);
 	return (
 		<div>
@@ -425,7 +418,7 @@ const BookingDetails = () => {
 							<div className="grid-container">
 								<div>
 									<div className="item-heading">Reserved Date</div>
-									<div className="item-body">{date_of_booking}</div>
+									{booking?.bookedTimeDates?.map((item, index) => <div className="item-body" key={index}>{booking?.bookedTimeDates?.at(index)?.bookedDate?.split("-")[2].split("T")[0] + " " + toMonthName(booking?.bookedTimeDates?.at(index)?.bookedDate?.split("-")[1]) + " " + booking?.bookedTimeDates?.at(index)?.bookedDate?.split("-")[0]}</div>)}
 								</div>
 								<div>
 									<div className="item-heading">Attendies</div>
@@ -433,21 +426,30 @@ const BookingDetails = () => {
 								</div>
 								<div>
 									<div className="item-heading">Reserved Time</div>
-									<div className="item-body">
-										{booking?.bookedTimeDates?.at(0)?.bookedTime +
+									{booking?.bookedTimeDates?.map((item, index) => <div className="item-body" key={index}>
+										{booking?.bookedTimeDates?.at(index)?.bookedTime +
 											" to " +
-											endTime +
+											((Number(booking?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+												Number(booking.bookedTimeDates?.at(index)?.bookedHours)) %
+												24 > 12 ? (Number(booking?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+													Number(booking.bookedTimeDates?.at(index)?.bookedHours)) %
+												24 % 12 : (Number(booking?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+													Number(booking.bookedTimeDates?.at(index)?.bookedHours)) %
+													24 % 12 < 10 ? "0" + (Number(booking?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+														Number(booking.bookedTimeDates?.at(index)?.bookedHours)) %
+													24 % 12 : (Number(booking?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+														Number(booking?.bookedTimeDates?.at(index)?.bookedHours)) %
+											24) +
 											booking?.bookedTimeDates
-												?.at(0)
-												?.bookedTime?.substr(2, 4) +
-											ampm}
-									</div>
+												?.at(index)
+												?.bookedTime?.substr(2, 4) + ((Number(booking?.bookedTimeDates?.at(index)?.bookedTime?.substr(0, 2)) +
+													Number(booking?.bookedTimeDates?.at(index)?.bookedHours)) %
+													24 > 12 ? booking?.bookedTimeDates?.at(index)?.bookedTime?.substr(6, 7) == "pm" ? "am" : "pm" : booking?.bookedTimeDates?.at(index)?.bookedTime?.substr(6, 7))}
+									</div>)}
 								</div>
 								<div>
 									<div className="item-heading">Duration</div>
-									<div className="item-body">
-										{booking?.bookedTimeDates?.at(0)?.bookedHours} Hrs
-									</div>
+									{booking?.bookedTimeDates?.map((item, index) => <div className="item-body" key={index}>{booking?.bookedTimeDates?.at(index)?.bookedHours} Hrs</div>)}
 								</div>
 								<div>
 									<div className="item-heading">Location Id</div>
@@ -591,7 +593,7 @@ const BookingDetails = () => {
 									</div>
 								</div>
 								{booking.event === "Individual" ||
-								booking.event === "Corporate" ? (
+									booking.event === "Corporate" ? (
 									<div>
 										<label
 											htmlFor="start-time"
@@ -710,70 +712,69 @@ const BookingDetails = () => {
 								)}
 								{(booking.event === "Individual" ||
 									booking.event === "Corporate") && (
-									<div>
-										<label
-											htmlFor="number-of-hours"
-											className={
-												active === true ? "focus-label" : "booking-form-label"
-											}
-										>
-											<strong>Number of Hours</strong>
-										</label>
-										{timemenuitems.length ? (
-											<Select
-												disabled={booking?.status === "Cancelled"}
-												required
-												type="number"
-												id="number-of-hours"
-												name="number-of-hours"
-												className={active === true ? "focus" : "normal"}
-												onChange={(e) => {
-													console.log(e.target.value);
-													setBookedHours(e.target.value);
-												}}
-												value={bookedHours}
-												displayEmpty
+										<div>
+											<label
+												htmlFor="number-of-hours"
+												className={
+													active === true ? "focus-label" : "booking-form-label"
+												}
 											>
-												{timemenuitems?.length > 8 && (
+												<strong>Number of Hours</strong>
+											</label>
+											{timemenuitems.length ? (
+												<Select
+													disabled={booking?.status === "Cancelled"}
+													required
+													type="number"
+													id="number-of-hours"
+													name="number-of-hours"
+													className={active === true ? "focus" : "normal"}
+													onChange={(e) => {
+														console.log(e.target.value);
+														setBookedHours(e.target.value);
+													}}
+													value={bookedHours}
+													displayEmpty
+												>
+													{timemenuitems?.length > 8 && (
+														<MenuItem value="8">8 hours</MenuItem>
+													)}
+													{timemenuitems?.length > 12 && (
+														<MenuItem value="12">12 hours</MenuItem>
+													)}
+													{timemenuitems?.length > 24 && (
+														<MenuItem value="24">24 hours</MenuItem>
+													)}
+												</Select>
+											) : (
+												<Select
+													required
+													type="number"
+													id="number-of-hours"
+													name="number-of-hours"
+													disabled={booking?.status === "Cancelled"}
+													className={active === true ? "focus" : "normal"}
+													onChange={(e) => {
+														console.log(e.target.value);
+														setBookedHours(e.target.value);
+													}}
+													value={bookedHours}
+													displayEmpty
+												>
 													<MenuItem value="8">8 hours</MenuItem>
-												)}
-												{timemenuitems?.length > 12 && (
 													<MenuItem value="12">12 hours</MenuItem>
-												)}
-												{timemenuitems?.length > 24 && (
 													<MenuItem value="24">24 hours</MenuItem>
-												)}
-											</Select>
-										) : (
-											<Select
-												required
-												type="number"
-												id="number-of-hours"
-												name="number-of-hours"
-												disabled={booking?.status === "Cancelled"}
-												className={active === true ? "focus" : "normal"}
-												onChange={(e) => {
-													console.log(e.target.value);
-													setBookedHours(e.target.value);
-												}}
-												value={bookedHours}
-												displayEmpty
-											>
-												<MenuItem value="8">8 hours</MenuItem>
-												<MenuItem value="12">12 hours</MenuItem>
-												<MenuItem value="24">24 hours</MenuItem>
-											</Select>
-										)}
-									</div>
-								)}
+												</Select>
+											)}
+										</div>
+									)}
 							</div>
 							<div
 								style={{
 									marginLeft: "auto",
 									width: "20vw",
-									display: `${
-										booking?.status === "Under Review" ? "block" : "none"
-									}`,
+									display: `${booking?.status === "Under Review" ? "block" : "none"
+										}`,
 								}}
 							>
 								<Button

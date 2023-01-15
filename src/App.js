@@ -43,6 +43,7 @@ import Activity from "./pages/Activity";
 import Cancellation from "./pages/Cancellation";
 import KnowledgeCenter from "./pages/KnowledgeCenter";
 import Notifications from "./pages/Notifications";
+import Disclaimer from "./pages/Disclaimer";
 
 
 function App() {
@@ -134,6 +135,7 @@ function App() {
 					<Route path="/photography" element={<Photography />} />
 					<Route path="/helpcenter" element={<HelpCenter />} />
 					<Route path="/trustandsafety" element={<TrustAndSafety />} />
+					<Route path="/disclaimer" element={<Disclaimer />} />
 					<Route path="/careers" element={<Careers />} />
 					<Route path="/resourcecenter" element={<Resources />} />
 					<Route path="/resource/:resourceId" element={<Resource />} />
