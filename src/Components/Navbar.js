@@ -180,7 +180,7 @@ const Navbar = ({ extraNavId }) => {
               <div>Bookings</div>
             </Link>
             <Link to="/favorite" onClick={() => window.scrollTo(0, 0)}>
-              <div>Favorites</div>
+              <div>Favourites</div>
             </Link>
             <Link to="/listing" onClick={() => window.scrollTo(0, 0)}>
               <div>List Your Space</div>

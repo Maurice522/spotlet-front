@@ -101,6 +101,10 @@ export default function Auth() {
     console.log('failed:', err);
   };
 
+  function isNumeric(value) {
+    return /^-?\d+$/.test(value);
+  }
+
 
 
   const [validLength, setValidLength] = useState(false);
@@ -179,6 +183,8 @@ export default function Auth() {
         console.log("signing up");
         if (userData.password.length < 8)
           return toast.error("Password must contain atleast 8 characters");
+        if (!isNumeric(userData.mobile) || userData.mobile.length !== 10)
+          return toast.error("Invalid Mobile Number");
         getOTP(userData);
       } catch (error) {
         toast.error(error?.response?.data);
@@ -372,7 +378,7 @@ export default function Auth() {
                   />
                   <div className="horizontal-itm">
                     <div>
-                      <label>Booking as a</label>
+                      <label>Registering as a</label>
                       <br />
                       <Select
                         value={userData.booking_type}
@@ -394,31 +400,17 @@ export default function Auth() {
                     </div>
                     <div>
                       <label>
-                        {userData.booking_type === "corporate"
-                          ? "Company Name"
-                          : "Profession"}
+                        Profession
                       </label>
                       <input
                         className="authInput"
                         type="text"
                         style={{ width: "91%" }}
-                        name={
-                          userData.booking_type === "corporate"
-                            ? "company"
-                            : "profession"
-                        }
+                        name={"profession"}
                         onChange={handleInput}
-                        value={
-                          userData.booking_type === "corporate"
-                            ? userData.company
-                            : userData.profession
-                        }
+                        value={userData.profession}
                         fullWidth
-                        placeholder={
-                          userData.booking_type === "corporate"
-                            ? "Company Name"
-                            : "Profession"
-                        }
+                        placeholder={"Profession"}
                         size="small"
                         required
                       />
