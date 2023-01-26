@@ -4,6 +4,8 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import img1 from "../../Assets/Images/testimonial-image-1.jpeg";
 import img2 from "../../Assets/Images/testimonial-image-2.jpeg";
 import img3 from "../../Assets/Images/testimonial-image-3.jpeg";
+import img4 from "../../Assets/Images/testimonial-image-4.jpg";
+import img5 from "../../Assets/Images/testimonial-image-5.jpg";
 
 const Testimonials = ({testObj}) => {
 	const infoObj = [
@@ -26,13 +28,13 @@ const Testimonials = ({testObj}) => {
 				"We planned to shoot for a feature film and needed a unique location with particular interiors. After searching a lot in Hyderabad, we still couldn’t find our dream shoot location. Then one of the crew members suggested searching on SpotLet. The wide range of film shooting locations helped us choose one immediately. The host was accommodating, and our shoot was a big success.",
 		},
 		{
-			image: img1,
+			image: img4,
 			name: "Shrey Apte",
 			testimony:
 				"As a regional production house, we’re always looking for new and innovative spaces for our shoot locations. SpotLet allowed us to choose from hundreds of top video shoot locations within our locality, and we’re now their loyal customers! Every booking is easy, quick and affordable, and the hosts are always ready to help during the shoot. Thank you, SpotLet! We will definitely recommend their services.",
 		},
 		{
-			image: img2,
+			image: img5,
 			name: "Manavi Malhotra",
 			testimony:
 				"Our company was planning a new product, and thus, we wanted a spacious area for the party. After searching for many product launch event locations, we still couldn’t find something that suited our budget and preferences. When we visited SpotLet, we found many sites we liked in just a few clicks! They genuinely have the best places for corporate events.",

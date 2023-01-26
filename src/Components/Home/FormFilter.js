@@ -124,113 +124,34 @@ const FormFilter = ({
         return 0;
       }),
     ],
-
-    // Location: [
-    //   [{ value: "", label: "" }],
-    //   [
-    //     { value: "Rich house", label: "Rich house" },
-    //     { value: "Police station", label: "Police station" },
-    //     { value: "Manduva House", label: "Manduva House" },
-    //     { value: "Industry", label: "Industry" },
-    //     { value: "Farmland", label: "Farmland" },
-    //     { value: "Farmhouse", label: "Farmhouse" },
-    //     { value: "Wooden house", label: "Wooden house" },
-    //     { value: "Forest", label: "Forest" },
-    //     { value: "Lakes", label: "Lakes" },
-    //     { value: "Hotel", label: "Hotel" },
-    //     { value: "School", label: "School" },
-    //     { value: "College", label: "College" },
-    //     { value: "Corporate Office", label: "Corporate Office" },
-    //     { value: "Factory", label: "Factory" },
-    //     { value: "Apartment", label: "Apartment" },
-    //     { value: "Apartment Parking", label: "Apartment Parking" },
-    //     { value: "Movie Theatres", label: "Movie Theatres" },
-    //     { value: "TV Stations", label: "TV Stations" },
-    //     { value: "Studio Floors", label: "Studio Floors" },
-    //     { value: "Village atmosphere", label: "Village atmosphere" },
-    //     { value: "BT roads (open roads)", label: "BT roads (open roads)" },
-    //     { value: "Hospital", label: "Hospital" },
-    //     { value: "Civil Court", label: "Civil Court" },
-    //     { value: "Sports auditoriums", label: "Sports auditoriums" },
-    //     { value: "Event auditoriums", label: "Event auditoriums" },
-    //     { value: "Pubs", label: "Pubs" },
-    //     { value: "Restaurants", label: "Restaurants" },
-    //     { value: "Dhaba", label: "Dhaba" },
-    //     { value: "Jail", label: "Jail" },
-    //     { value: "Railway station", label: "Railway station" },
-    //     { value: "Bus Stand", label: "Bus Stand" },
-    //     { value: "Shopping Malls", label: "Shopping Malls" },
-    //     { value: "Gated Community", label: "Gated Community" },
-    //     { value: "Shooting floors", label: "Shooting floors" },
-    //   ].sort((a, b) => {
-    //     let fa = a.label.toLowerCase(),
-    //       fb = b.label.toLowerCase();
-
-    //     if (fa < fb) {
-    //       return -1;
-    //     }
-    //     if (fa > fb) {
-    //       return 1;
-    //     }
-    //     return 0;
-    //   }),
-    //   [
-    //     { value: "Resorts", label: "Resorts" },
-    //     { value: "Weekend Farming", label: "Weekend Farming" },
-    //     { value: "Farm house", label: "Farm house" },
-    //     { value: "Wooden house", label: "Wooden house" },
-    //     { value: "Forest Stay", label: "Forest Stay" },
-    //     { value: "Lake Stay", label: "Lake Stay" },
-    //     { value: "Hotel Stay", label: "Hotel Stay" },
-    //     { value: "Convention Centres", label: "Convention Centres" },
-    //     { value: "Banquet Halls", label: "Banquet Halls" },
-    //     { value: "Pubs", label: "Pubs" },
-    //     { value: "Restaurants", label: "Restaurants" },
-    //   ].sort((a, b) => {
-    //     let fa = a.label.toLowerCase(),
-    //       fb = b.label.toLowerCase();
-
-    //     if (fa < fb) {
-    //       return -1;
-    //     }
-    //     if (fa > fb) {
-    //       return 1;
-    //     }
-    //     return 0;
-    //   }),
-
-    //   [
-    //     { value: "Resorts", label: "Resorts" },
-    //     { value: "Weekend Farming", label: "Weekend Farming" },
-    //     { value: "Farm house", label: "Farm house" },
-    //     { value: "Wooden house", label: "Wooden house" },
-    //     { value: "Forest Stay", label: "Forest Stay" },
-    //     { value: "Lake Stay", label: "Lake Stay" },
-    //     { value: "Hotel Stay", label: "Hotel Stay" },
-    //     { value: "Convention Centres", label: "Convention Centres" },
-    //     { value: "Banquet Halls", label: "Banquet Halls" },
-    //     { value: "Restaurants", label: "Restaurants" },
-    //   ].sort((a, b) => {
-    //     let fa = a.label.toLowerCase(),
-    //       fb = b.label.toLowerCase();
-
-    //     if (fa < fb) {
-    //       return -1;
-    //     }
-    //     if (fa > fb) {
-    //       return 1;
-    //     }
-    //     return 0;
-    //   }),
-    // ],
   };
+
+  function removeDuplicates(arr) {
+    var unique = [];
+    arr.forEach(element => {
+      element = element.label.charAt(0).toUpperCase() + element.label.slice(1).toLowerCase();
+      if (!unique.includes(element)) {
+        unique.push(element);
+      }
+    });
+    return unique;
+  }
 
 
   useEffect(() => {
     const fetchData = async () => {
       const cities = await getCities();
       const loctypes = await getLocTypes();
-      setDropdownCity(cities.data)
+      console.log(cities.data)
+      let cityData = removeDuplicates(cities.data)
+      let cData = [];
+      cityData.forEach(element => {
+        cData.push({
+          value: element,
+          label: element
+        });
+      });
+      setDropdownCity(cData)
       setDropdownLocation(loctypes.data)
     }
     fetchData();

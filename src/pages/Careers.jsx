@@ -20,12 +20,11 @@ const Careers = () => {
       <div className="career_page">
         <div className="careerPage_article1">
           <div className="careerPage_article_info">
-            <div className="career_heading">Our Culture</div>
+            <div className="career_heading">Join Our Team</div>
             <div className="career_Info">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-              hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
-              rhoncus pulvinar aliquam. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit.
+            We’re always looking for passionate and dedicated professionals to share the spotlight. As an online platform, we celebrate the intersection of technology and people and invite you to bring your creative ideas, intelligence and innovation to our fast-paced tech-enabled world.
+            <br />
+            If you’re ready to make a difference and impact society, we’re ready to welcome you on board.
             </div>
 
             <div className="careerPage_article_sub_info">
@@ -40,9 +39,7 @@ const Careers = () => {
                     textAlign: "justify",
                   }}
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                  hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
-                  purus rhoncus pulvinar aliquam.{" "}
+                  We offer a conducive learning environment for working professionals. You’ll interact with some of the most modern, dynamic, and experienced people while learning countless new skills and expertise on the job.{" "}
                 </div>
               </div>
               <div className="careerPage_article_sub_info2">
@@ -56,9 +53,7 @@ const Careers = () => {
                     textAlign: "justify",
                   }}
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                  hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
-                  purus rhoncus pulvinar aliquam.{" "}
+                  We’re building a future-ready organisation with ideators, thinkers, and leaders. At SpotLet, we nurture a warm, friendly, and open culture where you can ask questions, share opinions and make a genuine difference.{" "}
                 </div>
               </div>
             </div>
@@ -85,15 +80,12 @@ const Careers = () => {
           <div className="careerPage_article_info">
             <div className="career_heading ">Why work with us</div>
             <div className="career_Info">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-              hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
-              rhoncus pulvinar aliquam. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit.
+            If you’d like to grow in this unique space, we have a desk with your name on it! We love people who push boundaries, explore creative ideas, and think outside the box. If you can make spaces shine in the spotlight, we are ready to welcome you onboard.
             </div>
 
             <div className="careerPage_article_sub_info">
               <div className="careerPage_article_sub_info1">
-                <div className="career_heading2">We've got you</div>
+                <div className="career_heading2">Our Passion</div>
                 <div
                   style={{
                     marginTop: "15px",
@@ -103,9 +95,7 @@ const Careers = () => {
                     textAlign: "justify",
                   }}
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                  hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
-                  purus rhoncus pulvinar aliquam.{" "}
+                  We work with passionate and dedicated individuals and believe that by training the team, we’re building a sustainable and reliable future for our clients, hosts, and guests.{" "}
                 </div>
               </div>
               <div className="careerPage_article_sub_info2">
@@ -119,9 +109,7 @@ const Careers = () => {
                     textAlign: "justify",
                   }}
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                  hendrerit nisi sed sollicitudin pellentesque. Nunc posuere
-                  purus rhoncus pulvinar aliquam.{" "}
+                  You can visit some of the finest properties in the city, learn from people that come from different walks of life, make friends for a lifetime, and enjoy pan-India and global success!{" "}
                 </div>
               </div>
             </div>
@@ -143,7 +131,7 @@ const Careers = () => {
                     },
                   }}
                 >
-                  View Open Positions
+                  Current Openings
                 </Button>
               </Link>
               <Link to="#">

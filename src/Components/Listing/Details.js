@@ -109,7 +109,15 @@ const Details = ({ showSection, changeSection }) => {
   const [newLoc, setNewLoc] = useState("");
 
   const handleNewLocationAdd = (newLoc) => {
-    setOpt((prev) => [...prev, { value: `${newLoc}`, label: `${newLoc}` }]);
+    const unique = [];
+    opt.forEach(element => {
+      element = element.label.charAt(0).toUpperCase() + element.label.slice(1).toLowerCase();
+      unique.push(element);
+    });
+    newLoc = newLoc.charAt(0).toUpperCase() + newLoc.slice(1).toLowerCase();
+    if (!unique.includes(newLoc)) {
+      setOpt((prev) => [...prev, { value: `${newLoc}`, label: `${newLoc}` }]);
+    }
     dispatch(addLocationType(newLoc));
     setModalOpen(true);
     setPropertyDescr({ ...property_desc, location_type: newLoc });

@@ -48,7 +48,7 @@ const BankDetails = ({ showSection, changeSection }) => {
 
   const handleChange2 = (e) => {
     if (e.target.value.length < 17) {
-      const value = e.target.value.replace(/[^A-Za-z]/ig, "");
+      const value = e.target.value.replace(/[0-9]/g, "");
       setbankDetails({
         ...bankDetails,
         [e.target.name]: value,

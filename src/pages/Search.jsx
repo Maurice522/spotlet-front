@@ -829,7 +829,7 @@ const Search = () => {
 					})} */}
 
 				{/* pagination  */}
-				{Array(totalPageCount)
+				{totalPageCount > 1 && Array(totalPageCount)
 					.fill(0)
 					.map((item, id) => {
 						return (

@@ -11,20 +11,16 @@ import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 const Cancellation = () => {
   const elements = [
     {
-      title: "7+ days before shoot",
-      info: "Lorem ipsum dolor sit amet, consecte tur ad ipiscing elit. Nam hendrerit nisi sed sollicitud in pellentesque. aliqua mut aliquet tristique nisl vitae.",
+      title: "7+ days before your shoot",
+      info: "You will get a 100% refund if you cancel your booking seven days before your planned arrival. This gives our hosts a chance to find other guests during that tenure.",
     },
     {
-      title: "72+ hours before shoot",
-      info: "Lorem ipsum dolor sit amet, consecte tur ad ipiscing elit. Nam hendrerit nisi sed sollicitud in pellentesque. aliqua mut aliquet tristique nisl vitae.",
+      title: "72+ hours before your shoot",
+      info: "You will get a 50% payment refund within the next seven business days if you cancel before 72 hours. We hope you will book again soon and experience the awesomeness at the property.",
     },
     {
-      title: "24+ hours before shoot",
-      info: "Lorem ipsum dolor sit amet, consecte tur ad ipiscing elit. Nam hendrerit nisi sed sollicitud in pellentesque. aliqua mut aliquet tristique nisl vitae.",
-    },
-    {
-      title: "Less than 24 hours before shoot",
-      info: "Lorem ipsum dolor sit amet, consecte tur ad ipiscing elit. Nam hendrerit nisi sed sollicitud in pellentesque. aliqua mut aliquet tristique nisl vitae.",
+      title: "24+ hours before your shoot",
+      info: "Unfortunately, we won’t be able to offer any refunds if you cancel just 24 hours before your estimated arrival. Our hosts can’t find guests on such short notice! Please do visit us again soon.",
     },
   ];
 
@@ -54,11 +50,7 @@ const Cancellation = () => {
         <div className="cancellation-container">
           <h1>Cancellation Policy</h1>
           <div>
-            Community of hosts and renters is built on a foundation of trust and
-            mutual respect. Our top priority is ensuring a safe and authentic
-            experience for our users, and this means enforcing a set of basic
-            rules and standards. Below is the list of our seven community
-            guidelines.
+          We understand that even the best-laid plans sometimes change at the last minute. In order to protect our hosts and be fair to our guests, we have prepared a cancellation policy that applies to all bookings made on SpotLet.
           </div>
 
           <div className="tas-card-container ">

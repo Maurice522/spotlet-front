@@ -25,7 +25,7 @@ const options = [
   { value: "09:00 am", label: "09:00 am" },
   { value: "10:00 am", label: "10:00 am" },
   { value: "11:00 am", label: "11:00 am" },
-  { value: "12:00 am", label: "12:00 am" },
+  { value: "12:00 pm", label: "12:00 pm" },
   { value: "01:00 pm", label: "01:00 pm" },
   { value: "02:00 pm", label: "02:00 pm" },
   { value: "03:00 pm", label: "03:00 pm" },

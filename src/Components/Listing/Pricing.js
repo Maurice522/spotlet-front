@@ -51,6 +51,14 @@ const Pricing = ({ showSection, changeSection }) => {
       return toast.error("Please add atleast one event type!");
     if (!cleaningFee)
       return toast.error("Please enter cleaning fee!");
+    if(film.isPresent && !film.attendees)
+      return toast.error("Please enter number of attendees!");
+    if(tv.isPresent && !tv.attendees)
+      return toast.error("Please enter number of attendees!");
+    if(corp.isPresent && !corp.attendees)
+      return toast.error("Please enter number of attendees!");
+    if(event.isPresent && !event.attendees)
+      return toast.error("Please enter number of attendees!");
     const pricing = {
       cleaningFee: cleaningFee,
       film_webseries_ad: film,
