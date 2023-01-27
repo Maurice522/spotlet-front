@@ -4,8 +4,8 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import img1 from "../../Assets/Images/testimonial-image-1.jpeg";
 import img2 from "../../Assets/Images/testimonial-image-2.jpeg";
 import img3 from "../../Assets/Images/testimonial-image-3.jpeg";
-import img4 from "../../Assets/Images/4.jpeg";
-import img5 from "../../Assets/Images/5.png";
+import img4 from "../../Assets/Images/testimonial-image-4.jpg";
+import img5 from "../../Assets/Images/testimonial-image-5.jpg";
 
 const Testimonials = () => {
 	const infoObj = [
