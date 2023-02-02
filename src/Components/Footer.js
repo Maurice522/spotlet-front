@@ -77,7 +77,7 @@ const Footer = () => {
 				},
 				{
 					name: "Youtube",
-					to: "/",
+					to: "https://www.youtube.com/@spotlet",
 					icon: <BsYoutube size="18px" color="white" />,
 				},
 			],

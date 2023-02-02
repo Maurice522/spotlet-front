@@ -101,7 +101,8 @@ const Navbar = ({ extraNavId }) => {
         />
       </div>
       <div className="nav-items">
-        {user ? (
+        {console.log(user)}
+        {user?.personalInfo ? (
           <div
             style={{
               display: "flex",

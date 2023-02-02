@@ -97,6 +97,8 @@ const Timing = ({ showSection, changeSection }) => {
     e.preventDefault();
     if (!monday.open && !tuesday.open && !wednesday.open && !thursday.open && !friday.open && !saturday.open && !sunday.open)
       return toast.error("Please fill all required fields");
+    if ((monday.isSetHours && monday.time == "all day") || (tuesday.isSetHours && tuesday.time == "all day") || (wednesday.isSetHours && wednesday.time == "all day") || (thursday.isSetHours && thursday.time == "all day") || (friday.isSetHours && friday.time == "all day") || (saturday.isSetHours && saturday.time == "all day") || (sunday.isSetHours && sunday.time == "all day"))
+      return toast.error("Please fill time field");
     const timings = {
       monday,
       tuesday,

@@ -140,8 +140,8 @@ export default function Auth() {
         const response = await otpVerify(userData);
         toast("OTP sent");
         dispatch(saveOTP(response?.data?.otp));
-        dispatch(addUser(userData));
         handleOpenOTP();
+        dispatch(addUser(userData));
       } catch (error) {
         toast.error(error?.response?.data?.error);
       }
@@ -215,7 +215,7 @@ export default function Auth() {
           position: "relative",
         }}
       >
-        <Link to="/">
+        <Link to='/'>
           {/* <CloseIcon style={{position:"absolute",right:"3%", top:"3%",color:"black"}}/> */}
           <CloseIcon
             style={
@@ -394,8 +394,8 @@ export default function Auth() {
                         {/* <MenuItem value="">None</MenuItem>
 						<MenuItem value="individual">Individual</MenuItem>
 						<MenuItem value="corporate">Corporate</MenuItem> */}
-                        <MenuItem value="individual">Individual</MenuItem>
-                        <MenuItem value="corporate">Corporate</MenuItem>
+                        <MenuItem value="individual">Host</MenuItem>
+                        <MenuItem value="corporate">Guest</MenuItem>
                       </Select>
                     </div>
                     <div>
