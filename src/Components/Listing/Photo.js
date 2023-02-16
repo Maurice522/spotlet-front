@@ -277,7 +277,7 @@ const Photo = ({ showSection, changeSection }) => {
                 }
               }}
             >
-              Continue
+              Continuee
             </button>
           </div>
         </div>

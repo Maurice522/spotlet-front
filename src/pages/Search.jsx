@@ -40,6 +40,7 @@ const Search = () => {
 	const handleOpenFilter = () => setOpenFilter(true);
 	const handleCloseFilter = () => setOpenFilter(false);
 	const [active, setActive] = useState(false);
+	const [found, setFound] = useState(false);
 	let x = window.matchMedia("(max-width:576px)");
 
 	useEffect(() => {
@@ -93,18 +94,7 @@ const Search = () => {
 		fetchData();
 	}, []);
 
-	useEffect(() => {
-		const fetchFav = async () => {
-			const jwt = localStorage.getItem("token");
-			if (jwt) {
-				const user_jwt = jwtDecode(jwt);
-				const { data } = await getUserData(user_jwt._id);
-				setFavorites(data.favourites);
-				// console.log(favorites);
-			}
-		};
-		fetchFav();
-	}, []);
+
 
 	const [min, setMin] = useState(0);
 	const [max, setMax] = useState(Number.MAX_SAFE_INTEGER);
@@ -138,81 +128,29 @@ const Search = () => {
 		return propertyDetails?.slice(firstPageIndex, lastPageIndex);
 	}, [currentPage, propertyDetails]);
 
-	// useEffect(() => {
-	// 	if (searchEvent == "all") {
-	// 		sortedProperties = currentTableData;
-	// 		if (sort == "highesttolowest") {
-	// 			console.log("allhl");
-	// 			sortedProperties = [...currentTableData].sort((a, b) =>
-	// 				Number(a.pricing.corporate?.hourly_rate) <
-	// 				Number(b.pricing.corporate?.hourly_rate)
-	// 					? 1
-	// 					: -1
-	// 			);
-	// 		} else {
-	// 			console.log("alllh");
-	// 			sortedProperties = [...currentTableData].sort((a, b) =>
-	// 				Number(a.pricing.corporate?.hourly_rate) <
-	// 				Number(b.pricing.corporate?.hourly_rate)
-	// 					? -1
-	// 					: 1
-	// 			);
-	// 		}
-	// 	}
-	// 	if (searchEvent == "CorporateBooking") {
-	// 		if (sort == "highesttolowest") {
-	// 			console.log("cbhl");
-	// 			sortedProperties = [...currentTableData].sort((a, b) =>
-	// 				Number(a.pricing.corporate?.hourly_rate) <
-	// 				Number(b.pricing.corporate?.hourly_rate)
-	// 					? 1
-	// 					: -1
-	// 			);
-	// 		} else {
-	// 			console.log("cblh");
-	// 			sortedProperties = [...currentTableData].sort((a, b) =>
-	// 				Number(a.pricing.corporate?.hourly_rate) <
-	// 				Number(b.pricing.corporate?.hourly_rate)
-	// 					? -1
-	// 					: 1
-	// 			);
-	// 		}
-	// 	}
-	// 	if (searchEvent == "IndividualBooking") {
-	// 		if (sort == "highesttolowest") {
-	// 			sortedProperties = [...currentTableData].sort((a, b) =>
-	// 				Number(a.pricing.individual?.hourly_rate) <
-	// 				Number(b.pricing.individual?.hourly_rate)
-	// 					? 1
-	// 					: -1
-	// 			);
-	// 		} else {
-	// 			sortedProperties = [...currentTableData].sort((a, b) =>
-	// 				Number(a.pricing.individual?.hourly_rate) <
-	// 				Number(b.pricing.individual?.hourly_rate)
-	// 					? -1
-	// 					: 1
-	// 			);
-	// 		}
-	// 	}
-	// 	if (searchEvent == "FilmShooting") {
-	// 		if (sort == "highesttolowest") {
-	// 			sortedProperties = [...currentTableData].sort((a, b) =>
-	// 				Number(a.pricing.film_webseries_ad?.hourly_rate) <
-	// 				Number(b.pricing.film_webseries_ad?.hourly_rate)
-	// 					? 1
-	// 					: -1
-	// 			);
-	// 		} else {
-	// 			sortedProperties = [...currentTableData].sort((a, b) =>
-	// 				Number(a.pricing.film_webseries_ad?.hourly_rate) <
-	// 				Number(b.pricing.film_webseries_ad?.hourly_rate)
-	// 					? -1
-	// 					: 1
-	// 			);
-	// 		}
-	// 	}
-	// }, []);
+	useEffect(() => {
+		const fetchFav = async () => {
+			const jwt = localStorage.getItem("token");
+			if (jwt) {
+				const user_jwt = jwtDecode(jwt);
+				const { data } = await getUserData(user_jwt._id);
+				setFavorites(data.favourites);
+				// console.log(favorites);
+			}
+		};
+		fetchFav();
+
+		currentTableData?.map((item, index)=>{
+			console.log(item.property_address.city == city)
+			if(!found && item.property_address.city == city){
+				setFound(true)
+			}
+		})
+	}, [currentTableData]);
+
+	var all = false;
+	if(event == "all" && loctype == "all" && city=="all")
+		all = true;
 
 	return (
 		<>
@@ -478,7 +416,7 @@ const Search = () => {
 				</div>
 			</div>
 			<h2 style={{ fontSize: "24px", fontWeight: "500", textAlign: "center" }}>
-				Locations Found
+				{ !found && !all &&  <span>No</span>} Locations Found
 			</h2>
 			<div className="search-property-list">
 				{/* {pageData[pageIndex]?.map((item, index) => { */}
@@ -514,6 +452,7 @@ const Search = () => {
 									/>
 								);
 							} else {
+								
 								return;
 							}
 						}
@@ -542,6 +481,7 @@ const Search = () => {
 								(item.pricing?.tv_series_other?.hourly_rate <= max &&
 									item.pricing?.tv_series_other?.hourly_rate > min))
 						) {
+
 							if (searchCity != "all") {
 								if (searchCity === item.property_address.city) {
 									console.log(searchCity, item.property_address.city);
@@ -562,7 +502,7 @@ const Search = () => {
 									);
 								} else {
 									return;
-								}
+								}		
 							}
 							return (
 								<PropertyInfo

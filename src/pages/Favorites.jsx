@@ -37,8 +37,8 @@ const Favorites = () => {
 		fetchFav();
 	}, []);
 
-	// console.log(favorites);
-	// console.log(propertyDetails);
+	console.log(favorites);
+	console.log(propertyDetails);
 
 	return (
 		<div>
@@ -75,6 +75,7 @@ const Favorites = () => {
 								)
 						)}
 					</div>
+						{ favorites && favorites[10]==null && <h1 style={{textAlign:'center', fontSize:'30px'}}>No Favorites Found! </h1>}
 				</div>
 			</div>
 			<Footer />

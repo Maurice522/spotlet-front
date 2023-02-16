@@ -85,21 +85,21 @@ const Navbar = ({ extraNavId }) => {
           <img src={require(`../Assets/Images/logo.png`)} alt="logo" />
         </div>
       </Link>
-      <div className={`nav-search ${extraNavId !== "" ? "blacken" : ""}`}>
+      {/* <div className={`nav-search ${extraNavId !== "" ? "blacken" : ""}`}>
         <AiOutlineSearch size="20px" />
-        {/* <TextField
+        <TextField
 					label="Search"
 					variant="standard"
 					size="small"
 					// className="nav-search-input"
-				/> */}
+				/>
         <input
           type="text"
           placeholder="Search"
           className={`nav-search-input ${extraNavId !== "" ? "blacken" : "whiten"
             }`}
         />
-      </div>
+      </div> */}
       <div className="nav-items">
         {console.log(user)}
         {user?.personalInfo ? (
