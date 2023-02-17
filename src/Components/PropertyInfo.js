@@ -52,14 +52,15 @@ const PropertyInfo = ({
 
   // console.log(rating);
 
-  let price_per_12_hr = item?.pricing?.corporate?.isPresent
-    ? parseInt(item?.pricing?.corporate?.hourly_rate) * 12
-    : item?.pricing?.film_webseries_ad?.isPresent
-      ? parseInt(item?.pricing?.film_webseries_ad?.hourly_rate) * 12
-      : item?.pricing?.individual?.isPresent
-        ? parseInt(item?.pricing?.individual?.hourly_rate) * 12
-        : parseInt(item?.pricing?.tv_series_other?.hourly_rate) * 12;
+  // let price_per_12_hr = item?.pricing?.corporate?.isPresent
+  //   ? parseInt(item?.pricing?.corporate?.hourly_rate) * 12
+  //   : item?.pricing?.film_webseries_ad?.isPresent
+  //     ? parseInt(item?.pricing?.film_webseries_ad?.hourly_rate) * 12
+  //     : item?.pricing?.individual?.isPresent
+  //       ? parseInt(item?.pricing?.individual?.hourly_rate) * 12
+  //       : parseInt(item?.pricing?.tv_series_other?.hourly_rate) * 12;
 
+       let price_per_12_hr=item?.price_per_12_hr
   return (
     <div
       className="item"

@@ -26,6 +26,12 @@ const FormFilter = ({
   const [dropdownLocation, setDropdownLocation] = useState();
   // const citiesOption = useSelector(selectCities);
 
+useEffect(()=>{
+if(searchEvent!=="all"){
+  changeEvent({value:searchEvent})
+}
+},[])
+
   const navigate = useNavigate();
 
   const changeEvent = (e) => {
