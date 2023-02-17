@@ -30,9 +30,10 @@ const Search = () => {
 	// let sortedProperties;
 	const navigate = useNavigate();
 	const { event, loctype, city } = useParams();
-	const [searchEvent, setSearchEvent] = useState("all");
-	const [searchLocation, setSearchLocation] = useState("all");
-	const [searchCity, setSearchCity] = useState("all");
+	const [searchEvent, setSearchEvent] = useState(event);
+	const [searchLocation, setSearchLocation] = useState(loctype);
+	const [searchCity, setSearchCity] = useState(city);
+	const [ allRes, setAllRes ] = useState([]);
 	const [propertyDetails, setPropertiesDetail] = useState([]);
 	const [favorites, setFavorites] = useState([]);
 	const [sort, setSort] = useState("highesttolowest");
@@ -69,8 +70,8 @@ const Search = () => {
 	];
 
 	const sortOptions = [
-		{ value: "highesttolowest", label: "Highest to Lowest" },
-		{ value: "lowesttohighest", label: "Lowest to Highest" },
+		{ value: "highesttolowest", label: "Highest to Lowest" , id:"1" },
+		{ value: "lowesttohighest", label: "Lowest to Highest" , id:"0" },
 	];
 
 	const changeMinPrice = (e) => {
@@ -85,36 +86,106 @@ const Search = () => {
 		setSort(e.value);
 	};
 
+	const filterEvent = (res)=>{
+		var filteredArray = [];
+		res.map((item, idx)=>{
+			//Filtering according  to event
+			if ((searchEvent == "FilmShooting") &&
+				(item.pricing.film_webseries_ad.isPresent == true ||
+				item.pricing.tv_series_other.isPresent == true)){
+					filteredArray = [...filteredArray, item];
+				}
+			else if( searchEvent == "CorporateBooking" &&
+			item.pricing.corporate.isPresent == true){
+					filteredArray = [...filteredArray, item];
+			}
+			else if( searchEvent == "IndividualBooking" &&
+			item.pricing.individual.isPresent == true){
+					filteredArray = [...filteredArray, item];
+			}
+			else if( searchEvent == "all" ){
+					filteredArray = [...filteredArray, item];
+			}
+		})
+
+		return filteredArray;
+	}
+
+	const filterLocation = (res)=>{
+		var filteredArray = [];
+		res.map((item,idx)=>{
+			if( searchLocation == item.property_desc.location_type){
+				filteredArray = [...filteredArray, item];
+			}
+			else if(searchLocation == "all"){
+				filteredArray = [...filteredArray, item];
+			}
+		})
+
+		return filteredArray;
+	}
+
+	const filterCity = (res)=>{
+		var filteredArray = [];
+		res.map((item, idx)=>{
+			if(searchCity == item.property_address.city){
+				filteredArray = [...filteredArray, item];
+			}
+			else if(searchCity == "all"){
+				filteredArray = [...filteredArray, item];
+			}
+		})
+
+		return filteredArray;
+	}
+
 	useEffect(() => {
 		const fetchData = async () => {
 			const response = await getAllLocations();
 			const res = response.data;
-			setPropertiesDetail(res);
+			var filteredArray = await filterEvent(res);
+			filteredArray = await filterLocation(filteredArray);
+			filteredArray = await filterCity(filteredArray);
+			setAllRes(res);
+			
+			setPropertiesDetail(filteredArray);
 		};
+
+		const showData = async ()=>{
+			console.log(event, loctype, city);
+			console.log(propertyDetails);
+		}
+
 		fetchData();
+		// showData();
 	}, []);
 
+	useEffect(()=>{
+		var filteredArray = filterEvent(allRes);
+		filteredArray = filterLocation(filteredArray);
+		filteredArray = filterCity(filteredArray);
+		setPropertiesDetail(filteredArray);
 
+	}, [searchEvent])
+
+	useEffect(()=>{
+		var filteredArray = filterEvent(allRes);
+		filteredArray = filterLocation(filteredArray);
+		filteredArray = filterCity(filteredArray);
+		setPropertiesDetail(filteredArray);
+
+	}, [searchLocation])
+
+	useEffect(()=>{
+		var filteredArray = filterEvent(allRes);
+		filteredArray = filterLocation(filteredArray);
+		filteredArray = filterCity(filteredArray);
+		setPropertiesDetail(filteredArray);
+
+	}, [searchCity])
 
 	const [min, setMin] = useState(0);
 	const [max, setMax] = useState(Number.MAX_SAFE_INTEGER);
-
-	// const [pageIndex, setPageIndex] = useState(0);
-	// const [pageData, setPageData] = useState([[]]);
-	// useEffect(() => {
-	//   setPageData(fillData(sortedProperties, 5));
-	// }, [sortedProperties]);
-
-	// const handlePageIndex = (index) => {
-	//   if (!pageData[index]) return toast.error("More locations cannot be found");
-	//   setPageIndex(index);
-	// };
-
-	// console.log(searchEvent, sort);
-	// console.log(sortedProperties);
-
-	// total no of propertyDetails are avaiable  =propertyDetails.length
-	// const propertyDetailsCount = propertyDetails?.length;
 
 	const MaxPropertyAtPage = 15; //this can be modiefied according to the user choice
 	const totalPageCount = Math.ceil(propertyDetails?.length / MaxPropertyAtPage);
