@@ -101,7 +101,7 @@ const SectionMenu = () => {
 	let gridItems = shootMap[shoot].map((img, index) => (
 		<div className={`${classes[index]} ${classesResp[index]}`} key={index}>
 			<Link
-				to={`/search/${shootvalue}/`}
+				to={`/search/${shootvalue}/all/all`}
 				onClick={() => window.scrollTo(0, 0)}
 				style={{
 					textDecoration: "none",

@@ -21,6 +21,7 @@ import { updateNotificationStatus } from "../services/api";
 import { NotificationImportant, Notifications } from "@mui/icons-material";
 import { BsFillBellFill, BsFillBookmarkFill } from "react-icons/bs";
 import { FaSearch, FaUserAlt } from "react-icons/fa";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = ({ extraNavId }) => {
   const user = useSelector(selectUserData);
@@ -80,6 +81,7 @@ const Navbar = ({ extraNavId }) => {
   let profilePic = user?.personalInfo?.profile_pic;
   return (
     <div className="nav" id={extraNavId}>
+    <ToastContainer/>
       <Link to="/" onClick={() => window.scrollTo(0, 0)}>
         <div className="nav-logo">
           <img src={require(`../Assets/Images/logo.png`)} alt="logo" />

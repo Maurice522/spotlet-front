@@ -13,6 +13,8 @@ import { BiFilterAlt } from "react-icons/bi";
 import { ImCross } from "react-icons/im";
 import Select from "react-select";
 import Host from "../Components/Home/Host";
+import {  toast } from 'react-toastify';
+ 
 
 // const fillData = (data, splitRange) => {
 // 	let j = 0;
@@ -30,11 +32,15 @@ const Search = () => {
 	// let sortedProperties;
 	const navigate = useNavigate();
 	const { event, loctype, city } = useParams();
+	const [ allRes, setAllRes ] = useState([]);
+	const [propertyDetails, setPropertiesDetail] = useState([]);
+	const[sortingFilteringData,setSortingFilteringData]=useState({mincost:"",maxcost:"",sort:""})
+const[clearBtnClick,setClearBtnClick]=useState(false)
+const[doesDataExist,setDoesDataExist]=useState(false)
+
 	const [searchEvent, setSearchEvent] = useState(event);
 	const [searchLocation, setSearchLocation] = useState(loctype);
 	const [searchCity, setSearchCity] = useState(city);
-	const [ allRes, setAllRes ] = useState([]);
-	const [propertyDetails, setPropertiesDetail] = useState([]);
 	const [favorites, setFavorites] = useState([]);
 	const [sort, setSort] = useState("highesttolowest");
 	const [openFilter, setOpenFilter] = useState(false);
@@ -139,15 +145,29 @@ const Search = () => {
 		return filteredArray;
 	}
 
+//FETCHING ALL THE DATA INITIALLY FIRST
+
 	useEffect(() => {
 		const fetchData = async () => {
+			let newRes=[]
 			const response = await getAllLocations();
 			const res = response.data;
-			var filteredArray = await filterEvent(res);
+res.map((item)=>{
+newRes.push({...item,price_per_12_hr : item?.pricing?.corporate?.isPresent
+    ? parseInt(item?.pricing?.corporate?.hourly_rate) * 12
+    : item?.pricing?.film_webseries_ad?.isPresent
+      ? parseInt(item?.pricing?.film_webseries_ad?.hourly_rate) * 12
+      : item?.pricing?.individual?.isPresent
+        ? parseInt(item?.pricing?.individual?.hourly_rate) * 12
+        : parseInt(item?.pricing?.tv_series_other?.hourly_rate) * 12
+})
+})
+			var filteredArray = await filterEvent(newRes);
 			filteredArray = await filterLocation(filteredArray);
 			filteredArray = await filterCity(filteredArray);
-			setAllRes(res);
-			
+			setAllRes(newRes);
+			if(filteredArray.length!==0){setDoesDataExist(true)}
+			if(filteredArray.length===0){setDoesDataExist(false)}
 			setPropertiesDetail(filteredArray);
 		};
 
@@ -158,12 +178,15 @@ const Search = () => {
 
 		fetchData();
 		// showData();
-	}, []);
+	}, [clearBtnClick]);
+
 
 	useEffect(()=>{
 		var filteredArray = filterEvent(allRes);
 		filteredArray = filterLocation(filteredArray);
 		filteredArray = filterCity(filteredArray);
+		if(filteredArray.length!==0){setDoesDataExist(true)}
+		if(filteredArray.length===0){setDoesDataExist(false)}
 		setPropertiesDetail(filteredArray);
 
 	}, [searchEvent])
@@ -172,6 +195,8 @@ const Search = () => {
 		var filteredArray = filterEvent(allRes);
 		filteredArray = filterLocation(filteredArray);
 		filteredArray = filterCity(filteredArray);
+		if(filteredArray.length!==0){setDoesDataExist(true)}
+		if(filteredArray.length===0){setDoesDataExist(false)}
 		setPropertiesDetail(filteredArray);
 
 	}, [searchLocation])
@@ -180,9 +205,31 @@ const Search = () => {
 		var filteredArray = filterEvent(allRes);
 		filteredArray = filterLocation(filteredArray);
 		filteredArray = filterCity(filteredArray);
+		if(filteredArray.length!==0){setDoesDataExist(true)}
+		if(filteredArray.length===0){setDoesDataExist(false)}
 		setPropertiesDetail(filteredArray);
 
 	}, [searchCity])
+
+
+//ON FILTERING AFTER RESULT CAME
+const handleFilterBtnClick=()=>{
+	if(sortingFilteringData.mincost===""||sortingFilteringData.maxcost===""||sortingFilteringData.sort===""){toast.error("Kindly Select All Filters");return}
+	console.log("sortingFilteringData",sortingFilteringData)
+	console.log("propertyDetails",propertyDetails)
+	const newFilteredArr=propertyDetails.filter((item)=>{
+		return item.price_per_12_hr>=sortingFilteringData.mincost&&item.price_per_12_hr<=sortingFilteringData.maxcost
+	})
+	if(newFilteredArr.length===0){toast.error("No Result Found");return}
+	if(sortingFilteringData.sort==="highesttolowest"){newFilteredArr.sort((a,b)=>{return b.price_per_12_hr-a.price_per_12_hr})}
+	if(sortingFilteringData.sort==="Lowesttohighest"){newFilteredArr.sort((a,b)=>{return a.price_per_12_hr-b.price_per_12_hr})}
+	handleCloseFilter()
+	setPropertiesDetail(newFilteredArr)
+	setSortingFilteringData({mincost:"",maxcost:"",sort:""})
+}
+
+
+
 
 	const [min, setMin] = useState(0);
 	const [max, setMax] = useState(Number.MAX_SAFE_INTEGER);
@@ -255,6 +302,7 @@ const Search = () => {
 							<ImCross
 								onClick={() => {
 									handleCloseFilter();
+									setSortingFilteringData({mincost:"",maxcost:"",sort:""})
 								}}
 								style={{ cursor: "pointer" }}
 							/>
@@ -280,7 +328,8 @@ const Search = () => {
 											className={
 												active === true ? "focus-select" : "form-filter-select"
 											}
-											onChange={changeMinPrice}
+											// onChange={changeMinPrice}
+											onChange={(e)=>{setSortingFilteringData((prev)=>{return{...prev,mincost:e.value}})}}
 										></Select>
 									</div>
 									<div className="filter--coll2">
@@ -293,14 +342,16 @@ const Search = () => {
 											Max Price
 										</label>
 										<Select
-											id="mincost"
-											name="mincost"
+											id="maxcost"
+											// name="mincost"
+											name="maxcost"
 											options={price}
 											defaultValue=""
 											className={
 												active === true ? "focus-select" : "form-filter-select"
 											}
-											onChange={changeMaxPrice}
+											// onChange={changeMaxPrice}
+											onChange={(e)=>{setSortingFilteringData((prev)=>{return{...prev,maxcost:e.value}})}}
 										></Select>
 									</div>
 									<div className="filter--coll2">
@@ -320,7 +371,8 @@ const Search = () => {
 											className={
 												active === true ? "focus-select" : "form-filter-select"
 											}
-											onChange={changeSort}
+											// onChange={changeSort}
+											onChange={(e)=>{setSortingFilteringData((prev)=>{return{...prev,sort:e.value}})}}
 										></Select>
 									</div>
 								</div>
@@ -449,9 +501,9 @@ const Search = () => {
 									</div>
 								</div> */}
 							</div>
-							{/* <div className="apply">
-								<button className="accbut apply-btn">Apply Changes</button>
-							</div> */}
+							<div className="apply">
+								<button onClick={handleFilterBtnClick} className="accbut apply-btn">Apply Changes</button>
+							</div>
 						</div>
 					</>
 				</div>
@@ -480,6 +532,7 @@ const Search = () => {
 							// setSearchCity("all");
 							setMin(0);
 							setMax(Number.MAX_SAFE_INTEGER);
+							setClearBtnClick(e=>!e)
 						}}
 					>
 						Clear Filter
@@ -487,7 +540,8 @@ const Search = () => {
 				</div>
 			</div>
 			<h2 style={{ fontSize: "24px", fontWeight: "500", textAlign: "center" }}>
-				{ !found && !all &&  <span>No</span>} Locations Found
+				{/* { !found && !all &&  <span>No</span>} Locations Found */}
+				{ !doesDataExist &&  <span>No</span>} Locations Found
 			</h2>
 			<div className="search-property-list">
 				{/* {pageData[pageIndex]?.map((item, index) => { */}
