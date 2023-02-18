@@ -24,8 +24,11 @@ const FormFilter = ({
   const [city, setCity] = useState("all");
   const [dropdownCity, setDropdownCity] = useState();
   const [dropdownLocation, setDropdownLocation] = useState([]);
+  const [clear, setClear] = useState(false);
   // const citiesOption = useSelector(selectCities);
-
+console.log("clear",clear)
+console.log("event",event)
+console.log("searchEvent",searchEvent)
 useEffect(()=>{
 if(searchEvent){setEvent(searchEvent)}
 if(searchLocation){setLocation(searchLocation)}
@@ -35,6 +38,7 @@ if(searchCity){setCity(searchCity)}
   const navigate = useNavigate();
 
   const changeEvent = (e) => {
+    setClear(false)
     setEvent(e.value);
     !homepage && setSearchEvent(e.value);
     // !homepage && setSearchLocation("all");
@@ -42,11 +46,13 @@ if(searchCity){setCity(searchCity)}
   };
 
   const changeLocation = (e) => {
+    setClear(false)
     setLocation(e.value);
     !homepage && setSearchLocation(e.value);
   };
 
   const changeCity = (e) => {
+    setClear(false)
     setCity(e.value);
     !homepage && setSearchCity(e.value);
   };
@@ -221,6 +227,11 @@ if(searchCity){setCity(searchCity)}
             name="what"
             options={options.sort((a, b) => a.label - b.label)}
             defaultValue={homepage?searchEvent:searchEvent!=="all"&&{value:searchEvent,label:searchEvent}}
+            value={
+          clear
+            ? { value: "Select...", label: "Select..." }
+            :homepage?searchEvent: { value: searchEvent, label: searchEvent }
+        }
             className={active === true ? "focus-select" : "form-filter-select"}
             onChange={changeEvent}
           ></Select>
@@ -235,6 +246,7 @@ if(searchCity){setCity(searchCity)}
                 setEvent("all")
                 setLocation("all")
                 setCity("all")
+                setClear(true)
                 // window.location.reload(true)
               }}>
               Clear
@@ -280,6 +292,11 @@ if(searchCity){setCity(searchCity)}
             name="where"
             options={dropdownLocation}
             defaultValue={homepage?searchLocation:searchLocation!=="all"&&{value:searchLocation,label:searchLocation}}
+            value={
+          clear
+            ? { value: "Select...", label: "Select..." }
+            :homepage?searchLocation: { value: searchLocation, label: searchLocation }
+        }
             isDisabled={event === "all" ? true : false}
             className={active === true ? "focus-select" : "form-filter-select"}
             onChange={changeLocation}
@@ -302,6 +319,11 @@ if(searchCity){setCity(searchCity)}
             name="when"
             options={dropdownCity}
             defaultValue={homepage?searchCity:searchCity!=="all"&&{value:searchCity,label:searchCity}}
+            value={
+          clear
+            ? { value: "Select...", label: "Select..." }
+            :homepage?searchCity: { value: searchCity, label: searchCity }
+        }
             // isDisabled={event === "all" ? true : false}
             className={active === true ? "focus-select" : "form-filter-select"}
             onChange={changeCity}
