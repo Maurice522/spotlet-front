@@ -46,7 +46,7 @@ import Notifications from "./pages/Notifications";
 import Disclaimer from "./pages/Disclaimer";
 import Timing from "./Components/Listing/Timing";
 import BankDetails from "./Components/Listing/BankDetails";
-import Contact from "./Components/Booking/Contact";
+import Contact from "./Components/Listing/Contact";
 
 
 function App() {
@@ -80,9 +80,9 @@ function App() {
 			<div className="App">
 				<ToastContainer />
 				<Routes>
-				<Route path="/timing" element={<Timing/>}/>
+				{/* <Route path="/timing" element={<Timing/>}/>
 				<Route path="/contactdet" element={<Contact/>}/>
-				<Route path="/bankdet" element={<BankDetails/>}/>
+				<Route path="/bankdet" element={<BankDetails/>}/> */}
 					<Route path="/" element={<Home />} />
 					<Route path="/notifications" element={<Notifications />} />
 					<Route path="/signin" element={<Auth />} />
