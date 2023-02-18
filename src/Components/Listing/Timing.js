@@ -97,7 +97,7 @@ const Timing = ({ showSection, changeSection }) => {
     e.preventDefault();
     if (!monday.open && !tuesday.open && !wednesday.open && !thursday.open && !friday.open && !saturday.open && !sunday.open)
       return toast.error("Please fill all required fields");
-    if ((monday.isSetHours && monday.time == "all day") || (tuesday.isSetHours && tuesday.time == "all day") || (wednesday.isSetHours && wednesday.time == "all day") || (thursday.isSetHours && thursday.time == "all day") || (friday.isSetHours && friday.time == "all day") || (saturday.isSetHours && saturday.time == "all day") || (sunday.isSetHours && sunday.time == "all day"))
+    if ((monday.isSetHours && (monday.time === "all day"||!monday.time.start||!monday.time.end)) || (tuesday.isSetHours && (tuesday.time === "all day"||!tuesday.time.start||!tuesday.time.end)) || (wednesday.isSetHours && (wednesday.time === "all day"||!wednesday.time.start||!wednesday.time.end)) || (thursday.isSetHours && (thursday.time === "all day"||!thursday.time.start||!thursday.time.end)) || (friday.isSetHours &&  (friday.time === "all day"||!friday.time.start||!friday.time.end)) || (saturday.isSetHours && (saturday.time === "all day"||!saturday.time.start||!saturday.time.end)) || (sunday.isSetHours && (sunday.time === "all day"||!sunday.time.start||!sunday.time.end)))
       return toast.error("Please fill time field");
     const timings = {
       monday,
@@ -172,15 +172,16 @@ const Timing = ({ showSection, changeSection }) => {
                     defaultValue="06:00 pm"
                     type="text"
                     onChange={(e) =>
-                      setmonday({
-                        ...monday,
-                        time: { ...monday.time, start: e.value },
-                      })
+                      // setmonday({
+                      //   ...monday,
+                      //   time: { ...monday.time, start: e.value },
+                      // })
+                      setmonday((prev)=>{return {...prev,time:{start:e.value}}})
                     }
                     options={options}
                   />
                   <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                  <Select
+                  {monday.time.start?<Select
                     required
                     id="end-time"
                     name="end-time"
@@ -194,7 +195,7 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     options={options}
-                  />
+                  />:null}
                 </div>
               </>
             ) : (
@@ -246,15 +247,12 @@ const Timing = ({ showSection, changeSection }) => {
                     defaultValue="06:00 pm"
                     type="text"
                     onChange={(e) =>
-                      settuesday({
-                        ...tuesday,
-                        time: { ...tuesday.time, start: e.value },
-                      })
+                      settuesday((prev)=>{return {...prev,time:{start:e.value}}})
                     }
                     options={options}
                   />
                   <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                  <Select
+                  {tuesday.time.start?<Select
                     required
                     id="end-time"
                     name="end-time"
@@ -268,7 +266,7 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     options={options}
-                  />
+                  />:null}
                 </div>
               </>
             ) : (
@@ -325,15 +323,12 @@ const Timing = ({ showSection, changeSection }) => {
                     defaultValue="06:00 pm"
                     type="text"
                     onChange={(e) =>
-                      setwednesday({
-                        ...wednesday,
-                        time: { ...wednesday.time, start: e.value },
-                      })
+                      setwednesday((prev)=>{return {...prev,time:{start:e.value}}})
                     }
                     options={options}
                   />
                   <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                  <Select
+                  {wednesday.time.start?<Select
                     required
                     id="end-time"
                     name="end-time"
@@ -347,7 +342,7 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     options={options}
-                  />
+                  />:null}
                 </div>
               </>
             ) : (
@@ -406,15 +401,12 @@ const Timing = ({ showSection, changeSection }) => {
                     defaultValue="06:00 pm"
                     type="text"
                     onChange={(e) =>
-                      setthursday({
-                        ...thursday,
-                        time: { ...thursday.time, start: e.value },
-                      })
+                      setthursday((prev)=>{return {...prev,time:{start:e.value}}})
                     }
                     options={options}
                   />
                   <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                  <Select
+                  {thursday.time.start?<Select
                     required
                     id="end-time"
                     name="end-time"
@@ -428,7 +420,7 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     options={options}
-                  />
+                  />:null}
                 </div>
               </>
             ) : (
@@ -481,15 +473,12 @@ const Timing = ({ showSection, changeSection }) => {
                     defaultValue="06:00 pm"
                     type="text"
                     onChange={(e) =>
-                      setfriday({
-                        ...friday,
-                        time: { ...friday.time, start: e.value },
-                      })
+                      setfriday((prev)=>{return {...prev,time:{start:e.value}}})
                     }
                     options={options}
                   />
                   <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                  <Select
+                  {friday.time.start?<Select
                     required
                     id="end-time"
                     name="end-time"
@@ -503,7 +492,7 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     options={options}
-                  />
+                  />:null}
                 </div>
               </>
             ) : (
@@ -560,15 +549,12 @@ const Timing = ({ showSection, changeSection }) => {
                     defaultValue="06:00 pm"
                     type="text"
                     onChange={(e) =>
-                      setsaturday({
-                        ...saturday,
-                        time: { ...saturday.time, start: e.value },
-                      })
+                      setsaturday((prev)=>{return {...prev,time:{start:e.value}}})
                     }
                     options={options}
                   />
                   <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                  <Select
+                  {saturday.time.start?<Select
                     required
                     id="end-time"
                     name="end-time"
@@ -582,7 +568,7 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     options={options}
-                  />
+                  />:null}
                 </div>
               </>
             ) : (
@@ -635,15 +621,12 @@ const Timing = ({ showSection, changeSection }) => {
                     defaultValue="06:00 pm"
                     type="text"
                     onChange={(e) =>
-                      setsunday({
-                        ...sunday,
-                        time: { ...sunday.time, start: e.value },
-                      })
+                      setsunday((prev)=>{return {...prev,time:{start:e.value}}})
                     }
                     options={options}
                   />
                   <h2 style={{ display: "inline-block", marginRight: "2%", marginLeft: "27%", }}> to </h2>
-                  <Select
+                  {sunday.time.start?<Select
                     required
                     id="end-time"
                     name="end-time"
@@ -657,7 +640,7 @@ const Timing = ({ showSection, changeSection }) => {
                       })
                     }
                     options={options}
-                  />
+                  />:null}
                 </div>
               </>
             ) : (
