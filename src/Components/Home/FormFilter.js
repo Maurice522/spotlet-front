@@ -26,7 +26,12 @@ const FormFilter = ({
   const [dropdownLocation, setDropdownLocation] = useState([]);
   // const citiesOption = useSelector(selectCities);
 
-console.log("dropdownLocation",dropdownLocation)
+useEffect(()=>{
+if(searchEvent){setEvent(searchEvent)}
+if(searchLocation){setLocation(searchLocation)}
+if(searchCity){setCity(searchCity)}
+},[])
+
   const navigate = useNavigate();
 
   const changeEvent = (e) => {
@@ -215,7 +220,7 @@ console.log("dropdownLocation",dropdownLocation)
             id="what"
             name="what"
             options={options.sort((a, b) => a.label - b.label)}
-            defaultValue={searchEvent}
+            defaultValue={homepage?searchEvent:searchEvent!=="all"&&{value:searchEvent,label:searchEvent}}
             className={active === true ? "focus-select" : "form-filter-select"}
             onChange={changeEvent}
           ></Select>
@@ -274,7 +279,7 @@ console.log("dropdownLocation",dropdownLocation)
             id="where"
             name="where"
             options={dropdownLocation}
-            defaultValue={searchLocation}
+            defaultValue={homepage?searchLocation:searchLocation!=="all"&&{value:searchLocation,label:searchLocation}}
             isDisabled={event === "all" ? true : false}
             className={active === true ? "focus-select" : "form-filter-select"}
             onChange={changeLocation}
@@ -296,7 +301,7 @@ console.log("dropdownLocation",dropdownLocation)
             id="when"
             name="when"
             options={dropdownCity}
-            defaultValue={searchCity}
+            defaultValue={homepage?searchCity:searchCity!=="all"&&{value:searchCity,label:searchCity}}
             // isDisabled={event === "all" ? true : false}
             className={active === true ? "focus-select" : "form-filter-select"}
             onChange={changeCity}
