@@ -262,6 +262,7 @@ if(event==="IndividualBooking"||searchEvent==="IndividualBooking"){setDropDownAc
                 setEvent("all")
                 setLocation("all")
                 setCity("all")
+                setActivity("Select...")
                 setClear(true)
                 // window.location.reload(true)
               }}>
@@ -321,11 +322,11 @@ if(event==="IndividualBooking"||searchEvent==="IndividualBooking"){setDropDownAc
             id="where"
             name="where"
             options={dropdownLocation}
-            defaultValue={homepage?searchLocation:searchLocation!=="all"&&{value:searchLocation,label:searchLocation}}
+            defaultValue={homepage?searchLocation:searchLocation!=="all"?{value:searchLocation,label:searchLocation}:{value:"Select...",label:"Select..."}}
             value={
           clear
             ? { value: "Select...", label: "Select..." }
-            :homepage?searchLocation: { value: searchLocation, label: searchLocation }
+            :homepage?searchLocation:searchLocation==="all"?"": { value: searchLocation, label: searchLocation }
         }
             isDisabled={event === "all" ? true : false}
             className={active === true ? "focus-select" : "form-filter-select"}
@@ -352,7 +353,7 @@ if(event==="IndividualBooking"||searchEvent==="IndividualBooking"){setDropDownAc
             value={
           clear
             ? { value: "Select...", label: "Select..." }
-            :homepage?searchCity: { value: searchCity, label: searchCity }
+            :homepage?searchCity:searchCity==="all"?"": { value: searchCity, label: searchCity }
         }
             // isDisabled={event === "all" ? true : false}
             className={active === true ? "focus-select" : "form-filter-select"}
