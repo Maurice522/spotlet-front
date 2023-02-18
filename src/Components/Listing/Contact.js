@@ -45,6 +45,11 @@ const Contact = ({ showSection, changeSection }) => {
   const handleSubmit = async (e) => {
     //console.log(contact_det);
     e.preventDefault();
+let format=/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+    if(/\d/.test(contact_det.contact_name)){return toast.error("Name Cannot Contain Numbers")}
+    if(format.test(contact_det.contact_name)){return toast.error("Name Cannot Contain special character")}
+if(contact_det.contact_name.length<=1){return toast.error("Name must contain minimum 2 character")}
     if (!contact_det.email.length || !contact_det.mobile_num.length)
       return toast.error("Please fill all required fields");
     // if (contact_det.alt_name.length != 12) {

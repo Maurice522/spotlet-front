@@ -23,15 +23,10 @@ const FormFilter = ({
   const [location, setLocation] = useState("all");
   const [city, setCity] = useState("all");
   const [dropdownCity, setDropdownCity] = useState();
-  const [dropdownLocation, setDropdownLocation] = useState();
+  const [dropdownLocation, setDropdownLocation] = useState([]);
   // const citiesOption = useSelector(selectCities);
 
-useEffect(()=>{
-if(searchEvent!=="all"){
-  changeEvent({value:searchEvent})
-}
-},[])
-
+console.log("dropdownLocation",dropdownLocation)
   const navigate = useNavigate();
 
   const changeEvent = (e) => {
@@ -146,9 +141,14 @@ if(searchEvent!=="all"){
 
   useEffect(() => {
     const fetchData = async () => {
+      let extraLocation=[]
+      let uniqLocation=[]
       const cities = await getCities();
       const loctypes = await getLocTypes();
-      console.log(cities.data)
+      loctypes?.data.map((loc)=>{
+       if(!extraLocation.includes(loc.label)){uniqLocation.push(loc);extraLocation.push(loc.label)}
+      })
+       setDropdownLocation(uniqLocation.sort((a,b)=>{if(b.label>a.label){return -1}}))
       let cityData = removeDuplicates(cities.data)
       let cData = [];
       cityData.forEach(element => {
@@ -158,7 +158,6 @@ if(searchEvent!=="all"){
         });
       });
       setDropdownCity(cData)
-      setDropdownLocation(loctypes.data)
     }
     fetchData();
   }, [])
@@ -228,6 +227,9 @@ if(searchEvent!=="all"){
                 setSearchEvent('all')
                 setSearchLocation('all')
                 setSearchCity('all')
+                setEvent("all")
+                setLocation("all")
+                setCity("all")
                 // window.location.reload(true)
               }}>
               Clear

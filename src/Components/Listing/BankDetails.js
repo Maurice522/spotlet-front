@@ -64,11 +64,14 @@ const BankDetails = ({ showSection, changeSection }) => {
       !bankDetails.bank_name.length ||
       !bankDetails.ifsc_code.length
     )
-      return toast.error("Please fill all required fields!!!");
+     { return toast.error("Please fill all required fields!!!")};
     if (!isNumeric(bankDetails.account_number))
-      return toast.error("Account number invalid");
+      {return toast.error("Account number invalid")};
+      if(!isNaN(bankDetails.ifsc_code.toString())) 
+    {return toast.error("IFSC code invalid")};
     if (bankDetails.ifsc_code.length !== 11)
-      return toast.error("IFSC code invalid");
+     { return toast.error("IFSC code invalid")};
+    
     const locData = {
       ...location,
       bankDetails,
