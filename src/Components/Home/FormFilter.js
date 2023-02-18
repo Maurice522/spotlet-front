@@ -22,8 +22,10 @@ const FormFilter = ({
   const [event, setEvent] = useState("all");
   const [location, setLocation] = useState("all");
   const [city, setCity] = useState("all");
+  const[activity,setActivity]=useState("Select...")
   const [dropdownCity, setDropdownCity] = useState();
   const [dropdownLocation, setDropdownLocation] = useState([]);
+  const[dropDownActivity,setDropDownActivity]=useState([])
   const [clear, setClear] = useState(false);
   // const citiesOption = useSelector(selectCities);
 console.log("clear",clear)
@@ -55,6 +57,11 @@ if(searchCity){setCity(searchCity)}
     setClear(false)
     setCity(e.value);
     !homepage && setSearchCity(e.value);
+  };
+  const changeActivity = (e) => {
+    setClear(false)
+    setActivity(e.value);
+    !homepage && setActivity(e.value);
   };
 
   const options = [
@@ -137,6 +144,15 @@ if(searchCity){setCity(searchCity)}
       }),
     ],
   };
+
+//SIMPLIFY ACTIVITY OPTIONS
+useEffect(()=>{
+if(event==="all"||searchEvent==="all"){setDropDownActivity(  [{ value: "Select...", label: "Select..." }])}
+if(event==="FilmShooting"||searchEvent==="FilmShooting"){setDropDownActivity(filterOptions.Activity[1])}
+if(event==="CorporateBooking"||searchEvent==="CorporateBooking"){setDropDownActivity(filterOptions.Activity[2])}
+if(event==="IndividualBooking"||searchEvent==="IndividualBooking"){setDropDownActivity(filterOptions.Activity[3])}
+},[event,searchEvent])
+
 
   function removeDuplicates(arr) {
     var unique = [];
@@ -263,6 +279,20 @@ if(searchCity){setCity(searchCity)}
           <Select
             id="which"
             name="which"
+            options={dropDownActivity}
+            defaultValue={homepage?activity:activity!=="all"&&{value:activity,label:activity}}
+            value={
+          clear
+            ? { value: "Select...", label: "Select..." }
+            : { value: activity, label: activity }
+        }
+            isDisabled={event === "all" ? true : false}
+            className={active === true ? "focus-select" : "form-filter-select"}
+            onChange={changeActivity}
+          ></Select>
+          {/* <Select
+            id="which"
+            name="which"
             options={
               event == "FilmShooting"
                 ? filterOptions.Activity[1]
@@ -273,7 +303,7 @@ if(searchCity){setCity(searchCity)}
             defaultValue=""
             isDisabled={event === "all" ? true : false}
             className={active === true ? "focus-select" : "form-filter-select"}
-          ></Select>
+          ></Select> */}
           {event === "all" && (
             <p style={{ fontSize: "15px", color: "grey" }}>
               Please select event first
