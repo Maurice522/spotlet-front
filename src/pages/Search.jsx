@@ -212,25 +212,50 @@ newRes.push({...item,price_per_12_hr : item?.pricing?.corporate?.isPresent
 	}, [searchCity])
 
 
+const handleFilteringForMinMax=()=>{
+	if(sortingFilteringData.mincost===""||sortingFilteringData.maxcost===""){toast.error("Kindly Select min and max");return}
+	const newFilteredArr=propertyDetails.filter((item)=>{
+		return item.price_per_12_hr>=sortingFilteringData.mincost&&item.price_per_12_hr<=sortingFilteringData.maxcost
+	})
+	if(newFilteredArr.length===0){toast.error("No Result Found");return}
+	setPropertiesDetail(newFilteredArr)
+	handleCloseFilter()
+	setSortingFilteringData({mincost:"",maxcost:"",sort:""})
+}
+
+const handleFilteringForSorting=()=>{
+	
+	let tempArr=[...propertyDetails]
+console.log("tempArr",tempArr)
+console.log("sortingFilteringData.sort",sortingFilteringData.sort)
+if(sortingFilteringData.sort!==""){
+if((sortingFilteringData.sort.toLowerCase())==="highesttolowest"){tempArr.sort((a,b)=>{return b.price_per_12_hr-a.price_per_12_hr})}
+
+if((sortingFilteringData.sort.toLowerCase())==="lowesttohighest"){tempArr.sort((a,b)=>{return a.price_per_12_hr-b.price_per_12_hr})}
+setPropertiesDetail(tempArr)
+handleCloseFilter()	
+}
+}
+
 //ON FILTERING AFTER RESULT CAME
 const handleFilterBtnClick=()=>{
-	if(sortingFilteringData.mincost===""||sortingFilteringData.maxcost===""){toast.error("Kindly Select min and max");return}
+	if(sortingFilteringData.mincost===""&&sortingFilteringData.maxcost===""&&sortingFilteringData.sort===""){toast.error("Kindly Select min and max or Sort option");return}
+if((sortingFilteringData.mincost!==""||sortingFilteringData.maxcost!=="")&&sortingFilteringData.sort===""){handleFilteringForMinMax();return}
+
+if((sortingFilteringData.mincost===""&&sortingFilteringData.maxcost==="")&&sortingFilteringData.sort!==""){handleFilteringForSorting();return}
 	
 	const newFilteredArr=propertyDetails.filter((item)=>{
 		return item.price_per_12_hr>=sortingFilteringData.mincost&&item.price_per_12_hr<=sortingFilteringData.maxcost
 	})
 	if(newFilteredArr.length===0){toast.error("No Result Found");return}
 	if(sortingFilteringData.sort!==""){
-	if(sortingFilteringData.sort==="highesttolowest"){newFilteredArr.sort((a,b)=>{return b.price_per_12_hr-a.price_per_12_hr})}
-	if(sortingFilteringData.sort==="Lowesttohighest"){newFilteredArr.sort((a,b)=>{return a.price_per_12_hr-b.price_per_12_hr})}
+	if(sortingFilteringData.sort.toLowerCase()==="highesttolowest"){newFilteredArr.sort((a,b)=>{return b.price_per_12_hr-a.price_per_12_hr})}
+	if(sortingFilteringData.sort.toLowerCase()==="lowesttohighest"){newFilteredArr.sort((a,b)=>{return a.price_per_12_hr-b.price_per_12_hr})}
 	handleCloseFilter()
 	setPropertiesDetail(newFilteredArr)
 	setSortingFilteringData({mincost:"",maxcost:"",sort:""})
 	return
 	}
-	setPropertiesDetail(newFilteredArr)
-	handleCloseFilter()
-	setSortingFilteringData({mincost:"",maxcost:"",sort:""})
 }
 
 
