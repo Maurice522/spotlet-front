@@ -138,13 +138,18 @@ const Photo = ({ showSection, changeSection }) => {
   };
   // console.log(refs)
   const deleteImage = async (imageData, index) => {
+    
+    // console.log(imagesData.filter((img, i)=> i!== index));
+
+    setImagesData((imagesData)=>imagesData.filter((img, i)=> i!== index));
+
     try {
       await deleteFiles({
         image: imageData.image,
         fileRef: imageData.imageRef,
       });
       const newImageData = imagesData.filter((img, i) => i !== index);
-      setImagesData(newImageData);
+      // setImagesData([...newImageData]);
     } catch (error) {
       toast.error(error.response.data);
     }
@@ -178,7 +183,7 @@ const Photo = ({ showSection, changeSection }) => {
             </div>
           </div>
         </div>
-        {Object.keys(files).map((fileName) => {
+        {imagesData.length < 5 && Object.keys(files).map((fileName) => {
           const { imageSrc, uploaded } = files[fileName];
           return (
             <div className="image-file-container">
