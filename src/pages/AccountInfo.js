@@ -289,6 +289,7 @@ const AccountInfo = (extraNavId) => {
                       value={updateUserData.firstName}
                       onChange={handleChange}
                       required
+                      disabled
                     />
                   </label>
                   <label>
@@ -301,6 +302,7 @@ const AccountInfo = (extraNavId) => {
                       value={updateUserData.lastName}
                       onChange={handleChange}
                       required
+                      disabled
                     />
                   </label>
                 </div>
@@ -314,6 +316,7 @@ const AccountInfo = (extraNavId) => {
                       name="email"
                       value={updateUserData.email}
                       required
+                      disabled
                     />
                   </label>
                   <label>
@@ -326,6 +329,7 @@ const AccountInfo = (extraNavId) => {
                       value={updateUserData.mobile}
                       onChange={handleChange}
                       required
+                      disabled
                     />
                   </label>
                 </div>

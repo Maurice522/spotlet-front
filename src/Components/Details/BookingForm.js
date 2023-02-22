@@ -32,6 +32,8 @@ const BookingForm = ({
   tot_price,
   setTotPrice,
 }) => {
+  console.log("event",event,"V",v1, "V",v2, "V",v3, "V",v4, "V",v5, "V",v6);
+  console.log("locationData",locationData)
   let start24, end24, startampm, endampm;
   const [allday, setAllday] = useState(false);
   const [timemenuitems, setTimemenuitems] = useState([]);
@@ -146,7 +148,7 @@ const BookingForm = ({
     calculatePrice(event, v3);
   }, [locationData]);
   const handleClick = () => {
-    // console.log(v1, v2, v3, v4, v5, v6);
+    console.log("event",event,"V",v1, "V",v2, "V",v3, "V",v4, "V",v5, "V",v6);
     if (user) {
       if (
         v1 !== "" &&
@@ -558,30 +560,30 @@ const BookingForm = ({
                   {
                     // console.log("static")
                   }
-                  <MenuItem value="01:00 am">01:00 am</MenuItem>
-                  <MenuItem value="02:00 am">02:00 am</MenuItem>
-                  <MenuItem value="03:00 am">03:00 am</MenuItem>
-                  <MenuItem value="04:00 am">04:00 am</MenuItem>
-                  <MenuItem value="05:00 am">05:00 am</MenuItem>
-                  <MenuItem value="06:00 am">06:00 am</MenuItem>
-                  <MenuItem value="07:00 am">07:00 am</MenuItem>
-                  <MenuItem value="08:00 am">08:00 am</MenuItem>
-                  <MenuItem value="09:00 am">09:00 am</MenuItem>
-                  <MenuItem value="10:00 am">10:00 am</MenuItem>
-                  <MenuItem value="11:00 am">11:00 am</MenuItem>
-                  <MenuItem value="12:00 pm">12:00 pm</MenuItem>
-                  <MenuItem value="01:00 pm">01:00 pm</MenuItem>
-                  <MenuItem value="02:00 pm">02:00 pm</MenuItem>
-                  <MenuItem value="03:00 pm">03:00 pm</MenuItem>
-                  <MenuItem value="04:00 pm">04:00 pm</MenuItem>
-                  <MenuItem value="05:00 pm">05:00 pm</MenuItem>
-                  <MenuItem value="06:00 pm">06:00 pm</MenuItem>
-                  <MenuItem value="07:00 pm">07:00 pm</MenuItem>
-                  <MenuItem value="08:00 pm">08:00 pm</MenuItem>
-                  <MenuItem value="09:00 pm">09:00 pm</MenuItem>
-                  <MenuItem value="10:00 pm">10:00 pm</MenuItem>
-                  <MenuItem value="11:00 pm">11:00 pm</MenuItem>
-                  <MenuItem value="12:00 pm">12:00 pm</MenuItem>
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(1)>=new Date().getTime()?<MenuItem value="01:00 am">01:00 am</MenuItem>:null:<MenuItem value="01:00 am">01:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(2)>=new Date().getTime()?<MenuItem value="02:00 am">02:00 am</MenuItem>:null:<MenuItem value="02:00 am">02:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(3)>=new Date().getTime()?<MenuItem value="03:00 am">03:00 am</MenuItem>:null:<MenuItem value="03:00 am">03:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(4)>=new Date().getTime()?<MenuItem value="04:00 am">04:00 am</MenuItem>:null:<MenuItem value="04:00 am">04:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(5)>=new Date().getTime()?<MenuItem value="05:00 am">05:00 am</MenuItem>:null:<MenuItem value="05:00 am">05:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(6)>=new Date().getTime()?<MenuItem value="06:00 am">06:00 am</MenuItem>:null:<MenuItem value="06:00 am">06:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(7)>=new Date().getTime()?<MenuItem value="07:00 am">07:00 am</MenuItem>:null:<MenuItem value="07:00 am">07:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(8)>=new Date().getTime()?<MenuItem value="08:00 am">08:00 am</MenuItem>:null:<MenuItem value="08:00 am">08:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(9)>=new Date().getTime()?<MenuItem value="09:00 am">09:00 am</MenuItem>:null:<MenuItem value="09:00 am">09:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(10)>=new Date().getTime()?<MenuItem value="10:00 am">10:00 am</MenuItem>:null:<MenuItem value="10:00 am">10:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(11)>=new Date().getTime()?<MenuItem value="11:00 am">11:00 am</MenuItem>:null:<MenuItem value="11:00 am">11:00 am</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(12)>=new Date().getTime()?<MenuItem value="12:00 pm">12:00 pm</MenuItem>:null:<MenuItem value="12:00 pm">12:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(13)>=new Date().getTime()?<MenuItem value="01:00 pm">01:00 pm</MenuItem>:null:<MenuItem value="01:00 pm">01:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(14)>=new Date().getTime()?<MenuItem value="02:00 pm">02:00 pm</MenuItem>:null:<MenuItem value="02:00 pm">02:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(15)>=new Date().getTime()?<MenuItem value="03:00 pm">03:00 pm</MenuItem>:null:<MenuItem value="03:00 pm">03:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(16)>=new Date().getTime()?<MenuItem value="04:00 pm">04:00 pm</MenuItem>:null:<MenuItem value="04:00 pm">04:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(17)>=new Date().getTime()?<MenuItem value="05:00 pm">05:00 pm</MenuItem>:null:<MenuItem value="05:00 pm">05:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(18)>=new Date().getTime()?<MenuItem value="06:00 pm">06:00 pm</MenuItem>:null:<MenuItem value="06:00 pm">06:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(19)>=new Date().getTime()?<MenuItem value="07:00 pm">07:00 pm</MenuItem>:null:<MenuItem value="07:00 pm">07:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(20)>=new Date().getTime()?<MenuItem value="08:00 pm">08:00 pm</MenuItem>:null:<MenuItem value="08:00 pm">08:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(21)>=new Date().getTime()?<MenuItem value="09:00 pm">09:00 pm</MenuItem>:null:<MenuItem value="09:00 pm">09:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(22)>=new Date().getTime()?<MenuItem value="10:00 pm">10:00 pm</MenuItem>:null:<MenuItem value="10:00 pm">10:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(23)>=new Date().getTime()?<MenuItem value="11:00 pm">11:00 pm</MenuItem>:null:<MenuItem value="11:00 pm">11:00 pm</MenuItem>}
+                  {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(24)>=new Date().getTime()?<MenuItem value="12:00 pm">12:00 pm</MenuItem>:null:<MenuItem value="12:00 pm">12:00 pm</MenuItem>}
                 </Select>
               )}
             </div>
@@ -615,8 +617,8 @@ const BookingForm = ({
                 // value={"6am-6pm"}
                 displayEmpty
               >
-                <MenuItem value="6am-6pm">Half Day (6am to 6pm)</MenuItem>
-                <MenuItem value=""></MenuItem>
+               {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(6)>=new Date().getTime()? <MenuItem value="6am-6pm">Half Day (6am to 6pm)</MenuItem>:null:<MenuItem value="6am-6pm">Half Day (6am to 6pm)</MenuItem>}
+                {/* <MenuItem value=""></MenuItem> */}
                 <MenuItem value="6am-2am">Full Day (6am to 2am)</MenuItem>
               </Select>
             </div>
@@ -722,6 +724,11 @@ const BookingForm = ({
                 Number(noOfPeople) > 100 &&
                 <MenuItem value="more than 100">More than 100</MenuItem>
               }
+              {
+                noOfPeople==='more than 100'&&
+                <MenuItem value="more than 100">More than 100</MenuItem>
+              }
+             
             </Select>
           </div>
           <div>
