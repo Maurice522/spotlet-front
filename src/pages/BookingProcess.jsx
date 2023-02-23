@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const BookingProcess = ({ v1, v2, v3, v4, v5, v6, v7, event,tot_price }) => {
 	const [index, setIndex] = useState(0);
+	const[arrayOfAddDayData,setarrayOfAddDayData]=useState([])
 	const [ok, setOk] = useState(false);
 	const [readyForRequest, setReadyForRequest] = useState(false);
 	const [userData, setUserData] = useState({
@@ -71,7 +72,7 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, v7, event,tot_price }) => {
 						</div>
 
 						{index === 0 ? (
-							<Booking v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} v7={v7} />
+							<Booking v1={v1} v2={v2} v3={v3} v4={v4} v5={v5} v7={v7} event={event} arrayOfAddDayData={arrayOfAddDayData} setarrayOfAddDayData={setarrayOfAddDayData} />
 						) : index === 1 ? (
 							<Rules isOk={setOk} />
 						) : (
@@ -92,6 +93,7 @@ const BookingProcess = ({ v1, v2, v3, v4, v5, v6, v7, event,tot_price }) => {
 						tot_price={tot_price}
 						readyForRequest={readyForRequest}
 						setReadyForRequest={setReadyForRequest}
+						arrayOfAddDayData={arrayOfAddDayData}
 						userData = {userData}
 						event = {event}
 					/>

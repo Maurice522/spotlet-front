@@ -28,7 +28,45 @@
 }
 
 
-
+.booking_addADay_cont{
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	flex-wrap: wrap;
+	margin-top: 2rem;
+}
+.booking_datePicker_cont{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+.booking_datePicker_cont h3{
+	margin-bottom: .5rem;
+}
+.booking_timePicker_cont{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+.booking_timePicker_cont_individual{
+	display: flex;
+	text-align: center;
+}
+.booking_addADayBtn{
+	font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    min-width: 64px;
+    padding: 6px 16px;
+	color: white;
+	background-color: #1976d2;
+	border: none;
+	height: 50px;
+	margin-left: 2rem;
+	cursor: pointer;
+}
 @media screen and (max-width: 992px){
 	#booking-page-form {
 		margin-top: 30px;

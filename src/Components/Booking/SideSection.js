@@ -42,6 +42,7 @@ const SideSection = ({
   v5,
   v6,
   tot_price,
+  arrayOfAddDayData
 }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -50,6 +51,7 @@ const SideSection = ({
   const navigate = useNavigate();
   const user_id = useSelector(selectUser_id);
   const location_id = window.location.pathname.substring(1, 10);
+  const[arrOFDATES,setarrOFDATES]=useState([])
   const total_amt =
     v3 === "12"
       ? v6 * v3 * 0.9 * 1.18
@@ -68,6 +70,15 @@ const SideSection = ({
   // const day = v1?.getDate();
   // const month = v1?.getMonth() + 1;
   // const year = v1?.getFullYear();
+
+useEffect(()=>{
+if(arrayOfAddDayData.length>0){
+  arrayOfAddDayData.map((item)=>{
+    setarrOFDATES((prev)=>{return [...prev,new Date(item.bookedDate)]})
+  })
+ 
+}
+},[arrayOfAddDayData])
 
   const handleClick = async () => {
     //console.log("clicked");
@@ -93,19 +104,19 @@ const SideSection = ({
           activity: v5,
           attendies: v4,
           // date: day + "-" + month + "-" + year,
-          bookedTimeDates: {
+          bookedTimeDates: [...arrayOfAddDayData,{
             bookedDate: v1,
             bookedTime: v2,
             bookedHours: v3,
-          },
+          }],
           event,
           owner_id: locationData.property_desc.user_id,
           property_id: location_id,
           total_amt: gst,
-          reqDate: [v1],
+          reqDate: [...arrOFDATES,v1],
           discount: parseInt(parseInt(gst) - tot_price),
           processfee: Math.round(tot_price / 10),
-          final_amount: tot_price + parseInt(locationData?.pricing?.cleaningFee) + Math.round(tot_price / 10),
+          final_amount: (arrayOfAddDayData.length>0?parseInt(gst)*(arrayOfAddDayData.length+1):parseInt(gst)) + parseInt(locationData?.pricing?.cleaningFee) + Math.round(tot_price / 10),
           user_id,
           user_data: {
             fullName: userData.firstName + " " + userData.lastName,
@@ -169,7 +180,7 @@ const SideSection = ({
         <div data-attribute-4>
           Total Price (incl. Gst)
         </div>
-        <div data-attribute-4>₹ {parseInt(gst)}</div>
+        <div data-attribute-4>₹ {arrayOfAddDayData.length>0?parseInt(gst)*(arrayOfAddDayData.length+1):parseInt(gst)}</div>
       </div>
       <div data-attribute-3>
         <div data-attribute-4>Discount</div>
@@ -188,7 +199,7 @@ const SideSection = ({
 
       <div data-attribute-3>
         <div data-attribute-1>Total</div>
-        <div data-attribute-1>₹ {tot_price + parseInt(locationData?.pricing?.cleaningFee) + Math.round(tot_price / 10)}</div>
+        <div data-attribute-1>₹ {(arrayOfAddDayData.length>0?parseInt(gst)*(arrayOfAddDayData.length+1):parseInt(gst)) + parseInt(locationData?.pricing?.cleaningFee) + Math.round(tot_price / 10)}</div>
       </div>
 
       <Button
