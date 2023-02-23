@@ -32,6 +32,7 @@ import { set } from "date-fns";
 import OTPVerify from "./Auth/OTPVerify";
 
 const AccountInfo = (extraNavId) => {
+  const [files, setFiles] = useState({});
   const [section, showSection] = useState("Profile");
   const [openOTP, setOpenOTP] = useState(false);
   const handleOpenOTP = () => setOpenOTP(true);
@@ -106,6 +107,74 @@ const AccountInfo = (extraNavId) => {
     newPassword: "",
     confirmNewPassword: "",
   });
+
+
+//CONVERT IMG TO URL
+function urltoFile(url, filename, mimeType) {
+  console.log(url, filename, mimeType)
+  return fetch(url)
+    .then(function (res) {
+      return res.arrayBuffer();
+    })
+    .then(function (buf) {
+      return new File([buf], Date.now() + filename, { type: mimeType });
+    });
+}
+
+//ON CHOOSING FILE
+const handleFileChoosen=(event)=>{
+  if (event.target.files && event.target.files.length > 0) {
+    setFiles((prevFiles) => {
+      const filesToAdd = [...event.target.files];
+      const imageObj = {};
+      filesToAdd.forEach((file) => {
+        imageObj[file.name] = {
+          file,
+          imageSrc: URL.createObjectURL(file),
+          croppedImage: "",
+          watermarkImage: "",
+          preview: false,
+          uploaded: false
+        };
+      });
+      return { ...prevFiles, ...imageObj };
+    });
+  }
+}
+
+useEffect(()=>{
+if(JSON.stringify(files)==="{}"){return}
+handleUpload()
+},[files])
+
+const handleUpload=async()=>{
+  try {
+    const fileNames = Object.keys(files);
+    for (let i = 0; i < fileNames.length; i++) {
+      const flobj = files[fileNames[i]];
+      console.log(fileNames[i])
+      console.log("flobj",flobj)
+      if (flobj.uploaded) continue;
+      const file = await urltoFile(
+        flobj.imageSrc,
+        fileNames[i],
+        "text/plain"
+      );
+      const formData = new FormData();
+      formData.append("pic", file);
+      const response = await uploadPics(formData);
+      setUpdateUserData({ ...updateUserData, profile_pic: response.data.url });
+      setFiles((prevData) => {
+        prevData[fileNames[i]].uploaded = true;
+        return { ...prevData };
+      });
+      toast.success(`${fileNames[i]} has been uploaded`, 300);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
   const getOTP = async (userData) => {
     try {
@@ -203,6 +272,8 @@ const AccountInfo = (extraNavId) => {
         toast.error(error.response.data);
       }
   };
+
+  
   return (
     <>
       <div className="accounts">
@@ -275,7 +346,7 @@ const AccountInfo = (extraNavId) => {
                     type="file"
                     id="getFile"
                     style={{ display: "none" }}
-                    onChange={onSelectFile}
+                    onChange={handleFileChoosen}
                   />
                 </div>
                 <div className="r2">

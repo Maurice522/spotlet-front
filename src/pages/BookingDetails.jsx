@@ -437,7 +437,10 @@ console.log("bookinggg",booking)
 								</div>
 								<div>
 									<div className="item-heading">Attendies</div>
-									<div className="item-body">{booking?.attendies} People</div>
+									{booking?.bookedTimeDates?.map((item, index) =>{
+										return <div key={index} className="item-body">{booking?.attendies} People</div>
+									})}
+									
 								</div>
 								<div>
 									<div className="item-heading">Reserved Time</div>
