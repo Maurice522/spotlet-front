@@ -61,7 +61,7 @@ const BookingDetails = () => {
 	const bookingId = window.location.pathname.substr(16);
 	// const endTime = (Number(booking?.time?.substr(0, 2)) + Number(booking?.duration_in_hours)) % 24;
 	const ownerData = useSelector(selectUserData);
-
+	console.log("bookingData",booking)
 	useEffect(() => {
 		// console.log(userData);
 		userData?.portfolio.map((booking) => {
@@ -469,6 +469,7 @@ console.log("bookinggg",booking)
 								<div data-attribute-4>Total price (incl. GST)</div>
 								<div data-attribute-4 style={{ textAlign: "right" }}>
 									₹ {booking?.total_amt}
+									{/* *booking?.bookedTimeDates?.length */}
 								</div>
 							</div>
 							<div data-attribute-3>
@@ -552,7 +553,9 @@ console.log("bookinggg",booking)
 							</div>
 						</div>
 					</Modal>
+					{/* START OF ADD DATE BAR */}
 					{booking?.status === "Under Review" && (
+						
 						<div>
 							<div style={{ display: "flex", flexDirection: "row" }}>
 								<div>
@@ -601,7 +604,7 @@ console.log("bookinggg",booking)
 								</div>
 								{booking.event === "Individual" ||
 									booking.event === "Corporate" ? (
-									<div>
+									<div style={{marginLeft:"1rem"}}>
 										<label
 											htmlFor="start-time"
 											className={
@@ -682,7 +685,7 @@ console.log("bookinggg",booking)
 										)}
 									</div>
 								) : (
-									<div>
+									<div style={{marginLeft:"1.5rem"}}>
 										<label
 											htmlFor="time-shifts"
 											className={
@@ -823,7 +826,7 @@ console.log("bookinggg",booking)
 						</Button>
 					</div>
 				</div>
-				<h1 style={{fontSize:"1.5rem",marginTop:"1.5rem"}}>Below Is The Map Of Your Location</h1>
+				<h1 style={{fontSize:"1.5rem",marginTop:"1.5rem",display: `${booking?.status !== "Approved" ? "none" : "block"}`}}>Below Is The Map Of Your Location</h1>
 				<div
 					style={{
 						width: "80%",
