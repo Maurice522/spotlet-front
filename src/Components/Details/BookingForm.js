@@ -120,16 +120,20 @@ const BookingForm = ({
   useEffect(() => {
     switch (event) {
       case "Individual":
-        setNoOfPeople(locationData?.pricing?.individual?.attendees)
+        let var1=locationData?.pricing?.individual?.attendees==="more than 100"?"101":locationData?.pricing?.individual?.attendees
+        setNoOfPeople(var1)
         break;
       case "Corporate":
-        setNoOfPeople(locationData?.pricing?.corporate?.attendees)
+        let var2=locationData?.pricing?.corporate?.attendees==="more than 100"?"101":locationData?.pricing?.corporate?.attendees
+        setNoOfPeople(var2)
         break;
       case "Film, Webseries or Ad":
-        setNoOfPeople(locationData?.pricing?.film_webseries_ad?.attendees)
+        let var3=locationData?.pricing?.film_webseries_ad?.attendees==="more than 100"?"101":locationData?.pricing?.film_webseries_ad?.attendees
+        setNoOfPeople(var3)
         break;
       case "TV Series and Others":
-        setNoOfPeople(locationData?.pricing?.tv_series_other?.attendees)
+        let var4=locationData?.pricing?.tv_series_other?.attendees==="more than 100"?"101":locationData?.pricing?.tv_series_other?.attendees
+        setNoOfPeople(var4)
         break;
       default:
         setNoOfPeople(100)
@@ -701,8 +705,10 @@ const BookingForm = ({
                 //console.log(e.target.value);
                 setV4(e.target.value);
               }}
-              value={v4==="more than 100"?"more than 100":v4}
+              value={`${v4}`}
+              displayEmpty
             >
+            
               {
                 Number(noOfPeople) >= 5 &&
                 <MenuItem value="5">1-5</MenuItem>
@@ -727,10 +733,7 @@ const BookingForm = ({
                 Number(noOfPeople) > 100 &&
                 <MenuItem value="more than 100">More than 100</MenuItem>
               }
-              {
-                noOfPeople==='more than 100'&&
-                <MenuItem value="more than 100">More than 100</MenuItem>
-              }
+              
              
             </Select>
           </div>
