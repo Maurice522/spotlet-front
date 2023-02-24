@@ -16,10 +16,11 @@ import { toast } from "react-toastify";
 import { contactList, getBookingDetail, getLocation, messsageRoom, sendMessage } from "../services/api";
 import { useSelector } from "react-redux";
 import { selectUser_id } from "../redux/slices/userSlice";
-import { io } from "socket.io-client";
+import  io  from "socket.io-client";
 
 export default function Messages() {
   const [conversations, setConversations] = useState([]);
+  const[sendBtnDisable,setSendBtnDisable]=useState(false)
   const [messages, setMessages] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [newMessage, setNewMessage] = useState("");
@@ -29,12 +30,12 @@ export default function Messages() {
   const [locationData, setLocationData] = useState({});
   const scrollRef = useRef();
   const user_id = useSelector(selectUser_id);
-  const socket = useRef();
+  // const socket = useRef();
   const [propertyOwner, setPropertyOwner] = useState({});
   const [bookingDetail, setBookingDetail] = useState({});
   const bookingId = currentChat?.bookingId;
   const locationId = currentChat?.locationId;
-
+  const socket = io.connect("http://localhost:7000");
   function toMonthName(monthNumber) {
     const date = new Date();
     date.setMonth(monthNumber - 1);
@@ -64,11 +65,23 @@ export default function Messages() {
     month +
     " " +
     bookingDetail?.date?.split("-")[2];
+  // useEffect(() => {
+  //   // socket.current = io.connect("https://spotlet.onrender.com/");
+  //   // socket.current = io.connect("http://localhost:7000");
+  //   socket.current.on("getMessage", (data) => {
+  //     //console.log(data);
+  //     setArrivalMessage({
+  //       sender: data.senderId,
+  //       message: data.message,
+  //       conversationId: currentChat?.id,
+  //       createdAt: Date.now(),
+  //     });
+  //   });
+  // }, []);
   useEffect(() => {
-    // socket.current = io.connect("https://spotlet.onrender.com/");
-    socket.current = io.connect("http://localhost:7000");
-    socket.current.on("getMessage", (data) => {
-      //console.log(data);
+    
+    socket.on("receive_message", (data) => {
+      console.log("receive data",data);
       setArrivalMessage({
         sender: data.senderId,
         message: data.message,
@@ -76,16 +89,17 @@ export default function Messages() {
         createdAt: Date.now(),
       });
     });
-  }, []);
+  }, [socket]);
+  
   useEffect(() => {
     arrivalMessage && currentChat &&
       currentChat?.members.includes(arrivalMessage.sender) &&
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
 
-  useEffect(() => {
-    user_id && socket.current.emit("addUser", user_id);
-  }, [user_id]);
+  // useEffect(() => {
+  //   user_id && socket.current.emit("addUser", user_id);
+  // }, [user_id]);
 
   useEffect(() => {
     currentChat && getLocation(locationId).then(res => setLocationData(res.data))
@@ -101,7 +115,9 @@ export default function Messages() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSendBtnDisable(true)
     try {
+      if (newMessage === ""){toast.error("Can not be empty"); setSendBtnDisable(false)}
       if (newMessage !== "") {
         const form = {
           senderId: user_id,
@@ -111,18 +127,29 @@ export default function Messages() {
         const receiverId = currentChat.members.find(
           (member) => member !== user_id
         );
-        socket.current.emit("sendMessage", {
+        // socket.current.emit("sendMessage", {
+        //   senderId: user_id,
+        //   receiverId,
+        //   message: newMessage,
+        //   room:currentChat.bookingId
+        // });
+        socket.emit("sendMessage", {
           senderId: user_id,
           receiverId,
           message: newMessage,
+          room:currentChat.bookingId
         });
 
         await sendMessage(form);
         setMessages([...messages, form]);
         setNewMessage("");
+        setSendBtnDisable(false)
       }
+     
     } catch (error) {
-      toast.error(error.response.data);
+      // toast.error(error.response.data);
+      console.log("err",error)
+      setSendBtnDisable(false)
     }
   };
 
@@ -154,6 +181,16 @@ export default function Messages() {
         .then((res) => setMessages(res.data))
         .catch((error) => toast.error(error.response.data));
   }, [currentChat]);
+
+
+//CRETE ROOM
+const createRoom=(conversation)=>{
+  setCurrentChat(conversation)
+  socket.emit("join_room", conversation.bookingId);
+  console.log("conversation",conversation)
+}
+
+
   return (
     <div>
       <Navbar extraNavId={"id-2"} />
@@ -165,7 +202,7 @@ export default function Messages() {
           {conversations.length > 0 ? (
             conversations.map((conversation, key) => {
               return (
-                <div onClick={() => setCurrentChat(conversation)} key={key}>
+                <div onClick={() => {createRoom(conversation)}} key={key}>
                   <UserInbox conversation={conversation} />
                 </div>
               );
@@ -236,6 +273,7 @@ export default function Messages() {
                     value={newMessage}
                     placeholder="Send a Message ..."
                   />
+                  <button disabled={sendBtnDisable} type="submit">Send</button>
                 </form>
               </div>
             </div>
