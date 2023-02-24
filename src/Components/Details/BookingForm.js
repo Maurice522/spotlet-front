@@ -33,11 +33,13 @@ const BookingForm = ({
   setTotPrice,
 }) => {
   console.log("event",event,"V",v1, "V",v2, "V",v3, "V",v4, "V",v5, "V",v6);
+  //V2=>time,v3=>duration,v4=>no. of people
   console.log("locationData",locationData)
   let start24, end24, startampm, endampm;
   const [allday, setAllday] = useState(false);
   const [timemenuitems, setTimemenuitems] = useState([]);
   const [bookedDates, setBookedDates] = useState([])
+  const[tempV2,setTempV2]=useState("Select....")
   let disabledDates = [];
   let finalDates = [];
   let gst = v6 * v3 * 1.18;
@@ -602,7 +604,7 @@ const BookingForm = ({
                 id="time-shifts"
                 name="time-shifts"
                 // defaultValue="Half Day (6am to 6pm)"
-                defaultValue=""
+                defaultValue={v2?v2:""}
                 type="time"
                 className={active === true ? "focus" : "normal"}
                 onChange={(e) => {
@@ -612,9 +614,10 @@ const BookingForm = ({
                   let a = e.target.value === "6am-6pm" ? "12" : "22";
                   calculatePrice(event, a);
                   setV2("06:00 am");
+                  setTempV2(e.target.value)
                   setV3(e.target.value === "6am-6pm" ? 12 : 22);
                 }}
-                // value={"6am-6pm"}
+                value={v2?v3?v3===12? "6am-6pm":"6am-2am":tempV2:tempV2}
                 displayEmpty
               >
                {new Date(v1).toDateString().slice(4)===new Date().toDateString().slice(4)?new Date().setHours(6)>new Date().getTime()? <MenuItem value="6am-6pm">Half Day (6am to 6pm)</MenuItem>:null:<MenuItem value="6am-6pm">Half Day (6am to 6pm)</MenuItem>}
