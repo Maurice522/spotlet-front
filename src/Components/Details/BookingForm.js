@@ -701,7 +701,7 @@ const BookingForm = ({
                 //console.log(e.target.value);
                 setV4(e.target.value);
               }}
-              value={v4}
+              value={v4==="more than 100"?"more than 100":v4}
             >
               {
                 Number(noOfPeople) >= 5 &&

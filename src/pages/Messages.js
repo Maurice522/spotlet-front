@@ -30,11 +30,15 @@ export default function Messages() {
   const [locationData, setLocationData] = useState({});
   const scrollRef = useRef();
   const user_id = useSelector(selectUser_id);
+  const[receiverName,setReceiverName]=useState("")
+  // console.log("locationData",locationData)
+
   // const socket = useRef();
   const [propertyOwner, setPropertyOwner] = useState({});
   const [bookingDetail, setBookingDetail] = useState({});
   const bookingId = currentChat?.bookingId;
   const locationId = currentChat?.locationId;
+  // console.log("bookingDetail",bookingDetail)
   const socket = io.connect("http://localhost:7000");
   function toMonthName(monthNumber) {
     const date = new Date();
@@ -81,7 +85,7 @@ export default function Messages() {
   useEffect(() => {
     
     socket.on("receive_message", (data) => {
-      console.log("receive data",data);
+      // console.log("receive data",data);
       setArrivalMessage({
         sender: data.senderId,
         message: data.message,
@@ -158,7 +162,7 @@ export default function Messages() {
       contactList(user_id)
         .then((response) => {
           setConversations(response.data);
-          // console.log(response.data);
+          // console.log("first getting data",response.data);
         })
         .catch((error) => {
           toast.error(error.response.data);
@@ -183,11 +187,23 @@ export default function Messages() {
   }, [currentChat]);
 
 
-//CRETE ROOM
+//CREATE ROOM
 const createRoom=(conversation)=>{
+  let receiverId=conversation?.members.find(
+    (member) => member !== user_id
+  )
+  // console.log("something",(Object.values(conversation.users[0]).filter((oj)=>{return oj._id===receiverId}))[0])
+
+  let receiverData=conversation?.users[0][receiverId]
+  let receiverName=receiverData?.personalInfo?.fullName
+setReceiverName(receiverName)
+
   setCurrentChat(conversation)
   socket.emit("join_room", conversation.bookingId);
-  console.log("conversation",conversation)
+  // console.log("conversation",conversation)
+
+  // console.log("all conv",conversations)
+
 }
 
 
@@ -219,7 +235,7 @@ const createRoom=(conversation)=>{
               <div className="chat-head">
                 <img src={locationData?.imagesData?.at(0)?.image} alt="profile" />
                 <div>
-                  <h5>{currentChat?.locationId}</h5>
+                  <h5>{receiverName?receiverName:currentChat?.locationId}</h5>
                   <p>{friend?.personalInfo.fullName}</p>
                 </div>
                 {/* <SearchOutlined className="searchIcon" /> */}
