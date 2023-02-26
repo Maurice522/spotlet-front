@@ -85,7 +85,28 @@ export default function Auth() {
     {email:"durggha@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
     {email:"shrutika2009@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
     {email:"sri2007.n@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
-    ]
+    ];
+
+  var phones = [
+  {mobile:"8699888678"},
+  {mobile:"9885641122"},
+  {mobile:"9885673999"},
+  {mobile:"8744961008"},
+  {mobile:"9773539833"},
+  {mobile:"8699888677"},
+  {mobile:"08008333004"},
+  {mobile:"09773539833"},
+  {mobile:"9773539865"},
+  {mobile:"8773539833"},
+  {mobile:"9718115211"},
+  {mobile:"8699888670"},
+  {mobile:"9866003360"},
+  {mobile:"9700021416"},
+  {mobile:"9717906855"},
+  {mobile:"9876543210"},
+  {mobile:"9921651628"},
+  {mobile:"8008333004"},
+  ] ;
 
   // useEffect(() => {
   //   const initClient = () => {
@@ -192,6 +213,7 @@ export default function Auth() {
     if(!present){
       setValid(false);
       toast.error("User dose not exist!");
+      return;
     }
 
     if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar && number) )  {
@@ -220,6 +242,19 @@ export default function Auth() {
           return toast.error("Password must contain atleast 8 characters");
         if (!isNumeric(userData.mobile) || userData.mobile.length !== 10)
           return toast.error("Invalid Mobile Number");
+        
+        var already_phn  = false;
+
+        phones.map((phn,idx)=>{
+          if(phn.mobile === userData.mobile){
+            already_phn = true;
+          }
+        })
+
+        if(already_phn){
+          return toast.error("Mobile Number already exist");
+        }
+
         getOTP(userData);
       } catch (error) {
         toast.error(error?.response?.data);
