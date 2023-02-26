@@ -170,10 +170,13 @@ export default function Auth() {
     if (isSignIn) {
       try {
         const { data } = await signIn(userData);
-
-        localStorage.setItem("token", data?.token);
-        toast.success("Successful login");
-        window.location = "/";
+        if(data.error){
+          toast.error(error?.response?.data?.error);
+        }else{
+          localStorage.setItem("token", data?.token);
+          toast.success("Successful login");
+          window.location = "/";
+        }
       } catch (error) {
         //console.log(error.response.data);
         toast.error(error?.response?.data?.error);
