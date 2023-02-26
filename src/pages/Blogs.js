@@ -23,7 +23,7 @@ const Blogs = () => {
       setData(data2);
       console.log(data2);
     });
-  }, [setData]);
+  }, []);
   const elements = [
     {
       id: 1,
@@ -87,7 +87,7 @@ const Blogs = () => {
         </div>
 
         <div class="Blog_container">
-          { data && data.map((e) => (
+          { data && data instanceof Array && data.length>0 && data.map((e) => (
             <>
               <div class="Blog_container_div">
                 <Link
