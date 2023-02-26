@@ -10,6 +10,7 @@ const Form = ({ labels, heading, btnContent }) => {
 		email: "",
 		mobile: "",
 		message: "",
+		date:"",
 	});
 	const handleSubmit = async () => {
 		try {
@@ -52,7 +53,13 @@ const Form = ({ labels, heading, btnContent }) => {
 					variant="standard"
 					fullWidth
 				/>
-
+				<TextField
+					label="Date"
+					type="date"
+					onChange={(e) => setform({ ...form, date: e.target.value })}
+					variant="standard"
+					fullWidth
+				/>
 				<span>
 					<Button
 						variant="contained"
