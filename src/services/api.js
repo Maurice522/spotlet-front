@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const server_domain = "https://gorecceback.herokuapp.com";
 // const server_domain = "https://spotlet.onrender.com"; //TEMP HOSTED SERVER
-const server_domain = "https://cors-anywhere.herokuapp.com/https://api.spotlet.in";
+const server_domain = "https://api.spotlet.in";
 // const server_domain = `${process.env.REACT_APP_API_URL}`;
 // const server_domain = "http://127.0.0.1:7000";
 // const server_domain = "https://15.206.111.92:7000";

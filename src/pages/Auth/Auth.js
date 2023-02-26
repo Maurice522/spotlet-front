@@ -56,6 +56,7 @@ export default function Auth() {
   const [fullName, setFullName] = useState({});
   const [userEmail, setUserEmail] = useState("");
   const [checked, setChecked] = useState(false)
+  const [present, setPresent] = useState(false)
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -130,9 +131,9 @@ export default function Auth() {
     { isSignIn && setUserData({ ...userData, email: userEmail }) }
     { !isSignIn && setUserData({ ...userData, email: userEmail, firstName: fullName.fname, lastName: fullName.lname }) }
   }, [userEmail, fullName])
-  console.log(userData)
-  console.log(userData.googleLogin)
-  console.log(userData.email)
+  // console.log(userData)
+  // console.log(userData.googleLogin)
+  // console.log(userData.email)
 
 
   const onFailure = (err) => {
@@ -166,9 +167,12 @@ export default function Auth() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+
   //Handling All Input data function
   const handleInput = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
+    
   };
 
 
@@ -201,31 +205,40 @@ export default function Auth() {
     (!isSignIn && userData?.googleLogin) && e.preventDefault();
     // console.log(isSignIn, validLength, upperCase, lowerCase, specialChar);
 
-    var present = false;
-
-    users.map((user,idx)=>{
-      if(user.email===userData.email){
-        present = true;
-      }
-    })
-    
-
-    if(!present){
-      setValid(false);
-      toast.error("User dose not exist!");
-      return;
-    }
-
     if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar && number) )  {
       setValid(false);
       return;
     }
     setValid(true);
+    var count = 0;
+    users.map((user,idx)=>{
+      if(user.email==userData.email){
+        console.log(user.email, userData.email)
+        setPresent(true)
+        count =1;
+      }
+    })
+
+    if(count == 0){
+      setPresent(false)
+    }
+    
+    if(!isSignIn && present){
+      toast.error("User already exist!");
+      console.log("user found")
+      return;
+    }
+
     if (isSignIn) {
+      if(!present){
+        toast.error("User does not exist!");
+        console.log("no user found")
+        return;
+      }
       try {
         const { data } = await signIn(userData);
         if(data.error){
-          toast.error(error?.response?.data?.error);
+          toast.error(data.error?.response?.data?.error);
         }else{
           localStorage.setItem("token", data?.token);
           toast.success("Successful login");
@@ -250,9 +263,10 @@ export default function Auth() {
             already_phn = true;
           }
         })
-
+        console.log(already_phn);
         if(already_phn){
-          return toast.error("Mobile Number already exist");
+          toast.error("Mobile Number already exist");
+          return ;
         }
 
         getOTP(userData);
