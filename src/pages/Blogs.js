@@ -87,7 +87,7 @@ const Blogs = () => {
         </div>
 
         <div class="Blog_container">
-          {data.map((e) => (
+          { data && data.map((e) => (
             <>
               <div class="Blog_container_div">
                 <Link
