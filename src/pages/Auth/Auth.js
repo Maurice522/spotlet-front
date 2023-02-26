@@ -68,7 +68,24 @@ export default function Auth() {
     googleLogin: false,
   });
 
-
+  var users=[
+    {email:"vanshitadev10@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"prasad@xplorenew.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"nipun.walia2018@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"jaiprakash02082001@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"vanshita010@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"vijay.buddi@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"miwol55473@unicsite.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"pefoka9603@tohup.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"nipun@hilodesign.co",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"vanshitaworkacc10@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"sreenivaskap@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"nagesh2834@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"xajej31556@mustbeit.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"durggha@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"shrutika2009@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    {email:"sri2007.n@gmail.com",pass:"$2a$13$RQfgMoAeq957NM7SCs1i3OCxGsPVgrBJj08dYkaZNVEdFY.K/MNlu"},
+    ]
 
   // useEffect(() => {
   //   const initClient = () => {
@@ -162,7 +179,22 @@ export default function Auth() {
     !userData?.googleLogin && e.preventDefault();
     (!isSignIn && userData?.googleLogin) && e.preventDefault();
     // console.log(isSignIn, validLength, upperCase, lowerCase, specialChar);
-    if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar && number)) {
+
+    var present = false;
+
+    users.map((user,idx)=>{
+      if(user.email===userData.email){
+        present = true;
+      }
+    })
+    
+
+    if(!present){
+      setValid(false);
+      toast.error("User dose not exist!");
+    }
+
+    if (!isSignIn && !(validLength && upperCase && lowerCase && specialChar && number) )  {
       setValid(false);
       return;
     }
