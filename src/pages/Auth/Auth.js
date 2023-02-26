@@ -57,6 +57,7 @@ export default function Auth() {
   const [userEmail, setUserEmail] = useState("");
   const [checked, setChecked] = useState(false)
   const [present, setPresent] = useState(false)
+  const [phnExists, setPhnExists] = useState(false);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -109,15 +110,15 @@ export default function Auth() {
   {mobile:"8008333004"},
   ] ;
 
-  // useEffect(() => {
-  //   const initClient = () => {
-  //     gapi.client.init({
-  //       clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-  //       scope: ''
-  //     });
-  //   };
-  //   gapi.load('client:auth2', initClient);
-  // });
+  useEffect(() => {
+    const initClient = () => {
+      gapi.client.init({
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        scope: ''
+      });
+    };
+    gapi.load('client:auth2', initClient);
+  },[]);
 
 
   const onSuccess = (res) => {
@@ -171,9 +172,40 @@ export default function Auth() {
 
   //Handling All Input data function
   const handleInput = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    setUserData({ ...userData, [e.target.name]: e.target.value });    
+  }
+
+  useEffect(()=>{
+    console.log("called")
+    var notFound = 1;
     
-  };
+      users.map((user,idx)=>{
+        if(user.email==userData.email){
+          console.log(user.email, userData.email)
+          setPresent(true)
+          notFound = 0;
+        }
+      })
+
+      if(notFound==1){
+        setPresent(false);
+
+  
+      }
+  },[userData.email])
+
+  useEffect(()=>{
+    var notFound = 1;
+        phones.map((phn,idx)=>{
+          if(phn.mobile === userData.mobile){
+            setPhnExists(true);
+            notFound =0;
+          }
+        })
+        if(notFound==1){
+          setPhnExists(false);
+        }
+  },[userData.mobile])
 
 
   const getOTP = async (userData) => {
@@ -210,18 +242,6 @@ export default function Auth() {
       return;
     }
     setValid(true);
-    var count = 0;
-    users.map((user,idx)=>{
-      if(user.email==userData.email){
-        console.log(user.email, userData.email)
-        setPresent(true)
-        count =1;
-      }
-    })
-
-    if(count == 0){
-      setPresent(false)
-    }
     
     if(!isSignIn && present){
       toast.error("User already exist!");
@@ -256,15 +276,9 @@ export default function Auth() {
         if (!isNumeric(userData.mobile) || userData.mobile.length !== 10)
           return toast.error("Invalid Mobile Number");
         
-        var already_phn  = false;
-
-        phones.map((phn,idx)=>{
-          if(phn.mobile === userData.mobile){
-            already_phn = true;
-          }
-        })
-        console.log(already_phn);
-        if(already_phn){
+        
+        console.log(phnExists);
+        if(phnExists){
           toast.error("Mobile Number already exist");
           return ;
         }
