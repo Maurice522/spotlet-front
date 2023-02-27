@@ -92,7 +92,7 @@ const Blogs = () => {
               <div class="Blog_container_div">
                 <Link
                   to={{
-                    pathname: "/blog/" + e.id,
+                    pathname: "/blog/" + e._id,
                   }}
                 >
                   <div className="Blog_containerImage">
