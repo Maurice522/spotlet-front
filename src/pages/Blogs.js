@@ -93,7 +93,9 @@ const Blogs = () => {
                 <Link
                   to={{
                     pathname: "/blog/" + e._id,
+                    
                   }}
+                  state={e}
                 >
                   <div className="Blog_containerImage">
                     <img

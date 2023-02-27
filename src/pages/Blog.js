@@ -15,11 +15,8 @@ import { getBlog } from "../services/api";
 const Blog = () => {
   const { blogid } = useParams();
   const [blog, setblog] = useState({});
-  useEffect(() => {
-    getBlog(blogid).then((response) => {
-      setblog(response.data);
-    });
-  }, []);
+  let { state } = useLocation();
+
 
   const [open, setOpen] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -41,13 +38,18 @@ const Blog = () => {
       <div>
         <Navbar extraNavId={"id-2"} />
         <div className="text-on-image-container">
-          <img src={image} alt="background" className="bg-image darken" />
+          {state!=null?
+          <img src={state.image} alt="background" className="bg-image darken" />:
+          <img src={image} alt="background" className="bg-image darken" />}
+          
         </div>
+        {state!=null &&
         <div className="singleBlogContent" style={{ width: "75%" }}>
-          <h1 style={{ fontWeight: 600, fontSize: "24px" }}>{blog.title}</h1>
-          <br></br>
-          <p>{blog.content}</p>
+        <h1 style={{ fontWeight: 600, fontSize: "24px" }}>{state.title}</h1>
+        <br></br>
+        <p>{state.content}</p>
         </div>
+        }
 
         <div className="reactions">
           <div>
