@@ -18,7 +18,7 @@ const Blogs = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("/getBlogs").then((response) => {
+    axios.get("https://api.spotlet.in/getBlogs").then((response) => {
       const data2 = response.data;
       setData(data2);
       console.log(data2);
