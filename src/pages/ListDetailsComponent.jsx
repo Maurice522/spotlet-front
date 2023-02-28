@@ -179,9 +179,10 @@ const ListDetailsComponent = () => {
 								</div>
 								<div>
 									<div className="item-heading">Attendies</div>
-									<div className="item-body">
-										{bookingDetail?.attendies} People
-									</div>
+									{bookingDetail?.bookedTimeDates?.map((item, index) =>{
+										return <div key={index} className="item-body">{bookingDetail?.attendies} People</div>
+									})}
+									
 								</div>
 								<div>
 									<div className="item-heading">Reserved Time</div>
@@ -252,10 +253,48 @@ const ListDetailsComponent = () => {
 							</div>
 						</div>
 						<div className="booking-details-body-right">
+						<div data-attribute-3>
+								<div data-attribute-4>Total price (incl. GST)</div>
+								<div data-attribute-4 style={{ textAlign: "right" }}>
+								{bookingDetail?.bookedTimeDates?.length>1?<>₹{bookingDetail?.total_amt}x{bookingDetail?.bookedTimeDates?.length} =  ₹{bookingDetail?.total_amt*bookingDetail?.bookedTimeDates?.length}</>:<>₹{bookingDetail?.total_amt}</>}	
+									
+								</div>
+							</div>
+							<div data-attribute-3>
+								<div data-attribute-4>Discount</div>
+								<div data-attribute-4>
+									- ₹ {bookingDetail?.discount ? bookingDetail?.discount : 0}
+								</div>
+							</div>
+							<div data-attribute-3>
+								<div data-attribute-4>Cleaning Fee (incl. Gst)</div>
+								<div data-attribute-4>
+									{500*bookingDetail?.bookedTimeDates?.length}{/* ₹ {locationData?.pricing?.cleaningFee} */}
+								</div>
+							</div>
+							<div data-attribute-3>
+								<div data-attribute-4>Processing Fee (incl. Gst)</div>
+								<div data-attribute-4 style={{ textAlign: "right" }}>
+									₹ {bookingDetail?.processfee ? bookingDetail?.processfee : 0}
+								</div>
+							</div>
+
 							<div data-attribute-3>
 								<div data-attribute-1>Total</div>
-								<div data-attribute-1>₹ {bookingDetail?.total_amt}</div>
+								<div data-attribute-1>
+									₹
+									{/* {(perHourCost * bookingDetail?.duration_in_hours + 40)?.toFixed(
+										2
+									) === "NaN"
+										? 0
+										: (perHourCost * bookingDetail?.duration_in_hours + 40)?.toFixed(
+												2
+										  )} */}
+									{/* {bookingDetail?.final_amount} */}
+									{bookingDetail?.total_amt*bookingDetail?.bookedTimeDates?.length+(500*bookingDetail?.bookedTimeDates?.length)+(bookingDetail?.processfee ? Number(bookingDetail?.processfee) : 0)-(bookingDetail?.discount ? Number(bookingDetail?.discount) : 0)}
+								</div>
 							</div>
+
 							<div>
 								<Button
 									variant={
